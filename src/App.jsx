@@ -682,6 +682,13 @@ const ROLES_ELEGIBLES = ["director", "entrenador", "segundo", "delegado"];
    cuenta real de EBLDigital. */
 const ROLES_DEMO = [...ROLES_ELEGIBLES, "master"];
 
+/* Módulos disponibles según club. Solo Chamartín Vergara tiene acceso completo.
+   Otros clubes solo pueden usar: Jugadores, Alineación, Tablero (pizarra) */
+const getAvailableTabs = (club, roleTabs) => {
+  if (club === "C.D. Chamartín Vergara") return roleTabs;
+  return roleTabs.filter((tab) => ["inicio", "jugadores", "alineacion", "pizarra"].includes(tab));
+};
+
 /* ================= QUÉ ES GRATIS Y QUÉ ES DE PAGO =================
    Apartados abiertos en el plan gratuito. Son los que permiten llevar un
    equipo el domingo: saber a quién tienes, convocarlo, ver el calendario y
@@ -7544,7 +7551,7 @@ SUS HIJOS/AS:\n${mis}`;
 
       <Card title={t("h.quick")}>
         <div className="grid grid-cols-2 gap-2">
-          {role.tabs.filter((k) => k !== "inicio" && (k !== "usuarios" || lim.users)).map((k) => (
+          {getAvailableTabs(session?.club, role.tabs).filter((k) => k !== "inicio" && (k !== "usuarios" || lim.users)).map((k) => (
             <button key={k} onClick={() => setTab(k)} className="font-display uppercase tracking-wide text-sm py-2.5 rounded-lg border hover:opacity-80" style={{ borderColor: C.line, color: C.chalk, background: C.panel2 }}>{t("nav." + k)}</button>
           ))}
         </div>
@@ -9215,7 +9222,7 @@ SUS HIJOS/AS:\n${mis}`;
 
   if (booting) return <Splash lang={lang} />;
   if (!session) return <Auth lang={lang} setLang={setLang} onLogin={doLogin} onRegister={doRegister} tema={tema} cambiarTema={cambiarTema} />;
-  const allTabs = role.tabs.filter((k) => k !== "usuarios" || lim.users);
+  const allTabs = getAvailableTabs(session?.club, role.tabs).filter((k) => k !== "usuarios" || lim.users);
   /* El menú enseña TODAS las categorías de la app, no solo las del rol: así se
      ve de un vistazo todo lo que hace COACHBASE y qué desbloquearía otro rol.
      Las que este rol no puede abrir salen apagadas y no llevan a ninguna parte.
