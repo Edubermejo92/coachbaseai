@@ -4433,6 +4433,8 @@ export default function App() {
   const [pendingPlayId, setPendingPlayId] = useState(null);
   /* Propuestas del segundo entrenador esperando aprobación del entrenador principal */
   const [proposals, setProposals] = useState(PROPOSALS_INIT);
+  /* Categoría actualmente seleccionada si el usuario tiene múltiples */
+  const [selectedCategory, setSelectedCategory] = useState(session?.currentCategory);
   /* Las jugadas las guarda la pizarra en localStorage; el modo partido las lee
      de la misma clave para poder listar los ABP sin duplicar el almacén. Se
      relee al entrar en la pestaña de partido, que es cuando importan. */
@@ -5078,7 +5080,7 @@ SUS HIJOS/AS:\n${mis}`;
   const profile = players.find((p) => p.id === profileId);
 
   const cycleStatus = (id) => can("editSquad") &&
-    setPlayers((ps) => ps.map((p) => p.id === id ? { ...p, st: p.st === "disponible" ? "duda" : p.st === "duda" ? "lesionado" : "disponible" } : p));
+    updateSquadWithProposal((ps) => ps.map((p) => p.id === id ? { ...p, st: p.st === "disponible" ? "duda" : p.st === "duda" ? "lesionado" : "disponible" } : p));
 
   /* Marcar un jugador en el día abierto de Asistencia. `estado: null` borra
      la marca (vuelve a "sin marcar"). */
@@ -5126,7 +5128,7 @@ SUS HIJOS/AS:\n${mis}`;
     if (!nuevos.length) { setCsvMsg("No se ha reconocido ningún jugador. Formato: nombre,apellidos,dorsal,posición"); return; }
     const total = (csvReplace ? 0 : players.length) + nuevos.length;
     if (total > lim.players) { setCsvMsg(`El plan gratuito permite hasta ${lim.players} jugadores. Mejora a cuenta de club para ampliar.`); return; }
-    setPlayers((ps) => (csvReplace ? nuevos : [...ps, ...nuevos]));
+    updateSquadWithProposal((ps) => (csvReplace ? nuevos : [...ps, ...nuevos]));
     if (csvReplace) { setLineup({}); setCalled(new Set()); }
     setCsvMsg(`${nuevos.length} jugadores ${csvReplace ? "cargados (plantilla reemplazada)" : "añadidos"}.`);
     setCsvText("");
@@ -5285,6 +5287,23 @@ SUS HIJOS/AS:\n${mis}`;
               style={{ background: AC, color: C.sobre }}>
               {eqBusy ? t("a.sending") : t("p.changeTeam")}
             </button>
+
+            {/* Selector de categorías si el usuario tiene múltiples */}
+            {session?.categories && session.categories.length > 1 && (
+              <div className="mb-3">
+                <div className="text-[11px] mb-1.5" style={{ color: C.dim }}>Categoría actual</div>
+                <select value={selectedCategory || ""} onChange={(e) => setSelectedCategory(e.target.value)}
+                  className="w-full px-3 py-2.5 rounded-lg border text-sm"
+                  style={{ background: C.panel2, borderColor: C.line, color: C.chalk }}>
+                  {session.categories.map((cat) => (
+                    <option key={cat} value={cat} style={{ background: C.panel }}>
+                      {cat}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
+
             <div className="text-[11px] mb-1.5" style={{ color: C.dim }}>
               {t("p.newTeamNote")}{session.club ? ` (${session.club})` : ""}
             </div>
@@ -6830,11 +6849,63 @@ SUS HIJOS/AS:\n${mis}`;
         session?.role === "entrenador"
     );
 
+  const getProposalHistory = () =>
+    proposals.filter(
+      (p) =>
+        p.categoryId === session?.categoryId &&
+        (p.status === "approved" || p.status === "rejected")
+    );
+
+  const getProposalTypeLabel = (type) => {
+    const labels = {
+      lineup: "Alineación",
+      squad: "Plantilla",
+      calendar: "Calendario",
+      call: "Convocatoria",
+    };
+    return labels[type] || type;
+  };
+
   const updateLineupWithProposal = (newLineup) => {
     if (session?.role === "segundo") {
       proposeChange("lineup", newLineup);
     } else {
       setLineup(newLineup);
+    }
+  };
+
+  const updateSquadWithProposal = (updateFn) => {
+    if (session?.role === "segundo") {
+      const newSquad = updateFn(players);
+      proposeChange("squad", newSquad);
+    } else {
+      setPlayers(updateFn);
+    }
+  };
+
+  const updateCalendarWithProposal = (newCalendar) => {
+    if (session?.role === "segundo") {
+      proposeChange("calendar", newCalendar);
+    } else {
+      setCalls(newCalendar);
+    }
+  };
+
+  const applyApprovedProposal = (proposal) => {
+    if (proposal.status !== "approved") return;
+
+    switch (proposal.type) {
+      case "lineup":
+        setLineup(proposal.approvedData || proposal.proposedData);
+        break;
+      case "squad":
+        setPlayers(proposal.approvedData || proposal.proposedData);
+        break;
+      case "calendar":
+        setCalls(proposal.approvedData || proposal.proposedData);
+        break;
+      default:
+        break;
     }
   };
 
@@ -7620,8 +7691,13 @@ SUS HIJOS/AS:\n${mis}`;
       hora: matchInfo.hora, lugar: matchInfo.lugar, ids: [...called],
     };
     if (!isPro) { setCallMsg("El histórico de convocatorias es una función PRO."); setTimeout(() => setCallMsg(""), 4000); return; }
-    setCalls((cs) => [row, ...cs]);
-    setCallMsg("✓ Convocatoria guardada en el histórico. Las familias ya pueden verla.");
+    if (session?.role === "segundo") {
+      proposeChange("call", [row, ...calls]);
+      setCallMsg("✓ Propuesta de convocatoria enviada. Esperando aprobación del entrenador.");
+    } else {
+      updateCalendarWithProposal((cs) => [row, ...cs]);
+      setCallMsg("✓ Convocatoria guardada en el histórico. Las familias ya pueden verla.");
+    }
     setTimeout(() => setCallMsg(""), 4000);
   };
   const mailStaff = (u) => {
