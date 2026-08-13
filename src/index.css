@@ -1,1 +1,35 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ================= TIPOGRAFÍA · MODERN MINIMALIST =================
+   Hasta ahora `font-display` y `font-body` eran clases inventadas: Tailwind no
+   las genera, así que no aplicaban ninguna fuente y todo salía con la del
+   navegador. El tema pide DejaVu Sans, así que aquí se declaran de verdad, con
+   la pila de respaldo habitual para Windows, Mac y Android. */
+:root {
+  --fuente: "DejaVu Sans", Verdana, "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+}
+html, body { background: #FFFFFF; }
+body {
+  font-family: var(--fuente);
+  color: #36454F;
+  -webkit-font-smoothing: antialiased;
+}
+.font-body { font-family: var(--fuente); }
+/* Los titulares no cambian de familia: cambian de peso y de espaciado. Mezclar
+   dos tipografías es justo lo que hace que una interfaz parezca una plantilla. */
+.font-display { font-family: var(--fuente); font-weight: 700; letter-spacing: 0.01em; }
+.tabular-nums { font-variant-numeric: tabular-nums; }
+
+/* Las filas de la pizarra que se deslizan a lo ancho en el móvil: sin barra a
+   la vista, que en un campo de fútbol solo estorba. */
+.wb-scroll { scrollbar-width: none; -ms-overflow-style: none; }
+.wb-scroll::-webkit-scrollbar { display: none; }
+
+/* Foco visible en todo lo que se pueda pulsar: en gris no se puede confiar en
+   que el color del acento marque dónde estás. */
+:where(button, a, input, select, textarea):focus-visible {
+  outline: 2px solid #36454F;
+  outline-offset: 2px;
+}

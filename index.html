@@ -1,13 +1,22 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CoachBase AI</title>
+    <title>COACHBASE AI by EBLDigital</title>
+    <meta name="description" content="Gestión para entrenadores de fútbol base. Desarrollado por EBLDigital." />
+    <style>body{margin:0;background:#FFFFFF}</style>
+    <script>
+      /* El tema guardado se aplica ANTES de pintar nada: si no, quien lo tiene
+         en oscuro ve un fogonazo blanco en cada arranque. */
+      try {
+        var t = localStorage.getItem("cb_tema");
+        if (t === "oscuro") { document.documentElement.dataset.tema = "oscuro"; document.write('<style>body{background:#000000}</style>'); }
+      } catch (e) {}
+    </script>
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

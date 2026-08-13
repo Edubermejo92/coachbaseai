@@ -1,0 +1,14 @@
+# ================= CACHÉ =================
+# El index.html NO se cachea nunca: es el que dice qué bundle cargar. Si el
+# navegador se queda con uno viejo, sigue pidiendo el JS antiguo y la web
+# parece no haber cambiado por mucho que se despliegue. Este era el motivo de
+# "he subido el deploy y no ha cambiado nada".
+/
+  Cache-Control: public, max-age=0, must-revalidate
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Los archivos con hash en el nombre sí se cachean para siempre: si cambian,
+# cambia el nombre, así que no hay forma de servir uno viejo por error.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable

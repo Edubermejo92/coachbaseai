@@ -2,7 +2,25 @@
   command = "npm run build"
   publish = "dist"
 
+[functions]
+  directory = "netlify/functions"
+
+# SPA: sirve index.html para cualquier ruta (excepto la función)
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+
+# ================= CACHÉ =================
+# index.html sin caché (es quien apunta al bundle) y assets con hash para
+# siempre. Sin esto, un despliegue nuevo puede seguir viéndose como el viejo
+# porque el navegador reutiliza el index.html que tenía guardado.
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
