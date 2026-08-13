@@ -3538,7 +3538,7 @@ const USERS_INIT = [
   { id: 2, name: "DANI BERMEJO", email: "ebldigital92@gmail.com", role: "director", club: "C.D. Chamartín Vergara", categories: ["Infantil B"], status: "activo" },
   { id: 3, name: "MANUEL BERMEJO", email: "mmanuelb@gmail.com", role: "segundo", club: "C.D. Chamartín Vergara", categories: ["Infantil B"], status: "activo" },
   { id: 4, name: "FIDEL", email: "fidelber@movistar.es", role: "entrenador", club: "C.D. Chamartín Vergara", categories: ["Infantil B"], status: "activo" },
-  { id: 5, name: "DELEGADO PRUEBA", email: "delegado@chamartin.es", role: "delegado", club: "C.D. Chamartín Vergara", categories: ["Infantil B"], status: "activo" },
+  { id: 5, name: "LUIS GARCÍA", email: "luis.garcia@chamartin.es", role: "segundo", club: "C.D. Chamartín Vergara", categories: ["Infantil B"], status: "activo", categoryRoles: { "cat_1": ["segundo", "delegado"] } },
 ];
 
 /* Definición de categorías: cada categoría pertenece a un club y tiene roles
@@ -3549,10 +3549,10 @@ const CATEGORIES_INIT = [
     id: "cat_1",
     name: "Infantil B",
     club: "C.D. Chamartín Vergara",
-    director: 2,      // Dani
-    entrenador: 4,    // Fidel
-    segundo: 3,       // Manuel
-    delegado: 5,      // Delegado Prueba
+    director: 2,            // Dani
+    entrenador: 4,          // Fidel
+    segundo: [3, 5],        // Manuel + Luis García
+    delegado: 5,            // Luis García (también segundo)
   },
 ];
 
@@ -3603,10 +3603,13 @@ const PROPOSALS_INIT = [];
 const getCategoriesForUser = (userId, userRole, userClub) => {
   if (userRole === "master") return CATEGORIES_INIT;
   if (userRole === "director") return CATEGORIES_INIT.filter((c) => c.club === userClub);
-  return CATEGORIES_INIT.filter((c) =>
-    c.club === userClub &&
-    (c.director === userId || c.entrenador === userId || c.segundo === userId || c.delegado === userId)
-  );
+  return CATEGORIES_INIT.filter((c) => {
+    if (c.club !== userClub) return false;
+    if (c.director === userId || c.entrenador === userId) return true;
+    const segundos = Array.isArray(c.segundo) ? c.segundo : [c.segundo];
+    const delegados = Array.isArray(c.delegado) ? c.delegado : [c.delegado];
+    return segundos.includes(userId) || delegados.includes(userId);
+  });
 };
 
 const getCategoryInfo = (categoryId) => CATEGORIES_INIT.find((c) => c.id === categoryId);
@@ -3614,6 +3617,25 @@ const getCategoryInfo = (categoryId) => CATEGORIES_INIT.find((c) => c.id === cat
 const getDefaultCategory = (userId, userRole, userClub) => {
   const cats = getCategoriesForUser(userId, userRole, userClub);
   return cats.length > 0 ? cats[0] : null;
+};
+
+/* Obtiene los roles que un usuario tiene en una categoría específica.
+   Soporta segundo y delegado como arrays (un usuario puede ser ambos). */
+const getRolesInCategory = (userId, categoryId) => {
+  const cat = CATEGORIES_INIT.find((c) => c.id === categoryId);
+  if (!cat) return [];
+
+  const roles = [];
+  if (cat.director === userId) roles.push("director");
+  if (cat.entrenador === userId) roles.push("entrenador");
+
+  const segundos = Array.isArray(cat.segundo) ? cat.segundo : [cat.segundo];
+  if (segundos.includes(userId)) roles.push("segundo");
+
+  const delegados = Array.isArray(cat.delegado) ? cat.delegado : [cat.delegado];
+  if (delegados.includes(userId)) roles.push("delegado");
+
+  return roles;
 };
 
 /* qué jugador tutela cada familia (delimita a qué datos accede) */
@@ -4392,7 +4414,11 @@ export default function App() {
     return false;
   };
 
-  const canProposeChanges = () => session?.role === "segundo";
+  const canProposeChanges = () => {
+    if (session?.role === "segundo") return true;
+    const rolesInCat = getRolesInCategory(session?.id, session?.categoryId);
+    return rolesInCat.includes("segundo");
+  };
 
   const can = (p) => {
     const hasPermission = role.perms.includes(p);
