@@ -682,10 +682,19 @@ const ROLES_ELEGIBLES = ["director", "entrenador", "segundo", "delegado"];
    cuenta real de EBLDigital. */
 const ROLES_DEMO = [...ROLES_ELEGIBLES, "master"];
 
+/* Sin acentos y en minúsculas, para comparar nombres de club sin que el
+   formato exacto (con o sin punto, "C.D." vs "Club Deportivo", el año al
+   final…) rompa la comparación. En Airtable el club real se llama "Club
+   Deportivo Chamartín Vergara 1995"; en la demo/local es "C.D. Chamartín
+   Vergara" — ninguno de los dos coincide con el otro letra a letra, así que
+   la comparación es "contiene", no igualdad exacta. */
+const normClub = (v) => String(v || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+const esClubChamartinVergara = (club) => normClub(club).includes("chamartin vergara");
+
 /* Módulos disponibles según club. Solo Chamartín Vergara tiene acceso completo.
    Otros clubes solo pueden usar: Jugadores, Alineación, Tablero (pizarra) */
 const getAvailableTabs = (club, roleTabs) => {
-  if (club === "C.D. Chamartín Vergara") return roleTabs;
+  if (esClubChamartinVergara(club)) return roleTabs;
   return roleTabs.filter((tab) => ["inicio", "jugadores", "alineacion", "pizarra"].includes(tab));
 };
 
@@ -845,6 +854,24 @@ const CATEGORIAS = [
   { k: "juvenil", label: "Juvenil", sub: "Sub-19", f7: false, half: 40 },
   { k: "senior", label: "Sénior / Aficionado", sub: "Absoluto", f7: false, half: 45 },
 ];
+/* Un icono por categoría de edad: como el escudo es el mismo para todo el
+   club (Infantil B, Juvenil A y Sénior comparten el del club), hace falta
+   otra forma de distinguirlas de un vistazo al cambiar entre ellas. Progresión
+   de círculo que se va llenando según se crece, más dos marcas para cadete y
+   juvenil/sénior — misma familia geométrica que TAB_ICON ("marcas de tiza, no
+   emoji"), para no romper el estilo del resto de la app. */
+const CAT_ICON = {
+  prebenjamin: "◔", benjamin: "◑", alevin: "◕", infantil: "●", cadete: "◆", juvenil: "⬟", senior: "■",
+};
+/* De un nombre de categoría libre ("Infantil B", "Juvenil A"…) a su icono:
+   busca qué categoría oficial empieza el nombre, sin mirar mayúsculas ni
+   acentos. Si no reconoce ninguna (categoría creada a mano con otro nombre),
+   se queda con un icono neutro. */
+const iconoDeCategoria = (nombre) => {
+  const n = normClub(nombre);
+  const hit = CATEGORIAS.find((c) => n.startsWith(normClub(c.label).split(" ")[0]));
+  return CAT_ICON[hit?.k] || "◈";
+};
 const LETRAS = ["A", "B", "C", "D", "E"];
 const makeTeam = (catKey, letra) => {
   const c = CATEGORIAS.find((x) => x.k === catKey) || CATEGORIAS[3];
@@ -4461,7 +4488,9 @@ export default function App() {
   /* El color de mando lo pone el TEMA, no el rol: en claro es el carbón y en
      oscuro el gris claro, para que un botón principal se vea en los dos. */
   const AC = C.mando;
-  const lim = session ? LIMITS[session.plan] : LIMITS.oficial;
+  /* C.D. Chamartín Vergara nunca ve topes de plan gratuito, sea cual sea el
+     Plan que tenga puesto en Airtable: mismo criterio que isPro más abajo. */
+  const lim = session ? (esClubChamartinVergara(session.club) ? LIMITS.oficial : LIMITS[session.plan]) : LIMITS.oficial;
   /* PRO: por suscripción, o por ser Master, o por ser familia (su portal es gratuito) */
   const isFamilyRole = session?.role === "padre";
   /* Días de prueba. Manda lo que diga Airtable (lo pone el Master a mano en
@@ -4471,7 +4500,10 @@ export default function App() {
      mismo usuario tenía prueba infinita cambiando de móvil. */
   const trialDaysLeft = session ? Math.max(Number(session.prueba) || 0, trialLeft(session.email)) : 0;
   const onTrial = trialDaysLeft > 0 && !session?.pro;
-  const isPro = !!session && (session.role === "master" || !!session.pro || isFamilyRole || trialDaysLeft > 0);
+  /* C.D. Chamartín Vergara tiene la app completa sin pagar, para todo su
+     cuerpo técnico: no depende del rol de cada persona ni de si tiene
+     suscripción, solo de a qué club pertenece. */
+  const isPro = !!session && (session.role === "master" || !!session.pro || isFamilyRole || trialDaysLeft > 0 || esClubChamartinVergara(session.club));
   const pro = (feature) => isPro || !PRO_FEATURES.some((f) => f.k === feature);
   const pendingRestricted = ["viewUsers", "grantAccess", "manageDocs"];
 
@@ -4510,7 +4542,7 @@ export default function App() {
 
   const can = (p) => {
     const hasPermission = role.perms.includes(p);
-    const notFreeRestricted = !(session?.plan === "free" && p === "viewUsers");
+    const notFreeRestricted = !(session?.plan === "free" && p === "viewUsers" && !esClubChamartinVergara(session?.club));
     const notPendingRestricted = !(session?.pendingApproval && pendingRestricted.includes(p));
     return hasPermission && notFreeRestricted && notPendingRestricted;
   };
@@ -6202,26 +6234,14 @@ SUS HIJOS/AS:\n${mis}`;
       <div className="space-y-4">
         <Card title={t("ca.teamCrest")}>
           <div className="flex items-center gap-4">
-            <Crest src={crest} name={session.team.name} size={56} />
+            <Crest src={teamCrest} name={session.team.name} size={56} />
             <div className="min-w-0">
               <div className="font-display text-lg" style={{ color: C.chalk }}>{session.club} · {session.team.name}</div>
               <div className="text-[11px]" style={{ color: C.dim }}>{session.team.sub}</div>
             </div>
-            {can("editSquad") && (
-              <div className="ml-auto flex flex-wrap gap-2">
-                <label className="text-sm px-4 py-2 rounded-lg border cursor-pointer font-display uppercase tracking-wide" style={{ borderColor: C.line, color: C.chalk }}>
-                  🛡 Subir escudo
-                  <input type="file" accept="image/*" className="hidden" onChange={(e) => { const f = e.target.files?.[0]; if (f) uploadCrest(f); e.target.value = ""; }} />
-                </label>
-                {crest && (
-                  <button onClick={() => { setCrest(null); try { localStorage.removeItem(crestKey); } catch { /* noop */ } }}
-                    className="text-sm px-4 py-2 rounded-lg border" style={{ borderColor: C.line, color: C.dim }}>{t("ca.remove")}</button>
-                )}
-              </div>
-            )}
           </div>
           <div className="text-[11px] mt-3" style={{ color: C.dim }}>
-            El escudo acompaña al nombre del equipo en toda la app. Si hay conexión se guarda para todo el equipo; si no, queda en este dispositivo.
+            El escudo es el del club: lo comparten todas sus categorías (Infantil B, Juvenil A, Sénior…), no hay uno distinto por categoría.
           </div>
         </Card>
 
@@ -7413,7 +7433,7 @@ SUS HIJOS/AS:\n${mis}`;
 
       {/* Panel de Categorías por Rol */}
       {session?.categories && session.categories.length > 0 && (
-        <Card title="📂 Mis Categorías" className="lg:col-span-3" style={{ borderColor: C.line }}>
+        <Card title="Mis categorías" className="lg:col-span-3" style={{ borderColor: C.line }}>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             {session.categories.map((cat) => {
               const canEdit = canEditCategory(cat);
@@ -7437,10 +7457,13 @@ SUS HIJOS/AS:\n${mis}`;
                 badgeColor = C.dim;
               }
 
+              const activa = selectedCategory === cat;
               return (
                 <div key={cat} className="p-3 rounded-lg border flex flex-col gap-2"
-                  style={{ borderColor: selectedCategory === cat ? AC : C.line, background: selectedCategory === cat ? `${AC}15` : C.panel2 }}>
-                  <div className="font-semibold text-sm" style={{ color: C.chalk }}>{cat}</div>
+                  style={{ borderColor: activa ? AC : C.line, background: activa ? `${AC}15` : C.panel2 }}>
+                  <div className={`text-sm flex items-center gap-1.5 ${activa ? "font-bold" : "font-semibold"}`} style={{ color: activa ? AC : C.chalk }}>
+                    <span aria-hidden="true">{iconoDeCategoria(cat)}</span>{cat}
+                  </div>
                   {badge && (
                     <div className="text-xs px-2 py-1 rounded text-center" style={{ background: badgeBg, color: badgeColor }}>
                       {badge}
@@ -8647,7 +8670,7 @@ SUS HIJOS/AS:\n${mis}`;
                   la app: se reconoce el partido de un vistazo. */}
               <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
                 <div className="flex items-center gap-3">
-                  <Crest src={crest || clubInfo.crest || escudoDe(session.club)} name={session.team.name} size={40} />
+                  <Crest src={clubInfo.crest || escudoDe(session.club) || crest} name={session.team.name} size={40} />
                   <div className="font-display text-3xl tabular-nums" style={{ color: C.chalk }}>
                     <span style={{ color: AC }}>{score.us}–{score.them}</span>
                   </div>
@@ -9385,7 +9408,13 @@ SUS HIJOS/AS:\n${mis}`;
 
   /* Escudo a mostrar: el del equipo, si no el del club de Airtable, y si no el
      archivo local. Antes la cabecera solo miraba el primero. */
-  const teamCrest = crest || clubInfo.crest || escudoDe(session.club);
+  /* El escudo es del CLUB, no de la categoría: Infantil B, Juvenil A y Sénior
+     del mismo club comparten el mismo escudo, así que aquí manda siempre el
+     del club. "crest" (estado local/por categoría, de una época en que cada
+     categoría podía subir el suyo) solo se usa como último recurso mientras
+     el del club todavía no ha cargado, para no dejar el hueco vacío un
+     instante. */
+  const teamCrest = clubInfo.crest || escudoDe(session.club) || crest;
 
   return (
     <div className="font-body min-h-screen" style={{ background: C.bg, color: C.chalk }}>
@@ -9750,7 +9779,7 @@ SUS HIJOS/AS:\n${mis}`;
           </div>
         </nav>
 
-        <main className="flex-1 w-full p-4 sm:p-5 pb-24 lg:pb-5 max-w-6xl">
+        <main className={`flex-1 w-full p-4 sm:p-5 ${session?.categories?.length > 1 ? "pb-32" : "pb-24"} lg:pb-5 max-w-6xl`}>
           {tab === "inicio" && renderHome()}
           {tab === "equipo" && can("editSquad") && renderTeamSettings()}
           {tab === "jugadores" && renderSquad()}
@@ -9779,24 +9808,45 @@ SUS HIJOS/AS:\n${mis}`;
       {renderProfile()}
       {renderAccount()}
 
-      <nav className="lg:hidden safe-bottom fixed bottom-0 inset-x-0 flex border-t z-20" style={{ borderColor: C.line, background: C.panel }}>
-        {mobileTabs.map((k) => (
-          <button key={k} onClick={() => setTab(k)} className="relative flex-1 min-w-0 py-2 text-center text-[10px] font-display uppercase leading-tight"
-            style={{ color: tab === k ? AC : C.dim }}>
-            {tab === k && <span className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-[3px] rounded-b-full" style={{ background: AC }} />}
-            <div className="text-base">{TAB_ICON[k]}</div>
-            {t("nav." + k)}
-          </button>
-        ))}
-        <button onClick={() => setMenuOpen(true)} className="relative flex-1 min-w-0 py-2 text-center text-[10px] font-display uppercase" style={{ color: menuOpen ? AC : C.dim }}>
-          {menuOpen && <span className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-[3px] rounded-b-full" style={{ background: AC }} />}
-          <div className="relative inline-block text-base">
-            ⋯
-            {hayAvisosNav && <span className="absolute -top-0.5 -right-1.5 w-2 h-2 rounded-full" style={{ background: C.red, boxShadow: `0 0 0 2px ${C.panel}` }} />}
+      <div className="lg:hidden fixed bottom-0 inset-x-0 z-20">
+        {/* Tira de categorías: solo aparece con más de una (ej. quien lleva
+            Infantil B y también Juvenil A). Un icono por categoría porque el
+            escudo es el mismo para todas — ver iconoDeCategoria más arriba.
+            La activa va en negrita y con el color de mando, igual que la
+            pestaña activa de la barra de debajo. */}
+        {session?.categories && session.categories.length > 1 && (
+          <div className="flex overflow-x-auto border-t" style={{ borderColor: C.line, background: C.panel2 }}>
+            {session.categories.map((cat) => {
+              const activa = selectedCategory === cat;
+              return (
+                <button key={cat} onClick={() => setSelectedCategory(cat)}
+                  className="shrink-0 flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-display uppercase whitespace-nowrap"
+                  style={{ color: activa ? AC : C.dim, fontWeight: activa ? 700 : 500 }}>
+                  <span aria-hidden="true">{iconoDeCategoria(cat)}</span>{cat}
+                </button>
+              );
+            })}
           </div>
-          <div>Más</div>
-        </button>
-      </nav>
+        )}
+        <nav className="safe-bottom flex border-t" style={{ borderColor: C.line, background: C.panel }}>
+          {mobileTabs.map((k) => (
+            <button key={k} onClick={() => setTab(k)} className="relative flex-1 min-w-0 py-2 text-center text-[10px] font-display uppercase leading-tight"
+              style={{ color: tab === k ? AC : C.dim }}>
+              {tab === k && <span className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-[3px] rounded-b-full" style={{ background: AC }} />}
+              <div className="text-base">{TAB_ICON[k]}</div>
+              {t("nav." + k)}
+            </button>
+          ))}
+          <button onClick={() => setMenuOpen(true)} className="relative flex-1 min-w-0 py-2 text-center text-[10px] font-display uppercase" style={{ color: menuOpen ? AC : C.dim }}>
+            {menuOpen && <span className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-[3px] rounded-b-full" style={{ background: AC }} />}
+            <div className="relative inline-block text-base">
+              ⋯
+              {hayAvisosNav && <span className="absolute -top-0.5 -right-1.5 w-2 h-2 rounded-full" style={{ background: C.red, boxShadow: `0 0 0 2px ${C.panel}` }} />}
+            </div>
+            <div>Más</div>
+          </button>
+        </nav>
+      </div>
 
     </div>
   );
