@@ -3521,7 +3521,7 @@ const PLAYERS_INIT = [
 const USERS_INIT = [
   { id: 1, name: "EDUARDO BERMEJO", email: "edubermejo92@gmail.com", role: "master", status: "activo" },
   { id: 2, name: "DANI BERMEJO", email: "ebldigital92@gmail.com", role: "director", status: "activo" },
-  { id: 3, name: "MANUEL BERMEJO", email: "manuelb@gmail.com", role: "segundo", status: "activo" },
+  { id: 3, name: "MANUEL BERMEJO", email: "mmanuelb@gmail.com", role: "segundo", status: "activo" },
   { id: 4, name: "FIDEL", email: "fidelber@movistar.es", role: "entrenador", status: "activo" },
 ];
 
