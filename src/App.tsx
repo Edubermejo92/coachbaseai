@@ -1,10 +1,12 @@
 import { useMemo } from 'react'
 import { teams } from './data/seed'
-import type { Confirmation, Role } from './types'
+import type { Confirmation, Player, PlayerCompletion, Role } from './types'
 import { useLocalStorage } from './hooks/useLocalStorage'
 import { IdentityBar, type Identity } from './components/IdentityBar'
 import { DocumentCard } from './components/DocumentCard'
 import { ChecklistCard } from './components/ChecklistCard'
+import { PendingPlayersBanner } from './components/PendingPlayersBanner'
+import { PlayersChecklist } from './components/PlayersChecklist'
 
 const team = teams[0]
 
@@ -17,6 +19,15 @@ export default function App() {
   const [confirmationsByTask, setConfirmationsByTask] = useLocalStorage<
     Record<string, Confirmation[]>
   >('coachbase.confirmations', {})
+
+  const [players, setPlayers] = useLocalStorage<Player[]>(
+    `coachbase.roster.${team.id}`,
+    team.players,
+  )
+
+  const [playerCompletions, setPlayerCompletions] = useLocalStorage<
+    Record<string, PlayerCompletion>
+  >(`coachbase.playerCompletions.${team.id}`, {})
 
   const handleConfirm = (taskId: string) => (role: Role, name: string) => {
     setConfirmationsByTask((prev) => {
@@ -33,6 +44,40 @@ export default function App() {
       [taskId]: (prev[taskId] ?? []).filter((c) => c.role !== role),
     }))
   }
+
+  const handleAddPlayer = (name: string) => {
+    setPlayers((prev) => [...prev, { id: crypto.randomUUID(), name }])
+  }
+
+  const handleRemovePlayer = (playerId: string) => {
+    setPlayers((prev) => prev.filter((p) => p.id !== playerId))
+    setPlayerCompletions((prev) => {
+      const { [playerId]: _removed, ...rest } = prev
+      return rest
+    })
+  }
+
+  const handleTogglePlayerCompletion = (playerId: string) => {
+    setPlayerCompletions((prev) => {
+      if (prev[playerId]) {
+        const { [playerId]: _removed, ...rest } = prev
+        return rest
+      }
+      return {
+        ...prev,
+        [playerId]: {
+          role: identity.role,
+          name: identity.name.trim(),
+          confirmedAt: new Date().toISOString(),
+        },
+      }
+    })
+  }
+
+  const pendingPlayers = useMemo(
+    () => players.filter((p) => !playerCompletions[p.id]),
+    [players, playerCompletions],
+  )
 
   const overallStatus = useMemo(() => {
     const totalRequired = team.tasks.reduce((sum, t) => sum + t.requiredRoles.length, 0)
@@ -63,6 +108,8 @@ export default function App() {
       </header>
 
       <main className="mx-auto max-w-4xl space-y-6 px-4 py-8">
+        <PendingPlayersBanner players={players} pendingPlayers={pendingPlayers} />
+
         <div>
           <p className="text-sm font-medium text-emerald-700">{team.club}</p>
           <h1 className="text-2xl font-bold text-slate-900">{team.name}</h1>
@@ -98,6 +145,20 @@ export default function App() {
               />
             ))}
           </div>
+        </section>
+
+        <section>
+          <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-slate-500">
+            Jugadores
+          </h2>
+          <PlayersChecklist
+            players={players}
+            completions={playerCompletions}
+            identity={identity}
+            onAddPlayer={handleAddPlayer}
+            onRemovePlayer={handleRemovePlayer}
+            onToggleCompletion={handleTogglePlayerCompletion}
+          />
         </section>
       </main>
     </div>

@@ -8,7 +8,21 @@ export const ROLE_LABELS: Record<Role, string> = {
 
 export const ROLES: Role[] = ['delegado', 'entrenador', 'director_deportivo']
 
+// Roles con permiso para confirmar, jugador a jugador, si ha realizado los ejercicios de pretemporada.
+export const TECHNICAL_ROLES: Role[] = ['entrenador', 'director_deportivo']
+
 export interface Confirmation {
+  role: Role
+  name: string
+  confirmedAt: string
+}
+
+export interface Player {
+  id: string
+  name: string
+}
+
+export interface PlayerCompletion {
   role: Role
   name: string
   confirmedAt: string
@@ -37,4 +51,5 @@ export interface Team {
   category: string
   documents: TeamDocument[]
   tasks: ChecklistTask[]
+  players: Player[]
 }

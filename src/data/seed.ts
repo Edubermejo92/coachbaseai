@@ -26,5 +26,6 @@ export const teams: Team[] = [
         requiredRoles: ['delegado', 'entrenador', 'director_deportivo'],
       },
     ],
+    players: [],
   },
 ]
