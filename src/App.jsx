@@ -947,6 +947,36 @@ const ROL2LABEL = { entrenador: "Entrenador principal", segundo: "Segundo entren
 const LABEL2ROL = { "Entrenador principal": "entrenador", "Segundo entrenador": "segundo", "Delegado": "delegado", "Padre/Tutor": "padre", "Director deportivo": "director", "Master": "master", /* compatibilidad con fichas antiguas */ "Presidente": "director", "Presidente del club": "director" };
 const airUsers = async (teamRec = "") => { try { const r = await cbFetch(AIR + (teamRec ? `?team=${encodeURIComponent(teamRec)}` : "")); if (!r.ok) return null; const d = await r.json(); return d.records || null; } catch { return null; } };
 const airCreate = (body) => { try { return cbFetch(AIR, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) }).catch(() => {}); } catch { return null; } };
+/* ================= PROPUESTAS (segundo entrenador -> aprobación) =================
+   Persistidas en Airtable (tabla Propuestas): el segundo entrenador propone
+   alineación/plantilla/calendario/convocatoria y el entrenador, director o
+   master las aprueba o rechaza. Ver ?res=propuestas en airtable.mts. */
+const airProposalsList = async (teamRec) => {
+  try {
+    const r = await cbFetch(`${AIR}?res=propuestas&team=${encodeURIComponent(teamRec)}`);
+    if (!r.ok) return null;
+    const d = await r.json();
+    return d.records || null;
+  } catch { return null; }
+};
+const airProposalCreate = async (teamRec, type, data) => {
+  try {
+    const r = await cbFetch(`${AIR}?res=propuestas`, {
+      method: "POST", headers: { "content-type": "application/json" },
+      body: JSON.stringify({ team: teamRec, type, data }),
+    });
+    return await r.json().catch(() => null);
+  } catch { return null; }
+};
+const airProposalResolve = async (id, estado) => {
+  try {
+    const r = await cbFetch(`${AIR}?res=propuestas&id=${encodeURIComponent(id)}`, {
+      method: "PATCH", headers: { "content-type": "application/json" },
+      body: JSON.stringify({ estado }),
+    });
+    return await r.json().catch(() => null);
+  } catch { return null; }
+};
 /* Login y alta pasan por airPost como todo lo demás: así el motivo del fallo
    queda apuntado y el usuario lee por qué no ha podido entrar, en vez del
    mismo "no hay conexión" para un despliegue sin funciones y para un móvil
@@ -3645,6 +3675,12 @@ const getRolesInCategory = (userId, categoryId) => {
   return roles;
 };
 
+/* true si la sesión tiene esa clave de rol, como Rol principal o como uno de
+   sus Roles adicionales (session.rolesExtra, viene del login real). Espejo
+   de tieneRol() en airtable.mts. */
+const tieneRolFront = (session, clave) =>
+  session?.role === clave || (Array.isArray(session?.rolesExtra) && session.rolesExtra.includes(clave));
+
 /* qué jugador tutela cada familia (delimita a qué datos accede) */
 const TUTELA = {
   "familia.navarro@gmail.com": [10],
@@ -4422,8 +4458,11 @@ export default function App() {
   };
 
   const canProposeChanges = () => {
-    if (session?.role === "segundo") return true;
-    const rolesInCat = getRolesInCategory(session?.id, session?.categoryId);
+    /* Cubre tanto la sesión real (session.rolesExtra, del login de verdad)
+       como la demo local (CATEGORIES_INIT, donde el rol combinado se
+       resuelve por categoría, ej. Luis García = segundo + delegado). */
+    if (tieneRolFront(session, "segundo")) return true;
+    const rolesInCat = getRolesInCategory(session?.userId, session?.categoryId);
     return rolesInCat.includes("segundo");
   };
 
@@ -5336,7 +5375,7 @@ SUS HIJOS/AS:\n${mis}`;
                       const canEdit = canEditCategory(cat);
                       const label = canEdit
                         ? `${cat} (Edición)`
-                        : session.role === "segundo"
+                        : tieneRolFront(session, "segundo")
                           ? `${cat} (Propuestas)`
                           : `${cat} (Lectura)`;
                       return (
@@ -5352,7 +5391,7 @@ SUS HIJOS/AS:\n${mis}`;
                     <span style={{ marginLeft: "10px", fontSize: "11px", color: C.dim }}>
                       {canEditCategory(session.categories[0])
                         ? "(Edición)"
-                        : session.role === "segundo"
+                        : tieneRolFront(session, "segundo")
                           ? "(Propuestas)"
                           : "(Lectura)"}
                     </span>
@@ -5411,7 +5450,7 @@ SUS HIJOS/AS:\n${mis}`;
         </div>
 
         {/* Histórico de propuestas (segundo/entrenador) */}
-        {(session.role === "segundo" || session.role === "entrenador") && getProposalHistory().length > 0 && (
+        {(tieneRolFront(session, "segundo") || canResolveProposals()) && getProposalHistory().length > 0 && (
           <div className="pt-4 mt-4 border-t" style={{ borderColor: C.line }}>
             <div className="font-display text-sm uppercase tracking-widest mb-3" style={{ color: C.dim }}>📋 Histórico de propuestas</div>
             <div className="space-y-2 max-h-64 overflow-y-auto">
@@ -6881,9 +6920,38 @@ SUS HIJOS/AS:\n${mis}`;
     );
   };
 
-  /* ================= PROPUESTAS DEL SEGUNDO ENTRENADOR ================= */
-  const proposeChange = (type, data) => {
-    if (session?.role !== "segundo") return;
+  /* ================= PROPUESTAS DEL SEGUNDO ENTRENADOR =================
+     Con sesión real (login de verdad, session.team.rec existe) las propuestas
+     viven en Airtable (tabla Propuestas, ver ?res=propuestas en
+     airtable.mts) y se cargan/escriben por API. En la demo o sin backend
+     (session.team no tiene .rec) siguen siendo solo estado local, como antes. */
+  const esSesionRealConEquipo = !!session?.team?.rec;
+  const canResolveProposals = () =>
+    session?.role === "master" || session?.role === "director" || tieneRolFront(session, "entrenador");
+
+  const refreshProposals = async () => {
+    if (!esSesionRealConEquipo) return;
+    const recs = await airProposalsList(session.team.rec);
+    if (!recs) return;
+    setProposals(recs.map((r) => ({
+      id: r.id, categoryId: session.team.rec, type: r.type,
+      proposedBy: r.proposedBy, proposedData: r.data, status: r.status,
+      approvedBy: r.approvedBy, approvedData: r.status === "approved" ? r.data : null,
+      date: r.date,
+    })));
+  };
+  useEffect(() => {
+    if (esSesionRealConEquipo) refreshProposals();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [session?.team?.rec]);
+
+  const proposeChange = async (type, data) => {
+    if (!canProposeChanges()) return;
+    if (esSesionRealConEquipo) {
+      await airProposalCreate(session.team.rec, type, data);
+      await refreshProposals();
+      return;
+    }
     const proposal = {
       id: `prop_${Date.now()}`,
       categoryId: session.categoryId,
@@ -6897,8 +6965,8 @@ SUS HIJOS/AS:\n${mis}`;
     setProposals((ps) => [...ps, proposal]);
   };
 
-  const approveProposal = (proposalId, approveData = null) => {
-    if (session?.role !== "entrenador") return;
+  const approveProposal = async (proposalId, approveData = null) => {
+    if (!canResolveProposals()) return;
     const proposal = proposals.find((p) => p.id === proposalId);
     if (!proposal) return;
 
@@ -6906,7 +6974,11 @@ SUS HIJOS/AS:\n${mis}`;
     const dataToApply = approveData || proposal.proposedData;
     applyApprovedProposal({ ...proposal, status: "approved", approvedData: dataToApply });
 
-    // Actualizar estado
+    if (esSesionRealConEquipo) {
+      await airProposalResolve(proposalId, "approved");
+      await refreshProposals();
+      return;
+    }
     setProposals((ps) =>
       ps.map((p) =>
         p.id === proposalId
@@ -6916,8 +6988,13 @@ SUS HIJOS/AS:\n${mis}`;
     );
   };
 
-  const rejectProposal = (proposalId) => {
-    if (session?.role !== "entrenador") return;
+  const rejectProposal = async (proposalId) => {
+    if (!canResolveProposals()) return;
+    if (esSesionRealConEquipo) {
+      await airProposalResolve(proposalId, "rejected");
+      await refreshProposals();
+      return;
+    }
     setProposals((ps) =>
       ps.map((p) =>
         p.id === proposalId ? { ...p, status: "rejected", approvedBy: session.userId } : p
@@ -6930,7 +7007,7 @@ SUS HIJOS/AS:\n${mis}`;
       (p) =>
         p.status === "pending" &&
         p.categoryId === session?.categoryId &&
-        session?.role === "entrenador"
+        canResolveProposals()
     );
 
   const getProposalHistory = () =>
@@ -6951,7 +7028,7 @@ SUS HIJOS/AS:\n${mis}`;
   };
 
   const updateLineupWithProposal = (newLineup) => {
-    if (session?.role === "segundo") {
+    if (canProposeChanges()) {
       proposeChange("lineup", newLineup);
     } else {
       setLineup(newLineup);
@@ -6959,7 +7036,7 @@ SUS HIJOS/AS:\n${mis}`;
   };
 
   const updateSquadWithProposal = (updateFn) => {
-    if (session?.role === "segundo") {
+    if (canProposeChanges()) {
       const newSquad = updateFn(players);
       proposeChange("squad", newSquad);
     } else {
@@ -6968,7 +7045,7 @@ SUS HIJOS/AS:\n${mis}`;
   };
 
   const updateCalendarWithProposal = (newCalendar) => {
-    if (session?.role === "segundo") {
+    if (canProposeChanges()) {
       proposeChange("calendar", newCalendar);
     } else {
       setCalls(newCalendar);
@@ -7290,7 +7367,7 @@ SUS HIJOS/AS:\n${mis}`;
             {session.categories.map((cat) => {
               const canEdit = canEditCategory(cat);
               const canView = canViewCategory(cat);
-              const isSecondo = session.role === "segundo";
+              const isSecondo = tieneRolFront(session, "segundo");
               let badge = "";
               let badgeBg = "";
               let badgeColor = "";
@@ -7776,7 +7853,7 @@ SUS HIJOS/AS:\n${mis}`;
     const bench = players.filter((p) => !starters.has(p.id));
     return (
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <Card title={`${session.role === "segundo" ? "Propuesta de alineación" : "Titulares"} — ${sysCode}`}>
+        <Card title={`${canProposeChanges() ? "Propuesta de alineación" : "Titulares"} — ${sysCode}`}>
           <div className="flex flex-wrap items-center gap-1.5 mb-2">
             {(session.team?.f7 ? SYS_F7 : SYS_F11).map((c) => (
               <button key={c} onClick={() => applySystem(c)} className="text-xs px-2 py-1 rounded-lg border font-display"
@@ -7840,11 +7917,11 @@ SUS HIJOS/AS:\n${mis}`;
       hora: matchInfo.hora, lugar: matchInfo.lugar, ids: [...called],
     };
     if (!isPro) { setCallMsg("El histórico de convocatorias es una función PRO."); setTimeout(() => setCallMsg(""), 4000); return; }
-    if (session?.role === "segundo") {
+    if (canProposeChanges()) {
       proposeChange("call", [row, ...calls]);
       setCallMsg("✓ Propuesta de convocatoria enviada. Esperando aprobación del entrenador.");
     } else {
-      updateCalendarWithProposal((cs) => [row, ...cs]);
+      setCalls([row, ...calls]);
       setCallMsg("✓ Convocatoria guardada en el histórico. Las familias ya pueden verla.");
     }
     setTimeout(() => setCallMsg(""), 4000);
@@ -9165,9 +9242,17 @@ SUS HIJOS/AS:\n${mis}`;
     const defaultCat = getDefaultCategory(res?.user?.id || 0, finalRole, club);
     setSession({
       name, role: finalRole, plan, club, comunidad, email: em, kids: TUTELA[em] || [], team,
+      /* Roles adicionales de verdad (ej. segundo + delegado a la vez), tal y
+         como los devuelve el login real. En la demo/sin backend se queda
+         vacío: ahí los roles combinados se simulan con CATEGORIES_INIT. */
+      rolesExtra: res?.user?.rolesExtra || [],
       categories: userCategories.map((c) => c.name),
       currentCategory: defaultCat?.name || (team?.name),
-      categoryId: defaultCat?.id,
+      /* Si no hay categoría de demo para este usuario (caso normal con un
+         usuario real de Airtable), se usa el id real del equipo: así las
+         propuestas persistidas en Airtable quedan ancladas a ESE equipo, no a
+         un "cat_x" que solo existe en la demo. */
+      categoryId: defaultCat?.id || team?.rec,
       pendingApproval: estado !== "activo",
       prueba: Number(res?.user?.prueba) || 0,
       userId: res?.user?.id,

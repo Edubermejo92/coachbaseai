@@ -23,6 +23,15 @@ const T_FIRMAS = "tblCiJo9zi21Yeaf7";
 const T_GALERIA = "tblwMuinSKzjvkhk7";
 const T_PARTIDOS = "tblwOCRaTwkZVzVxq";
 const T_CONVOCATORIAS = "tbl4ahEyv6FpMsYL0";
+/* Cambios propuestos por el segundo entrenador que requieren aprobación del
+   entrenador principal (o director/master) antes de aplicarse. */
+const T_PROPUESTAS = "tbl6cVRLXukqg1iFQ";
+const PR = {
+  ref: "fldmOwGOnzTLj0YwB", tipo: "fldcg1NtOgnd1dPgm", estado: "fldTp6KiLsX1Ct0zq",
+  datos: "fldLyjvNJYFl9L44F", equipo: "fldNDgGcg66K5KLGT",
+  propuestoPor: "fldtb0FrZmgtdhOoI", aprobadoPor: "fldeJt8lKbxm0TCdA",
+  fechaProp: "fldrRDvRP5IBIcbwG", fechaRes: "fldEZxwoA1k4HLWji",
+};
 const T_ENTRENAMIENTOS = "tblinm3lV3FTUcL62";
 /* Plantillas de entrenamiento reutilizables. Viven en la misma tabla que las
    sesiones (Entrenamientos): una sesión con Plantilla=true no tiene fecha, es
@@ -42,6 +51,9 @@ const U = {
   /* Modo de prueba: hasta esta fecha la persona tiene la app completa sin
      pagar. Lo pone el Master a mano en Airtable. */
   prueba: "fldevbPLxMunBH9NR",
+  /* Roles extra, ademas del Rol principal: permite que una misma persona sea
+     a la vez, por ejemplo, Segundo entrenador Y Delegado en su categoria. */
+  rolesExtra: "fldJRASqTraLecDMa",
 };
 
 /* El Master es UNA cuenta, la de EBLDigital, y no se reparte desde la app.
@@ -225,6 +237,16 @@ const ASIGNABLES: Record<string, string[]> = {
   director: ["entrenador", "segundo", "delegado"],
   entrenador: ["segundo", "delegado"],
 };
+
+/* Traduce las etiquetas del campo "Roles adicionales" (multipleSelects) a
+   claves internas. Permite que una misma persona sea, por ejemplo, Segundo
+   entrenador (Rol principal) Y Delegado (Rol adicional) a la vez. */
+const rolesExtraKeys = (v: unknown): string[] =>
+  (Array.isArray(v) ? v : []).map((x) => rolKey(x)).filter(Boolean);
+/* true si esta sesion tiene esa clave de rol, ya sea como Rol principal o
+   como uno de sus Roles adicionales. */
+const tieneRol = (sesion: any, clave: string): boolean =>
+  rolKey(sesion?.rol) === clave || (Array.isArray(sesion?.rolesExtra) && sesion.rolesExtra.includes(clave));
 
 /* ================= SESIONES FIRMADAS =================
    Antes este endpoint estaba abierto: cualquiera con la URL podía leer y
@@ -966,6 +988,107 @@ export default async (req: Request) => {
       return j({ error: "Petición no soportada" }, 400);
     }
 
+    /* ================= PROPUESTAS =================
+       Cambios que el segundo entrenador (Rol principal o adicional) propone
+       en alineación, plantilla, calendario o convocatoria, y que requieren
+       aprobación del entrenador principal, el director o el master antes de
+       aplicarse de verdad.
+       GET   ?res=propuestas&team=recX            -> propuestas de ese equipo
+       POST  ?res=propuestas { team, tipo, datos } -> crea una Pendiente
+       PATCH ?res=propuestas&id=recY { estado }    -> "aprobada" | "rechazada" */
+    const TIPO_PROPUESTA_LABEL: Record<string, string> = {
+      lineup: "Alineación", squad: "Plantilla", calendar: "Calendario", call: "Convocatoria",
+    };
+    const ESTADO_PROPUESTA_LABEL: Record<string, string> = {
+      pending: "Pendiente", approved: "Aprobada", rejected: "Rechazada",
+    };
+    const estadoPropuestaKey = (v: unknown) => inv(ESTADO_PROPUESTA_LABEL, String(v || "")) || "pending";
+    const tipoPropuestaKey = (v: unknown) => inv(TIPO_PROPUESTA_LABEL, String(v || "")) || "";
+    const propuestaOut = (r: any) => ({
+      id: r.id,
+      type: tipoPropuestaKey(r.fields[PR.tipo]),
+      status: estadoPropuestaKey(r.fields[PR.estado]),
+      data: (() => { try { return JSON.parse(r.fields[PR.datos] || "null"); } catch { return null; } })(),
+      teamRec: (r.fields[PR.equipo] || [])[0] || null,
+      proposedBy: (r.fields[PR.propuestoPor] || [])[0] || null,
+      approvedBy: (r.fields[PR.aprobadoPor] || [])[0] || null,
+      date: r.fields[PR.fechaProp] || null,
+      resolvedDate: r.fields[PR.fechaRes] || null,
+    });
+    /* Quien puede aprobar o rechazar: el entrenador principal, el director o
+       el master del equipo al que pertenece la propuesta. El segundo y el
+       delegado nunca, aunque tengan ambos roles a la vez. */
+    const puedeResolverPropuestas = () =>
+      esMaster || rolKey(sesion?.rol) === "director" || tieneRol(sesion, "entrenador");
+
+    if (res === "propuestas") {
+      if (req.method === "GET") {
+        const team = url.searchParams.get("team") || "";
+        if (!team) return j({ error: "falta_equipo" }, 400);
+        if (!(await puedeEquipo(team))) return j({ error: "no_autorizado" }, 403);
+        const recs = await list(T_PROPUESTAS);
+        const out = recs.filter((r) => (r.fields[PR.equipo] || []).includes(team)).map(propuestaOut);
+        return j({ records: out });
+      }
+      if (req.method === "POST") {
+        /* Solo quien tiene el rol de segundo -principal o adicional- puede
+           proponer. El entrenador, director y master editan directamente y no
+           pasan por aquí (lo decide el frontend), pero se repite el criterio
+           en el servidor porque el cliente no es una barrera de seguridad. */
+        if (!tieneRol(sesion, "segundo")) return j({ ok: false, reason: "no_autorizado" }, 403);
+        const b = await req.json();
+        const team = String(b.team || "");
+        if (!team || !(await puedeEquipo(team))) return j({ ok: false, reason: "no_autorizado" }, 403);
+        const tipoLabel = TIPO_PROPUESTA_LABEL[String(b.type || "")];
+        if (!tipoLabel) return j({ ok: false, reason: "tipo_no_valido" }, 400);
+        const d = await create(T_PROPUESTAS, {
+          [PR.ref]: `PR-${Date.now()}`,
+          [PR.tipo]: tipoLabel,
+          [PR.estado]: "Pendiente",
+          [PR.datos]: JSON.stringify(b.data ?? null),
+          [PR.equipo]: [team],
+          [PR.propuestoPor]: sesion?.id ? [sesion.id] : [],
+          [PR.fechaProp]: new Date().toISOString(),
+        });
+        return j({ ok: !!d?.id, rec: d?.id }, d?.id ? 200 : 400);
+      }
+      if (req.method === "PATCH" && id) {
+        if (!puedeResolverPropuestas()) return j({ ok: false, reason: "no_autorizado" }, 403);
+        const b = await req.json();
+        const nuevoEstado = String(b.estado || b.status || "");
+        const label = nuevoEstado === "approved" || nuevoEstado === "aprobada" ? "Aprobada"
+          : nuevoEstado === "rejected" || nuevoEstado === "rechazada" ? "Rechazada" : "";
+        if (!label) return j({ ok: false, reason: "estado_no_valido" }, 400);
+        /* La propuesta tiene que ser de un equipo al que este usuario tenga
+           alcance -su equipo, o su club si es director/master- para que el
+           entrenador de un equipo no pueda resolver la propuesta de otro.
+           returnFieldsByFieldId=true: unoPorId() devuelve los campos por
+           NOMBRE, y aquí se indexan por ID (PR.equipo). */
+        const actualR = await fetch(`${table(T_PROPUESTAS)}/${id}?returnFieldsByFieldId=true`, { headers: H });
+        if (!actualR.ok) return j({ ok: false, reason: "no_encontrada" }, 404);
+        const actual = await actualR.json().catch(() => null);
+        const teamDeProp = (actual?.fields?.[PR.equipo] || [])[0] || null;
+        if (!teamDeProp || !(await puedeEquipo(teamDeProp))) return j({ ok: false, reason: "no_autorizado" }, 403);
+        const r = await fetch(`${table(T_PROPUESTAS)}/${id}`, {
+          method: "PATCH", headers: H,
+          body: JSON.stringify({
+            fields: {
+              [PR.estado]: label,
+              [PR.aprobadoPor]: sesion?.id ? [sesion.id] : [],
+              [PR.fechaRes]: new Date().toISOString(),
+            }, typecast: true,
+          }),
+        });
+        if (!r.ok) {
+          const err = await r.text().catch(() => "");
+          console.error(`[propuestas] Airtable ${r.status}: ${err.slice(0, 300)}`);
+          return j({ ok: false, reason: "airtable" }, 400);
+        }
+        return j({ ok: true });
+      }
+      return j({ error: "Petición no soportada" }, 400);
+    }
+
     /* ================= USUARIOS ================= */
     const api = table(T_USUARIOS);
     const allUsers = () => list(T_USUARIOS);
@@ -1014,12 +1137,14 @@ export default async (req: Request) => {
            Airtable a la clave interna y, sobre todo, impide que nadie sea
            Master salvo la cuenta de EBLDigital. */
         const rolDeSesion = rolReal(rec.fields[U.rol], rec.fields[U.email]);
+        const rolesExtraDeSesion = rolesExtraKeys(rec.fields[U.rolesExtra]);
         return j({
           ok: true,
-          token: await firmarSesion({ id: rec.id, email, rol: rolDeSesion, equipo: eqRec || null }),
+          token: await firmarSesion({ id: rec.id, email, rol: rolDeSesion, equipo: eqRec || null, rolesExtra: rolesExtraDeSesion }),
           user: {
             id: rec.id, name: rec.fields[U.nombre] || "", email: rec.fields[U.email] || "",
             rol: ROL_LABEL[rolDeSesion] || rec.fields[U.rol] || "", estado: rec.fields[U.estado] || "",
+            rolesExtra: rolesExtraDeSesion,
             plan: rec.fields[U.plan] || "Oficial",
             /* Días de prueba que le quedan según Airtable. 0 = sin prueba. */
             prueba: pruebaDias(rec.fields[U.prueba]),
@@ -1160,7 +1285,7 @@ export default async (req: Request) => {
         }
         /* Token nuevo: el equipo viaja dentro de la sesión firmada y si no se
            refresca seguiría mandando el anterior en las siguientes peticiones. */
-        return j({ ok: true, token: await firmarSesion({ id: sesion.id, email: sesion.email, rol: sesion.rol, equipo: teamRec }) });
+        return j({ ok: true, token: await firmarSesion({ id: sesion.id, email: sesion.email, rol: sesion.rol, equipo: teamRec, rolesExtra: sesion.rolesExtra || [] }) });
       }
 
       // ---- CREAR EQUIPO Y PASARSE A ÉL ----
@@ -1199,7 +1324,7 @@ export default async (req: Request) => {
           method: "PATCH", headers: H,
           body: JSON.stringify({ fields: { [U.equipo]: [rec] }, typecast: true }),
         });
-        return j({ ok: true, rec, reutilizado: !!ya, token: await firmarSesion({ id: sesion.id, email: sesion.email, rol: sesion.rol, equipo: rec }) });
+        return j({ ok: true, rec, reutilizado: !!ya, token: await firmarSesion({ id: sesion.id, email: sesion.email, rol: sesion.rol, equipo: rec, rolesExtra: sesion.rolesExtra || [] }) });
       }
 
       // ---- SESIÓN DE LA DEMO ----
@@ -1333,11 +1458,17 @@ export default async (req: Request) => {
             }
           }
         }
+        /* Roles adicionales (p.ej. Segundo Y Delegado a la vez): solo se
+           aceptan claves que este rol también podría repartir como rol
+           principal — mismo criterio que "pedido" arriba. */
+        const extrasPedidos = (Array.isArray(b.rolesExtra) ? b.rolesExtra : [])
+          .map((x: unknown) => rolKey(x)).filter((k: string) => puede.includes(k) && k !== pedido);
         const d = await create(T_USUARIOS, {
           [U.nombre]: b.name, [U.email]: email, [U.rol]: b.rol || "Entrenador principal",
           [U.estado]: "Pendiente", [U.plan]: "Oficial",
           ...(b.clubRec ? { [U.club]: [b.clubRec] } : {}),
           ...(b.teamRec ? { [U.equipo]: [b.teamRec] } : {}),
+          ...(extrasPedidos.length ? { [U.rolesExtra]: extrasPedidos.map((k: string) => ROL_LABEL[k]) } : {}),
         });
         return j({ ok: !!d?.id, rec: d?.id }, d?.id ? 200 : 400);
       }
@@ -1470,7 +1601,7 @@ export default async (req: Request) => {
             ok: true, rec: previo.id, clubRec: clubIdPrev, teamRec: eqIdPrev, estado: "Activo",
             rol: previo.fields[U.rol] || "",
             name: b.name || previo.fields[U.nombre] || "",
-            token: await firmarSesion({ id: previo.id, email, rol: norm(previo.fields[U.rol]), equipo: eqIdPrev }),
+            token: await firmarSesion({ id: previo.id, email, rol: norm(previo.fields[U.rol]), equipo: eqIdPrev, rolesExtra: rolesExtraKeys(previo.fields[U.rolesExtra]) }),
             team: eq2 ? teamOut(eq2, clubs2) : null,
           });
         }
@@ -1523,6 +1654,7 @@ export default async (req: Request) => {
       const rows = (await allUsers()).filter((rec) => (rec.fields[U.equipo] || []).includes(requestedTeam)).map((rec) => ({
         id: rec.id, name: rec.fields[U.nombre] || "", email: rec.fields[U.email] || "",
         rol: rec.fields[U.rol] || "", estado: rec.fields[U.estado] || "", teamRec: (rec.fields[U.equipo] || [])[0] || null,
+        rolesExtra: rolesExtraKeys(rec.fields[U.rolesExtra]),
       }));
       return j({ records: rows });
     }
@@ -1544,6 +1676,10 @@ export default async (req: Request) => {
         const pedido = rolKey(b.rol);
         if (!puedeAsignar.includes(pedido)) return j({ ok: false, reason: "rol_no_permitido" }, 403);
         fields[U.rol] = b.rol;
+      }
+      if (Array.isArray(b.rolesExtra)) {
+        const extras = b.rolesExtra.map((x: unknown) => rolKey(x)).filter((k: string) => puedeAsignar.includes(k));
+        fields[U.rolesExtra] = extras.map((k: string) => ROL_LABEL[k]);
       }
       if (b.estado) fields[U.estado] = b.estado;
       if (!esMaster) {
