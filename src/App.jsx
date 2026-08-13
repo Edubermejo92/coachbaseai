@@ -6830,6 +6830,14 @@ SUS HIJOS/AS:\n${mis}`;
         session?.role === "entrenador"
     );
 
+  const updateLineupWithProposal = (newLineup) => {
+    if (session?.role === "segundo") {
+      proposeChange("lineup", newLineup);
+    } else {
+      setLineup(newLineup);
+    }
+  };
+
   /* ================= NORMATIVA Y FIRMAS ================= */
   const toggleSign = (docId, kind, id) => {
     setSigns((sg) => {
@@ -7595,7 +7603,7 @@ SUS HIJOS/AS:\n${mis}`;
           {!selSlot && <div className="text-xs mb-3" style={{ color: C.dim }}>{t("ln.tapPos")}</div>}
           <div className="space-y-1.5 max-h-[520px] overflow-y-auto pr-1">
             {(selSlot ? players : bench).map((p) => (
-              <button key={p.id} disabled={!selSlot} onClick={() => { setLineup((l) => ({ ...l, [selSlot]: p.id })); setSelSlot(null); }} className="w-full flex items-center justify-between text-sm py-2 px-3 rounded-lg border text-left hover:opacity-80 disabled:cursor-default" style={{ borderColor: C.line, background: C.panel2, color: C.chalk }}>
+              <button key={p.id} disabled={!selSlot} onClick={() => { updateLineupWithProposal((l) => ({ ...l, [selSlot]: p.id })); setSelSlot(null); }} className="w-full flex items-center justify-between text-sm py-2 px-3 rounded-lg border text-left hover:opacity-80 disabled:cursor-default" style={{ borderColor: C.line, background: C.panel2, color: C.chalk }}>
                 <span className="flex items-center gap-2"><Avatar p={p} size={26} /><Dot st={p.st} /><span className="font-display text-base" style={{ color: AC }}>{p.d}</span>{p.n}</span>
                 <span style={{ color: C.dim }}>{p.pos}{starters.has(p.id) ? " · XI" : ""}</span>
               </button>
