@@ -6929,6 +6929,7 @@ SUS HIJOS/AS:\n${mis}`;
         setPlayers(proposal.approvedData || proposal.proposedData);
         break;
       case "calendar":
+      case "call":
         setCalls(proposal.approvedData || proposal.proposedData);
         break;
       default:
