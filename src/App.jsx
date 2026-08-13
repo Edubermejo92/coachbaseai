@@ -44,7 +44,7 @@ const DICT = {
     "w.title": "Pizarra táctica", "w.move": "Mover", "w.arrow": "Flecha", "w.pass": "Pase", "w.free": "Dibujo", "w.cone": "Cono", "w.ball": "Balón", "w.erase": "Borrar", "w.clear": "Limpiar", "w.home": "Local", "w.away": "Rival", "w.hint": "Elige herramienta · arrastra las fichas · dibuja sobre el campo", "w.form": "Colocar", "w.f11": "Fútbol 11", "w.f7": "Fútbol 7", "w.homeSys": "Sistema local", "w.awaySys": "Sistema rival", "w.exercises": "Ejercicios recomendados", "w.exHint": "Toca un ejercicio para colocarlo en la pizarra", "w.autoSave": "El sistema elegido se guarda automáticamente en este dispositivo",
     "ex.title": "Biblioteca de ejercicios", "ex.hint": "Filtra por categoría, mira duración y material, y úsalo en la pizarra o añádelo a un entrenamiento.", "ex.all": "Todos", "ex.cat.rondo": "Rondos y posesión", "ex.cat.finish": "Finalización", "ex.cat.press": "Presión y transición", "ex.cat.buildup": "Salida de balón", "ex.cat.setpiece": "Acciones a balón parado", "ex.cat.technique": "Técnica individual", "ex.cat.fitness": "Físico", "ex.cat.gk": "Porteros", "ex.cat.warmup": "Calentamiento", "ex.cat.defense": "Defensa", "ex.cat.cross": "Centros y remate", "ex.cat.duel": "Duelos 1v1", "ex.dur": "min", "ex.materials": "Material", "ex.useBoard": "Usar en la pizarra", "ex.addTrain": "Añadir a entrenamiento", "ex.added": "✓ Añadido",
     "tr.title": "Modo entrenamiento", "tr.hint": "Planifica la sesión añadiendo bloques desde la biblioteca de ejercicios o bloques libres.", "tr.date": "Fecha", "tr.time": "Hora", "tr.objective": "Objetivo de la sesión", "tr.objectivePh": "Ej. transiciones defensivas", "tr.addFromLib": "+ Añadir desde la biblioteca", "tr.addCustom": "+ Bloque libre", "tr.customName": "Nombre del bloque", "tr.customDur": "Duración (min)", "tr.noBlocks": "Aún no has añadido ningún bloque a esta sesión.", "tr.total": "Duración total", "tr.materials": "Material necesario", "tr.remove": "Quitar", "tr.up": "▲", "tr.down": "▼", "tr.sendBoard": "Ver en pizarra", "tr.summary": "Resumen para compartir", "tr.copy": "Copiar resumen", "tr.copied": "✓ Copiado", "tr.whatsapp": "Abrir WhatsApp", "tr.min": "min", "tr.close": "Cerrar", "tr.newBlock": "Nuevo bloque",
-    "st.title": "Estadísticas del equipo", "st.availability": "Disponibilidad de la plantilla", "st.available": "Disponibles", "st.doubt": "Duda", "st.injured": "Lesionados", "st.topAtt": "Mayor asistencia a entrenamientos", "st.lowMin": "Menor participación (minutos)", "st.byPosition": "Plantilla por línea", "st.gkPos": "Porteros", "st.defPos": "Defensas", "st.midPos": "Centrocampistas", "st.fwdPos": "Delanteros", "st.players": "jugadores",
+    "st.title": "Estadísticas del equipo", "st.availability": "Disponibilidad de la plantilla", "st.available": "Disponibles", "st.doubt": "Duda", "st.injured": "Lesionados", "st.topAtt": "Mayor asistencia a entrenamientos", "st.lowMin": "Menor participación (minutos)", "st.byPosition": "Plantilla por línea", "st.gkPos": "Porteros", "st.defPos": "Defensas", "st.midPos": "Centrocampistas", "st.fwdPos": "Delanteros", "st.players": "jugadores", "st.byRole": "Desglose por demarcación", "st.roleHint": "Reparto real de la plantilla, posición a posición, con el peso de cada una sobre el total.", "st.total": "Total plantilla", "st.player": "jugador",
     "m.title": "Material para el entrenador", "m.aff": "Enlace de afiliado", "m.note": "Enlaces de afiliado marcados claramente y adaptados a tu país. Una pequeña comisión ayuda a mantener la app; el precio para ti no cambia.", "m.all": "Todo", "m.training": "Entrenamiento", "m.gk": "Porteros", "m.medical": "Botiquín", "m.tech": "Tecnología", "m.apparel": "Vestuario", "m.view": "Ver oferta", "m.from": "desde",
     "u.canGrant": "Como director deportivo o Master das de alta al cuerpo técnico y decides el rol de cada uno.", "u.readonly": "Vista de solo lectura: solo el director deportivo o el Master dan de alta.", "u.approve": "Aprobar", "u.suspend": "Suspender", "u.note": "Solo el director deportivo o el Master pueden asignar el rol de entrenador.", "u.activo": "activo", "u.pendiente": "pendiente",
 
@@ -124,7 +124,7 @@ const DICT = {
     "w.title": "Tactics board", "w.move": "Move", "w.arrow": "Arrow", "w.pass": "Pass", "w.free": "Draw", "w.cone": "Cone", "w.ball": "Ball", "w.erase": "Erase", "w.clear": "Clear", "w.home": "Home", "w.away": "Away", "w.hint": "Pick a tool · drag the tokens · draw on the pitch", "w.form": "Place", "w.f11": "11-a-side", "w.f7": "7-a-side", "w.homeSys": "Home system", "w.awaySys": "Away system", "w.exercises": "Recommended drills", "w.exHint": "Tap a drill to set it up on the board", "w.autoSave": "Your chosen system is saved automatically on this device",
     "ex.title": "Drill library", "ex.hint": "Filter by category, check duration and materials, and use it on the board or add it to a session.", "ex.all": "All", "ex.cat.rondo": "Rondos & possession", "ex.cat.finish": "Finishing", "ex.cat.press": "Pressing & transition", "ex.cat.buildup": "Build-up", "ex.cat.setpiece": "Set pieces", "ex.cat.technique": "Individual technique", "ex.cat.fitness": "Fitness", "ex.cat.gk": "Goalkeeping", "ex.cat.warmup": "Warm-up", "ex.cat.defense": "Defending", "ex.cat.cross": "Crossing & finishing", "ex.cat.duel": "1v1 duels", "ex.dur": "min", "ex.materials": "Materials", "ex.useBoard": "Use on the board", "ex.addTrain": "Add to training", "ex.added": "✓ Added",
     "tr.title": "Training mode", "tr.hint": "Plan the session by adding blocks from the drill library or free-text blocks.", "tr.date": "Date", "tr.time": "Time", "tr.objective": "Session objective", "tr.objectivePh": "E.g. defensive transitions", "tr.addFromLib": "+ Add from library", "tr.addCustom": "+ Free block", "tr.customName": "Block name", "tr.customDur": "Duration (min)", "tr.noBlocks": "You haven't added any blocks to this session yet.", "tr.total": "Total duration", "tr.materials": "Materials needed", "tr.remove": "Remove", "tr.up": "▲", "tr.down": "▼", "tr.sendBoard": "View on board", "tr.summary": "Shareable summary", "tr.copy": "Copy summary", "tr.copied": "✓ Copied", "tr.whatsapp": "Open WhatsApp", "tr.min": "min", "tr.close": "Close", "tr.newBlock": "New block",
-    "st.title": "Team statistics", "st.availability": "Squad availability", "st.available": "Available", "st.doubt": "Doubtful", "st.injured": "Injured", "st.topAtt": "Highest training attendance", "st.lowMin": "Least game time (minutes)", "st.byPosition": "Squad by line", "st.gkPos": "Goalkeepers", "st.defPos": "Defenders", "st.midPos": "Midfielders", "st.fwdPos": "Forwards", "st.players": "players",
+    "st.title": "Team statistics", "st.availability": "Squad availability", "st.available": "Available", "st.doubt": "Doubtful", "st.injured": "Injured", "st.topAtt": "Highest training attendance", "st.lowMin": "Least game time (minutes)", "st.byPosition": "Squad by line", "st.gkPos": "Goalkeepers", "st.defPos": "Defenders", "st.midPos": "Midfielders", "st.fwdPos": "Forwards", "st.players": "players", "st.byRole": "Breakdown by position", "st.roleHint": "How the squad actually splits, position by position, with each one's share of the total.", "st.total": "Squad total", "st.player": "player",
     "m.title": "Coaching store", "m.aff": "Affiliate link", "m.note": "Affiliate links are clearly marked and adapted to your country. A small commission helps keep the app running; your price doesn't change.", "m.all": "All", "m.training": "Training", "m.gk": "Goalkeeping", "m.medical": "First aid", "m.tech": "Technology", "m.apparel": "Apparel", "m.view": "View deal", "m.from": "from",
     "u.canGrant": "As sporting director or Master you can add staff and assign each user's role.", "u.readonly": "Read-only view: only the sporting director or the Master can add people.", "u.approve": "Approve", "u.suspend": "Suspend", "u.note": "Only the sporting director or the Master can assign the coach role.", "u.activo": "active", "u.pendiente": "pending",
 
@@ -1320,6 +1320,14 @@ const airPlantillaEditar = (rec, body) => { try { return cbFetch(`${AIR}?res=pla
 const airPlantillaBorrar = (rec) => { try { return cbFetch(`${AIR}?res=plantillas&id=${rec}`, { method: "DELETE" }).catch(() => {}); } catch { return null; } };
 /* Conversión entre el modelo de la app y las columnas de Airtable */
 const POS_OK = ["POR", "LD", "LI", "DFC", "MCD", "MC", "MCO", "ED", "EI", "DC", "MB"];
+/* Nombre largo de cada demarcación, para el desglose de Estadísticas: en la
+   tabla se lee "DFC" de un vistazo, pero un reparto de plantilla se lee mejor
+   con el nombre entero, como en la ficha que pasa el club. */
+const POS_NOMBRE = {
+  POR: "Portero", DFC: "Central", LD: "Lateral derecho", LI: "Lateral izquierdo",
+  MCD: "Mediocentro defensivo", MC: "Centrocampista", MCO: "Mediapunta",
+  MB: "Interior", ED: "Extremo derecho", EI: "Extremo izquierdo", DC: "Delantero",
+};
 const jugToAir = (p, teamRec) => ({
   Nombre: p.n, Dorsal: Number(p.d) || 0,
   ...(POS_OK.includes(p.pos) ? { "Posición": p.pos } : {}),
@@ -8468,6 +8476,13 @@ SUS HIJOS/AS:\n${mis}`;
     const groups = { gk: 0, def: 0, mid: 0, fwd: 0 };
     players.forEach((p) => { groups[posGroup(p.pos)] += 1; });
     const maxGroup = Math.max(1, ...Object.values(groups));
+    /* Desglose fino: por demarcación exacta, no por línea. Se recorre POS_OK
+       para que el orden sea siempre el mismo (portería → ataque) y no baile
+       según quién esté dado de alta; las demarcaciones sin nadie no se pintan. */
+    const porPos = POS_OK
+      .map((k) => ({ k, label: POS_NOMBRE[k] || k, n: players.filter((p) => p.pos === k).length }))
+      .filter((x) => x.n > 0);
+    const maxPos = Math.max(1, ...porPos.map((x) => x.n));
     const Bar = ({ pct, color }) => (
       <div className="h-2 rounded-full overflow-hidden" style={{ background: C.bg }}>
         <div className="h-full rounded-full" style={{ width: `${clamp(pct, 0, 100)}%`, background: color }} />
@@ -8494,6 +8509,35 @@ SUS HIJOS/AS:\n${mis}`;
               </div>
             ))}
           </div>
+        </Card>
+        <Card title={t("st.byRole")} className="lg:col-span-2">
+          <div className="text-[11px] mb-3" style={{ color: C.dim }}>{t("st.roleHint")}</div>
+          {porPos.length === 0 ? (
+            <div className="text-sm" style={{ color: C.dim }}>{t("as.noPlayers")}</div>
+          ) : (
+            <>
+              <div className="space-y-2 text-sm" style={{ color: C.chalk }}>
+                {porPos.map((x) => (
+                  <div key={x.k}>
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="truncate">
+                        <span className="font-display mr-2" style={{ color: AC }}>{x.k}</span>{x.label}
+                      </span>
+                      <span className="shrink-0 tabular-nums" style={{ color: C.dim }}>
+                        {x.n} {t(x.n === 1 ? "st.player" : "st.players")} · {Math.round((x.n / total) * 100)}%
+                      </span>
+                    </div>
+                    <Bar pct={(x.n / maxPos) * 100} color={AC} />
+                  </div>
+                ))}
+              </div>
+              <div className="flex items-center justify-between text-sm mt-3 pt-3 border-t font-display uppercase tracking-wide"
+                style={{ borderColor: C.line, color: C.chalk }}>
+                <span>{t("st.total")}</span>
+                <span className="tabular-nums">{players.length} {t(players.length === 1 ? "st.player" : "st.players")}</span>
+              </div>
+            </>
+          )}
         </Card>
         <Card title={t("st.topAtt")}>
           <div className="space-y-2">
