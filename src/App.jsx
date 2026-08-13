@@ -9431,12 +9431,14 @@ SUS HIJOS/AS:\n${mis}`;
         {/* Solo el logotipo: ya lleva dentro el nombre y "by EBLDigital", así
             que repetirlos en texto al lado era decir dos veces lo mismo.
             Dos tamaños porque en móvil la cabecera tiene que caber en dos
-            filas. Enlaza a EBLDigital, como hacía el texto que sustituye. */}
-        <a href={EBL} target="_blank" rel="noreferrer" aria-label="COACHBASE Ai · by EBLDigital"
+            filas. Dentro de la app lleva a Inicio, no a EBLDigital — ese
+            enlace externo queda solo en el pie de la barra lateral
+            ("Desarrollado por EBLDigital ↗", más abajo). */}
+        <button type="button" onClick={() => setTab("inicio")} aria-label="COACHBASE Ai · ir a Inicio"
           className="flex items-center min-w-0 order-1 shrink-0">
           <span className="sm:hidden"><AppWordmark height={34} /></span>
           <span className="hidden sm:block"><AppWordmark height={58} /></span>
-        </a>
+        </button>
 
         {/* CENTRO · el equipo con el que estás trabajando. Es lo que cambia y
             lo que hay que poder comprobar de un vistazo antes de tocar nada:
