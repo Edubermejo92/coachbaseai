@@ -9828,22 +9828,28 @@ SUS HIJOS/AS:\n${mis}`;
             })}
           </div>
         )}
+        {/* Solo iconos, sin etiqueta: con texto, algunas pestañas (ej. "Modo
+            partido") pasan a dos líneas mientras las de al lado tienen una
+            sola, y en pantallas estrechas (~320-360px) las palabras de una
+            se metían encima de la otra. El icono solo nunca se solapa, sea
+            cual sea el ancho o qué pestañas le toquen a cada rol; title/
+            aria-label mantienen el nombre accesible. */}
         <nav className="safe-bottom flex border-t" style={{ borderColor: C.line, background: C.panel }}>
           {mobileTabs.map((k) => (
-            <button key={k} onClick={() => setTab(k)} className="relative flex-1 min-w-0 py-2 text-center text-[10px] font-display uppercase leading-tight"
+            <button key={k} onClick={() => setTab(k)} title={t("nav." + k)} aria-label={t("nav." + k)}
+              className="relative flex-1 min-w-0 py-2.5 flex items-center justify-center"
               style={{ color: tab === k ? AC : C.dim }}>
               {tab === k && <span className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-[3px] rounded-b-full" style={{ background: AC }} />}
-              <div className="text-base">{TAB_ICON[k]}</div>
-              {t("nav." + k)}
+              <span className="text-xl leading-none">{TAB_ICON[k]}</span>
             </button>
           ))}
-          <button onClick={() => setMenuOpen(true)} className="relative flex-1 min-w-0 py-2 text-center text-[10px] font-display uppercase" style={{ color: menuOpen ? AC : C.dim }}>
+          <button onClick={() => setMenuOpen(true)} title="Más" aria-label="Más secciones"
+            className="relative flex-1 min-w-0 py-2.5 flex items-center justify-center" style={{ color: menuOpen ? AC : C.dim }}>
             {menuOpen && <span className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-[3px] rounded-b-full" style={{ background: AC }} />}
-            <div className="relative inline-block text-base">
+            <span className="relative inline-block text-xl leading-none">
               ⋯
               {hayAvisosNav && <span className="absolute -top-0.5 -right-1.5 w-2 h-2 rounded-full" style={{ background: C.red, boxShadow: `0 0 0 2px ${C.panel}` }} />}
-            </div>
-            <div>Más</div>
+            </span>
           </button>
         </nav>
       </div>
