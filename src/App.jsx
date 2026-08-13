@@ -3514,13 +3514,14 @@ const PLAYERS_INIT = [
   { id: 19, n: "Adrian Bianchi", d: 19, pos: "DC", st: "disponible", att: 0, min: 0 },
 ];
 
+/* Cuerpo técnico real del C.D. Chamartín Vergara (Infantil B), igual que en
+   Airtable: Eduardo Bermejo (Master), Daniel Bermejo (director deportivo) y
+   Manuel Bermejo (segundo entrenador). Sin entrenador principal ni delegado
+   dados de alta todavía. */
 const USERS_INIT = [
-  { id: 1, name: "Emilio Bermejo", email: "emilio@club.es", role: "entrenador", status: "activo" },
-  { id: 2, name: "Raúl Sáez", email: "raul@club.es", role: "segundo", status: "activo" },
-  { id: 3, name: "Marta Gómez", email: "marta@club.es", role: "delegado", status: "activo" },
-  { id: 4, name: "Familia de Leo Navarro", email: "tutor.leo@gmail.com", role: "padre", status: "activo" },
-  { id: 5, name: "Andrés Ponce", email: "andres@gmail.com", role: "segundo", status: "pendiente" },
-  { id: 6, name: "Familia de Enzo Bravo", email: "tutor.enzo@gmail.com", role: "padre", status: "pendiente" },
+  { id: 1, name: "EDUARDO BERMEJO", email: "edubermejo92@gmail.com", role: "master", status: "activo" },
+  { id: 2, name: "DANI BERMEJO", email: "ebldigital92@gmail.com", role: "director", status: "activo" },
+  { id: 3, name: "MANUEL BERMEJO", email: "manuelb@gmail.com", role: "segundo", status: "activo" },
 ];
 
 
