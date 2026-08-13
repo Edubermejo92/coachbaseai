@@ -3515,13 +3515,14 @@ const PLAYERS_INIT = [
 ];
 
 /* Cuerpo técnico real del C.D. Chamartín Vergara (Infantil B), igual que en
-   Airtable: Eduardo Bermejo (Master), Daniel Bermejo (director deportivo) y
-   Manuel Bermejo (segundo entrenador). Sin entrenador principal ni delegado
-   dados de alta todavía. */
+   Airtable: Eduardo Bermejo (Master), Daniel Bermejo (director deportivo,
+   único del club), Manuel Bermejo (segundo entrenador) y Fidel (entrenador
+   principal). Sin delegado dado de alta todavía. */
 const USERS_INIT = [
   { id: 1, name: "EDUARDO BERMEJO", email: "edubermejo92@gmail.com", role: "master", status: "activo" },
   { id: 2, name: "DANI BERMEJO", email: "ebldigital92@gmail.com", role: "director", status: "activo" },
   { id: 3, name: "MANUEL BERMEJO", email: "manuelb@gmail.com", role: "segundo", status: "activo" },
+  { id: 4, name: "FIDEL", email: "fidelber@movistar.es", role: "entrenador", status: "activo" },
 ];
 
 
@@ -7194,6 +7195,7 @@ SUS HIJOS/AS:\n${mis}`;
                   setNu({ name: "", email: "", role: "entrenador" }); }
                 else if (out?.reason === "exists") setNuMsg("Ese correo ya tiene ficha.");
                 else if (out?.reason === "limite_alcanzado") setNuMsg(`Este club ya tiene ${out.ocupadas}/${out.limite} plazas ocupadas. Sube el límite en "Gestionar club" o libera una plaza.`);
+                else if (out?.reason === "director_unico") setNuMsg("Este club ya tiene un director deportivo. Solo puede haber uno; para cambiarlo, primero hay que dar de baja al actual.");
                 else if (out?.reason === "no_autorizado") setNuMsg("Tu rol no puede dar de alta usuarios.");
                 else setNuMsg("No se pudo crear. Revisa la conexión.");
               }} className="px-3 py-2 rounded-lg font-display uppercase tracking-wide font-semibold text-sm disabled:opacity-40"

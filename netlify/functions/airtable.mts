@@ -1308,6 +1308,18 @@ export default async (req: Request) => {
             return j({ ok: false, reason: "equipo_no_valido" }, 400);
           }
         }
+        /* Un club tiene un único director deportivo: es quien lo dirige y
+           reparte el resto de altas, no un cargo compartido. Sin esto, el
+           Master podría dar de alta sin querer a un segundo director en un
+           club que ya tiene el suyo. */
+        if (pedido === "director" && b.clubRec) {
+          const yaHayDirector = recs.some((r) =>
+            rolKey(r.fields[U.rol]) === "director" &&
+            (r.fields[U.club] || []).includes(b.clubRec) &&
+            norm(r.fields[U.estado]) !== "suspendido",
+          );
+          if (yaHayDirector) return j({ ok: false, reason: "director_unico" }, 409);
+        }
         /* Tope de plazas del club: cuentan Activas y Pendientes (una invitación
            sin reclamar ya ocupa la plaza). Vacío/0 en Limite usuarios = sin límite. */
         if (b.clubRec) {
