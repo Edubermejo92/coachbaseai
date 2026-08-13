@@ -3538,6 +3538,7 @@ const USERS_INIT = [
   { id: 2, name: "DANI BERMEJO", email: "ebldigital92@gmail.com", role: "director", club: "C.D. Chamartín Vergara", categories: ["Infantil B"], status: "activo" },
   { id: 3, name: "MANUEL BERMEJO", email: "mmanuelb@gmail.com", role: "segundo", club: "C.D. Chamartín Vergara", categories: ["Infantil B"], status: "activo" },
   { id: 4, name: "FIDEL", email: "fidelber@movistar.es", role: "entrenador", club: "C.D. Chamartín Vergara", categories: ["Infantil B"], status: "activo" },
+  { id: 5, name: "DELEGADO PRUEBA", email: "delegado@chamartin.es", role: "delegado", club: "C.D. Chamartín Vergara", categories: ["Infantil B"], status: "activo" },
 ];
 
 /* Definición de categorías: cada categoría pertenece a un club y tiene roles
@@ -3548,10 +3549,10 @@ const CATEGORIES_INIT = [
     id: "cat_1",
     name: "Infantil B",
     club: "C.D. Chamartín Vergara",
-    director: 2,      // Daniel
+    director: 2,      // Dani
     entrenador: 4,    // Fidel
     segundo: 3,       // Manuel
-    delegado: null,   // Sin delegado asignado todavía
+    delegado: 5,      // Delegado Prueba
   },
 ];
 
