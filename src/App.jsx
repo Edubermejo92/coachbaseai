@@ -6842,10 +6842,18 @@ SUS HIJOS/AS:\n${mis}`;
 
   const approveProposal = (proposalId, approveData = null) => {
     if (session?.role !== "entrenador") return;
+    const proposal = proposals.find((p) => p.id === proposalId);
+    if (!proposal) return;
+
+    // Aplicar el cambio inmediatamente
+    const dataToApply = approveData || proposal.proposedData;
+    applyApprovedProposal({ ...proposal, status: "approved", approvedData: dataToApply });
+
+    // Actualizar estado
     setProposals((ps) =>
       ps.map((p) =>
         p.id === proposalId
-          ? { ...p, status: "approved", approvedBy: session.userId, approvedData: approveData }
+          ? { ...p, status: "approved", approvedBy: session.userId, approvedData: dataToApply }
           : p
       )
     );
@@ -7168,32 +7176,47 @@ SUS HIJOS/AS:\n${mis}`;
                 lineup: "Alineación",
                 squad: "Plantilla",
                 calendar: "Calendario",
+                call: "Convocatoria",
               }[p.type] || p.type;
+
+              let detalle = "";
+              if (p.type === "lineup" && p.proposedData) {
+                const cambios = Object.entries(p.proposedData).length;
+                detalle = ` · ${cambios} cambios`;
+              } else if (p.type === "squad" && Array.isArray(p.proposedData)) {
+                detalle = ` · ${p.proposedData.length} jugadores`;
+              }
+
               return (
-                <div key={p.id} className="flex items-center justify-between gap-3 p-3 rounded-lg border" style={{ borderColor: C.line, background: C.panel2 }}>
-                  <div className="flex-1 min-w-0">
-                    <div className="font-semibold text-sm" style={{ color: C.chalk }}>
-                      {proposer?.name || "Usuario desconocido"} propone cambios en <span style={{ color: AC }}>{typeLabel}</span>
+                <div key={p.id} className="flex flex-col gap-2 p-3 rounded-lg border" style={{ borderColor: C.line, background: C.panel2 }}>
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="flex-1 min-w-0">
+                      <div className="font-semibold text-sm" style={{ color: C.chalk }}>
+                        {proposer?.name || "Usuario desconocido"} propone
+                      </div>
+                      <div className="text-[12px] mt-0.5" style={{ color: AC }}>
+                        {typeLabel}{detalle}
+                      </div>
+                      <div className="text-[11px] mt-1" style={{ color: C.dim }}>
+                        {new Date(p.date).toLocaleString("es-ES")}
+                      </div>
                     </div>
-                    <div className="text-[11px] mt-1" style={{ color: C.dim }}>
-                      {new Date(p.date).toLocaleString("es-ES")}
+                    <div className="flex gap-2 shrink-0">
+                      <button
+                        onClick={() => approveProposal(p.id)}
+                        className="px-3 py-1.5 rounded-lg text-sm font-semibold whitespace-nowrap"
+                        style={{ background: C.green, color: "white" }}
+                      >
+                        ✓ Aprobar
+                      </button>
+                      <button
+                        onClick={() => rejectProposal(p.id)}
+                        className="px-3 py-1.5 rounded-lg text-sm font-semibold whitespace-nowrap"
+                        style={{ background: C.red, color: "white" }}
+                      >
+                        ✕ Rechazar
+                      </button>
                     </div>
-                  </div>
-                  <div className="flex gap-2 shrink-0">
-                    <button
-                      onClick={() => approveProposal(p.id)}
-                      className="px-3 py-1.5 rounded-lg text-sm font-semibold"
-                      style={{ background: C.green, color: "white" }}
-                    >
-                      ✓ Aprobar
-                    </button>
-                    <button
-                      onClick={() => rejectProposal(p.id)}
-                      className="px-3 py-1.5 rounded-lg text-sm font-semibold"
-                      style={{ background: C.red, color: "white" }}
-                    >
-                      ✕ Rechazar
-                    </button>
                   </div>
                 </div>
               );
