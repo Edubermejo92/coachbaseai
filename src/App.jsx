@@ -5288,19 +5288,42 @@ SUS HIJOS/AS:\n${mis}`;
               {eqBusy ? t("a.sending") : t("p.changeTeam")}
             </button>
 
-            {/* Selector de categorías si el usuario tiene múltiples */}
-            {session?.categories && session.categories.length > 1 && (
+            {/* Selector de categorías con indicador de acceso por rol */}
+            {session?.categories && session.categories.length > 0 && (
               <div className="mb-3">
-                <div className="text-[11px] mb-1.5" style={{ color: C.dim }}>Categoría actual</div>
-                <select value={selectedCategory || ""} onChange={(e) => setSelectedCategory(e.target.value)}
-                  className="w-full px-3 py-2.5 rounded-lg border text-sm"
-                  style={{ background: C.panel2, borderColor: C.line, color: C.chalk }}>
-                  {session.categories.map((cat) => (
-                    <option key={cat} value={cat} style={{ background: C.panel }}>
-                      {cat}
-                    </option>
-                  ))}
-                </select>
+                <div className="text-[11px] mb-1.5" style={{ color: C.dim }}>
+                  {session.categories.length > 1 ? "Categoría actual" : "Tu categoría"}
+                </div>
+                {session.categories.length > 1 ? (
+                  <select value={selectedCategory || ""} onChange={(e) => setSelectedCategory(e.target.value)}
+                    className="w-full px-3 py-2.5 rounded-lg border text-sm"
+                    style={{ background: C.panel2, borderColor: C.line, color: C.chalk }}>
+                    {session.categories.map((cat) => {
+                      const canEdit = canEditCategory(cat);
+                      const label = canEdit
+                        ? `${cat} (Edición)`
+                        : session.role === "segundo"
+                          ? `${cat} (Propuestas)`
+                          : `${cat} (Lectura)`;
+                      return (
+                        <option key={cat} value={cat} style={{ background: C.panel }}>
+                          {label}
+                        </option>
+                      );
+                    })}
+                  </select>
+                ) : (
+                  <div className="px-3 py-2.5 rounded-lg border text-sm" style={{ background: C.panel2, borderColor: C.line, color: C.chalk }}>
+                    {session.categories[0]}
+                    <span style={{ marginLeft: "10px", fontSize: "11px", color: C.dim }}>
+                      {canEditCategory(session.categories[0])
+                        ? "(Edición)"
+                        : session.role === "segundo"
+                          ? "(Propuestas)"
+                          : "(Lectura)"}
+                    </span>
+                  </div>
+                )}
               </div>
             )}
 
@@ -7219,6 +7242,55 @@ SUS HIJOS/AS:\n${mis}`;
                       </button>
                     </div>
                   </div>
+                </div>
+              );
+            })}
+          </div>
+        </Card>
+      )}
+
+      {/* Panel de Categorías por Rol */}
+      {session?.categories && session.categories.length > 0 && (
+        <Card title="📂 Mis Categorías" className="lg:col-span-3" style={{ borderColor: C.line }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            {session.categories.map((cat) => {
+              const canEdit = canEditCategory(cat);
+              const canView = canViewCategory(cat);
+              const isSecondo = session.role === "segundo";
+              let badge = "";
+              let badgeBg = "";
+              let badgeColor = "";
+
+              if (canEdit) {
+                badge = "✏️ Edición";
+                badgeBg = C.green;
+                badgeColor = "white";
+              } else if (isSecondo && canView) {
+                badge = "📌 Propuestas";
+                badgeBg = "#f39c12";
+                badgeColor = "white";
+              } else if (canView) {
+                badge = "👁️ Lectura";
+                badgeBg = C.line;
+                badgeColor = C.dim;
+              }
+
+              return (
+                <div key={cat} className="p-3 rounded-lg border flex flex-col gap-2"
+                  style={{ borderColor: selectedCategory === cat ? AC : C.line, background: selectedCategory === cat ? `${AC}15` : C.panel2 }}>
+                  <div className="font-semibold text-sm" style={{ color: C.chalk }}>{cat}</div>
+                  {badge && (
+                    <div className="text-xs px-2 py-1 rounded text-center" style={{ background: badgeBg, color: badgeColor }}>
+                      {badge}
+                    </div>
+                  )}
+                  {session.categories.length > 1 && (
+                    <button onClick={() => setSelectedCategory(cat)}
+                      className="text-xs px-2 py-1.5 rounded border font-semibold mt-auto"
+                      style={{ borderColor: AC, color: AC, background: "transparent" }}>
+                      Seleccionar
+                    </button>
+                  )}
                 </div>
               );
             })}
