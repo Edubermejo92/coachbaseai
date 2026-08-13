@@ -3525,12 +3525,34 @@ const PLAYERS_INIT = [
 /* Cuerpo técnico real del C.D. Chamartín Vergara (Infantil B), igual que en
    Airtable: Eduardo Bermejo (Master), Daniel Bermejo (director deportivo,
    único del club), Manuel Bermejo (segundo entrenador) y Fidel (entrenador
-   principal). Sin delegado dado de alta todavía. */
+   principal). Sin delegado dado de alta todavía.
+
+   Estructura con categorías: cada usuario tiene un rol y asignación a categorías.
+   - Master: acceso total
+   - Director: gestiona todas las categorías del club
+   - Entrenador: edita su categoría, ve otras del club de lectura
+   - Segundo: propuestas en su categoría, ve otras del club de lectura
+   - Delegado: lectura de su categoría y otras del club */
 const USERS_INIT = [
-  { id: 1, name: "EDUARDO BERMEJO", email: "edubermejo92@gmail.com", role: "master", status: "activo" },
-  { id: 2, name: "DANI BERMEJO", email: "ebldigital92@gmail.com", role: "director", status: "activo" },
-  { id: 3, name: "MANUEL BERMEJO", email: "mmanuelb@gmail.com", role: "segundo", status: "activo" },
-  { id: 4, name: "FIDEL", email: "fidelber@movistar.es", role: "entrenador", status: "activo" },
+  { id: 1, name: "EDUARDO BERMEJO", email: "edubermejo92@gmail.com", role: "master", club: "C.D. Chamartín Vergara", categories: ["Infantil B"], status: "activo" },
+  { id: 2, name: "DANI BERMEJO", email: "ebldigital92@gmail.com", role: "director", club: "C.D. Chamartín Vergara", categories: ["Infantil B"], status: "activo" },
+  { id: 3, name: "MANUEL BERMEJO", email: "mmanuelb@gmail.com", role: "segundo", club: "C.D. Chamartín Vergara", categories: ["Infantil B"], status: "activo" },
+  { id: 4, name: "FIDEL", email: "fidelber@movistar.es", role: "entrenador", club: "C.D. Chamartín Vergara", categories: ["Infantil B"], status: "activo" },
+];
+
+/* Definición de categorías: cada categoría pertenece a un club y tiene roles
+   asignados (director, entrenador, segundo, delegado). Un usuario puede estar
+   asignado a varias categorías dentro del mismo club. */
+const CATEGORIES_INIT = [
+  {
+    id: "cat_1",
+    name: "Infantil B",
+    club: "C.D. Chamartín Vergara",
+    director: 2,      // Daniel
+    entrenador: 4,    // Fidel
+    segundo: 3,       // Manuel
+    delegado: null,   // Sin delegado asignado todavía
+  },
 ];
 
 
@@ -3566,6 +3588,33 @@ const SIGNS_INIT = {
 /* Sin incidencias de ejemplo: con nombres reales de menores, unas incidencias
    disciplinarias inventadas serían datos falsos sobre personas reales. */
 const INCIDENTS_INIT = [];
+
+/* Sistema de propuestas: cambios que el segundo entrenador propone pero que
+   requieren aprobación del entrenador principal. Estructura:
+   - type: "lineup"|"squad"|"calendar" (alineación, plantilla, calendario)
+   - status: "pending"|"approved"|"rejected"
+   - proposedBy: id del usuario que propone (segundo)
+   - approvedBy: id del usuario que aprueba (entrenador)
+   - data: los datos propuestos */
+const PROPOSALS_INIT = [];
+
+/* Funciones helper para categorías y permisos */
+const getCategoriesForUser = (userId, userRole, userClub) => {
+  if (userRole === "master") return CATEGORIES_INIT;
+  if (userRole === "director") return CATEGORIES_INIT.filter((c) => c.club === userClub);
+  return CATEGORIES_INIT.filter((c) =>
+    c.club === userClub &&
+    (c.director === userId || c.entrenador === userId || c.segundo === userId || c.delegado === userId)
+  );
+};
+
+const getCategoryInfo = (categoryId) => CATEGORIES_INIT.find((c) => c.id === categoryId);
+
+const getDefaultCategory = (userId, userRole, userClub) => {
+  const cats = getCategoriesForUser(userId, userRole, userClub);
+  return cats.length > 0 ? cats[0] : null;
+};
+
 /* qué jugador tutela cada familia (delimita a qué datos accede) */
 const TUTELA = {
   "familia.navarro@gmail.com": [10],
@@ -4317,8 +4366,39 @@ export default function App() {
   const isPro = !!session && (session.role === "master" || !!session.pro || isFamilyRole || trialDaysLeft > 0);
   const pro = (feature) => isPro || !PRO_FEATURES.some((f) => f.k === feature);
   const pendingRestricted = ["viewUsers", "grantAccess", "manageDocs"];
-  const can = (p) => role.perms.includes(p) && !(session?.plan === "free" && p === "viewUsers")
-    && !(session?.pendingApproval && pendingRestricted.includes(p));
+
+  /* Sistema de permisos por rol y categoría:
+     - Master: acceso total
+     - Director: gestiona categorías del club
+     - Entrenador: edita su categoría, ve otras del club de lectura
+     - Segundo: propuestas en su categoría, ve otras del club de lectura
+     - Delegado: lectura de su categoría y otras del club */
+  const canEditCategory = (categoryId) => {
+    if (session?.role === "master") return true;
+    if (session?.role === "director") return session?.club; // Todo su club
+    if (session?.role === "entrenador") return session?.categories?.includes(categoryId);
+    if (session?.role === "segundo") return false; // Solo propuestas, no edición directa
+    if (session?.role === "delegado") return false; // Solo lectura
+    return false;
+  };
+
+  const canViewCategory = (categoryId) => {
+    if (session?.role === "master") return true;
+    if (session?.role === "director") return true; // Todas del club
+    if (session?.role === "entrenador") return true; // Todas del club
+    if (session?.role === "segundo") return true; // Todas del club
+    if (session?.role === "delegado") return true; // Todas del club
+    return false;
+  };
+
+  const canProposeChanges = () => session?.role === "segundo";
+
+  const can = (p) => {
+    const hasPermission = role.perms.includes(p);
+    const notFreeRestricted = !(session?.plan === "free" && p === "viewUsers");
+    const notPendingRestricted = !(session?.pendingApproval && pendingRestricted.includes(p));
+    return hasPermission && notFreeRestricted && notPendingRestricted;
+  };
 
   /* Claro u oscuro. Se guarda en el dispositivo: es una preferencia de quien
      mira la pantalla, no del equipo ni de la cuenta. Cambiarlo muta la paleta y
@@ -4351,6 +4431,8 @@ export default function App() {
   const [pendingExId, setPendingExId] = useState(null);
   /* Jugada que el modo partido manda abrir en la pizarra. */
   const [pendingPlayId, setPendingPlayId] = useState(null);
+  /* Propuestas del segundo entrenador esperando aprobación del entrenador principal */
+  const [proposals, setProposals] = useState(PROPOSALS_INIT);
   /* Las jugadas las guarda la pizarra en localStorage; el modo partido las lee
      de la misma clave para poder listar los ABP sin duplicar el almacén. Se
      relee al entrar en la pestaña de partido, que es cuando importan. */
@@ -6704,6 +6786,50 @@ SUS HIJOS/AS:\n${mis}`;
     );
   };
 
+  /* ================= PROPUESTAS DEL SEGUNDO ENTRENADOR ================= */
+  const proposeChange = (type, data) => {
+    if (session?.role !== "segundo") return;
+    const proposal = {
+      id: `prop_${Date.now()}`,
+      categoryId: session.categoryId,
+      type, // "lineup"|"squad"|"calendar"
+      proposedBy: session.userId,
+      proposedData: data,
+      status: "pending",
+      approvedBy: null,
+      date: new Date().toISOString(),
+    };
+    setProposals((ps) => [...ps, proposal]);
+  };
+
+  const approveProposal = (proposalId, approveData = null) => {
+    if (session?.role !== "entrenador") return;
+    setProposals((ps) =>
+      ps.map((p) =>
+        p.id === proposalId
+          ? { ...p, status: "approved", approvedBy: session.userId, approvedData: approveData }
+          : p
+      )
+    );
+  };
+
+  const rejectProposal = (proposalId) => {
+    if (session?.role !== "entrenador") return;
+    setProposals((ps) =>
+      ps.map((p) =>
+        p.id === proposalId ? { ...p, status: "rejected", approvedBy: session.userId } : p
+      )
+    );
+  };
+
+  const getPendingProposals = () =>
+    proposals.filter(
+      (p) =>
+        p.status === "pending" &&
+        p.categoryId === session?.categoryId &&
+        session?.role === "entrenador"
+    );
+
   /* ================= NORMATIVA Y FIRMAS ================= */
   const toggleSign = (docId, kind, id) => {
     setSigns((sg) => {
@@ -6933,6 +7059,51 @@ SUS HIJOS/AS:\n${mis}`;
           )}
         </div>
       </div>
+
+      {/* Notificaciones de propuestas del segundo entrenador */}
+      {session?.role === "entrenador" && getPendingProposals().length > 0 && (
+        <Card title="⚠️ Propuestas pendientes de aprobación" className="lg:col-span-3" style={{ borderColor: C.warn, background: `${C.warn}10` }}>
+          <div className="space-y-3">
+            {getPendingProposals().map((p) => {
+              const proposer = users.find((u) => u.id === p.proposedBy);
+              const typeLabel = {
+                lineup: "Alineación",
+                squad: "Plantilla",
+                calendar: "Calendario",
+              }[p.type] || p.type;
+              return (
+                <div key={p.id} className="flex items-center justify-between gap-3 p-3 rounded-lg border" style={{ borderColor: C.line, background: C.panel2 }}>
+                  <div className="flex-1 min-w-0">
+                    <div className="font-semibold text-sm" style={{ color: C.chalk }}>
+                      {proposer?.name || "Usuario desconocido"} propone cambios en <span style={{ color: AC }}>{typeLabel}</span>
+                    </div>
+                    <div className="text-[11px] mt-1" style={{ color: C.dim }}>
+                      {new Date(p.date).toLocaleString("es-ES")}
+                    </div>
+                  </div>
+                  <div className="flex gap-2 shrink-0">
+                    <button
+                      onClick={() => approveProposal(p.id)}
+                      className="px-3 py-1.5 rounded-lg text-sm font-semibold"
+                      style={{ background: C.green, color: "white" }}
+                    >
+                      ✓ Aprobar
+                    </button>
+                    <button
+                      onClick={() => rejectProposal(p.id)}
+                      className="px-3 py-1.5 rounded-lg text-sm font-semibold"
+                      style={{ background: C.red, color: "white" }}
+                    >
+                      ✕ Rechazar
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </Card>
+      )}
+
       <Card title="Calendario del mes" className="lg:col-span-3">
         {(() => {
           const MESES = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
@@ -8719,7 +8890,19 @@ SUS HIJOS/AS:\n${mis}`;
          ningún dato —las lecturas de Airtable exigen id o equipo—, solo permite
          hablar con el asistente. */
       airDemoToken().then((out) => { if (out?.token) setAuthToken(out.token); });
-      setSession({ name: `Demo · ${ROLES[r].label}`, role: r, plan: "oficial", pro: true, club: DEMO_CLUB, comunidad: "Comunidad de Madrid", email: "demo", kids: r === "padre" ? [10, 15] : [], team: makeTeam("infantil", "B") });
+      const demoTeam = makeTeam("infantil", "B");
+      const demoCategories = getCategoriesForUser(1, r, DEMO_CLUB);
+      const demoCat = getDefaultCategory(1, r, DEMO_CLUB);
+      setSession({
+        name: `Demo · ${ROLES[r].label}`,
+        role: r, plan: "oficial", pro: true, club: DEMO_CLUB, comunidad: "Comunidad de Madrid", email: "demo",
+        kids: r === "padre" ? [10, 15] : [],
+        team: demoTeam,
+        categories: demoCategories.map((c) => c.name),
+        currentCategory: demoCat?.name || demoTeam?.name,
+        categoryId: demoCat?.id,
+        userId: 1,
+      });
       setTab("inicio");
       return null;
     }
@@ -8744,7 +8927,18 @@ SUS HIJOS/AS:\n${mis}`;
     }
     if (estado === "suspendido") return T(lang, "a.accSusp");
     startTrial(em);
-    setSession({ name, role: LABEL2ROL[roleLabel] || "padre", plan, club, comunidad, email: em, kids: TUTELA[em] || [], team, pendingApproval: estado !== "activo", prueba: Number(res?.user?.prueba) || 0 });
+    const finalRole = LABEL2ROL[roleLabel] || "padre";
+    const userCategories = getCategoriesForUser(res?.user?.id || 0, finalRole, club);
+    const defaultCat = getDefaultCategory(res?.user?.id || 0, finalRole, club);
+    setSession({
+      name, role: finalRole, plan, club, comunidad, email: em, kids: TUTELA[em] || [], team,
+      categories: userCategories.map((c) => c.name),
+      currentCategory: defaultCat?.name || (team?.name),
+      categoryId: defaultCat?.id,
+      pendingApproval: estado !== "activo",
+      prueba: Number(res?.user?.prueba) || 0,
+      userId: res?.user?.id,
+    });
     setTab("inicio");
     return null;
   };
