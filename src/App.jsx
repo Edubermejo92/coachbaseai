@@ -917,6 +917,48 @@ const parseFixtures = (txt) => {
 };
 const CAL_SAMPLE = "1;06/09/2026;10:00;C.D. Chamartín Vergara;CD Norte;Campo Municipal\n2;13/09/2026;12:30;AD Sur;C.D. Chamartín Vergara;Ciudad Deportiva Sur";
 
+/* Calendario real de Infantil B 26/27 (C.D. Chamartín Vergara - Alcobendas "B"):
+   Primera Infantil, Grupo 6, RFFM. Las 30 jornadas de liga tal y como las
+   publica la federación, más dos avisos de pretemporada en agosto (sin rival:
+   la federación no publica amistosos, solo la liga). Mismos datos que en la
+   tabla Partidos de Airtable — esto es lo que se ve sin conexión o en la demo;
+   con sesión real y equipo en la nube, el efecto de sincronización lo
+   sustituye por lo que haya en Airtable. */
+const FIXTURES_INIT = [
+  { id: 8001, j: "Pretemporada", date: "2026-08-12", time: "", home: "C.D. Chamartín Vergara - Alcobendas \"B\"", away: "Trabajo individual de pretemporada (ver Plan de Pretemporada en Normativa)", place: "" },
+  { id: 8002, j: "Pretemporada", date: "2026-09-02", time: "", home: "C.D. Chamartín Vergara - Alcobendas \"B\"", away: "Inicio de la pretemporada de equipo", place: "" },
+  { id: 8003, j: "1", date: "2026-09-26", time: "", home: "AULA C.F. - BREZO OSUNA \"A\"", away: "C.D. Chamartín Vergara - Alcobendas \"B\"", place: "" },
+  { id: 8004, j: "2", date: "2026-10-03", time: "", home: "C.D. Chamartín Vergara - Alcobendas \"B\"", away: "C.F. VALDEBEBAS \"A\"", place: "" },
+  { id: 8005, j: "3", date: "2026-10-10", time: "", home: "C.D. OLIMPICO DE HORTALEZA \"B\"", away: "C.D. Chamartín Vergara - Alcobendas \"B\"", place: "" },
+  { id: 8006, j: "4", date: "2026-10-17", time: "", home: "C.D. Chamartín Vergara - Alcobendas \"B\"", away: "C.D. TRIVEMA NAVAL \"A\"", place: "" },
+  { id: 8007, j: "5", date: "2026-10-24", time: "", home: "S.A.D. FUNDACIÓN C.D. RECUERDO \"B\"", away: "C.D. Chamartín Vergara - Alcobendas \"B\"", place: "" },
+  { id: 8008, j: "6", date: "2026-10-31", time: "", home: "C.D. Chamartín Vergara - Alcobendas \"B\"", away: "C.D. CANILLAS \"C\"", place: "" },
+  { id: 8009, j: "7", date: "2026-11-07", time: "", home: "A.D. VILLA ROSA \"B\"", away: "C.D. Chamartín Vergara - Alcobendas \"B\"", place: "" },
+  { id: 8010, j: "8", date: "2026-11-14", time: "", home: "C.D. Chamartín Vergara - Alcobendas \"B\"", away: "A.D. SPORTING HORTALEZA \"D\"", place: "" },
+  { id: 8011, j: "9", date: "2026-11-21", time: "", home: "CDE CHAMARTIN F.C. \"B\"", away: "C.D. Chamartín Vergara - Alcobendas \"B\"", place: "" },
+  { id: 8012, j: "10", date: "2026-11-28", time: "", home: "C.D. Chamartín Vergara - Alcobendas \"B\"", away: "C.D. RUPE SAHAGUN \"A\"", place: "" },
+  { id: 8013, j: "11", date: "2026-12-12", time: "", home: "C.D. Chamartín Vergara - Alcobendas \"B\"", away: "A.D. ESPERANZA \"B\"", place: "" },
+  { id: 8014, j: "12", date: "2026-12-19", time: "", home: "C.D. SPARTAC DE MANOTERAS \"A\"", away: "C.D. Chamartín Vergara - Alcobendas \"B\"", place: "" },
+  { id: 8015, j: "13", date: "2027-01-16", time: "", home: "C.D. Chamartín Vergara - Alcobendas \"B\"", away: "A.D. COLMENAR VIEJO \"C\"", place: "" },
+  { id: 8016, j: "14", date: "2027-01-23", time: "", home: "CLUB SAN JOSE DEL PARQUE \"A\"", away: "C.D. Chamartín Vergara - Alcobendas \"B\"", place: "" },
+  { id: 8017, j: "15", date: "2027-01-30", time: "", home: "C.D. Chamartín Vergara - Alcobendas \"B\"", away: "A.D. OÑA SANCHINARRO \"B\"", place: "" },
+  { id: 8018, j: "16", date: "2027-02-06", time: "", home: "C.D. Chamartín Vergara - Alcobendas \"B\"", away: "AULA C.F. - BREZO OSUNA \"A\"", place: "" },
+  { id: 8019, j: "17", date: "2027-02-13", time: "", home: "C.F. VALDEBEBAS \"A\"", away: "C.D. Chamartín Vergara - Alcobendas \"B\"", place: "" },
+  { id: 8020, j: "18", date: "2027-02-20", time: "", home: "C.D. Chamartín Vergara - Alcobendas \"B\"", away: "C.D. OLIMPICO DE HORTALEZA \"B\"", place: "" },
+  { id: 8021, j: "19", date: "2027-02-27", time: "", home: "C.D. TRIVEMA NAVAL \"A\"", away: "C.D. Chamartín Vergara - Alcobendas \"B\"", place: "" },
+  { id: 8022, j: "20", date: "2027-03-06", time: "", home: "C.D. Chamartín Vergara - Alcobendas \"B\"", away: "S.A.D. FUNDACIÓN C.D. RECUERDO \"B\"", place: "" },
+  { id: 8023, j: "21", date: "2027-03-13", time: "", home: "C.D. CANILLAS \"C\"", away: "C.D. Chamartín Vergara - Alcobendas \"B\"", place: "" },
+  { id: 8024, j: "22", date: "2027-03-20", time: "", home: "C.D. Chamartín Vergara - Alcobendas \"B\"", away: "A.D. VILLA ROSA \"B\"", place: "" },
+  { id: 8025, j: "23", date: "2027-04-03", time: "", home: "A.D. SPORTING HORTALEZA \"D\"", away: "C.D. Chamartín Vergara - Alcobendas \"B\"", place: "" },
+  { id: 8026, j: "24", date: "2027-04-10", time: "", home: "C.D. Chamartín Vergara - Alcobendas \"B\"", away: "CDE CHAMARTIN F.C. \"B\"", place: "" },
+  { id: 8027, j: "25", date: "2027-04-17", time: "", home: "C.D. RUPE SAHAGUN \"A\"", away: "C.D. Chamartín Vergara - Alcobendas \"B\"", place: "" },
+  { id: 8028, j: "26", date: "2027-04-24", time: "", home: "A.D. ESPERANZA \"B\"", away: "C.D. Chamartín Vergara - Alcobendas \"B\"", place: "" },
+  { id: 8029, j: "27", date: "2027-05-01", time: "", home: "C.D. Chamartín Vergara - Alcobendas \"B\"", away: "C.D. SPARTAC DE MANOTERAS \"A\"", place: "" },
+  { id: 8030, j: "28", date: "2027-05-08", time: "", home: "A.D. COLMENAR VIEJO \"C\"", away: "C.D. Chamartín Vergara - Alcobendas \"B\"", place: "" },
+  { id: 8031, j: "29", date: "2027-05-15", time: "", home: "C.D. Chamartín Vergara - Alcobendas \"B\"", away: "CLUB SAN JOSE DEL PARQUE \"A\"", place: "" },
+  { id: 8032, j: "30", date: "2027-05-22", time: "", home: "A.D. OÑA SANCHINARRO \"B\"", away: "C.D. Chamartín Vergara - Alcobendas \"B\"", place: "" },
+];
+
 const TAB_LABEL = { inicio: "Inicio", jugadores: "Jugadores", alineacion: "Alineación", convocatoria: "Convocatoria", partido: "Modo partido", usuarios: "Usuarios", coachai: "Coach AI" };
 /* ---------------- Airtable (conexión app <-> base) ---------------- */
 const AIR = "/.netlify/functions/airtable";
@@ -4772,7 +4814,7 @@ export default function App() {
   const MATCHINFO_VACIO = { rival: "", fecha: "", hora: "", lugar: "" };
   const [matchInfo, setMatchInfo] = useState(MATCHINFO_VACIO);
   /* calendario del equipo */
-  const [fixtures, setFixtures] = useState([]);
+  const [fixtures, setFixtures] = useState(FIXTURES_INIT);
   /* ===== Sincronización con Airtable =====
      Al entrar se cargan plantilla y partidos del equipo. Si Airtable responde,
      manda Airtable; si no hay backend, se sigue con localStorage/demo. */
@@ -6128,6 +6170,11 @@ SUS HIJOS/AS:\n${mis}`;
   const todayISO = new Date().toISOString().slice(0, 10);
   const sortedFix = [...fixtures].sort((a, b) => (a.date + a.time < b.date + b.time ? -1 : 1));
   const nextFix = sortedFix.find((f) => f.date >= todayISO) || null;
+  /* Solo partidos de verdad (jornada numérica): los avisos de pretemporada
+     ("j" = "Pretemporada") no tienen rival ni hora de partido, así que no
+     pueden alimentar el cartel de "próximo partido" — ahí forzarían un "vs"
+     sin sentido. Se siguen viendo igual en la lista del calendario completo. */
+  const nextMatchFix = sortedFix.find((f) => f.date >= todayISO && /^\d+$/.test(String(f.j))) || null;
   const importCal = (txt) => {
     const rows = parseFixtures(txt);
     if (!rows.length) { setCalMsg("No he reconocido ningún partido. Revisa el formato."); return; }
@@ -7192,18 +7239,19 @@ SUS HIJOS/AS:\n${mis}`;
 
   /* ================= FAMILIAS (portal + cola de aprobación) ================= */
 
-  /* Datos del próximo partido para el cartel de inicio. nextFix viene del
-     calendario importado; si no hay calendario se cae a matchInfo, que es lo
-     que el entrenador escribe a mano en la convocatoria. */
-  const rivalProx = nextFix
-    ? (norm(nextFix.home).includes(norm(session.team?.name)) ? nextFix.away : nextFix.home)
+  /* Datos del próximo partido para el cartel de inicio. nextMatchFix viene del
+     calendario importado (solo partidos de verdad, no avisos de pretemporada);
+     si no hay ninguno se cae a matchInfo, que es lo que el entrenador escribe
+     a mano en la convocatoria. */
+  const rivalProx = (session && nextMatchFix)
+    ? (nextMatchFix.home.toLowerCase().includes(String(session.club).toLowerCase().slice(0, 6)) ? nextMatchFix.away : nextMatchFix.home)
     : matchInfo.rival;
-  const horaProx = nextFix ? nextFix.time : matchInfo.hora;
-  const lugarProx = nextFix ? nextFix.place : matchInfo.lugar;
+  const horaProx = nextMatchFix ? nextMatchFix.time : matchInfo.hora;
+  const lugarProx = nextMatchFix ? nextMatchFix.place : matchInfo.lugar;
   /* Días que faltan. Se compara a mediodía para que el cambio de hora no
      desplace un día entero la cuenta. */
   const diasProx = (() => {
-    const iso = nextFix?.date;
+    const iso = nextMatchFix?.date;
     if (!iso || !/^\d{4}-\d{2}-\d{2}$/.test(iso)) return null;
     const [y, m, d] = iso.split("-").map(Number);
     const destino = new Date(y, m - 1, d, 12, 0, 0);
@@ -7211,8 +7259,8 @@ SUS HIJOS/AS:\n${mis}`;
     return Math.max(0, Math.round((destino - hoy) / 86400000));
   })();
   const fechaProx = (() => {
-    if (!nextFix?.date) return matchInfo.fecha || t("h.noDate");
-    const [y, m, d] = nextFix.date.split("-").map(Number);
+    if (!nextMatchFix?.date) return matchInfo.fecha || t("h.noDate");
+    const [y, m, d] = nextMatchFix.date.split("-").map(Number);
     return new Date(y, m - 1, d).toLocaleDateString(lang === "es" ? "es-ES" : lang, { weekday: "long", day: "numeric", month: "long" });
   })();
 
@@ -7228,12 +7276,12 @@ SUS HIJOS/AS:\n${mis}`;
       <div className="lg:col-span-3 rounded-lg border overflow-hidden" style={{ borderColor: C.line, background: C.panel }}>
         <div className="flex items-center gap-2.5 px-4 pt-3.5">
           <span className="font-display text-[11px] uppercase tracking-[0.18em] shrink-0" style={{ color: AC }}>
-            {t("h.nextMatch")}{nextFix?.j ? ` · ${t("h.round")} ${nextFix.j}` : ""}
+            {t("h.nextMatch")}{nextMatchFix?.j ? ` · ${t("h.round")} ${nextMatchFix.j}` : ""}
           </span>
           <span className="h-px flex-1" style={{ background: C.line }} />
         </div>
 
-        <div className="px-4 pb-4 pt-2 flex flex-wrap items-center gap-x-6 gap-y-4">
+        <div className="px-4 pb-4 pt-2 flex flex-col sm:flex-row sm:items-center sm:flex-wrap gap-x-6 gap-y-4">
           <div className="flex items-center gap-3 min-w-0 flex-1">
             <Crest src={clubInfo.crest || crest || escudoDe(session.club)} name={session.club} size={56} />
             <div className="min-w-0">
@@ -7256,8 +7304,11 @@ SUS HIJOS/AS:\n${mis}`;
             </div>
           </div>
 
-          {/* Cuenta atrás y disponibles: los dos números que decides mirar. */}
-          <div className="flex items-center gap-6 shrink-0">
+          {/* Cuenta atrás y disponibles: los dos números que decides mirar.
+              En móvil, fila propia a todo el ancho (justify-between) para que
+              no le quite sitio al nombre del equipo y del rival de arriba —
+              antes competían en la misma fila y los truncaba a "I...". */}
+          <div className="flex items-center justify-between sm:justify-start gap-6 sm:shrink-0">
             {/* La cuenta atrás solo aparece si hay una fecha real que contar.
                 Sin calendario importado la fecha es texto libre ("Domingo
                 27"), y poner "— SIN FECHA" al lado de una fecha que sí se ve
@@ -7913,7 +7964,7 @@ SUS HIJOS/AS:\n${mis}`;
 
   const saveCall = () => {
     const row = {
-      id: Date.now(), j: nextFix?.j || "", rival: matchInfo.rival, fecha: matchInfo.fecha,
+      id: Date.now(), j: nextMatchFix?.j || "", rival: matchInfo.rival, fecha: matchInfo.fecha,
       hora: matchInfo.hora, lugar: matchInfo.lugar, ids: [...called],
     };
     if (!isPro) { setCallMsg("El histórico de convocatorias es una función PRO."); setTimeout(() => setCallMsg(""), 4000); return; }
@@ -9322,6 +9373,15 @@ SUS HIJOS/AS:\n${mis}`;
   const tabsMenu = TODAS_TABS.filter((k) => allTabs.includes(k) || !["master", "equipos"].includes(k));
   const sinAcceso = (k) => !allTabs.includes(k);
   const mobileTabs = [...visibleTabs.filter((k) => ["inicio", "pizarra", "entrenamiento", "partido"].includes(k)), ...visibleTabs.filter((k) => !["inicio", "pizarra", "entrenamiento", "partido"].includes(k))].slice(0, 4);
+  /* Punto de aviso en el menú móvil: mismos avisos que ya se calculan para la
+     tarjeta de Inicio (accesos pendientes, propuestas por resolver,
+     incidencias sin validar, firmas pendientes), para que en el móvil se
+     note sin tener que entrar a mirar. */
+  const pendUsersCount = can("viewUsers") ? users.filter((u) => u.status === "pendiente").length : 0;
+  const hayAvisosNav = getPendingProposals().length > 0
+    || pendUsersCount > 0
+    || (can("discipline") && pendingValid > 0)
+    || (can("viewDocs") && pendingSign > 0);
 
   /* Escudo a mostrar: el del equipo, si no el del club de Airtable, y si no el
      archivo local. Antes la cabecera solo miraba el primero. */
@@ -9407,7 +9467,10 @@ SUS HIJOS/AS:\n${mis}`;
           </button>
           <LangPicker lang={lang} setLang={setLang} />
           <button onClick={() => { setAuthToken(null); setSession(null); setMsgs([]); }} className="text-xs px-3 py-1.5 rounded-lg border" style={{ borderColor: C.line, color: C.dim }}>{t("c.exit")}</button>
-          <button onClick={() => setMenuOpen((v) => !v)} aria-expanded={menuOpen} className="lg:hidden text-xs px-3 py-2 rounded-lg border font-display uppercase tracking-wide" style={{ borderColor: menuOpen ? AC : C.line, color: menuOpen ? AC : C.chalk }}>☰<span className="hidden sm:inline"> Menú</span></button>
+          <button onClick={() => setMenuOpen((v) => !v)} aria-expanded={menuOpen} className="relative lg:hidden text-xs px-3 py-2 rounded-lg border font-display uppercase tracking-wide" style={{ borderColor: menuOpen ? AC : C.line, color: menuOpen ? AC : C.chalk }}>
+            ☰<span className="hidden sm:inline"> Menú</span>
+            {hayAvisosNav && <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full" style={{ background: C.red, boxShadow: `0 0 0 2px ${C.bg}` }} />}
+          </button>
         </div>
       </header>
 
@@ -9718,11 +9781,21 @@ SUS HIJOS/AS:\n${mis}`;
 
       <nav className="lg:hidden safe-bottom fixed bottom-0 inset-x-0 flex border-t z-20" style={{ borderColor: C.line, background: C.panel }}>
         {mobileTabs.map((k) => (
-          <button key={k} onClick={() => setTab(k)} className="flex-1 min-w-0 py-2 text-center text-[10px] font-display uppercase" style={{ color: tab === k ? AC : C.dim }}>
-            <div className="text-base">{TAB_ICON[k]}</div>{t("nav." + k)}
+          <button key={k} onClick={() => setTab(k)} className="relative flex-1 min-w-0 py-2 text-center text-[10px] font-display uppercase leading-tight"
+            style={{ color: tab === k ? AC : C.dim }}>
+            {tab === k && <span className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-[3px] rounded-b-full" style={{ background: AC }} />}
+            <div className="text-base">{TAB_ICON[k]}</div>
+            {t("nav." + k)}
           </button>
         ))}
-        <button onClick={() => setMenuOpen(true)} className="flex-1 min-w-0 py-2 text-center text-[10px] font-display uppercase" style={{ color: menuOpen ? AC : C.dim }}><div className="text-base">⋯</div>Más</button>
+        <button onClick={() => setMenuOpen(true)} className="relative flex-1 min-w-0 py-2 text-center text-[10px] font-display uppercase" style={{ color: menuOpen ? AC : C.dim }}>
+          {menuOpen && <span className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-[3px] rounded-b-full" style={{ background: AC }} />}
+          <div className="relative inline-block text-base">
+            ⋯
+            {hayAvisosNav && <span className="absolute -top-0.5 -right-1.5 w-2 h-2 rounded-full" style={{ background: C.red, boxShadow: `0 0 0 2px ${C.panel}` }} />}
+          </div>
+          <div>Más</div>
+        </button>
       </nav>
 
     </div>
