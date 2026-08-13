@@ -5353,6 +5353,25 @@ SUS HIJOS/AS:\n${mis}`;
           )}
         </div>
 
+        {/* Histórico de propuestas (segundo/entrenador) */}
+        {(session.role === "segundo" || session.role === "entrenador") && getProposalHistory().length > 0 && (
+          <div className="pt-4 mt-4 border-t" style={{ borderColor: C.line }}>
+            <div className="font-display text-sm uppercase tracking-widest mb-3" style={{ color: C.dim }}>📋 Histórico de propuestas</div>
+            <div className="space-y-2 max-h-64 overflow-y-auto">
+              {getProposalHistory().map((p) => (
+                <div key={p.id} className="text-xs p-2 rounded-lg border" style={{ borderColor: p.status === "approved" ? C.green : C.red, background: p.status === "approved" ? `${C.green}15` : `${C.red}15` }}>
+                  <div style={{ color: p.status === "approved" ? C.green : C.red, fontWeight: "bold" }}>
+                    {p.status === "approved" ? "✓ Aprobada" : "✕ Rechazada"}: {getProposalTypeLabel(p.type)}
+                  </div>
+                  <div style={{ color: C.dim, marginTop: "4px" }}>
+                    {new Date(p.date).toLocaleString("es-ES")}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* ---- DARSE DE BAJA ----
             Va al final, en rojo y en dos pasos: pedir la contraseña además de
             confirmar evita que un móvil abierto encima de la mesa baste para
