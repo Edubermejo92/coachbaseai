@@ -3485,23 +3485,33 @@ Devuelve SOLO un objeto JSON con las claves "tokens" y "shapes", sin explicació
 }
 
 /* ---------------- Datos demo ---------------- */
+/* Plantilla oficial real de Infantil B (C.D. Chamartín Vergara), tal y como
+   la aportó el club: 19 jugadores, dorsal y demarcación. La ficha no incluye
+   lado (izquierda/derecha) para los 5 extremos, así que se reparten entre
+   ED/EI a partes iguales; ajusta la demarcación de cada uno desde "Jugadores"
+   si no coincide con el lado real. Sin partidos ni entrenamientos todavía
+   (pretemporada), así que asistencia y minutos arrancan en 0 y nadie tiene
+   duda ni lesión salvo que el club lo indique. */
 const PLAYERS_INIT = [
-  { id: 1, n: "Hugo Vidal", d: 1, pos: "POR", st: "disponible", att: 96, min: 480 },
-  { id: 2, n: "Marcos León", d: 2, pos: "LD", st: "disponible", att: 92, min: 455 },
-  { id: 3, n: "Adrián Costa", d: 4, pos: "DFC", st: "disponible", att: 88, min: 510 },
-  { id: 4, n: "Iker Molina", d: 5, pos: "DFC", st: "duda", att: 90, min: 430 },
-  { id: 5, n: "Pau Serrano", d: 3, pos: "LI", st: "disponible", att: 95, min: 470 },
-  { id: 6, n: "Daniel Ruiz", d: 6, pos: "MCD", st: "disponible", att: 98, min: 520 },
-  { id: 7, n: "Álvaro Peña", d: 8, pos: "MC", st: "disponible", att: 85, min: 390 },
-  { id: 8, n: "Nico Ferrer", d: 10, pos: "MCO", st: "disponible", att: 93, min: 500 },
-  { id: 9, n: "Bruno Gil", d: 7, pos: "ED", st: "disponible", att: 89, min: 410 },
-  { id: 10, n: "Leo Navarro", d: 9, pos: "DC", st: "disponible", att: 91, min: 445 },
-  { id: 11, n: "Mario Ibáñez", d: 11, pos: "EI", st: "lesionado", att: 80, min: 300 },
-  { id: 12, n: "Samu Ortega", d: 13, pos: "POR", st: "disponible", att: 94, min: 120 },
-  { id: 13, n: "Javi Roca", d: 14, pos: "DFC", st: "disponible", att: 87, min: 210 },
-  { id: 14, n: "Óscar Pardo", d: 16, pos: "MC", st: "disponible", att: 82, min: 180 },
-  { id: 15, n: "Enzo Bravo", d: 17, pos: "EI", st: "disponible", att: 90, min: 250 },
-  { id: 16, n: "Teo Aguilar", d: 19, pos: "DC", st: "disponible", att: 86, min: 160 },
+  { id: 1, n: "Alex Bustos", d: 1, pos: "POR", st: "disponible", att: 0, min: 0 },
+  { id: 2, n: "Santiago Bo", d: 2, pos: "POR", st: "disponible", att: 0, min: 0 },
+  { id: 3, n: "Daniel Fernández", d: 3, pos: "DFC", st: "disponible", att: 0, min: 0 },
+  { id: 4, n: "Jalel Besnard", d: 4, pos: "DFC", st: "disponible", att: 0, min: 0 },
+  { id: 5, n: "Matteo Martínez", d: 5, pos: "LD", st: "disponible", att: 0, min: 0 },
+  { id: 6, n: "Iván Díez", d: 6, pos: "LD", st: "disponible", att: 0, min: 0 },
+  { id: 7, n: "Guillermo Marañón", d: 7, pos: "LI", st: "disponible", att: 0, min: 0 },
+  { id: 8, n: "Rodrigo Caldeira", d: 8, pos: "LI", st: "disponible", att: 0, min: 0 },
+  { id: 9, n: "Matti Kisters", d: 9, pos: "MC", st: "disponible", att: 0, min: 0 },
+  { id: 10, n: "Lorenzo Meyer", d: 10, pos: "MC", st: "disponible", att: 0, min: 0 },
+  { id: 11, n: "Iñigo Fernández", d: 11, pos: "MC", st: "disponible", att: 0, min: 0 },
+  { id: 12, n: "Deyan Collin", d: 12, pos: "MC", st: "disponible", att: 0, min: 0 },
+  { id: 13, n: "José Bello", d: 13, pos: "MC", st: "disponible", att: 0, min: 0 },
+  { id: 14, n: "Enrique de Sebastián", d: 14, pos: "ED", st: "disponible", att: 0, min: 0 },
+  { id: 15, n: "Álvaro Rey", d: 15, pos: "EI", st: "disponible", att: 0, min: 0 },
+  { id: 16, n: "Martín Fernández", d: 16, pos: "ED", st: "disponible", att: 0, min: 0 },
+  { id: 17, n: "Manuel Gómez", d: 17, pos: "EI", st: "disponible", att: 0, min: 0 },
+  { id: 18, n: "Mateo Rivera", d: 18, pos: "ED", st: "disponible", att: 0, min: 0 },
+  { id: 19, n: "Adrian Bianchi", d: 19, pos: "DC", st: "disponible", att: 0, min: 0 },
 ];
 
 const USERS_INIT = [
@@ -3532,19 +3542,20 @@ const DOCS_INIT = [
     signers: ["Jugador", "Cuerpo técnico"], file: "/documents/Plan_Pretemporada_Infantil_B_202627.pdf", kind: "exercise",
     summary: "Trabajo previo de agosto: tres semanas de reactivación, desarrollo y aproximación antes del inicio de la pretemporada del equipo el 2 de septiembre. El cuerpo técnico (entrenador/a, delegado/a y director/a deportivo/a) confirma aquí, jugador a jugador, quién ha realizado los ejercicios." },
 ];
-/* firmas demo: ids de jugador y de usuario que ya han firmado cada documento */
+/* firmas demo: ids de jugador y de usuario que ya han firmado cada documento.
+   Con la plantilla real de Infantil B cargada, nadie ha firmado ni confirmado
+   nada todavía — antes había firmas y confirmaciones de ejemplo precargadas,
+   pero dejarlas habría atribuido firmas falsas a jugadores reales. */
 const SIGNS_INIT = {
-  d1: { players: [1, 2, 3, 5, 6, 7, 8, 9, 10, 12, 13, 15, 16], staff: [1, 2, 3] },
+  d1: { players: [], staff: [1, 2, 3] },
   d2: { players: [], staff: [1, 2, 3, 4] },
   d3: { players: [], staff: [] },
   d4: { players: [], staff: [1, 2] },
   d5: { players: [], staff: [] },
 };
-const INCIDENTS_INIT = [
-  { id: 1, pid: 4, date: "2026-07-17", ctx: "Entrenamiento", norm: "L1", card: "yellow", measure: ["Advertencia verbal"], amount: 0, pay: "na", desc: "Llegó 15 minutos tarde sin avisar.", state: "validada", by: "Marta Gómez (delegada)", fam: true },
-  { id: 2, pid: 11, date: "2026-07-19", ctx: "Partido", norm: "L8", card: "fedYellow", measure: ["Conversación individual"], amount: 0, pay: "na", desc: "Amonestación del árbitro por protestar una decisión.", state: "registrada", by: "Marta Gómez (delegada)", fam: false },
-  { id: 3, pid: 14, date: "2026-07-21", ctx: "Entrenamiento", norm: "L6", card: "none", measure: ["Advertencia verbal"], amount: 0, pay: "na", desc: "Uso del móvil durante la charla técnica.", state: "registrada", by: "Marta Gómez (delegada)", fam: false },
-];
+/* Sin incidencias de ejemplo: con nombres reales de menores, unas incidencias
+   disciplinarias inventadas serían datos falsos sobre personas reales. */
+const INCIDENTS_INIT = [];
 /* qué jugador tutela cada familia (delimita a qué datos accede) */
 const TUTELA = {
   "familia.navarro@gmail.com": [10],
@@ -3552,12 +3563,10 @@ const TUTELA = {
   "tutor.leo@gmail.com": [10, 15],
   "tutor.enzo@gmail.com": [15],
 };
-/* histórico de convocatorias (demo). El cuerpo técnico va guardando las suyas. */
-const CALLS_INIT = [
-  { id: 1, j: "11", rival: "AD Sur", fecha: "2026-07-19", hora: "12:30", lugar: "Ciudad Deportiva Sur", ids: [1, 2, 3, 5, 6, 7, 8, 10, 12, 14, 15, 16] },
-  { id: 2, j: "10", rival: "CD Este", fecha: "2026-07-12", hora: "10:00", lugar: "Campo Municipal Las Rozas", ids: [1, 2, 4, 5, 6, 9, 10, 11, 13, 15, 16] },
-  { id: 3, j: "9", rival: "EF Oeste", fecha: "2026-07-05", hora: "11:15", lugar: "Campo Municipal Las Rozas", ids: [1, 3, 4, 6, 7, 8, 9, 11, 12, 13, 14, 16] },
-];
+/* histórico de convocatorias (demo). El cuerpo técnico va guardando las suyas.
+   Vacío: la pretemporada aún no ha empezado, así que todavía no hay
+   convocatorias reales que guardar para la plantilla de Infantil B. */
+const CALLS_INIT = [];
 
 const SLOTS_433 = {
   GK: { label: "POR", x: 50, y: 90 }, RB: { label: "LD", x: 82, y: 72 },
@@ -8663,13 +8672,13 @@ SUS HIJOS/AS:\n${mis}`;
          ningún dato —las lecturas de Airtable exigen id o equipo—, solo permite
          hablar con el asistente. */
       airDemoToken().then((out) => { if (out?.token) setAuthToken(out.token); });
-      setSession({ name: `Demo · ${ROLES[r].label}`, role: r, plan: "oficial", pro: true, club: DEMO_CLUB, comunidad: "Comunidad de Madrid", email: "demo", kids: r === "padre" ? [10, 15] : [], team: makeTeam("infantil", "A") });
+      setSession({ name: `Demo · ${ROLES[r].label}`, role: r, plan: "oficial", pro: true, club: DEMO_CLUB, comunidad: "Comunidad de Madrid", email: "demo", kids: r === "padre" ? [10, 15] : [], team: makeTeam("infantil", "B") });
       setTab("inicio");
       return null;
     }
     const res = await airLogin(em, password);
     let name, roleLabel, estado, plan = "oficial";
-    let club = DEMO_CLUB, comunidad = "Comunidad de Madrid", team = makeTeam("infantil", "A");
+    let club = DEMO_CLUB, comunidad = "Comunidad de Madrid", team = makeTeam("infantil", "B");
     if (res && res.ok) {
       setAuthToken(res.token || null);
       name = res.user.name; roleLabel = res.user.rol;
