@@ -2694,7 +2694,7 @@ function Whiteboard({ AC, lang, teamId, teamRec, isF7, pendingExId, onConsumePen
       const blob = new Blob(recRef.current.chunks, { type: "video/webm" });
       const a = document.createElement("a");
       a.href = URL.createObjectURL(blob);
-      a.download = `pizarra-${new Date().toISOString().slice(0, 10)}.webm`;
+      a.download = `pizarra-${hoyISO()}.webm`;
       a.click();
     };
     recRef.current.recorder = rec;
@@ -3086,7 +3086,7 @@ Devuelve SOLO un objeto JSON con las claves "tokens" y "shapes", sin explicació
       ctx.drawImage(img, 0, 0, c.width, c.height);
       const a = document.createElement("a");
       a.href = c.toDataURL("image/png");
-      a.download = `pizarra-${new Date().toISOString().slice(0, 10)}.png`;
+      a.download = `pizarra-${hoyISO()}.png`;
       a.click();
     };
     img.src = "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(xml)));
@@ -3998,8 +3998,65 @@ const asistLabel = (st, t) =>
   : st === "lesion" ? t("as.injured")
   : t("as.unmarked");
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+/* ================= FECHAS DEL CALENDARIO =================
+   toISOString() da la fecha en UTC, no la del reloj de quien usa la app. En
+   España (UTC+1 en invierno, UTC+2 en verano) eso significa que entre las
+   00:00 y las 01:00 o 02:00 la app daba por buena la fecha de AYER: la lista
+   de asistencia se abría en el día anterior, y una incidencia o un resultado
+   guardados al volver del campo por la noche quedaban con fecha del día
+   antes.
+   Peor todavía: al sumar días se construía la fecha a medianoche local y se
+   volvía a convertir a UTC, así que en España "día siguiente" se quedaba en
+   el mismo día y "día anterior" saltaba dos. Las flechas de Asistencia
+   estaban rotas todo el año.
+   Estas dos ayudas trabajan siempre con el día del calendario local, que es
+   el que le importa a un entrenador. */
+const isoLocal = (d) => {
+  const x = new Date(d);
+  return `${x.getFullYear()}-${String(x.getMonth() + 1).padStart(2, "0")}-${String(x.getDate()).padStart(2, "0")}`;
+};
+const hoyISO = () => isoLocal(new Date());
+/* Suma (o resta) días a una fecha "YYYY-MM-DD" sin salir del huso local. */
+const sumarDiasISO = (iso, delta) => {
+  const [y, m, d] = String(iso).split("-").map(Number);
+  return isoLocal(new Date(y, m - 1, d + delta));
+};
 const keycap = (n) => String(n).split("").map((d) => d + "\uFE0F\u20E3").join("");
 const ease = (t) => 1 - Math.pow(1 - clamp(t, 0, 1), 3);
+
+/* La demarcación de un CSV viene como la escribe cada club: "Portero",
+   "portero", "POR", "Central", "Lateral izquierdo", "Delantero"… Se traduce a
+   los códigos que entiende la app (POS_OK). Sin esto se guardaba el texto tal
+   cual en mayúsculas, y todo lo que no fuera exactamente un código de los
+   nuestros acababa contado como delantero -que es a donde cae el "si no"
+   de posGroup()-, desaparecía del desglose por demarcación de Estadísticas
+   y no casaba nunca con el puesto al buscar un cambio en Alineación.
+   Lo que no se reconoce se queda en "—": mejor sin demarcación que con una
+   inventada. */
+/* El orden importa: lo más específico primero, porque se coge la primera que
+   case ("lateral derecho" antes que "lateral", "extremo izquierdo" antes que
+   "extremo"). */
+const POS_ALIAS = [
+  [/^(portero|porteria|guardameta|arquero|gk|pt)/, "POR"],
+  [/^(lateral\s*der|lateral\s*d\b|defensa\s*der|carrilero\s*der)/, "LD"],
+  [/^(lateral\s*izq|lateral\s*i\b|defensa\s*izq|carrilero\s*izq)/, "LI"],
+  [/^(central|defensa\s*central|defensa|libero|zaguero)/, "DFC"],
+  [/^(pivote|mediocentro\s*def|medio\s*def)/, "MCD"],
+  [/^(mediapunta|media\s*punta|enganche|medio\s*ofensivo)/, "MCO"],
+  [/^(interior|volante)/, "MB"],
+  [/^(mediocentro|centrocampista|medio)/, "MC"],
+  [/^(extremo\s*der|banda\s*der)/, "ED"],
+  [/^(extremo\s*izq|banda\s*izq)/, "EI"],
+  [/^(delantero|punta|ariete|goleador|extremo)/, "DC"],
+];
+const posNormalizada = (v) => {
+  const x = String(v || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim().toLowerCase();
+  if (!x || x === "-" || x === "—") return "—";
+  const directo = x.toUpperCase();
+  if (POS_OK.includes(directo)) return directo;
+  const hit = POS_ALIAS.find(([re]) => re.test(x));
+  return hit ? hit[1] : "—";
+};
 
 const parseCSV = (txt, startId) => {
   const rows = txt.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
@@ -4009,7 +4066,11 @@ const parseCSV = (txt, startId) => {
     if (i === 0 && /nombre/i.test(c[0])) return;
     if (!c[0]) return;
     const dorsal = parseInt(c[2], 10);
-    out.push({ id: startId + out.length, n: `${c[0]} ${c[1] || ""}`.trim(), d: Number.isFinite(dorsal) ? dorsal : 0, pos: (c[3] || "—").toUpperCase(), st: "disponible", att: 100, min: 0 });
+    /* att: 0 como en el resto de altas (ficha nueva y jugadores traídos de la
+       nube). Con el 100 de antes, quien importaba la plantilla por CSV veía a
+       los recién llegados encabezando "Top asistencia" sin haber pisado un
+       entrenamiento. */
+    out.push({ id: startId + out.length, n: `${c[0]} ${c[1] || ""}`.trim(), d: Number.isFinite(dorsal) ? dorsal : 0, pos: posNormalizada(c[3]), st: "disponible", att: 0, min: 0 });
   });
   let next = 1;
   const used = new Set(out.filter((p) => p.d > 0).map((p) => p.d));
@@ -4876,7 +4937,7 @@ export default function App() {
   const [signs, setSigns] = useState(SIGNS_INIT);
   const [discFilter, setDiscFilter] = useState("all");
   const [attend, setAttend] = useState({});
-  const [attDate, setAttDate] = useState(() => new Date().toISOString().slice(0, 10));
+  const [attDate, setAttDate] = useState(() => hoyISO());
   const [attCtx, setAttCtx] = useState("Entrenamiento");
   const [quickPid, setQuickPid] = useState(null);
   const [teamForm, setTeamForm] = useState(null);
@@ -4892,8 +4953,25 @@ export default function App() {
   useEffect(() => {
     try { localStorage.setItem(asistKey, JSON.stringify(asistencia)); } catch { /* noop */ }
   }, [asistencia, asistKey]);
-  const [asistFecha, setAsistFecha] = useState(() => new Date().toISOString().slice(0, 10));
+  const [asistFecha, setAsistFecha] = useState(() => hoyISO());
   const [asistPick, setAsistPick] = useState(null);
+  /* ---- Asistencia real de cada jugador ----
+     El campo "att" de la ficha era un número muerto: se rellenaba al crear al
+     jugador y no lo recalculaba nadie nunca. Resultado: por muchos días que se
+     pasara lista en Asistencia, "Top asistencia" en Estadísticas y la ficha
+     enseñaban el mismo 0% para toda la plantilla, y a Coach AI se le pasaba ese
+     0% como dato bueno justo cuando se le pregunta quién merece más minutos.
+     Ahora sale de lo que hay registrado de verdad. Solo cuentan los días en los
+     que se pasó lista (los que tienen alguna marca): un día sin abrir la lista
+     no es una falta de nadie. Sin ningún día pasado todavía se devuelve null y
+     quien lo use se queda con lo que tuviera la ficha, para no enseñar un 0%
+     recién inventado como si fuera real. */
+  const diasConLista = Object.values(asistencia).filter((d) => d && Object.keys(d).length > 0);
+  const attPct = (p) => {
+    if (!diasConLista.length) return Number(p?.att) || 0;
+    const presentes = diasConLista.filter((d) => d[p.id] === "presente").length;
+    return Math.round((presentes / diasConLista.length) * 100);
+  };
   /* histórico de convocatorias */
   const [calls, setCalls] = useState(CALLS_INIT);
   const [callMsg, setCallMsg] = useState("");
@@ -5450,7 +5528,7 @@ ACTA:\n${evTxt}`;
 
     let system;
     if (nivel === "tecnico") {
-      const roster = players.map((p) => `#${p.d} ${p.n} (${p.pos}, ${p.st}, ${p.min} min, asist ${p.att}%)`).join("\n");
+      const roster = players.map((p) => `#${p.d} ${p.n} (${p.pos}, ${p.st}, ${p.min} min, asist ${attPct(p)}%)`).join("\n");
       const xi = Object.entries(lineup).map(([s, id]) => { const p = players.find((x) => x.id === id); return p ? `${s}:#${p.d} ${p.n}` : `${s}:vacío`; }).join(", ");
       const evTxt = events.length ? events.map((e) => `min ${e.min}: ${e.type}${e.player ? " — " + e.player : ""}`).join("\n") : "sin eventos";
       system = `${comun} Adapta el enfoque a su rol técnico.
@@ -5982,7 +6060,7 @@ SUS HIJOS/AS:\n${mis}`;
           <a href={profile.video} download={`presentacion-${profile.n.replace(/\s+/g, "-")}.webm`} className="block text-center text-xs mb-4 underline" style={{ color: AC }}>Descargar vídeo (.webm)</a>
         )}
         <div className="grid grid-cols-2 gap-2 text-sm">
-          {[["Posición", profile.pos], ["Estado", profile.st], ["Asistencia", `${profile.att}%`], ["Minutos", `${profile.min}'`]].map(([k, v]) => (
+          {[["Posición", profile.pos], ["Estado", profile.st], ["Asistencia", `${attPct(profile)}%`], ["Minutos", `${profile.min}'`]].map(([k, v]) => (
             <div key={k} className="rounded-lg border p-2.5" style={{ borderColor: C.line, background: C.panel2 }}>
               <div className="text-[10px] font-display uppercase tracking-widest" style={{ color: C.dim }}>{k}</div>
               <div style={{ color: k === "Estado" ? stColor(profile.st) : C.chalk }}>{v}</div>
@@ -6569,7 +6647,7 @@ SUS HIJOS/AS:\n${mis}`;
   };
 
   /* ================= CALENDARIO DEL EQUIPO ================= */
-  const todayISO = new Date().toISOString().slice(0, 10);
+  const todayISO = hoyISO();
   const sortedFix = [...fixtures].sort((a, b) => (a.date + a.time < b.date + b.time ? -1 : 1));
   const nextFix = sortedFix.find((f) => f.date >= todayISO) || null;
   /* Solo partidos de verdad (jornada numérica): los avisos de pretemporada
@@ -6771,7 +6849,10 @@ SUS HIJOS/AS:\n${mis}`;
     const rows = targets.map((p) => ({
       ...newIncident(p.id, f.norm, f.desc || "Medida colectiva del equipo."),
       date: f.date, ctx: f.ctx, measure: f.measure,
-      amount: Number(f.amount) || 0, pay: Number(f.amount) > 0 ? "pendiente" : "na", batch,
+      /* Nunca por debajo de 0: el input es type=number con min=0, pero eso
+         solo se valida al enviar un formulario y aquí no hay ninguno, así que
+         un "-5" escrito a mano llegaba tal cual y dejaba el bote en negativo. */
+      amount: Math.max(0, Number(f.amount) || 0), pay: Number(f.amount) > 0 ? "pendiente" : "na", batch,
     }));
     setIncidents((xs) => [...rows, ...xs]);
     rows.forEach((r) => airResCreate("incidencias", r));
@@ -6788,7 +6869,7 @@ SUS HIJOS/AS:\n${mis}`;
     const blob = new Blob(["\ufeff" + [head, ...lines].join("\r\n")], { type: "text/csv;charset=utf-8" });
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
-    a.download = `disciplina-${session.team?.id || "equipo"}-${new Date().toISOString().slice(0, 10)}.csv`;
+    a.download = `disciplina-${session.team?.id || "equipo"}-${hoyISO()}.csv`;
     a.click();
     URL.revokeObjectURL(a.href);
   };
@@ -6805,7 +6886,7 @@ SUS HIJOS/AS:\n${mis}`;
     if (!f || !f.pid) return;
     const row = {
       id: Date.now(), pid: Number(f.pid), player: pName(Number(f.pid)), date: f.date, ctx: f.ctx, norm: f.norm, card: f.card,
-      measure: f.measure, amount: Number(f.amount) || 0, pay: Number(f.amount) > 0 ? "pendiente" : "na",
+      measure: f.measure, amount: Math.max(0, Number(f.amount) || 0), pay: Number(f.amount) > 0 ? "pendiente" : "na",
       desc: f.desc, state: "registrada", by: `${session.name} (${role.label.toLowerCase()})`, fam: false,
     };
     setIncidents((xs) => [row, ...xs]);
@@ -6857,7 +6938,7 @@ SUS HIJOS/AS:\n${mis}`;
           </div>
           <div className="flex flex-wrap gap-2 mt-3">
             {canEdit && (
-              <button onClick={() => setDiscForm({ pid: "", date: new Date().toISOString().slice(0, 10), ctx: "Entrenamiento", norm: "L1", card: "none", measure: [], amount: 0, desc: "" })}
+              <button onClick={() => setDiscForm({ pid: "", date: hoyISO(), ctx: "Entrenamiento", norm: "L1", card: "none", measure: [], amount: 0, desc: "" })}
                 className="font-display uppercase tracking-wide text-sm px-4 py-2 rounded-lg font-semibold" style={{ background: AC, color: C.sobre }}>
                 + Registrar incidencia
               </button>
@@ -7286,11 +7367,9 @@ SUS HIJOS/AS:\n${mis}`;
     const diaData = asistencia[asistFecha] || {};
     const contar = (k) => players.filter((p) => diaData[p.id] === k).length;
     const sinMarcar = players.filter((p) => !diaData[p.id]).length;
-    const hoy = asistFecha === new Date().toISOString().slice(0, 10);
+    const hoy = asistFecha === hoyISO();
     const sumarDias = (delta) => {
-      const d = new Date(`${asistFecha}T00:00:00`);
-      d.setDate(d.getDate() + delta);
-      setAsistFecha(d.toISOString().slice(0, 10));
+      setAsistFecha(sumarDiasISO(asistFecha, delta));
       setAsistPick(null);
     };
     const fechaTexto = new Date(`${asistFecha}T00:00:00`).toLocaleDateString(lang === "es" ? "es-ES" : lang, { weekday: "long", day: "numeric", month: "long" });
@@ -7305,7 +7384,7 @@ SUS HIJOS/AS:\n${mis}`;
             <div className="text-center">
               <div className="font-display text-base sm:text-lg" style={{ color: C.chalk }}>{fechaLarga}</div>
               {!hoy && (
-                <button onClick={() => { setAsistFecha(new Date().toISOString().slice(0, 10)); setAsistPick(null); }} className="text-[11px] underline" style={{ color: AC }}>
+                <button onClick={() => { setAsistFecha(hoyISO()); setAsistPick(null); }} className="text-[11px] underline" style={{ color: AC }}>
                   {t("as.today")}
                 </button>
               )}
@@ -8063,8 +8142,8 @@ SUS HIJOS/AS:\n${mis}`;
       {can("editSquad") && (
         <Card title={t("as.homeTitle")} className="lg:col-span-3">
           {(() => {
-            const hoyISO = new Date().toISOString().slice(0, 10);
-            const diaData = asistencia[hoyISO] || {};
+            const diaHoy = hoyISO();
+            const diaData = asistencia[diaHoy] || {};
             const marcados = players.filter((p) => diaData[p.id]).length;
             if (!players.length) return <div className="text-sm" style={{ color: C.dim }}>{t("as.noPlayers")}</div>;
             if (!marcados) {
@@ -8326,7 +8405,7 @@ SUS HIJOS/AS:\n${mis}`;
                   <td><button onClick={() => setProfileId(p.id)} className="text-left hover:opacity-80"><span className="font-display text-base mr-2" style={{ color: AC }}>{p.d}</span>{p.n}{p.video && " 🎬"}{starters.has(p.id) && <span className="ml-2 text-xs" style={{ color: C.dim }}>· XI</span>}</button></td>
                   <td style={{ color: C.dim }}>{p.pos}</td>
                   <td><button onClick={() => cycleStatus(p.id)} className="flex items-center hover:opacity-80" style={{ cursor: can("editSquad") ? "pointer" : "default" }}><Dot st={p.st} />{p.st}</button></td>
-                  <td className="text-right">{p.att}%</td><td className="text-right">{p.min}</td>
+                  <td className="text-right">{attPct(p)}%</td><td className="text-right">{p.min}</td>
                 </tr>
               ))}
             </tbody>
@@ -9040,7 +9119,7 @@ SUS HIJOS/AS:\n${mis}`;
   const guardarEnHistorico = () => {
     const fila = {
       id: Date.now(),
-      fecha: new Date().toISOString().slice(0, 10),
+      fecha: hoyISO(),
       rival: matchInfo.rival || rivalProx || "Rival",
       j: matchInfo.j || nextMatchFix?.j || "",
       us: score.us, them: score.them,
@@ -9616,7 +9695,7 @@ SUS HIJOS/AS:\n${mis}`;
     const avail2 = players.filter((p) => p.st === "disponible").length;
     const doubt = players.filter((p) => p.st === "duda").length;
     const injured = players.filter((p) => p.st === "lesionado").length;
-    const topAtt = [...players].sort((a, b) => b.att - a.att).slice(0, 6);
+    const topAtt = [...players].sort((a, b) => attPct(b) - attPct(a)).slice(0, 6);
     const lowMinAll = [...players].sort((a, b) => a.min - b.min).slice(0, 6);
     const maxMin = Math.max(1, ...players.map((p) => p.min));
     const posGroup = (pos) => (pos === "POR" ? "gk" : ["LD", "DFC", "LI"].includes(pos) ? "def" : ["MCD", "MC", "MCO"].includes(pos) ? "mid" : "fwd");
@@ -9691,8 +9770,8 @@ SUS HIJOS/AS:\n${mis}`;
             {topAtt.map((p) => (
               <div key={p.id} className="flex items-center gap-2 text-sm" style={{ color: C.chalk }}>
                 <span className="w-24 shrink-0 truncate">#{p.d} {p.n.split(" ")[0]}</span>
-                <div className="flex-1"><Bar pct={p.att} color={AC} /></div>
-                <span className="w-10 text-right shrink-0" style={{ color: C.dim }}>{p.att}%</span>
+                <div className="flex-1"><Bar pct={attPct(p)} color={AC} /></div>
+                <span className="w-10 text-right shrink-0" style={{ color: C.dim }}>{attPct(p)}%</span>
               </div>
             ))}
           </div>
