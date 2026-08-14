@@ -5313,11 +5313,14 @@ ACTA:\n${evTxt}`;
       setMsgs([{ role: "assistant", content: `Hola, ${session.name}. Soy Coach AI (${session.club} · ${session.team.name}). Tu rol es ${role.label.toLowerCase()}${session.plan === "free" ? " · plan gratuito" : ""}. ¿En qué te ayudo?` }]);
   }, [session]); // eslint-disable-line
 
-  const askCoach = async () => {
-    const q = input.trim();
+  /* textoForzado: para preguntas que dispara la propia app desde otra
+     pantalla (p.ej. "Preguntar a la IA" en Alineación) sin pasar por la
+     caja de texto ni tocar lo que la persona pudiera estar escribiendo ahí. */
+  const askCoach = async (textoForzado) => {
+    const q = (textoForzado ?? input).trim();
     if (!q || loading) return;
     const next = [...msgs, { role: "user", content: q }];
-    setMsgs(next); setInput(""); setLoading(true);
+    setMsgs(next); if (!textoForzado) setInput(""); setLoading(true);
     /* ================= ALCANCE DE COACH AI POR ROL =================
        Coach AI lo tiene todo el mundo, pero cada rol solo le da de comer la
        información que le corresponde. Esto no es un filtro de presentación:
@@ -8213,6 +8216,19 @@ SUS HIJOS/AS:\n${mis}`;
     const jugadoresParaSlot = selSlot
       ? [...players].sort((a, b) => (a.pos === puestoDelSlot ? 0 : 1) - (b.pos === puestoDelSlot ? 0 : 1))
       : bench;
+    /* Coach AI ya recibe la alineación entera en su prompt (ver askCoach,
+       nivel "tecnico"), así que basta con mandarle una pregunta ya centrada
+       en lo que se está mirando aquí -sin puestos vacíos, "¿está
+       equilibrada?"; con puestos vacíos, "¿a quién meto?"- en vez de
+       obligar a explicárselo desde cero al entrar en su pestaña. */
+    const preguntarIASobreAlineacion = () => {
+      const vacios = Object.keys(slotPos).length - Object.values(lineup).filter(Boolean).length;
+      const pregunta = vacios > 0
+        ? `Estoy montando la alineación en ${sysCode} y me faltan ${vacios} puesto(s) por cubrir. Mirando el banquillo, ¿a quién meterías y por qué?`
+        : `¿Qué te parece esta alineación en ${sysCode}? Dime si ves algún desequilibrio de líneas o de perfiles.`;
+      setTab("coachai");
+      askCoach(pregunta);
+    };
     return (
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <Card title={`${canProposeChanges() ? "Propuesta de alineación" : "Titulares"} — ${sysCode}`}>
@@ -8232,8 +8248,17 @@ SUS HIJOS/AS:\n${mis}`;
                 className="text-xs px-2 py-1 rounded-lg border" style={{ borderColor: AC, color: AC }}>{t("ln.apply")}</button>
             </div>
           </div>
-          <div className="text-xs mb-2" style={{ color: C.dim }}>
-            Arrastra para recolocar · toque corto para asignar
+          <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+            <div className="text-xs" style={{ color: C.dim }}>
+              Arrastra para recolocar · toque corto para asignar
+            </div>
+            {can("ai") && (
+              <button onClick={preguntarIASobreAlineacion} disabled={loading}
+                className="text-xs px-2.5 py-1 rounded-lg border font-display uppercase tracking-wide disabled:opacity-50"
+                style={{ borderColor: AC, color: AC }}>
+                ✦ Preguntar a la IA
+              </button>
+            )}
           </div>
           <div ref={pitchRef} className="relative w-full touch-none select-none" style={{ aspectRatio: "3/4" }} onPointerMove={onPitchMove} onPointerUp={() => onSlotUp(null)}>
             <svg viewBox="0 0 300 400" className="absolute inset-0 w-full h-full pointer-events-none">
