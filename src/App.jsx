@@ -3254,7 +3254,9 @@ Devuelve SOLO un objeto JSON con las claves "tokens" y "shapes", sin explicació
     }
     if (ptrs.current.size > 1) return;
     e.currentTarget.setPointerCapture?.(e.pointerId);
-    onDown(e);
+    try { onDown(e); } catch (err) { console.error(err); }
+    /* si TEXTO se cancela, libera el capture para que otros controles funcionen */
+    if (tool === "text") e.currentTarget.releasePointerCapture?.(e.pointerId);
   };
   const onSvgMove = (e) => {
     if (ptrs.current.has(e.pointerId)) ptrs.current.set(e.pointerId, { x: e.clientX, y: e.clientY });
