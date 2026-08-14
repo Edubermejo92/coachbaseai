@@ -8205,6 +8205,14 @@ SUS HIJOS/AS:\n${mis}`;
   const renderLineup = () => {
     const bench = players.filter((p) => !starters.has(p.id));
     const jugadorSel = selPlayer ? players.find((x) => x.id === selPlayer) : null;
+    /* Estilo "cambio de jugador" de videojuego de fútbol: al tocar un puesto
+       ocupado, en vez de una lista plana con toda la plantilla mezclada, los
+       de su misma demarcación suben arriba del todo y marcados, para
+       encontrar de un vistazo a quién meter en su lugar. */
+    const puestoDelSlot = selSlot ? slotPos[selSlot]?.label : null;
+    const jugadoresParaSlot = selSlot
+      ? [...players].sort((a, b) => (a.pos === puestoDelSlot ? 0 : 1) - (b.pos === puestoDelSlot ? 0 : 1))
+      : bench;
     return (
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <Card title={`${canProposeChanges() ? "Propuesta de alineación" : "Titulares"} — ${sysCode}`}>
@@ -8280,6 +8288,9 @@ SUS HIJOS/AS:\n${mis}`;
           {jugadorSel && !selSlot && (
             <div className="text-xs mb-3" style={{ color: C.dim }}>Toca un puesto del campo, o elige uno de esta lista — primero el suyo</div>
           )}
+          {selSlot && (
+            <div className="text-xs mb-3" style={{ color: C.dim }}>Los de {puestoDelSlot} suben arriba, para encontrar rápido a quién meter</div>
+          )}
           <div className="space-y-1.5 max-h-[520px] overflow-y-auto pr-1">
             {jugadorSel && !selSlot ? (
               /* Camino "elige al jugador primero": en vez de tener que
@@ -8303,13 +8314,19 @@ SUS HIJOS/AS:\n${mis}`;
                     </button>
                   );
                 })
-            ) : (selSlot ? players : bench).map((p) => (
-              <button key={p.id} onClick={() => (selSlot ? asignarJugadorAPuesto(selSlot, p.id) : setSelPlayer(p.id))}
-                className="w-full flex items-center justify-between text-sm py-2 px-3 rounded-lg border text-left hover:opacity-80 disabled:cursor-default" style={{ borderColor: C.line, background: C.panel2, color: C.chalk }}>
-                <span className="flex items-center gap-2"><Avatar p={p} size={26} /><Dot st={p.st} /><span className="font-display text-base" style={{ color: AC }}>{p.d}</span>{p.n}</span>
-                <span style={{ color: C.dim }}>{p.pos}{starters.has(p.id) ? " · XI" : ""}</span>
-              </button>
-            ))}
+            ) : jugadoresParaSlot.map((p) => {
+              const mismoPuesto = selSlot && p.pos === puestoDelSlot;
+              return (
+                <button key={p.id} onClick={() => (selSlot ? asignarJugadorAPuesto(selSlot, p.id) : setSelPlayer(p.id))}
+                  className="w-full flex items-center justify-between text-sm py-2 px-3 rounded-lg border text-left hover:opacity-80 disabled:cursor-default" style={{ borderColor: mismoPuesto ? AC : C.line, background: C.panel2, color: C.chalk }}>
+                  <span className="flex items-center gap-2">
+                    <Avatar p={p} size={26} /><Dot st={p.st} /><span className="font-display text-base" style={{ color: AC }}>{p.d}</span>{p.n}
+                    {mismoPuesto && <span className="text-[10px] font-display uppercase tracking-wide px-1.5 py-0.5 rounded" style={{ background: AC, color: C.sobre }}>Mismo puesto</span>}
+                  </span>
+                  <span style={{ color: C.dim }}>{p.pos}{starters.has(p.id) ? " · XI" : ""}</span>
+                </button>
+              );
+            })}
           </div>
         </Card>
       </div>
