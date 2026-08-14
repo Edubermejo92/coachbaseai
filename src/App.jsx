@@ -6481,11 +6481,31 @@ SUS HIJOS/AS:\n${mis}`;
     setCalMsg(`✓ ${rows.length} partido(s) importados.`);
     setCalText("");
   };
+  /* El nombre propio no siempre coincide letra a letra con el que trae el
+     calendario (mayúsculas, acentos, "- Alcobendas" añadido al final…), así
+     que para saber cuál de los dos equipos del cruce es "el rival" se
+     compara el NOMBRE COMPLETO del club, sin acentos ni mayúsculas, con
+     normClub -la misma comparación que ya se usa para reconocer el club en
+     otras partes de la app-. Antes se comparaban solo los 6 primeros
+     caracteres ("c.d. c"), y eso confundía al Chamartín con cualquier otro
+     club que también empezara por "C.D. C…" -Canillas, Colmenar…-, colando
+     el propio equipo como "rival" de sí mismo en el desplegable. */
+  const rivalDeFixture = (f) => {
+    const mio = normClub(session.club);
+    return (mio && normClub(f.home).includes(mio) ? f.away : f.home) || f.away || f.home;
+  };
   const useAsNext = (f) => {
-    const rival = f.home.toLowerCase().includes(String(session.club).toLowerCase().slice(0, 6)) ? f.away : f.home;
-    setMatchInfo({ rival: rival || f.away || f.home, fecha: f.date, hora: f.time || "—", lugar: f.place || "—" });
+    setMatchInfo({ rival: rivalDeFixture(f), fecha: f.date, hora: f.time || "—", lugar: f.place || "—" });
     setTab("partido");
   };
+  /* Todos los rivales que aparecen en el calendario, sin repetir y en el
+     orden de las jornadas: la lista que alimenta el desplegable de
+     Convocatoria. Si el calendario está vacío, la lista sale vacía y el
+     desplegable lo dice -de ahí la importancia de que el director deportivo
+     lo cargue al empezar la temporada, antes de la primera convocatoria. */
+  const rivalesDelCalendario = session ? [...new Set(
+    sortedFix.filter((f) => /^\d+$/.test(String(f.j))).map(rivalDeFixture).filter(Boolean)
+  )] : [];
 
   const renderCalendar = () => {
     const canEdit = can("editCal");
@@ -8482,7 +8502,34 @@ SUS HIJOS/AS:\n${mis}`;
             {[["rival", "Rival"], ["fecha", "Fecha"], ["hora", "Hora"], ["lugar", "Lugar"]].map(([k, lbl]) => (
               <div key={k} className={k === "lugar" ? "col-span-2" : ""}>
                 <div className="text-[11px] font-display uppercase tracking-widest" style={{ color: C.dim }}>{lbl}</div>
-                <input value={matchInfo[k]} disabled={!editable} onChange={(e) => setMatchInfo((m) => ({ ...m, [k]: e.target.value }))} className="w-full rounded-lg px-3 py-2 text-sm outline-none border disabled:opacity-60" style={{ background: C.panel2, borderColor: C.line, color: C.chalk }} />
+                {k === "rival" ? (
+                  <>
+                    {/* Los rivales salen del calendario en vez de escribirse a
+                        mano cada vez: menos "CD Norte" un día y "C.D. Norte"
+                        al siguiente, que luego rompe el histórico y las
+                        estadísticas por rival. "Otro rival" se deja para
+                        amistosos o partidos de copa que no están en el
+                        calendario oficial. */}
+                    <select value={rivalesDelCalendario.includes(matchInfo.rival) ? matchInfo.rival : "__otro__"}
+                      disabled={!editable}
+                      onChange={(e) => setMatchInfo((m) => ({ ...m, rival: e.target.value === "__otro__" ? "" : e.target.value }))}
+                      className="w-full rounded-lg px-3 py-2 text-sm outline-none border disabled:opacity-60" style={{ background: C.panel2, borderColor: C.line, color: C.chalk }}>
+                      {rivalesDelCalendario.map((r) => <option key={r} value={r}>{r}</option>)}
+                      <option value="__otro__">✎ Otro rival (no está en el calendario)</option>
+                    </select>
+                    {!rivalesDelCalendario.includes(matchInfo.rival) && (
+                      <input value={matchInfo.rival} disabled={!editable} onChange={(e) => setMatchInfo((m) => ({ ...m, rival: e.target.value }))}
+                        placeholder="Nombre del rival" className="w-full mt-1.5 rounded-lg px-3 py-2 text-sm outline-none border disabled:opacity-60" style={{ background: C.panel2, borderColor: C.line, color: C.chalk }} />
+                    )}
+                    {rivalesDelCalendario.length === 0 && (
+                      <div className="text-[11px] mt-1" style={{ color: "#e0b25a" }}>
+                        Sin calendario todavía — el director deportivo tiene que cargarlo al empezar la temporada para tener aquí a todos los rivales.
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <input value={matchInfo[k]} disabled={!editable} onChange={(e) => setMatchInfo((m) => ({ ...m, [k]: e.target.value }))} className="w-full rounded-lg px-3 py-2 text-sm outline-none border disabled:opacity-60" style={{ background: C.panel2, borderColor: C.line, color: C.chalk }} />
+                )}
               </div>
             ))}
           </div>
