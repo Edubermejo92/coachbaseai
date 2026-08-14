@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 
 /* ============================================================
    COACHBASE AI by EBLDigital — Prototipo v9
@@ -2202,15 +2203,49 @@ const EXERCISES = [
    Se cierra al pulsar fuera y con Escape, y el panel se ancla al botón. */
 function WbMenu({ label, icon, count, AC, wide = false, children }) {
   const [open, setOpen] = useState(false);
+  const [pos, setPos] = useState(null);
   const box = useRef(null);
+  const panel = useRef(null);
+  /* La barra de herramientas se desliza con overflow-x en móvil, y eso
+     recorta en el eje Y cualquier hijo absoluto por dentro (es la regla CSS
+     que convierte el overflow-y en "auto" en cuanto el x deja de ser
+     "visible"): el desplegable se abría pero quedaba invisible o sin poder
+     tocarlo. En pantalla completa girada pasaba lo mismo, doblado con el giro
+     del contenedor. Sacándolo por portal a <body> y calculando su sitio con
+     las coordenadas reales del botón (getBoundingClientRect, que ya vienen
+     con cualquier transformación aplicada) se escapa de ambos recortes. */
+  const situar = () => {
+    const r = box.current?.getBoundingClientRect();
+    if (!r) return;
+    const w = wide ? Math.min(window.innerWidth * 0.88, 380) : Math.min(window.innerWidth * 0.8, 240);
+    const left = Math.min(Math.max(8, r.left), window.innerWidth - w - 8);
+    const gap = 4;
+    /* En pantalla completa girada, el botón puede acabar pegado al borde REAL
+       de la pantalla (la rotación cambia qué es "abajo"): abrir siempre hacia
+       abajo lo dejaba en una tira de 20-30 px. Se mide cuánto hueco real hay
+       arriba y abajo del botón y se abre hacia el lado que tenga más. */
+    const abajo = window.innerHeight - r.bottom - gap;
+    const arriba = r.top - gap;
+    if (abajo >= 140 || abajo >= arriba) {
+      setPos({ left, top: r.bottom + gap, width: w, maxHeight: Math.max(120, Math.min(abajo, 420)) });
+    } else {
+      setPos({ left, bottom: window.innerHeight - r.top + gap, width: w, maxHeight: Math.max(120, Math.min(arriba, 420)) });
+    }
+  };
   useEffect(() => {
     if (!open) return;
-    const out = (e) => { if (box.current && !box.current.contains(e.target)) setOpen(false); };
+    situar();
+    const out = (e) => { if (!box.current?.contains(e.target) && !panel.current?.contains(e.target)) setOpen(false); };
     const esc = (e) => { if (e.key === "Escape") { e.stopPropagation(); setOpen(false); } };
     document.addEventListener("pointerdown", out);
     document.addEventListener("keydown", esc, true);
-    return () => { document.removeEventListener("pointerdown", out); document.removeEventListener("keydown", esc, true); };
-  }, [open]);
+    window.addEventListener("resize", situar);
+    window.addEventListener("scroll", situar, true);
+    return () => {
+      document.removeEventListener("pointerdown", out); document.removeEventListener("keydown", esc, true);
+      window.removeEventListener("resize", situar); window.removeEventListener("scroll", situar, true);
+    };
+  }, [open]); // eslint-disable-line
   return (
     <div className="relative" ref={box}>
       <button onClick={() => setOpen((v) => !v)} aria-expanded={open} aria-haspopup="true"
@@ -2224,12 +2259,13 @@ function WbMenu({ label, icon, count, AC, wide = false, children }) {
         {count != null && <span className="tabular-nums opacity-70">{count}</span>}
         <span className="text-[9px]">▾</span>
       </button>
-      {open && (
-        <div className="absolute z-40 mt-1 rounded-lg border shadow-2xl overflow-hidden"
-          style={{ borderColor: C.line, background: C.panel, width: wide ? "min(88vw, 380px)" : "min(80vw, 240px)" }}
+      {open && pos && createPortal(
+        <div ref={panel} className="fixed z-[999] rounded-lg border shadow-2xl overflow-auto"
+          style={{ borderColor: C.line, background: C.panel, left: pos.left, top: pos.top, bottom: pos.bottom, width: pos.width, maxHeight: pos.maxHeight }}
           onClick={(e) => e.stopPropagation()}>
           {typeof children === "function" ? children(() => setOpen(false)) : children}
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );
