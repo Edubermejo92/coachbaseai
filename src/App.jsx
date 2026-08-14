@@ -877,6 +877,11 @@ const acentosDesdeColor = (r, g, b) => {
 const extraerAcentoDeEscudo = (dataUrl) => new Promise((resolve) => {
   try {
     const img = new Image();
+    /* Necesario para escudos que ya no son un data: URL local sino la URL en
+       la nube (Airtable), que es de otro origen: sin marcar la petición como
+       CORS antes de fijar src, el canvas queda "contaminado" y getImageData
+       revienta más abajo aunque el servidor sí permita leerlo. */
+    img.crossOrigin = "anonymous";
     img.onload = () => {
       try {
         const lado = 40;
@@ -5125,6 +5130,19 @@ ACTA:\n${evTxt}`;
     });
     return () => { vivo = false; };
   }, [session?.club]); // eslint-disable-line
+  /* El color del menú solo se calculaba en el momento de SUBIR el escudo:
+     si el escudo ya estaba puesto de antes (se cargó desde la nube o de
+     localStorage al entrar), acentoAuto se quedaba a null para siempre y
+     el menú obligaba a elegir un color a mano aunque el escudo ya existiera.
+     Este efecto recalcula el acento cada vez que cambia el escudo efectivo,
+     venga de donde venga, no solo al subirlo. */
+  useEffect(() => {
+    const fuente = clubInfo.crest || crest;
+    if (!fuente || acentoManual) return;
+    let vivo = true;
+    extraerAcentoDeEscudo(fuente).then((par) => { if (vivo && par) setAcentoMenu(par); });
+    return () => { vivo = false; };
+  }, [clubInfo.crest, crest]); // eslint-disable-line
   const [cloudMsg, setCloudMsg] = useState("");
   const teamRec = session?.team?.rec || "";
   useEffect(() => {
@@ -8198,11 +8216,30 @@ SUS HIJOS/AS:\n${mis}`;
               const p = players.find((x) => x.id === lineup[id]); const sel = selSlot === id;
               return (
                 <div key={id} onPointerDown={(e) => onSlotDown(e, id)} onPointerUp={() => onSlotUp(id)} className="absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center" style={{ left: `${s.x}%`, top: `${s.y}%`, cursor: can("editLineup") ? "grab" : "default" }}>
-                  <div className="w-11 h-11 rounded-full flex items-center justify-center font-display text-lg font-bold border-2 overflow-hidden"
-                    style={{ background: sel ? AC : C.panel2, backgroundImage: !sel && p?.photo ? `url(${p.photo})` : "none", backgroundSize: "cover", backgroundPosition: "center", color: sel ? "#141414" : C.chalk, borderColor: sel ? AC : p && p.st !== "disponible" ? stColor(p.st) : "rgba(54,69,79,0.5)" }}>
+                  {/* "background" (shorthand) y "backgroundImage"/"backgroundSize"/
+                      "backgroundPosition" (largas) mezclados en el mismo style
+                      no funcionan juntos: la abreviada reinicia el tamaño y la
+                      posición de la imagen a sus valores iniciales, así que la
+                      foto se aplicaba pero se veía en tamaño natural desde la
+                      esquina -recortada casi entera fuera del círculo- en vez
+                      de a tamaño completo y centrada. Todo en una sola
+                      declaración "background" evita el conflicto. */}
+                  <div className="relative w-11 h-11 rounded-full flex items-center justify-center font-display text-lg font-bold border-2 overflow-hidden"
+                    style={{ background: sel ? AC : p?.photo ? `center / cover no-repeat url(${p.photo})` : C.panel2, color: sel ? "#141414" : C.chalk, borderColor: sel ? AC : p && p.st !== "disponible" ? stColor(p.st) : "rgba(54,69,79,0.5)" }}>
                     {(!p?.photo || sel) && (p ? p.d : s.label)}
+                    {/* Con foto, el dorsal desaparecía del todo detrás de la
+                        imagen: se ve el jugador pero no quién es. Se pone como
+                        insignia encima, en vez de sustituir la foto. */}
+                    {p?.photo && !sel && (
+                      <span className="absolute -bottom-0.5 -right-0.5 min-w-[16px] h-4 px-1 rounded-full text-[10px] leading-4 font-display font-bold text-center border overflow-visible"
+                        style={{ background: C.panel, borderColor: AC, color: AC }}>{p.d}</span>
+                    )}
                   </div>
-                  <div className="mt-0.5 text-[10px] px-1 rounded" style={{ background: "rgba(14,21,18,0.8)", color: C.chalk }}>{p ? p.n.split(" ")[0] : s.label}</div>
+                  {/* La demarcación (s.label, p.ej. "DFC") se mostraba solo
+                      mientras el puesto estaba vacío: en cuanto se asignaba un
+                      jugador, desaparecía y solo quedaba el nombre. Se deja
+                      siempre visible junto al nombre. */}
+                  <div className="mt-0.5 text-[10px] px-1 rounded" style={{ background: "rgba(14,21,18,0.8)", color: C.chalk }}>{p ? `${p.n.split(" ")[0]} · ${s.label}` : s.label}</div>
                 </div>
               );
             })}
@@ -8212,7 +8249,18 @@ SUS HIJOS/AS:\n${mis}`;
           {!selSlot && <div className="text-xs mb-3" style={{ color: C.dim }}>{t("ln.tapPos")}</div>}
           <div className="space-y-1.5 max-h-[520px] overflow-y-auto pr-1">
             {(selSlot ? players : bench).map((p) => (
-              <button key={p.id} disabled={!selSlot} onClick={() => { updateLineupWithProposal((l) => ({ ...l, [selSlot]: p.id })); setSelSlot(null); }} className="w-full flex items-center justify-between text-sm py-2 px-3 rounded-lg border text-left hover:opacity-80 disabled:cursor-default" style={{ borderColor: C.line, background: C.panel2, color: C.chalk }}>
+              <button key={p.id} disabled={!selSlot} onClick={() => {
+                /* Un jugador solo puede ocupar una demarcación a la vez: si ya
+                   estaba en otro puesto, se le quita de ahí antes de ponerlo
+                   en el nuevo. Antes se limitaba a añadir el puesto nuevo sin
+                   tocar los demás, así que el mismo jugador podía acabar
+                   apareciendo en dos sitios del campo al mismo tiempo. */
+                const next = { ...lineup };
+                Object.keys(next).forEach((k) => { if (next[k] === p.id) delete next[k]; });
+                next[selSlot] = p.id;
+                updateLineupWithProposal(next);
+                setSelSlot(null);
+              }} className="w-full flex items-center justify-between text-sm py-2 px-3 rounded-lg border text-left hover:opacity-80 disabled:cursor-default" style={{ borderColor: C.line, background: C.panel2, color: C.chalk }}>
                 <span className="flex items-center gap-2"><Avatar p={p} size={26} /><Dot st={p.st} /><span className="font-display text-base" style={{ color: AC }}>{p.d}</span>{p.n}</span>
                 <span style={{ color: C.dim }}>{p.pos}{starters.has(p.id) ? " · XI" : ""}</span>
               </button>
