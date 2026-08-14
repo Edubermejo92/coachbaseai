@@ -2544,6 +2544,9 @@ function Whiteboard({ AC, lang, teamId, teamRec, isF7, pendingExId, onConsumePen
   const [tool, setTool] = useState("move");
   const [draft, setDraft] = useState(null);
   const svgRef = useRef(null);
+  /* Grupo que envuelve todo el dibujo. Es quien lleva el giro de 90° del móvil
+     en vertical, y de quien se saca el CTM para traducir toques a coordenadas. */
+  const gRef = useRef(null);
   const drag = useRef(null);
   const uid = useRef(1);
   const AWAY = "#36454F";
@@ -2653,6 +2656,13 @@ function Whiteboard({ AC, lang, teamId, teamRec, isF7, pendingExId, onConsumePen
     if (!svg) return null;
     const clone = svg.cloneNode(true);
     clone.setAttribute("viewBox", `${base.x} ${base.y} ${base.w} ${base.h}`);
+    /* El PNG y el vídeo salen siempre apaisados, aunque el móvil esté
+       enseñando el campo girado: a la copia se le quita el giro antes de
+       exportarla, o el campo saldría tumbado dentro del lienzo. Y con él hay
+       que quitar el contragiro de los dorsales y rótulos: sin el giro del
+       campo que compensaban, se exportaban ellos tumbados. */
+    clone.querySelector("[data-wb-rot]")?.removeAttribute("transform");
+    clone.querySelectorAll("[data-wb-up]").forEach((n) => n.removeAttribute("transform"));
     return new XMLSerializer().serializeToString(clone);
   };
   const recordFrame = () => {
@@ -2719,6 +2729,19 @@ function Whiteboard({ AC, lang, teamId, teamRec, isF7, pendingExId, onConsumePen
     window.addEventListener("orientationchange", check);
     return () => { window.removeEventListener("resize", check); window.removeEventListener("orientationchange", check); };
   }, []);
+  /* El campo es apaisado (1000×640) y el móvil en vertical no lo es: metido a
+     lo ancho de la pantalla se quedaba en una tira de ~220 px de alto, con
+     media pantalla en blanco debajo y las fichas tan juntas que no se acertaba
+     con el dedo. Girado 90° ocupa ese hueco: el mismo campo pasa de ~350×220 a
+     ~350×550, más del doble de superficie para colocar veintidós fichas.
+     En pantalla completa NO se gira aquí, porque allí ya se gira el contenedor
+     entero por CSS y saldría del revés. */
+  const vertical = portrait && !full;
+  /* Al girar el campo gira TODO lo que lleva dentro, dorsales y rótulos
+     incluidos: quedaban tumbados y había que ladear la cabeza para leer un
+     número. Se les aplica el giro contrario sobre su propio punto de anclaje,
+     así que no se mueven de sitio y se leen derechos. */
+  const textoDerecho = (x, y) => (vertical ? `rotate(-90 ${x} ${y})` : undefined);
   /* Coloca un jugador concreto de la plantilla con su dorsal real */
   const placePlayer = (pl) => {
     snap();
@@ -2831,16 +2854,23 @@ function Whiteboard({ AC, lang, teamId, teamRec, isF7, pendingExId, onConsumePen
 
   /* Pantalla -> coordenadas del campo. Usa getScreenCTM, que ya incluye el zoom,
      el desplazamiento y la rotación CSS del modo horizontal; hacerlo a mano con
-     getBoundingClientRect fallaba en cuanto la vista no era el campo completo. */
+     getBoundingClientRect fallaba en cuanto la vista no era el campo completo.
+     El CTM se le pide al GRUPO, no al <svg>: así arrastra también el giro de
+     90° del móvil en vertical, y dibujar, mover fichas y pellizcar siguen
+     cayendo donde toca sin deshacer la rotación a mano en cada gesto. */
   const toSvg = (cx, cy) => {
     const svg = svgRef.current;
-    const ctm = svg?.getScreenCTM?.();
+    const ctm = (gRef.current || svg)?.getScreenCTM?.();
     if (ctm && typeof DOMPoint !== "undefined") {
       const p = new DOMPoint(cx, cy).matrixTransform(ctm.inverse());
       return { x: p.x, y: p.y };
     }
     const r = svg.getBoundingClientRect();
-    return { x: view.x + ((cx - r.left) / r.width) * view.w, y: view.y + ((cy - r.top) / r.height) * view.h };
+    const fx = (cx - r.left) / r.width, fy = (cy - r.top) / r.height;
+    /* Sin DOMPoint hay que deshacer el giro a mano: en vertical el eje X del
+       campo baja por la pantalla y el eje Y va de derecha a izquierda. */
+    if (vertical) return { x: view.x + fy * view.w, y: view.y + view.h - fx * view.h };
+    return { x: view.x + fx * view.w, y: view.y + fy * view.h };
   };
   const toVB = (e) => {
     const g = snapGrid ? 10 : 1;
@@ -3198,7 +3228,8 @@ Devuelve SOLO un objeto JSON con las claves "tokens" y "shapes", sin explicació
     const k = s.id ?? "d";
     if (s.tool === "text") {
       return (
-        <text key={k} x={s.pts[0].x} y={s.pts[0].y} fill={col} fontSize={22 + sw * 2} fontFamily="Barlow Condensed, sans-serif" fontWeight="700"
+        <text key={k} data-wb-up x={s.pts[0].x} y={s.pts[0].y} fill={col} fontSize={22 + sw * 2} fontFamily="Barlow Condensed, sans-serif" fontWeight="700"
+          transform={textoDerecho(s.pts[0].x, s.pts[0].y)}
           style={{ cursor: tool === "erase" ? "pointer" : "default" }}
           onPointerDown={(e) => { if (tool === "erase") { e.stopPropagation(); snap(); setShapes((x) => x.filter((z) => z.id !== s.id)); } }}>{s.text}</text>
       );
@@ -3489,6 +3520,14 @@ Devuelve SOLO un objeto JSON con las claves "tokens" y "shapes", sin explicació
           </div>
         </WbMenu>
 
+        {/* Solo en móvil y fuera de pantalla completa: es quien abre el panel
+            de sistemas, que únicamente existe en la vista normal. */}
+        {!full && (
+          <button onClick={() => setSistemasAbierto((v) => !v)} title="Sistemas" className={btn + " sm:hidden"}
+            style={{ borderColor: sistemasAbierto ? AC : C.line, color: sistemasAbierto ? AC : C.chalk }}>
+            ⊞ {codeHome} <span style={{ color: C.dim }}>vs</span> {codeAway}
+          </button>
+        )}
         <button onClick={exportPng} title="Exportar PNG" className={btn} style={{ borderColor: C.line, color: C.chalk }}>⤓<span className="hidden lg:inline">PNG</span></button>
         {!recording
           ? <button onClick={startRecording} title="Grabar vídeo" className={btn} style={{ borderColor: C.line, color: C.chalk }}>⏺<span className="hidden lg:inline">Vídeo</span></button>
@@ -3517,12 +3556,21 @@ Devuelve SOLO un objeto JSON con las claves "tokens" y "shapes", sin explicació
 
   const Board = (
     <div className="relative">
-    <svg ref={svgRef} viewBox={`${view.x} ${view.y} ${view.w} ${view.h}`} className="w-full rounded-lg border touch-none select-none"
-      style={{ borderColor: C.line, aspectRatio: `${base.w}/${base.h}`, background: "#152219", filter: `brightness(${bright})`, maxHeight: full ? "72vh" : undefined }}
+    {/* En vertical se intercambian el encuadre y la proporción de la caja: el
+        dibujo es el mismo, girado por el grupo de dentro.
+        El alto se limita por el ANCHO, no con max-height: con max-height la
+        caja se queda más baja pero igual de ancha y el campo flota dentro con
+        franjas negras a los lados. Dando el ancho que corresponde a ese alto
+        máximo, la proporción sale exacta, el campo llena su caja y los
+        controles de debajo no se salen de la pantalla. */}
+    <svg ref={svgRef} viewBox={vertical ? `0 0 ${view.h} ${view.w}` : `${view.x} ${view.y} ${view.w} ${view.h}`}
+      className="w-full rounded-lg border touch-none select-none"
+      style={{ borderColor: C.line, aspectRatio: vertical ? `${base.h}/${base.w}` : `${base.w}/${base.h}`, background: "#152219", filter: `brightness(${bright})`, maxHeight: full ? "72vh" : undefined, width: vertical ? `min(100%, calc(max(280px, 100vh - 390px) * ${(base.h / base.w).toFixed(4)}))` : undefined, marginInline: vertical ? "auto" : undefined }}
       onPointerDown={onSvgDown} onPointerMove={onSvgMove} onPointerUp={onSvgUp} onPointerCancel={onSvgUp}>
       <defs>
         <marker id="wbArrow" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#FFFFFF" /></marker>
       </defs>
+      <g ref={gRef} data-wb-rot transform={vertical ? `translate(${view.h + view.y}, ${-view.x}) rotate(90)` : undefined}>
       {/* El campo entero y los tableros de balón parado son dos dibujos
           distintos, no el mismo con más o menos zoom. El grosor de la cal se
           calcula en metros reales en ambos, que es lo que evita que un tablero
@@ -3558,20 +3606,56 @@ Devuelve SOLO un objeto JSON con las claves "tokens" y "shapes", sin explicació
                 <line x1={tk.x + 30} y1={tk.y - 12} x2={tk.x + 30} y2={tk.y + 12} stroke={tokenFill(tk.type)} strokeWidth="4" /></g>
             : <>
                 <circle cx={tk.x} cy={tk.y} r={tk.type === "ball" ? 13 : 20} fill={tokenFill(tk.type)} stroke={tk.type === "away" ? "#FFFFFF" : "#36454F"} strokeWidth={tk.type === "ball" ? 2 : 3} />
-                {tk.label && <text x={tk.x} y={tk.y + 6} textAnchor="middle" fontSize="20" fontFamily="Barlow Condensed, sans-serif" fontWeight="700" fill={tk.type === "away" ? "#FFFFFF" : "#36454F"}>{tk.label}</text>}
+                {/* Centrado real (dominant-baseline) en vez del "+6" a ojo de
+                    antes: así el punto de anclaje del dorsal ES el centro de la
+                    ficha, y al deshacer el giro sobre ese mismo punto el número
+                    queda centrado tanto en horizontal como en vertical. Con el
+                    apaño de los 6 px se iba de sitio al girar el campo. */}
+                {tk.label && <text data-wb-up x={tk.x} y={tk.y} textAnchor="middle" dominantBaseline="central" fontSize="20" fontFamily="Barlow Condensed, sans-serif" fontWeight="700" fill={tk.type === "away" ? "#FFFFFF" : "#36454F"} transform={textoDerecho(tk.x, tk.y)}>{tk.label}</text>}
               </>}
         </g>
       ))}
+      </g>
     </svg>
+    {/* Pantalla completa al alcance del pulgar y sin gastar una fila entera:
+        antes era un cartel a lo ancho justo encima del campo, en el sitio que
+        peor se puede gastar en un móvil. En escritorio ya está en la barra. */}
+    {!full && (
+      <button onClick={() => setFull(true)} aria-label="Pantalla completa" title="Pantalla completa"
+        className="sm:hidden absolute right-2 top-2 w-9 h-9 rounded-lg border flex items-center justify-center"
+        style={{ borderColor: C.line, background: "rgba(20,20,20,.72)", color: C.chalk, backdropFilter: "blur(2px)" }}>⛶</button>
+    )}
     {ZoomPad}
     </div>
   );
 
   const RecCanvas = <canvas ref={recCanvasRef} style={{ display: "none" }} />;
 
+  /* En el móvil la plantilla no puede ser una columna al lado del campo: hasta
+     plegada se llevaba 40 de los ~350 px de ancho, y con el campo en vertical
+     ese ancho es justo lo que le da tamaño. Debajo y en una tira que se
+     desliza, cada dorsal es un botón redondo de 36 px -tamaño de dedo- y los
+     que ya están puestos se apagan. Es la misma acción, colocada donde no
+     compite con el campo. */
+  const SquadStrip = squad.length > 0 && (
+    <div className="sm:hidden mt-2 flex items-center gap-1.5 overflow-x-auto wb-scroll -mx-1 px-1">
+      <span className="text-[10px] font-display uppercase tracking-widest shrink-0 pr-0.5" style={{ color: C.dim }}>Plantilla</span>
+      {[...squad].sort((a, b) => a.d - b.d).map((pl) => {
+        const puesto = tokens.some((x) => x.type === "home" && x.label === String(pl.d));
+        return (
+          <button key={pl.id} onClick={() => placePlayer(pl)} title={pl.n} aria-label={`${pl.d} ${pl.n}`}
+            className="shrink-0 w-9 h-9 rounded-full border font-display text-xs font-bold flex items-center justify-center"
+            style={{ borderColor: puesto ? C.line : AC, background: puesto ? "transparent" : AC, color: puesto ? C.dim : C.sobre }}>
+            {pl.d}
+          </button>
+        );
+      })}
+    </div>
+  );
+
   /* Panel izquierdo: plantilla real por dorsal. Toca un jugador y aparece en el campo. */
   const SquadPanel = squad.length > 0 && (
-    <div className="shrink-0 rounded-lg border overflow-hidden flex flex-col"
+    <div className="hidden sm:flex shrink-0 rounded-lg border overflow-hidden flex-col"
       style={{ borderColor: C.line, background: C.panel, width: showSquad ? 128 : 40 }}>
       <button onClick={() => setShowSquad((v) => !v)}
         className="w-full text-[10px] font-display uppercase tracking-widest py-1.5 border-b"
@@ -3597,16 +3681,10 @@ Devuelve SOLO un objeto JSON con las claves "tokens" y "shapes", sin explicació
     </div>
   );
 
-  /* Un renglón, no un cartel: el aviso ocupaba tres líneas justo encima del
-     campo, que es el sitio que peor se puede gastar en un móvil. Y lleva el
-     botón dentro, que es lo que hay que hacer. */
-  const RotateHint = portrait && (
-    <button onClick={() => setFull(true)}
-      className="w-full rounded-lg border px-3 h-9 mb-2 text-[12px] flex items-center justify-center gap-2"
-      style={{ borderColor: AC, background: "rgba(54,69,79,.08)", color: C.chalk }}>
-      <span>⛶</span><span>Pantalla completa · el campo se pone en horizontal</span>
-    </button>
-  );
+  /* Aquí vivía un aviso a lo ancho ("gira el móvil / abre pantalla completa")
+     que existía solo porque el campo en vertical salía diminuto. Ahora el
+     campo ya viene girado y ocupa la pantalla, así que el aviso sobra: la
+     pantalla completa sigue a un toque, en el botón ⛶ sobre el propio campo. */
 
   if (full) {
     /* En móvil vertical no esperamos a que el usuario gire el teléfono: se rota
@@ -3635,18 +3713,16 @@ Devuelve SOLO un objeto JSON con las claves "tokens" y "shapes", sin explicació
 
   return (
     <div className="rounded-lg border p-4" style={{ background: C.panel, borderColor: C.line }}>
-      <div className="font-display text-sm uppercase tracking-widest mb-3" style={{ color: C.dim }}>{t("w.title")}</div>
+      {/* El título se cae en móvil: la sección ya se llama Pizarra en el menú
+          y ese renglón es sitio que le quitas al campo. */}
+      <div className="hidden sm:block font-display text-sm uppercase tracking-widest mb-3" style={{ color: C.dim }}>{t("w.title")}</div>
       {Toolbar}
       <div className="hidden sm:block text-[11px] mb-3" style={{ color: C.dim }}>{t("w.hint")}</div>
 
       {/* Los sistemas se eligen una vez y no se vuelven a tocar en toda la
-          sesión, así que en el móvil no pueden estar ocupando media pantalla
-          por delante del campo. Plegado, y con un toque se abre. */}
-      <button onClick={() => setSistemasAbierto((v) => !v)}
-        className="sm:hidden w-full mb-2 h-9 rounded-lg border text-xs font-display uppercase tracking-wide flex items-center justify-center gap-2"
-        style={{ borderColor: C.line, color: C.chalk }}>
-        Sistemas · {codeHome} vs {codeAway} <span style={{ color: AC }}>{sistemasAbierto ? "▴" : "▾"}</span>
-      </button>
+          sesión: en el móvil van plegados, y el botón que los abre viaja con
+          los demás en la fila deslizable de la barra, no ocupando él solo un
+          renglón entero por delante del campo. */}
       <div className={`${sistemasAbierto ? "flex" : "hidden"} sm:flex flex-wrap items-end gap-3 mb-3 p-3 rounded-lg border`} style={{ borderColor: C.line, background: C.panel2 }}>
         <div className="flex gap-1">
           {[["f11", t("w.f11")], ["f7", t("w.f7")]].map(([k, lbl]) => (
@@ -3679,11 +3755,11 @@ Devuelve SOLO un objeto JSON con las claves "tokens" y "shapes", sin explicació
         <div className="text-[10px] ml-auto self-center" style={{ color: C.dim }}>{t("w.autoSave")}</div>
       </div>
 
-      {RotateHint}
       <div className="flex gap-2 items-start">
         {SquadPanel}
         <div className="flex-1 min-w-0">{Board}</div>
       </div>
+      {SquadStrip}
       {RecCanvas}
     </div>
   );
