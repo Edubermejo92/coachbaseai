@@ -629,7 +629,13 @@ const ROLES = {
      director deportivo, así que no aportaba nada y duplicaba la gestión. */
   director: { label: "Director deportivo", color: "#36454F", icon: "✚",
     desc: "Dirige el club: acceso total a todo el sistema.",
-    tabs: ["inicio", "jugadores", "alineacion", "pizarra", "ejercicios", "entrenamiento", "temporada", "estadisticas", "convocatoria", "calendario", "partido", "analisis", "asistencia", "disciplina", "normativa", "usuarios", "coachai", "material", "premium"],
+    /* "equipo" (Club) faltaba y era el único rol del cuerpo técnico sin él:
+       entrenador, segundo, delegado y master lo tenían. Justo al director
+       deportivo —que es quien lleva los datos del club, el campo y las
+       categorías, y cuya descripción aquí al lado dice "acceso total a todo el
+       sistema"— le salía el apartado en gris y con el aviso de que su rol no
+       tiene acceso. */
+    tabs: ["inicio", "equipo", "jugadores", "alineacion", "pizarra", "ejercicios", "entrenamiento", "temporada", "estadisticas", "convocatoria", "calendario", "partido", "analisis", "asistencia", "disciplina", "normativa", "usuarios", "coachai", "material", "premium"],
     perms: ["editSquad", "editLineup", "editCall", "events", "ai", "viewUsers", "grantAccess", "createUsers", "editTraining", "viewStats", "discipline", "editDiscipline", "validateDiscipline", "viewDocs", "manageDocs", "editCal"] },
   entrenador: { label: "Entrenador principal", color: "#36454F", icon: "◆",
     desc: "Control total de su equipo: edición de todo excepto gestión de usuarios.",
@@ -961,7 +967,9 @@ const CAT_ICON = {
 const iconoDeCategoria = (nombre) => {
   const n = normClub(nombre);
   const hit = CATEGORIAS.find((c) => n.startsWith(normClub(c.label).split(" ")[0]));
-  return CAT_ICON[hit?.k] || "◈";
+  /* Devuelve la CLAVE del icono, no el carácter: lo pinta <Icono>, que no
+     depende de que la fuente del dispositivo traiga ese glifo. */
+  return hit ? `cat-${hit.k}` : "cat-otra";
 };
 const LETRAS = ["A", "B", "C", "D", "E"];
 const makeTeam = (catKey, letra) => {
@@ -1555,10 +1563,97 @@ const airPatch = (id, body) => { try { return cbFetch(AIR + "?id=" + id, { metho
 const airDelete = (id) => { try { return cbFetch(AIR + "?id=" + id, { method: "DELETE" }).catch(() => {}); } catch { return null; } };
 const estadoLabel = (status) => (status === "activo" ? "Activo" : "Pendiente");
 
-/* Marcas de tiza, no emoji. Todas de una misma familia geométrica y de un solo
-   color: sobre la pizarra oscura los emoji a color se leen como pegatinas
-   pegadas encima y rompen el material (y en Windows la mitad no renderizan,
-   mismo motivo por el que arriba se descartaron las banderas). */
+/* ================= ICONOS =================
+   Marcas de tiza, no emoji: línea de un solo grosor y un solo color, que es lo
+   que pide la pizarra oscura (un emoji a color se lee como una pegatina puesta
+   encima, y en Windows la mitad ni renderizan).
+   Antes eran caracteres Unicode sueltos y eso traía dos problemas de fondo:
+
+   · No se distinguían. Seis entradas del menú eran "un cuadrado con algún
+     relleno" —▦ Inicio, ▥ Club, ▤ Calendario, ▣ Convocatoria, ◱ Temporada,
+     ◧ Estadísticas—: a 15 px son la misma mancha. En la barra de abajo del
+     móvil, que es solo iconos, eso deja la navegación a la adivinanza.
+   · No se veían igual en todos los sitios. ⬢ ⬡ ⬟ viven en Geometric Shapes
+     Extended, un bloque con mala cobertura tipográfica: en bastantes Android
+     salen como un cuadro vacío, o los rescata otra fuente con un peso y un
+     tamaño que no pegan con el resto.
+
+   Dibujados aquí sobre una rejilla de 24, cada uno enseña lo que es —una
+   camiseta para Jugadores, un cono para Entrenamiento, dos tarjetas para
+   Disciplina— y se ve idéntico en cualquier dispositivo, porque ya no depende
+   de la fuente. */
+const ICONOS = {
+  /* Inicio: una casa, sin más vueltas. */
+  inicio: <><path d="M3.6 11 12 4l8.4 7" /><path d="M6 9.6V20h12V9.6" /><path d="M10 20v-4.6h4V20" /></>,
+  /* Club: el escudo. Equipos (catálogo del Master): la parrilla de todos. */
+  equipo: <><path d="M12 3.4 19.2 6v5.6c0 4-2.9 7.3-7.2 9-4.3-1.7-7.2-5-7.2-9V6z" /></>,
+  equipos: <><rect x="3.6" y="3.6" width="7.4" height="7.4" rx="1.6" /><rect x="13" y="3.6" width="7.4" height="7.4" rx="1.6" /><rect x="3.6" y="13" width="7.4" height="7.4" rx="1.6" /><rect x="13" y="13" width="7.4" height="7.4" rx="1.6" /></>,
+  /* Jugadores: una camiseta de fútbol. */
+  jugadores: <><path d="M9 3.8 4.8 6.4l1.6 4.2L9 9.6V20.2h6V9.6l2.6 1 1.6-4.2L15 3.8a3 3 0 0 1-6 0z" /></>,
+  calendario: <><rect x="3.5" y="5.4" width="17" height="15.1" rx="2" /><path d="M3.5 10.2h17M8 3.4v4M16 3.4v4" /></>,
+  /* Convocatoria: el portapapeles con la lista ya marcada. */
+  convocatoria: <><path d="M9.4 4.6H7a1.6 1.6 0 0 0-1.6 1.6v12.6A1.6 1.6 0 0 0 7 20.4h10a1.6 1.6 0 0 0 1.6-1.6V6.2A1.6 1.6 0 0 0 17 4.6h-2.4" /><rect x="9.2" y="2.8" width="5.6" height="3.6" rx="1.2" /><path d="M9 13.4l2 2 4-4.2" /></>,
+  /* Alineación: el campo con el círculo central. */
+  alineacion: <><rect x="3.5" y="4.6" width="17" height="14.8" rx="1.6" /><path d="M12 4.6v14.8" /><circle cx="12" cy="12" r="2.7" /></>,
+  /* Modo partido: el cronómetro que se pone en marcha. */
+  partido: <><circle cx="12" cy="13.6" r="7" /><path d="M12 13.6V9.8M9.6 3.4h4.8M18.6 7.2 20 5.8" /></>,
+  /* Análisis: la lupa sobre lo que pasó (Estadísticas son las barras). */
+  analisis: <><circle cx="10.8" cy="10.8" r="6.4" /><path d="M15.5 15.5 20.6 20.6" /><path d="M8.6 12.6v-2M10.8 12.6v-4M13 12.6v-2.8" /></>,
+  /* Temporada: la bandera de la meta a la que apunta el plan. */
+  temporada: <><path d="M5 21V3.6" /><path d="M5 4.8h11.6l-2.3 3.4 2.3 3.4H5" /></>,
+  /* Entrenamiento: el cono. */
+  entrenamiento: <><path d="M12 3.6 17.8 18h-11.6z" /><path d="M8.7 13.4h6.6" /><path d="M3.6 20.6h16.8" /></>,
+  /* Ejercicios: la biblioteca, en fichas. */
+  ejercicios: <><path d="M9.4 6.6h11M9.4 12h11M9.4 17.4h11" /><circle cx="5" cy="6.6" r="1.5" /><circle cx="5" cy="12" r="1.5" /><circle cx="5" cy="17.4" r="1.5" /></>,
+  /* Pizarra: el tablero con la jugada dibujada. */
+  pizarra: <><rect x="3.4" y="4" width="17.2" height="12.8" rx="1.6" /><path d="M7.6 12.6 10.4 9l2.6 1.8 3.4-3.6" /><path d="M12 16.8v3.4M8.6 20.2h6.8" /></>,
+  /* Asistencia: pasar lista, con sus marcas. */
+  asistencia: <><path d="M10.4 6.6h10M10.4 12h10M10.4 17.4h10" /><path d="M3.6 6.4 5 7.8l2.4-2.6M3.6 11.8 5 13.2l2.4-2.6M3.6 17.2 5 18.6l2.4-2.6" /></>,
+  /* Disciplina: las tarjetas. */
+  disciplina: <><rect x="4.4" y="4.6" width="8.6" height="12.4" rx="1.5" /><rect x="10.4" y="7" width="8.6" height="12.4" rx="1.5" /></>,
+  /* Normativa: el documento firmado. */
+  normativa: <><path d="M6.4 3.5h7.2l4.4 4.4v12.6a1.5 1.5 0 0 1-1.5 1.5H6.4a1.5 1.5 0 0 1-1.5-1.5V5a1.5 1.5 0 0 1 1.5-1.5z" /><path d="M13.4 3.6v4.6h4.6" /><path d="M8.4 13.4h7M8.4 16.8h4.6" /></>,
+  estadisticas: <><path d="M4.8 20.4V12.6M12 20.4V4.6M19.2 20.4v-5.6" /></>,
+  /* Roles: quién es quién en el club. */
+  usuarios: <><circle cx="9.2" cy="8.4" r="3.4" /><path d="M3.4 19.8c0-3.2 2.6-5.2 5.8-5.2s5.8 2 5.8 5.2" /><path d="M16.2 5.8a3.2 3.2 0 0 1 0 5.6M17.8 15c2.1.6 3.6 2.4 3.6 4.8" /></>,
+  /* Coach AI: el destello. */
+  coachai: <><path d="M11 3.4 12.7 8.3 17.6 10 12.7 11.7 11 16.6 9.3 11.7 4.4 10 9.3 8.3z" /><path d="M17.6 15.2l.8 2.3 2.3.8-2.3.8-.8 2.3-.8-2.3-2.3-.8 2.3-.8z" /></>,
+  material: <><path d="M4 8.2h16l-1.3 11.4a1.6 1.6 0 0 1-1.6 1.4H6.9a1.6 1.6 0 0 1-1.6-1.4z" /><path d="M8.6 8.2V6.4a3.4 3.4 0 0 1 6.8 0v1.8" /></>,
+  premium: <><path d="M12 3.4l2.7 5.6 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z" /></>,
+  /* Master: la llave del club. */
+  master: <><circle cx="7.6" cy="16.4" r="3.6" /><path d="M10.2 13.8 20.4 3.6M17.4 6.6l2.6 2.6M14.8 9.2l2.6 2.6" /></>,
+  /* Avisos de la portada: duda (triángulo) y lesión (cruz sanitaria). */
+  duda: <><path d="M12 4.2 21 19.6H3z" /><path d="M12 10.2v3.8" /><circle cx="12" cy="17" r="0.95" fill="currentColor" stroke="none" /></>,
+  lesion: <><path d="M9.6 3.9h4.8v5.7h5.7v4.8h-5.7v5.7H9.6v-5.7H3.9V9.6h5.7z" /></>,
+  /* Categorías por edad: el círculo se va llenando según se crece —la idea de
+     antes, ahora dibujada para que no dependa de la fuente— y las tres mayores
+     cambian de forma. */
+  "cat-prebenjamin": <><circle cx="12" cy="12" r="7.4" /><path d="M12 12V4.6A7.4 7.4 0 0 1 19.4 12z" fill="currentColor" stroke="none" /></>,
+  "cat-benjamin": <><circle cx="12" cy="12" r="7.4" /><path d="M12 12V4.6A7.4 7.4 0 0 1 12 19.4z" fill="currentColor" stroke="none" /></>,
+  "cat-alevin": <><circle cx="12" cy="12" r="7.4" /><path d="M12 12V4.6A7.4 7.4 0 1 1 4.6 12z" fill="currentColor" stroke="none" /></>,
+  "cat-infantil": <><circle cx="12" cy="12" r="7.4" fill="currentColor" /></>,
+  "cat-cadete": <><path d="M12 3.8 20.2 12 12 20.2 3.8 12z" fill="currentColor" /></>,
+  "cat-juvenil": <><path d="M12 3.6 20.4 9.7l-3.2 9.9H6.8L3.6 9.7z" fill="currentColor" /></>,
+  "cat-senior": <><rect x="4.6" y="4.6" width="14.8" height="14.8" rx="1.6" fill="currentColor" /></>,
+  "cat-otra": <><circle cx="12" cy="12" r="7.4" strokeDasharray="3 3" /></>,
+};
+/* Un icono. `n` es la clave; el color lo hereda de quien lo pinta
+   (currentColor), así que sigue valiendo el mismo `style={{ color }}` que se
+   usaba con los caracteres de antes. El desplazamiento vertical lo deja
+   alineado cuando va suelto dentro de una línea de texto. */
+const Icono = ({ n, s = 18, className = "", style }) => {
+  const d = ICONOS[n];
+  if (!d) return null;
+  return (
+    <svg viewBox="0 0 24 24" width={s} height={s} className={className} aria-hidden="true" focusable="false"
+      fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"
+      style={{ display: "inline-block", verticalAlign: "-0.18em", flexShrink: 0, ...style }}>
+      {d}
+    </svg>
+  );
+};
+/* Se mantiene el mapa por compatibilidad con lo que aún espera un carácter
+   (títulos de pestaña sueltos), pero la navegación ya usa <Icono>. */
 const TAB_ICON = {
   inicio: "▦", equipos: "⬢", equipo: "▥", jugadores: "◉", calendario: "▤", convocatoria: "▣",
   alineacion: "⬡", partido: "▶", analisis: "◎", entrenamiento: "◈", temporada: "◱", ejercicios: "≡", pizarra: "✎",
@@ -5885,7 +5980,7 @@ SUS HIJOS/AS:\n${mis}`;
                 {orden.map((k, i) => (
                   <div key={k} className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg border text-sm"
                     style={{ borderColor: i < 4 ? MC : C.line, background: i < 4 ? conAlpha(MC, 12) : "transparent", color: C.chalk }}>
-                    <span className="w-4 text-center shrink-0" style={{ color: i < 4 ? MC : C.dim }} aria-hidden="true">{TAB_ICON[k]}</span>
+                    <span className="w-4 shrink-0 flex justify-center" style={{ color: i < 4 ? MC : C.dim }}><Icono n={k} s={15} /></span>
                     <span className="flex-1 truncate">{t("nav." + k)}</span>
                     <button onClick={() => mover(k, -1)} disabled={i === 0} aria-label={`Subir ${t("nav." + k)}`}
                       className="w-6 h-6 shrink-0 disabled:opacity-25" style={{ color: C.dim }}>▲</button>
@@ -7843,17 +7938,17 @@ SUS HIJOS/AS:\n${mis}`;
         <div className="flex flex-wrap gap-2 px-4 pb-4">
           {visibleTabs.includes("convocatoria") && (
             <button onClick={() => setTab("convocatoria")} className="font-display uppercase tracking-wide text-sm px-4 py-2.5 rounded-lg border" style={{ borderColor: C.line, background: C.panel2, color: C.chalk }}>
-              {TAB_ICON.convocatoria} {t("nav.convocatoria")}
+              <Icono n="convocatoria" s={16} /> {t("nav.convocatoria")}
             </button>
           )}
           {visibleTabs.includes("alineacion") && (
             <button onClick={() => setTab("alineacion")} className="font-display uppercase tracking-wide text-sm px-4 py-2.5 rounded-lg border" style={{ borderColor: C.line, background: C.panel2, color: C.chalk }}>
-              {TAB_ICON.alineacion} {t("nav.alineacion")}
+              <Icono n="alineacion" s={16} /> {t("nav.alineacion")}
             </button>
           )}
           {can("events") && (
             <button onClick={() => setTab("partido")} className="font-display uppercase tracking-wide text-sm px-4 py-2.5 rounded-lg font-semibold" style={{ background: AC, color: C.sobre }}>
-              {TAB_ICON.partido} {t("h.startMatch")}
+              <Icono n="partido" s={16} /> {t("h.startMatch")}
             </button>
           )}
         </div>
@@ -7949,7 +8044,7 @@ SUS HIJOS/AS:\n${mis}`;
                 <div key={cat} className="p-3 rounded-lg border flex flex-col gap-2"
                   style={{ borderColor: activa ? AC : C.line, background: activa ? `${AC}15` : C.panel2 }}>
                   <div className={`text-sm flex items-center gap-1.5 ${activa ? "font-bold" : "font-semibold"}`} style={{ color: activa ? AC : C.chalk }}>
-                    <span aria-hidden="true">{iconoDeCategoria(cat)}</span>{cat}
+                    <Icono n={iconoDeCategoria(cat)} s={14} />{cat}
                   </div>
                   {badge && (
                     <div className="text-xs px-2 py-1 rounded text-center" style={{ background: badgeBg, color: badgeColor }}>
@@ -8067,7 +8162,7 @@ SUS HIJOS/AS:\n${mis}`;
             <div className="text-sm" style={{ color: C.dim }}>{t("h.noTrain")}</div>
             {can("editTraining") && (
               <button onClick={() => setTab("entrenamiento")} className="mt-3 font-display uppercase tracking-wide text-sm px-4 py-2 rounded-lg border" style={{ borderColor: AC, color: AC }}>
-                {TAB_ICON.entrenamiento} {t("h.planTrain")}
+                <Icono n="entrenamiento" s={16} /> {t("h.planTrain")}
               </button>
             )}
           </div>
@@ -8079,16 +8174,16 @@ SUS HIJOS/AS:\n${mis}`;
           <div className="text-sm space-y-2" style={{ color: C.chalk }}>
             {horaProx && (
               <div className="flex items-start gap-2">
-                <span className="shrink-0" style={{ color: AC }}>{TAB_ICON.partido}</span>
+                <Icono n="partido" s={16} style={{ color: AC }} />
                 <span>{t("h.fMatch").replace("{h}", horaProx)}{lugarProx ? ` · ${lugarProx}` : ""}</span>
               </div>
             )}
             <div className="flex items-start gap-2">
-              <span className="shrink-0" style={{ color: AC }}>{TAB_ICON.convocatoria}</span>
+              <Icono n="convocatoria" s={16} style={{ color: AC }} />
               <span>{called.size > 0 ? t("h.fCalled").replace("{n}", called.size) : t("h.fNoCall")}</span>
             </div>
             <div className="flex items-start gap-2">
-              <span className="shrink-0" style={{ color: C.dim }}>{TAB_ICON.material}</span>
+              <Icono n="material" s={16} style={{ color: C.dim }} />
               <span>{t("h.fKit")}</span>
             </div>
           </div>
@@ -8113,19 +8208,19 @@ SUS HIJOS/AS:\n${mis}`;
               const lesionados = players.filter((p) => p.st === "lesionado");
               const pendUsers = can("viewUsers") ? users.filter((u) => u.status === "pendiente").length : 0;
               const avisos = [
-                dudas.length && { c: C.warn, ic: "◑", txt: `${dudas.length} ${dudas.length === 1 ? t("h.aDoubt1") : t("h.aDoubtN")}: ${dudas.map((p) => p.n.split(" ")[0]).join(", ")}` },
-                lesionados.length && { c: C.red, ic: "✚", txt: `${lesionados.length} ${lesionados.length === 1 ? t("h.aInj1") : t("h.aInjN")}: ${lesionados.map((p) => p.n.split(" ")[0]).join(", ")}` },
-                pendUsers > 0 && { c: AC, ic: TAB_ICON.usuarios, txt: `${pendUsers} ${t("h.pending")}` },
-                can("discipline") && pendingValid > 0 && { c: C.warn, ic: TAB_ICON.disciplina, txt: `${pendingValid} ${t("h.aDisc")}` },
-                can("viewDocs") && pendingSign > 0 && { c: C.warn, ic: TAB_ICON.normativa, txt: `${pendingSign} ${t("h.aSign")}` },
-                can("viewDocs") && pretempPend.length > 0 && { c: C.warn, ic: TAB_ICON.normativa, txt: `${pretempPend.length} sin completar los ejercicios de pretemporada: ${pretempPend.map((p) => p.n.split(" ")[0]).join(", ")}` },
+                dudas.length && { c: C.warn, ico: "duda", txt: `${dudas.length} ${dudas.length === 1 ? t("h.aDoubt1") : t("h.aDoubtN")}: ${dudas.map((p) => p.n.split(" ")[0]).join(", ")}` },
+                lesionados.length && { c: C.red, ico: "lesion", txt: `${lesionados.length} ${lesionados.length === 1 ? t("h.aInj1") : t("h.aInjN")}: ${lesionados.map((p) => p.n.split(" ")[0]).join(", ")}` },
+                pendUsers > 0 && { c: AC, ico: "usuarios", txt: `${pendUsers} ${t("h.pending")}` },
+                can("discipline") && pendingValid > 0 && { c: C.warn, ico: "disciplina", txt: `${pendingValid} ${t("h.aDisc")}` },
+                can("viewDocs") && pendingSign > 0 && { c: C.warn, ico: "normativa", txt: `${pendingSign} ${t("h.aSign")}` },
+                can("viewDocs") && pretempPend.length > 0 && { c: C.warn, ico: "normativa", txt: `${pretempPend.length} sin completar los ejercicios de pretemporada: ${pretempPend.map((p) => p.n.split(" ")[0]).join(", ")}` },
               ].filter(Boolean);
               if (!avisos.length) return <div className="text-sm" style={{ color: C.dim }}>{t("h.noAlerts")}</div>;
               return (
                 <div className="space-y-2">
                   {avisos.map((a, i) => (
                     <div key={i} className="text-sm flex items-start gap-2" style={{ color: C.chalk }}>
-                      <span className="shrink-0 leading-relaxed" style={{ color: a.c }}>{a.ic}</span>
+                      <span className="shrink-0 flex items-center" style={{ color: a.c, height: "1.55em" }}><Icono n={a.ico} s={16} /></span>
                       <span>{a.txt}</span>
                     </div>
                   ))}
@@ -8151,7 +8246,7 @@ SUS HIJOS/AS:\n${mis}`;
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <div className="text-sm" style={{ color: C.dim }}>{t("as.homeEmpty")}</div>
                   <button onClick={() => setTab("asistencia")} className="font-display uppercase tracking-wide text-sm px-4 py-2 rounded-lg font-semibold" style={{ background: AC, color: C.sobre }}>
-                    {TAB_ICON.asistencia} {t("as.homeCta")}
+                    <Icono n="asistencia" s={16} /> {t("as.homeCta")}
                   </button>
                 </div>
               );
@@ -8165,7 +8260,7 @@ SUS HIJOS/AS:\n${mis}`;
                     <span className="text-xs" style={{ color: C.dim }}>{t("as.homeOf")} {players.length} · {t("as.present").toLowerCase()}</span>
                   </div>
                   <button onClick={() => setTab("asistencia")} className="ml-auto text-sm px-3 py-1.5 rounded-lg border" style={{ borderColor: C.line, color: C.chalk }}>
-                    {TAB_ICON.asistencia} {t("as.homeSee")}
+                    <Icono n="asistencia" s={16} /> {t("as.homeSee")}
                   </button>
                 </div>
                 {ausentes.length === 0 ? (
@@ -8790,7 +8885,7 @@ SUS HIJOS/AS:\n${mis}`;
               que se puede ir y volver sin perder el acta. */}
           {visibleTabs.includes("pizarra") && (
             <button onClick={() => setTab("pizarra")} className="font-display uppercase tracking-wider px-4 py-2.5 rounded-lg border flex items-center gap-2" style={{ borderColor: AC, color: AC }}>
-              <span>{TAB_ICON.pizarra}</span>{t("mt.toBoard")}
+              <Icono n="pizarra" s={16} />{t("mt.toBoard")}
             </button>
           )}
           <div className="text-sm leading-tight" style={{ color: C.dim }}>
@@ -10162,7 +10257,7 @@ SUS HIJOS/AS:\n${mis}`;
               desde este botón. */}
           <button onClick={() => setAccountOpen(true)} aria-label={t("p.account")} title={t("p.account")}
             className="md:hidden text-base px-2.5 py-2 rounded-lg border leading-none" style={{ borderColor: C.line, color: C.chalk }}>
-            {TAB_ICON.usuarios}
+            <Icono n="usuarios" s={18} />
           </button>
           {isFamily && myKids.length > 0 && (
             <select value={myKid?.id || ""} onChange={(e) => setFamKid(Number(e.target.value))}
@@ -10326,7 +10421,7 @@ SUS HIJOS/AS:\n${mis}`;
                     title={`${t("nav." + k)} — tu rol (${role.label}) no tiene acceso`}
                     className="w-full min-h-12 flex items-center gap-3 px-3 py-2.5 rounded-lg text-left font-display uppercase tracking-wide text-sm cursor-not-allowed"
                     style={{ color: C.dim, opacity: 0.45 }}>
-                    <span className="w-4 shrink-0 text-center text-[15px] leading-none">{TAB_ICON[k]}</span>
+                    <span className="w-4 shrink-0 flex justify-center"><Icono n={k} s={16} /></span>
                     <span className="flex-1">{t("nav." + k)}</span>
                     <span className="text-[11px] shrink-0">·</span>
                   </div>
@@ -10336,7 +10431,7 @@ SUS HIJOS/AS:\n${mis}`;
                   title={bloq ? t("c.proTab") : undefined}
                   className="nav-item w-full min-h-12 flex items-center gap-3 px-3 py-2.5 rounded-lg text-left font-display uppercase tracking-wide text-sm"
                   style={{ background: tab === k ? "rgba(54,69,79,.06)" : "transparent", color: tab === k ? MC : bloq ? C.dim : C.chalk, borderLeft: tab === k ? `3px solid ${MC}` : "3px solid transparent" }}>
-                  <span className="w-4 shrink-0 text-center text-[15px] leading-none" style={{ color: tab === k ? MC : C.dim }}>{TAB_ICON[k]}</span>
+                  <span className="w-4 shrink-0 flex justify-center" style={{ color: tab === k ? MC : C.dim }}><Icono n={k} s={16} /></span>
                   <span className="flex-1">{t("nav." + k)}</span>
                   {bloq && <span className="text-[11px] shrink-0" style={{ color: AC }}>★</span>}
                 </button>
@@ -10391,7 +10486,7 @@ SUS HIJOS/AS:\n${mis}`;
                     personas del club no es asunto suyo. */}
                 {can("viewUsers") && (
                   <div className="text-[10px] mt-1" style={{ color: C.dim }}>
-                    <span style={{ color: C.dim }}>{TAB_ICON.usuarios}</span> {users.length} {users.length === 1 ? t("nav.roleOne") : t("nav.roleMany")}
+                    <Icono n="usuarios" s={15} style={{ color: C.dim }} /> {users.length} {users.length === 1 ? t("nav.roleOne") : t("nav.roleMany")}
                   </div>
                 )}
               </div>
@@ -10413,7 +10508,7 @@ SUS HIJOS/AS:\n${mis}`;
                   title={`${t("nav." + k)} — tu rol (${role.label}) no tiene acceso a este apartado`}
                   className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-left font-display uppercase tracking-wide text-sm cursor-not-allowed"
                   style={{ color: C.dim, opacity: 0.45, borderLeft: "3px solid transparent" }}>
-                  <span className="w-4 shrink-0 text-center text-[15px] leading-none">{TAB_ICON[k]}</span>
+                  <span className="w-4 shrink-0 flex justify-center"><Icono n={k} s={16} /></span>
                   <span className="flex-1">{t("nav." + k)}</span>
                   <span className="text-[11px] shrink-0">·</span>
                 </div>
@@ -10423,7 +10518,7 @@ SUS HIJOS/AS:\n${mis}`;
                 title={bloq ? t("c.proTab") : undefined}
                 className="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-left font-display uppercase tracking-wide text-sm"
                 style={{ background: tab === k ? "rgba(54,69,79,.06)" : "transparent", color: tab === k ? MC : bloq ? C.dim : C.chalk, borderLeft: tab === k ? `3px solid ${MC}` : "3px solid transparent" }}>
-                <span className="w-4 shrink-0 text-center text-[15px] leading-none" style={{ color: tab === k ? MC : C.dim }}>{TAB_ICON[k]}</span>
+                <span className="w-4 shrink-0 flex justify-center" style={{ color: tab === k ? MC : C.dim }}><Icono n={k} s={16} /></span>
                 <span className="flex-1">{t("nav." + k)}</span>
                 {bloq && <span className="text-[11px] shrink-0" style={{ color: AC }} aria-label={t("c.proTab")}>★</span>}
               </button>
@@ -10506,7 +10601,7 @@ SUS HIJOS/AS:\n${mis}`;
                 <button key={cat} onClick={() => setSelectedCategory(cat)}
                   className="shrink-0 flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-display uppercase whitespace-nowrap"
                   style={{ color: activa ? MC : C.dim, fontWeight: activa ? 700 : 500 }}>
-                  <span aria-hidden="true">{iconoDeCategoria(cat)}</span>{cat}
+                  <Icono n={iconoDeCategoria(cat)} s={14} />{cat}
                 </button>
               );
             })}
@@ -10524,7 +10619,7 @@ SUS HIJOS/AS:\n${mis}`;
               className="relative flex-1 min-w-0 py-2.5 flex items-center justify-center"
               style={{ color: tab === k ? MC : C.dim }}>
               {tab === k && <span className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-[3px] rounded-b-full" style={{ background: MC }} />}
-              <span className="text-xl leading-none">{TAB_ICON[k]}</span>
+              <Icono n={k} s={22} />
             </button>
           ))}
           <button onClick={() => setMenuOpen(true)} title="Más" aria-label="Más secciones"
