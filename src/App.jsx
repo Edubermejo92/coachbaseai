@@ -821,6 +821,92 @@ const COMUNIDADES = [
    el adjunto de Airtable esté vacío o el backend no responda. */
 const ESCUDO_LOCAL = { "Club Deportivo Chamartín Vergara 1995": "/escudo-chamartin.png" };
 const escudoDe = (club) => ESCUDO_LOCAL[club] || null;
+
+/* ================= COLOR DE ACENTO DEL ESCUDO =================
+   Idea: que el menú (barra lateral en escritorio, barra de abajo y cajón
+   "Más" en móvil) se sienta del equipo, sin tocar el resto de la app —
+   el negro/blanco actual sigue mandando en botones y en los colores que
+   SIGNIFICAN algo (disponible/duda/lesión). Se extrae en el propio
+   dispositivo, a partir del archivo que la persona acaba de elegir (nunca
+   de una URL ya subida: leer píxeles de una imagen de otro origen sin
+   cabeceras CORS permisivas rompe el canvas). */
+const rgbAHsl = (r, g, b) => {
+  r /= 255; g /= 255; b /= 255;
+  const max = Math.max(r, g, b), min = Math.min(r, g, b);
+  let h = 0, s = 0; const l = (max + min) / 2;
+  const d = max - min;
+  if (d !== 0) {
+    s = d / (1 - Math.abs(2 * l - 1));
+    if (max === r) h = ((g - b) / d) % 6;
+    else if (max === g) h = (b - r) / d + 2;
+    else h = (r - g) / d + 4;
+    h *= 60; if (h < 0) h += 360;
+  }
+  return [h, s, l];
+};
+const hslACss = (h, s, l) => `hsl(${Math.round(h)} ${Math.round(s * 100)}% ${Math.round(l * 100)}%)`;
+/* Añade transparencia a un color de acento sea cual sea su formato: hsl(...)
+   -lo que sale de un escudo- o hexadecimal de 6 cifras -el negro/blanco de
+   siempre-. El truco de "pegar dos cifras hex al final" que usa el resto de
+   la app para las versiones translúcidas de AC solo vale para hex; con un
+   acento de escudo (hsl) generaba un valor de color inválido y el fondo se
+   quedaba sin pintar, sin avisar de nada. */
+const conAlpha = (color, alphaPct) => {
+  if (!color) return color;
+  if (color.startsWith("hsl(")) return color.replace(/\)$/, ` / ${alphaPct}%)`);
+  if (/^#[0-9a-fA-F]{6}$/.test(color)) return `${color}${Math.round(alphaPct * 2.55).toString(16).padStart(2, "0")}`;
+  return color;
+};
+/* Del color más frecuente y saturado del escudo a dos versiones ya seguras
+   de leer: una para fondo claro (oscurecida si hacía falta) y otra para
+   fondo oscuro (aclarada si hacía falta). Así no hace falta recalcular nada
+   al cambiar de tema, ni arriesgarse a un acento ilegible. */
+const acentosDesdeColor = (r, g, b) => {
+  const [h, s] = rgbAHsl(r, g, b);
+  const satMin = Math.max(s, 0.45); // el escudo puede traer un color algo apagado; se refuerza para que se note
+  return {
+    claro: hslACss(h, satMin, 0.34), // suficientemente oscuro sobre fondo blanco
+    oscuro: hslACss(h, satMin, 0.68), // suficientemente claro sobre fondo negro
+  };
+};
+/* Lee una imagen en un <canvas> del propio dispositivo (data: URL, mismo
+   origen) y devuelve el color dominante entre los que de verdad aportan
+   identidad: descarta blancos, negros y grises casi puros -el contorno y el
+   fondo del escudo suelen ser justo eso, y si ganan la votación el "color
+   del equipo" acaba siendo gris. */
+const extraerAcentoDeEscudo = (dataUrl) => new Promise((resolve) => {
+  try {
+    const img = new Image();
+    img.onload = () => {
+      try {
+        const lado = 40;
+        const cv = document.createElement("canvas");
+        cv.width = lado; cv.height = lado;
+        const ctx = cv.getContext("2d");
+        ctx.drawImage(img, 0, 0, lado, lado);
+        const { data } = ctx.getImageData(0, 0, lado, lado);
+        const cuentas = new Map();
+        for (let i = 0; i < data.length; i += 4) {
+          const r = data[i], g = data[i + 1], b = data[i + 2], a = data[i + 3];
+          if (a < 200) continue;
+          const max = Math.max(r, g, b), min = Math.min(r, g, b);
+          const sat = max === 0 ? 0 : (max - min) / max;
+          if (sat < 0.18) continue; // grisáceo: contorno, sombra o fondo
+          if (max > 248 && min > 230) continue; // casi blanco
+          if (max < 25) continue; // casi negro
+          const clave = `${Math.round(r / 12) * 12},${Math.round(g / 12) * 12},${Math.round(b / 12) * 12}`;
+          cuentas.set(clave, (cuentas.get(clave) || 0) + 1);
+        }
+        const top = [...cuentas.entries()].sort((x, y) => y[1] - x[1])[0];
+        if (!top) { resolve(null); return; }
+        const [r, g, b] = top[0].split(",").map(Number);
+        resolve(acentosDesdeColor(r, g, b));
+      } catch { resolve(null); } // canvas contaminado u otro fallo: sin acento, se sigue en blanco/negro
+    };
+    img.onerror = () => resolve(null);
+    img.src = dataUrl;
+  } catch { resolve(null); }
+});
 /* Normaliza texto escrito por personas para comparar: sin tildes, sin
    mayúsculas y sin espacios de más ("Chamartín Vergara" y "chamartin vergara"
    son el mismo club). Vive aquí arriba, a nivel de módulo, para que cualquier
@@ -4753,6 +4839,7 @@ export default function App() {
       const dataUrl = String(r.result);
       setCrest(dataUrl);
       try { localStorage.setItem(crestKey, dataUrl); } catch { /* noop */ }
+      extraerAcentoDeEscudo(dataUrl).then((par) => { if (par && !acentoManual) setAcentoMenu(par); });
       const rec = session.team?.rec;
       if (rec) {
         const out = await airCrest(rec, dataUrl.split(",")[1], file.type || "image/png", file.name || "escudo.png");
@@ -4761,6 +4848,41 @@ export default function App() {
     };
     r.readAsDataURL(file);
   };
+  /* ---- Acento del menú, a partir del escudo ----
+     Por club (no por categoría: el escudo es el mismo para todas), y
+     editable a mano — quien prefiera el blanco/negro de siempre, o un color
+     propio distinto del detectado, puede desactivarlo o cambiarlo desde Mi
+     cuenta. "acentoManual" es lo que decide esa persona; "acentoAuto" es lo
+     último que se detectó del escudo. Nunca se pisan entre sí: si hay
+     elección manual, manda ella; si no, manda lo detectado. */
+  const acentoKey = `cb_acento_${session?.club || "demo"}`;
+  const acentoManualKey = `cb_acentoManual_${session?.email || "demo"}`;
+  const [acentoAuto, setAcentoAutoState] = useState(null);
+  const [acentoManual, setAcentoManualState] = useState(undefined); // undefined = sin elegir; null = "blanco y negro" a propósito
+  useEffect(() => {
+    if (!session) return;
+    try { setAcentoAutoState(JSON.parse(localStorage.getItem(acentoKey) || "null")); } catch { setAcentoAutoState(null); }
+    try {
+      const raw = localStorage.getItem(acentoManualKey);
+      setAcentoManualState(raw === null ? undefined : JSON.parse(raw));
+    } catch { setAcentoManualState(undefined); }
+  }, [acentoKey, acentoManualKey]); // eslint-disable-line
+  const setAcentoMenu = (par) => {
+    setAcentoAutoState(par);
+    try { par ? localStorage.setItem(acentoKey, JSON.stringify(par)) : localStorage.removeItem(acentoKey); } catch { /* noop */ }
+  };
+  const setAcentoManual = (par) => {
+    // par: {claro,oscuro} elegido a mano, null = "blanco y negro" a propósito, undefined = "sigue lo automático"
+    setAcentoManualState(par);
+    try { par === undefined ? localStorage.removeItem(acentoManualKey) : localStorage.setItem(acentoManualKey, JSON.stringify(par)); } catch { /* noop */ }
+  };
+  /* Lo que de verdad se pinta: elección manual si existe, si no lo detectado
+     del escudo, si no el blanco/negro de siempre (AC, más abajo). */
+  const acentoActivo = acentoManual !== undefined ? acentoManual : acentoAuto;
+  /* Color de acento SOLO del menú (barra lateral, barra de abajo, cajón
+     "Más"): el resto de la app -botones, formularios, colores que
+     significan algo- se queda en negro/blanco (AC), a propósito. */
+  const MC = acentoActivo ? (acentoActivo[tema] || AC) : AC;
   /* gestión de equipos (rol Master) */
   const [teams, setTeams] = useState([]);
   const [teamEdit, setTeamEdit] = useState(null);
@@ -5541,8 +5663,8 @@ SUS HIJOS/AS:\n${mis}`;
               <div className="flex flex-col gap-1 max-h-56 overflow-y-auto">
                 {orden.map((k, i) => (
                   <div key={k} className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg border text-sm"
-                    style={{ borderColor: i < 4 ? AC : C.line, background: i < 4 ? `${AC}12` : "transparent", color: C.chalk }}>
-                    <span className="w-4 text-center shrink-0" style={{ color: i < 4 ? AC : C.dim }} aria-hidden="true">{TAB_ICON[k]}</span>
+                    style={{ borderColor: i < 4 ? MC : C.line, background: i < 4 ? conAlpha(MC, 12) : "transparent", color: C.chalk }}>
+                    <span className="w-4 text-center shrink-0" style={{ color: i < 4 ? MC : C.dim }} aria-hidden="true">{TAB_ICON[k]}</span>
                     <span className="flex-1 truncate">{t("nav." + k)}</span>
                     <button onClick={() => mover(k, -1)} disabled={i === 0} aria-label={`Subir ${t("nav." + k)}`}
                       className="w-6 h-6 shrink-0 disabled:opacity-25" style={{ color: C.dim }}>▲</button>
@@ -5553,6 +5675,48 @@ SUS HIJOS/AS:\n${mis}`;
               </div>
             );
           })()}
+        </div>
+
+        {/* ---- COLOR DEL MENÚ, A PARTIR DEL ESCUDO ----
+            Solo pinta el menú (esta lista de arriba, la barra lateral, la
+            de abajo del móvil y "Más"): el resto de la app -botones,
+            formularios, y los colores que SIGNIFICAN algo (disponible,
+            duda, lesión...)- se queda en blanco y negro a propósito. Se
+            detecta solo al subir el escudo del club; aquí se puede apagar
+            o cambiar por cualquier otro color, a mano. */}
+        <div className="pt-4 mt-4 border-t" style={{ borderColor: C.line }}>
+          <div className="font-display text-sm uppercase tracking-widest mb-1" style={{ color: C.dim }}>Color del menú</div>
+          <div className="text-[11px] mb-2" style={{ color: C.dim }}>
+            Se detecta del escudo del club al subirlo. Solo cambia el menú; el resto de la app sigue en blanco y negro.
+          </div>
+          <div className="flex items-center gap-2 mb-2.5">
+            <span className="w-6 h-6 rounded-full border shrink-0" style={{ background: MC, borderColor: C.line }} aria-hidden="true" />
+            <span className="text-xs" style={{ color: C.chalk }}>
+              {acentoManual === null ? "Blanco y negro (elegido)"
+                : acentoManual ? "Color elegido a mano"
+                : acentoAuto ? "Automático, del escudo"
+                : "Blanco y negro (todavía sin escudo con color)"}
+            </span>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <button onClick={() => setAcentoManual(undefined)} disabled={acentoManual === undefined}
+              className="text-xs px-3 py-1.5 rounded-lg border disabled:opacity-40" style={{ borderColor: AC, color: AC }}>
+              Automático
+            </button>
+            <button onClick={() => setAcentoManual(null)} disabled={acentoManual === null}
+              className="text-xs px-3 py-1.5 rounded-lg border disabled:opacity-40" style={{ borderColor: C.line, color: C.chalk }}>
+              Blanco y negro
+            </button>
+            <label className="text-xs pl-3 pr-2 py-1.5 rounded-lg border cursor-pointer flex items-center gap-1.5" style={{ borderColor: C.line, color: C.chalk }}>
+              Elegir color
+              <input type="color" aria-label="Elegir color del menú" className="w-5 h-5 p-0 border-0 bg-transparent cursor-pointer rounded"
+                onChange={(e) => {
+                  const hex = e.target.value;
+                  const r = parseInt(hex.slice(1, 3), 16), g = parseInt(hex.slice(3, 5), 16), b = parseInt(hex.slice(5, 7), 16);
+                  setAcentoManual(acentosDesdeColor(r, g, b));
+                }} />
+            </label>
+          </div>
         </div>
 
         <div className="pt-4 mt-4 border-t" style={{ borderColor: C.line }}>
@@ -7904,8 +8068,13 @@ SUS HIJOS/AS:\n${mis}`;
                   {t("sq.crest")}
                   <input type="file" accept="image/*" className="hidden" onChange={async (e) => {
                     const f = e.target.files?.[0];
-                    if (!f || !clubInfo.rec) return;
+                    if (!f) return;
                     const b64 = await new Promise((ok) => { const r = new FileReader(); r.onload = () => ok(String(r.result).split(",")[1]); r.readAsDataURL(f); });
+                    /* El color se detecta en el propio dispositivo y no depende de
+                       la nube: aunque este club todavía no tenga ficha en Airtable
+                       (clubInfo.rec vacío), el menú ya puede tomar su color. */
+                    extraerAcentoDeEscudo(`data:${f.type || "image/png"};base64,${b64}`).then((par) => { if (par && !acentoManual) setAcentoMenu(par); });
+                    if (!clubInfo.rec) return;
                     const out = await airClubCrest(clubInfo.rec, b64, f.type || "image/png", f.name);
                     if (out?.url) setClubInfo((c) => ({ ...c, crest: out.url }));
                   }} />
@@ -9572,7 +9741,7 @@ SUS HIJOS/AS:\n${mis}`;
           </button>
           <LangPicker lang={lang} setLang={setLang} />
           <button onClick={() => { setAuthToken(null); setSession(null); setMsgs([]); }} className="text-xs px-3 py-1.5 rounded-lg border" style={{ borderColor: C.line, color: C.dim }}>{t("c.exit")}</button>
-          <button onClick={() => setMenuOpen((v) => !v)} aria-expanded={menuOpen} className="relative lg:hidden text-xs px-3 py-2 rounded-lg border font-display uppercase tracking-wide" style={{ borderColor: menuOpen ? AC : C.line, color: menuOpen ? AC : C.chalk }}>
+          <button onClick={() => setMenuOpen((v) => !v)} aria-expanded={menuOpen} className="relative lg:hidden text-xs px-3 py-2 rounded-lg border font-display uppercase tracking-wide" style={{ borderColor: menuOpen ? MC : C.line, color: menuOpen ? MC : C.chalk }}>
             ☰<span className="hidden sm:inline"> Menú</span>
             {hayAvisosNav && <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full" style={{ background: C.red, boxShadow: `0 0 0 2px ${C.bg}` }} />}
           </button>
@@ -9707,7 +9876,7 @@ SUS HIJOS/AS:\n${mis}`;
       {menuOpen && (
         <div className="lg:hidden fixed inset-0 z-40" style={{ background: "rgba(0,0,0,.56)" }} onClick={() => setMenuOpen(false)}>
           <div className="absolute right-0 top-0 h-full w-[min(22rem,88vw)] overflow-y-auto border-l p-4" style={{ background: C.panel, borderColor: C.line }} onClick={(e) => e.stopPropagation()}>
-            <div className="flex items-center justify-between mb-4"><span className="font-display uppercase tracking-wide" style={{ color: AC }}>Navegación</span><button onClick={() => setMenuOpen(false)} className="text-sm px-3 py-1.5 rounded-lg border" style={{ borderColor: C.line, color: C.chalk }}>Cerrar</button></div>
+            <div className="flex items-center justify-between mb-4"><span className="font-display uppercase tracking-wide" style={{ color: MC }}>Navegación</span><button onClick={() => setMenuOpen(false)} className="text-sm px-3 py-1.5 rounded-lg border" style={{ borderColor: C.line, color: C.chalk }}>Cerrar</button></div>
             {(() => {
               const { grupos, sueltas } = agruparNav(tabsMenu);
               const Boton = (k) => {
@@ -9727,8 +9896,8 @@ SUS HIJOS/AS:\n${mis}`;
                 <button key={k} onClick={() => { setTab(bloq ? "premium" : k); setMenuOpen(false); }} aria-current={tab === k ? "page" : undefined}
                   title={bloq ? t("c.proTab") : undefined}
                   className="nav-item w-full min-h-12 flex items-center gap-3 px-3 py-2.5 rounded-lg text-left font-display uppercase tracking-wide text-sm"
-                  style={{ background: tab === k ? "rgba(54,69,79,.06)" : "transparent", color: tab === k ? AC : bloq ? C.dim : C.chalk, borderLeft: tab === k ? `3px solid ${AC}` : "3px solid transparent" }}>
-                  <span className="w-4 shrink-0 text-center text-[15px] leading-none" style={{ color: tab === k ? AC : C.dim }}>{TAB_ICON[k]}</span>
+                  style={{ background: tab === k ? "rgba(54,69,79,.06)" : "transparent", color: tab === k ? MC : bloq ? C.dim : C.chalk, borderLeft: tab === k ? `3px solid ${MC}` : "3px solid transparent" }}>
+                  <span className="w-4 shrink-0 text-center text-[15px] leading-none" style={{ color: tab === k ? MC : C.dim }}>{TAB_ICON[k]}</span>
                   <span className="flex-1">{t("nav." + k)}</span>
                   {bloq && <span className="text-[11px] shrink-0" style={{ color: AC }}>★</span>}
                 </button>
@@ -9766,17 +9935,17 @@ SUS HIJOS/AS:\n${mis}`;
               cuando el club te ha dado de alta. */}
           {session.plan !== "free" && (
             <div className="flex flex-col items-center gap-2 pb-3 mb-2 border-b" style={{ borderColor: C.line }}>
-              <div className="rounded-lg p-1.5" style={{ background: "rgba(255,255,255,.05)", boxShadow: `0 0 0 1px ${AC}` }}>
+              <div className="rounded-lg p-1.5" style={{ background: "rgba(255,255,255,.05)", boxShadow: `0 0 0 1px ${MC}` }}>
                 <Crest src={teamCrest} name={session.team.name} size={84} />
               </div>
               <div className="text-center leading-tight">
                 <div className="font-display uppercase tracking-wide text-sm" style={{ color: C.chalk }}>{session.team.name}</div>
                 <div className="text-[10px]" style={{ color: C.dim }}>{session.club}</div>
                 {session.team?.web && (
-                  <a href={session.team.web} target="_blank" rel="noreferrer" className="text-[10px] hover:underline" style={{ color: AC }}>Web del equipo ↗</a>
+                  <a href={session.team.web} target="_blank" rel="noreferrer" className="text-[10px] hover:underline" style={{ color: MC }}>Web del equipo ↗</a>
                 )}
                 {session.team?.maps && (
-                  <a href={session.team.maps} target="_blank" rel="noreferrer" className="block text-[10px] hover:underline" style={{ color: AC }}>📍 Cómo llegar ↗</a>
+                  <a href={session.team.maps} target="_blank" rel="noreferrer" className="block text-[10px] hover:underline" style={{ color: MC }}>📍 Cómo llegar ↗</a>
                 )}
                 {/* Plazas de cuerpo técnico ocupadas. Solo se muestra a quien
                     puede ver la lista de usuarios: para el resto, el número de
@@ -9814,8 +9983,8 @@ SUS HIJOS/AS:\n${mis}`;
               <button key={k} onClick={() => (bloq ? setTab("premium") : setTab(k))} aria-current={tab === k ? "page" : undefined}
                 title={bloq ? t("c.proTab") : undefined}
                 className="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-left font-display uppercase tracking-wide text-sm"
-                style={{ background: tab === k ? "rgba(54,69,79,.06)" : "transparent", color: tab === k ? AC : bloq ? C.dim : C.chalk, borderLeft: tab === k ? `3px solid ${AC}` : "3px solid transparent" }}>
-                <span className="w-4 shrink-0 text-center text-[15px] leading-none" style={{ color: tab === k ? AC : C.dim }}>{TAB_ICON[k]}</span>
+                style={{ background: tab === k ? "rgba(54,69,79,.06)" : "transparent", color: tab === k ? MC : bloq ? C.dim : C.chalk, borderLeft: tab === k ? `3px solid ${MC}` : "3px solid transparent" }}>
+                <span className="w-4 shrink-0 text-center text-[15px] leading-none" style={{ color: tab === k ? MC : C.dim }}>{TAB_ICON[k]}</span>
                 <span className="flex-1">{t("nav." + k)}</span>
                 {bloq && <span className="text-[11px] shrink-0" style={{ color: AC }} aria-label={t("c.proTab")}>★</span>}
               </button>
@@ -9897,7 +10066,7 @@ SUS HIJOS/AS:\n${mis}`;
               return (
                 <button key={cat} onClick={() => setSelectedCategory(cat)}
                   className="shrink-0 flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-display uppercase whitespace-nowrap"
-                  style={{ color: activa ? AC : C.dim, fontWeight: activa ? 700 : 500 }}>
+                  style={{ color: activa ? MC : C.dim, fontWeight: activa ? 700 : 500 }}>
                   <span aria-hidden="true">{iconoDeCategoria(cat)}</span>{cat}
                 </button>
               );
@@ -9914,14 +10083,14 @@ SUS HIJOS/AS:\n${mis}`;
           {mobileTabs.map((k) => (
             <button key={k} onClick={() => setTab(k)} title={t("nav." + k)} aria-label={t("nav." + k)}
               className="relative flex-1 min-w-0 py-2.5 flex items-center justify-center"
-              style={{ color: tab === k ? AC : C.dim }}>
-              {tab === k && <span className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-[3px] rounded-b-full" style={{ background: AC }} />}
+              style={{ color: tab === k ? MC : C.dim }}>
+              {tab === k && <span className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-[3px] rounded-b-full" style={{ background: MC }} />}
               <span className="text-xl leading-none">{TAB_ICON[k]}</span>
             </button>
           ))}
           <button onClick={() => setMenuOpen(true)} title="Más" aria-label="Más secciones"
-            className="relative flex-1 min-w-0 py-2.5 flex items-center justify-center" style={{ color: menuOpen ? AC : C.dim }}>
-            {menuOpen && <span className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-[3px] rounded-b-full" style={{ background: AC }} />}
+            className="relative flex-1 min-w-0 py-2.5 flex items-center justify-center" style={{ color: menuOpen ? MC : C.dim }}>
+            {menuOpen && <span className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-[3px] rounded-b-full" style={{ background: MC }} />}
             <span className="relative inline-block text-xl leading-none">
               ⋯
               {hayAvisosNav && <span className="absolute -top-0.5 -right-1.5 w-2 h-2 rounded-full" style={{ background: C.red, boxShadow: `0 0 0 2px ${C.panel}` }} />}
