@@ -4582,6 +4582,24 @@ export default function App() {
   const [proposals, setProposals] = useState(PROPOSALS_INIT);
   /* Categoría actualmente seleccionada si el usuario tiene múltiples */
   const [selectedCategory, setSelectedCategory] = useState(session?.currentCategory);
+  /* Orden del menú fijo de abajo (móvil), a elegir por cada persona: por
+     defecto sale Inicio + hasta tres secciones más (Pizarra, Entrenamiento,
+     Modo partido), pero un delegado no vive de eso — puede preferir tener
+     Disciplina o Asistencia como principales. Se guarda por dispositivo y
+     por cuenta (email), no viaja a la nube ni entre dispositivos. */
+  const navOrderKey = `cb_navorder_${session?.email || "anon"}`;
+  const [navOrder, setNavOrderState] = useState(null);
+  useEffect(() => {
+    if (!session) return;
+    try { setNavOrderState(JSON.parse(localStorage.getItem(navOrderKey) || "null")); } catch { setNavOrderState(null); }
+  }, [navOrderKey]); // eslint-disable-line
+  const setNavOrder = (orden) => {
+    setNavOrderState(orden);
+    try {
+      if (orden && orden.length) localStorage.setItem(navOrderKey, JSON.stringify(orden));
+      else localStorage.removeItem(navOrderKey);
+    } catch { /* noop */ }
+  };
   /* Las jugadas las guarda la pizarra en localStorage; el modo partido las lee
      de la misma clave para poder listar los ABP sin duplicar el almacén. Se
      relee al entrar en la pestaña de partido, que es cuando importan. */
@@ -5491,6 +5509,51 @@ SUS HIJOS/AS:\n${mis}`;
             {eqMsg && <div className="text-xs mt-2" style={{ color: eqMsg.startsWith("✓") ? C.green : C.red }}>{eqMsg}</div>}
           </div>
         )}
+
+        {/* ---- MENÚ DE LA BARRA INFERIOR (MÓVIL) ----
+            Los 4 primeros de esta lista son los que salen fijos abajo en el
+            móvil; el resto se ve al tocar "Más". Cada persona elige el suyo:
+            un delegado no vive del día de partido y puede preferir tener
+            Disciplina o Asistencia ahí en vez de Pizarra o Modo partido.
+            Se guarda solo en este dispositivo, por cuenta. */}
+        <div className="pt-4 mt-4 border-t" style={{ borderColor: C.line }}>
+          <div className="flex items-center justify-between mb-1">
+            <div className="font-display text-sm uppercase tracking-widest" style={{ color: C.dim }}>Menú de abajo (móvil)</div>
+            {navOrder && navOrder.length > 0 && (
+              <button onClick={() => setNavOrder(null)} className="text-[11px] underline shrink-0" style={{ color: C.dim }}>Restablecer</button>
+            )}
+          </div>
+          <div className="text-[11px] mb-2" style={{ color: C.dim }}>
+            Las 4 primeras quedan fijas abajo del móvil. Cambia el orden con las flechas.
+          </div>
+          {(() => {
+            const base = (navOrder && navOrder.length) ? navOrder.filter((k) => visibleTabs.includes(k)) : mobileTabsDefault;
+            const orden = [...base, ...visibleTabs.filter((k) => !base.includes(k))];
+            const mover = (k, dir) => {
+              const i = orden.indexOf(k);
+              const j = i + dir;
+              if (j < 0 || j >= orden.length) return;
+              const copia = [...orden];
+              [copia[i], copia[j]] = [copia[j], copia[i]];
+              setNavOrder(copia);
+            };
+            return (
+              <div className="flex flex-col gap-1 max-h-56 overflow-y-auto">
+                {orden.map((k, i) => (
+                  <div key={k} className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg border text-sm"
+                    style={{ borderColor: i < 4 ? AC : C.line, background: i < 4 ? `${AC}12` : "transparent", color: C.chalk }}>
+                    <span className="w-4 text-center shrink-0" style={{ color: i < 4 ? AC : C.dim }} aria-hidden="true">{TAB_ICON[k]}</span>
+                    <span className="flex-1 truncate">{t("nav." + k)}</span>
+                    <button onClick={() => mover(k, -1)} disabled={i === 0} aria-label={`Subir ${t("nav." + k)}`}
+                      className="w-6 h-6 shrink-0 disabled:opacity-25" style={{ color: C.dim }}>▲</button>
+                    <button onClick={() => mover(k, 1)} disabled={i === orden.length - 1} aria-label={`Bajar ${t("nav." + k)}`}
+                      className="w-6 h-6 shrink-0 disabled:opacity-25" style={{ color: C.dim }}>▼</button>
+                  </div>
+                ))}
+              </div>
+            );
+          })()}
+        </div>
 
         <div className="pt-4 mt-4 border-t" style={{ borderColor: C.line }}>
           <div className="font-display text-sm uppercase tracking-widest mb-3" style={{ color: C.dim }}>{t("p.changePass")}</div>
@@ -9395,7 +9458,18 @@ SUS HIJOS/AS:\n${mis}`;
      que no existen para el resto de cuentas. */
   const tabsMenu = TODAS_TABS.filter((k) => allTabs.includes(k) || !["master", "equipos"].includes(k));
   const sinAcceso = (k) => !allTabs.includes(k);
-  const mobileTabs = [...visibleTabs.filter((k) => ["inicio", "pizarra", "entrenamiento", "partido"].includes(k)), ...visibleTabs.filter((k) => !["inicio", "pizarra", "entrenamiento", "partido"].includes(k))].slice(0, 4);
+  const mobileTabsDefault = [...visibleTabs.filter((k) => ["inicio", "pizarra", "entrenamiento", "partido"].includes(k)), ...visibleTabs.filter((k) => !["inicio", "pizarra", "entrenamiento", "partido"].includes(k))].slice(0, 4);
+  /* Si la persona ha elegido su propio orden (ver "Personalizar menú" en Mi
+     cuenta), manda eso: primero sus elegidas que sigan estando a su alcance
+     (un cambio de rol puede dejar alguna fuera), y se rellena con el orden
+     automático de siempre hasta completar las 4. */
+  const mobileTabs = (navOrder && navOrder.length)
+    ? (() => {
+        const elegidas = navOrder.filter((k) => visibleTabs.includes(k));
+        const relleno = mobileTabsDefault.filter((k) => !elegidas.includes(k));
+        return [...elegidas, ...relleno].slice(0, 4);
+      })()
+    : mobileTabsDefault;
   /* Punto de aviso en el menú móvil: mismos avisos que ya se calculan para la
      tarjeta de Inicio (accesos pendientes, propuestas por resolver,
      incidencias sin validar, firmas pendientes), para que en el móvil se
