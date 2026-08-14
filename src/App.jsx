@@ -3498,7 +3498,7 @@ Devuelve SOLO un objeto JSON con las claves "tokens" y "shapes", sin explicació
         {/* Retocar la pizarra hablándole en cristiano. Va antes de Jugadas
             porque se usa mientras se dibuja, no al guardar. */}
         <WbMenu label="Ayuda IA" icon="✦" AC={AC}>
-          <div className="p-2 w-[min(88vw,320px)]">
+          <div className="p-2 w-[min(88vw,380px)]">
             <div className="text-[10px] font-display uppercase tracking-widest mb-1" style={{ color: C.dim }}>Dile el cambio</div>
             <textarea value={iaTexto} onChange={(e) => setIaTexto(e.target.value)} rows={3}
               placeholder="Ej. mueve al 9 al segundo palo y saca al 4 al borde del área"
