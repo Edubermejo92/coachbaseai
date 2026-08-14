@@ -1038,8 +1038,8 @@ const CAL_SAMPLE = "1;06/09/2026;10:00;C.D. Chamartín Vergara;CD Norte;Campo Mu
    con sesión real y equipo en la nube, el efecto de sincronización lo
    sustituye por lo que haya en Airtable. */
 const FIXTURES_INIT = [
-  { id: 8001, j: "Pretemporada", date: "2026-08-12", time: "", home: "C.D. Chamartín Vergara - Alcobendas \"B\"", away: "Trabajo individual de pretemporada (ver Plan de Pretemporada en Normativa)", place: "" },
-  { id: 8002, j: "Pretemporada", date: "2026-09-02", time: "", home: "C.D. Chamartín Vergara - Alcobendas \"B\"", away: "Inicio de la pretemporada de equipo", place: "" },
+  { id: 8001, j: "PT", date: "2026-08-12", time: "", home: "C.D. Chamartín Vergara - Alcobendas \"B\"", away: "Trabajo individual de pretemporada (ver Plan de Pretemporada en Normativa)", place: "" },
+  { id: 8002, j: "PT", date: "2026-09-02", time: "", home: "C.D. Chamartín Vergara - Alcobendas \"B\"", away: "Inicio de la pretemporada de equipo", place: "" },
   { id: 8003, j: "1", date: "2026-09-26", time: "", home: "AULA C.F. - BREZO OSUNA \"A\"", away: "C.D. Chamartín Vergara - Alcobendas \"B\"", place: "" },
   { id: 8004, j: "2", date: "2026-10-03", time: "", home: "C.D. Chamartín Vergara - Alcobendas \"B\"", away: "C.F. VALDEBEBAS \"A\"", place: "" },
   { id: 8005, j: "3", date: "2026-10-10", time: "", home: "C.D. OLIMPICO DE HORTALEZA \"B\"", away: "C.D. Chamartín Vergara - Alcobendas \"B\"", place: "" },
@@ -6430,9 +6430,9 @@ SUS HIJOS/AS:\n${mis}`;
   const sortedFix = [...fixtures].sort((a, b) => (a.date + a.time < b.date + b.time ? -1 : 1));
   const nextFix = sortedFix.find((f) => f.date >= todayISO) || null;
   /* Solo partidos de verdad (jornada numérica): los avisos de pretemporada
-     ("j" = "Pretemporada") no tienen rival ni hora de partido, así que no
-     pueden alimentar el cartel de "próximo partido" — ahí forzarían un "vs"
-     sin sentido. Se siguen viendo igual en la lista del calendario completo. */
+     ("j" = "PT") no tienen rival ni hora de partido, así que no pueden
+     alimentar el cartel de "próximo partido" — ahí forzarían un "vs" sin
+     sentido. Se siguen viendo igual en la lista del calendario completo. */
   const nextMatchFix = sortedFix.find((f) => f.date >= todayISO && /^\d+$/.test(String(f.j))) || null;
   const importCal = (txt) => {
     const rows = parseFixtures(txt);
@@ -6482,7 +6482,13 @@ SUS HIJOS/AS:\n${mis}`;
                 return (
                   <div key={f.id} className="rounded-lg border p-3 flex flex-wrap items-center gap-x-3 gap-y-1"
                     style={{ borderColor: isNext ? AC : C.line, background: isNext ? C.panel2 : "transparent", opacity: f.date < todayISO ? 0.5 : 1 }}>
-                    <div className="font-display text-sm w-10 shrink-0" style={{ color: AC }}>{f.j ? "J" + f.j : "—"}</div>
+                    {/* Ancho fijo (w-10) más una etiqueta larga ("Pretemporada"
+                        en vez de "PT") desbordaba encima de la fecha de al lado:
+                        flexbox no encoge un texto sin espacios por debajo de su
+                        ancho natural aunque se le fuerce un ancho menor. Con
+                        max-w + truncate no puede volver a pasar, sea cual sea
+                        el texto que traiga f.j (p.ej. un CSV importado). */}
+                    <div className="font-display text-sm shrink-0 max-w-[72px] overflow-hidden text-ellipsis whitespace-nowrap" title={f.j ? "J" + f.j : ""} style={{ color: AC }}>{f.j ? "J" + f.j : "—"}</div>
                     <div className="text-sm tabular-nums shrink-0" style={{ color: C.chalk }}>{f.date} {f.time}</div>
                     <div className="text-sm flex-1 min-w-[180px]" style={{ color: C.chalk }}>{f.home} <span style={{ color: C.dim }}>vs</span> {f.away}</div>
                     {f.place && <div className="text-[11px] w-full sm:w-auto" style={{ color: C.dim }}>📍 {f.place}</div>}
