@@ -76,6 +76,15 @@ const pruebaDias = (v: unknown) => {
   const fin = new Date(y, m - 1, d, 23, 59, 59);
   return Math.max(0, Math.ceil((fin.getTime() - Date.now()) / 86400000));
 };
+/* Fecha (YYYY-MM-DD) de dentro de 30 días, para el campo "Prueba hasta".
+   Toda cuenta que se crea a partir de ahora -invitada por su club o de alta
+   libre- arranca con un mes de prueba automático, sin que el Master tenga
+   que ponerlo a mano registro a registro. */
+const fechaTrial30 = (): string => {
+  const d = new Date();
+  d.setDate(d.getDate() + 30);
+  return d.toISOString().slice(0, 10);
+};
 const CL = {
   nombre: "fldlUNDFkJyehw8x0", comunidad: "fld0BUV86fvUDWOcU",
   escudo: "fldX3CMkCrO54gUrV", campo: "fldVH4NDAN2Odlzwe",
@@ -259,7 +268,11 @@ const tieneRol = (sesion: any, clave: string): boolean =>
    AIRTABLE_TOKEN, para no depender de otra variable en Netlify. Rotar el
    token de Airtable invalida las sesiones abiertas: es lo deseable. */
 const AUTH_SECRET = () => Netlify.env.get("AUTH_SECRET") || TOKEN() || "";
-const TOKEN_DIAS = 30;
+/* Antes 30 días: con eso, un cuerpo técnico que abre la app una vez por
+   semana veía "sesión caducada" a mitad de temporada, en plena convocatoria,
+   sin ningún aviso de que el cambio no se había guardado hasta que aparecía
+   el cartel. Un año cubre una temporada entera sin volver a pedir login. */
+const TOKEN_DIAS = 365;
 const b64u = (b: Uint8Array) =>
   btoa(String.fromCharCode(...b)).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
 const unb64u = (t: string) => {
@@ -1465,7 +1478,7 @@ export default async (req: Request) => {
           .map((x: unknown) => rolKey(x)).filter((k: string) => puede.includes(k) && k !== pedido);
         const d = await create(T_USUARIOS, {
           [U.nombre]: b.name, [U.email]: email, [U.rol]: b.rol || "Entrenador principal",
-          [U.estado]: "Pendiente", [U.plan]: "Oficial",
+          [U.estado]: "Pendiente", [U.plan]: "Oficial", [U.prueba]: fechaTrial30(),
           ...(b.clubRec ? { [U.club]: [b.clubRec] } : {}),
           ...(b.teamRec ? { [U.equipo]: [b.teamRec] } : {}),
           ...(extrasPedidos.length ? { [U.rolesExtra]: extrasPedidos.map((k: string) => ROL_LABEL[k]) } : {}),
@@ -1565,7 +1578,7 @@ export default async (req: Request) => {
           }
           const d = await create(T_USUARIOS, {
             [U.nombre]: b.name, [U.email]: email, [U.rol]: "Director deportivo", [U.estado]: "Activo",
-            [U.plan]: "Oficial", [U.pass]: await hashPassword(String(b.password || "")),
+            [U.plan]: "Oficial", [U.pass]: await hashPassword(String(b.password || "")), [U.prueba]: fechaTrial30(),
             [U.club]: [clubId], ...(eqId ? { [U.equipo]: [eqId] } : {}),
           });
           const [eqsF, clubsF] = await Promise.all([list(T_EQUIPOS), list(T_CLUBES)]);
@@ -1626,7 +1639,7 @@ export default async (req: Request) => {
         }
         const d = await create(T_USUARIOS, {
           [U.nombre]: b.name, [U.email]: email, [U.rol]: "Entrenador principal", [U.estado]: "Activo",
-          [U.plan]: "Gratis", [U.pass]: await hashPassword(String(b.password || "")),
+          [U.plan]: "Gratis", [U.pass]: await hashPassword(String(b.password || "")), [U.prueba]: fechaTrial30(),
           ...(clubId ? { [U.club]: [clubId] } : {}), ...(eqId ? { [U.equipo]: [eqId] } : {}),
         });
         const eqs3 = await list(T_EQUIPOS);

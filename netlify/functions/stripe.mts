@@ -303,6 +303,11 @@ export default async (req: Request) => {
       customer_email: miEmail,
       "subscription_data[metadata][app]": "coachbase-ai",
       "subscription_data[metadata][plan]": plan,
+      /* Mismo mes de prueba que el resto de la app (ver fechaTrial30 en
+         airtable.mts): Stripe no cobra la tarjeta hasta que pasen 30 días,
+         así que quien paga por primera vez tiene el mismo margen que quien
+         entra sin pagar todavía. */
+      "subscription_data[trial_period_days]": "30",
     };
     if (body.club) params["subscription_data[metadata][club]"] = String(body.club);
     if (body.equipo) params["subscription_data[metadata][equipo]"] = String(body.equipo);
