@@ -4974,9 +4974,15 @@ export default function App() {
     setSlotPos(nuevos);
     setSysCode(clean);
     setSelSlot(null);
+    setSelPlayer(null);
     return true;
   };
   const [selSlot, setSelSlot] = useState(null);
+  /* Camino inverso al de tocar un puesto en el campo: elegir primero al
+     jugador (del banquillo o de la propia alineación) y que la app enseñe
+     ahí mismo, a la derecha, en qué puestos puede entrar -el suyo primero-
+     sin tener que acertar el punto exacto del campo, más cómodo en móvil. */
+  const [selPlayer, setSelPlayer] = useState(null);
   const [profileId, setProfileId] = useState(null);
   const [genBusy, setGenBusy] = useState(false);
   const [csvOpen, setCsvOpen] = useState(false);
@@ -5375,7 +5381,12 @@ SUS HIJOS/AS:\n${mis}`;
   };
   const onSlotUp = (id) => {
     const d = dragRef.current; dragRef.current = null;
-    if (d && !d.moved && can("editLineup")) setSelSlot((s) => (s === id ? null : id));
+    if (!d || d.moved || !can("editLineup")) return;
+    /* Con un jugador ya elegido (camino "toca al jugador primero"), tocar
+       directamente un puesto del campo lo coloca ahí sin pasos de más. */
+    if (selPlayer && id) { asignarJugadorAPuesto(id, selPlayer); return; }
+    setSelSlot((s) => (s === id ? null : id));
+    setSelPlayer(null);
   };
 
   const avail = players.filter((p) => p.st === "disponible").length;
@@ -7352,6 +7363,18 @@ SUS HIJOS/AS:\n${mis}`;
       setLineup(newLineup);
     }
   };
+  /* Único punto que de verdad mueve a un jugador a un puesto, use quien lo
+     llame el camino de "toca el campo primero" o el de "toca al jugador
+     primero": quita al jugador de cualquier otro puesto donde estuviera
+     (nunca en dos demarcaciones a la vez) y limpia ambas selecciones. */
+  const asignarJugadorAPuesto = (slotId, playerId) => {
+    const next = { ...lineup };
+    Object.keys(next).forEach((k) => { if (next[k] === playerId) delete next[k]; });
+    next[slotId] = playerId;
+    updateLineupWithProposal(next);
+    setSelSlot(null);
+    setSelPlayer(null);
+  };
 
   const updateSquadWithProposal = (updateFn) => {
     if (canProposeChanges()) {
@@ -8181,6 +8204,7 @@ SUS HIJOS/AS:\n${mis}`;
 
   const renderLineup = () => {
     const bench = players.filter((p) => !starters.has(p.id));
+    const jugadorSel = selPlayer ? players.find((x) => x.id === selPlayer) : null;
     return (
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <Card title={`${canProposeChanges() ? "Propuesta de alineación" : "Titulares"} — ${sysCode}`}>
@@ -8214,6 +8238,10 @@ SUS HIJOS/AS:\n${mis}`;
             </svg>
             {Object.entries(slotPos).map(([id, s]) => {
               const p = players.find((x) => x.id === lineup[id]); const sel = selSlot === id;
+              /* Con un jugador elegido desde la lista, se le marca el aro a
+                 su puesto natural en el campo mismo -no solo en la lista de
+                 la derecha- para verlo de un vistazo antes de tocar. */
+              const sugerido = !sel && jugadorSel && s.label === jugadorSel.pos;
               return (
                 <div key={id} onPointerDown={(e) => onSlotDown(e, id)} onPointerUp={() => onSlotUp(id)} className="absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center" style={{ left: `${s.x}%`, top: `${s.y}%`, cursor: can("editLineup") ? "grab" : "default" }}>
                   {/* "background" (shorthand) y "backgroundImage"/"backgroundSize"/
@@ -8225,7 +8253,7 @@ SUS HIJOS/AS:\n${mis}`;
                       de a tamaño completo y centrada. Todo en una sola
                       declaración "background" evita el conflicto. */}
                   <div className="relative w-11 h-11 rounded-full flex items-center justify-center font-display text-lg font-bold border-2 overflow-hidden"
-                    style={{ background: sel ? AC : p?.photo ? `center / cover no-repeat url(${p.photo})` : C.panel2, color: sel ? "#141414" : C.chalk, borderColor: sel ? AC : p && p.st !== "disponible" ? stColor(p.st) : "rgba(54,69,79,0.5)" }}>
+                    style={{ background: sel ? AC : p?.photo ? `center / cover no-repeat url(${p.photo})` : C.panel2, color: sel ? "#141414" : C.chalk, borderColor: sel ? AC : sugerido ? AC : p && p.st !== "disponible" ? stColor(p.st) : "rgba(54,69,79,0.5)" }}>
                     {(!p?.photo || sel) && (p ? p.d : s.label)}
                     {/* Con foto, el dorsal desaparecía del todo detrás de la
                         imagen: se ve el jugador pero no quién es. Se pone como
@@ -8245,22 +8273,39 @@ SUS HIJOS/AS:\n${mis}`;
             })}
           </div>
         </Card>
-        <Card title={selSlot ? `Asignar a ${selSlot}` : "Banquillo"}>
-          {!selSlot && <div className="text-xs mb-3" style={{ color: C.dim }}>{t("ln.tapPos")}</div>}
+        <Card title={selSlot ? `Asignar a ${selSlot}` : jugadorSel ? `Elegir puesto para ${jugadorSel.n.split(" ")[0]}` : "Banquillo"}>
+          {!selSlot && !jugadorSel && (
+            <div className="text-xs mb-3" style={{ color: C.dim }}>{t("ln.tapPos")} · o toca un jugador de la lista para ver dónde puede jugar</div>
+          )}
+          {jugadorSel && !selSlot && (
+            <div className="text-xs mb-3" style={{ color: C.dim }}>Toca un puesto del campo, o elige uno de esta lista — primero el suyo</div>
+          )}
           <div className="space-y-1.5 max-h-[520px] overflow-y-auto pr-1">
-            {(selSlot ? players : bench).map((p) => (
-              <button key={p.id} disabled={!selSlot} onClick={() => {
-                /* Un jugador solo puede ocupar una demarcación a la vez: si ya
-                   estaba en otro puesto, se le quita de ahí antes de ponerlo
-                   en el nuevo. Antes se limitaba a añadir el puesto nuevo sin
-                   tocar los demás, así que el mismo jugador podía acabar
-                   apareciendo en dos sitios del campo al mismo tiempo. */
-                const next = { ...lineup };
-                Object.keys(next).forEach((k) => { if (next[k] === p.id) delete next[k]; });
-                next[selSlot] = p.id;
-                updateLineupWithProposal(next);
-                setSelSlot(null);
-              }} className="w-full flex items-center justify-between text-sm py-2 px-3 rounded-lg border text-left hover:opacity-80 disabled:cursor-default" style={{ borderColor: C.line, background: C.panel2, color: C.chalk }}>
+            {jugadorSel && !selSlot ? (
+              /* Camino "elige al jugador primero": en vez de tener que
+                 acertar el punto exacto del campo, se listan los puestos con
+                 el suyo natural arriba del todo -y quién lo ocupa, si hay
+                 alguien-, y basta con tocar uno para colocarlo ahí. */
+              Object.entries(slotPos)
+                .sort(([, a], [, b]) => (a.label === jugadorSel.pos ? 0 : 1) - (b.label === jugadorSel.pos ? 0 : 1))
+                .map(([slotId, s]) => {
+                  const ocupante = players.find((x) => x.id === lineup[slotId]);
+                  const esSuPuesto = s.label === jugadorSel.pos;
+                  return (
+                    <button key={slotId} onClick={() => asignarJugadorAPuesto(slotId, jugadorSel.id)}
+                      className="w-full flex items-center justify-between text-sm py-2 px-3 rounded-lg border text-left hover:opacity-80"
+                      style={{ borderColor: esSuPuesto ? AC : C.line, background: C.panel2, color: C.chalk }}>
+                      <span className="flex items-center gap-2">
+                        <span className="font-display text-base" style={{ color: AC }}>{s.label}</span>
+                        {esSuPuesto && <span className="text-[10px] font-display uppercase tracking-wide px-1.5 py-0.5 rounded" style={{ background: AC, color: C.sobre }}>Su puesto</span>}
+                      </span>
+                      <span style={{ color: C.dim }}>{ocupante ? `Ocupado · ${ocupante.n.split(" ")[0]}` : "Libre"}</span>
+                    </button>
+                  );
+                })
+            ) : (selSlot ? players : bench).map((p) => (
+              <button key={p.id} onClick={() => (selSlot ? asignarJugadorAPuesto(selSlot, p.id) : setSelPlayer(p.id))}
+                className="w-full flex items-center justify-between text-sm py-2 px-3 rounded-lg border text-left hover:opacity-80 disabled:cursor-default" style={{ borderColor: C.line, background: C.panel2, color: C.chalk }}>
                 <span className="flex items-center gap-2"><Avatar p={p} size={26} /><Dot st={p.st} /><span className="font-display text-base" style={{ color: AC }}>{p.d}</span>{p.n}</span>
                 <span style={{ color: C.dim }}>{p.pos}{starters.has(p.id) ? " · XI" : ""}</span>
               </button>
