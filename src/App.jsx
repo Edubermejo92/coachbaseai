@@ -4993,8 +4993,8 @@ export default function App() {
   /* Antes arrancaba con un partido inventado ("CD Norte · Domingo 27 · Campo
      Municipal Las Rozas") que en una cuenta real parecía de verdad. Ahora solo
      se rellena así en el modo demo. */
-  const MATCHINFO_DEMO = { rival: "CD Norte", fecha: "Domingo 27", hora: "10:00", lugar: "Campo Municipal Las Rozas" };
-  const MATCHINFO_VACIO = { rival: "", fecha: "", hora: "", lugar: "" };
+  const MATCHINFO_DEMO = { rival: "CD Norte", fecha: "Domingo 27", hora: "10:00", lugar: "Campo Municipal Las Rozas", j: "" };
+  const MATCHINFO_VACIO = { rival: "", fecha: "", hora: "", lugar: "", j: "" };
   const [matchInfo, setMatchInfo] = useState(MATCHINFO_VACIO);
   /* calendario del equipo */
   const [fixtures, setFixtures] = useState(FIXTURES_INIT);
@@ -5056,6 +5056,16 @@ export default function App() {
   const [postBusy, setPostBusy] = useState(false);
   const [postTxt, setPostTxt] = useState("");
   const [postCopiado, setPostCopiado] = useState(false);
+  /* Compartido entre el análisis del partido en curso y el de un partido ya
+     guardado en el histórico (que no tiene alineación ni tandas -eso no se
+     conserva-, solo acta y marcador): así el formato del informe no se
+     puede desincronizar entre los dos sitios donde se genera. */
+  const ESTRUCTURA_ANALISIS = `Responde en el idioma del usuario con esta estructura exacta y nada más:
+RESUMEN — dos frases sobre cómo fue el partido.
+LO QUE FUNCIONÓ — dos o tres puntos.
+A CORREGIR — dos o tres puntos.
+PRÓXIMO ENTRENAMIENTO — dos ejercicios concretos que ataquen lo de arriba.
+Sé breve (máx ~220 palabras) y concreto. Habla de fútbol, no de personas: son menores, así que nada de juicios sobre su carácter ni valoraciones personales, solo lo deportivo. Nunca hagas diagnósticos médicos.`;
   const analizarPartido = async () => {
     if (postBusy || !events.length) return;
     setPostBusy(true); setPostTxt("");
@@ -5063,12 +5073,7 @@ export default function App() {
     const xi = Object.entries(lineup).map(([s, id]) => { const p = players.find((x) => x.id === id); return p ? `${s}:#${p.d} ${p.n}` : `${s}:vacío`; }).join(", ");
     const resultado = score.us > score.them ? "victoria" : score.us < score.them ? "derrota" : "empate";
     const system = `Eres Coach AI, analista de fútbol base. Escribe el análisis post-partido de ${session.club} ${session.team.name} (${session.team.sub}) contra ${matchInfo.rival || "el rival"}. Resultado: ${score.us}-${score.them} (${resultado}).
-Responde en el idioma del usuario con esta estructura exacta y nada más:
-RESUMEN — dos frases sobre cómo fue el partido.
-LO QUE FUNCIONÓ — dos o tres puntos.
-A CORREGIR — dos o tres puntos.
-PRÓXIMO ENTRENAMIENTO — dos ejercicios concretos que ataquen lo de arriba.
-Sé breve (máx ~220 palabras) y concreto. Habla de fútbol, no de personas: son menores, así que nada de juicios sobre su carácter ni valoraciones personales, solo lo deportivo. Nunca hagas diagnósticos médicos.
+${ESTRUCTURA_ANALISIS}
 ALINEACIÓN: ${xi}
 TANDAS DE CAMBIOS USADAS: ${tandasUsadas} de ${tandasTotal}
 ACTA:\n${evTxt}`;
@@ -5083,6 +5088,36 @@ ACTA:\n${evTxt}`;
   };
   const copiarAnalisis = async () => {
     try { await navigator.clipboard.writeText(postTxt); setPostCopiado(true); setTimeout(() => setPostCopiado(false), 2000); } catch { /* sin portapapeles */ }
+  };
+  /* Análisis de un partido que ya está en el histórico -guardado sin pasar
+     por "generar análisis", o de una temporada anterior-, a partir de lo
+     único que se conserva de él: acta y marcador. Se congela en el propio
+     historial al terminar, para no tener que regenerarlo cada vez que se
+     abra la lista. */
+  const [histAnalisisBusyId, setHistAnalisisBusyId] = useState(null);
+  const [histAnalisisAbierto, setHistAnalisisAbierto] = useState(null);
+  const generarAnalisisHistorico = async (entry) => {
+    if (histAnalisisBusyId) return;
+    setHistAnalisisBusyId(entry.id);
+    const evTxt = (entry.acta || []).map((e) => `min ${e.disp}: ${e.type}${e.player ? " — " + e.player : ""}`).join("\n") || "sin eventos registrados";
+    const resultado = entry.us > entry.them ? "victoria" : entry.us < entry.them ? "derrota" : "empate";
+    const system = `Eres Coach AI, analista de fútbol base. Escribe el análisis post-partido de ${session.club} ${session.team.name} (${session.team.sub}) contra ${entry.rival || "el rival"}. Resultado: ${entry.us}-${entry.them} (${resultado}).
+${ESTRUCTURA_ANALISIS}
+ACTA:\n${evTxt}`;
+    let texto = "No he podido generar el análisis. Inténtalo de nuevo.";
+    try {
+      const data = await coachRequest(system, [{ role: "user", content: "Analiza el partido con el acta de arriba." }]);
+      texto = (data.content || []).filter((b) => b.type === "text").map((b) => b.text).join("\n") || texto;
+    } catch {
+      texto = "No he podido conectar con el asistente. Inténtalo de nuevo.";
+    }
+    setHistorial((h) => {
+      const out = h.map((x) => (x.id === entry.id ? { ...x, analisis: texto } : x));
+      try { localStorage.setItem(histKey, JSON.stringify(out)); } catch { /* noop */ }
+      return out;
+    });
+    setHistAnalisisBusyId(null);
+    setHistAnalisisAbierto(entry.id);
   };
 
   const usarPlantilla = async (p) => {
@@ -6495,7 +6530,7 @@ SUS HIJOS/AS:\n${mis}`;
     return (mio && normClub(f.home).includes(mio) ? f.away : f.home) || f.away || f.home;
   };
   const useAsNext = (f) => {
-    setMatchInfo({ rival: rivalDeFixture(f), fecha: f.date, hora: f.time || "—", lugar: f.place || "—" });
+    setMatchInfo({ rival: rivalDeFixture(f), fecha: f.date, hora: f.time || "—", lugar: f.place || "—", j: f.j || "" });
     setTab("partido");
   };
   /* Todos los rivales que aparecen en el calendario, sin repetir y en el
@@ -8497,7 +8532,7 @@ SUS HIJOS/AS:\n${mis}`;
     const toggle = (id) => editable && setCalled((s) => { const n = new Set(s); n.has(id) ? n.delete(id) : n.add(id); return n; });
     return (
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <Card title={`Convocatoria — J12 ${editable ? "" : "(solo lectura)"}`}>
+        <Card title={`Convocatoria${matchInfo.j ? ` — J${matchInfo.j}` : ""} ${editable ? "" : "(solo lectura)"}`}>
           <div className="grid grid-cols-2 gap-2 mb-4">
             {[["rival", "Rival"], ["fecha", "Fecha"], ["hora", "Hora"], ["lugar", "Lugar"]].map(([k, lbl]) => (
               <div key={k} className={k === "lugar" ? "col-span-2" : ""}>
@@ -8509,10 +8544,20 @@ SUS HIJOS/AS:\n${mis}`;
                         al siguiente, que luego rompe el histórico y las
                         estadísticas por rival. "Otro rival" se deja para
                         amistosos o partidos de copa que no están en el
-                        calendario oficial. */}
+                        calendario oficial. Al elegir uno, la fecha, la hora,
+                        el lugar y la jornada llegan solos desde su partido
+                        del calendario -no hace falta rellenarlos a mano
+                        también, si ya están ahí-. */}
                     <select value={rivalesDelCalendario.includes(matchInfo.rival) ? matchInfo.rival : "__otro__"}
                       disabled={!editable}
-                      onChange={(e) => setMatchInfo((m) => ({ ...m, rival: e.target.value === "__otro__" ? "" : e.target.value }))}
+                      onChange={(e) => {
+                        const v = e.target.value;
+                        if (v === "__otro__") { setMatchInfo((m) => ({ ...m, rival: "" })); return; }
+                        const f = sortedFix.find((x) => /^\d+$/.test(String(x.j)) && rivalDeFixture(x) === v);
+                        setMatchInfo((m) => f
+                          ? { ...m, rival: v, fecha: f.date, hora: f.time || m.hora, lugar: f.place || m.lugar, j: f.j || "" }
+                          : { ...m, rival: v });
+                      }}
                       className="w-full rounded-lg px-3 py-2 text-sm outline-none border disabled:opacity-60" style={{ background: C.panel2, borderColor: C.line, color: C.chalk }}>
                       {rivalesDelCalendario.map((r) => <option key={r} value={r}>{r}</option>)}
                       <option value="__otro__">✎ Otro rival (no está en el calendario)</option>
@@ -8921,13 +8966,18 @@ SUS HIJOS/AS:\n${mis}`;
       id: Date.now(),
       fecha: new Date().toISOString().slice(0, 10),
       rival: matchInfo.rival || rivalProx || "Rival",
+      j: matchInfo.j || nextMatchFix?.j || "",
       us: score.us, them: score.them,
       eventos: events.length,
       /* El acta entera y la ficha por jugador viajan con el partido: es lo que
-         luego se abre desde Estadísticas, partido a partido. */
+         luego se abre desde Estadísticas, partido a partido. Si ya se había
+         generado el análisis de IA antes de guardar, se congela también: si
+         no, se puede generar más tarde desde la lista de "Análisis
+         guardados", sin depender de que siga viva la partida en curso. */
       jugadores: fichasDelPartido(),
       acta: events.map((e) => ({ disp: e.disp || String(e.min), type: e.type, player: e.player, dorsal: e.dorsal })),
       lugar: matchInfo.lugar || "",
+      analisis: postTxt || "",
     };
     setHistorial((h) => {
       const out = [fila, ...h].slice(0, 60);
@@ -9185,6 +9235,52 @@ SUS HIJOS/AS:\n${mis}`;
           </div>
         )}
       </Card>
+
+      {/* Un análisis por partido ya jugado, con su rival, su fecha y su
+         jornada -no solo el del partido en curso de arriba-. Si al
+         guardarlo en el histórico ya se había generado el informe, sale
+         directo; si no, se puede generar aquí mismo a partir del acta que
+         se guardó, sin depender de que la partida siga abierta. */}
+      {historial.length > 0 && (
+        <Card title="Análisis guardados">
+          <div className="space-y-1.5 max-h-[520px] overflow-y-auto pr-1">
+            {historial.map((h) => {
+              const abierto = histAnalisisAbierto === h.id;
+              const generando = histAnalisisBusyId === h.id;
+              return (
+                <div key={h.id} className="rounded-lg border p-3" style={{ borderColor: C.line, background: C.panel2 }}>
+                  <button onClick={() => setHistAnalisisAbierto(abierto ? null : h.id)} className="w-full flex flex-wrap items-center justify-between gap-2 text-left">
+                    <span className="flex items-center gap-2 min-w-0">
+                      {h.j && <span className="font-display text-sm shrink-0" style={{ color: AC }}>J{h.j}</span>}
+                      <span className="text-sm truncate" style={{ color: C.chalk }}>vs {h.rival}</span>
+                      <span className="text-[11px] shrink-0" style={{ color: C.dim }}>{h.fecha}</span>
+                    </span>
+                    <span className="flex items-center gap-2 shrink-0">
+                      <span className="font-display tabular-nums text-sm" style={{ color: h.us > h.them ? C.green : h.us === h.them ? C.chalk : C.red }}>{h.us}–{h.them}</span>
+                      <span style={{ color: C.dim }}>{abierto ? "▲" : "▼"}</span>
+                    </span>
+                  </button>
+                  {abierto && (
+                    <div className="mt-3 pt-3 border-t" style={{ borderColor: C.line }}>
+                      {h.analisis ? (
+                        <pre className="whitespace-pre-wrap text-sm rounded-lg p-3 border font-body leading-relaxed" style={{ background: C.panel, borderColor: C.line, color: C.chalk }}>{h.analisis}</pre>
+                      ) : (
+                        <>
+                          <div className="text-[11px] mb-2" style={{ color: C.dim }}>Este partido no tiene análisis guardado todavía.</div>
+                          <button onClick={() => generarAnalisisHistorico(h)} disabled={generando}
+                            className="w-full font-display uppercase tracking-wider py-2.5 rounded-lg font-semibold disabled:opacity-50" style={{ background: AC, color: C.sobre }}>
+                            {generando ? t("pm.thinking") : "Generar análisis"}
+                          </button>
+                        </>
+                      )}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </Card>
+      )}
     </div>
   );
 
