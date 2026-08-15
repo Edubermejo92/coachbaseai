@@ -5240,12 +5240,32 @@ export default function App() {
     return () => { alive = false; };
   }, [session]); // eslint-disable-line
   const [lineup, setLineup] = useState(LINEUP_INIT);
+  /* Borrador del segundo entrenador: antes cada toque llamaba a
+     updateLineupWithProposal y mandaba UNA propuesta por movimiento —media
+     docena de toques, media docena de propuestas idénticas esperando turno,
+     y encima sin verse reflejadas en su propia pantalla (nunca se tocaba
+     `lineup`, solo se mandaban a Airtable a ciegas). Ahora edita este
+     borrador local, lo ve al momento, y lo manda entero con un solo botón
+     cuando ya está conforme. Quien no propone (entrenador, director, master)
+     ni lo usa: sigue editando `lineup` directamente, como siempre. */
+  const [lineupDraft, setLineupDraft] = useState(null);
+  const setLineupSmart = (updater) => {
+    if (canProposeChanges()) {
+      setLineupDraft((d) => {
+        const base = d || lineup;
+        return typeof updater === "function" ? updater(base) : updater;
+      });
+    } else {
+      setLineup(updater);
+    }
+  };
   const [sysCode, setSysCode] = useState("4-3-3");
   const [sysCustom, setSysCustom] = useState("");
   const [slotPos, setSlotPos] = useState(SLOTS_433);
   /* Al cambiar de sistema se regeneran las posiciones y se reasignan los
      jugadores por orden, para no perder la alineación ya montada. */
   const applySystem = (code) => {
+    if (canProposeChanges() && miPropuestaPendiente("lineup")) return false;
     const clean = String(code).trim();
     if (!/^\d+(-\d+)+$/.test(clean)) return false;
     const nuevos = buildSlots(clean);
@@ -5253,7 +5273,7 @@ export default function App() {
     const total = nIds.length;
     if (total < 5 || total > 11) return false;
     const previos = Object.keys(slotPos);
-    setLineup((l) => {
+    setLineupSmart((l) => {
       const out = {};
       nIds.forEach((id, i) => { const viejo = previos[i]; if (viejo && l[viejo]) out[id] = l[viejo]; });
       return out;
@@ -5322,6 +5342,21 @@ export default function App() {
      sigue funcionando igual. */
   const guardarSesion = async () => {
     if (!trainCompleta || sesBusy) return;
+    /* El segundo entrenador no publica la sesión directamente: la propone, y
+       queda a la espera de que el entrenador principal o el director la
+       acepten (ver applyApprovedProposal, caso "training", que es quien de
+       verdad la publica en Airtable una vez aprobada). Va antes del aviso de
+       "equipo sin nube": igual que las demás propuestas, también funciona
+       sin backend (queda en memoria, como en la demo). */
+    if (canProposeChanges()) {
+      if (miPropuestaPendiente("training")) { setSesMsg("Ya tienes una propuesta de entrenamiento esperando aprobación."); return; }
+      setSesBusy(true); setSesMsg("");
+      await proposeChange("training", { meta: trainMeta, blocks: trainBlocks, target: trainTarget });
+      setSesBusy(false);
+      setSesMsg("✓ Propuesta de entrenamiento enviada. Esperando aprobación.");
+      setTimeout(() => setSesMsg(""), 5000);
+      return;
+    }
     if (!session?.team?.rec) { setSesMsg("Este equipo todavía no está en la nube."); return; }
     setSesBusy(true); setSesMsg("");
     const nombre = [trainMeta.fecha || new Date().toLocaleDateString("es-ES"), trainMeta.hora, trainMeta.objetivo]
@@ -7612,7 +7647,7 @@ SUS HIJOS/AS:\n${mis}`;
       id: r.id, categoryId: session.team.rec, type: r.type,
       proposedBy: r.proposedBy, proposedData: r.data, status: r.status,
       approvedBy: r.approvedBy, approvedData: r.status === "approved" ? r.data : null,
-      date: r.date,
+      date: r.date, resolvedDate: r.resolvedDate || null,
     })));
   };
   useEffect(() => {
@@ -7629,8 +7664,8 @@ SUS HIJOS/AS:\n${mis}`;
     }
     const proposal = {
       id: `prop_${Date.now()}`,
-      categoryId: session.categoryId,
-      type, // "lineup"|"squad"|"calendar"
+      categoryId: miEquipoKey(),
+      type, // "lineup"|"squad"|"calendar"|"call"|"training"
       proposedBy: session.userId,
       proposedData: data,
       status: "pending",
@@ -7647,7 +7682,8 @@ SUS HIJOS/AS:\n${mis}`;
 
     // Aplicar el cambio inmediatamente
     const dataToApply = approveData || proposal.proposedData;
-    applyApprovedProposal({ ...proposal, status: "approved", approvedData: dataToApply });
+    const resolvedDate = new Date().toISOString();
+    await applyApprovedProposal({ ...proposal, status: "approved", approvedData: dataToApply });
 
     if (esSesionRealConEquipo) {
       await airProposalResolve(proposalId, "approved");
@@ -7657,7 +7693,7 @@ SUS HIJOS/AS:\n${mis}`;
     setProposals((ps) =>
       ps.map((p) =>
         p.id === proposalId
-          ? { ...p, status: "approved", approvedBy: session.userId, approvedData: dataToApply }
+          ? { ...p, status: "approved", approvedBy: session.userId, approvedData: dataToApply, resolvedDate }
           : p
       )
     );
@@ -7670,27 +7706,50 @@ SUS HIJOS/AS:\n${mis}`;
       await refreshProposals();
       return;
     }
+    const resolvedDate = new Date().toISOString();
     setProposals((ps) =>
       ps.map((p) =>
-        p.id === proposalId ? { ...p, status: "rejected", approvedBy: session.userId } : p
+        p.id === proposalId ? { ...p, status: "rejected", approvedBy: session.userId, resolvedDate } : p
       )
     );
   };
+
+  /* Con quién se compara `p.categoryId` para saber "es de mi equipo". Con
+     cuenta real (esSesionRealConEquipo), Airtable YA filtró por equipo al
+     traer la lista (airProposalsList(session.team.rec)), así que aquí basta
+     con no filtrar dos veces por un campo que puede no significar lo mismo
+     para todos: session.categoryId sale de CATEGORIES_INIT, un catálogo solo
+     de demo que al director lo resuelve por CLUB (sin mirar su id real) y a
+     entrenador/segundo por id -de ahí que un director real y su propio
+     entrenador real acabaran con categoryId distinto en el mismo equipo, y el
+     director no viera nunca las propuestas que sí le llegaban. Con cuenta
+     real, refreshProposals ya iguala `categoryId` a session.team.rec en cada
+     propuesta leída, así que comparar contra team.rec (no contra categoryId)
+     es lo único que da el mismo resultado para cualquier rol del equipo. */
+  const miEquipoKey = () => session?.team?.rec || session?.categoryId;
 
   const getPendingProposals = () =>
     proposals.filter(
       (p) =>
         p.status === "pending" &&
-        p.categoryId === session?.categoryId &&
+        p.categoryId === miEquipoKey() &&
         canResolveProposals()
     );
 
   const getProposalHistory = () =>
     proposals.filter(
       (p) =>
-        p.categoryId === session?.categoryId &&
+        p.categoryId === miEquipoKey() &&
         (p.status === "approved" || p.status === "rejected")
     );
+
+  /* Propuestas aceptadas, para el panel del entrenador y del director: solo
+     aprobadas, la más reciente arriba (por cuándo se aceptó, no por cuándo
+     se propuso), con quién la hizo a la vista. */
+  const getAcceptedProposals = () =>
+    proposals
+      .filter((p) => p.status === "approved" && p.categoryId === miEquipoKey() && canResolveProposals())
+      .sort((a, b) => new Date(b.resolvedDate || b.date) - new Date(a.resolvedDate || a.date));
 
   const getProposalTypeLabel = (type) => {
     const labels = {
@@ -7698,28 +7757,40 @@ SUS HIJOS/AS:\n${mis}`;
       squad: "Plantilla",
       calendar: "Calendario",
       call: "Convocatoria",
+      training: "Entrenamiento",
     };
     return labels[type] || type;
   };
 
-  const updateLineupWithProposal = (newLineup) => {
-    if (canProposeChanges()) {
-      proposeChange("lineup", newLineup);
-    } else {
-      setLineup(newLineup);
-    }
-  };
+  /* Única propuesta pendiente de ESTE usuario para un tipo dado: mientras
+     tenga una esperando turno no se le deja mandar otra, para no acumular
+     duplicados esperando la misma aprobación. */
+  const miPropuestaPendiente = (type) =>
+    proposals.find((p) => p.status === "pending" && p.type === type && p.proposedBy === session?.userId);
+
   /* Único punto que de verdad mueve a un jugador a un puesto, use quien lo
      llame el camino de "toca el campo primero" o el de "toca al jugador
      primero": quita al jugador de cualquier otro puesto donde estuviera
      (nunca en dos demarcaciones a la vez) y limpia ambas selecciones. */
   const asignarJugadorAPuesto = (slotId, playerId) => {
-    const next = { ...lineup };
-    Object.keys(next).forEach((k) => { if (next[k] === playerId) delete next[k]; });
-    next[slotId] = playerId;
-    updateLineupWithProposal(next);
+    if (canProposeChanges() && miPropuestaPendiente("lineup")) return;
+    setLineupSmart((base) => {
+      const next = { ...base };
+      Object.keys(next).forEach((k) => { if (next[k] === playerId) delete next[k]; });
+      next[slotId] = playerId;
+      return next;
+    });
     setSelSlot(null);
     setSelPlayer(null);
+  };
+  /* El segundo entrenador manda el borrador entero de una vez, en vez de
+     una propuesta por cada toque. Se limpia el borrador al mandarla: el
+     aviso de "pendiente de aprobación" (miPropuestaPendiente) es lo que
+     queda a la vista mientras espera turno. */
+  const enviarPropuestaAlineacion = async () => {
+    if (!lineupDraft || miPropuestaPendiente("lineup")) return;
+    await proposeChange("lineup", lineupDraft);
+    setLineupDraft(null);
   };
 
   const updateSquadWithProposal = (updateFn) => {
@@ -7739,20 +7810,42 @@ SUS HIJOS/AS:\n${mis}`;
     }
   };
 
-  const applyApprovedProposal = (proposal) => {
+  const applyApprovedProposal = async (proposal) => {
     if (proposal.status !== "approved") return;
+    const data = proposal.approvedData || proposal.proposedData;
 
     switch (proposal.type) {
       case "lineup":
-        setLineup(proposal.approvedData || proposal.proposedData);
+        setLineup(data);
         break;
       case "squad":
-        setPlayers(proposal.approvedData || proposal.proposedData);
+        setPlayers(data);
         break;
       case "calendar":
       case "call":
-        setCalls(proposal.approvedData || proposal.proposedData);
+        setCalls(data);
         break;
+      case "training": {
+        /* A diferencia de alineación/plantilla/convocatoria (que solo viven
+           en memoria hasta la próxima acción), el entrenamiento se publica
+           de verdad en Airtable -es lo que "Guardar sesión completa" hacía
+           antes de que el segundo pasara por aprobación-, así que aprobar
+           la propuesta es el momento de publicarlo, no antes. */
+        if (data?.meta) setTrainMeta(data.meta);
+        if (Array.isArray(data?.blocks)) setTrainBlocks(data.blocks);
+        if (Number(data?.target) > 0) setTrainTarget(data.target);
+        if (session?.team?.rec && Array.isArray(data?.blocks) && data.blocks.length) {
+          const nombre = [data.meta?.fecha || new Date().toLocaleDateString("es-ES"), data.meta?.hora, data.meta?.objetivo]
+            .filter(Boolean).join(" · ");
+          await airPlantillaNueva({
+            nombre, plantilla: false, objetivo: data.meta?.objetivo || "",
+            duracion: data.blocks.reduce((n, b) => n + (Number(b.dur) || 0), 0),
+            bloques: data.blocks, fecha: data.meta?.fecha, hora: data.meta?.hora,
+            teamRec: session.team.rec, clubRec: clubInfo.rec || undefined,
+          });
+        }
+        break;
+      }
       default:
         break;
     }
@@ -7992,25 +8085,26 @@ SUS HIJOS/AS:\n${mis}`;
         </div>
       </div>
 
-      {/* Notificaciones de propuestas del segundo entrenador */}
-      {session?.role === "entrenador" && getPendingProposals().length > 0 && (
+      {/* Notificaciones de propuestas del segundo entrenador. Antes solo las
+          veía el entrenador principal (session?.role === "entrenador"): el
+          director deportivo, que también puede resolverlas
+          (canResolveProposals), se quedaba sin enterarse. */}
+      {canResolveProposals() && getPendingProposals().length > 0 && (
         <Card title="⚠️ Propuestas pendientes de aprobación" className="lg:col-span-3" style={{ borderColor: C.warn, background: `${C.warn}10` }}>
           <div className="space-y-3">
             {getPendingProposals().map((p) => {
               const proposer = users.find((u) => u.id === p.proposedBy);
-              const typeLabel = {
-                lineup: "Alineación",
-                squad: "Plantilla",
-                calendar: "Calendario",
-                call: "Convocatoria",
-              }[p.type] || p.type;
+              const typeLabel = getProposalTypeLabel(p.type);
 
               let detalle = "";
               if (p.type === "lineup" && p.proposedData) {
-                const cambios = Object.entries(p.proposedData).length;
-                detalle = ` · ${cambios} cambios`;
+                const cambios = Object.values(p.proposedData).filter(Boolean).length;
+                detalle = ` · ${cambios} puestos cubiertos`;
               } else if (p.type === "squad" && Array.isArray(p.proposedData)) {
                 detalle = ` · ${p.proposedData.length} jugadores`;
+              } else if (p.type === "training" && p.proposedData) {
+                const min = (p.proposedData.blocks || []).reduce((n, b) => n + (Number(b.dur) || 0), 0);
+                detalle = ` · ${(p.proposedData.blocks || []).length} bloques, ${min} min`;
               }
 
               return (
@@ -8044,6 +8138,34 @@ SUS HIJOS/AS:\n${mis}`;
                       </button>
                     </div>
                   </div>
+                </div>
+              );
+            })}
+          </div>
+        </Card>
+      )}
+
+      {/* Propuestas aceptadas: visible para quien puede resolverlas
+          (entrenador, director, master), la más reciente arriba, con quién
+          la propuso. Antes solo había un histórico mezclado (aceptadas y
+          rechazadas juntas, sin nombre) escondido dentro del perfil. */}
+      {canResolveProposals() && getAcceptedProposals().length > 0 && (
+        <Card title="✓ Propuestas aceptadas" className="lg:col-span-3" style={{ borderColor: C.green, background: `${C.green}0d` }}>
+          <div className="space-y-2 max-h-80 overflow-y-auto pr-1">
+            {getAcceptedProposals().map((p) => {
+              const proposer = users.find((u) => u.id === p.proposedBy);
+              return (
+                <div key={p.id} className="flex items-center justify-between gap-3 p-2.5 rounded-lg border" style={{ borderColor: C.line, background: C.panel2 }}>
+                  <div className="min-w-0">
+                    <div className="text-sm" style={{ color: C.chalk }}>
+                      <span className="font-semibold">{getProposalTypeLabel(p.type)}</span>
+                      <span style={{ color: C.dim }}> · propuesta por {proposer?.name || "usuario desconocido"}</span>
+                    </div>
+                    <div className="text-[11px] mt-0.5" style={{ color: C.dim }}>
+                      Aceptada el {new Date(p.resolvedDate || p.date).toLocaleString("es-ES")}
+                    </div>
+                  </div>
+                  <span className="shrink-0 text-[10px] font-display uppercase tracking-wide px-2 py-1 rounded-full" style={{ background: C.green, color: "white" }}>✓ Aceptada</span>
                 </div>
               );
             })}
@@ -8549,7 +8671,15 @@ SUS HIJOS/AS:\n${mis}`;
   );
 
   const renderLineup = () => {
-    const bench = players.filter((p) => !starters.has(p.id));
+    /* El segundo entrenador mira y edita su borrador (lineupDraft); todos
+       los demás, la alineación oficial. Fuera de este render, `lineup` y
+       `starters` siguen significando "la alineación oficial" en todos
+       lados -convocatoria, estadísticas...-, sin verse afectados por un
+       borrador que todavía no se ha aprobado. */
+    const propone = canProposeChanges();
+    const lineupView = propone ? (lineupDraft || lineup) : lineup;
+    const startersView = new Set(Object.values(lineupView));
+    const bench = players.filter((p) => !startersView.has(p.id));
     const jugadorSel = selPlayer ? players.find((x) => x.id === selPlayer) : null;
     /* Estilo "cambio de jugador" de videojuego de fútbol: al tocar un puesto
        ocupado, en vez de una lista plana con toda la plantilla mezclada, los
@@ -8565,7 +8695,7 @@ SUS HIJOS/AS:\n${mis}`;
        equilibrada?"; con puestos vacíos, "¿a quién meto?"- en vez de
        obligar a explicárselo desde cero al entrar en su pestaña. */
     const preguntarIASobreAlineacion = () => {
-      const vacios = Object.keys(slotPos).length - Object.values(lineup).filter(Boolean).length;
+      const vacios = Object.keys(slotPos).length - Object.values(lineupView).filter(Boolean).length;
       const pregunta = vacios > 0
         ? `Estoy montando la alineación en ${sysCode} y me faltan ${vacios} puesto(s) por cubrir. Mirando el banquillo, ¿a quién meterías y por qué?`
         : `¿Qué te parece esta alineación en ${sysCode}? Dime si ves algún desequilibrio de líneas o de perfiles.`;
@@ -8574,7 +8704,25 @@ SUS HIJOS/AS:\n${mis}`;
     };
     return (
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <Card title={`${canProposeChanges() ? "Propuesta de alineación" : "Titulares"} — ${sysCode}`}>
+        <Card title={`${propone ? "Propuesta de alineación" : "Titulares"} — ${sysCode}`}>
+          {propone && (
+            miPropuestaPendiente("lineup") ? (
+              <div className="mb-3 rounded-lg border px-3 py-2.5 text-sm" style={{ borderColor: C.warn, background: `${C.warn}10`, color: C.warn }}>
+                ⏳ Tu propuesta de alineación está pendiente de aprobación
+              </div>
+            ) : (
+              <div className="mb-3 flex items-center justify-between gap-2 rounded-lg border px-3 py-2.5" style={{ borderColor: C.line, background: C.panel2 }}>
+                <div className="text-xs" style={{ color: C.dim }}>
+                  {lineupDraft ? "Cuando termines de colocar el once, mándala." : "Coloca el once y manda la propuesta cuando termines."}
+                </div>
+                <button onClick={enviarPropuestaAlineacion} disabled={!lineupDraft}
+                  className="shrink-0 text-xs px-3 py-1.5 rounded-lg font-display uppercase tracking-wide font-semibold disabled:opacity-40"
+                  style={{ background: AC, color: C.sobre }}>
+                  Enviar propuesta
+                </button>
+              </div>
+            )
+          )}
           <div className="flex flex-wrap items-center gap-1.5 mb-2">
             {(session.team?.f7 ? SYS_F7 : SYS_F11).map((c) => (
               <button key={c} onClick={() => applySystem(c)} className="text-xs px-2 py-1 rounded-lg border font-display"
@@ -8613,7 +8761,7 @@ SUS HIJOS/AS:\n${mis}`;
               </g>
             </svg>
             {Object.entries(slotPos).map(([id, s]) => {
-              const p = players.find((x) => x.id === lineup[id]); const sel = selSlot === id;
+              const p = players.find((x) => x.id === lineupView[id]); const sel = selSlot === id;
               /* Con un jugador elegido desde la lista, se le marca el aro a
                  su puesto natural en el campo mismo -no solo en la lista de
                  la derecha- para verlo de un vistazo antes de tocar. */
@@ -8668,7 +8816,7 @@ SUS HIJOS/AS:\n${mis}`;
               Object.entries(slotPos)
                 .sort(([, a], [, b]) => (a.label === jugadorSel.pos ? 0 : 1) - (b.label === jugadorSel.pos ? 0 : 1))
                 .map(([slotId, s]) => {
-                  const ocupante = players.find((x) => x.id === lineup[slotId]);
+                  const ocupante = players.find((x) => x.id === lineupView[slotId]);
                   const esSuPuesto = s.label === jugadorSel.pos;
                   return (
                     <button key={slotId} onClick={() => asignarJugadorAPuesto(slotId, jugadorSel.id)}
@@ -8691,7 +8839,7 @@ SUS HIJOS/AS:\n${mis}`;
                     <Avatar p={p} size={26} /><Dot st={p.st} /><span className="font-display text-base" style={{ color: AC }}>{p.d}</span>{p.n}
                     {mismoPuesto && <span className="text-[10px] font-display uppercase tracking-wide px-1.5 py-0.5 rounded" style={{ background: AC, color: C.sobre }}>Mismo puesto</span>}
                   </span>
-                  <span style={{ color: C.dim }}>{p.pos}{starters.has(p.id) ? " · XI" : ""}</span>
+                  <span style={{ color: C.dim }}>{p.pos}{startersView.has(p.id) ? " · XI" : ""}</span>
                 </button>
               );
             })}
@@ -9779,12 +9927,18 @@ SUS HIJOS/AS:\n${mis}`;
               : t("tr.done")}
           </div>
 
-          <button onClick={guardarSesion} disabled={!trainCompleta || sesBusy}
-            className="w-full font-display uppercase tracking-wider py-2.5 rounded-lg font-semibold disabled:opacity-40"
-            style={{ background: AC, color: C.sobre }}>
-            {sesBusy ? t("a.sending") : t("tr.saveSession")}
-          </button>
-          {!trainCompleta && (
+          {canProposeChanges() && miPropuestaPendiente("training") ? (
+            <div className="rounded-lg border px-3 py-2.5 text-center text-sm" style={{ borderColor: C.warn, background: `${C.warn}10`, color: C.warn }}>
+              ⏳ Tienes una propuesta de entrenamiento esperando aprobación
+            </div>
+          ) : (
+            <button onClick={guardarSesion} disabled={!trainCompleta || sesBusy}
+              className="w-full font-display uppercase tracking-wider py-2.5 rounded-lg font-semibold disabled:opacity-40"
+              style={{ background: AC, color: C.sobre }}>
+              {sesBusy ? t("a.sending") : canProposeChanges() ? "Enviar propuesta al entrenador" : t("tr.saveSession")}
+            </button>
+          )}
+          {!trainCompleta && !miPropuestaPendiente("training") && (
             <div className="text-[11px] mt-1.5 text-center" style={{ color: C.dim }}>
               {trainBlocks.length === 0 ? t("pl.needBlocks") : t("tr.left").replace("{n}", trainFaltan)}
             </div>
@@ -10088,7 +10242,15 @@ SUS HIJOS/AS:\n${mis}`;
         team: demoTeam,
         categories: demoCategories.map((c) => c.name),
         currentCategory: demoCat?.name || demoTeam?.name,
-        categoryId: demoCat?.id,
+        /* getDefaultCategory resuelve al director por CLUB (ve todas las
+           categorías del club, sin mirar su id) y al resto por id exacto
+           dentro de CATEGORIES_INIT: con el id fijo de la demo (1), el
+           director sale con "cat_1" y el resto con ninguna. Incluso en la
+           demo, eso dejaba al director sin ver nunca las propuestas de su
+           propio segundo -mismo fallo que en cuentas reales, ver
+           miEquipoKey más abajo-, así que aquí se cae a la única categoría
+           que existe en la demo en vez de a "sin categoría". */
+        categoryId: demoCat?.id || CATEGORIES_INIT[0]?.id,
         userId: 1,
       });
       setTab("inicio");

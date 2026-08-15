@@ -1003,14 +1003,14 @@ export default async (req: Request) => {
 
     /* ================= PROPUESTAS =================
        Cambios que el segundo entrenador (Rol principal o adicional) propone
-       en alineación, plantilla, calendario o convocatoria, y que requieren
-       aprobación del entrenador principal, el director o el master antes de
-       aplicarse de verdad.
+       en alineación, plantilla, calendario, convocatoria o entrenamiento, y
+       que requieren aprobación del entrenador principal, el director o el
+       master antes de aplicarse de verdad.
        GET   ?res=propuestas&team=recX            -> propuestas de ese equipo
        POST  ?res=propuestas { team, tipo, datos } -> crea una Pendiente
        PATCH ?res=propuestas&id=recY { estado }    -> "aprobada" | "rechazada" */
     const TIPO_PROPUESTA_LABEL: Record<string, string> = {
-      lineup: "Alineación", squad: "Plantilla", calendar: "Calendario", call: "Convocatoria",
+      lineup: "Alineación", squad: "Plantilla", calendar: "Calendario", call: "Convocatoria", training: "Entrenamiento",
     };
     const ESTADO_PROPUESTA_LABEL: Record<string, string> = {
       pending: "Pendiente", approved: "Aprobada", rejected: "Rechazada",
