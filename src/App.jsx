@@ -698,12 +698,17 @@ const ROLES_DEMO = [...ROLES_ELEGIBLES, "master"];
 const normClub = (v) => String(v || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 const esClubChamartinVergara = (club) => normClub(club).includes("chamartin vergara");
 
-/* Módulos disponibles según club. Solo Chamartín Vergara tiene acceso completo.
-   Otros clubes solo pueden usar: Jugadores, Alineación, Tablero (pizarra) */
-const getAvailableTabs = (club, roleTabs) => {
-  if (esClubChamartinVergara(club)) return roleTabs;
-  return roleTabs.filter((tab) => ["inicio", "jugadores", "alineacion", "pizarra"].includes(tab));
-};
+/* Qué apartados están disponibles según el ROL, no según el club: el filtro
+   gratis/de pago ya lo hace el sistema PRO de verdad (TABS_GRATIS, isPro,
+   PRO_FEATURES, la pantalla Premium) unas líneas más abajo, apto para
+   cualquier club. Esta función bloqueaba TODO menos Inicio, Jugadores,
+   Alineación y Pizarra para cualquier equipo que no fuera Chamartín Vergara,
+   sin mirar si habían pagado o no -ni con el plan Oficial se desbloqueaba
+   nada-, y encima con un cartel de "tu rol no tiene acceso" que no era
+   cierto y no llevaba a ningún sitio para arreglarlo. Chamartín Vergara no
+   pierde nada al quitarlo: ya tiene el PRO garantizado aparte, vía
+   esClubChamartinVergara() dentro de isPro. */
+const getAvailableTabs = (club, roleTabs) => roleTabs;
 
 /* ================= QUÉ ES GRATIS Y QUÉ ES DE PAGO =================
    Apartados abiertos en el plan gratuito. Son los que permiten llevar un
