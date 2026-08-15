@@ -4149,6 +4149,14 @@ const isoLocal = (d) => {
   return `${x.getFullYear()}-${String(x.getMonth() + 1).padStart(2, "0")}-${String(x.getDate()).padStart(2, "0")}`;
 };
 const hoyISO = () => isoLocal(new Date());
+/* "2026-08-21" -> "viernes, 21 de agosto". Si no es una fecha ISO válida, se
+   devuelve tal cual (por si queda algún texto libre antiguo en localStorage,
+   de cuando el campo de fecha del entrenamiento era un input de texto). */
+const fechaLegible = (iso, lang = "es") => {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(String(iso || ""))) return iso || "";
+  const [y, m, d] = iso.split("-").map(Number);
+  return new Date(y, m - 1, d).toLocaleDateString(lang === "es" ? "es-ES" : lang, { weekday: "long", day: "numeric", month: "long" });
+};
 /* Suma (o resta) días a una fecha "YYYY-MM-DD" sin salir del huso local. */
 const sumarDiasISO = (iso, delta) => {
   const [y, m, d] = String(iso).split("-").map(Number);
@@ -5038,7 +5046,7 @@ export default function App() {
   });
   const trainSummary = () => {
     const lines = trainBlocks.map((b, i) => `${i + 1}. ${b.name} — ${b.dur} min`);
-    return `🏋️ *ENTRENAMIENTO — ${session.club} ${session.team.name}*\n📅 ${trainMeta.fecha || "—"} · ⏰ ${trainMeta.hora || "—"}\n🎯 ${trainMeta.objetivo || "—"}\n\n${lines.join("\n")}\n\n⏱ Duración total: ${trainTotal} min\n🎒 Material: ${trainMaterials.join(", ") || "—"}`;
+    return `🏋️ *ENTRENAMIENTO — ${session.club} ${session.team.name}*\n📅 ${fechaLegible(trainMeta.fecha, lang) || "—"} · ⏰ ${trainMeta.hora || "—"}\n🎯 ${trainMeta.objetivo || "—"}\n\n${lines.join("\n")}\n\n⏱ Duración total: ${trainTotal} min\n🎒 Material: ${trainMaterials.join(", ") || "—"}`;
   };
   const copyTrainSummary = async () => {
     const txt = trainSummary();
@@ -5323,6 +5331,23 @@ export default function App() {
     if (rows) setPlantillas(rows);
   };
   useEffect(() => { cargarPlantillas(); }, [session?.team?.rec, clubInfo.rec]); // eslint-disable-line
+  /* `plantillas` trae de Airtable tanto los guiones reutilizables (plantilla:
+     true) como las sesiones concretas ya publicadas -guardadas a mano o, ahora,
+     aprobadas de una propuesta del segundo- (plantilla:false). Antes el
+     backend descartaba estas últimas: se escribían pero no las veía nadie,
+     ni siquiera en el dispositivo de quien las había guardado. Separadas
+     aquí para que cada sitio pinte lo suyo. */
+  const guionesReutilizables = plantillas.filter((p) => p.plantilla);
+  const sesionesPublicadas = plantillas.filter((p) => !p.plantilla);
+  /* La sesión a enseñar en Inicio y en la pestaña de Entrenamiento: la más
+     próxima en el futuro (incluye hoy); si no hay ninguna por venir, la más
+     reciente de las pasadas, para no dejar el hueco vacío nada más pasar el
+     día. Ya llegan ordenadas por fecha desde el backend. */
+  const proximaSesionPublicada = (() => {
+    if (!sesionesPublicadas.length) return null;
+    const hoy = hoyISO();
+    return sesionesPublicadas.find((s) => s.fecha && s.fecha >= hoy) || sesionesPublicadas[sesionesPublicadas.length - 1];
+  })();
   const guardarPlantilla = async () => {
     if (!plNombre.trim() || !trainBlocks.length) return;
     if (!session?.team?.rec) { setPlMsg("Este equipo todavía no está en la nube."); return; }
@@ -5359,7 +5384,7 @@ export default function App() {
     }
     if (!session?.team?.rec) { setSesMsg("Este equipo todavía no está en la nube."); return; }
     setSesBusy(true); setSesMsg("");
-    const nombre = [trainMeta.fecha || new Date().toLocaleDateString("es-ES"), trainMeta.hora, trainMeta.objetivo]
+    const nombre = [fechaLegible(trainMeta.fecha, lang) || new Date().toLocaleDateString("es-ES"), trainMeta.hora, trainMeta.objetivo]
       .filter(Boolean).join(" · ");
     const out = await airPlantillaNueva({
       nombre, plantilla: false, objetivo: trainMeta.objetivo || "",
@@ -5367,6 +5392,7 @@ export default function App() {
       fecha: trainMeta.fecha, hora: trainMeta.hora,
       teamRec: session.team.rec, clubRec: clubInfo.rec || undefined,
     });
+    if (out?.ok) cargarPlantillas();
     setSesBusy(false);
     setSesMsg(out?.ok ? `✓ Sesión de ${trainTotal} min guardada.` : "No se pudo guardar. Revisa la conexión.");
     if (out?.ok) setTimeout(() => setSesMsg(""), 5000);
@@ -5448,8 +5474,11 @@ ACTA:\n${evTxt}`;
     if (!Array.isArray(bloques) || !bloques.length) { setPlMsg("Esa plantilla está vacía."); return; }
     /* id nuevo por bloque: los de la plantilla podrían chocar con los actuales */
     setTrainBlocks(bloques.map((b) => ({ ...b, id: Date.now() + Math.random() })));
-    if (p.objetivo) setTrainMeta((m) => ({ ...m, objetivo: p.objetivo }));
-    setPlMsg(`✓ Cargada "${p.nombre}". Ajusta la fecha y la hora.`);
+    /* Un guion reutilizable no trae fecha ni hora -por eso el aviso pide
+       ajustarlas-, pero una sesión ya publicada (p.plantilla === false) sí
+       las tiene de verdad: se cargan tal cual, no hay que pedir nada. */
+    setTrainMeta((m) => ({ ...m, ...(p.objetivo ? { objetivo: p.objetivo } : {}), ...(p.fecha ? { fecha: p.fecha } : {}), ...(p.hora ? { hora: p.hora } : {}) }));
+    setPlMsg(p.plantilla === false ? `✓ Cargada la sesión de "${p.fecha || p.nombre}".` : `✓ Cargada "${p.nombre}". Ajusta la fecha y la hora.`);
     airPlantillaUsar(p.rec);
     setPlantillas((ps) => ps.map((x) => (x.rec === p.rec ? { ...x, usos: x.usos + 1 } : x)));
   };
@@ -7835,14 +7864,18 @@ SUS HIJOS/AS:\n${mis}`;
         if (Array.isArray(data?.blocks)) setTrainBlocks(data.blocks);
         if (Number(data?.target) > 0) setTrainTarget(data.target);
         if (session?.team?.rec && Array.isArray(data?.blocks) && data.blocks.length) {
-          const nombre = [data.meta?.fecha || new Date().toLocaleDateString("es-ES"), data.meta?.hora, data.meta?.objetivo]
+          const nombre = [fechaLegible(data.meta?.fecha, lang) || new Date().toLocaleDateString("es-ES"), data.meta?.hora, data.meta?.objetivo]
             .filter(Boolean).join(" · ");
-          await airPlantillaNueva({
+          const out = await airPlantillaNueva({
             nombre, plantilla: false, objetivo: data.meta?.objetivo || "",
             duracion: data.blocks.reduce((n, b) => n + (Number(b.dur) || 0), 0),
             bloques: data.blocks, fecha: data.meta?.fecha, hora: data.meta?.hora,
             teamRec: session.team.rec, clubRec: clubInfo.rec || undefined,
           });
+          /* Recarga inmediata: sin esto, quien acaba de aprobar no ve la
+             sesión reflejada en su propio Inicio/Entrenamiento hasta la
+             próxima vez que cargue esos apartados. */
+          if (out?.ok) cargarPlantillas();
         }
         break;
       }
@@ -8302,16 +8335,44 @@ SUS HIJOS/AS:\n${mis}`;
       </Card>
 
       <Card title={t("h.nextTrain")} className="lg:col-span-2">
-        {trainBlocks.length || trainMeta.objetivo || trainMeta.fecha ? (
+        {/* Primero la sesión YA PUBLICADA (Airtable, la ve todo el cuerpo
+            técnico en cualquier dispositivo). Solo si no hay ninguna se cae
+            al borrador de este dispositivo -y se avisa de que es eso, un
+            borrador, no lo que ya sabe el resto del equipo-. Antes esto
+            leía siempre trainBlocks/trainMeta (estado local sin sincronizar
+            con nadie): el "próximo entrenamiento" que veía el entrenador en
+            su Inicio no era necesariamente el mismo que veía su segundo, ni
+            lo que había quedado publicado de verdad. */}
+        {proximaSesionPublicada ? (() => {
+          let bloques = [];
+          try { bloques = JSON.parse(proximaSesionPublicada.bloques || "[]"); } catch { bloques = []; }
+          const materiales = [...new Set(bloques.flatMap((b) => b.materials || []))];
+          return (
+            <>
+              <div className="font-display text-2xl leading-tight" style={{ color: C.chalk }}>
+                {proximaSesionPublicada.objetivo || t("h.noGoal")}
+              </div>
+              <div className="text-sm mt-1" style={{ color: C.dim }}>
+                {[fechaLegible(proximaSesionPublicada.fecha, lang), proximaSesionPublicada.hora, proximaSesionPublicada.duracion ? `${proximaSesionPublicada.duracion} ${t("tr.min")}` : null].filter(Boolean).join(" · ")}
+              </div>
+              {materiales.length > 0 && (
+                <div className="text-[12px] mt-2" style={{ color: C.dim }}>{t("tr.materials")}: {materiales.join(", ")}</div>
+              )}
+            </>
+          );
+        })() : trainBlocks.length || trainMeta.objetivo || trainMeta.fecha ? (
           <>
             <div className="font-display text-2xl leading-tight" style={{ color: C.chalk }}>
               {trainMeta.objetivo || t("h.noGoal")}
             </div>
             <div className="text-sm mt-1" style={{ color: C.dim }}>
-              {[trainMeta.fecha, trainMeta.hora, trainTotal ? `${trainTotal} ${t("tr.min")}` : null].filter(Boolean).join(" · ")}
+              {[fechaLegible(trainMeta.fecha, lang), trainMeta.hora, trainTotal ? `${trainTotal} ${t("tr.min")}` : null].filter(Boolean).join(" · ")}
             </div>
             {trainMaterials.length > 0 && (
               <div className="text-[12px] mt-2" style={{ color: C.dim }}>{t("tr.materials")}: {trainMaterials.join(", ")}</div>
+            )}
+            {can("editTraining") && (
+              <div className="text-[11px] mt-2" style={{ color: C.warn }}>Todavía sin publicar: de momento solo se ve en este dispositivo.</div>
             )}
           </>
         ) : (
@@ -9809,11 +9870,11 @@ SUS HIJOS/AS:\n${mis}`;
           {plMsg && <span className="text-[11px]" style={{ color: plMsg.startsWith("✓") ? C.green : C.red }}>{plMsg}</span>}
         </div>
 
-        {plantillas.length === 0 ? (
+        {guionesReutilizables.length === 0 ? (
           <div className="text-sm" style={{ color: C.dim }}>{t("pl.empty")}</div>
         ) : (
           <div className="space-y-1.5">
-            {plantillas.map((p) => (
+            {guionesReutilizables.map((p) => (
               <div key={p.rec} className="flex flex-wrap items-center gap-2 py-2 px-2.5 rounded-lg border" style={{ borderColor: C.line }}>
                 <div className="flex-1 min-w-[160px]">
                   <div className="text-sm" style={{ color: C.chalk }}>
@@ -9843,12 +9904,48 @@ SUS HIJOS/AS:\n${mis}`;
         )}
       </Card>
 
+      {/* Sesiones ya publicadas (guardadas o aprobadas de una propuesta): las
+          ve todo el cuerpo técnico, no solo quien las guardó -antes esta
+          lista no existía en ningún sitio, aunque la sesión sí llegara a
+          Airtable-. La más próxima primero. */}
+      {sesionesPublicadas.length > 0 && (
+        <Card title="Sesiones publicadas" className="lg:col-span-2">
+          <div className="space-y-1.5">
+            {sesionesPublicadas.map((p) => (
+              <div key={p.rec} className="flex flex-wrap items-center gap-2 py-2 px-2.5 rounded-lg border"
+                style={{ borderColor: p.rec === proximaSesionPublicada?.rec ? AC : C.line, background: p.rec === proximaSesionPublicada?.rec ? C.panel2 : "transparent" }}>
+                <div className="flex-1 min-w-[160px]">
+                  <div className="text-sm" style={{ color: C.chalk }}>
+                    {[fechaLegible(p.fecha, lang), p.hora].filter(Boolean).join(" · ") || p.nombre}
+                    {p.rec === proximaSesionPublicada?.rec && (
+                      <span className="ml-2 text-[10px] font-display uppercase tracking-wide px-1.5 py-0.5 rounded" style={{ background: AC, color: C.sobre }}>Próxima</span>
+                    )}
+                  </div>
+                  <div className="text-[11px]" style={{ color: C.dim }}>
+                    {p.duracion} min{p.objetivo ? ` · ${p.objetivo}` : ""}
+                  </div>
+                </div>
+                <button onClick={() => usarPlantilla(p)} className="text-xs px-2.5 py-1.5 rounded-lg border font-display uppercase tracking-wide"
+                  style={{ borderColor: AC, color: AC }}>Cargar</button>
+              </div>
+            ))}
+          </div>
+        </Card>
+      )}
+
       <Card title={t("tr.title")}>
         <div className="text-xs mb-3" style={{ color: C.dim }}>{t("tr.hint")}</div>
         <div className="grid grid-cols-2 gap-2 mb-3">
           <div>
             <div className="text-[11px] font-display uppercase tracking-widest" style={{ color: C.dim }}>{t("tr.date")}</div>
-            <input value={trainMeta.fecha} onChange={(e) => setTrainMeta((m) => ({ ...m, fecha: e.target.value }))} placeholder="Viernes 31" className="w-full rounded-lg px-3 py-2 text-sm outline-none border" style={{ background: C.panel2, borderColor: C.line, color: C.chalk }} />
+            {/* Antes era texto libre ("Viernes 31"): parecía una fecha pero no
+                lo era para el resto de la app -ni el calendario del mes ni la
+                sesión publicada sabían compararla con nada-, así que nunca
+                se marcaba el día en Calendario ni se podía ordenar por
+                fecha. Con un selector real la fecha es siempre AAAA-MM-DD. */}
+            <input type="date" value={/^\d{4}-\d{2}-\d{2}$/.test(trainMeta.fecha) ? trainMeta.fecha : ""}
+              onChange={(e) => setTrainMeta((m) => ({ ...m, fecha: e.target.value }))}
+              className="w-full rounded-lg px-3 py-2 text-sm outline-none border" style={{ background: C.panel2, borderColor: C.line, color: C.chalk }} />
           </div>
           <div>
             <div className="text-[11px] font-display uppercase tracking-widest" style={{ color: C.dim }}>{t("tr.time")}</div>

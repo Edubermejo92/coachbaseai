@@ -665,9 +665,16 @@ export default async (req: Request) => {
       const club = url.searchParams.get("club") || "";
       if (req.method === "GET") {
         const recs = await list(T_ENTRENAMIENTOS);
+        /* Antes esta lista excluía todo lo que no fuera un guion reutilizable
+           (plantilla:true): una sesión concreta guardada con "Guardar sesión
+           completa" -o, ahora, aprobada de una propuesta del segundo-
+           quedaba escrita en Airtable pero invisible para siempre, en
+           cualquier apartado y en cualquier dispositivo que no fuera el que
+           la guardó. Ahora se devuelven las dos cosas, marcadas con
+           `plantilla`, para que el front pueda separar "guiones para
+           reutilizar" de "la sesión de tal día". */
         const out = recs
           .filter((r: any) => {
-            if (!r.fields[EN.plantilla]) return false;               /* solo plantillas, no sesiones con fecha */
             const suya = team && (r.fields[EN.equipo] || []).includes(team);
             const delClub = r.fields[EN.compartida] && club && (r.fields[EN.club] || []).includes(club);
             return suya || delClub;
@@ -681,8 +688,15 @@ export default async (req: Request) => {
             compartida: !!r.fields[EN.compartida],
             usos: Number(r.fields[EN.usos]) || 0,
             propia: !!(team && (r.fields[EN.equipo] || []).includes(team)),
+            plantilla: !!r.fields[EN.plantilla],
+            fecha: r.fields[EN.fecha] || "",
+            hora: r.fields[EN.hora] || "",
           }))
-          .sort((a: any, b: any) => b.usos - a.usos || a.nombre.localeCompare(b.nombre));
+          .sort((a: any, b: any) => {
+            if (a.plantilla !== b.plantilla) return a.plantilla ? -1 : 1;
+            if (!a.plantilla) return (a.fecha || "9999-99-99").localeCompare(b.fecha || "9999-99-99");
+            return b.usos - a.usos || a.nombre.localeCompare(b.nombre);
+          });
         return j({ records: out });
       }
       if (req.method === "POST") {
