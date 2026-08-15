@@ -226,15 +226,13 @@ async function verificaPassword(password: string, guardado: string): Promise<{ o
    las sesiones firmadas antes de este cambio sigan valiendo. */
 const ROL_KEY: Record<string, string> = {
   "entrenador principal": "entrenador", "segundo entrenador": "segundo",
-  "delegado": "delegado", "padre/tutor": "padre", "director deportivo": "director",
+  "delegado": "delegado", "director deportivo": "director",
   "master": "master",
-  /* fichas antiguas: el rol presidente se fusionó con director en la v45 */
-  "presidente": "director", "presidente del club": "director",
 };
 const rolKey = (v: unknown) => ROL_KEY[norm(v)] || norm(v);
 const ROL_LABEL: Record<string, string> = {
   entrenador: "Entrenador principal", segundo: "Segundo entrenador",
-  delegado: "Delegado", padre: "Padre/Tutor", director: "Director deportivo",
+  delegado: "Delegado", director: "Director deportivo",
   master: "Master",
 };
 /* Qué roles puede repartir cada rol. Espejo de ROLES_ASIGNABLES en la app: el

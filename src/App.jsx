@@ -79,7 +79,6 @@ const DICT = {
     "cl.waMsg": "Mensaje para WhatsApp",
     "cl.waOpen": "Abrir WhatsApp",
     "cl.waLegend": "🧤 portero · dorsal en emoji · porteros primero",
-    "cl.famNote": "Las familias verán esta convocatoria en su portal, en modo consulta.",
     "mt.half2": "2ª parte",
     "mt.halfLen": "Duración de cada parte",
     "mt.added": "Tiempo añadido por el árbitro",
@@ -159,7 +158,6 @@ const DICT = {
     "cl.waMsg": "WhatsApp message",
     "cl.waOpen": "Open WhatsApp",
     "cl.waLegend": "🧤 goalkeeper · number as emoji · keepers first",
-    "cl.famNote": "Families will see this squad list in their portal, read-only.",
     "mt.half2": "2nd half",
     "mt.halfLen": "Length of each half",
     "mt.added": "Added time by the referee",
@@ -236,7 +234,6 @@ const DICT = {
     "cl.waMsg": "Message pour WhatsApp",
     "cl.waOpen": "Ouvrir WhatsApp",
     "cl.waLegend": "🧤 gardien · numéro en emoji · gardiens d'abord",
-    "cl.famNote": "Les familles verront cette convocation dans leur portail, en lecture seule.",
     "mt.half2": "2e mi-temps",
     "mt.halfLen": "Durée de chaque mi-temps",
     "mt.added": "Temps additionnel de l'arbitre",
@@ -313,7 +310,6 @@ const DICT = {
     "cl.waMsg": "Nachricht für WhatsApp",
     "cl.waOpen": "WhatsApp öffnen",
     "cl.waLegend": "🧤 Torwart · Nummer als Emoji · Torhüter zuerst",
-    "cl.famNote": "Die Familien sehen diesen Kader in ihrem Portal, nur zur Ansicht.",
     "mt.half2": "2. Halbzeit",
     "mt.halfLen": "Dauer jeder Halbzeit",
     "mt.added": "Nachspielzeit des Schiedsrichters",
@@ -389,7 +385,6 @@ const DICT = {
     "cl.waMsg": "Mensagem para WhatsApp",
     "cl.waOpen": "Abrir WhatsApp",
     "cl.waLegend": "🧤 guarda-redes · número em emoji · guarda-redes primeiro",
-    "cl.famNote": "As famílias verão esta convocatória no seu portal, em modo consulta.",
     "mt.half2": "2.ª parte",
     "mt.halfLen": "Duração de cada parte",
     "mt.added": "Tempo adicionado pelo árbitro",
@@ -650,10 +645,6 @@ const ROLES = {
     desc: "Logística del equipo: acta del partido, disciplina y normativa.",
     tabs: ["inicio", "equipo", "jugadores", "convocatoria", "calendario", "partido", "asistencia", "disciplina", "normativa", "coachai", "material", "premium"],
     perms: ["editSquad", "events", "ai", "discipline", "editDiscipline", "viewDocs", "manageDocs", "editCal"] },
-  padre: { label: "Padre / Madre / Tutor", color: "#36454F", icon: "♥",
-    desc: "Sigue la convocatoria y el calendario de su hijo/a.",
-    tabs: ["inicio", "convocatoria", "calendario", "normativa", "coachai"],
-    perms: ["viewDocs", "ai"] },
   master: { label: "Master · EBLDigital", color: "#36454F", icon: "★",
     desc: "Administración total: crea los equipos oficiales y da de alta a cualquiera.",
     tabs: ["inicio", "master", "equipos", "equipo", "jugadores", "alineacion", "pizarra", "ejercicios", "entrenamiento", "temporada", "estadisticas", "convocatoria", "calendario", "partido", "analisis", "asistencia", "disciplina", "normativa", "usuarios", "coachai", "material"],
@@ -673,13 +664,8 @@ const ROLES_ASIGNABLES = {
 const asignables = (rol) => ROLES_ASIGNABLES[rol] || [];
 
 /* Roles que se pueden elegir de verdad hoy.
-   - "master" no está: es la cuenta única de EBLDigital, no se elige ni se
-     reparte, y el backend además comprueba el correo.
-   - "padre" tampoco: el portal de familias no está abierto todavía. El rol
-     sigue existiendo en ROLES para que las fichas antiguas de Airtable no se
-     rompan, pero no se ofrece en ningún desplegable.
-   Para abrir el portal de familias basta con volver a meter "padre" aquí y en
-   ROLES_ASIGNABLES. */
+   "master" no está: es la cuenta única de EBLDigital, no se elige ni se
+   reparte, y el backend además comprueba el correo. */
 const ROLES_ELEGIBLES = ["director", "entrenador", "segundo", "delegado"];
 /* Solo para la demo: el Master también se puede probar, para ver de qué va
    ese panel. No es una vía para asignarlo de verdad —el backend lo sigue
@@ -1117,8 +1103,8 @@ const cbFetch = async (url, init = {}) => {
   if (r.status === 401) { setAuthToken(null); onAuthExpired(); }
   return r;
 };
-const ROL2LABEL = { entrenador: "Entrenador principal", segundo: "Segundo entrenador", delegado: "Delegado", padre: "Padre/Tutor", director: "Director deportivo", master: "Master" };
-const LABEL2ROL = { "Entrenador principal": "entrenador", "Segundo entrenador": "segundo", "Delegado": "delegado", "Padre/Tutor": "padre", "Director deportivo": "director", "Master": "master", /* compatibilidad con fichas antiguas */ "Presidente": "director", "Presidente del club": "director" };
+const ROL2LABEL = { entrenador: "Entrenador principal", segundo: "Segundo entrenador", delegado: "Delegado", director: "Director deportivo", master: "Master" };
+const LABEL2ROL = { "Entrenador principal": "entrenador", "Segundo entrenador": "segundo", "Delegado": "delegado", "Director deportivo": "director", "Master": "master" };
 const airUsers = async (teamRec = "") => { try { const r = await cbFetch(AIR + (teamRec ? `?team=${encodeURIComponent(teamRec)}` : "")); if (!r.ok) return null; const d = await r.json(); return d.records || null; } catch { return null; } };
 const airCreate = (body) => { try { return cbFetch(AIR, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) }).catch(() => {}); } catch { return null; } };
 /* ================= PROPUESTAS (segundo entrenador -> aprobación) =================
@@ -1253,9 +1239,7 @@ const DEMO_LOGIN = {
   "emilio@eflasrozas.es": { name: "Emilio Bermejo", role: "entrenador", estado: "activo" },
   "raul@eflasrozas.es": { name: "Raúl Sáez", role: "segundo", estado: "activo" },
   "marta@eflasrozas.es": { name: "Marta Gómez", role: "delegado", estado: "activo" },
-  "familia.navarro@gmail.com": { name: "Familia de Leo Navarro", role: "padre", estado: "activo" },
   "andres.ponce@gmail.com": { name: "Andrés Ponce", role: "segundo", estado: "pendiente" },
-  "familia.bravo@gmail.com": { name: "Familia de Enzo Bravo", role: "padre", estado: "pendiente" },
 };
 /* Escudo con red de seguridad: las URL de adjunto de Airtable caducan a las
    pocas horas, y un <img> roto deja un hueco vacío. Si la imagen no carga se
@@ -4055,13 +4039,6 @@ const getRolesInCategory = (userId, categoryId) => {
 const tieneRolFront = (session, clave) =>
   session?.role === clave || (Array.isArray(session?.rolesExtra) && session.rolesExtra.includes(clave));
 
-/* qué jugador tutela cada familia (delimita a qué datos accede) */
-const TUTELA = {
-  "familia.navarro@gmail.com": [10],
-  "familia.bravo@gmail.com": [15],
-  "tutor.leo@gmail.com": [10, 15],
-  "tutor.enzo@gmail.com": [15],
-};
 /* histórico de convocatorias (demo). El cuerpo técnico va guardando las suyas.
    Vacío: la pretemporada aún no ha empezado, así que todavía no hay
    convocatorias reales que guardar para la plantilla de Infantil B. */
@@ -4556,7 +4533,7 @@ function Auth({ lang, setLang, onLogin, onRegister, tema, cambiarTema }) {
       <div className="rounded-lg border p-4 mb-3" style={{ borderColor: "rgba(54,69,79,.36)", background: "rgba(54,69,79,.06)" }}>
         <div className="font-display text-2xl leading-none" style={{ color: ac }}>Organiza tu equipo. Gana tiempo cada semana.</div>
         <div className="text-sm mt-2" style={{ color: C.chalk }}>Plantilla, convocatorias, pizarra y planificación desde el primer día.</div>
-        <div className="flex flex-wrap gap-x-3 gap-y-1 mt-3 text-[11px]" style={{ color: C.dim }}><span>✓ Sin tarjeta para empezar</span><span>✓ Familias gratis</span></div>
+        <div className="flex flex-wrap gap-x-3 gap-y-1 mt-3 text-[11px]" style={{ color: C.dim }}><span>✓ Sin tarjeta para empezar</span></div>
       </div>
         <button onClick={() => { setErr(""); setView("login"); }} className="rounded-lg border p-5 text-left" style={{ borderColor: C.line, background: C.panel2 }}>
           <div className="font-display text-xl font-semibold mb-1">{t("a.have")}</div>
@@ -4865,8 +4842,6 @@ export default function App() {
   /* C.D. Chamartín Vergara nunca ve topes de plan gratuito, sea cual sea el
      Plan que tenga puesto en Airtable: mismo criterio que isPro más abajo. */
   const lim = session ? (esClubChamartinVergara(session.club) ? LIMITS.oficial : LIMITS[session.plan]) : LIMITS.oficial;
-  /* PRO: por suscripción, o por ser Master, o por ser familia (su portal es gratuito) */
-  const isFamilyRole = session?.role === "padre";
   /* Días de prueba. Manda lo que diga Airtable (lo pone el Master a mano en
      el campo "Prueba hasta"), y el contador local queda solo de respaldo para
      el registro libre sin backend. Antes vivía únicamente en localStorage: se
@@ -4877,7 +4852,7 @@ export default function App() {
   /* C.D. Chamartín Vergara tiene la app completa sin pagar, para todo su
      cuerpo técnico: no depende del rol de cada persona ni de si tiene
      suscripción, solo de a qué club pertenece. */
-  const isPro = !!session && (session.role === "master" || !!session.pro || isFamilyRole || trialDaysLeft > 0 || esClubChamartinVergara(session.club));
+  const isPro = !!session && (session.role === "master" || !!session.pro || trialDaysLeft > 0 || esClubChamartinVergara(session.club));
   const pro = (feature) => isPro || !PRO_FEATURES.some((f) => f.k === feature);
   const pendingRestricted = ["viewUsers", "grantAccess", "manageDocs"];
 
@@ -5220,7 +5195,6 @@ export default function App() {
   const [discPid, setDiscPid] = useState("all");
   const [discForm, setDiscForm] = useState(null);
   const [docSel, setDocSel] = useState("d1");
-  const [famKid, setFamKid] = useState(null);
   const discKey = `cb_disc_${session?.team?.id || "demo"}`;
   useEffect(() => {
     if (!session) return;
@@ -5721,10 +5695,8 @@ ACTA:\n${evTxt}`;
        - Delegado: lleva la logística, no la valoración deportiva. Ve quién
          está disponible y el acta, pero NO los minutos, la asistencia ni la
          alineación — eso es criterio del entrenador sobre menores y no es
-         asunto suyo.
-       - Familias: solo sus propios hijos/as, nunca la plantilla ajena. */
-    const nivel = ["entrenador", "segundo", "director", "master"].includes(session.role)
-      ? "tecnico" : session.role === "delegado" ? "delegado" : "familia";
+         asunto suyo. */
+    const nivel = session.role === "delegado" ? "delegado" : "tecnico";
 
     const comun = `Eres Coach AI, asistente de fútbol base (${session.club}, ${session.team.name}, ${session.team.sub}, ${session.comunidad}). Usuario: ${session.name}, rol: ${role.label}. Responde en el idioma del usuario, breve y práctico (máx ~150 palabras), con terminología futbolística natural. Nunca hagas diagnósticos médicos.`;
 
@@ -5735,18 +5707,13 @@ ACTA:\n${evTxt}`;
       const evTxt = events.length ? events.map((e) => `min ${e.min}: ${e.type}${e.player ? " — " + e.player : ""}`).join("\n") : "sin eventos";
       system = `${comun} Adapta el enfoque a su rol técnico.
 PLANTILLA:\n${roster}\nALINEACIÓN: ${xi}\nMARCADOR: ${score.us}-${score.them} | EVENTOS:\n${evTxt}`;
-    } else if (nivel === "delegado") {
+    } else {
       /* Sin minutos, sin asistencia y sin alineación: solo disponibilidad. */
       const roster = players.map((p) => `#${p.d} ${p.n} (${p.pos}, ${p.st})`).join("\n");
       const evTxt = events.length ? events.map((e) => `min ${e.min}: ${e.type}${e.player ? " — " + e.player : ""}`).join("\n") : "sin eventos";
       system = `${comun} Es delegado/a: ayúdale con logística, convocatorias, acta del partido, disciplina y normativa del club.
 No tienes acceso a los minutos jugados, la asistencia a entrenamientos ni la alineación: son criterio del entrenador. Si te los piden, dilo con naturalidad y sugiere que hable con el entrenador.
 PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EVENTOS:\n${evTxt}`;
-    } else {
-      const mis = (myKids || []).map((p) => `#${p.d} ${p.n} (${p.pos}, ${p.st})`).join("\n") || "sin jugadores asociados";
-      system = `${comun} Es familia (padre/madre/tutor): responde solo sobre sus propios hijos/as, convocatorias, calendario y normativa del club.
-No tienes datos de otros jugadores de la plantilla y no debes inventarlos; si te preguntan por terceros, explica que esa información no es pública.
-SUS HIJOS/AS:\n${mis}`;
     }
     try {
       const data = await coachRequest(system, next.map((m) => ({ role: m.role, content: m.content })));
@@ -5865,7 +5832,7 @@ SUS HIJOS/AS:\n${mis}`;
     let alive = true;
     airUsers(session.team?.rec).then((rows) => {
       if (!alive || !rows) return;
-      setUsers(rows.map((r) => ({ id: r.id, name: r.name, email: r.email, role: LABEL2ROL[r.rol] || "padre", status: String(r.estado).toLowerCase() === "activo" ? "activo" : "pendiente" })));
+      setUsers(rows.map((r) => ({ id: r.id, name: r.name, email: r.email, role: LABEL2ROL[r.rol] || "entrenador", status: String(r.estado).toLowerCase() === "activo" ? "activo" : "pendiente" })));
     });
     return () => { alive = false; };
   }, [session]);
@@ -6448,16 +6415,6 @@ SUS HIJOS/AS:\n${mis}`;
         ))}
       </Card>
 
-      <Card title="Las familias no pagan">
-        <div className="text-sm" style={{ color: C.chalk }}>
-          El portal de padres, madres y tutores es <strong>gratuito y completo</strong>: seguimiento de su hijo/a, convocatoria actual e
-          histórico y contacto con el cuerpo técnico. La suscripción PRO es para el cuerpo técnico y la directiva.
-        </div>
-        <div className="text-[11px] mt-2 leading-relaxed" style={{ color: C.dim }}>
-          La familia no elige esta app: se la impone el club. Cobrarle por ver si su hijo está convocado sería un mal negocio y una peor
-          decisión.
-        </div>
-      </Card>
     </div>
   );
 
@@ -6976,10 +6933,6 @@ SUS HIJOS/AS:\n${mis}`;
   };
 
   /* ================= DISCIPLINA (módulo del delegado) ================= */
-  const myKids = players.filter((p) => (session?.kids || []).includes(p.id));
-  const myKid = myKids.find((k) => k.id === famKid) || myKids[0] || null;
-  const isFamily = session?.role === "padre";
-  const staffContacts = users.filter((u) => ["entrenador", "segundo", "delegado"].includes(u.role) && u.status === "activo");
   const pName = (id) => { const p = players.find((x) => x.id === id); return p ? `#${p.d} ${p.n}` : "—"; };
   const hasSigned = (playerId, docId) => (signs[docId]?.players || []).includes(playerId);
   const pendingSign = players.filter((p) => !hasSigned(p.id, "d1")).length;
@@ -7903,9 +7856,8 @@ SUS HIJOS/AS:\n${mis}`;
     const sg = signs[d.id] || { players: [], staff: [] };
     const needPlayers = d.signers.some((x) => x === "Jugador" || x === "Padre/Madre/Tutor");
     const needStaff = d.signers.some((x) => x === "Cuerpo técnico");
-    const staff = users.filter((u) => u.role !== "padre");
+    const staff = users;
     const canManage = can("manageDocs");
-    const isFamily = session.role === "padre";
     /* Los documentos de firma (código disciplinario, RGPD…) usan el
        vocabulario de "firma". El plan de pretemporada no se firma: el cuerpo
        técnico confirma quién ha hecho los ejercicios, así que cambia el
@@ -7943,55 +7895,46 @@ SUS HIJOS/AS:\n${mis}`;
               </a>
             </div>
           )}
-          {isFamily && (
-            <div className="mt-3 text-xs rounded-lg border px-3 py-2" style={{ borderColor: C.line, color: C.dim }}>
-              {isExercise
-                ? "Aquí puedes consultar el plan de pretemporada. El cuerpo técnico confirma qué jugadores han hecho los ejercicios."
-                : "Aquí puedes consultar los documentos que el club te pide firmar. La firma se registra desde la secretaría del club."}
-            </div>
-          )}
         </Card>
 
-        {!isFamily && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            {needPlayers && (
-              <Card title={isExercise ? "Ejercicios · jugadores" : "Firmas · jugadores y familias"}>
-                <div className="text-xs mb-2" style={{ color: C.dim }}>{sg.players.length} de {players.length} {isExercise ? "realizados" : "firmadas"}<Bar2 a={sg.players.length} b={players.length} /></div>
-                <div className="space-y-1 max-h-80 overflow-y-auto pr-1">
-                  {players.map((p) => {
-                    const ok = sg.players.includes(p.id);
-                    return (
-                      <div key={p.id} className="flex items-center justify-between text-sm py-1.5 border-b last:border-0" style={{ borderColor: C.line, color: C.chalk }}>
-                        <span className="truncate">#{p.d} {p.n}</span>
-                        <button disabled={!canManage} onClick={() => toggleSign(d.id, "players", p.id)} className="text-[10px] font-display uppercase tracking-wide px-2 py-1 rounded border disabled:opacity-60"
-                          style={{ borderColor: ok ? C.green : C.warn, color: ok ? C.green : C.warn }}>{ok ? doneLabel : "Pendiente"}</button>
-                      </div>
-                    );
-                  })}
-                </div>
-              </Card>
-            )}
-            {needStaff && (
-              <Card title={isExercise ? "Confirmación · cuerpo técnico" : "Firmas · cuerpo técnico"}>
-                <div className="text-xs mb-2" style={{ color: C.dim }}>{sg.staff.length} de {staff.length} {isExercise ? "confirmados" : "firmadas"}<Bar2 a={sg.staff.length} b={staff.length} /></div>
-                <div className="space-y-1">
-                  {staff.map((u) => {
-                    const ok = sg.staff.includes(u.id);
-                    return (
-                      <div key={u.id} className="flex items-center justify-between text-sm py-1.5 border-b last:border-0" style={{ borderColor: C.line, color: C.chalk }}>
-                        <span className="truncate">{u.name} <span style={{ color: C.dim }}>· {ROLES[u.role]?.label}</span></span>
-                        <button disabled={!canManage} onClick={() => toggleSign(d.id, "staff", u.id)} className="text-[10px] font-display uppercase tracking-wide px-2 py-1 rounded border disabled:opacity-60"
-                          style={{ borderColor: ok ? C.green : C.warn, color: ok ? C.green : C.warn }}>{ok ? doneLabel : "Pendiente"}</button>
-                      </div>
-                    );
-                  })}
-                </div>
-              </Card>
-            )}
-          </div>
-        )}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          {needPlayers && (
+            <Card title={isExercise ? "Ejercicios · jugadores" : "Firmas · jugadores y familias"}>
+              <div className="text-xs mb-2" style={{ color: C.dim }}>{sg.players.length} de {players.length} {isExercise ? "realizados" : "firmadas"}<Bar2 a={sg.players.length} b={players.length} /></div>
+              <div className="space-y-1 max-h-80 overflow-y-auto pr-1">
+                {players.map((p) => {
+                  const ok = sg.players.includes(p.id);
+                  return (
+                    <div key={p.id} className="flex items-center justify-between text-sm py-1.5 border-b last:border-0" style={{ borderColor: C.line, color: C.chalk }}>
+                      <span className="truncate">#{p.d} {p.n}</span>
+                      <button disabled={!canManage} onClick={() => toggleSign(d.id, "players", p.id)} className="text-[10px] font-display uppercase tracking-wide px-2 py-1 rounded border disabled:opacity-60"
+                        style={{ borderColor: ok ? C.green : C.warn, color: ok ? C.green : C.warn }}>{ok ? doneLabel : "Pendiente"}</button>
+                    </div>
+                  );
+                })}
+              </div>
+            </Card>
+          )}
+          {needStaff && (
+            <Card title={isExercise ? "Confirmación · cuerpo técnico" : "Firmas · cuerpo técnico"}>
+              <div className="text-xs mb-2" style={{ color: C.dim }}>{sg.staff.length} de {staff.length} {isExercise ? "confirmados" : "firmadas"}<Bar2 a={sg.staff.length} b={staff.length} /></div>
+              <div className="space-y-1">
+                {staff.map((u) => {
+                  const ok = sg.staff.includes(u.id);
+                  return (
+                    <div key={u.id} className="flex items-center justify-between text-sm py-1.5 border-b last:border-0" style={{ borderColor: C.line, color: C.chalk }}>
+                      <span className="truncate">{u.name} <span style={{ color: C.dim }}>· {ROLES[u.role]?.label}</span></span>
+                      <button disabled={!canManage} onClick={() => toggleSign(d.id, "staff", u.id)} className="text-[10px] font-display uppercase tracking-wide px-2 py-1 rounded border disabled:opacity-60"
+                        style={{ borderColor: ok ? C.green : C.warn, color: ok ? C.green : C.warn }}>{ok ? doneLabel : "Pendiente"}</button>
+                    </div>
+                  );
+                })}
+              </div>
+            </Card>
+          )}
+        </div>
 
-        {!isFamily && d.id === "d1" && (
+        {d.id === "d1" && (
           <Card title="Control de sanciones">
             <div className="text-sm" style={{ color: C.chalk }}>
               {pendingSign === 0
@@ -8007,8 +7950,6 @@ SUS HIJOS/AS:\n${mis}`;
       </div>
     );
   };
-
-  /* ================= FAMILIAS (portal + cola de aprobación) ================= */
 
   /* Datos del próximo partido para el cartel de inicio. nextMatchFix viene del
      calendario importado (solo partidos de verdad, no avisos de pretemporada);
@@ -8094,12 +8035,10 @@ SUS HIJOS/AS:\n${mis}`;
                 </div>
               </div>
             )}
-            {session.role !== "padre" && (
-              <div className="text-center">
-                <div className="font-display text-5xl sm:text-6xl font-bold leading-none tabular-nums" style={{ color: avail < 11 ? C.warn : C.chalk }}>{avail}</div>
-                <div className="font-display text-[10px] uppercase tracking-[0.18em] mt-1" style={{ color: C.dim }}>{t("h.available")}</div>
-              </div>
-            )}
+            <div className="text-center">
+              <div className="font-display text-5xl sm:text-6xl font-bold leading-none tabular-nums" style={{ color: avail < 11 ? C.warn : C.chalk }}>{avail}</div>
+              <div className="font-display text-[10px] uppercase tracking-[0.18em] mt-1" style={{ color: C.dim }}>{t("h.available")}</div>
+            </div>
           </div>
         </div>
 
@@ -8395,67 +8334,43 @@ SUS HIJOS/AS:\n${mis}`;
         )}
       </Card>
 
-      {session.role === "padre" ? (
-        <Card title={t("h.family")}>
-          <div className="text-sm space-y-2" style={{ color: C.chalk }}>
-            {horaProx && (
-              <div className="flex items-start gap-2">
-                <Icono n="partido" s={16} style={{ color: AC }} />
-                <span>{t("h.fMatch").replace("{h}", horaProx)}{lugarProx ? ` · ${lugarProx}` : ""}</span>
-              </div>
-            )}
-            <div className="flex items-start gap-2">
-              <Icono n="convocatoria" s={16} style={{ color: AC }} />
-              <span>{called.size > 0 ? t("h.fCalled").replace("{n}", called.size) : t("h.fNoCall")}</span>
-            </div>
-            <div className="flex items-start gap-2">
-              <Icono n="material" s={16} style={{ color: C.dim }} />
-              <span>{t("h.fKit")}</span>
-            </div>
-          </div>
-          <div className="text-[11px] mt-3" style={{ color: C.dim }}>{t("h.fNote")}</div>
-        </Card>
-      ) : (
-        <>
-          <Card title={t("h.available")}>
-            <div className="flex items-baseline gap-3"><span className="font-display text-6xl font-bold" style={{ color: C.chalk }}>{avail}</span><span style={{ color: C.dim }}>/ {players.length}</span></div>
-            <div className="mt-3 space-y-1">{out.map((p) => (<div key={p.id} className="text-sm flex items-center" style={{ color: C.chalk }}><Dot st={p.st} /> #{p.d} {p.n} · <span className="ml-1" style={{ color: C.dim }}>{p.st}</span></div>))}</div>
-          </Card>
-          <Card title={t("h.lessMin")}>
-            {lowMin.map((p) => (<div key={p.id} className="flex justify-between text-sm py-1.5 border-b last:border-0" style={{ borderColor: C.line, color: C.chalk }}><span>#{p.d} {p.n}</span><span style={{ color: AC }}>{p.min} min</span></div>))}
-          </Card>
-          {/* Avisos derivados de los datos reales del equipo. Antes eran dos
-              frases fijas escritas a mano ("Iker Molina (duda)", "Daniel Ruiz
-              — carga alta 520 min") que no cambiaban nunca y que parecían un
-              diagnóstico de verdad. Un aviso falso es peor que ningún aviso. */}
-          <Card title={t("h.alerts")}>
-            {(() => {
-              const dudas = players.filter((p) => p.st === "duda");
-              const lesionados = players.filter((p) => p.st === "lesionado");
-              const pendUsers = can("viewUsers") ? users.filter((u) => u.status === "pendiente").length : 0;
-              const avisos = [
-                dudas.length && { c: C.warn, ico: "duda", txt: `${dudas.length} ${dudas.length === 1 ? t("h.aDoubt1") : t("h.aDoubtN")}: ${dudas.map((p) => p.n.split(" ")[0]).join(", ")}` },
-                lesionados.length && { c: C.red, ico: "lesion", txt: `${lesionados.length} ${lesionados.length === 1 ? t("h.aInj1") : t("h.aInjN")}: ${lesionados.map((p) => p.n.split(" ")[0]).join(", ")}` },
-                pendUsers > 0 && { c: AC, ico: "usuarios", txt: `${pendUsers} ${t("h.pending")}` },
-                can("discipline") && pendingValid > 0 && { c: C.warn, ico: "disciplina", txt: `${pendingValid} ${t("h.aDisc")}` },
-                can("viewDocs") && pendingSign > 0 && { c: C.warn, ico: "normativa", txt: `${pendingSign} ${t("h.aSign")}` },
-                can("viewDocs") && pretempPend.length > 0 && { c: C.warn, ico: "normativa", txt: `${pretempPend.length} sin completar los ejercicios de pretemporada: ${pretempPend.map((p) => p.n.split(" ")[0]).join(", ")}` },
-              ].filter(Boolean);
-              if (!avisos.length) return <div className="text-sm" style={{ color: C.dim }}>{t("h.noAlerts")}</div>;
-              return (
-                <div className="space-y-2">
-                  {avisos.map((a, i) => (
-                    <div key={i} className="text-sm flex items-start gap-2" style={{ color: C.chalk }}>
-                      <span className="shrink-0 flex items-center" style={{ color: a.c, height: "1.55em" }}><Icono n={a.ico} s={16} /></span>
-                      <span>{a.txt}</span>
-                    </div>
-                  ))}
+      <Card title={t("h.available")}>
+        <div className="flex items-baseline gap-3"><span className="font-display text-6xl font-bold" style={{ color: C.chalk }}>{avail}</span><span style={{ color: C.dim }}>/ {players.length}</span></div>
+        <div className="mt-3 space-y-1">{out.map((p) => (<div key={p.id} className="text-sm flex items-center" style={{ color: C.chalk }}><Dot st={p.st} /> #{p.d} {p.n} · <span className="ml-1" style={{ color: C.dim }}>{p.st}</span></div>))}</div>
+      </Card>
+      <Card title={t("h.lessMin")}>
+        {lowMin.map((p) => (<div key={p.id} className="flex justify-between text-sm py-1.5 border-b last:border-0" style={{ borderColor: C.line, color: C.chalk }}><span>#{p.d} {p.n}</span><span style={{ color: AC }}>{p.min} min</span></div>))}
+      </Card>
+      {/* Avisos derivados de los datos reales del equipo. Antes eran dos
+          frases fijas escritas a mano ("Iker Molina (duda)", "Daniel Ruiz
+          — carga alta 520 min") que no cambiaban nunca y que parecían un
+          diagnóstico de verdad. Un aviso falso es peor que ningún aviso. */}
+      <Card title={t("h.alerts")}>
+        {(() => {
+          const dudas = players.filter((p) => p.st === "duda");
+          const lesionados = players.filter((p) => p.st === "lesionado");
+          const pendUsers = can("viewUsers") ? users.filter((u) => u.status === "pendiente").length : 0;
+          const avisos = [
+            dudas.length && { c: C.warn, ico: "duda", txt: `${dudas.length} ${dudas.length === 1 ? t("h.aDoubt1") : t("h.aDoubtN")}: ${dudas.map((p) => p.n.split(" ")[0]).join(", ")}` },
+            lesionados.length && { c: C.red, ico: "lesion", txt: `${lesionados.length} ${lesionados.length === 1 ? t("h.aInj1") : t("h.aInjN")}: ${lesionados.map((p) => p.n.split(" ")[0]).join(", ")}` },
+            pendUsers > 0 && { c: AC, ico: "usuarios", txt: `${pendUsers} ${t("h.pending")}` },
+            can("discipline") && pendingValid > 0 && { c: C.warn, ico: "disciplina", txt: `${pendingValid} ${t("h.aDisc")}` },
+            can("viewDocs") && pendingSign > 0 && { c: C.warn, ico: "normativa", txt: `${pendingSign} ${t("h.aSign")}` },
+            can("viewDocs") && pretempPend.length > 0 && { c: C.warn, ico: "normativa", txt: `${pretempPend.length} sin completar los ejercicios de pretemporada: ${pretempPend.map((p) => p.n.split(" ")[0]).join(", ")}` },
+          ].filter(Boolean);
+          if (!avisos.length) return <div className="text-sm" style={{ color: C.dim }}>{t("h.noAlerts")}</div>;
+          return (
+            <div className="space-y-2">
+              {avisos.map((a, i) => (
+                <div key={i} className="text-sm flex items-start gap-2" style={{ color: C.chalk }}>
+                  <span className="shrink-0 flex items-center" style={{ color: a.c, height: "1.55em" }}><Icono n={a.ico} s={16} /></span>
+                  <span>{a.txt}</span>
                 </div>
-              );
-            })()}
-          </Card>
-        </>
-      )}
+              ))}
+            </div>
+          );
+        })()}
+      </Card>
 
       {/* Asistencia de hoy, de un vistazo: quién falta y por qué, sin tener
           que abrir la pestaña. Solo para quien puede pasar lista — a las
@@ -8926,110 +8841,12 @@ SUS HIJOS/AS:\n${mis}`;
       setCallMsg("✓ Propuesta de convocatoria enviada. Esperando aprobación del entrenador.");
     } else {
       setCalls([row, ...calls]);
-      setCallMsg("✓ Convocatoria guardada en el histórico. Las familias ya pueden verla.");
+      setCallMsg("✓ Convocatoria guardada en el histórico.");
     }
     setTimeout(() => setCallMsg(""), 4000);
   };
-  const mailStaff = (u) => {
-    const asunto = `[${session.club} · ${session.team.name}] Consulta sobre ${myKid ? myKid.n : "mi hijo/a"}`;
-    const cuerpo = `Hola ${u.name.split(" ")[0]},\n\nSoy ${session.name}, familia de ${myKid ? myKid.n : "—"} (dorsal ${myKid ? myKid.d : "—"}).\n\n\n\nGracias.`;
-    return `mailto:${u.email}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
-  };
-
-  /* ---- convocatoria vista por la familia: solo lectura, con su hijo/a destacado ---- */
-  const renderCallFamily = () => {
-    const inCall = myKid ? called.has(myKid.id) : false;
-    const Row = ({ p, on }) => (
-      <div className="flex items-center justify-between text-sm py-2 px-3 rounded-lg border"
-        style={{ borderColor: myKid && p.id === myKid.id ? AC : C.line, background: myKid && p.id === myKid.id ? C.panel2 : "transparent", color: C.chalk }}>
-        <span className="flex items-center">
-          <span className="w-5 text-center mr-2" style={{ color: on ? AC : C.dim }}>{on ? "✓" : "○"}</span>
-          <Dot st={p.st} />
-          <span className="font-display text-base mr-2" style={{ color: AC }}>{p.d}</span>
-          {p.n}
-          {myKid && p.id === myKid.id && <span className="ml-2 text-[10px] font-display uppercase tracking-wide px-1.5 py-0.5 rounded" style={{ background: AC, color: C.sobre }}>tu hijo/a</span>}
-        </span>
-        <span style={{ color: C.dim }}>{p.pos}</span>
-      </div>
-    );
-    return (
-      <div className="space-y-4">
-        <Card title="Convocatoria actual">
-          <div className="rounded-lg border p-3 mb-3" style={{ borderColor: inCall ? C.green : C.warn, background: C.panel2 }}>
-            <div className="font-display text-lg" style={{ color: inCall ? C.green : C.warn }}>
-              {myKid ? (inCall ? `✓ ${myKid.n.split(" ")[0]} está convocado/a` : `${myKid.n.split(" ")[0]} no entra en esta convocatoria`) : "Sin jugador vinculado"}
-            </div>
-            <div className="text-sm mt-1" style={{ color: C.chalk }}>vs {matchInfo.rival} · {matchInfo.fecha} · {matchInfo.hora}</div>
-            <div className="text-[11px]" style={{ color: C.dim }}>📍 {matchInfo.lugar}</div>
-          </div>
-          <div className="text-xs mb-2" style={{ color: C.dim }}>Convocados — {called.size} jugadores</div>
-          <div className="space-y-1 max-h-[320px] overflow-y-auto pr-1">
-            {players.filter((p) => called.has(p.id) || (myKid && p.id === myKid.id)).map((p) => (<Row key={p.id} p={p} on={called.has(p.id)} />))}
-          </div>
-          <div className="text-[11px] mt-3" style={{ color: C.dim }}>
-            La convocatoria la decide el cuerpo técnico. Desde aquí solo puedes consultarla.
-          </div>
-        </Card>
-
-        <Card title="Convocatorias anteriores">
-          {calls.length === 0 ? <div className="text-sm" style={{ color: C.dim }}>Todavía no hay histórico.</div> : (
-            <div className="space-y-2">
-              {calls.map((c) => {
-                const was = myKid ? c.ids.includes(myKid.id) : false;
-                return (
-                  <div key={c.id} className="rounded-lg border p-3" style={{ borderColor: C.line, background: C.panel2 }}>
-                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                      <span className="font-display text-sm" style={{ color: AC }}>{c.j ? "J" + c.j : "—"}</span>
-                      <span className="text-sm" style={{ color: C.chalk }}>vs {c.rival}</span>
-                      <span className="text-[11px]" style={{ color: C.dim }}>{c.fecha} · {c.hora} · {c.lugar}</span>
-                      <span className="ml-auto text-[10px] font-display uppercase tracking-wide px-2 py-1 rounded border"
-                        style={{ borderColor: was ? C.green : C.line, color: was ? C.green : C.dim }}>
-                        {myKid ? (was ? `✓ ${myKid.n.split(" ")[0]} convocado/a` : "No convocado/a") : `${c.ids.length} convocados`}
-                      </span>
-                    </div>
-                  </div>
-                );
-              })}
-              {myKid && (
-                <div className="text-xs pt-2" style={{ color: C.dim }}>
-                  {myKid.n.split(" ")[0]} ha entrado en {calls.filter((c) => c.ids.includes(myKid.id)).length} de las últimas {calls.length} convocatorias.
-                </div>
-              )}
-            </div>
-          )}
-        </Card>
-
-        <Card title="Hablar con el cuerpo técnico">
-          <div className="text-sm" style={{ color: C.chalk }}>
-            Si tienes una duda sobre {myKid ? myKid.n.split(" ")[0] : "tu hijo/a"} —una lesión, una ausencia, la convocatoria— escribe directamente a quien corresponda.
-          </div>
-          <div className="space-y-2 mt-3">
-            {staffContacts.map((u) => (
-              <div key={u.id} className="rounded-lg border p-3 flex flex-wrap items-center gap-3" style={{ borderColor: C.line, background: C.panel2 }}>
-                <div className="min-w-0 flex-1">
-                  <div className="text-sm" style={{ color: C.chalk }}>{u.name}</div>
-                  <div className="text-[11px]" style={{ color: C.dim }}>{ROLES[u.role]?.label} · {u.email}</div>
-                </div>
-                <div className="flex gap-2 text-xs">
-                  <a href={mailStaff(u)} className="px-3 py-1.5 rounded-lg font-semibold" style={{ background: AC, color: C.sobre }}>✉ Email</a>
-                  <button onClick={() => { navigator.clipboard?.writeText(u.email); setCallMsg("✓ Email copiado: " + u.email); setTimeout(() => setCallMsg(""), 3000); }}
-                    className="px-3 py-1.5 rounded-lg border" style={{ borderColor: C.line, color: C.dim }}>Copiar</button>
-                </div>
-              </div>
-            ))}
-            {staffContacts.length === 0 && <div className="text-sm" style={{ color: C.dim }}>El club todavía no ha publicado los contactos del cuerpo técnico.</div>}
-          </div>
-          {callMsg && <div className="text-xs mt-2" style={{ color: C.green }}>{callMsg}</div>}
-          <div className="text-[11px] mt-3 leading-relaxed" style={{ color: C.dim }}>
-            Para avisar de una ausencia con antelación, el código disciplinario pide comunicarlo al entrenador o al delegado antes de la sesión.
-          </div>
-        </Card>
-      </div>
-    );
-  };
 
   const renderCall = () => {
-    if (isFamily) return renderCallFamily();
     const editable = can("editCall");
     const toggle = (id) => editable && setCalled((s) => { const n = new Set(s); n.has(id) ? n.delete(id) : n.add(id); return n; });
     return (
@@ -9109,7 +8926,6 @@ SUS HIJOS/AS:\n${mis}`;
               <button onClick={saveCall} className="w-full font-display uppercase tracking-wider py-2.5 rounded-lg border" style={{ borderColor: AC, color: AC }}>
                 📌 Guardar en el histórico
               </button>
-              <div className="text-[11px] mt-2" style={{ color: C.dim }}>{t("cl.famNote")}</div>
               {callMsg && <div className="text-xs mt-2" style={{ color: C.green }}>{callMsg}</div>}
             </div>
           )}
@@ -10340,7 +10156,6 @@ SUS HIJOS/AS:\n${mis}`;
       setSession({
         name: `Demo · ${ROLES[r].label}`,
         role: r, plan: "oficial", pro: true, club: DEMO_CLUB, comunidad: "Comunidad de Madrid", email: "demo",
-        kids: r === "padre" ? [10, 15] : [],
         team: demoTeam,
         categories: demoCategories.map((c) => c.name),
         currentCategory: demoCat?.name || demoTeam?.name,
@@ -10379,11 +10194,11 @@ SUS HIJOS/AS:\n${mis}`;
     }
     if (estado === "suspendido") return T(lang, "a.accSusp");
     startTrial(em);
-    const finalRole = LABEL2ROL[roleLabel] || "padre";
+    const finalRole = LABEL2ROL[roleLabel] || "entrenador";
     const userCategories = getCategoriesForUser(res?.user?.id || 0, finalRole, club);
     const defaultCat = getDefaultCategory(res?.user?.id || 0, finalRole, club);
     setSession({
-      name, role: finalRole, plan, club, comunidad, email: em, kids: TUTELA[em] || [], team,
+      name, role: finalRole, plan, club, comunidad, email: em, team,
       /* Roles adicionales de verdad (ej. segundo + delegado a la vez), tal y
          como los devuelve el login real. En la demo/sin backend se queda
          vacío: ahí los roles combinados se simulan con CATEGORIES_INIT. */
@@ -10554,20 +10369,13 @@ SUS HIJOS/AS:\n${mis}`;
               </button>
             </div>
           )}
-          {isPro && !onTrial && session.role !== "master" && !isFamilyRole && <span className="hidden sm:inline-block text-[10px] font-display uppercase tracking-wide px-2 py-1 rounded" style={{ background: AC, color: C.sobre }}>★ PRO</span>}
+          {isPro && !onTrial && session.role !== "master" && <span className="hidden sm:inline-block text-[10px] font-display uppercase tracking-wide px-2 py-1 rounded" style={{ background: AC, color: C.sobre }}>★ PRO</span>}
           {/* En móvil el rol de arriba está oculto, así que Mi cuenta se abre
               desde este botón. */}
           <button onClick={() => setAccountOpen(true)} aria-label={t("p.account")} title={t("p.account")}
             className="md:hidden text-base px-2.5 py-2 rounded-lg border leading-none" style={{ borderColor: C.line, color: C.chalk }}>
             <Icono n="usuarios" s={18} />
           </button>
-          {isFamily && myKids.length > 0 && (
-            <select value={myKid?.id || ""} onChange={(e) => setFamKid(Number(e.target.value))}
-              title="Elige a tu hijo/a" className="text-xs px-2 py-1.5 rounded-lg border bg-transparent"
-              style={{ borderColor: C.line, color: C.chalk }}>
-              {myKids.map((k) => (<option key={k.id} value={k.id} style={{ background: C.panel }}>#{k.d} {k.n}</option>))}
-            </select>
-          )}
           {/* Claro / oscuro. Un solo botón: el icono dice a qué se va a cambiar. */}
           <button onClick={cambiarTema} title={tema === "oscuro" ? "Modo claro" : "Modo oscuro"}
             aria-label={tema === "oscuro" ? "Modo claro" : "Modo oscuro"}
