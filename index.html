@@ -9,6 +9,12 @@
     <meta name="theme-color" content="#1B2A4A" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/icon-192.png" />
+    <!-- Safari no lee "display: standalone" del manifest.json -necesita sus
+         propias etiquetas- para "Añadir a pantalla de inicio" a pantalla
+         completa, sin la barra de Safari. -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="COACHBASE" />
     <style>body{margin:0;background:#FFFFFF}</style>
     <script>
       /* El tema guardado se aplica ANTES de pintar nada: si no, quien lo tiene
