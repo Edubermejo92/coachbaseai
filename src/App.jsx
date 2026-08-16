@@ -4807,6 +4807,36 @@ const Avatar = ({ p, size = 32 }) => (
   </div>
 );
 
+/* Google AdSense. IDs de placeholder hasta que se apruebe la cuenta —
+   sustituir por los reales (Panel de AdSense > Anuncios > Por unidad de
+   anuncio) y el banner empieza a servir anuncios automáticamente. Solo se
+   muestra a cuentas del plan gratuito (ver uso en App: {!isPro && <AdBanner/>}). */
+const ADSENSE_CLIENT_ID = "ca-pub-XXXXXXXXXXXXXXXX";
+const ADSENSE_SLOT_ID = "XXXXXXXXXX";
+const AdBanner = () => {
+  const ref = useRef(null);
+  useEffect(() => {
+    if (ADSENSE_CLIENT_ID.includes("XXXX")) return;
+    if (!document.querySelector('script[data-adsbygoogle]')) {
+      const s = document.createElement("script");
+      s.async = true;
+      s.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT_ID}`;
+      s.crossOrigin = "anonymous";
+      s.dataset.adsbygoogle = "1";
+      document.head.appendChild(s);
+    }
+    try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch { /* AdSense aún no cargado */ }
+  }, []);
+  if (ADSENSE_CLIENT_ID.includes("XXXX")) return null;
+  return (
+    <div className="my-3 flex justify-center" ref={ref}>
+      <ins className="adsbygoogle" style={{ display: "block", width: "100%" }}
+        data-ad-client={ADSENSE_CLIENT_ID} data-ad-slot={ADSENSE_SLOT_ID}
+        data-ad-format="auto" data-full-width-responsive="true" />
+    </div>
+  );
+};
+
 export default function App() {
   const [session, setSession] = useState(null);
   const [booting, setBooting] = useState(true);
@@ -10691,6 +10721,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
           {tab === "asistencia" && can("editSquad") && renderAsistencia()}
           {tab === "normativa" && can("viewDocs") && renderDocs()}
           {tab === "material" && renderMaterial()}
+          {!isPro && <AdBanner />}
         </main>
       </div>
 

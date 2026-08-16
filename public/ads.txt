@@ -1,0 +1,3 @@
+# Google AdSense — reemplazar pub-XXXXXXXXXXXXXXXX por el ID real una vez
+# aprobada la cuenta (Panel de AdSense > Sitios > coachbase-ai.netlify.app).
+google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
