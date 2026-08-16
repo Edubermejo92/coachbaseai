@@ -37,7 +37,7 @@ const DICT = {
     "nav.inicio": "Inicio", "nav.jugadores": "Jugadores", "nav.alineacion": "Alineación", "nav.pizarra": "Pizarra", "nav.convocatoria": "Convocatoria", "nav.partido": "Modo partido", "nav.usuarios": "Usuarios", "nav.coachai": "Coach AI", "nav.material": "Material", "nav.entrenamiento": "Entrenamiento", "nav.ejercicios": "Ejercicios", "nav.estadisticas": "Estadísticas", "nav.calendario": "Calendario", "nav.equipos": "Clubes", "nav.premium": "Premium", "nav.disciplina": "Disciplina", "nav.normativa": "Normativa", "nav.familias": "Familias", "nav.equipo": "Club", "nav.asistencia": "Asistencia", "mt.toBoard": "Pizarra", "p.myTeam": "Mi club y mi categoría", "p.pickTeam": "Cambiar a otra categoría…", "p.changeTeam": "Cambiar de categoría", "p.newTeam": "Nombre de la categoría nueva", "p.newTeamPh": "Ej. Cadete B", "p.newTeamNote": "¿No está tu categoría en la lista? Créala dentro de tu club:", "p.createTeam": "Crear", "p.deleteAcc": "Eliminar mi cuenta", "p.deleteWarn": "Se borrará tu ficha y perderás el acceso. No se puede deshacer. Los datos del equipo no se borran.", "p.deleteGo": "Eliminar", "c.proTab": "Apartado PRO. Toca para verlo.", "a.resetAgain": "Pedir un enlace nuevo", "a.resetExp": "Este enlace ha caducado (dura una hora). Pide otro desde \"¿Has olvidado tu contraseña?\".", "a.resetUsed": "Este enlace ya se ha usado. Si no fuiste tú, pide otro y cámbiala cuanto antes.", "a.resetServer": "El servidor no pudo guardar la contraseña. Vuelve a intentarlo en un minuto.", "h.round": "Jornada", "h.howTo": "Cómo llegar", "h.today": "Hoy", "h.day": "Día", "h.days": "Días", "h.noDate": "Sin fecha", "h.noGoal": "Sesión sin objetivo", "h.noTrain": "No hay ningún entrenamiento planificado.", "h.planTrain": "Planificar", "h.noAlerts": "Nada que revisar. Plantilla al completo.", "h.aDoubt1": "duda", "h.aDoubtN": "dudas", "h.aInj1": "lesionado", "h.aInjN": "lesionados", "h.aDisc": "incidencia(s) pendientes de validar", "h.aSign": "sin firmar el código disciplinario", "h.fMatch": "El partido es a las {h}.", "h.fCalled": "Convocatoria publicada · {n} convocados.", "h.fNoCall": "Todavía no hay convocatoria publicada.", "h.fKit": "Lleva botella de agua y espinilleras.", "h.fNote": "Como familia solo ves lo que el entrenador comparte.", "nav.temporada": "Temporada", "se.title": "Pilares de la temporada", "se.hint": "Reparte el año entre los cuatro pilares. Marca en qué meses pesa cada uno y anota el objetivo concreto de cada mes.", "se.months": "meses", "se.calendar": "Mes a mes", "se.goal": "Objetivo de", "se.goalPh": "Objetivo del mes. Ej. salida de balón desde portero", "se.saved": "Planificación guardada y compartida con tu equipo.", "se.share": "Compartir con el equipo", "se.shareNote": "Se guarda en este dispositivo mientras la editas. Al compartirla, la ve todo tu cuerpo técnico desde cualquier móvil.", "mt.abp": "ABP guardados", "mt.abpTap": "Toca una jugada para abrirla en la pizarra grande.", "mt.abpEmpty": "Aún no has guardado ninguna jugada a balón parado. Créalas en la pizarra, en el menú ABP, y aquí las tendrás a un toque.", "nav.analisis": "Análisis", "pm.title": "Análisis post-partido", "pm.events": "eventos en el acta", "pm.empty": "Aún no hay acta de este partido. Registra el partido en Modo partido y vuelve aquí: el análisis sale de los goles, cambios y tarjetas que hayas ido marcando.", "pm.go": "Generar análisis", "pm.again": "Volver a generar", "pm.thinking": "Analizando el partido…", "pm.note": "Lo redacta Coach AI a partir del acta. Repásalo antes de compartirlo con nadie.", "mt.subs": "Tandas de cambios", "mt.subsTotal": "tandas en total", "mt.subsOne": "Tanda", "mt.subsUndo": "Quitar una tanda", "mt.subsOf": "de", "mt.subsLeft": "Te quedan {n} tandas.", "mt.subsNone": "Sin tandas disponibles.", "tr.target": "Duración de la sesión", "tr.left": "Faltan {n} min por completar.", "tr.over": "Te pasas {n} min del objetivo.", "tr.done": "Sesión completa.", "tr.saveSession": "Guardar sesión completa",
     "navg.equipo": "Equipo", "navg.partido": "Día de partido", "navg.entrenamiento": "Entrenamiento", "navg.delegado": "Delegado", "navg.estadisticas": "Estadísticas", "navg.roles": "Roles", "navg.coachai": "Coach AI",
     "role.entrenador": "Entrenador principal", "role.segundo": "Segundo entrenador", "role.delegado": "Delegado", "role.padre": "Padre / Madre / Tutor", "role.director": "Director deportivo", "role.master": "Master · EBLDigital", 
-    "c.exit": "Salir", "c.planFree": "PLAN GRATIS", "c.upgrade": "Mejorar", "c.by": "Desarrollado por EBLDigital", "c.madeBy": "App creada por EBLDigital ·", "navg.master": "Master", "nav.master": "Panel Master", "c.pro": "Función PRO. Mejora a una cuenta oficial del club para desbloquearla.",
+    "c.exit": "Salir", "c.planFree": "PLAN GRATIS", "c.upgrade": "Mejorar", "c.by": "Desarrollado por EBLDigital", "c.madeBy": "App creada por EBLDigital ·", "navg.master": "Master", "nav.master": "Panel Master", "c.pro": "Función PRO. Mejora a una cuenta oficial del club para desbloquearla.", "c.cancel": "Cancelar", "c.nav": "Navegación", "c.trialBadge": "PRUEBA PRO", "c.planCurrentFree": "Plan actual · Gratis", "c.goPro": "Ir a PRO",
     "a.tagline": "Gestión inteligente para entrenadores de fútbol base", "a.accOff": "Sí, entreno en un club", "a.accOffD": "Tu director deportivo o el Master ya te han dado de alta antes. Pon tu contraseña y entras al momento.", "a.accFree": "No, entreno por mi cuenta", "a.accFreeD": "Tu equipo es tuyo y no depende de nadie. Sin aprobaciones.", "a.have": "Ya soy usuario", "a.register": "Registrarme", "a.name": "Tu nombre", "a.fullname": "Nombre y apellidos", "a.email": "Email", "a.pass": "Contraseña", "a.region": "Comunidad autónoma", "a.clubMadrid": "Club (Comunidad de Madrid)", "a.choose": "Elige tu club…", "a.otherClub": "Nombre de tu club", "a.teamOff": "Equipo", "a.teamFree": "Tu equipo", "a.role": "Tu rol", "a.pending": "Entras al momento y puedes empezar a trabajar con tu equipo. Hasta que el club apruebe tu acceso no verás los datos compartidos del club ni la gestión de usuarios.", "a.freeInc": "Gratis para siempre: plantilla completa sin límite de jugadores, alineación, convocatoria, modo partido, pizarra y Coach AI.", "a.startFree": "Empezar gratis", "a.signin": "Iniciar sesión", "a.create": "Crear cuenta y entrar", "a.proto": "Prototipo — los datos no se guardan en ningún servidor", "a.choice": "¿Perteneces a un club?", "a.choiceD": "Las dos opciones son gratuitas. Solo cambia de quién dependen tus datos.", "a.back": "‹ Volver", "a.badCreds": "Email o contraseña incorrectos.", "a.accPending": "Tu cuenta está pendiente de aprobación por el club.", "a.accSusp": "Tu acceso está suspendido. Contacta con tu club.", "a.exists": "Ese email ya está registrado. Inicia sesión.", "a.registered": "¡Registro recibido! Tu acceso queda pendiente de aprobación por el club.", "a.loading": "Cargando…", "a.entering": "Entrando…", "a.demoHint": "Demo: usuario demo / contraseña demo", "a.demoBtn": "▶ Entrar con usuario demo", "a.demoPick": "¿Qué rol quieres ver?", "a.demoPickD": "Elige un rol para explorar la app tal y como lo vería esa persona.",
     "a.forgot": "¿Has olvidado tu contraseña?", "a.forgotTitle": "Recuperar contraseña", "a.forgotD": "Escribe tu email y te mandamos un enlace para elegir una nueva.", "a.forgotSend": "Enviar enlace", "a.sending": "Enviando…", "a.forgotSent": "Si ese email tiene cuenta, ya está el enlace enviado. Caduca en una hora y solo sirve una vez. Mira también en spam.", "a.forgotNoMail": "El envío de correo no está disponible ahora mismo. Avisa a tu club para que lo revise.", "a.resetTitle": "Elige tu nueva contraseña", "a.resetD": "Este enlace caduca en una hora y solo sirve una vez.", "a.newPass": "Nueva contraseña", "a.newPass2": "Repite la contraseña", "a.resetSave": "Guardar contraseña", "a.resetOk": "Contraseña actualizada. Ya puedes entrar con ella.", "a.resetBad": "Este enlace ya no vale: ha caducado o ya se ha usado. Pide otro.", "a.passRule": "Mínimo 6 caracteres, y las dos deben coincidir.", "a.noBackend": "No hay conexión con el servidor. Inténtalo más tarde.",
     "p.account": "Mi cuenta", "p.changePass": "Cambiar contraseña", "p.current": "Contraseña actual", "p.save": "Guardar", "p.saved": "Contraseña actualizada.", "p.badCurrent": "La contraseña actual no es correcta.", "p.close": "Cerrar",
@@ -92,7 +92,7 @@ const DICT = {
     "ca.example": "Ver ejemplo",
     "ca.clear": "Vaciar",
     "ca.remove": "Quitar",
-    "ca.useMatch": "Usar en modo partido",
+    "ca.useMatch": "Usar en modo partido", "ca.month": "Calendario del mes", "ca.dayHint": "Toca un día para ver su detalle.", "ca.dayEmpty": "No hay partidos ni entrenamiento programado este día.", "ca.dayTraining": "Día de entrenamiento", "ca.legendMatch": "Partido (del calendario importado)", "ca.legendTrain": "Entrenamiento", "ca.trainDaysLabel": "Días de entreno:",
     "ca.teamCrest": "Escudo del equipo",
 
     /* v50 — plantillas de entrenamiento */
@@ -116,7 +116,7 @@ const DICT = {
     "nav.inicio": "Home", "nav.jugadores": "Players", "nav.alineacion": "Line-up", "nav.pizarra": "Whiteboard", "nav.convocatoria": "Squad list", "nav.partido": "Match mode", "nav.usuarios": "Users", "nav.coachai": "Coach AI", "nav.material": "Store", "nav.entrenamiento": "Training", "nav.ejercicios": "Drills", "nav.estadisticas": "Stats", "nav.calendario": "Fixtures", "nav.equipos": "Clubs", "nav.premium": "Premium", "nav.disciplina": "Discipline", "nav.normativa": "Club rules", "nav.familias": "Families", "nav.equipo": "Club", "mt.toBoard": "Whiteboard", "p.myTeam": "My club and age group", "p.pickTeam": "Switch to another age group…", "p.changeTeam": "Change age group", "p.newTeam": "New age group name", "p.newTeamPh": "e.g. U16 B", "p.newTeamNote": "Yours not on the list? Create it inside your club:", "p.createTeam": "Create", "p.deleteAcc": "Delete my account", "p.deleteWarn": "Your profile will be deleted and you will lose access. This cannot be undone. Team data is not deleted.", "p.deleteGo": "Delete", "c.proTab": "PRO section. Tap to see it.", "a.resetAgain": "Request a new link", "a.resetExp": "This link has expired (it lasts one hour). Request a new one from \"Forgotten your password?\".", "a.resetUsed": "This link has already been used. If that was not you, request another and change it right away.", "a.resetServer": "The server could not save the password. Try again in a minute.", "h.round": "Round", "h.howTo": "Directions", "h.today": "Today", "h.day": "Day", "h.days": "Days", "h.noDate": "No date", "h.noGoal": "Session with no goal set", "h.noTrain": "No training session planned.", "h.planTrain": "Plan one", "h.noAlerts": "Nothing to review. Full squad available.", "h.aDoubt1": "doubt", "h.aDoubtN": "doubts", "h.aInj1": "injured", "h.aInjN": "injured", "h.aDisc": "incident(s) awaiting validation", "h.aSign": "have not signed the code of conduct", "h.fMatch": "Kick-off at {h}.", "h.fCalled": "Squad list published · {n} called up.", "h.fNoCall": "No squad list published yet.", "h.fKit": "Bring a water bottle and shin pads.", "h.fNote": "As a family you only see what the coach shares.", "nav.temporada": "Season", "se.title": "Season pillars", "se.hint": "Spread the year across the four pillars. Mark which months each one carries weight, and note the specific goal for each month.", "se.months": "months", "se.calendar": "Month by month", "se.goal": "Goal for", "se.goalPh": "Goal for the month. E.g. building out from the keeper", "se.saved": "Season plan saved and shared with your team.", "se.share": "Share with the team", "se.shareNote": "Kept on this device while you edit. Once shared, your whole coaching staff sees it from any phone.", "mt.abp": "Saved set pieces", "mt.abpTap": "Tap a play to open it on the full whiteboard.", "mt.abpEmpty": "No set-piece plays saved yet. Create them on the whiteboard, in the ABP menu, and they will be one tap away here.", "nav.analisis": "Analysis", "pm.title": "Post-match analysis", "pm.events": "events logged", "pm.empty": "No match log yet. Record the match in Match mode and come back: the analysis is built from the goals, subs and cards you logged.", "pm.go": "Generate analysis", "pm.again": "Generate again", "pm.thinking": "Analysing the match…", "pm.note": "Written by Coach AI from the match log. Read it over before sharing it.", "mt.subs": "Substitution windows", "mt.subsTotal": "windows in total", "mt.subsOne": "Window", "mt.subsUndo": "Remove one window", "mt.subsOf": "of", "mt.subsLeft": "{n} windows left.", "mt.subsNone": "No windows left.", "tr.target": "Session length", "tr.left": "{n} min still to fill.", "tr.over": "{n} min over target.", "tr.done": "Session complete.", "tr.saveSession": "Save full session",
     "navg.equipo": "Team", "navg.partido": "Matchday", "navg.entrenamiento": "Training", "navg.delegado": "Team manager", "navg.estadisticas": "Stats", "navg.roles": "Roles", "navg.coachai": "Coach AI",
     "role.entrenador": "Head coach", "role.segundo": "Assistant coach", "role.delegado": "Team manager", "role.padre": "Parent / Guardian", "role.director": "Sporting director", "role.master": "Master · EBLDigital", 
-    "c.exit": "Log out", "c.planFree": "FREE PLAN", "c.upgrade": "Upgrade", "c.by": "Built by EBLDigital", "c.madeBy": "App built by EBLDigital ·", "navg.master": "Master", "nav.master": "Master panel", "c.pro": "PRO feature. Upgrade to an official club account to unlock it.",
+    "c.exit": "Log out", "c.planFree": "FREE PLAN", "c.upgrade": "Upgrade", "c.by": "Built by EBLDigital", "c.madeBy": "App built by EBLDigital ·", "navg.master": "Master", "nav.master": "Master panel", "c.pro": "PRO feature. Upgrade to an official club account to unlock it.", "c.cancel": "Cancel", "c.nav": "Navigation", "c.trialBadge": "TRIAL PRO", "c.planCurrentFree": "Current plan · Free", "c.goPro": "Go PRO",
     "a.tagline": "Smart management for grassroots football coaches", "a.accOff": "Yes, I coach at a club", "a.accOffD": "Your sporting director or the Master has already added you. Set your password and you're in right away.", "a.accFree": "No, I coach on my own", "a.accFreeD": "Your team is yours alone. No approvals.", "a.have": "I already have an account", "a.register": "Sign up", "a.name": "Your name", "a.fullname": "Full name", "a.email": "Email", "a.pass": "Password", "a.region": "Region", "a.clubMadrid": "Club (Madrid region)", "a.choose": "Choose your club…", "a.otherClub": "Your club name", "a.teamOff": "Team", "a.teamFree": "Your team", "a.role": "Your role", "a.pending": "When you sign up as an official user, your access stays pending until the sporting director or the Master approves it. Not every user can be a coach.", "a.freeInc": "Free forever: full squad with no player limit, line-up, squad list, match mode, whiteboard and Coach AI.", "a.startFree": "Start free", "a.signin": "Sign in", "a.create": "Create account & enter", "a.proto": "Prototype — no data is stored on any server", "a.choice": "Do you belong to a club?", "a.choiceD": "Both options are free. It only changes who owns your data.", "a.back": "‹ Back", "a.badCreds": "Wrong email or password.", "a.accPending": "Your account is pending approval by the club.", "a.accSusp": "Your access is suspended. Contact your club.", "a.exists": "That email is already registered. Sign in.", "a.registered": "Registration received! Your access is pending club approval.", "a.loading": "Loading…", "a.entering": "Entering…", "a.demoHint": "Demo: username demo / password demo", "a.demoBtn": "▶ Enter with demo account", "a.demoPick": "Which role do you want to see?", "a.demoPickD": "Pick a role to explore the app as that person would see it.",
     "a.forgot": "Forgotten your password?", "a.forgotTitle": "Reset password", "a.forgotD": "Enter your email and we'll send you a link to choose a new one.", "a.forgotSend": "Send link", "a.sending": "Sending…", "a.forgotSent": "If that email has an account, the link is on its way. It expires in an hour and works once. Check your spam folder too.", "a.forgotNoMail": "Email sending is unavailable right now. Let your club know so they can look into it.", "a.resetTitle": "Choose your new password", "a.resetD": "This link expires in an hour and works only once.", "a.newPass": "New password", "a.newPass2": "Repeat password", "a.resetSave": "Save password", "a.resetOk": "Password updated. You can sign in with it now.", "a.resetBad": "This link no longer works: it expired or was already used. Request a new one.", "a.passRule": "At least 6 characters, and both must match.", "a.noBackend": "No connection to the server. Try again later.",
     "p.account": "My account", "p.changePass": "Change password", "p.current": "Current password", "p.save": "Save", "p.saved": "Password updated.", "p.badCurrent": "That current password isn't right.", "p.close": "Close",
@@ -171,7 +171,7 @@ const DICT = {
     "ca.example": "See example",
     "ca.clear": "Clear",
     "ca.remove": "Remove",
-    "ca.useMatch": "Use in match mode",
+    "ca.useMatch": "Use in match mode", "ca.month": "Month calendar", "ca.dayHint": "Tap a day to see its detail.", "ca.dayEmpty": "No fixtures or training scheduled this day.", "ca.dayTraining": "Training day", "ca.legendMatch": "Fixture (from the imported calendar)", "ca.legendTrain": "Training", "ca.trainDaysLabel": "Training days:",
     "ca.teamCrest": "Team crest",
 
     /* v50 — plantillas de entrenamiento */
@@ -190,12 +190,32 @@ const DICT = {
     "pl.delete": "Delete template",
     "nav.roleOne": "profile",
     "nav.roleMany": "profiles",
+    "nav.asistencia": "Attendance",
+    "as.title": "Today's attendance",
+    "as.subtitle": "Who showed up and why. No incidents or sanctions here — that still lives in Discipline.",
+    "as.today": "Today",
+    "as.markAll": "✓ Mark all present",
+    "as.present": "Present",
+    "as.unmarked": "Unmarked",
+    "as.studies": "Studies",
+    "as.noExcuse": "No excuse given",
+    "as.sick": "Illness",
+    "as.injured": "Injury",
+    "as.reset": "Clear mark",
+    "as.noPlayers": "There are no players in the squad.",
+    "as.discNote": "Late arrival or absence with disciplinary consequences? That's recorded in Discipline → Roll call, which also notifies the coaching staff.",
+    "as.homeTitle": "Today's attendance",
+    "as.homeEmpty": "You haven't taken attendance today yet.",
+    "as.homeCta": "Take attendance",
+    "as.homeSee": "View attendance",
+    "as.homeAll": "Everyone present.",
+    "as.homeOf": "of",
   },
   fr: {
     "nav.inicio": "Accueil", "nav.jugadores": "Joueurs", "nav.alineacion": "Composition", "nav.pizarra": "Tableau", "nav.convocatoria": "Convocation", "nav.partido": "Mode match", "nav.usuarios": "Utilisateurs", "nav.coachai": "Coach AI", "nav.material": "Boutique", "nav.entrenamiento": "Entraînement", "nav.ejercicios": "Exercices", "nav.estadisticas": "Statistiques", "nav.calendario": "Calendrier", "nav.equipos": "Clubs", "nav.premium": "Premium", "nav.disciplina": "Discipline", "nav.normativa": "Règlement", "nav.familias": "Familles", "nav.equipo": "Club", "mt.toBoard": "Tableau", "p.myTeam": "Mon club et ma catégorie", "p.pickTeam": "Passer à une autre catégorie…", "p.changeTeam": "Changer de catégorie", "p.newTeam": "Nom de la nouvelle catégorie", "p.newTeamPh": "Ex. U16 B", "p.newTeamNote": "La vôtre n'est pas dans la liste ? Créez-la dans votre club :", "p.createTeam": "Créer", "p.deleteAcc": "Supprimer mon compte", "p.deleteWarn": "Votre fiche sera supprimée et vous perdrez l'accès. Irréversible. Les données de l'équipe ne sont pas supprimées.", "p.deleteGo": "Supprimer", "c.proTab": "Section PRO. Touchez pour voir.", "a.resetAgain": "Demander un nouveau lien", "a.resetExp": "Ce lien a expiré (il dure une heure). Demandez-en un autre.", "a.resetUsed": "Ce lien a déjà été utilisé. Si ce n'était pas vous, demandez-en un autre et changez-la sans tarder.", "a.resetServer": "Le serveur n'a pas pu enregistrer le mot de passe. Réessayez dans une minute.", "h.round": "Journée", "h.howTo": "Itinéraire", "h.today": "Aujourd'hui", "h.day": "Jour", "h.days": "Jours", "h.noDate": "Sans date", "h.noGoal": "Séance sans objectif", "h.noTrain": "Aucune séance planifiée.", "h.planTrain": "Planifier", "h.noAlerts": "Rien à signaler. Effectif au complet.", "h.aDoubt1": "incertain", "h.aDoubtN": "incertains", "h.aInj1": "blessé", "h.aInjN": "blessés", "h.aDisc": "incident(s) à valider", "h.aSign": "n'ont pas signé le règlement", "h.fMatch": "Le match est à {h}.", "h.fCalled": "Convocation publiée · {n} convoqués.", "h.fNoCall": "Pas encore de convocation.", "h.fKit": "Apporte une gourde et des protège-tibias.", "h.fNote": "En tant que famille, vous ne voyez que ce que l'entraîneur partage.", "nav.temporada": "Saison", "se.title": "Piliers de la saison", "se.hint": "Répartissez l'année entre les quatre piliers et notez l'objectif de chaque mois.", "se.months": "mois", "se.calendar": "Mois par mois", "se.goal": "Objectif de", "se.goalPh": "Objectif du mois. Ex. relance depuis le gardien", "se.saved": "Planification enregistrée et partagée avec l'équipe.", "se.share": "Partager avec l'équipe", "se.shareNote": "Conservée sur cet appareil pendant l'édition. Une fois partagée, tout le staff la voit.", "mt.abp": "Coups de pied arrêtés", "mt.abpTap": "Touchez une combinaison pour l’ouvrir sur le grand tableau.", "mt.abpEmpty": "Aucun coup de pied arrêté enregistré. Créez-les sur le tableau, menu ABP.", "nav.analisis": "Analyse", "pm.title": "Analyse d'après-match", "pm.events": "événements enregistrés", "pm.empty": "Pas encore de feuille de match. Enregistrez le match en Mode match et revenez ici.", "pm.go": "Générer l'analyse", "pm.again": "Régénérer", "pm.thinking": "Analyse du match…", "pm.note": "Rédigée par Coach AI à partir de la feuille de match. Relisez-la avant de la partager.", "mt.subs": "Fenêtres de remplacement", "mt.subsTotal": "fenêtres au total", "mt.subsOne": "Fenêtre", "mt.subsUndo": "Retirer une fenêtre", "mt.subsOf": "sur", "mt.subsLeft": "Il reste {n} fenêtres.", "mt.subsNone": "Plus de fenêtres.", "tr.target": "Durée de la séance", "tr.left": "Il reste {n} min à remplir.", "tr.over": "{n} min de plus que prévu.", "tr.done": "Séance complète.", "tr.saveSession": "Enregistrer la séance",
     "navg.equipo": "Équipe", "navg.partido": "Jour de match", "navg.entrenamiento": "Entraînement", "navg.delegado": "Délégué", "navg.estadisticas": "Statistiques", "navg.roles": "Rôles", "navg.coachai": "Coach AI",
     "role.entrenador": "Entraîneur principal", "role.segundo": "Entraîneur adjoint", "role.delegado": "Délégué", "role.padre": "Parent / Tuteur", "role.director": "Directeur sportif", "role.master": "Master · EBLDigital", 
-    "c.exit": "Quitter", "c.planFree": "FORFAIT GRATUIT", "c.upgrade": "Améliorer", "c.by": "Développé par EBLDigital", "c.madeBy": "App créée par EBLDigital ·", "navg.master": "Master", "nav.master": "Panneau Master", "c.pro": "Fonction PRO. Passez à un compte officiel du club pour la débloquer.",
+    "c.exit": "Quitter", "c.planFree": "FORFAIT GRATUIT", "c.upgrade": "Améliorer", "c.by": "Développé par EBLDigital", "c.madeBy": "App créée par EBLDigital ·", "navg.master": "Master", "nav.master": "Panneau Master", "c.pro": "Fonction PRO. Passez à un compte officiel du club pour la débloquer.", "c.cancel": "Annuler", "c.nav": "Navigation", "c.trialBadge": "ESSAI PRO", "c.planCurrentFree": "Offre actuelle · Gratuite", "c.goPro": "Passer PRO",
     "a.tagline": "Gestion intelligente pour les éducateurs de football", "a.accOff": "Compte officiel du club", "a.accOffD": "Le directeur sportif ou le Master vous a déjà ajouté. Choisissez votre mot de passe pour accéder.", "a.accFree": "J'entraîne de mon côté", "a.accFreeD": "Gratuit, fonctions limitées.", "a.have": "J'ai déjà un compte", "a.register": "S'inscrire", "a.name": "Votre nom", "a.fullname": "Nom et prénom", "a.email": "E-mail", "a.pass": "Mot de passe", "a.region": "Région", "a.clubMadrid": "Club (région de Madrid)", "a.choose": "Choisissez votre club…", "a.otherClub": "Nom de votre club", "a.teamOff": "Équipe", "a.teamFree": "Votre équipe", "a.role": "Votre rôle", "a.pending": "En vous inscrivant comme utilisateur officiel, votre accès reste en attente jusqu'à validation par le directeur sportif ou le Master. Tous les utilisateurs ne peuvent pas être entraîneurs.", "a.freeInc": "Le forfait gratuit inclut jusqu'à 14 joueurs, la composition, la convocation, le mode match et Coach AI. Il n'inclut pas les vidéos de présentation, la gestion des utilisateurs ni les fonctions de club.", "a.startFree": "Commencer gratuitement", "a.signin": "Se connecter", "a.create": "Créer un compte et entrer", "a.proto": "Prototype — aucune donnée n'est enregistrée sur un serveur", "a.demoHint": "Démo : utilisateur demo / mot de passe demo", "a.demoBtn": "▶ Entrer avec le compte démo",
     "a.forgot": "Mot de passe oublié ?", "a.forgotTitle": "Récupérer le mot de passe", "a.forgotD": "Saisissez votre e-mail et nous vous enverrons un lien pour en choisir un nouveau.", "a.forgotSend": "Envoyer le lien", "a.sending": "Envoi…", "a.forgotSent": "Si cet e-mail a un compte, le lien est parti. Il expire dans une heure et ne sert qu'une fois. Vérifiez aussi vos spams.", "a.forgotNoMail": "L'envoi d'e-mails n'est pas disponible pour le moment. Prévenez votre club.", "a.resetTitle": "Choisissez votre nouveau mot de passe", "a.resetD": "Ce lien expire dans une heure et ne sert qu'une fois.", "a.newPass": "Nouveau mot de passe", "a.newPass2": "Répétez le mot de passe", "a.resetSave": "Enregistrer", "a.resetOk": "Mot de passe mis à jour. Vous pouvez vous connecter avec.", "a.resetBad": "Ce lien ne fonctionne plus : il a expiré ou a déjà été utilisé. Demandez-en un autre.", "a.passRule": "6 caractères minimum, et les deux doivent correspondre.", "a.noBackend": "Pas de connexion au serveur. Réessayez plus tard.",
     "p.account": "Mon compte", "p.changePass": "Changer le mot de passe", "p.current": "Mot de passe actuel", "p.save": "Enregistrer", "p.saved": "Mot de passe mis à jour.", "p.badCurrent": "Le mot de passe actuel est incorrect.", "p.close": "Fermer",
@@ -247,7 +267,7 @@ const DICT = {
     "ca.example": "Voir un exemple",
     "ca.clear": "Vider",
     "ca.remove": "Retirer",
-    "ca.useMatch": "Utiliser en mode match",
+    "ca.useMatch": "Utiliser en mode match", "ca.month": "Calendrier du mois", "ca.dayHint": "Touchez un jour pour voir son détail.", "ca.dayEmpty": "Aucun match ni entraînement prévu ce jour.", "ca.dayTraining": "Jour d'entraînement", "ca.legendMatch": "Match (du calendrier importé)", "ca.legendTrain": "Entraînement", "ca.trainDaysLabel": "Jours d'entraînement :",
     "ca.teamCrest": "Écusson de l'équipe",
 
     /* v50 — plantillas de entrenamiento */
@@ -266,12 +286,105 @@ const DICT = {
     "pl.delete": "Supprimer le modèle",
     "nav.roleOne": "profil",
     "nav.roleMany": "profils",
+    "nav.asistencia": "Présences",
+    "a.choice": "Faites-vous partie d'un club ?",
+    "a.choiceD": "Les deux options sont gratuites. Seul change qui héberge vos données.",
+    "a.back": "‹ Retour",
+    "a.badCreds": "E-mail ou mot de passe incorrect.",
+    "a.accPending": "Votre compte est en attente d'approbation par le club.",
+    "a.accSusp": "Votre accès est suspendu. Contactez votre club.",
+    "a.exists": "Cet e-mail est déjà enregistré. Connectez-vous.",
+    "a.registered": "Inscription reçue ! Votre accès est en attente d'approbation par le club.",
+    "a.loading": "Chargement…",
+    "a.entering": "Connexion…",
+    "a.demoPick": "Quel rôle voulez-vous voir ?",
+    "a.demoPickD": "Choisissez un rôle pour découvrir l'application comme cette personne la verrait.",
+    "as.title": "Présences du jour",
+    "as.subtitle": "Qui est venu et pourquoi. Ni incidents ni sanctions ici : cela reste dans Discipline.",
+    "as.today": "Aujourd'hui",
+    "as.markAll": "✓ Marquer tous présents",
+    "as.present": "Présent",
+    "as.unmarked": "Non marqué",
+    "as.studies": "Études",
+    "as.noExcuse": "Sans justification",
+    "as.sick": "Maladie",
+    "as.injured": "Blessure",
+    "as.reset": "Retirer la marque",
+    "as.noPlayers": "Il n'y a aucun joueur dans l'effectif.",
+    "as.discNote": "Retard ou absence avec conséquence disciplinaire ? Cela se déclare dans Discipline → Faire l'appel, qui avertit aussi le staff technique.",
+    "as.homeTitle": "Présences du jour",
+    "as.homeEmpty": "Vous n'avez pas encore fait l'appel aujourd'hui.",
+    "as.homeCta": "Faire l'appel",
+    "as.homeSee": "Voir les présences",
+    "as.homeAll": "Tous présents.",
+    "as.homeOf": "sur",
+    "ex.title": "Bibliothèque d'exercices",
+    "ex.hint": "Filtrez par catégorie, consultez la durée et le matériel, puis utilisez-le sur le tableau ou ajoutez-le à un entraînement.",
+    "ex.all": "Tous",
+    "ex.cat.rondo": "Rondos et possession",
+    "ex.cat.finish": "Finition",
+    "ex.cat.press": "Pressing et transition",
+    "ex.cat.buildup": "Relance",
+    "ex.cat.setpiece": "Phases arrêtées",
+    "ex.cat.technique": "Technique individuelle",
+    "ex.cat.fitness": "Physique",
+    "ex.cat.gk": "Gardiens",
+    "ex.cat.warmup": "Échauffement",
+    "ex.cat.defense": "Défense",
+    "ex.cat.cross": "Centres et finition",
+    "ex.cat.duel": "Duels 1 contre 1",
+    "ex.dur": "min",
+    "ex.materials": "Matériel",
+    "ex.useBoard": "Utiliser sur le tableau",
+    "ex.addTrain": "Ajouter à l'entraînement",
+    "ex.added": "✓ Ajouté",
+    "tr.title": "Mode entraînement",
+    "tr.hint": "Planifiez la séance en ajoutant des blocs depuis la bibliothèque d'exercices ou des blocs libres.",
+    "tr.date": "Date",
+    "tr.time": "Heure",
+    "tr.objective": "Objectif de la séance",
+    "tr.objectivePh": "Ex. transitions défensives",
+    "tr.addFromLib": "+ Ajouter depuis la bibliothèque",
+    "tr.addCustom": "+ Bloc libre",
+    "tr.customName": "Nom du bloc",
+    "tr.customDur": "Durée (min)",
+    "tr.noBlocks": "Vous n'avez encore ajouté aucun bloc à cette séance.",
+    "tr.total": "Durée totale",
+    "tr.materials": "Matériel nécessaire",
+    "tr.remove": "Retirer",
+    "tr.up": "▲",
+    "tr.down": "▼",
+    "tr.sendBoard": "Voir sur le tableau",
+    "tr.summary": "Résumé à partager",
+    "tr.copy": "Copier le résumé",
+    "tr.copied": "✓ Copié",
+    "tr.whatsapp": "Ouvrir WhatsApp",
+    "tr.min": "min",
+    "tr.close": "Fermer",
+    "tr.newBlock": "Nouveau bloc",
+    "st.title": "Statistiques de l'équipe",
+    "st.availability": "Disponibilité de l'effectif",
+    "st.available": "Disponibles",
+    "st.doubt": "Incertain",
+    "st.injured": "Blessés",
+    "st.topAtt": "Meilleure assiduité aux entraînements",
+    "st.lowMin": "Moins de temps de jeu (minutes)",
+    "st.byPosition": "Effectif par ligne",
+    "st.gkPos": "Gardiens",
+    "st.defPos": "Défenseurs",
+    "st.midPos": "Milieux",
+    "st.fwdPos": "Attaquants",
+    "st.players": "joueurs",
+    "st.byRole": "Répartition par poste",
+    "st.roleHint": "Répartition réelle de l'effectif, poste par poste, avec le poids de chacun sur le total.",
+    "st.total": "Effectif total",
+    "st.player": "joueur",
   },
   de: {
     "nav.inicio": "Start", "nav.jugadores": "Spieler", "nav.alineacion": "Aufstellung", "nav.pizarra": "Taktiktafel", "nav.convocatoria": "Kader", "nav.partido": "Spielmodus", "nav.usuarios": "Benutzer", "nav.coachai": "Coach AI", "nav.material": "Shop", "nav.entrenamiento": "Training", "nav.ejercicios": "Übungen", "nav.estadisticas": "Statistik", "nav.calendario": "Spielplan", "nav.equipos": "Vereine", "nav.premium": "Premium", "nav.disciplina": "Disziplin", "nav.normativa": "Regelwerk", "nav.familias": "Familien", "nav.equipo": "Verein", "mt.toBoard": "Taktiktafel", "p.myTeam": "Mein Verein und meine Altersklasse", "p.pickTeam": "Andere Altersklasse wählen…", "p.changeTeam": "Altersklasse wechseln", "p.newTeam": "Name der neuen Altersklasse", "p.newTeamPh": "z. B. U16 B", "p.newTeamNote": "Deine ist nicht dabei? Leg sie in deinem Verein an:", "p.createTeam": "Anlegen", "p.deleteAcc": "Mein Konto löschen", "p.deleteWarn": "Dein Profil wird gelöscht und du verlierst den Zugang. Nicht rückgängig zu machen. Mannschaftsdaten bleiben erhalten.", "p.deleteGo": "Löschen", "c.proTab": "PRO-Bereich. Antippen zum Ansehen.", "a.resetAgain": "Neuen Link anfordern", "a.resetExp": "Dieser Link ist abgelaufen (er gilt eine Stunde). Fordere einen neuen an.", "a.resetUsed": "Dieser Link wurde bereits benutzt. Warst du das nicht, fordere einen neuen an und ändere sie sofort.", "a.resetServer": "Der Server konnte das Passwort nicht speichern. Versuch es in einer Minute noch einmal.", "h.round": "Spieltag", "h.howTo": "Anfahrt", "h.today": "Heute", "h.day": "Tag", "h.days": "Tage", "h.noDate": "Kein Datum", "h.noGoal": "Einheit ohne Ziel", "h.noTrain": "Keine Einheit geplant.", "h.planTrain": "Planen", "h.noAlerts": "Nichts zu prüfen. Kader komplett.", "h.aDoubt1": "fraglich", "h.aDoubtN": "fraglich", "h.aInj1": "verletzt", "h.aInjN": "verletzt", "h.aDisc": "Vorfall/Vorfälle zu prüfen", "h.aSign": "haben das Regelwerk nicht unterschrieben", "h.fMatch": "Anpfiff um {h}.", "h.fCalled": "Kader veröffentlicht · {n} nominiert.", "h.fNoCall": "Noch kein Kader veröffentlicht.", "h.fKit": "Trinkflasche und Schienbeinschoner mitbringen.", "h.fNote": "Als Familie siehst du nur, was der Trainer teilt.", "nav.temporada": "Saison", "se.title": "Säulen der Saison", "se.hint": "Verteile das Jahr auf die vier Säulen und notiere das Ziel jedes Monats.", "se.months": "Monate", "se.calendar": "Monat für Monat", "se.goal": "Ziel für", "se.goalPh": "Ziel des Monats. Z. B. Spielaufbau vom Torwart", "se.saved": "Planung gespeichert und mit der Mannschaft geteilt.", "se.share": "Mit der Mannschaft teilen", "se.shareNote": "Wird beim Bearbeiten auf diesem Gerät gehalten. Nach dem Teilen sieht sie das ganze Trainerteam.", "mt.abp": "Gespeicherte Standards", "mt.abpTap": "Tippe eine Variante an, um sie auf der großen Taktiktafel zu öffnen.", "mt.abpEmpty": "Noch keine Standardsituationen gespeichert. Lege sie auf der Taktiktafel im ABP-Menü an.", "nav.analisis": "Analyse", "pm.title": "Spielanalyse", "pm.events": "Ereignisse erfasst", "pm.empty": "Noch kein Spielbericht. Erfasse das Spiel im Spielmodus und komm zurück.", "pm.go": "Analyse erstellen", "pm.again": "Neu erstellen", "pm.thinking": "Spiel wird analysiert…", "pm.note": "Von Coach AI aus dem Spielbericht geschrieben. Vor dem Teilen durchlesen.", "mt.subs": "Wechselfenster", "mt.subsTotal": "Fenster insgesamt", "mt.subsOne": "Fenster", "mt.subsUndo": "Ein Fenster zurücknehmen", "mt.subsOf": "von", "mt.subsLeft": "Noch {n} Fenster.", "mt.subsNone": "Keine Fenster mehr.", "tr.target": "Dauer der Einheit", "tr.left": "Noch {n} min zu füllen.", "tr.over": "{n} min über dem Ziel.", "tr.done": "Einheit vollständig.", "tr.saveSession": "Einheit speichern",
     "navg.equipo": "Mannschaft", "navg.partido": "Spieltag", "navg.entrenamiento": "Training", "navg.delegado": "Betreuer", "navg.estadisticas": "Statistik", "navg.roles": "Rollen", "navg.coachai": "Coach AI",
     "role.entrenador": "Cheftrainer", "role.segundo": "Co-Trainer", "role.delegado": "Betreuer", "role.padre": "Elternteil / Vormund", "role.director": "Sportdirektor", "role.master": "Master · EBLDigital", 
-    "c.exit": "Abmelden", "c.planFree": "GRATIS-PLAN", "c.upgrade": "Upgrade", "c.by": "Entwickelt von EBLDigital", "c.madeBy": "App entwickelt von EBLDigital ·", "navg.master": "Master", "nav.master": "Master-Panel", "c.pro": "PRO-Funktion. Für die Freischaltung auf ein offizielles Vereinskonto upgraden.",
+    "c.exit": "Abmelden", "c.planFree": "GRATIS-PLAN", "c.upgrade": "Upgrade", "c.by": "Entwickelt von EBLDigital", "c.madeBy": "App entwickelt von EBLDigital ·", "navg.master": "Master", "nav.master": "Master-Panel", "c.pro": "PRO-Funktion. Für die Freischaltung auf ein offizielles Vereinskonto upgraden.", "c.cancel": "Abbrechen", "c.nav": "Navigation", "c.trialBadge": "TESTVERSION PRO", "c.planCurrentFree": "Aktueller Plan · Kostenlos", "c.goPro": "Zu PRO wechseln",
     "a.tagline": "Intelligentes Management für Jugendfußballtrainer", "a.accOff": "Offizielles Vereinskonto", "a.accOffD": "Der Sportdirektor oder der Master hat dich bereits hinzugefügt. Lege dein Passwort fest und leg direkt los.", "a.accFree": "Ich trainiere auf eigene Faust", "a.accFreeD": "Gratis, mit eingeschränkten Funktionen.", "a.have": "Ich habe bereits ein Konto", "a.register": "Registrieren", "a.name": "Dein Name", "a.fullname": "Vor- und Nachname", "a.email": "E-Mail", "a.pass": "Passwort", "a.region": "Region", "a.clubMadrid": "Verein (Region Madrid)", "a.choose": "Wähle deinen Verein…", "a.otherClub": "Name deines Vereins", "a.teamOff": "Mannschaft", "a.teamFree": "Deine Mannschaft", "a.role": "Deine Rolle", "a.pending": "Bei der Registrierung als offizieller Benutzer bleibt dein Zugang ausstehend, bis der Sportdirektor oder der Master ihn freigibt. Nicht jeder Benutzer kann Trainer sein.", "a.freeInc": "Der Gratis-Plan umfasst bis zu 14 Spieler, Aufstellung, Kader, Spielmodus und Coach AI. Nicht enthalten: Vorstellungsvideos, Benutzerverwaltung und Vereinsfunktionen.", "a.startFree": "Gratis starten", "a.signin": "Anmelden", "a.create": "Konto erstellen & starten", "a.proto": "Prototyp — es werden keine Daten auf einem Server gespeichert", "a.demoHint": "Demo: Benutzer demo / Passwort demo", "a.demoBtn": "▶ Mit Demo-Konto einloggen",
     "a.forgot": "Passwort vergessen?", "a.forgotTitle": "Passwort zurücksetzen", "a.forgotD": "Gib deine E-Mail ein und wir schicken dir einen Link für ein neues Passwort.", "a.forgotSend": "Link senden", "a.sending": "Wird gesendet…", "a.forgotSent": "Falls es zu dieser E-Mail ein Konto gibt, ist der Link unterwegs. Er läuft in einer Stunde ab und gilt nur einmal. Schau auch im Spam-Ordner.", "a.forgotNoMail": "Der E-Mail-Versand ist gerade nicht verfügbar. Sag deinem Verein Bescheid.", "a.resetTitle": "Wähle dein neues Passwort", "a.resetD": "Dieser Link läuft in einer Stunde ab und gilt nur einmal.", "a.newPass": "Neues Passwort", "a.newPass2": "Passwort wiederholen", "a.resetSave": "Passwort speichern", "a.resetOk": "Passwort aktualisiert. Du kannst dich jetzt damit anmelden.", "a.resetBad": "Dieser Link gilt nicht mehr: abgelaufen oder bereits benutzt. Fordere einen neuen an.", "a.passRule": "Mindestens 6 Zeichen, und beide müssen übereinstimmen.", "a.noBackend": "Keine Verbindung zum Server. Versuch es später noch einmal.",
     "p.account": "Mein Konto", "p.changePass": "Passwort ändern", "p.current": "Aktuelles Passwort", "p.save": "Speichern", "p.saved": "Passwort aktualisiert.", "p.badCurrent": "Das aktuelle Passwort stimmt nicht.", "p.close": "Schließen",
@@ -323,7 +436,7 @@ const DICT = {
     "ca.example": "Beispiel ansehen",
     "ca.clear": "Leeren",
     "ca.remove": "Entfernen",
-    "ca.useMatch": "Im Spielmodus verwenden",
+    "ca.useMatch": "Im Spielmodus verwenden", "ca.month": "Monatskalender", "ca.dayHint": "Tippe auf einen Tag, um Details zu sehen.", "ca.dayEmpty": "An diesem Tag sind weder Spiele noch Training geplant.", "ca.dayTraining": "Trainingstag", "ca.legendMatch": "Spiel (aus importiertem Spielplan)", "ca.legendTrain": "Training", "ca.trainDaysLabel": "Trainingstage:",
     "ca.teamCrest": "Mannschaftswappen",
 
     /* v50 — plantillas de entrenamiento */
@@ -342,12 +455,105 @@ const DICT = {
     "pl.delete": "Vorlage löschen",
     "nav.roleOne": "Profil",
     "nav.roleMany": "Profile",
+    "nav.asistencia": "Anwesenheit",
+    "a.choice": "Gehörst du zu einem Verein?",
+    "a.choiceD": "Beide Optionen sind kostenlos. Es ändert sich nur, wer deine Daten verwaltet.",
+    "a.back": "‹ Zurück",
+    "a.badCreds": "E-Mail oder Passwort falsch.",
+    "a.accPending": "Dein Konto wartet auf die Freigabe durch den Verein.",
+    "a.accSusp": "Dein Zugang ist gesperrt. Wende dich an deinen Verein.",
+    "a.exists": "Diese E-Mail ist bereits registriert. Melde dich an.",
+    "a.registered": "Registrierung erhalten! Dein Zugang wartet auf die Freigabe durch den Verein.",
+    "a.loading": "Wird geladen…",
+    "a.entering": "Anmeldung läuft…",
+    "a.demoPick": "Welche Rolle möchtest du sehen?",
+    "a.demoPickD": "Wähle eine Rolle, um die App so zu sehen, wie diese Person sie sehen würde.",
+    "as.title": "Anwesenheit heute",
+    "as.subtitle": "Wer da war und warum. Keine Vorfälle oder Sanktionen — das bleibt in Disziplin.",
+    "as.today": "Heute",
+    "as.markAll": "✓ Alle als anwesend markieren",
+    "as.present": "Anwesend",
+    "as.unmarked": "Nicht markiert",
+    "as.studies": "Schule",
+    "as.noExcuse": "Ohne Entschuldigung",
+    "as.sick": "Krankheit",
+    "as.injured": "Verletzung",
+    "as.reset": "Markierung entfernen",
+    "as.noPlayers": "Es gibt keine Spieler im Kader.",
+    "as.discNote": "Verspätung oder Fehlen mit disziplinarischer Folge? Das wird unter Disziplin → Anwesenheit erfassen eingetragen und benachrichtigt zusätzlich das Trainerteam.",
+    "as.homeTitle": "Anwesenheit heute",
+    "as.homeEmpty": "Du hast heute noch keine Anwesenheit erfasst.",
+    "as.homeCta": "Anwesenheit erfassen",
+    "as.homeSee": "Anwesenheit ansehen",
+    "as.homeAll": "Alle anwesend.",
+    "as.homeOf": "von",
+    "ex.title": "Übungsbibliothek",
+    "ex.hint": "Filtere nach Kategorie, sieh dir Dauer und Material an und nutze sie auf der Taktiktafel oder füge sie einem Training hinzu.",
+    "ex.all": "Alle",
+    "ex.cat.rondo": "Rondos und Ballbesitz",
+    "ex.cat.finish": "Abschluss",
+    "ex.cat.press": "Pressing und Umschalten",
+    "ex.cat.buildup": "Spielaufbau",
+    "ex.cat.setpiece": "Standardsituationen",
+    "ex.cat.technique": "Individualtechnik",
+    "ex.cat.fitness": "Fitness",
+    "ex.cat.gk": "Torhüter",
+    "ex.cat.warmup": "Aufwärmen",
+    "ex.cat.defense": "Verteidigung",
+    "ex.cat.cross": "Flanken und Abschluss",
+    "ex.cat.duel": "1-gegen-1-Duelle",
+    "ex.dur": "Min",
+    "ex.materials": "Material",
+    "ex.useBoard": "Auf der Taktiktafel nutzen",
+    "ex.addTrain": "Zum Training hinzufügen",
+    "ex.added": "✓ Hinzugefügt",
+    "tr.title": "Trainingsmodus",
+    "tr.hint": "Plane die Einheit, indem du Blöcke aus der Übungsbibliothek oder freie Blöcke hinzufügst.",
+    "tr.date": "Datum",
+    "tr.time": "Uhrzeit",
+    "tr.objective": "Ziel der Einheit",
+    "tr.objectivePh": "Z. B. defensive Umschaltmomente",
+    "tr.addFromLib": "+ Aus der Bibliothek hinzufügen",
+    "tr.addCustom": "+ Freier Block",
+    "tr.customName": "Name des Blocks",
+    "tr.customDur": "Dauer (Min)",
+    "tr.noBlocks": "Du hast dieser Einheit noch keinen Block hinzugefügt.",
+    "tr.total": "Gesamtdauer",
+    "tr.materials": "Benötigtes Material",
+    "tr.remove": "Entfernen",
+    "tr.up": "▲",
+    "tr.down": "▼",
+    "tr.sendBoard": "Auf der Taktiktafel ansehen",
+    "tr.summary": "Zusammenfassung zum Teilen",
+    "tr.copy": "Zusammenfassung kopieren",
+    "tr.copied": "✓ Kopiert",
+    "tr.whatsapp": "WhatsApp öffnen",
+    "tr.min": "Min",
+    "tr.close": "Schließen",
+    "tr.newBlock": "Neuer Block",
+    "st.title": "Vereinsstatistik",
+    "st.availability": "Verfügbarkeit des Kaders",
+    "st.available": "Verfügbar",
+    "st.doubt": "Fraglich",
+    "st.injured": "Verletzt",
+    "st.topAtt": "Höchste Trainingsbeteiligung",
+    "st.lowMin": "Wenigste Einsatzzeit (Minuten)",
+    "st.byPosition": "Kader nach Linie",
+    "st.gkPos": "Torhüter",
+    "st.defPos": "Verteidiger",
+    "st.midPos": "Mittelfeldspieler",
+    "st.fwdPos": "Stürmer",
+    "st.players": "Spieler",
+    "st.byRole": "Aufteilung nach Position",
+    "st.roleHint": "Tatsächliche Verteilung des Kaders, Position für Position, mit dem Anteil jeder Position am Gesamtkader.",
+    "st.total": "Kader gesamt",
+    "st.player": "Spieler",
   },
   pt: {
     "nav.inicio": "Início", "nav.jugadores": "Jogadores", "nav.alineacion": "Escalação", "nav.pizarra": "Quadro", "nav.convocatoria": "Convocatória", "nav.partido": "Modo jogo", "nav.usuarios": "Utilizadores", "nav.coachai": "Coach AI", "nav.material": "Loja", "nav.entrenamiento": "Treino", "nav.ejercicios": "Exercícios", "nav.estadisticas": "Estatísticas", "nav.calendario": "Calendário", "nav.equipos": "Clubes", "nav.premium": "Premium", "nav.disciplina": "Disciplina", "nav.normativa": "Regulamento", "nav.familias": "Famílias", "nav.equipo": "Clube", "mt.toBoard": "Quadro", "p.myTeam": "O meu clube e o meu escalão", "p.pickTeam": "Mudar para outro escalão…", "p.changeTeam": "Mudar de escalão", "p.newTeam": "Nome do escalão novo", "p.newTeamPh": "Ex. Sub-16 B", "p.newTeamNote": "O teu não está na lista? Cria-o dentro do teu clube:", "p.createTeam": "Criar", "p.deleteAcc": "Eliminar a minha conta", "p.deleteWarn": "A tua ficha será apagada e perdes o acesso. Não se pode desfazer. Os dados da equipa não se apagam.", "p.deleteGo": "Eliminar", "c.proTab": "Secção PRO. Toca para ver.", "a.resetAgain": "Pedir um link novo", "a.resetExp": "Este link expirou (dura uma hora). Pede outro.", "a.resetUsed": "Este link já foi usado. Se não foste tu, pede outro e muda-a quanto antes.", "a.resetServer": "O servidor não conseguiu guardar a palavra-passe. Tenta daqui a um minuto.", "h.round": "Jornada", "h.howTo": "Como chegar", "h.today": "Hoje", "h.day": "Dia", "h.days": "Dias", "h.noDate": "Sem data", "h.noGoal": "Sessão sem objetivo", "h.noTrain": "Não há treino planeado.", "h.planTrain": "Planear", "h.noAlerts": "Nada a rever. Plantel completo.", "h.aDoubt1": "dúvida", "h.aDoubtN": "dúvidas", "h.aInj1": "lesionado", "h.aInjN": "lesionados", "h.aDisc": "incidência(s) por validar", "h.aSign": "sem assinar o código disciplinar", "h.fMatch": "O jogo é às {h}.", "h.fCalled": "Convocatória publicada · {n} convocados.", "h.fNoCall": "Ainda não há convocatória.", "h.fKit": "Leva garrafa de água e caneleiras.", "h.fNote": "Como família só vês o que o treinador partilha.", "nav.temporada": "Temporada", "se.title": "Pilares da temporada", "se.hint": "Distribui o ano pelos quatro pilares e anota o objetivo de cada mês.", "se.months": "meses", "se.calendar": "Mês a mês", "se.goal": "Objetivo de", "se.goalPh": "Objetivo do mês. Ex. construção desde o guarda-redes", "se.saved": "Planificação guardada e partilhada com a equipa.", "se.share": "Partilhar com a equipa", "se.shareNote": "Fica neste dispositivo enquanto a editas. Ao partilhar, vê-a todo o teu staff.", "mt.abp": "Bolas paradas guardadas", "mt.abpTap": "Toca numa jogada para a abrir no quadro grande.", "mt.abpEmpty": "Ainda não guardaste nenhuma bola parada. Cria-as no quadro, no menu ABP.", "nav.analisis": "Análise", "pm.title": "Análise pós-jogo", "pm.events": "eventos na ficha", "pm.empty": "Ainda não há ficha deste jogo. Regista o jogo no Modo jogo e volta aqui.", "pm.go": "Gerar análise", "pm.again": "Gerar de novo", "pm.thinking": "A analisar o jogo…", "pm.note": "Escrita pelo Coach AI a partir da ficha. Revê antes de partilhar.", "mt.subs": "Janelas de substituição", "mt.subsTotal": "janelas no total", "mt.subsOne": "Janela", "mt.subsUndo": "Retirar uma janela", "mt.subsOf": "de", "mt.subsLeft": "Restam {n} janelas.", "mt.subsNone": "Sem janelas disponíveis.", "tr.target": "Duração da sessão", "tr.left": "Faltam {n} min por preencher.", "tr.over": "Passas {n} min do objetivo.", "tr.done": "Sessão completa.", "tr.saveSession": "Guardar sessão completa",
     "navg.equipo": "Equipa", "navg.partido": "Dia de jogo", "navg.entrenamiento": "Treino", "navg.delegado": "Delegado", "navg.estadisticas": "Estatísticas", "navg.roles": "Funções", "navg.coachai": "Coach AI",
     "role.entrenador": "Treinador principal", "role.segundo": "Treinador adjunto", "role.delegado": "Delegado", "role.padre": "Pai / Mãe / Tutor", "role.director": "Diretor desportivo", "role.master": "Master · EBLDigital", 
-    "c.exit": "Sair", "c.planFree": "PLANO GRÁTIS", "c.upgrade": "Melhorar", "c.by": "Desenvolvido pela EBLDigital", "c.madeBy": "App criada pela EBLDigital ·", "navg.master": "Master", "nav.master": "Painel Master", "c.pro": "Função PRO. Muda para uma conta oficial do clube para a desbloquear.",
+    "c.exit": "Sair", "c.planFree": "PLANO GRÁTIS", "c.upgrade": "Melhorar", "c.by": "Desenvolvido pela EBLDigital", "c.madeBy": "App criada pela EBLDigital ·", "navg.master": "Master", "nav.master": "Painel Master", "c.pro": "Função PRO. Muda para uma conta oficial do clube para a desbloquear.", "c.cancel": "Cancelar", "c.nav": "Navegação", "c.trialBadge": "TESTE PRO", "c.planCurrentFree": "Plano atual · Grátis", "c.goPro": "Ir para PRO",
     "a.tagline": "Gestão inteligente para treinadores de futebol de formação", "a.accOff": "Conta oficial do clube", "a.accOffD": "O diretor desportivo ou o Master já te deu de alta. Define a tua palavra-passe e entra já.", "a.accFree": "Treino por minha conta", "a.accFreeD": "Grátis, com funções limitadas.", "a.have": "Já tenho conta", "a.register": "Registar", "a.name": "O teu nome", "a.fullname": "Nome completo", "a.email": "Email", "a.pass": "Palavra-passe", "a.region": "Região", "a.clubMadrid": "Clube (região de Madrid)", "a.choose": "Escolhe o teu clube…", "a.otherClub": "Nome do teu clube", "a.teamOff": "Equipa", "a.teamFree": "A tua equipa", "a.role": "A tua função", "a.pending": "Ao registares-te como utilizador oficial, o teu acesso fica pendente até o diretor desportivo ou o Master o aprovarem. Nem todos os utilizadores podem ser treinadores.", "a.freeInc": "O plano grátis inclui até 14 jogadores, escalação, convocatória, modo jogo e Coach AI. Não inclui vídeo de apresentação, gestão de utilizadores nem funções de clube.", "a.startFree": "Começar grátis", "a.signin": "Entrar", "a.create": "Criar conta e entrar", "a.proto": "Protótipo — os dados não são guardados em nenhum servidor", "a.demoHint": "Demo: utilizador demo / palavra-passe demo", "a.demoBtn": "▶ Entrar com a conta demo",
     "a.forgot": "Esqueceste-te da palavra-passe?", "a.forgotTitle": "Recuperar palavra-passe", "a.forgotD": "Escreve o teu email e enviamos-te um link para escolheres uma nova.", "a.forgotSend": "Enviar link", "a.sending": "A enviar…", "a.forgotSent": "Se esse email tiver conta, o link já seguiu. Expira dentro de uma hora e só serve uma vez. Vê também o spam.", "a.forgotNoMail": "O envio de email não está disponível agora. Avisa o teu clube.", "a.resetTitle": "Escolhe a tua nova palavra-passe", "a.resetD": "Este link expira dentro de uma hora e só serve uma vez.", "a.newPass": "Nova palavra-passe", "a.newPass2": "Repete a palavra-passe", "a.resetSave": "Guardar palavra-passe", "a.resetOk": "Palavra-passe atualizada. Já podes entrar com ela.", "a.resetBad": "Este link já não é válido: expirou ou já foi usado. Pede outro.", "a.passRule": "Mínimo 6 caracteres, e as duas têm de coincidir.", "a.noBackend": "Sem ligação ao servidor. Tenta mais tarde.",
     "p.account": "A minha conta", "p.changePass": "Alterar palavra-passe", "p.current": "Palavra-passe atual", "p.save": "Guardar", "p.saved": "Palavra-passe atualizada.", "p.badCurrent": "A palavra-passe atual não está correta.", "p.close": "Fechar",
@@ -398,7 +604,7 @@ const DICT = {
     "ca.example": "Ver exemplo",
     "ca.clear": "Esvaziar",
     "ca.remove": "Remover",
-    "ca.useMatch": "Usar no modo jogo",
+    "ca.useMatch": "Usar no modo jogo", "ca.month": "Calendário do mês", "ca.dayHint": "Toca num dia para ver o detalhe.", "ca.dayEmpty": "Não há jogos nem treino marcado para este dia.", "ca.dayTraining": "Dia de treino", "ca.legendMatch": "Jogo (do calendário importado)", "ca.legendTrain": "Treino", "ca.trainDaysLabel": "Dias de treino:",
     "ca.teamCrest": "Emblema da equipa",
 
     /* v50 — plantillas de entrenamiento */
@@ -417,6 +623,106 @@ const DICT = {
     "pl.delete": "Eliminar modelo",
     "nav.roleOne": "perfil",
     "nav.roleMany": "perfis",
+    "nav.asistencia": "Presenças",
+    "a.choice": "Pertences a um clube?",
+    "a.choiceD": "As duas opções são gratuitas. Só muda quem gere os teus dados.",
+    "a.back": "‹ Voltar",
+    "a.badCreds": "Email ou palavra-passe incorretos.",
+    "a.accPending": "A tua conta está pendente de aprovação pelo clube.",
+    "a.accSusp": "O teu acesso está suspenso. Contacta o teu clube.",
+    "a.exists": "Esse email já está registado. Inicia sessão.",
+    "a.registered": "Registo recebido! O teu acesso fica pendente de aprovação pelo clube.",
+    "a.loading": "A carregar…",
+    "a.entering": "A entrar…",
+    "a.demoPick": "Que perfil queres ver?",
+    "a.demoPickD": "Escolhe um perfil para explorar a aplicação tal como essa pessoa a veria.",
+    "as.title": "Presenças do dia",
+    "as.subtitle": "Quem veio e porquê. Sem incidentes nem sanções: isso continua em Disciplina.",
+    "as.today": "Hoje",
+    "as.markAll": "✓ Marcar todos presentes",
+    "as.present": "Presente",
+    "as.unmarked": "Por marcar",
+    "as.studies": "Estudos",
+    "as.noExcuse": "Sem justificação",
+    "as.sick": "Doença",
+    "as.injured": "Lesão",
+    "as.reset": "Remover marca",
+    "as.noPlayers": "Não há jogadores no plantel.",
+    "as.discNote": "Atraso ou falta com consequência disciplinar? Isso regista-se em Disciplina → Fazer chamada, que também avisa a equipa técnica.",
+    "as.homeTitle": "Presenças de hoje",
+    "as.homeEmpty": "Ainda não fizeste a chamada hoje.",
+    "as.homeCta": "Fazer chamada",
+    "as.homeSee": "Ver presenças",
+    "as.homeAll": "Todos presentes.",
+    "as.homeOf": "de",
+    "ex.title": "Biblioteca de exercícios",
+    "ex.hint": "Filtra por categoria, vê a duração e o material, e usa-o no quadro ou adiciona-o a um treino.",
+    "ex.all": "Todos",
+    "ex.cat.rondo": "Rondos e posse de bola",
+    "ex.cat.finish": "Finalização",
+    "ex.cat.press": "Pressão e transição",
+    "ex.cat.buildup": "Saída de bola",
+    "ex.cat.setpiece": "Bolas paradas",
+    "ex.cat.technique": "Técnica individual",
+    "ex.cat.fitness": "Físico",
+    "ex.cat.gk": "Guarda-redes",
+    "ex.cat.warmup": "Aquecimento",
+    "ex.cat.defense": "Defesa",
+    "ex.cat.cross": "Cruzamentos e remate",
+    "ex.cat.duel": "Duelos 1x1",
+    "ex.dur": "min",
+    "ex.materials": "Material",
+    "ex.useBoard": "Usar no quadro",
+    "ex.addTrain": "Adicionar ao treino",
+    "ex.added": "✓ Adicionado",
+    "tr.title": "Modo treino",
+    "tr.hint": "Planeia a sessão adicionando blocos da biblioteca de exercícios ou blocos livres.",
+    "tr.date": "Data",
+    "tr.time": "Hora",
+    "tr.objective": "Objetivo da sessão",
+    "tr.objectivePh": "Ex. transições defensivas",
+    "tr.addFromLib": "+ Adicionar da biblioteca",
+    "tr.addCustom": "+ Bloco livre",
+    "tr.customName": "Nome do bloco",
+    "tr.customDur": "Duração (min)",
+    "tr.noBlocks": "Ainda não adicionaste nenhum bloco a esta sessão.",
+    "tr.total": "Duração total",
+    "tr.materials": "Material necessário",
+    "tr.remove": "Remover",
+    "tr.up": "▲",
+    "tr.down": "▼",
+    "tr.sendBoard": "Ver no quadro",
+    "tr.summary": "Resumo para partilhar",
+    "tr.copy": "Copiar resumo",
+    "tr.copied": "✓ Copiado",
+    "tr.whatsapp": "Abrir WhatsApp",
+    "tr.min": "min",
+    "tr.close": "Fechar",
+    "tr.newBlock": "Novo bloco",
+    "st.title": "Estatísticas da equipa",
+    "st.availability": "Disponibilidade do plantel",
+    "st.available": "Disponíveis",
+    "st.doubt": "Dúvida",
+    "st.injured": "Lesionados",
+    "st.topAtt": "Maior assiduidade nos treinos",
+    "st.lowMin": "Menor participação (minutos)",
+    "st.byPosition": "Plantel por linha",
+    "st.gkPos": "Guarda-redes",
+    "st.defPos": "Defesas",
+    "st.midPos": "Médios",
+    "st.fwdPos": "Avançados",
+    "st.players": "jogadores",
+    "st.byRole": "Divisão por posição",
+    "st.roleHint": "Distribuição real do plantel, posição a posição, com o peso de cada uma no total.",
+    "st.total": "Total do plantel",
+    "st.player": "jogador",
+    "u.canGrant": "Como diretor desportivo ou Master dás de alta à equipa técnica e decides o perfil de cada um.",
+    "u.readonly": "Vista apenas de leitura: só o diretor desportivo ou o Master podem dar altas.",
+    "u.approve": "Aprovar",
+    "u.suspend": "Suspender",
+    "u.note": "Só o diretor desportivo ou o Master podem atribuir o perfil de treinador.",
+    "u.activo": "ativo",
+    "u.pendiente": "pendente",
   },
 };
 const T = (lang, k) => (DICT[lang] && DICT[lang][k]) || DICT.en[k] || DICT.es[k] || k;
@@ -4139,6 +4445,23 @@ const fechaLegible = (iso, lang = "es") => {
   const [y, m, d] = iso.split("-").map(Number);
   return new Date(y, m - 1, d).toLocaleDateString(lang === "es" ? "es-ES" : lang, { weekday: "long", day: "numeric", month: "long" });
 };
+/* Nombre del mes en el idioma activo, para las cabeceras de calendario:
+   antes iba en un array fijo en español ("Enero", "Febrero"…) y no cambiaba
+   de idioma nunca, ni aunque el resto de la pantalla sí lo hiciera. */
+const mesLargo = (y, m, lang = "es") => new Date(y, m, 1).toLocaleDateString(lang === "es" ? "es-ES" : lang, { month: "long" });
+/* Iniciales de lunes a domingo en el idioma activo, a partir de una semana
+   de referencia real (1-7 enero 2024 empieza en lunes) en vez de un array
+   fijo en español ("L","M","X"…). */
+const diasSemanaCortos = (lang = "es") => {
+  const loc = lang === "es" ? "es-ES" : lang;
+  return [1, 2, 3, 4, 5, 6, 7].map((d) => new Date(2024, 0, d).toLocaleDateString(loc, { weekday: "narrow" }));
+};
+/* Igual que diasSemanaCortos, pero empezando en domingo (índice 0) como
+   Date.getDay(): la usa el selector de "días de entreno". */
+const diasSemanaCortosDomingoPrimero = (lang = "es") => {
+  const loc = lang === "es" ? "es-ES" : lang;
+  return [7, 1, 2, 3, 4, 5, 6].map((d) => new Date(2024, 0, d).toLocaleDateString(loc, { weekday: "narrow" }));
+};
 /* Suma (o resta) días a una fecha "YYYY-MM-DD" sin salir del huso local. */
 const sumarDiasISO = (iso, delta) => {
   const [y, m, d] = String(iso).split("-").map(Number);
@@ -5020,6 +5343,9 @@ export default function App() {
   const trainDaysKey = `cb_traindays_${session?.team?.id || "demo"}`;
   const [trainDays, setTrainDays] = useState([2, 4]);
   const [calMonth, setCalMonth] = useState(() => { const d = new Date(); return { y: d.getFullYear(), m: d.getMonth() }; });
+  /* Día seleccionado en la cuadrícula mensual de la pestaña Calendario
+     (formato ISO, ej. "2026-08-16"), o null si no hay ninguno pinchado. */
+  const [selectedDay, setSelectedDay] = useState(null);
   useEffect(() => {
     if (!session) return;
     try { const raw = localStorage.getItem(trainDaysKey); if (raw) setTrainDays(JSON.parse(raw)); } catch { /* noop */ }
@@ -6565,7 +6891,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                   if (out?.ok) { setClubNuevo(null); setTeamMsg(out.reutilizado ? "Ese club ya existía; se usa el que había." : "✓ Club creado. Ahora añádele sus categorías."); loadTeams(); }
                   else setTeamMsg(out?.reason === "no_autorizado" ? "Solo el Master puede crear clubs." : "No se pudo crear el club.");
                 }} className="text-sm px-4 py-2 rounded-lg font-display uppercase tracking-wide font-semibold disabled:opacity-40" style={{ background: AC, color: C.sobre }}>Crear club</button>
-                <button onClick={() => setClubNuevo(null)} className="text-sm px-4 py-2 rounded-lg border" style={{ borderColor: C.line, color: C.dim }}>Cancelar</button>
+                <button onClick={() => setClubNuevo(null)} className="text-sm px-4 py-2 rounded-lg border" style={{ borderColor: C.line, color: C.dim }}>{t("c.cancel")}</button>
               </div>
             </div>
           )}
@@ -6829,8 +7155,8 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                 setTeamMsg(ok ? "✓ Guardado." : "No se pudo guardar. Revisa la conexión.");
                 setTeamEdit(null);
                 if (ok) loadTeams();
-              }} className="font-display uppercase tracking-wide text-sm px-4 py-2 rounded-lg font-semibold" style={{ background: AC, color: C.sobre }}>Guardar</button>
-              <button onClick={() => setTeamEdit(null)} className="text-sm px-4 py-2 rounded-lg border" style={{ borderColor: C.line, color: C.dim }}>Cancelar</button>
+              }} className="font-display uppercase tracking-wide text-sm px-4 py-2 rounded-lg font-semibold" style={{ background: AC, color: C.sobre }}>{t("p.save")}</button>
+              <button onClick={() => setTeamEdit(null)} className="text-sm px-4 py-2 rounded-lg border" style={{ borderColor: C.line, color: C.dim }}>{t("c.cancel")}</button>
             </div>
           </Card>
         )}
@@ -6905,6 +7231,119 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
           </div>
         </Card>
 
+        <Card title={t("ca.month")}>
+          {(() => {
+            const DIAS = diasSemanaCortos(lang);
+            const { y, m } = calMonth;
+            const primero = new Date(y, m, 1);
+            /* getDay() da 0=domingo; se desplaza para que la semana empiece en lunes */
+            const offset = (primero.getDay() + 6) % 7;
+            const total = new Date(y, m + 1, 0).getDate();
+            const iso = (d) => `${y}-${String(m + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
+            const mover = (delta) => setCalMonth(({ y: yy, m: mm }) => {
+              const nm = mm + delta;
+              return { y: yy + Math.floor(nm / 12), m: ((nm % 12) + 12) % 12 };
+            });
+            const celdas = [];
+            for (let i = 0; i < offset; i++) celdas.push(null);
+            for (let d = 1; d <= total; d++) celdas.push(d);
+            const diaSel = selectedDay ? new Date(selectedDay + "T00:00:00") : null;
+            const partidosDia = selectedDay ? fixtures.filter((f) => f.date === selectedDay) : [];
+            const entrenoDia = diaSel ? trainDays.includes(diaSel.getDay()) || trainMeta.fecha === selectedDay : false;
+            return (
+              <>
+                <div className="flex items-center justify-between mb-3">
+                  <button onClick={() => mover(-1)} className="text-sm px-2.5 py-1 rounded-lg border" style={{ borderColor: C.line, color: C.chalk }}>‹</button>
+                  <div className="font-display text-lg uppercase tracking-wide" style={{ color: C.chalk }}>{mesLargo(y, m, lang)} {y}</div>
+                  <button onClick={() => mover(1)} className="text-sm px-2.5 py-1 rounded-lg border" style={{ borderColor: C.line, color: C.chalk }}>›</button>
+                </div>
+                <div className="grid grid-cols-7 gap-1 text-center">
+                  {DIAS.map((d) => <div key={d} className="text-[10px] font-display uppercase pb-1" style={{ color: C.dim }}>{d}</div>)}
+                  {celdas.map((d, i) => {
+                    if (!d) return <div key={`x${i}`} />;
+                    const fecha = iso(d);
+                    const partidos = fixtures.filter((f) => f.date === fecha);
+                    const dow = new Date(y, m, d).getDay();
+                    const esEntreno = trainDays.includes(dow);
+                    const planEse = trainMeta.fecha === fecha;
+                    const hoy = fecha === todayISO;
+                    const sel = fecha === selectedDay;
+                    return (
+                      <button key={fecha} type="button" onClick={() => setSelectedDay(sel ? null : fecha)}
+                        className="rounded-lg border p-1 min-h-[52px] text-left flex flex-col w-full"
+                        style={{ borderColor: sel ? AC : hoy ? AC : C.line, borderWidth: sel ? 2 : 1, background: sel ? `${AC}1a` : hoy ? "rgba(54,69,79,.07)" : "transparent" }}>
+                        <div className="text-[11px] font-display" style={{ color: hoy || sel ? AC : C.chalk }}>{d}</div>
+                        {partidos.map((f) => (
+                          <div key={f.id} title={`${f.home} vs ${f.away} · ${f.time || ""} · ${f.place || ""}`}
+                            className="mt-0.5 text-[8px] leading-tight px-1 rounded truncate"
+                            style={{ background: AC, color: C.sobre }}>
+                            {f.time || ""} {f.away || f.home}
+                          </div>
+                        ))}
+                        {(esEntreno || planEse) && partidos.length === 0 && (
+                          <div className="mt-0.5 text-[8px] leading-tight px-1 rounded truncate"
+                            style={{ background: `${C.velo}0.14)`, color: C.dim }}>
+                            {planEse ? trainMeta.hora || t("ca.legendTrain") : t("ca.legendTrain")}
+                          </div>
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+                <div className="flex flex-wrap items-center gap-3 mt-3 text-[11px]" style={{ color: C.dim }}>
+                  <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-sm inline-block" style={{ background: AC }} />{t("ca.legendMatch")}</span>
+                  <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-sm inline-block" style={{ background: "rgba(47,107,79,.5)" }} />{t("ca.legendTrain")}</span>
+                </div>
+                {can("editTraining") && (
+                  <div className="flex flex-wrap items-center gap-1.5 mt-2">
+                    <span className="text-[11px]" style={{ color: C.dim }}>{t("ca.trainDaysLabel")}</span>
+                    {diasSemanaCortosDomingoPrimero(lang).map((lbl, idx) => (
+                      <button key={idx} onClick={() => setTrainDays((ds) => ds.includes(idx) ? ds.filter((x) => x !== idx) : [...ds, idx])}
+                        className="text-[11px] w-7 py-1 rounded border font-display"
+                        style={{ borderColor: trainDays.includes(idx) ? C.green : C.line, background: trainDays.includes(idx) ? "rgba(47,107,79,.18)" : "transparent", color: trainDays.includes(idx) ? C.green : C.dim }}>
+                        {lbl}
+                      </button>
+                    ))}
+                  </div>
+                )}
+                {!selectedDay && <div className="text-[11px] mt-3" style={{ color: C.dim }}>{t("ca.dayHint")}</div>}
+                {selectedDay && (
+                  <div className="mt-3 pt-3 border-t" style={{ borderColor: C.line }}>
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="font-display text-sm uppercase tracking-wide" style={{ color: C.chalk }}>{fechaLegible(selectedDay, lang)}</div>
+                      <button onClick={() => setSelectedDay(null)} className="text-xs px-2 py-1 rounded border" style={{ borderColor: C.line, color: C.dim }}>{t("p.close")}</button>
+                    </div>
+                    {entrenoDia && (
+                      <div className="text-xs px-2 py-1.5 rounded mb-2 inline-block" style={{ background: "rgba(47,107,79,.14)", color: C.green }}>
+                        🏋️ {t("ca.dayTraining")}
+                      </div>
+                    )}
+                    {partidosDia.length > 0 ? (
+                      <div className="space-y-1.5">
+                        {partidosDia.map((f) => (
+                          <div key={f.id} className="rounded-lg border p-2.5 flex flex-wrap items-center gap-x-3 gap-y-1" style={{ borderColor: C.line }}>
+                            <div className="text-sm tabular-nums shrink-0" style={{ color: C.chalk }}>{f.time || "—"}</div>
+                            <div className="text-sm flex-1 min-w-[160px]" style={{ color: C.chalk }}>{f.home} <span style={{ color: C.dim }}>vs</span> {f.away}</div>
+                            {f.place && <div className="text-[11px] w-full sm:w-auto" style={{ color: C.dim }}>📍 {f.place}</div>}
+                            {canEdit && (
+                              <div className="flex gap-2 text-xs">
+                                <button onClick={() => useAsNext(f)} className="px-2 py-1 rounded border" style={{ borderColor: C.line, color: C.chalk }}>{t("ca.useMatch")}</button>
+                                <button onClick={() => setFixtures((fs) => fs.filter((x) => x.id !== f.id))} className="px-2 py-1 rounded border" style={{ borderColor: C.line, color: C.dim }}>✕</button>
+                              </div>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    ) : !entrenoDia && (
+                      <div className="text-sm" style={{ color: C.dim }}>{t("ca.dayEmpty")}</div>
+                    )}
+                  </div>
+                )}
+              </>
+            );
+          })()}
+        </Card>
+
         <Card title={t("ca.title")}>
           {sortedFix.length === 0 ? (
             <div className="text-sm" style={{ color: C.dim }}>{t("ca.empty")}</div>
@@ -6939,14 +7378,14 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
         </Card>
 
         {canEdit && (
-          <Card title="Importar calendario">
+          <Card title={t("ca.import")}>
             <div className="text-sm" style={{ color: C.chalk }}>
               Pega el calendario de tu equipo o sube un archivo. Admite <strong>CSV</strong> (jornada; fecha; hora; local; visitante; campo) y <strong>ICS</strong> (el que exportan las webs de competición y Google Calendar).
             </div>
             <textarea value={calText} onChange={(e) => setCalText(e.target.value)} rows={5} placeholder={CAL_SAMPLE}
               className="mt-3 w-full px-3 py-2 rounded-lg border bg-transparent text-sm font-mono" style={{ borderColor: C.line, color: C.chalk }} />
             <div className="flex flex-wrap gap-2 mt-3">
-              <button onClick={() => importCal(calText)} className="font-display uppercase tracking-wide text-sm px-4 py-2 rounded-lg font-semibold" style={{ background: AC, color: C.sobre }}>Importar</button>
+              <button onClick={() => importCal(calText)} className="font-display uppercase tracking-wide text-sm px-4 py-2 rounded-lg font-semibold" style={{ background: AC, color: C.sobre }}>{t("ca.importBtn")}</button>
               <label className="text-sm px-4 py-2 rounded-lg border cursor-pointer font-display uppercase tracking-wide" style={{ borderColor: C.line, color: C.chalk }}>
                 📂 Subir .csv / .ics
                 <input type="file" accept=".csv,.ics,.txt" className="hidden" onChange={(e) => { const f = e.target.files?.[0]; if (!f) return; const r = new FileReader(); r.onload = () => importCal(String(r.result)); r.readAsText(f); e.target.value = ""; }} />
@@ -7230,7 +7669,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
 
             <div className="flex gap-2 mt-4">
               <button onClick={saveIncident} disabled={!F.pid} className="font-display uppercase tracking-wide text-sm px-4 py-2 rounded-lg font-semibold disabled:opacity-40" style={{ background: AC, color: C.sobre }}>Guardar incidencia</button>
-              <button onClick={() => setDiscForm(null)} className="text-sm px-4 py-2 rounded-lg border" style={{ borderColor: C.line, color: C.dim }}>Cancelar</button>
+              <button onClick={() => setDiscForm(null)} className="text-sm px-4 py-2 rounded-lg border" style={{ borderColor: C.line, color: C.dim }}>{t("c.cancel")}</button>
             </div>
           </Card>
         )}
@@ -7336,7 +7775,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                   className="font-display uppercase tracking-wide text-sm px-4 py-2 rounded-lg font-semibold disabled:opacity-40" style={{ background: AC, color: C.sobre }}>
                   Aplicar a {targets.length} jugador{targets.length === 1 ? "" : "es"}
                 </button>
-                <button onClick={() => setTeamForm(null)} className="text-sm px-4 py-2 rounded-lg border" style={{ borderColor: C.line, color: C.dim }}>Cancelar</button>
+                <button onClick={() => setTeamForm(null)} className="text-sm px-4 py-2 rounded-lg border" style={{ borderColor: C.line, color: C.dim }}>{t("c.cancel")}</button>
                 {targets.length === 0 && <span className="text-xs" style={{ color: C.warn }}>No hay jugadores que cumplan ese criterio.</span>}
               </div>
             </Card>
@@ -8235,10 +8674,9 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
         </Card>
       )}
 
-      <Card title="Calendario del mes" className="lg:col-span-3">
+      <Card title={t("ca.month")} className="lg:col-span-3">
         {(() => {
-          const MESES = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-          const DIAS = ["L", "M", "X", "J", "V", "S", "D"];
+          const DIAS = diasSemanaCortos(lang);
           const { y, m } = calMonth;
           const primero = new Date(y, m, 1);
           /* getDay() da 0=domingo; se desplaza para que la semana empiece en lunes */
@@ -8256,7 +8694,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
             <>
               <div className="flex items-center justify-between mb-3">
                 <button onClick={() => mover(-1)} className="text-sm px-2.5 py-1 rounded-lg border" style={{ borderColor: C.line, color: C.chalk }}>‹</button>
-                <div className="font-display text-lg uppercase tracking-wide" style={{ color: C.chalk }}>{MESES[m]} {y}</div>
+                <div className="font-display text-lg uppercase tracking-wide" style={{ color: C.chalk }}>{mesLargo(y, m, lang)} {y}</div>
                 <button onClick={() => mover(1)} className="text-sm px-2.5 py-1 rounded-lg border" style={{ borderColor: C.line, color: C.chalk }}>›</button>
               </div>
               <div className="grid grid-cols-7 gap-1 text-center">
@@ -8283,7 +8721,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                       {(esEntreno || planEse) && partidos.length === 0 && (
                         <div className="mt-0.5 text-[8px] leading-tight px-1 rounded truncate"
                           style={{ background: `${C.velo}0.14)`, color: C.dim }}>
-                          {planEse ? trainMeta.hora || "Entreno" : "Entreno"}
+                          {planEse ? trainMeta.hora || t("ca.legendTrain") : t("ca.legendTrain")}
                         </div>
                       )}
                     </div>
@@ -8291,13 +8729,13 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                 })}
               </div>
               <div className="flex flex-wrap items-center gap-3 mt-3 text-[11px]" style={{ color: C.dim }}>
-                <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-sm inline-block" style={{ background: AC }} />Partido (del calendario importado)</span>
-                <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-sm inline-block" style={{ background: "rgba(47,107,79,.5)" }} />Entrenamiento</span>
+                <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-sm inline-block" style={{ background: AC }} />{t("ca.legendMatch")}</span>
+                <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-sm inline-block" style={{ background: "rgba(47,107,79,.5)" }} />{t("ca.legendTrain")}</span>
               </div>
               {can("editTraining") && (
                 <div className="flex flex-wrap items-center gap-1.5 mt-2">
-                  <span className="text-[11px]" style={{ color: C.dim }}>Días de entreno:</span>
-                  {["D", "L", "M", "X", "J", "V", "S"].map((lbl, idx) => (
+                  <span className="text-[11px]" style={{ color: C.dim }}>{t("ca.trainDaysLabel")}</span>
+                  {diasSemanaCortosDomingoPrimero(lang).map((lbl, idx) => (
                     <button key={idx} onClick={() => setTrainDays((ds) => ds.includes(idx) ? ds.filter((x) => x !== idx) : [...ds, idx])}
                       className="text-[11px] w-7 py-1 rounded border font-display"
                       style={{ borderColor: trainDays.includes(idx) ? C.green : C.line, background: trainDays.includes(idx) ? "rgba(47,107,79,.18)" : "transparent", color: trainDays.includes(idx) ? C.green : C.dim }}>
@@ -8653,7 +9091,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                 </label>
                 <label className="flex items-center gap-2 text-sm cursor-pointer" style={{ color: C.chalk }}><input type="checkbox" checked={csvReplace} onChange={(e) => setCsvReplace(e.target.checked)} />Reemplazar plantilla actual</label>
                 <button onClick={importCSV} className="font-display uppercase tracking-wide text-sm px-4 py-2 rounded-lg font-semibold" style={{ background: AC, color: C.sobre }}>Importar</button>
-                <button onClick={() => { setCsvOpen(false); setCsvMsg(""); }} className="text-sm" style={{ color: C.dim }}>Cerrar</button>
+                <button onClick={() => { setCsvOpen(false); setCsvMsg(""); }} className="text-sm" style={{ color: C.dim }}>{t("p.close")}</button>
               </div>
               {csvMsg && <div className="text-sm" style={{ color: AC }}>{csvMsg}</div>}
             </div>
@@ -10391,14 +10829,14 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
             </div>
             <div className="text-[12px] truncate" style={{ color: C.dim }}>{session.name}</div>
           </button>
-          {onTrial && <button onClick={() => setTab("premium")} className="hidden sm:inline-block text-[10px] font-display uppercase tracking-wide px-2 py-1 rounded" style={{ background: AC, color: C.sobre }}>★ PRUEBA PRO · {trialDaysLeft} {trialDaysLeft === 1 ? "DÍA" : "DÍAS"}</button>}
+          {onTrial && <button onClick={() => setTab("premium")} className="hidden sm:inline-block text-[10px] font-display uppercase tracking-wide px-2 py-1 rounded" style={{ background: AC, color: C.sobre }}>★ {t("c.trialBadge")} · {trialDaysLeft} {trialDaysLeft === 1 ? t("h.day") : t("h.days")}</button>}
           {!isPro && (
             <div className="hidden sm:flex items-center gap-1.5">
               <span className="hidden xl:inline text-[10px] font-display uppercase tracking-wide px-2 py-1 rounded" style={{ color: C.dim, border: `1px solid ${C.line}` }}>
-                Plan actual · Gratis
+                {t("c.planCurrentFree")}
               </span>
               <button onClick={() => proAlert()} className="text-[10px] font-display uppercase tracking-wide px-2.5 py-1 rounded font-semibold" style={{ background: AC, color: C.sobre }}>
-                Ir a PRO
+                {t("c.goPro")}
               </button>
             </div>
           )}
@@ -10553,7 +10991,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
       {menuOpen && (
         <div className="lg:hidden fixed inset-0 z-40" style={{ background: "rgba(0,0,0,.56)" }} onClick={() => setMenuOpen(false)}>
           <div className="absolute right-0 top-0 h-full w-[min(22rem,88vw)] overflow-y-auto border-l p-4" style={{ background: C.panel, borderColor: C.line }} onClick={(e) => e.stopPropagation()}>
-            <div className="flex items-center justify-between mb-4"><span className="font-display uppercase tracking-wide" style={{ color: MC }}>Navegación</span><button onClick={() => setMenuOpen(false)} className="text-sm px-3 py-1.5 rounded-lg border" style={{ borderColor: C.line, color: C.chalk }}>Cerrar</button></div>
+            <div className="flex items-center justify-between mb-4"><span className="font-display uppercase tracking-wide" style={{ color: MC }}>{t("c.nav")}</span><button onClick={() => setMenuOpen(false)} className="text-sm px-3 py-1.5 rounded-lg border" style={{ borderColor: C.line, color: C.chalk }}>{t("p.close")}</button></div>
             {(() => {
               const { grupos, sueltas } = agruparNav(tabsMenu);
               const Boton = (k) => {
@@ -10565,7 +11003,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                     className="w-full min-h-12 flex items-center gap-3 px-3 py-2.5 rounded-lg text-left font-display uppercase tracking-wide text-sm cursor-not-allowed"
                     style={{ color: C.dim, opacity: 0.45 }}>
                     <span className="w-4 shrink-0 flex justify-center"><Icono n={k} s={16} /></span>
-                    <span className="flex-1">{t("nav." + k)}</span>
+                    <span className="flex-1 min-w-0 truncate" title={t("nav." + k)}>{t("nav." + k)}</span>
                     <span className="text-[11px] shrink-0">·</span>
                   </div>
                 );
@@ -10575,7 +11013,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                   className="nav-item w-full min-h-12 flex items-center gap-3 px-3 py-2.5 rounded-lg text-left font-display uppercase tracking-wide text-sm"
                   style={{ background: tab === k ? "rgba(54,69,79,.06)" : "transparent", color: tab === k ? MC : bloq ? C.dim : C.chalk, borderLeft: tab === k ? `3px solid ${MC}` : "3px solid transparent" }}>
                   <span className="w-4 shrink-0 flex justify-center" style={{ color: tab === k ? MC : C.dim }}><Icono n={k} s={16} /></span>
-                  <span className="flex-1">{t("nav." + k)}</span>
+                  <span className="flex-1 min-w-0 truncate" title={t("nav." + k)}>{t("nav." + k)}</span>
                   {bloq && <span className="text-[11px] shrink-0" style={{ color: AC }}>★</span>}
                 </button>
                 );
@@ -10652,7 +11090,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                   className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-left font-display uppercase tracking-wide text-sm cursor-not-allowed"
                   style={{ color: C.dim, opacity: 0.45, borderLeft: "3px solid transparent" }}>
                   <span className="w-4 shrink-0 flex justify-center"><Icono n={k} s={16} /></span>
-                  <span className="flex-1">{t("nav." + k)}</span>
+                  <span className="flex-1 min-w-0 truncate" title={t("nav." + k)}>{t("nav." + k)}</span>
                   <span className="text-[11px] shrink-0">·</span>
                 </div>
               );
@@ -10662,7 +11100,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                 className="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-left font-display uppercase tracking-wide text-sm"
                 style={{ background: tab === k ? "rgba(54,69,79,.06)" : "transparent", color: tab === k ? MC : bloq ? C.dim : C.chalk, borderLeft: tab === k ? `3px solid ${MC}` : "3px solid transparent" }}>
                 <span className="w-4 shrink-0 flex justify-center" style={{ color: tab === k ? MC : C.dim }}><Icono n={k} s={16} /></span>
-                <span className="flex-1">{t("nav." + k)}</span>
+                <span className="flex-1 min-w-0 truncate" title={t("nav." + k)}>{t("nav." + k)}</span>
                 {bloq && <span className="text-[11px] shrink-0" style={{ color: AC }} aria-label={t("c.proTab")}>★</span>}
               </button>
               );
@@ -10767,7 +11205,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
               <Icono n={k} s={22} />
             </button>
           ))}
-          <button onClick={() => setMenuOpen(true)} title="Más" aria-label="Más secciones"
+          <button onClick={() => setMenuOpen(true)} title={t("c.nav")} aria-label={t("c.nav")}
             className="relative flex-1 min-w-0 py-2.5 flex items-center justify-center" style={{ color: menuOpen ? MC : C.dim }}>
             {menuOpen && <span className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-[3px] rounded-b-full" style={{ background: MC }} />}
             <span className="relative inline-block text-xl leading-none">
