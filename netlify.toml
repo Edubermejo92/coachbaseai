@@ -24,3 +24,13 @@
   for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+# Digital Asset Links (verifica que la app de Android y esta web son del
+# mismo dueño, para que el TWA se abra sin barra de direcciones). Sin caché:
+# si algún día cambias de clave de firma, tiene que verse la huella nueva al
+# momento, no la que el navegador tuviera guardada.
+[[headers]]
+  for = "/.well-known/assetlinks.json"
+  [headers.values]
+    Cache-Control = "public, max-age=300"
+    Content-Type = "application/json"
