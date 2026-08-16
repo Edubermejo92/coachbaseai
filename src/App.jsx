@@ -42,7 +42,7 @@ const DICT = {
     "a.forgot": "¿Has olvidado tu contraseña?", "a.forgotTitle": "Recuperar contraseña", "a.forgotD": "Escribe tu email y te mandamos un enlace para elegir una nueva.", "a.forgotSend": "Enviar enlace", "a.sending": "Enviando…", "a.forgotSent": "Si ese email tiene cuenta, ya está el enlace enviado. Caduca en una hora y solo sirve una vez. Mira también en spam.", "a.forgotNoMail": "El envío de correo no está disponible ahora mismo. Avisa a tu club para que lo revise.", "a.resetTitle": "Elige tu nueva contraseña", "a.resetD": "Este enlace caduca en una hora y solo sirve una vez.", "a.newPass": "Nueva contraseña", "a.newPass2": "Repite la contraseña", "a.resetSave": "Guardar contraseña", "a.resetOk": "Contraseña actualizada. Ya puedes entrar con ella.", "a.resetBad": "Este enlace ya no vale: ha caducado o ya se ha usado. Pide otro.", "a.passRule": "Mínimo 6 caracteres, y las dos deben coincidir.", "a.noBackend": "No hay conexión con el servidor. Inténtalo más tarde.",
     "p.account": "Mi cuenta", "p.changePass": "Cambiar contraseña", "p.current": "Contraseña actual", "p.save": "Guardar", "p.saved": "Contraseña actualizada.", "p.badCurrent": "La contraseña actual no es correcta.", "p.close": "Cerrar",
     "h.nextMatch": "Próximo partido", "h.nextTrain": "Próximo entrenamiento", "h.available": "Disponibles", "h.lessMin": "Menos participación", "h.alerts": "Alertas", "h.quick": "Accesos rápidos", "h.family": "Avisos para las familias", "h.pending": "accesos pendientes de aprobar", "h.startMatch": "Iniciar partido", "as.title": "Asistencia del día", "as.subtitle": "Quién ha venido y por qué. Sin incidencias ni sanciones: eso sigue en Disciplina.", "as.today": "Hoy", "as.markAll": "✓ Marcar todos presentes", "as.present": "Presente", "as.unmarked": "Sin marcar", "as.studies": "Estudios", "as.noExcuse": "Sin explicación", "as.sick": "Enfermedad", "as.injured": "Lesión", "as.reset": "Quitar marca", "as.noPlayers": "No hay jugadores en la plantilla.", "as.discNote": "¿Retraso o falta con consecuencia disciplinaria? Eso se registra en Disciplina → Pasar lista, que además avisa al cuerpo técnico.", "as.homeTitle": "Asistencia de hoy", "as.homeEmpty": "Todavía no has pasado lista hoy.", "as.homeCta": "Pasar lista", "as.homeSee": "Ver asistencia", "as.homeAll": "Todos presentes.", "as.homeOf": "de",
-    "w.title": "Pizarra táctica", "w.move": "Mover", "w.arrow": "Flecha", "w.pass": "Pase", "w.free": "Dibujo", "w.cone": "Cono", "w.ball": "Balón", "w.erase": "Borrar", "w.clear": "Limpiar", "w.home": "Local", "w.away": "Rival", "w.hint": "Elige herramienta · arrastra las fichas · dibuja sobre el campo", "w.form": "Colocar", "w.f11": "Fútbol 11", "w.f7": "Fútbol 7", "w.homeSys": "Sistema local", "w.awaySys": "Sistema rival", "w.exercises": "Ejercicios recomendados", "w.exHint": "Toca un ejercicio para colocarlo en la pizarra", "w.autoSave": "El sistema elegido se guarda automáticamente en este dispositivo",
+    "w.title": "Pizarra táctica", "w.move": "Mover", "w.arrow": "Flecha", "w.pass": "Pase", "w.free": "Dibujo", "w.cone": "Cono", "w.ball": "Balón", "w.erase": "Borrar", "w.clear": "Limpiar", "w.home": "Local", "w.away": "Rival", "w.hint": "Elige herramienta · arrastra las fichas · dibuja sobre el campo", "w.form": "Colocar", "w.f11": "Fútbol 11", "w.f7": "Fútbol 7", "w.homeSys": "Sistema local", "w.awaySys": "Sistema rival", "w.exercises": "Ejercicios recomendados", "w.exHint": "Toca un ejercicio para colocarlo en la pizarra", "w.autoSave": "El sistema elegido se guarda automáticamente en este dispositivo", "w.abpForAgainst": "¿A favor o en contra?", "w.abpAttack": "Ataque", "w.abpDefense": "Defensa", "w.abpSide": "¿Por qué lado?", "w.abpLeft": "◂ Izquierda", "w.abpRight": "Derecha ▸", "w.abpPlace": "Colocar situación", "w.abpAgainst": "en contra", "w.abpFor": "a favor", "w.abpOwnBoard": "tablero propio", "w.abpSaveAs": "Guardar la pizarra como",
     "ex.title": "Biblioteca de ejercicios", "ex.hint": "Filtra por categoría, mira duración y material, y úsalo en la pizarra o añádelo a un entrenamiento.", "ex.all": "Todos", "ex.cat.rondo": "Rondos y posesión", "ex.cat.finish": "Finalización", "ex.cat.press": "Presión y transición", "ex.cat.buildup": "Salida de balón", "ex.cat.setpiece": "Acciones a balón parado", "ex.cat.technique": "Técnica individual", "ex.cat.fitness": "Físico", "ex.cat.gk": "Porteros", "ex.cat.warmup": "Calentamiento", "ex.cat.defense": "Defensa", "ex.cat.cross": "Centros y remate", "ex.cat.duel": "Duelos 1v1", "ex.dur": "min", "ex.materials": "Material", "ex.useBoard": "Usar en la pizarra", "ex.addTrain": "Añadir a entrenamiento", "ex.added": "✓ Añadido",
     "tr.title": "Modo entrenamiento", "tr.hint": "Planifica la sesión añadiendo bloques desde la biblioteca de ejercicios o bloques libres.", "tr.date": "Fecha", "tr.time": "Hora", "tr.objective": "Objetivo de la sesión", "tr.objectivePh": "Ej. transiciones defensivas", "tr.addFromLib": "+ Añadir desde la biblioteca", "tr.addCustom": "+ Bloque libre", "tr.customName": "Nombre del bloque", "tr.customDur": "Duración (min)", "tr.noBlocks": "Aún no has añadido ningún bloque a esta sesión.", "tr.total": "Duración total", "tr.materials": "Material necesario", "tr.remove": "Quitar", "tr.up": "▲", "tr.down": "▼", "tr.sendBoard": "Ver en pizarra", "tr.summary": "Resumen para compartir", "tr.copy": "Copiar resumen", "tr.copied": "✓ Copiado", "tr.whatsapp": "Abrir WhatsApp", "tr.min": "min", "tr.close": "Cerrar", "tr.newBlock": "Nuevo bloque",
     "st.title": "Estadísticas del equipo", "st.availability": "Disponibilidad de la plantilla", "st.available": "Disponibles", "st.doubt": "Duda", "st.injured": "Lesionados", "st.topAtt": "Mayor asistencia a entrenamientos", "st.lowMin": "Menor participación (minutos)", "st.byPosition": "Plantilla por línea", "st.gkPos": "Porteros", "st.defPos": "Defensas", "st.midPos": "Centrocampistas", "st.fwdPos": "Delanteros", "st.players": "jugadores", "st.byRole": "Desglose por demarcación", "st.roleHint": "Reparto real de la plantilla, posición a posición, con el peso de cada una sobre el total.", "st.total": "Total plantilla", "st.player": "jugador",
@@ -85,6 +85,29 @@ const DICT = {
     "mt.events": "Eventos del partido",
     "mt.noEvents": "Aún no hay eventos.",
     "mt.who": "¿Quién?",
+    "mt.matchSettings": "Ajustes del partido",
+    "mt.halfLenHint": "Juvenil 40′ · Cadete e Infantil 35′ · Alevín 30′. Se aplica sola según la categoría; edítala si tu competición usa otra duración.",
+    "mt.addedHintOn": "El reloj avisa al llegar a {a}. Los eventos del descuento se registran como {b}+n.",
+    "mt.addedHintOff": "Marca el descuento cuando lo señale el árbitro. Se reinicia al empezar cada parte.",
+    "mt.lineupInitial": "Alineación inicial",
+    "mt.lineupEdit": "Editar",
+    "mt.lineupEmpty": "Todavía no has puesto el once. Móntalo en Alineación y lo tendrás aquí.",
+    "mt.onPitch": "{n} en el campo.",
+    "mt.missingSpots": "faltan puestos por cubrir",
+    "mt.closeActaBtn": "Cerrar acta y guardar el partido",
+    "mt.closeActaSaved": "✓ Acta guardada",
+    "mt.closeActaHint": "Guarda el resultado, el acta y lo que hizo cada jugador. Lo tendrás en Estadísticas, partido a partido.",
+    "mt.timeUp": "⏹ Tiempo cumplido",
+    "mt.addedTimeLeft": "Descuento · quedan {t}",
+    "mt.timeLeft": "Quedan {t}",
+    "mt.penScored": "marcado",
+    "mt.penMissed": "fallado",
+    "mt.penOwn": "Penalti propio",
+    "mt.penRival": "Penalti rival",
+    "mt.refereeLabel": "Árbitro",
+    "mt.refereeNamePh": "Nombre del árbitro",
+    "mt.refereeComment": "Comentario sobre el árbitro",
+    "mt.refereeCommentPh": "Anota aquí cómo arbitró, decisiones destacadas, etc.",
     "ca.title": "Calendario del equipo",
     "ca.empty": "Todavía no hay partidos. Importa el calendario de tu equipo abajo.",
     "ca.import": "Importar calendario",
@@ -121,7 +144,7 @@ const DICT = {
     "a.forgot": "Forgotten your password?", "a.forgotTitle": "Reset password", "a.forgotD": "Enter your email and we'll send you a link to choose a new one.", "a.forgotSend": "Send link", "a.sending": "Sending…", "a.forgotSent": "If that email has an account, the link is on its way. It expires in an hour and works once. Check your spam folder too.", "a.forgotNoMail": "Email sending is unavailable right now. Let your club know so they can look into it.", "a.resetTitle": "Choose your new password", "a.resetD": "This link expires in an hour and works only once.", "a.newPass": "New password", "a.newPass2": "Repeat password", "a.resetSave": "Save password", "a.resetOk": "Password updated. You can sign in with it now.", "a.resetBad": "This link no longer works: it expired or was already used. Request a new one.", "a.passRule": "At least 6 characters, and both must match.", "a.noBackend": "No connection to the server. Try again later.",
     "p.account": "My account", "p.changePass": "Change password", "p.current": "Current password", "p.save": "Save", "p.saved": "Password updated.", "p.badCurrent": "That current password isn't right.", "p.close": "Close",
     "h.nextMatch": "Next match", "h.nextTrain": "Next training", "h.available": "Available", "h.lessMin": "Least game time", "h.alerts": "Alerts", "h.quick": "Quick access", "h.family": "Notices for families", "h.pending": "pending access requests", "h.startMatch": "Start match",
-    "w.title": "Tactics board", "w.move": "Move", "w.arrow": "Arrow", "w.pass": "Pass", "w.free": "Draw", "w.cone": "Cone", "w.ball": "Ball", "w.erase": "Erase", "w.clear": "Clear", "w.home": "Home", "w.away": "Away", "w.hint": "Pick a tool · drag the tokens · draw on the pitch", "w.form": "Place", "w.f11": "11-a-side", "w.f7": "7-a-side", "w.homeSys": "Home system", "w.awaySys": "Away system", "w.exercises": "Recommended drills", "w.exHint": "Tap a drill to set it up on the board", "w.autoSave": "Your chosen system is saved automatically on this device",
+    "w.title": "Tactics board", "w.move": "Move", "w.arrow": "Arrow", "w.pass": "Pass", "w.free": "Draw", "w.cone": "Cone", "w.ball": "Ball", "w.erase": "Erase", "w.clear": "Clear", "w.home": "Home", "w.away": "Away", "w.hint": "Pick a tool · drag the tokens · draw on the pitch", "w.form": "Place", "w.f11": "11-a-side", "w.f7": "7-a-side", "w.homeSys": "Home system", "w.awaySys": "Away system", "w.exercises": "Recommended drills", "w.exHint": "Tap a drill to set it up on the board", "w.autoSave": "Your chosen system is saved automatically on this device", "w.abpForAgainst": "For or against?", "w.abpAttack": "Attack", "w.abpDefense": "Defence", "w.abpSide": "Which side?", "w.abpLeft": "◂ Left", "w.abpRight": "Right ▸", "w.abpPlace": "Set up the situation", "w.abpAgainst": "against", "w.abpFor": "for", "w.abpOwnBoard": "own board", "w.abpSaveAs": "Save the whiteboard as",
     "ex.title": "Drill library", "ex.hint": "Filter by category, check duration and materials, and use it on the board or add it to a session.", "ex.all": "All", "ex.cat.rondo": "Rondos & possession", "ex.cat.finish": "Finishing", "ex.cat.press": "Pressing & transition", "ex.cat.buildup": "Build-up", "ex.cat.setpiece": "Set pieces", "ex.cat.technique": "Individual technique", "ex.cat.fitness": "Fitness", "ex.cat.gk": "Goalkeeping", "ex.cat.warmup": "Warm-up", "ex.cat.defense": "Defending", "ex.cat.cross": "Crossing & finishing", "ex.cat.duel": "1v1 duels", "ex.dur": "min", "ex.materials": "Materials", "ex.useBoard": "Use on the board", "ex.addTrain": "Add to training", "ex.added": "✓ Added",
     "tr.title": "Training mode", "tr.hint": "Plan the session by adding blocks from the drill library or free-text blocks.", "tr.date": "Date", "tr.time": "Time", "tr.objective": "Session objective", "tr.objectivePh": "E.g. defensive transitions", "tr.addFromLib": "+ Add from library", "tr.addCustom": "+ Free block", "tr.customName": "Block name", "tr.customDur": "Duration (min)", "tr.noBlocks": "You haven't added any blocks to this session yet.", "tr.total": "Total duration", "tr.materials": "Materials needed", "tr.remove": "Remove", "tr.up": "▲", "tr.down": "▼", "tr.sendBoard": "View on board", "tr.summary": "Shareable summary", "tr.copy": "Copy summary", "tr.copied": "✓ Copied", "tr.whatsapp": "Open WhatsApp", "tr.min": "min", "tr.close": "Close", "tr.newBlock": "New block",
     "st.title": "Team statistics", "st.availability": "Squad availability", "st.available": "Available", "st.doubt": "Doubtful", "st.injured": "Injured", "st.topAtt": "Highest training attendance", "st.lowMin": "Least game time (minutes)", "st.byPosition": "Squad by line", "st.gkPos": "Goalkeepers", "st.defPos": "Defenders", "st.midPos": "Midfielders", "st.fwdPos": "Forwards", "st.players": "players", "st.byRole": "Breakdown by position", "st.roleHint": "How the squad actually splits, position by position, with each one's share of the total.", "st.total": "Squad total", "st.player": "player",
@@ -164,6 +187,29 @@ const DICT = {
     "mt.events": "Match events",
     "mt.noEvents": "No events yet.",
     "mt.who": "Who?",
+    "mt.matchSettings": "Match settings",
+    "mt.halfLenHint": "U19 40′ · U15/U16 35′ · U12/U13 30′. Applied automatically by age group; edit it if your competition uses a different length.",
+    "mt.addedHintOn": "The clock warns when it reaches {a}. Added-time events are logged as {b}+n.",
+    "mt.addedHintOff": "Mark the added time when the referee signals it. It resets at the start of each half.",
+    "mt.lineupInitial": "Starting line-up",
+    "mt.lineupEdit": "Edit",
+    "mt.lineupEmpty": "You haven't set the line-up yet. Build it in Line-up and it'll show up here.",
+    "mt.onPitch": "{n} on the pitch.",
+    "mt.missingSpots": "positions still to fill",
+    "mt.closeActaBtn": "Close the match report and save",
+    "mt.closeActaSaved": "✓ Report saved",
+    "mt.closeActaHint": "Saves the score, the match report and what each player did. You'll find it in Stats, match by match.",
+    "mt.timeUp": "⏹ Time's up",
+    "mt.addedTimeLeft": "Added time · {t} left",
+    "mt.timeLeft": "{t} left",
+    "mt.penScored": "scored",
+    "mt.penMissed": "missed",
+    "mt.penOwn": "Our penalty",
+    "mt.penRival": "Opponent's penalty",
+    "mt.refereeLabel": "Referee",
+    "mt.refereeNamePh": "Referee's name",
+    "mt.refereeComment": "Comment about the referee",
+    "mt.refereeCommentPh": "Note how they refereed, key decisions, etc.",
     "ca.title": "Team fixtures",
     "ca.empty": "No fixtures yet. Import your team's calendar below.",
     "ca.import": "Import fixtures",
@@ -220,7 +266,7 @@ const DICT = {
     "a.forgot": "Mot de passe oublié ?", "a.forgotTitle": "Récupérer le mot de passe", "a.forgotD": "Saisissez votre e-mail et nous vous enverrons un lien pour en choisir un nouveau.", "a.forgotSend": "Envoyer le lien", "a.sending": "Envoi…", "a.forgotSent": "Si cet e-mail a un compte, le lien est parti. Il expire dans une heure et ne sert qu'une fois. Vérifiez aussi vos spams.", "a.forgotNoMail": "L'envoi d'e-mails n'est pas disponible pour le moment. Prévenez votre club.", "a.resetTitle": "Choisissez votre nouveau mot de passe", "a.resetD": "Ce lien expire dans une heure et ne sert qu'une fois.", "a.newPass": "Nouveau mot de passe", "a.newPass2": "Répétez le mot de passe", "a.resetSave": "Enregistrer", "a.resetOk": "Mot de passe mis à jour. Vous pouvez vous connecter avec.", "a.resetBad": "Ce lien ne fonctionne plus : il a expiré ou a déjà été utilisé. Demandez-en un autre.", "a.passRule": "6 caractères minimum, et les deux doivent correspondre.", "a.noBackend": "Pas de connexion au serveur. Réessayez plus tard.",
     "p.account": "Mon compte", "p.changePass": "Changer le mot de passe", "p.current": "Mot de passe actuel", "p.save": "Enregistrer", "p.saved": "Mot de passe mis à jour.", "p.badCurrent": "Le mot de passe actuel est incorrect.", "p.close": "Fermer",
     "h.nextMatch": "Prochain match", "h.nextTrain": "Prochain entraînement", "h.available": "Disponibles", "h.lessMin": "Moins de temps de jeu", "h.alerts": "Alertes", "h.quick": "Accès rapides", "h.family": "Infos pour les familles", "h.pending": "accès en attente de validation", "h.startMatch": "Démarrer le match",
-    "w.title": "Tableau tactique", "w.move": "Déplacer", "w.arrow": "Flèche", "w.pass": "Passe", "w.free": "Dessin", "w.cone": "Plot", "w.ball": "Ballon", "w.erase": "Effacer", "w.clear": "Tout effacer", "w.home": "Domicile", "w.away": "Adversaire", "w.hint": "Choisissez un outil · déplacez les jetons · dessinez sur le terrain", "w.form": "Placer", "w.f11": "Foot à 11", "w.f7": "Foot à 7", "w.homeSys": "Système domicile", "w.awaySys": "Système adverse", "w.exercises": "Exercices recommandés", "w.exHint": "Touchez un exercice pour le placer sur le tableau", "w.autoSave": "Le système choisi est enregistré automatiquement sur cet appareil",
+    "w.title": "Tableau tactique", "w.move": "Déplacer", "w.arrow": "Flèche", "w.pass": "Passe", "w.free": "Dessin", "w.cone": "Plot", "w.ball": "Ballon", "w.erase": "Effacer", "w.clear": "Tout effacer", "w.home": "Domicile", "w.away": "Adversaire", "w.hint": "Choisissez un outil · déplacez les jetons · dessinez sur le terrain", "w.form": "Placer", "w.f11": "Foot à 11", "w.f7": "Foot à 7", "w.homeSys": "Système domicile", "w.awaySys": "Système adverse", "w.exercises": "Exercices recommandés", "w.exHint": "Touchez un exercice pour le placer sur le tableau", "w.autoSave": "Le système choisi est enregistré automatiquement sur cet appareil", "w.abpForAgainst": "Pour ou contre ?", "w.abpAttack": "Attaque", "w.abpDefense": "Défense", "w.abpSide": "De quel côté ?", "w.abpLeft": "◂ Gauche", "w.abpRight": "Droite ▸", "w.abpPlace": "Placer la situation", "w.abpAgainst": "en défense", "w.abpFor": "en attaque", "w.abpOwnBoard": "tableau dédié", "w.abpSaveAs": "Enregistrer le tableau comme",
     "m.title": "Boutique du coach", "m.aff": "Lien affilié", "m.note": "Liens affiliés clairement indiqués et adaptés à votre pays. Une petite commission aide à maintenir l'app ; votre prix ne change pas.", "m.all": "Tout", "m.training": "Entraînement", "m.gk": "Gardiens", "m.medical": "Premiers secours", "m.tech": "Technologie", "m.apparel": "Vêtements", "m.view": "Voir l'offre", "m.from": "à partir de",
     "u.canGrant": "En tant que directeur sportif ou Master, vous pouvez ajouter des membres et attribuer le rôle de chacun.", "u.readonly": "Lecture seule : seuls le directeur sportif ou le Master peuvent ajouter des membres.", "u.approve": "Approuver", "u.suspend": "Suspendre", "u.note": "Seuls le directeur sportif ou le Master peuvent attribuer le rôle d'entraîneur.", "u.activo": "actif", "u.pendiente": "en attente",
 
@@ -260,6 +306,29 @@ const DICT = {
     "mt.events": "Événements du match",
     "mt.noEvents": "Pas encore d'événements.",
     "mt.who": "Qui ?",
+    "mt.matchSettings": "Réglages du match",
+    "mt.halfLenHint": "U19 40′ · U15/U16 35′ · U12/U13 30′. Appliqué automatiquement selon la catégorie ; modifiez si votre compétition utilise une autre durée.",
+    "mt.addedHintOn": "Le chrono avertit à {a}. Les événements du temps additionnel sont notés {b}+n.",
+    "mt.addedHintOff": "Notez le temps additionnel quand l'arbitre le signale. Il se réinitialise au début de chaque mi-temps.",
+    "mt.lineupInitial": "Composition de départ",
+    "mt.lineupEdit": "Modifier",
+    "mt.lineupEmpty": "Vous n'avez pas encore fait la composition. Faites-la dans Composition et elle apparaîtra ici.",
+    "mt.onPitch": "{n} sur le terrain.",
+    "mt.missingSpots": "postes encore à pourvoir",
+    "mt.closeActaBtn": "Clôturer la feuille de match et enregistrer",
+    "mt.closeActaSaved": "✓ Feuille enregistrée",
+    "mt.closeActaHint": "Enregistre le score, la feuille de match et ce qu'a fait chaque joueur. Vous la retrouverez dans Statistiques, match par match.",
+    "mt.timeUp": "⏹ Temps écoulé",
+    "mt.addedTimeLeft": "Temps additionnel · {t} restantes",
+    "mt.timeLeft": "{t} restantes",
+    "mt.penScored": "marqué",
+    "mt.penMissed": "manqué",
+    "mt.penOwn": "Penalty pour nous",
+    "mt.penRival": "Penalty adverse",
+    "mt.refereeLabel": "Arbitre",
+    "mt.refereeNamePh": "Nom de l'arbitre",
+    "mt.refereeComment": "Commentaire sur l'arbitre",
+    "mt.refereeCommentPh": "Notez ici son arbitrage, les décisions marquantes, etc.",
     "ca.title": "Calendrier de l'équipe",
     "ca.empty": "Pas encore de matchs. Importez le calendrier de votre équipe ci-dessous.",
     "ca.import": "Importer le calendrier",
@@ -389,7 +458,7 @@ const DICT = {
     "a.forgot": "Passwort vergessen?", "a.forgotTitle": "Passwort zurücksetzen", "a.forgotD": "Gib deine E-Mail ein und wir schicken dir einen Link für ein neues Passwort.", "a.forgotSend": "Link senden", "a.sending": "Wird gesendet…", "a.forgotSent": "Falls es zu dieser E-Mail ein Konto gibt, ist der Link unterwegs. Er läuft in einer Stunde ab und gilt nur einmal. Schau auch im Spam-Ordner.", "a.forgotNoMail": "Der E-Mail-Versand ist gerade nicht verfügbar. Sag deinem Verein Bescheid.", "a.resetTitle": "Wähle dein neues Passwort", "a.resetD": "Dieser Link läuft in einer Stunde ab und gilt nur einmal.", "a.newPass": "Neues Passwort", "a.newPass2": "Passwort wiederholen", "a.resetSave": "Passwort speichern", "a.resetOk": "Passwort aktualisiert. Du kannst dich jetzt damit anmelden.", "a.resetBad": "Dieser Link gilt nicht mehr: abgelaufen oder bereits benutzt. Fordere einen neuen an.", "a.passRule": "Mindestens 6 Zeichen, und beide müssen übereinstimmen.", "a.noBackend": "Keine Verbindung zum Server. Versuch es später noch einmal.",
     "p.account": "Mein Konto", "p.changePass": "Passwort ändern", "p.current": "Aktuelles Passwort", "p.save": "Speichern", "p.saved": "Passwort aktualisiert.", "p.badCurrent": "Das aktuelle Passwort stimmt nicht.", "p.close": "Schließen",
     "h.nextMatch": "Nächstes Spiel", "h.nextTrain": "Nächstes Training", "h.available": "Verfügbar", "h.lessMin": "Wenig Spielzeit", "h.alerts": "Warnungen", "h.quick": "Schnellzugriff", "h.family": "Infos für die Familien", "h.pending": "ausstehende Zugänge", "h.startMatch": "Spiel starten",
-    "w.title": "Taktiktafel", "w.move": "Bewegen", "w.arrow": "Pfeil", "w.pass": "Pass", "w.free": "Zeichnen", "w.cone": "Hütchen", "w.ball": "Ball", "w.erase": "Löschen", "w.clear": "Alles löschen", "w.home": "Heim", "w.away": "Gegner", "w.hint": "Werkzeug wählen · Spielsteine ziehen · aufs Feld zeichnen", "w.form": "Aufstellen", "w.f11": "Fußball 11", "w.f7": "Fußball 7", "w.homeSys": "Heimsystem", "w.awaySys": "Gegnersystem", "w.exercises": "Empfohlene Übungen", "w.exHint": "Tippe auf eine Übung, um sie auf der Tafel aufzubauen", "w.autoSave": "Das gewählte System wird automatisch auf diesem Gerät gespeichert",
+    "w.title": "Taktiktafel", "w.move": "Bewegen", "w.arrow": "Pfeil", "w.pass": "Pass", "w.free": "Zeichnen", "w.cone": "Hütchen", "w.ball": "Ball", "w.erase": "Löschen", "w.clear": "Alles löschen", "w.home": "Heim", "w.away": "Gegner", "w.hint": "Werkzeug wählen · Spielsteine ziehen · aufs Feld zeichnen", "w.form": "Aufstellen", "w.f11": "Fußball 11", "w.f7": "Fußball 7", "w.homeSys": "Heimsystem", "w.awaySys": "Gegnersystem", "w.exercises": "Empfohlene Übungen", "w.exHint": "Tippe auf eine Übung, um sie auf der Tafel aufzubauen", "w.autoSave": "Das gewählte System wird automatisch auf diesem Gerät gespeichert", "w.abpForAgainst": "Für oder gegen uns?", "w.abpAttack": "Angriff", "w.abpDefense": "Verteidigung", "w.abpSide": "Auf welcher Seite?", "w.abpLeft": "◂ Links", "w.abpRight": "Rechts ▸", "w.abpPlace": "Situation aufstellen", "w.abpAgainst": "in der Verteidigung", "w.abpFor": "im Angriff", "w.abpOwnBoard": "eigenes Board", "w.abpSaveAs": "Taktiktafel speichern als",
     "m.title": "Trainer-Shop", "m.aff": "Affiliate-Link", "m.note": "Affiliate-Links sind klar gekennzeichnet und an dein Land angepasst. Eine kleine Provision hilft, die App zu finanzieren; dein Preis ändert sich nicht.", "m.all": "Alle", "m.training": "Training", "m.gk": "Torwart", "m.medical": "Erste Hilfe", "m.tech": "Technik", "m.apparel": "Bekleidung", "m.view": "Angebot ansehen", "m.from": "ab",
     "u.canGrant": "Als Sportdirektor oder Master kannst du Mitglieder hinzufügen und Rollen zuweisen.", "u.readonly": "Nur-Lese-Ansicht: nur der Sportdirektor oder der Master können hinzufügen.", "u.approve": "Freigeben", "u.suspend": "Sperren", "u.note": "Nur der Sportdirektor oder der Master können die Trainerrolle vergeben.", "u.activo": "aktiv", "u.pendiente": "ausstehend",
 
@@ -429,6 +498,29 @@ const DICT = {
     "mt.events": "Spielereignisse",
     "mt.noEvents": "Noch keine Ereignisse.",
     "mt.who": "Wer?",
+    "mt.matchSettings": "Spieleinstellungen",
+    "mt.halfLenHint": "U19 40′ · U15/U16 35′ · U12/U13 30′. Wird automatisch je nach Altersklasse angewendet; ändere es, wenn dein Wettbewerb eine andere Dauer verwendet.",
+    "mt.addedHintOn": "Die Uhr warnt bei {a}. Ereignisse in der Nachspielzeit werden als {b}+n erfasst.",
+    "mt.addedHintOff": "Trage die Nachspielzeit ein, sobald der Schiedsrichter sie anzeigt. Sie wird zu Beginn jeder Halbzeit zurückgesetzt.",
+    "mt.lineupInitial": "Startaufstellung",
+    "mt.lineupEdit": "Bearbeiten",
+    "mt.lineupEmpty": "Du hast die Aufstellung noch nicht festgelegt. Stelle sie unter Aufstellung zusammen, dann erscheint sie hier.",
+    "mt.onPitch": "{n} auf dem Feld.",
+    "mt.missingSpots": "Positionen noch zu besetzen",
+    "mt.closeActaBtn": "Spielbericht abschließen und speichern",
+    "mt.closeActaSaved": "✓ Spielbericht gespeichert",
+    "mt.closeActaHint": "Speichert das Ergebnis, den Spielbericht und was jeder Spieler gemacht hat. Du findest es unter Statistik, Spiel für Spiel.",
+    "mt.timeUp": "⏹ Zeit abgelaufen",
+    "mt.addedTimeLeft": "Nachspielzeit · noch {t}",
+    "mt.timeLeft": "Noch {t}",
+    "mt.penScored": "verwandelt",
+    "mt.penMissed": "verschossen",
+    "mt.penOwn": "Eigener Elfmeter",
+    "mt.penRival": "Elfmeter des Gegners",
+    "mt.refereeLabel": "Schiedsrichter",
+    "mt.refereeNamePh": "Name des Schiedsrichters",
+    "mt.refereeComment": "Kommentar zum Schiedsrichter",
+    "mt.refereeCommentPh": "Notiere hier die Leistung, wichtige Entscheidungen usw.",
     "ca.title": "Spielplan der Mannschaft",
     "ca.empty": "Noch keine Spiele. Importiere unten den Spielplan deiner Mannschaft.",
     "ca.import": "Spielplan importieren",
@@ -558,7 +650,7 @@ const DICT = {
     "a.forgot": "Esqueceste-te da palavra-passe?", "a.forgotTitle": "Recuperar palavra-passe", "a.forgotD": "Escreve o teu email e enviamos-te um link para escolheres uma nova.", "a.forgotSend": "Enviar link", "a.sending": "A enviar…", "a.forgotSent": "Se esse email tiver conta, o link já seguiu. Expira dentro de uma hora e só serve uma vez. Vê também o spam.", "a.forgotNoMail": "O envio de email não está disponível agora. Avisa o teu clube.", "a.resetTitle": "Escolhe a tua nova palavra-passe", "a.resetD": "Este link expira dentro de uma hora e só serve uma vez.", "a.newPass": "Nova palavra-passe", "a.newPass2": "Repete a palavra-passe", "a.resetSave": "Guardar palavra-passe", "a.resetOk": "Palavra-passe atualizada. Já podes entrar com ela.", "a.resetBad": "Este link já não é válido: expirou ou já foi usado. Pede outro.", "a.passRule": "Mínimo 6 caracteres, e as duas têm de coincidir.", "a.noBackend": "Sem ligação ao servidor. Tenta mais tarde.",
     "p.account": "A minha conta", "p.changePass": "Alterar palavra-passe", "p.current": "Palavra-passe atual", "p.save": "Guardar", "p.saved": "Palavra-passe atualizada.", "p.badCurrent": "A palavra-passe atual não está correta.", "p.close": "Fechar",
     "h.nextMatch": "Próximo jogo", "h.nextTrain": "Próximo treino", "h.available": "Disponíveis", "h.lessMin": "Menos participação", "h.alerts": "Alertas", "h.quick": "Acessos rápidos", "h.family": "Avisos para as famílias", "h.pending": "acessos pendentes de aprovação", "h.startMatch": "Iniciar jogo",
-    "w.title": "Quadro tático", "w.move": "Mover", "w.arrow": "Seta", "w.pass": "Passe", "w.free": "Desenho", "w.cone": "Cone", "w.ball": "Bola", "w.erase": "Apagar", "w.clear": "Limpar", "w.home": "Casa", "w.away": "Adversário", "w.hint": "Escolhe uma ferramenta · arrasta as peças · desenha no campo", "w.form": "Colocar", "w.f11": "Futebol 11", "w.f7": "Futebol 7", "w.homeSys": "Sistema da casa", "w.awaySys": "Sistema do adversário", "w.exercises": "Exercícios recomendados", "w.exHint": "Toca num exercício para o colocar no quadro", "w.autoSave": "O sistema escolhido é guardado automaticamente neste dispositivo",
+    "w.title": "Quadro tático", "w.move": "Mover", "w.arrow": "Seta", "w.pass": "Passe", "w.free": "Desenho", "w.cone": "Cone", "w.ball": "Bola", "w.erase": "Apagar", "w.clear": "Limpar", "w.home": "Casa", "w.away": "Adversário", "w.hint": "Escolhe uma ferramenta · arrasta as peças · desenha no campo", "w.form": "Colocar", "w.f11": "Futebol 11", "w.f7": "Futebol 7", "w.homeSys": "Sistema da casa", "w.awaySys": "Sistema do adversário", "w.exercises": "Exercícios recomendados", "w.exHint": "Toca num exercício para o colocar no quadro", "w.autoSave": "O sistema escolhido é guardado automaticamente neste dispositivo", "w.abpForAgainst": "A favor ou contra?", "w.abpAttack": "Ataque", "w.abpDefense": "Defesa", "w.abpSide": "De que lado?", "w.abpLeft": "◂ Esquerda", "w.abpRight": "Direita ▸", "w.abpPlace": "Colocar a jogada", "w.abpAgainst": "em defesa", "w.abpFor": "em ataque", "w.abpOwnBoard": "quadro próprio", "w.abpSaveAs": "Guardar o quadro como",
     "m.title": "Loja do treinador", "m.aff": "Link de afiliado", "m.note": "Links de afiliado claramente identificados e adaptados ao teu país. Uma pequena comissão ajuda a manter a app; o teu preço não muda.", "m.all": "Tudo", "m.training": "Treino", "m.gk": "Guarda-redes", "m.medical": "Primeiros socorros", "m.tech": "Tecnologia", "m.apparel": "Vestuário", "m.view": "Ver oferta", "m.from": "desde",
 
     /* v49 — cadenas que antes estaban en español a fuego */
@@ -597,6 +689,29 @@ const DICT = {
     "mt.events": "Eventos do jogo",
     "mt.noEvents": "Ainda não há eventos.",
     "mt.who": "Quem?",
+    "mt.matchSettings": "Definições do jogo",
+    "mt.halfLenHint": "Sub-19 40′ · Sub-15/Sub-16 35′ · Sub-12/Sub-13 30′. Aplica-se automaticamente consoante o escalão; edita se a tua competição usar outra duração.",
+    "mt.addedHintOn": "O relógio avisa ao chegar aos {a}. Os eventos do desconto ficam registados como {b}+n.",
+    "mt.addedHintOff": "Marca o desconto quando o árbitro o assinalar. Reinicia no início de cada parte.",
+    "mt.lineupInitial": "Onze inicial",
+    "mt.lineupEdit": "Editar",
+    "mt.lineupEmpty": "Ainda não montaste o onze. Faz isso em Escalação e aparece aqui.",
+    "mt.onPitch": "{n} em campo.",
+    "mt.missingSpots": "posições por preencher",
+    "mt.closeActaBtn": "Fechar a ficha e guardar o jogo",
+    "mt.closeActaSaved": "✓ Ficha guardada",
+    "mt.closeActaHint": "Guarda o resultado, a ficha do jogo e o que cada jogador fez. Fica disponível em Estatísticas, jogo a jogo.",
+    "mt.timeUp": "⏹ Tempo terminado",
+    "mt.addedTimeLeft": "Desconto · faltam {t}",
+    "mt.timeLeft": "Faltam {t}",
+    "mt.penScored": "marcado",
+    "mt.penMissed": "falhado",
+    "mt.penOwn": "Penálti a favor",
+    "mt.penRival": "Penálti do adversário",
+    "mt.refereeLabel": "Árbitro",
+    "mt.refereeNamePh": "Nome do árbitro",
+    "mt.refereeComment": "Comentário sobre o árbitro",
+    "mt.refereeCommentPh": "Anota aqui a arbitragem, decisões relevantes, etc.",
     "ca.title": "Calendário da equipa",
     "ca.empty": "Ainda não há jogos. Importa o calendário da tua equipa abaixo.",
     "ca.import": "Importar calendário",
@@ -2596,9 +2711,55 @@ const ejerciciosDePilar = (k) => {
 };
 
 /* Nombre legible de cada tipo de evento del acta. Antes se pintaba la clave
-   tal cual y en el acta salía "golRival", que no es castellano. */
-const EVENTO_TXT = { gol: "Gol", golRival: "Gol del rival", cambio: "Cambio", tarjeta: "Tarjeta", nota: "Nota", periodo: "2ª parte" };
-const nombreEvento = (k) => EVENTO_TXT[k] || k;
+   tal cual y en el acta salía "golRival", que no es castellano; y era fijo
+   en español sin importar el idioma de quien lo lee. */
+const EVENTO_TXT = {
+  gol: { es: "Gol", en: "Goal", fr: "But", de: "Tor", pt: "Golo" },
+  golRival: { es: "Gol del rival", en: "Opponent goal", fr: "But adverse", de: "Gegentor", pt: "Golo do adversário" },
+  cambio: { es: "Cambio", en: "Substitution", fr: "Changement", de: "Wechsel", pt: "Substituição" },
+  tarjeta: { es: "Tarjeta", en: "Card", fr: "Carton", de: "Karte", pt: "Cartão" },
+  nota: { es: "Nota", en: "Note", fr: "Note", de: "Notiz", pt: "Nota" },
+  periodo: { es: "Cambio de parte", en: "Period change", fr: "Changement de période", de: "Periodenwechsel", pt: "Mudança de período" },
+  penalti: { es: "Penalti", en: "Penalty", fr: "Penalty", de: "Elfmeter", pt: "Penálti" },
+};
+const nombreEvento = (k, lang = "es") => EVENTO_TXT[k]?.[lang] || EVENTO_TXT[k]?.es || k;
+/* Colores de tarjeta: amarilla, segunda amarilla (expulsión) y roja directa. */
+const CARD_TIPOS = [
+  { k: "amarilla", icon: "🟨", name: { es: "Amarilla", en: "Yellow", fr: "Jaune", de: "Gelb", pt: "Amarelo" } },
+  { k: "doble", icon: "🟨🟨", name: { es: "2ª amarilla", en: "2nd yellow", fr: "2e jaune", de: "2. Gelb", pt: "2º amarelo" } },
+  { k: "roja", icon: "🟥", name: { es: "Roja", en: "Red", fr: "Rouge", de: "Rot", pt: "Vermelho" } },
+];
+const cardNombre = (k, lang = "es") => { const c = CARD_TIPOS.find((x) => x.k === k); return c ? (c.name[lang] || c.name.es) : ""; };
+/* Descripción completa de una fila del acta: cambia de tarjeta (color +
+   jugador), cambio de parte (nombre de la parte) y penalti (marcado/fallado,
+   propio o rival) a la línea genérica "tipo — jugador" del resto. */
+const descEvento = (e, lang = "es") => {
+  if (e.type === "periodo") return e.periodoNombre || nombreEvento("periodo", lang);
+  if (e.type === "tarjeta" && e.card) {
+    const icon = CARD_TIPOS.find((c) => c.k === e.card)?.icon || "";
+    return `${icon} ${cardNombre(e.card, lang)}${e.player ? " — " + e.player : ""}`;
+  }
+  if (e.type === "penalti") {
+    const resu = e.resultado === "fallo" ? T(lang, "mt.penMissed") : T(lang, "mt.penScored");
+    const lado = e.lado === "them" ? T(lang, "mt.penRival") : T(lang, "mt.penOwn");
+    return `${lado} · ${resu}${e.player ? " — " + e.player : ""}`;
+  }
+  return `${nombreEvento(e.type, lang)}${e.player ? " — " + e.player : ""}`;
+};
+/* Partes del partido, incluida prórroga y penaltis -no todos los partidos
+   de fútbol base los tienen, pero cuando toca (eliminatorias, copas) hace
+   falta poder registrarlos igual que una parte normal. */
+const PERIODOS = [
+  { k: "p1", n: 1, name: { es: "1ª parte", en: "1st half", fr: "1re mi-temps", de: "1. Halbzeit", pt: "1ª parte" } },
+  { k: "p2", n: 2, name: { es: "2ª parte", en: "2nd half", fr: "2e mi-temps", de: "2. Halbzeit", pt: "2ª parte" } },
+  { k: "pr1", n: 3, name: { es: "Prórroga 1", en: "Extra time 1", fr: "Prolongation 1", de: "Verlängerung 1", pt: "Prolongamento 1" } },
+  { k: "pr2", n: 4, name: { es: "Prórroga 2", en: "Extra time 2", fr: "Prolongation 2", de: "Verlängerung 2", pt: "Prolongamento 2" } },
+  { k: "pen", n: null, name: { es: "Penaltis", en: "Penalties", fr: "Tirs au but", de: "Elfmeterschießen", pt: "Grandes penalidades" } },
+];
+/* Duración de la prórroga: 15 minutos por parte es el estándar en todas las
+   competiciones de base que juegan prórroga, así que no hace falta que sea
+   configurable como sí lo es la duración de la parte normal. */
+const ET_HALF_MIN = 15;
 
 const MESES_TEMP = [
   { k: 9, es: "Septiembre" }, { k: 10, es: "Octubre" }, { k: 11, es: "Noviembre" }, { k: 12, es: "Diciembre" },
@@ -2720,163 +2881,443 @@ const ABP_TABLERO = { corner: "cornerDer", falta: "falta", penalti: "penalti" };
    Escritas en metros de campo real para que se puedan leer y corregir sin
    mirar píxeles, y para que el mismo córner sirva para los dos lados: se
    refleja la x (68 − x) y listo. El tablero hace la traducción al cargar.
-   `home` son las fichas blancas (las tuyas) y `away` las de carbón. */
+   `home` son las fichas blancas (las tuyas) y `away` las de carbón.
+
+   Cada situación (córner/falta a favor o en contra) es un ARRAY de
+   variantes -no un único montaje-, para poder ensayar más de una lectura
+   de la misma jugada. cargarABP recibe el índice de la variante elegida;
+   cuando solo hay una (penalti), el menú la carga directa sin preguntar. */
 const ABP_METROS = {
   corner: {
-    /* Córner a favor desde la esquina derecha, con los once sobre el campo:
-       sacador, el del corto, tres atacando palo-punto-palo, uno al rechace,
-       dos al borde y dos atrás tapando el contragolpe. El portero queda al
-       fondo porque en un córner a favor está en su campo. */
-    ata: {
-      tokens: [
-        { type: "home", x: 66.2, y: 2.8, label: "7" },   /* saca */
-        { type: "home", x: 62, y: 5.5, label: "10" },    /* saque corto */
-        { type: "home", x: 38.5, y: 4.5, label: "11" },  /* primer palo */
-        { type: "home", x: 34.5, y: 10.5, label: "9" },  /* punto de penalti */
-        { type: "home", x: 29.5, y: 5, label: "5" },     /* segundo palo */
-        { type: "home", x: 36, y: 18.5, label: "4" },    /* rechace */
-        { type: "home", x: 45, y: 19, label: "8" },      /* borde del área */
-        { type: "home", x: 52, y: 27, label: "6" },      /* cobertura */
-        { type: "home", x: 24, y: 26, label: "2" },      /* cobertura */
-        { type: "home", x: 15, y: 31, label: "3" },      /* cobertura */
-        { type: "home", x: 34, y: 34, label: "1" },      /* portero, atrás */
-        { type: "away", x: 34, y: 1.3, label: "1" },
-        { type: "away", x: 37.2, y: 1.2, label: "2" }, { type: "away", x: 30.8, y: 1.2, label: "3" },
-        { type: "away", x: 35, y: 7, label: "5" }, { type: "away", x: 38.5, y: 9.5, label: "4" },
-        { type: "away", x: 31, y: 9.5, label: "6" }, { type: "away", x: 61, y: 7.5, label: "7" },
-        { type: "ball", x: 67.4, y: 0.7, label: "" },
-      ],
-      shapes: [
-        { tool: "pass", pts: [{ x: 67.4, y: 0.7 }, { x: 34.8, y: 10 }] },
-        { tool: "arrow", pts: [{ x: 38.5, y: 4.5 }, { x: 35.5, y: 9.5 }] },
-        { tool: "arrow", pts: [{ x: 29.5, y: 5 }, { x: 32.5, y: 9 }] },
-        { tool: "arrow", pts: [{ x: 36, y: 18.5 }, { x: 35, y: 14 }] },
-        { tool: "arrow", pts: [{ x: 62, y: 5.5 }, { x: 65.5, y: 2.5 }] },
-      ],
-    },
-    /* Córner en contra con los once dentro: portero, dos en los palos, cuatro
-       en zona repartidos por el área, dos al hombre, uno al saque corto y uno
-       al borde para el rechace. En base es donde se pierden más partidos. */
-    def: {
-      tokens: [
-        { type: "home", x: 34, y: 1.6, label: "1" },     /* portero */
-        { type: "home", x: 37.4, y: 0.8, label: "5" },   /* primer palo */
-        { type: "home", x: 30.6, y: 0.8, label: "3" },   /* segundo palo */
-        { type: "home", x: 36, y: 5, label: "4" }, { type: "home", x: 32, y: 5.5, label: "6" },
-        { type: "home", x: 39.5, y: 7.5, label: "2" }, { type: "home", x: 29, y: 8.5, label: "11" },
-        { type: "home", x: 35, y: 10.5, label: "9" },    /* al hombre */
-        { type: "home", x: 40, y: 12.5, label: "10" },   /* al hombre */
-        { type: "home", x: 59.5, y: 8, label: "7" },     /* al saque corto */
-        { type: "home", x: 34, y: 19, label: "8" },      /* rechace */
-        { type: "away", x: 66.2, y: 2.8, label: "11" },
-        { type: "away", x: 36.5, y: 9.5, label: "9" }, { type: "away", x: 33, y: 11.5, label: "10" },
-        { type: "away", x: 39.5, y: 13, label: "4" }, { type: "away", x: 30, y: 7, label: "5" },
-        { type: "away", x: 62, y: 5.5, label: "7" },
-        { type: "ball", x: 67.4, y: 0.7, label: "" },
-      ],
-      shapes: [
-        { tool: "pass", pts: [{ x: 67.4, y: 0.7 }, { x: 35, y: 10.5 }] },
-        { tool: "arrow", pts: [{ x: 34, y: 19 }, { x: 34, y: 26 }] },
-        { tool: "arrow", pts: [{ x: 59.5, y: 8 }, { x: 63.5, y: 4.5 }] },
-        { tool: "arrow", pts: [{ x: 39.5, y: 7.5 }, { x: 36.5, y: 10 }] },
-      ],
-    },
+    ata: [
+      /* Córner a favor desde la esquina derecha, con los once sobre el campo:
+         sacador, el del corto, tres atacando palo-punto-palo, uno al rechace,
+         dos al borde y dos atrás tapando el contragolpe. El portero queda al
+         fondo porque en un córner a favor está en su campo. */
+      {
+        nombre: { es: "Ataque total al área", en: "Full-box assault", fr: "Attaque totale de la surface", de: "Vollangriff auf den Strafraum", pt: "Ataque total à área" },
+        tokens: [
+          { type: "home", x: 66.2, y: 2.8, label: "7" },   /* saca */
+          { type: "home", x: 62, y: 5.5, label: "10" },    /* saque corto */
+          { type: "home", x: 38.5, y: 4.5, label: "11" },  /* primer palo */
+          { type: "home", x: 34.5, y: 10.5, label: "9" },  /* punto de penalti */
+          { type: "home", x: 29.5, y: 5, label: "5" },     /* segundo palo */
+          { type: "home", x: 36, y: 18.5, label: "4" },    /* rechace */
+          { type: "home", x: 45, y: 19, label: "8" },      /* borde del área */
+          { type: "home", x: 52, y: 27, label: "6" },      /* cobertura */
+          { type: "home", x: 24, y: 26, label: "2" },      /* cobertura */
+          { type: "home", x: 15, y: 31, label: "3" },      /* cobertura */
+          { type: "home", x: 34, y: 34, label: "1" },      /* portero, atrás */
+          { type: "away", x: 34, y: 1.3, label: "1" },
+          { type: "away", x: 37.2, y: 1.2, label: "2" }, { type: "away", x: 30.8, y: 1.2, label: "3" },
+          { type: "away", x: 35, y: 7, label: "5" }, { type: "away", x: 38.5, y: 9.5, label: "4" },
+          { type: "away", x: 31, y: 9.5, label: "6" }, { type: "away", x: 61, y: 7.5, label: "7" },
+          { type: "ball", x: 67.4, y: 0.7, label: "" },
+        ],
+        shapes: [
+          { tool: "pass", pts: [{ x: 67.4, y: 0.7 }, { x: 34.8, y: 10 }] },
+          { tool: "arrow", pts: [{ x: 38.5, y: 4.5 }, { x: 35.5, y: 9.5 }] },
+          { tool: "arrow", pts: [{ x: 29.5, y: 5 }, { x: 32.5, y: 9 }] },
+          { tool: "arrow", pts: [{ x: 36, y: 18.5 }, { x: 35, y: 14 }] },
+          { tool: "arrow", pts: [{ x: 62, y: 5.5 }, { x: 65.5, y: 2.5 }] },
+        ],
+      },
+      /* Córner corto: lanzador y apoyo juntos en la esquina para atraer a un
+         defensor y ganar mejor ángulo de centro, con el resto del equipo ya
+         colocado en el área esperando ese segundo balón. */
+      {
+        nombre: { es: "Córner corto", en: "Short corner", fr: "Corner court", de: "Kurze Ecke", pt: "Canto curto" },
+        tokens: [
+          { type: "home", x: 66.2, y: 2.8, label: "7" },   /* saca */
+          { type: "home", x: 60, y: 6, label: "10" },      /* recibe el corto */
+          { type: "home", x: 38.5, y: 4.5, label: "11" },
+          { type: "home", x: 34.5, y: 10.5, label: "9" },
+          { type: "home", x: 29.5, y: 5, label: "5" },
+          { type: "home", x: 36, y: 18.5, label: "4" },
+          { type: "home", x: 45, y: 19, label: "8" },
+          { type: "home", x: 52, y: 27, label: "6" },
+          { type: "home", x: 24, y: 26, label: "2" },
+          { type: "home", x: 15, y: 31, label: "3" },
+          { type: "home", x: 34, y: 34, label: "1" },
+          { type: "away", x: 34, y: 1.3, label: "1" },
+          { type: "away", x: 37.2, y: 1.2, label: "2" }, { type: "away", x: 30.8, y: 1.2, label: "3" },
+          { type: "away", x: 35, y: 7, label: "5" }, { type: "away", x: 38.5, y: 9.5, label: "4" },
+          { type: "away", x: 31, y: 9.5, label: "6" }, { type: "away", x: 58, y: 8, label: "7" }, /* sale a cerrar el corto */
+          { type: "ball", x: 67.4, y: 0.7, label: "" },
+        ],
+        shapes: [
+          { tool: "pass", pts: [{ x: 67.4, y: 0.7 }, { x: 60, y: 6 }] },
+          { tool: "arrow", pts: [{ x: 60, y: 6 }, { x: 63, y: 3 }] },
+          { tool: "arrow", pts: [{ x: 38.5, y: 4.5 }, { x: 35.5, y: 9.5 }] },
+          { tool: "arrow", pts: [{ x: 29.5, y: 5 }, { x: 32.5, y: 9 }] },
+        ],
+      },
+      /* Remate al primer palo: tres atacantes apilados en el primer palo para
+         un remate rápido -de cabeza o de primeras-, con uno al segundo palo
+         para el rechace del propio remate. */
+      {
+        nombre: { es: "Remate al primer palo", en: "Near-post flick", fr: "Reprise au premier poteau", de: "Kopfball kurzer Pfosten", pt: "Remate ao primeiro poste" },
+        tokens: [
+          { type: "home", x: 66.2, y: 2.8, label: "7" },
+          { type: "home", x: 40, y: 3, label: "9" },       /* remate directo */
+          { type: "home", x: 37, y: 5.5, label: "11" },
+          { type: "home", x: 42.5, y: 6, label: "10" },
+          { type: "home", x: 28, y: 4, label: "5" },       /* segundo palo, rechace del flick */
+          { type: "home", x: 36, y: 19, label: "4" },
+          { type: "home", x: 45, y: 20, label: "8" },
+          { type: "home", x: 52, y: 27, label: "6" },
+          { type: "home", x: 22, y: 26, label: "2" },
+          { type: "home", x: 15, y: 31, label: "3" },
+          { type: "home", x: 34, y: 34, label: "1" },
+          { type: "away", x: 34, y: 1.3, label: "1" },
+          { type: "away", x: 39, y: 1.2, label: "2" }, { type: "away", x: 31, y: 1.2, label: "3" },
+          { type: "away", x: 41, y: 6, label: "4" }, { type: "away", x: 36, y: 8, label: "5" }, { type: "away", x: 30, y: 8, label: "6" },
+          { type: "away", x: 61, y: 7.5, label: "7" },
+          { type: "ball", x: 67.4, y: 0.7, label: "" },
+        ],
+        shapes: [
+          { tool: "pass", pts: [{ x: 67.4, y: 0.7 }, { x: 40, y: 3 }] },
+          { tool: "arrow", pts: [{ x: 40, y: 3 }, { x: 28, y: 4 }] },
+          { tool: "arrow", pts: [{ x: 37, y: 5.5 }, { x: 39, y: 3.5 }] },
+        ],
+      },
+    ],
+    def: [
+      /* Córner en contra con los once dentro: portero, dos en los palos, cuatro
+         en zona repartidos por el área, dos al hombre, uno al saque corto y uno
+         al borde para el rechace. En base es donde se pierden más partidos. */
+      {
+        nombre: { es: "Marcaje mixto", en: "Mixed marking", fr: "Marquage mixte", de: "Gemischte Deckung", pt: "Marcação mista" },
+        tokens: [
+          { type: "home", x: 34, y: 1.6, label: "1" },     /* portero */
+          { type: "home", x: 37.4, y: 0.8, label: "5" },   /* primer palo */
+          { type: "home", x: 30.6, y: 0.8, label: "3" },   /* segundo palo */
+          { type: "home", x: 36, y: 5, label: "4" }, { type: "home", x: 32, y: 5.5, label: "6" },
+          { type: "home", x: 39.5, y: 7.5, label: "2" }, { type: "home", x: 29, y: 8.5, label: "11" },
+          { type: "home", x: 35, y: 10.5, label: "9" },    /* al hombre */
+          { type: "home", x: 40, y: 12.5, label: "10" },   /* al hombre */
+          { type: "home", x: 59.5, y: 8, label: "7" },     /* al saque corto */
+          { type: "home", x: 34, y: 19, label: "8" },      /* rechace */
+          { type: "away", x: 66.2, y: 2.8, label: "11" },
+          { type: "away", x: 36.5, y: 9.5, label: "9" }, { type: "away", x: 33, y: 11.5, label: "10" },
+          { type: "away", x: 39.5, y: 13, label: "4" }, { type: "away", x: 30, y: 7, label: "5" },
+          { type: "away", x: 62, y: 5.5, label: "7" },
+          { type: "ball", x: 67.4, y: 0.7, label: "" },
+        ],
+        shapes: [
+          { tool: "pass", pts: [{ x: 67.4, y: 0.7 }, { x: 35, y: 10.5 }] },
+          { tool: "arrow", pts: [{ x: 34, y: 19 }, { x: 34, y: 26 }] },
+          { tool: "arrow", pts: [{ x: 59.5, y: 8 }, { x: 63.5, y: 4.5 }] },
+          { tool: "arrow", pts: [{ x: 39.5, y: 7.5 }, { x: 36.5, y: 10 }] },
+        ],
+      },
+      /* Zona pura: nadie marca a un rival concreto, cada uno cubre una zona
+         fija de la portería al área, y el portero manda en su parcela. */
+      {
+        nombre: { es: "Zona pura", en: "Pure zonal marking", fr: "Zone pure", de: "Reine Raumdeckung", pt: "Zona pura" },
+        tokens: [
+          { type: "home", x: 34, y: 1.4, label: "1" },
+          { type: "home", x: 38, y: 1, label: "5" }, { type: "home", x: 30, y: 1, label: "3" },
+          { type: "home", x: 41, y: 4, label: "2" }, { type: "home", x: 34, y: 4.5, label: "6" }, { type: "home", x: 27, y: 4, label: "4" },
+          { type: "home", x: 44, y: 8, label: "7" }, { type: "home", x: 34, y: 9, label: "8" }, { type: "home", x: 24, y: 8, label: "11" },
+          { type: "home", x: 59.5, y: 8, label: "9" },     /* al saque corto */
+          { type: "home", x: 34, y: 19, label: "10" },     /* barredor, cobertura */
+          { type: "away", x: 66.2, y: 2.8, label: "11" },
+          { type: "away", x: 37, y: 5, label: "9" }, { type: "away", x: 32, y: 5, label: "10" },
+          { type: "away", x: 42, y: 9, label: "4" }, { type: "away", x: 27, y: 9, label: "5" },
+          { type: "away", x: 61, y: 6, label: "7" },
+          { type: "ball", x: 67.4, y: 0.7, label: "" },
+        ],
+        shapes: [
+          { tool: "pass", pts: [{ x: 67.4, y: 0.7 }, { x: 34, y: 7 }] },
+          { tool: "arrow", pts: [{ x: 34, y: 1.4 }, { x: 34, y: 5 }] },
+        ],
+      },
+      /* Al hombre: cada defensor pegado a un rival concreto desde antes del
+         saque, con un libre suelto para barrer lo que se escape. */
+      {
+        nombre: { es: "Al hombre", en: "Man marking", fr: "Marquage individuel", de: "Manndeckung", pt: "Marcação individual" },
+        tokens: [
+          { type: "home", x: 34, y: 1.6, label: "1" },
+          { type: "home", x: 37, y: 5, label: "5" },       /* marca al 9 */
+          { type: "home", x: 32, y: 5.5, label: "6" },     /* marca al 10 */
+          { type: "home", x: 42, y: 9, label: "2" },       /* marca al 4 */
+          { type: "home", x: 27, y: 9, label: "4" },       /* marca al 5 */
+          { type: "home", x: 45, y: 3, label: "3" },
+          { type: "home", x: 29, y: 3, label: "8" },
+          { type: "home", x: 59.5, y: 8, label: "7" },     /* sigue al del corto */
+          { type: "home", x: 34, y: 13, label: "9" },      /* libre, barredor */
+          { type: "home", x: 39, y: 16, label: "10" },
+          { type: "home", x: 34, y: 25, label: "11" },
+          { type: "away", x: 66.2, y: 2.8, label: "11" },
+          { type: "away", x: 37, y: 5.2, label: "9" }, { type: "away", x: 32, y: 5.7, label: "10" },
+          { type: "away", x: 42.2, y: 9.2, label: "4" }, { type: "away", x: 27.2, y: 9.2, label: "5" },
+          { type: "away", x: 61, y: 6, label: "7" },
+          { type: "ball", x: 67.4, y: 0.7, label: "" },
+        ],
+        shapes: [
+          { tool: "pass", pts: [{ x: 67.4, y: 0.7 }, { x: 34, y: 8 }] },
+          { tool: "arrow", pts: [{ x: 45, y: 3 }, { x: 41, y: 3 }] },
+          { tool: "arrow", pts: [{ x: 34, y: 13 }, { x: 34, y: 9 }] },
+        ],
+      },
+    ],
   },
   falta: {
-    /* Falta lateral a favor desde la derecha, a unos 26 metros: lanzador y
-       apoyo, tres atacando el área en carrera, dos al rechace, dos atrás por
-       si sale rebotada y el portero al fondo. La barrera rival está puesta a
-       los 9,15 m reglamentarios sobre la línea balón-portería. */
-    ata: {
-      tokens: [
-        { type: "home", x: 53.8, y: 27.6, label: "10" }, /* lanza, un paso detrás del balón */
-        { type: "home", x: 56.5, y: 24.5, label: "7" },  /* apoyo */
-        { type: "home", x: 39.5, y: 15, label: "4" },
-        { type: "home", x: 34.5, y: 10, label: "9" },
-        { type: "home", x: 28.5, y: 12.5, label: "5" },
-        { type: "home", x: 23, y: 16, label: "11" },
-        { type: "home", x: 34, y: 22, label: "8" },      /* rechace */
-        { type: "home", x: 42, y: 23, label: "6" },      /* rechace */
-        { type: "home", x: 20, y: 31, label: "2" },      /* cobertura */
-        { type: "home", x: 48, y: 33, label: "3" },      /* cobertura */
-        { type: "home", x: 34, y: 38, label: "1" },      /* portero, atrás */
-        { type: "away", x: 36, y: 1.4, label: "1" },
-        { type: "away", x: 43.6, y: 20.7, label: "5" }, { type: "away", x: 45.7, y: 19.2, label: "6" },
-        { type: "away", x: 47.9, y: 17.8, label: "3" }, { type: "away", x: 50, y: 16.3, label: "2" },
-        { type: "away", x: 37.5, y: 8, label: "4" }, { type: "away", x: 31.5, y: 8.5, label: "8" },
-        { type: "away", x: 25.5, y: 12.5, label: "11" }, { type: "away", x: 41.5, y: 12, label: "10" },
-        { type: "ball", x: 52, y: 26, label: "" },
-      ],
-      shapes: [
-        { tool: "pass", pts: [{ x: 52, y: 26 }, { x: 34.5, y: 7 }] },
-        { tool: "arrow", pts: [{ x: 39.5, y: 15 }, { x: 36, y: 9.5 }] },
-        { tool: "arrow", pts: [{ x: 23, y: 16 }, { x: 30.5, y: 8.5 }] },
-        { tool: "arrow", pts: [{ x: 34, y: 22 }, { x: 34, y: 17 }] },
-      ],
-    },
-    /* Falta en contra desde la derecha: barrera de cuatro a 9,15 m, portero
-       tapando el palo largo, cuatro en zona dentro del área, dos en los palos
-       y uno adelantado para salir al despeje. */
-    def: {
-      tokens: [
-        { type: "home", x: 43.6, y: 20.7, label: "5" }, { type: "home", x: 45.7, y: 19.2, label: "6" },
-        { type: "home", x: 47.9, y: 17.8, label: "4" }, { type: "home", x: 50, y: 16.3, label: "3" },
-        { type: "home", x: 32, y: 1.5, label: "1" },    /* portero al palo largo */
-        { type: "home", x: 37.5, y: 3, label: "9" },    /* primer palo */
-        { type: "home", x: 30.5, y: 3, label: "10" },   /* segundo palo */
-        { type: "home", x: 38, y: 7.5, label: "2" }, { type: "home", x: 29.5, y: 9, label: "11" },
-        { type: "home", x: 32.5, y: 14.5, label: "8" },
-        { type: "home", x: 40, y: 20, label: "7" },     /* sale al despeje */
-        { type: "away", x: 53.8, y: 27.6, label: "10" },
-        { type: "away", x: 35, y: 10.5, label: "9" }, { type: "away", x: 41, y: 13, label: "7" },
-        { type: "away", x: 31, y: 12.5, label: "5" }, { type: "away", x: 25, y: 15.5, label: "11" },
-        { type: "ball", x: 52, y: 26, label: "" },
-      ],
-      shapes: [
-        { tool: "pass", pts: [{ x: 52, y: 26 }, { x: 35, y: 9 }] },
-        { tool: "arrow", pts: [{ x: 40, y: 20 }, { x: 44, y: 24 }] },
-        { tool: "arrow", pts: [{ x: 38, y: 7.5 }, { x: 35.5, y: 10.5 }] },
-      ],
-    },
+    ata: [
+      /* Falta lateral a favor desde la derecha, a unos 26 metros: lanzador y
+         apoyo, tres atacando el área en carrera, dos al rechace, dos atrás por
+         si sale rebotada y el portero al fondo. La barrera rival está puesta a
+         los 9,15 m reglamentarios sobre la línea balón-portería. */
+      {
+        nombre: { es: "Directa al palo largo", en: "Direct to far post", fr: "Directe au poteau opposé", de: "Direkt zum langen Pfosten", pt: "Direto ao poste longo" },
+        tokens: [
+          { type: "home", x: 53.8, y: 27.6, label: "10" }, /* lanza, un paso detrás del balón */
+          { type: "home", x: 56.5, y: 24.5, label: "7" },  /* apoyo */
+          { type: "home", x: 39.5, y: 15, label: "4" },
+          { type: "home", x: 34.5, y: 10, label: "9" },
+          { type: "home", x: 28.5, y: 12.5, label: "5" },
+          { type: "home", x: 23, y: 16, label: "11" },
+          { type: "home", x: 34, y: 22, label: "8" },      /* rechace */
+          { type: "home", x: 42, y: 23, label: "6" },      /* rechace */
+          { type: "home", x: 20, y: 31, label: "2" },      /* cobertura */
+          { type: "home", x: 48, y: 33, label: "3" },      /* cobertura */
+          { type: "home", x: 34, y: 38, label: "1" },      /* portero, atrás */
+          { type: "away", x: 36, y: 1.4, label: "1" },
+          { type: "away", x: 43.6, y: 20.7, label: "5" }, { type: "away", x: 45.7, y: 19.2, label: "6" },
+          { type: "away", x: 47.9, y: 17.8, label: "3" }, { type: "away", x: 50, y: 16.3, label: "2" },
+          { type: "away", x: 37.5, y: 8, label: "4" }, { type: "away", x: 31.5, y: 8.5, label: "8" },
+          { type: "away", x: 25.5, y: 12.5, label: "11" }, { type: "away", x: 41.5, y: 12, label: "10" },
+          { type: "ball", x: 52, y: 26, label: "" },
+        ],
+        shapes: [
+          { tool: "pass", pts: [{ x: 52, y: 26 }, { x: 34.5, y: 7 }] },
+          { tool: "arrow", pts: [{ x: 39.5, y: 15 }, { x: 36, y: 9.5 }] },
+          { tool: "arrow", pts: [{ x: 23, y: 16 }, { x: 30.5, y: 8.5 }] },
+          { tool: "arrow", pts: [{ x: 34, y: 22 }, { x: 34, y: 17 }] },
+        ],
+      },
+      /* Directa a portería: falta central a unos 20 m, tiro directo buscando
+         la escuadra por donde no llega la barrera, con dos al rechace. */
+      {
+        nombre: { es: "Directa a portería", en: "Direct shot on goal", fr: "Frappe directe au but", de: "Direkter Torschuss", pt: "Remate direto à baliza" },
+        tokens: [
+          { type: "home", x: 34, y: 20.5, label: "10" },   /* lanza directo */
+          { type: "home", x: 30, y: 23, label: "7" },
+          { type: "home", x: 38, y: 23, label: "8" },
+          { type: "home", x: 30, y: 13, label: "9" },      /* al rechace, palo corto */
+          { type: "home", x: 38, y: 13, label: "11" },     /* al rechace, palo largo */
+          { type: "home", x: 25, y: 17, label: "4" },
+          { type: "home", x: 43, y: 17, label: "6" },
+          { type: "home", x: 34, y: 30, label: "5" },
+          { type: "home", x: 20, y: 25, label: "2" }, { type: "home", x: 48, y: 25, label: "3" },
+          { type: "home", x: 34, y: 36, label: "1" },
+          { type: "away", x: 30.5, y: 10.85, label: "5" }, { type: "away", x: 32.2, y: 10.6, label: "6" },
+          { type: "away", x: 35.8, y: 10.6, label: "3" }, { type: "away", x: 37.5, y: 10.85, label: "2" },
+          { type: "away", x: 34, y: 1.5, label: "1" },
+          { type: "away", x: 30, y: 13.5, label: "9" }, { type: "away", x: 38, y: 13.5, label: "10" },
+          { type: "ball", x: 34, y: 20, label: "" },
+        ],
+        shapes: [
+          { tool: "pass", pts: [{ x: 34, y: 20 }, { x: 32, y: 1.3 }] },
+          { tool: "arrow", pts: [{ x: 30, y: 13 }, { x: 31, y: 10.5 }] },
+          { tool: "arrow", pts: [{ x: 38, y: 13 }, { x: 36.5, y: 10.5 }] },
+        ],
+      },
+      /* Corta combinada: en vez de centrar o tirar directo, un toque corto a
+         un compañero que gana mejor ángulo -la barrera se queda plantada donde
+         estaba, mirando el ángulo original. */
+      {
+        nombre: { es: "Corta combinada", en: "Short combination", fr: "Combinaison courte", de: "Kurze Kombination", pt: "Combinação curta" },
+        tokens: [
+          { type: "home", x: 53.8, y: 27.6, label: "10" }, /* toca corto */
+          { type: "home", x: 50, y: 25, label: "7" },      /* recibe y cambia el ángulo */
+          { type: "home", x: 39.5, y: 15, label: "4" },
+          { type: "home", x: 34.5, y: 10, label: "9" },
+          { type: "home", x: 28.5, y: 12.5, label: "5" },
+          { type: "home", x: 23, y: 16, label: "11" },
+          { type: "home", x: 34, y: 22, label: "8" },
+          { type: "home", x: 42, y: 23, label: "6" },
+          { type: "home", x: 20, y: 31, label: "2" }, { type: "home", x: 48, y: 33, label: "3" },
+          { type: "home", x: 34, y: 38, label: "1" },
+          { type: "away", x: 36, y: 1.4, label: "1" },
+          { type: "away", x: 43.6, y: 20.7, label: "5" }, { type: "away", x: 45.7, y: 19.2, label: "6" },
+          { type: "away", x: 47.9, y: 17.8, label: "3" }, { type: "away", x: 50, y: 16.3, label: "2" },
+          { type: "away", x: 37.5, y: 8, label: "4" }, { type: "away", x: 31.5, y: 8.5, label: "8" },
+          { type: "away", x: 25.5, y: 12.5, label: "11" }, { type: "away", x: 41.5, y: 12, label: "10" },
+          { type: "ball", x: 53.8, y: 27.6, label: "" },
+        ],
+        shapes: [
+          { tool: "pass", pts: [{ x: 53.8, y: 27.6 }, { x: 50, y: 25 }] },
+          { tool: "pass", pts: [{ x: 50, y: 25 }, { x: 34.5, y: 7 }] },
+          { tool: "arrow", pts: [{ x: 39.5, y: 15 }, { x: 36, y: 9.5 }] },
+        ],
+      },
+      /* Lateral centrada al área: falta abierta desde el otro costado y más
+         lejos, sin intención de tiro directo -es un centro, con barrera corta
+         porque el ángulo a portería es muy cerrado. */
+      {
+        nombre: { es: "Lateral centrada al área", en: "Wide free kick crossed in", fr: "Coup franc latéral centré", de: "Seitlicher Freistoß, Flanke in den Strafraum", pt: "Livre lateral cruzado para a área" },
+        tokens: [
+          { type: "home", x: 14.5, y: 27.6, label: "7" }, /* lanza desde la izquierda */
+          { type: "home", x: 11.5, y: 24.5, label: "8" },
+          { type: "home", x: 28.5, y: 15, label: "4" },
+          { type: "home", x: 33.5, y: 10, label: "9" },
+          { type: "home", x: 39.5, y: 12.5, label: "11" },
+          { type: "home", x: 45, y: 16, label: "10" },
+          { type: "home", x: 34, y: 22, label: "6" }, { type: "home", x: 26, y: 23, label: "5" },
+          { type: "home", x: 48, y: 31, label: "3" }, { type: "home", x: 20, y: 33, label: "2" },
+          { type: "home", x: 34, y: 38, label: "1" },
+          { type: "away", x: 32, y: 1.4, label: "1" },
+          { type: "away", x: 20, y: 17.5, label: "2" }, { type: "away", x: 22, y: 16.1, label: "3" }, { type: "away", x: 24, y: 14.7, label: "4" },
+          { type: "away", x: 36, y: 8, label: "5" }, { type: "away", x: 30, y: 8.5, label: "6" },
+          { type: "away", x: 41.5, y: 12.5, label: "10" }, { type: "away", x: 27.5, y: 13, label: "9" },
+          { type: "ball", x: 14.5, y: 27.6, label: "" },
+        ],
+        shapes: [
+          { tool: "pass", pts: [{ x: 14.5, y: 27.6 }, { x: 34, y: 8 }] },
+          { tool: "arrow", pts: [{ x: 39.5, y: 12.5 }, { x: 36, y: 9 }] },
+          { tool: "arrow", pts: [{ x: 28.5, y: 15 }, { x: 32, y: 9.5 }] },
+        ],
+      },
+    ],
+    def: [
+      /* Falta en contra desde la derecha: barrera de cuatro a 9,15 m, portero
+         tapando el palo largo, cuatro en zona dentro del área, dos en los palos
+         y uno adelantado para salir al despeje. */
+      {
+        nombre: { es: "Barrera de 4 + zona", en: "4-man wall + zone", fr: "Mur de 4 + zone", de: "4er-Mauer + Raumdeckung", pt: "Barreira de 4 + zona" },
+        tokens: [
+          { type: "home", x: 43.6, y: 20.7, label: "5" }, { type: "home", x: 45.7, y: 19.2, label: "6" },
+          { type: "home", x: 47.9, y: 17.8, label: "4" }, { type: "home", x: 50, y: 16.3, label: "3" },
+          { type: "home", x: 32, y: 1.5, label: "1" },    /* portero al palo largo */
+          { type: "home", x: 37.5, y: 3, label: "9" },    /* primer palo */
+          { type: "home", x: 30.5, y: 3, label: "10" },   /* segundo palo */
+          { type: "home", x: 38, y: 7.5, label: "2" }, { type: "home", x: 29.5, y: 9, label: "11" },
+          { type: "home", x: 32.5, y: 14.5, label: "8" },
+          { type: "home", x: 40, y: 20, label: "7" },     /* sale al despeje */
+          { type: "away", x: 53.8, y: 27.6, label: "10" },
+          { type: "away", x: 35, y: 10.5, label: "9" }, { type: "away", x: 41, y: 13, label: "7" },
+          { type: "away", x: 31, y: 12.5, label: "5" }, { type: "away", x: 25, y: 15.5, label: "11" },
+          { type: "ball", x: 52, y: 26, label: "" },
+        ],
+        shapes: [
+          { tool: "pass", pts: [{ x: 52, y: 26 }, { x: 35, y: 9 }] },
+          { tool: "arrow", pts: [{ x: 40, y: 20 }, { x: 44, y: 24 }] },
+          { tool: "arrow", pts: [{ x: 38, y: 7.5 }, { x: 35.5, y: 10.5 }] },
+        ],
+      },
+      /* Barrera de 3 + portero cubre el corto: una barrera más corta -ángulo
+         más abierto- con el portero desplazado para tapar el hueco que deja. */
+      {
+        nombre: { es: "Barrera de 3 + portero cubre el corto", en: "3-man wall, keeper covers near post", fr: "Mur de 3, gardien couvre le petit côté", de: "3er-Mauer, Torwart deckt kurze Ecke", pt: "Barreira de 3, guarda-redes cobre o poste curto" },
+        tokens: [
+          { type: "home", x: 45.7, y: 19.2, label: "5" }, { type: "home", x: 47.9, y: 17.8, label: "6" }, { type: "home", x: 50, y: 16.3, label: "4" },
+          { type: "home", x: 33, y: 1.5, label: "1" },    /* portero, desplazado al hueco corto */
+          { type: "home", x: 37.5, y: 3, label: "9" }, { type: "home", x: 30.5, y: 3, label: "10" },
+          { type: "home", x: 38, y: 7.5, label: "2" }, { type: "home", x: 29.5, y: 9, label: "11" },
+          { type: "home", x: 32.5, y: 14.5, label: "8" },
+          { type: "home", x: 40, y: 20, label: "7" },
+          { type: "away", x: 53.8, y: 27.6, label: "10" }, { type: "away", x: 56.5, y: 24.5, label: "8" },
+          { type: "away", x: 35, y: 10.5, label: "9" }, { type: "away", x: 41, y: 13, label: "7" },
+          { type: "away", x: 31, y: 12.5, label: "5" }, { type: "away", x: 25, y: 15.5, label: "11" },
+          { type: "ball", x: 52, y: 26, label: "" },
+        ],
+        shapes: [
+          { tool: "pass", pts: [{ x: 52, y: 26 }, { x: 33, y: 2 }] },
+          { tool: "arrow", pts: [{ x: 40, y: 20 }, { x: 44, y: 24 }] },
+        ],
+      },
+      /* Zona sin barrera: falta lejana y muy abierta, sin peligro de tiro
+         directo. En vez de gastar jugadores en una barrera inútil, todos a
+         zona en el área y uno presionando al lanzador. */
+      {
+        nombre: { es: "Zona sin barrera", en: "Zonal defence, no wall", fr: "Zone sans mur", de: "Raumdeckung ohne Mauer", pt: "Zona sem barreira" },
+        tokens: [
+          { type: "home", x: 32, y: 1.4, label: "1" },
+          { type: "home", x: 37, y: 4, label: "5" }, { type: "home", x: 30, y: 4, label: "3" },
+          { type: "home", x: 41, y: 7, label: "2" }, { type: "home", x: 34, y: 6.5, label: "6" }, { type: "home", x: 27, y: 7, label: "4" },
+          { type: "home", x: 44, y: 11, label: "7" }, { type: "home", x: 34, y: 10, label: "8" }, { type: "home", x: 24, y: 11, label: "9" },
+          { type: "home", x: 17, y: 27, label: "10" }, /* presiona al lanzador */
+          { type: "home", x: 34, y: 17, label: "11" },
+          { type: "away", x: 15, y: 30, label: "7" },
+          { type: "away", x: 36, y: 7, label: "9" }, { type: "away", x: 30, y: 7.5, label: "10" },
+          { type: "away", x: 41, y: 11, label: "4" }, { type: "away", x: 25, y: 11.5, label: "5" },
+          { type: "ball", x: 15, y: 30, label: "" },
+        ],
+        shapes: [
+          { tool: "pass", pts: [{ x: 15, y: 30 }, { x: 34, y: 8 }] },
+          { tool: "arrow", pts: [{ x: 17, y: 27 }, { x: 15, y: 29 }] },
+        ],
+      },
+      /* Barrera de 5 centrada: falta muy peligrosa, central y cerca -barrera
+         grande cubriendo casi toda la portería, con el portero vigilando el
+         hueco que deja al lado que no tapa la barrera. */
+      {
+        nombre: { es: "Barrera de 5 centrada", en: "5-man wall, central", fr: "Mur de 5, position centrale", de: "5er-Mauer, zentral", pt: "Barreira de 5, central" },
+        tokens: [
+          { type: "home", x: 34, y: 1.4, label: "1" },
+          { type: "home", x: 29, y: 8.85, label: "5" }, { type: "home", x: 31, y: 8.85, label: "6" }, { type: "home", x: 33, y: 8.85, label: "4" },
+          { type: "home", x: 35, y: 8.85, label: "3" }, { type: "home", x: 37, y: 8.85, label: "2" },
+          { type: "home", x: 27, y: 12, label: "9" }, { type: "home", x: 41, y: 12, label: "10" },
+          { type: "home", x: 34, y: 22, label: "7" }, { type: "home", x: 34, y: 30, label: "8" },
+          { type: "away", x: 34, y: 18, label: "10" },
+          { type: "away", x: 29, y: 21, label: "7" }, { type: "away", x: 39, y: 21, label: "8" },
+          { type: "away", x: 28, y: 12.5, label: "9" }, { type: "away", x: 40, y: 12.5, label: "11" },
+          { type: "ball", x: 34, y: 18, label: "" },
+        ],
+        shapes: [
+          { tool: "pass", pts: [{ x: 34, y: 18 }, { x: 37, y: 1.3 }] },
+          { tool: "arrow", pts: [{ x: 28, y: 12.5 }, { x: 30, y: 9.5 }] },
+          { tool: "arrow", pts: [{ x: 40, y: 12.5 }, { x: 38, y: 9.5 }] },
+        ],
+      },
+    ],
   },
   penalti: {
-    /* Penalti a favor: lanzador, portero rival en la línea y los ocho de fuera
-       colocados donde manda el reglamento —fuera del área y fuera del arco de
-       9,15 m—, que es lo que hay que ensayar: quién entra primero al rechace. */
-    ata: {
-      tokens: [
-        { type: "home", x: 34, y: 14, label: "9" },     /* lanza */
-        { type: "home", x: 27, y: 20, label: "10" }, { type: "home", x: 40, y: 19, label: "8" },
-        { type: "home", x: 47, y: 19.5, label: "7" }, { type: "home", x: 21, y: 20.5, label: "4" },
-        { type: "away", x: 34, y: 0.7, label: "1" },
-        { type: "away", x: 24.5, y: 20.8, label: "5" }, { type: "away", x: 36.5, y: 21.5, label: "4" },
-        { type: "away", x: 44, y: 21.8, label: "6" }, { type: "away", x: 18, y: 22, label: "3" },
-        { type: "ball", x: 34, y: 11, label: "" },
-      ],
-      shapes: [
-        { tool: "arrow", pts: [{ x: 34, y: 14 }, { x: 34, y: 11.8 }] },
-        { tool: "pass", pts: [{ x: 34, y: 11 }, { x: 31.2, y: 1.2 }] },
-        { tool: "arrow", pts: [{ x: 27, y: 20 }, { x: 31.5, y: 13 }] },
-      ],
-    },
-    /* Penalti en contra: portero en la línea y los tuyos al borde del área,
-       por delante de los suyos, para ganar el rechace. */
-    def: {
-      tokens: [
-        { type: "home", x: 34, y: 0.7, label: "1" },
-        { type: "home", x: 27, y: 20, label: "10" }, { type: "home", x: 40, y: 19, label: "8" },
-        { type: "home", x: 47, y: 19.5, label: "7" }, { type: "home", x: 21, y: 20.5, label: "4" },
-        { type: "away", x: 34, y: 14, label: "9" },
-        { type: "away", x: 24.5, y: 20.8, label: "5" }, { type: "away", x: 36.5, y: 21.5, label: "4" },
-        { type: "away", x: 44, y: 21.8, label: "6" }, { type: "away", x: 18, y: 22, label: "3" },
-        { type: "ball", x: 34, y: 11, label: "" },
-      ],
-      shapes: [
-        { tool: "arrow", pts: [{ x: 34, y: 14 }, { x: 34, y: 11.8 }] },
-        { tool: "pass", pts: [{ x: 34, y: 11 }, { x: 36.8, y: 1.2 }] },
-        { tool: "arrow", pts: [{ x: 34, y: 0.7 }, { x: 31.5, y: 2.5 }] },
-      ],
-    },
+    ata: [
+      /* Penalti a favor: lanzador, portero rival en la línea y los ocho de fuera
+         colocados donde manda el reglamento —fuera del área y fuera del arco de
+         9,15 m—, que es lo que hay que ensayar: quién entra primero al rechace. */
+      {
+        nombre: { es: "Lanzamiento a favor", en: "Taking the penalty", fr: "Tir au but", de: "Elfmeterschuss", pt: "Marcação do penálti" },
+        tokens: [
+          { type: "home", x: 34, y: 14, label: "9" },     /* lanza */
+          { type: "home", x: 27, y: 20, label: "10" }, { type: "home", x: 40, y: 19, label: "8" },
+          { type: "home", x: 47, y: 19.5, label: "7" }, { type: "home", x: 21, y: 20.5, label: "4" },
+          { type: "away", x: 34, y: 0.7, label: "1" },
+          { type: "away", x: 24.5, y: 20.8, label: "5" }, { type: "away", x: 36.5, y: 21.5, label: "4" },
+          { type: "away", x: 44, y: 21.8, label: "6" }, { type: "away", x: 18, y: 22, label: "3" },
+          { type: "ball", x: 34, y: 11, label: "" },
+        ],
+        shapes: [
+          { tool: "arrow", pts: [{ x: 34, y: 14 }, { x: 34, y: 11.8 }] },
+          { tool: "pass", pts: [{ x: 34, y: 11 }, { x: 31.2, y: 1.2 }] },
+          { tool: "arrow", pts: [{ x: 27, y: 20 }, { x: 31.5, y: 13 }] },
+        ],
+      },
+    ],
+    def: [
+      /* Penalti en contra: portero en la línea y los tuyos al borde del área,
+         por delante de los suyos, para ganar el rechace. */
+      {
+        nombre: { es: "Portero y cobertura", en: "Goalkeeper & cover", fr: "Gardien et couverture", de: "Torwart und Absicherung", pt: "Guarda-redes e cobertura" },
+        tokens: [
+          { type: "home", x: 34, y: 0.7, label: "1" },
+          { type: "home", x: 27, y: 20, label: "10" }, { type: "home", x: 40, y: 19, label: "8" },
+          { type: "home", x: 47, y: 19.5, label: "7" }, { type: "home", x: 21, y: 20.5, label: "4" },
+          { type: "away", x: 34, y: 14, label: "9" },
+          { type: "away", x: 24.5, y: 20.8, label: "5" }, { type: "away", x: 36.5, y: 21.5, label: "4" },
+          { type: "away", x: 44, y: 21.8, label: "6" }, { type: "away", x: 18, y: 22, label: "3" },
+          { type: "ball", x: 34, y: 11, label: "" },
+        ],
+        shapes: [
+          { tool: "arrow", pts: [{ x: 34, y: 14 }, { x: 34, y: 11.8 }] },
+          { tool: "pass", pts: [{ x: 34, y: 11 }, { x: 36.8, y: 1.2 }] },
+          { tool: "arrow", pts: [{ x: 34, y: 0.7 }, { x: 31.5, y: 2.5 }] },
+        ],
+      },
+    ],
   },
 };
 const ABP_NOMBRE = (k, lang) => {
@@ -3456,8 +3897,9 @@ Devuelve SOLO un objeto JSON con las claves "tokens" y "shapes", sin explicació
      Saque de banda y saque de puerta se siguen dibujando sobre el campo
      entero, porque es donde pasan: ahí sí hace falta ver los cien metros. */
   const espejoX = (x) => 1000 - x;
-  const cargarABP = (k, lado = abpLado, fase = abpFase) => {
-    const enMetros = ABP_METROS[k]?.[fase === "def" ? "def" : "ata"];
+  const cargarABP = (k, lado = abpLado, fase = abpFase, idx = 0) => {
+    const variantes = ABP_METROS[k]?.[fase === "def" ? "def" : "ata"];
+    const enMetros = variantes?.[idx] || variantes?.[0];
     if (enMetros) {
       const clave = k === "corner" ? (lado === "izq" ? "cornerIzq" : "cornerDer") : ABP_TABLERO[k];
       const tb = TABLEROS[clave];
@@ -3779,53 +4221,67 @@ Devuelve SOLO un objeto JSON con las claves "tokens" y "shapes", sin explicació
         {/* ABP: coloca las posiciones de partida de la situación y deja que el
             entrenador dibuje encima, en vez de montarlo todo ficha a ficha. */}
         <WbMenu label="ABP" icon="⚐" AC={AC}>
-          {(close) => (
+          {(close) => {
+            /* Córner y falta tienen varias lecturas guardadas (córner corto,
+               al primer palo, zona pura, al hombre…); el resto solo tiene una.
+               Se listan todas las que haya para la fase elegida, en vez de
+               montar siempre la primera. */
+            const opcionesABP = ABP_TIPOS.flatMap((a) => {
+              const variantes = ABP_METROS[a.k]?.[abpFase === "def" ? "def" : "ata"];
+              if (variantes && variantes.length > 1) return variantes.map((v, i) => ({ tipo: a, idx: i, nombre: v.nombre }));
+              return [{ tipo: a, idx: 0, nombre: null }];
+            });
+            return (
             <div className="max-h-[min(50vh,320px)] overflow-y-auto">
-              <div className="px-2.5 py-1 text-[10px] font-display uppercase tracking-widest" style={{ color: AC, background: C.panel2 }}>¿A favor o en contra?</div>
+              <div className="px-2.5 py-1 text-[10px] font-display uppercase tracking-widest" style={{ color: AC, background: C.panel2 }}>{t("w.abpForAgainst")}</div>
               <div className="flex gap-1 p-2 pb-0">
-                {[["ata", "Ataque"], ["def", "Defensa"]].map(([k, l]) => (
+                {[["ata", t("w.abpAttack")], ["def", t("w.abpDefense")]].map(([k, l]) => (
                   <button key={k} onClick={() => setAbpFase(k)} className="flex-1 text-xs px-2 py-1.5 rounded-lg border"
                     style={{ borderColor: abpFase === k ? AC : C.line, background: abpFase === k ? AC : "transparent", color: abpFase === k ? "#141414" : C.chalk }}>{l}</button>
                 ))}
               </div>
-              <div className="px-2.5 py-1 mt-1 text-[10px] font-display uppercase tracking-widest" style={{ color: AC, background: C.panel2 }}>¿Por qué lado?</div>
+              <div className="px-2.5 py-1 mt-1 text-[10px] font-display uppercase tracking-widest" style={{ color: AC, background: C.panel2 }}>{t("w.abpSide")}</div>
               <div className="flex gap-1 p-2">
-                {[["izq", "◂ Izquierda"], ["der", "Derecha ▸"]].map(([k, l]) => (
+                {[["izq", t("w.abpLeft")], ["der", t("w.abpRight")]].map(([k, l]) => (
                   <button key={k} onClick={() => setAbpLado(k)} className="flex-1 text-xs px-2 py-1.5 rounded-lg border"
                     style={{ borderColor: abpLado === k ? AC : C.line, background: abpLado === k ? AC : "transparent", color: abpLado === k ? "#141414" : C.chalk }}>{l}</button>
                 ))}
               </div>
-              <div className="px-2.5 py-1 text-[10px] font-display uppercase tracking-widest" style={{ color: AC, background: C.panel2 }}>Colocar situación</div>
+              <div className="px-2.5 py-1 text-[10px] font-display uppercase tracking-widest" style={{ color: AC, background: C.panel2 }}>{t("w.abpPlace")}</div>
               {/* En cuadrícula y con tarjetas grandes: en el móvil, con guantes
                   o con prisa, una lista de renglones finos no se acierta. */}
               <div className="grid grid-cols-2 gap-1.5 p-2">
-                {ABP_TIPOS.map((a) => (
-                  <button key={a.k} onClick={() => { cargarABP(a.k); close(); }}
+                {opcionesABP.map((op) => (
+                  <button key={`${op.tipo.k}-${op.idx}`} onClick={() => { cargarABP(op.tipo.k, abpLado, abpFase, op.idx); close(); }}
                     className="flex flex-col items-start gap-1 rounded-lg border px-2.5 py-2.5 min-h-[68px] text-left"
                     style={{ borderColor: C.line, background: C.panel2 }}>
-                    <span className="text-lg leading-none" style={{ color: AC }}>{a.icon}</span>
-                    <span className="text-xs leading-tight" style={{ color: C.chalk }}>{a.name[lang] || a.name.es}</span>
+                    <span className="text-lg leading-none" style={{ color: AC }}>{op.tipo.icon}</span>
+                    <span className="text-xs leading-tight" style={{ color: C.chalk }}>
+                      {op.tipo.name[lang] || op.tipo.name.es}
+                      {op.nombre && <span style={{ color: C.dim }}> · {op.nombre[lang] || op.nombre.es}</span>}
+                    </span>
                     <span className="text-[10px]" style={{ color: C.dim }}>
-                      {abpFase === "def" ? "en contra" : "a favor"}
-                      {a.k !== "penalti" && ` · ${abpLado === "izq" ? "izquierda" : "derecha"}`}
-                      {ABP_TABLERO[a.k] && " · tablero propio"}
+                      {abpFase === "def" ? t("w.abpAgainst") : t("w.abpFor")}
+                      {op.tipo.k !== "penalti" && ` · ${abpLado === "izq" ? t("w.abpLeft").replace("◂ ", "") : t("w.abpRight").replace(" ▸", "")}`}
+                      {ABP_TABLERO[op.tipo.k] && ` · ${t("w.abpOwnBoard")}`}
                     </span>
                   </button>
                 ))}
               </div>
-              <div className="px-2.5 py-1 mt-1 text-[10px] font-display uppercase tracking-widest" style={{ color: AC, background: C.panel2 }}>Guardar la pizarra como</div>
+              <div className="px-2.5 py-1 mt-1 text-[10px] font-display uppercase tracking-widest" style={{ color: AC, background: C.panel2 }}>{t("w.abpSaveAs")}</div>
               {ABP_TIPOS.map((a) => (
                 <button key={a.k} onClick={() => { savePlay(a.k); close(); }}
                   className="w-full flex items-center gap-2 px-2.5 py-3 min-h-11 border-b text-left"
                   style={{ borderColor: "rgba(54,69,79,0.10)" }}>
                   <span className="text-base leading-none shrink-0" style={{ color: C.dim }}>{a.icon}</span>
                   <span className="text-xs flex-1 leading-tight" style={{ color: C.chalk }}>
-                    {a.name[lang] || a.name.es} <span style={{ color: C.dim }}>· {abpFase === "def" ? "en contra" : "a favor"}</span>
+                    {a.name[lang] || a.name.es} <span style={{ color: C.dim }}>· {abpFase === "def" ? t("w.abpAgainst") : t("w.abpFor")}</span>
                   </span>
                 </button>
               ))}
             </div>
-          )}
+            );
+          }}
         </WbMenu>
 
         {/* Retocar la pizarra hablándole en cristiano. Va antes de Jugadas
@@ -5646,8 +6102,8 @@ export default function App() {
   /* Antes arrancaba con un partido inventado ("CD Norte · Domingo 27 · Campo
      Municipal Las Rozas") que en una cuenta real parecía de verdad. Ahora solo
      se rellena así en el modo demo. */
-  const MATCHINFO_DEMO = { rival: "CD Norte", fecha: "Domingo 27", hora: "10:00", lugar: "Campo Municipal Las Rozas", j: "" };
-  const MATCHINFO_VACIO = { rival: "", fecha: "", hora: "", lugar: "", j: "" };
+  const MATCHINFO_DEMO = { rival: "CD Norte", fecha: "Domingo 27", hora: "10:00", lugar: "Campo Municipal Las Rozas", j: "", arbitro: "", arbComentario: "" };
+  const MATCHINFO_VACIO = { rival: "", fecha: "", hora: "", lugar: "", j: "", arbitro: "", arbComentario: "" };
   const [matchInfo, setMatchInfo] = useState(MATCHINFO_VACIO);
   /* calendario del equipo */
   const [fixtures, setFixtures] = useState(FIXTURES_INIT);
@@ -5983,6 +6439,11 @@ ACTA:\n${evTxt}`;
   const [running, setRunning] = useState(false);
   const [secs, setSecs] = useState(0);
   const [half, setHalf] = useState(1);
+  /* Qué parte está en curso -1ª, 2ª, prórroga 1/2 o penaltis-. "half" sigue
+     siendo el número de parte cronometrada (1-4) que usan los cálculos del
+     reloj; "periodo" es la clave con la que se elige en el selector y la que
+     decide si se muestra el reloj o el panel de penaltis. */
+  const [periodo, setPeriodo] = useState("p1");
   /* Tandas de cambios: en fútbol base la competición limita las VENTANAS en
      las que puedes cambiar, no el número de jugadores que metes en cada una.
      Por eso se cuenta a mano y no a partir de los eventos de cambio: en una
@@ -5995,6 +6456,11 @@ ACTA:\n${evTxt}`;
   const [score, setScore] = useState({ us: 0, them: 0 });
   const [events, setEvents] = useState([]);
   const [evPick, setEvPick] = useState(null);
+  /* Color de la tarjeta que se está a punto de poner, y resultado del
+     penalti que se está a punto de registrar: se eligen antes de tocar al
+     jugador (o de confirmar, en el caso del penalti rival). */
+  const [cardColor, setCardColor] = useState("amarilla");
+  const [penResultado, setPenResultado] = useState("gol");
   /* Los ajustes del partido (duración, descuento, tandas) se ponen antes del
      saque. Mientras el partido no ha empezado están a la vista; en cuanto el
      reloj corre se pliegan y solo vuelven si los pides. */
@@ -6007,21 +6473,46 @@ ACTA:\n${evTxt}`;
     const id = setInterval(() => setSecs((s) => s + 1), 1000);
     return () => clearInterval(id);
   }, [running]);
+  /* Duración y minuto absoluto de cada parte: las dos primeras duran lo que
+     diga matchCfg.halfMin, la prórroga siempre ET_HALF_MIN (15'), estándar en
+     todas las competiciones de base que la juegan. periodBase es el minuto
+     en el que empieza la parte actual, para que el reloj siga sumando en vez
+     de reiniciarse a 0 cada vez (p.ej. la 2ª parte empieza en el minuto 35,
+     no en el 0). */
+  const periodLen = half <= 2 ? matchCfg.halfMin : ET_HALF_MIN;
+  const periodBase = half <= 2 ? (half - 1) * matchCfg.halfMin : 2 * matchCfg.halfMin + (half - 3) * ET_HALF_MIN;
   const elapsedMin = Math.floor(secs / 60);
-  const minute = elapsedMin + (half === 2 ? matchCfg.halfMin : 0);
-  const overMin = Math.max(0, elapsedMin - matchCfg.halfMin);
-  const dispMin = overMin > 0 ? `${matchCfg.halfMin}+${overMin}` : String(elapsedMin);
-  const dispAbs = overMin > 0 ? `${matchCfg.halfMin * (half === 2 ? 2 : 1)}+${overMin}` : String(minute || 0);
-  const endSecs = (matchCfg.halfMin + (Number(matchCfg.added) || 0)) * 60;
+  const minute = elapsedMin + periodBase;
+  const overMin = Math.max(0, elapsedMin - periodLen);
+  const dispMin = overMin > 0 ? `${periodLen}+${overMin}` : String(elapsedMin);
+  const dispAbs = overMin > 0 ? `${periodBase + periodLen}+${overMin}` : String(minute || 0);
+  const endSecs = (periodLen + (Number(matchCfg.added) || 0)) * 60;
   const leftSecs = Math.max(0, endSecs - secs);
   const enJuego = running || secs > 0 || events.length > 0;
   const ajustesVisibles = !enJuego || ajustesAbiertos;
+  const periodoActual = PERIODOS.find((p) => p.k === periodo) || PERIODOS[0];
+  /* Cambia de parte: reinicia el reloj y el descuento salvo al entrar en
+     penaltis, que no se cronometra. Deja constancia en el acta de qué parte
+     empieza, con su nombre ya traducido. */
+  const irAPeriodo = (k) => {
+    if (k === periodo) return;
+    const p = PERIODOS.find((x) => x.k === k);
+    setPeriodo(k);
+    if (k === "pen") { setRunning(false); setEvPick(null); }
+    else { setHalf(p.n); setSecs(0); setRunning(false); setMatchCfg((c) => ({ ...c, added: 0 })); setEvPick(null); }
+    setEvents((e) => [{ min: p.n || minute || 1, disp: p.n ? String((p.n - 1) * (p.n <= 2 ? matchCfg.halfMin : ET_HALF_MIN)) : dispAbs, type: "periodo", player: null, pid: null, dorsal: null, half: p.n || half, periodoNombre: p.name[lang] || p.name.es }, ...e]);
+  };
+  /* Penaltis marcados/fallados, propios y del rival: se cuentan a partir de
+     los eventos "penalti" en vez de en un contador aparte, así el acta y el
+     marcador de la tanda nunca se pueden desincronizar entre sí. */
+  const penUs = events.filter((e) => e.type === "penalti" && e.lado === "us" && e.resultado === "gol").length;
+  const penThem = events.filter((e) => e.type === "penalti" && e.lado === "them" && e.resultado === "gol").length;
 
   /* El evento guarda también dorsal e id del jugador, no solo el nombre: sin
      eso no hay forma de sumar los goles y las tarjetas de cada uno al cerrar
      el partido, que es lo que se mira después en Estadísticas. */
-  const addEvent = (type, player) => {
-    setEvents((e) => [{ min: minute || 1, disp: dispAbs, type, player: player?.n || null, pid: player?.id ?? null, dorsal: player?.d ?? null, half }, ...e]);
+  const addEvent = (type, player, extra = {}) => {
+    setEvents((e) => [{ min: minute || 1, disp: dispAbs, type, player: player?.n || null, pid: player?.id ?? null, dorsal: player?.d ?? null, half, ...extra }, ...e]);
     if (type === "gol") setScore((s) => ({ ...s, us: s.us + 1 }));
     if (type === "golRival") setScore((s) => ({ ...s, them: s.them + 1 }));
     setEvPick(null);
@@ -9412,52 +9903,125 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
           <div className="font-display text-xl sm:text-3xl font-semibold flex items-center gap-2" style={{ color: C.chalk }}>
             <Crest src={teamCrest} name={session.team.name} size={32} />{session.team.name}
           </div>
-          <div className="font-display text-5xl sm:text-7xl font-bold tabular-nums" style={{ color: AC }}>{score.us}<span style={{ color: C.dim }}> – </span>{score.them}</div>
           <div className="font-display text-xl sm:text-3xl font-semibold sm:text-right" style={{ color: C.chalk }}>{matchInfo.rival}</div>
         </div>
-        <div className="mt-4 flex items-center justify-center gap-3 flex-wrap">
-          <div className="font-display text-5xl tabular-nums" style={{ color: leftSecs === 0 ? C.red : overMin > 0 ? C.warn : C.chalk }}>{fmtClock(secs)}</div>
-          <button onClick={() => setRunning((r) => !r)} className="font-display uppercase tracking-wider px-6 py-2.5 rounded-lg font-semibold" style={{ background: running ? C.red : AC, color: C.sobre }}>{running ? "Pausa" : "Play"}</button>
-          <button onClick={() => { setHalf(2); setSecs(0); setRunning(false); setMatchCfg((c) => ({ ...c, added: 0 })); addEvent("periodo"); }} className="font-display uppercase tracking-wider px-4 py-2.5 rounded-lg border" style={{ borderColor: C.line, color: C.chalk }}>{t("mt.half2")}</button>
-          {/* En el banquillo se corrige sobre la pizarra en mitad del partido.
-              El reloj y los eventos siguen vivos al cambiar de pestaña, así
-              que se puede ir y volver sin perder el acta. */}
-          {visibleTabs.includes("pizarra") && (
-            <button onClick={() => setTab("pizarra")} className="font-display uppercase tracking-wider px-4 py-2.5 rounded-lg border flex items-center gap-2" style={{ borderColor: AC, color: AC }}>
-              <Icono n="pizarra" s={16} />{t("mt.toBoard")}
+        <div className="flex items-center justify-center">
+          <div className="font-display text-5xl sm:text-7xl font-bold tabular-nums" style={{ color: AC }}>{score.us}<span style={{ color: C.dim }}> – </span>{score.them}</div>
+        </div>
+        {(periodo === "pen" || penUs > 0 || penThem > 0) && (
+          <div className="text-center font-display text-lg tabular-nums" style={{ color: C.dim }}>
+            {PERIODOS.find((p) => p.k === "pen").name[lang]} {penUs}–{penThem}
+          </div>
+        )}
+
+        {/* Selector de parte: 1ª/2ª, prórroga si toca, y penaltis. Sustituye al
+            único botón "2ª parte" de antes -no había forma de marcar prórroga
+            ni penaltis, solo dos partes. */}
+        <div className="mt-4 flex items-center justify-center gap-1 flex-wrap">
+          {PERIODOS.map((p) => (
+            <button key={p.k} onClick={() => irAPeriodo(p.k)}
+              className="text-xs font-display uppercase tracking-wide px-2.5 py-1.5 rounded-lg border"
+              style={{ borderColor: periodo === p.k ? AC : C.line, background: periodo === p.k ? AC : "transparent", color: periodo === p.k ? C.sobre : C.chalk }}>
+              {p.name[lang] || p.name.es}
             </button>
-          )}
-          <div className="text-sm leading-tight" style={{ color: C.dim }}>
-            <div>Parte {half} de {matchCfg.halfMin}′{matchCfg.added > 0 ? ` +${matchCfg.added}′` : ""} · min {dispMin}</div>
-            <div style={{ color: leftSecs === 0 ? C.red : overMin > 0 ? C.warn : C.dim }}>
-              {leftSecs === 0 ? "⏹ Tiempo cumplido" : overMin > 0 ? `Descuento · quedan ${fmtClock(leftSecs)}` : `Quedan ${fmtClock(leftSecs)}`}
+          ))}
+        </div>
+
+        {periodo !== "pen" ? (
+          <div className="mt-4 flex items-center justify-center gap-3 flex-wrap">
+            <div className="font-display text-5xl tabular-nums" style={{ color: leftSecs === 0 ? C.red : overMin > 0 ? C.warn : C.chalk }}>{fmtClock(secs)}</div>
+            <button onClick={() => setRunning((r) => !r)} className="font-display uppercase tracking-wider px-6 py-2.5 rounded-lg font-semibold" style={{ background: running ? C.red : AC, color: C.sobre }}>{running ? "❚❚" : "▶"}</button>
+            {/* En el banquillo se corrige sobre la pizarra en mitad del partido.
+                El reloj y los eventos siguen vivos al cambiar de pestaña, así
+                que se puede ir y volver sin perder el acta. */}
+            {visibleTabs.includes("pizarra") && (
+              <button onClick={() => setTab("pizarra")} className="font-display uppercase tracking-wider px-4 py-2.5 rounded-lg border flex items-center gap-2" style={{ borderColor: AC, color: AC }}>
+                <Icono n="pizarra" s={16} />{t("mt.toBoard")}
+              </button>
+            )}
+            <div className="text-sm leading-tight" style={{ color: C.dim }}>
+              <div>{periodoActual.name[lang] || periodoActual.name.es} · {periodLen}′{matchCfg.added > 0 ? ` +${matchCfg.added}′` : ""} · min {dispMin}</div>
+              <div style={{ color: leftSecs === 0 ? C.red : overMin > 0 ? C.warn : C.dim }}>
+                {leftSecs === 0 ? t("mt.timeUp") : overMin > 0 ? t("mt.addedTimeLeft").replace("{t}", fmtClock(leftSecs)) : t("mt.timeLeft").replace("{t}", fmtClock(leftSecs))}
+              </div>
             </div>
           </div>
-        </div>
+        ) : (
+          <div className="mt-4 text-center font-display text-sm uppercase tracking-wide" style={{ color: C.dim }}>
+            {periodoActual.name[lang] || periodoActual.name.es}
+          </div>
+        )}
 
         {/* ---- Lo que se toca durante el partido ----
              Va justo debajo del reloj y nada más. Antes en medio había tres
              bloques de ajustes que solo se tocan una vez, y para apuntar un
-             gol había que bajar media pantalla con el partido en marcha. */}
-        <div className="mt-5 grid grid-cols-3 sm:grid-cols-5 gap-2">
-          {[["gol", "Gol", true], ["golRival", "Gol rival", false], ["cambio", "Cambio", true], ["tarjeta", "Tarjeta", true], ["nota", "Nota", false]].map(([type, lbl, needs]) => (
-            <button key={type} onClick={() => (needs ? setEvPick(evPick === type ? null : type) : addEvent(type))}
-              className="font-display uppercase tracking-wide min-h-14 py-3 rounded-lg border font-semibold"
-              style={{ borderColor: evPick === type ? AC : C.line, borderWidth: evPick === type ? 2 : 1, background: type === "gol" ? AC : C.panel2, color: type === "gol" ? C.sobre : C.chalk }}>{lbl}</button>
-          ))}
-        </div>
-        {evPick && (
+             gol había que bajar media pantalla con el partido en marcha.
+             En la tanda de penaltis el marcador no sirve: se sustituye por
+             el registro de penalti propio/rival. */}
+        {periodo !== "pen" ? (
+          <div className="mt-5 grid grid-cols-3 sm:grid-cols-5 gap-2">
+            {[["gol", true], ["golRival", false], ["cambio", true], ["tarjeta", true], ["nota", false]].map(([type, needs]) => (
+              <button key={type} onClick={() => (needs ? setEvPick(evPick === type ? null : type) : addEvent(type))}
+                className="font-display uppercase tracking-wide min-h-14 py-3 rounded-lg border font-semibold"
+                style={{ borderColor: evPick === type ? AC : C.line, borderWidth: evPick === type ? 2 : 1, background: type === "gol" ? AC : C.panel2, color: type === "gol" ? C.sobre : C.chalk }}>{nombreEvento(type, lang)}</button>
+            ))}
+          </div>
+        ) : (
+          <div className="mt-5 grid grid-cols-2 gap-2">
+            {[["penPropio", t("mt.penOwn")], ["penRival", t("mt.penRival")]].map(([type, lbl]) => (
+              <button key={type} onClick={() => setEvPick(evPick === type ? null : type)}
+                className="font-display uppercase tracking-wide min-h-14 py-3 rounded-lg border font-semibold"
+                style={{ borderColor: evPick === type ? AC : C.line, borderWidth: evPick === type ? 2 : 1, background: C.panel2, color: C.chalk }}>{lbl}</button>
+            ))}
+          </div>
+        )}
+
+        {/* Elegir color antes de tocar al jugador: por defecto amarilla, y se
+            queda puesto el color elegido hasta que se cambie. */}
+        {evPick === "tarjeta" && (
+          <div className="mt-3 flex items-center gap-1.5">
+            {CARD_TIPOS.map((c) => (
+              <button key={c.k} onClick={() => setCardColor(c.k)}
+                className="flex-1 text-xs font-display px-2 py-1.5 rounded-lg border flex items-center justify-center gap-1"
+                style={{ borderColor: cardColor === c.k ? AC : C.line, background: cardColor === c.k ? C.panel2 : "transparent", color: C.chalk }}>
+                <span>{c.icon}</span>{c.name[lang] || c.name.es}
+              </button>
+            ))}
+          </div>
+        )}
+        {(evPick === "penPropio" || evPick === "penRival") && (
+          <div className="mt-3 flex items-center gap-1.5">
+            {[["gol", t("mt.penScored")], ["fallo", t("mt.penMissed")]].map(([k, lbl]) => (
+              <button key={k} onClick={() => setPenResultado(k)}
+                className="flex-1 text-xs font-display px-2 py-1.5 rounded-lg border"
+                style={{ borderColor: penResultado === k ? AC : C.line, background: penResultado === k ? C.panel2 : "transparent", color: penResultado === k ? AC : C.chalk }}>
+                {k === "gol" ? "✓" : "✕"} {lbl}
+              </button>
+            ))}
+          </div>
+        )}
+        {evPick === "penRival" && (
+          <button onClick={() => addEvent("penalti", null, { resultado: penResultado, lado: "them" })}
+            className="mt-2 w-full min-h-11 rounded-lg font-display uppercase tracking-wide font-semibold" style={{ background: AC, color: C.sobre }}>
+            {t("mt.penRival")}
+          </button>
+        )}
+        {(evPick === "gol" || evPick === "golRival" || evPick === "cambio" || evPick === "tarjeta" || evPick === "penPropio") && (
           /* Dorsales grandes: en el banquillo, de pie y con prisa, una fila de
              botones finos no se acierta. El dorsal manda sobre el nombre
              porque es lo que se ve desde la banda. */
           <div className="mt-3 p-3 rounded-lg border" style={{ borderColor: AC, background: C.panel2 }}>
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs" style={{ color: AC }}>{t("mt.who")}</span>
-              <button onClick={() => setEvPick(null)} className="text-xs px-2 py-1" style={{ color: C.dim }}>✕ Cancelar</button>
+              <button onClick={() => setEvPick(null)} className="text-xs px-2 py-1" style={{ color: C.dim }}>✕ {t("c.cancel")}</button>
             </div>
             <div className="grid grid-cols-4 sm:grid-cols-6 gap-1.5">
               {players.filter((p) => starters.has(p.id) || evPick === "cambio").map((p) => (
-                <button key={p.id} onClick={() => addEvent(evPick, p)}
+                <button key={p.id} onClick={() => (
+                  evPick === "tarjeta" ? addEvent("tarjeta", p, { card: cardColor }) :
+                  evPick === "penPropio" ? addEvent("penalti", p, { resultado: penResultado, lado: "us" }) :
+                  addEvent(evPick, p)
+                )}
                   className="min-h-14 rounded-lg border flex flex-col items-center justify-center leading-tight"
                   style={{ borderColor: starters.has(p.id) ? AC : C.line, color: C.chalk, background: C.panel }}>
                   <span className="font-display text-lg tabular-nums" style={{ color: AC }}>{p.d}</span>
@@ -9476,7 +10040,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
           <button onClick={() => setAjustesAbiertos((v) => !v)}
             className="w-full flex items-center justify-between gap-2 text-left">
             <span className="font-display text-xs uppercase tracking-widest" style={{ color: C.dim }}>
-              Ajustes del partido
+              {t("mt.matchSettings")}
             </span>
             <span className="text-[11px] flex items-center gap-2" style={{ color: C.dim }}>
               {matchCfg.halfMin}′{matchCfg.added > 0 ? ` +${matchCfg.added}′` : ""} · {tandasTotal} tandas
@@ -9501,7 +10065,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                 <span className="text-xs" style={{ color: C.dim }}>min</span>
               </div>
               <div className="text-[11px] mt-2 leading-relaxed" style={{ color: C.dim }}>
-                Juvenil 40′ · Cadete e Infantil 35′ · Alevín 30′. Se aplica sola según la categoría; edítala si tu competición usa otra duración.
+                {t("mt.halfLenHint")}
               </div>
             </div>
 
@@ -9520,8 +10084,8 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
               </div>
               <div className="text-[11px] mt-2 leading-relaxed" style={{ color: C.dim }}>
                 {matchCfg.added > 0
-                  ? `El reloj avisa al llegar a ${matchCfg.halfMin}+${matchCfg.added}. Los eventos del descuento se registran como ${matchCfg.halfMin * (half === 2 ? 2 : 1)}+n.`
-                  : "Marca el descuento cuando lo señale el árbitro. Se reinicia al empezar la 2ª parte."}
+                  ? t("mt.addedHintOn").replace("{a}", `${periodLen}+${matchCfg.added}`).replace("{b}", String(periodBase + periodLen))
+                  : t("mt.addedHintOff")}
               </div>
             </div>
           </div>
@@ -9535,6 +10099,21 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                 ))}
                 <span className="text-[11px] ml-1" style={{ color: C.dim }}>{t("mt.subsTotal")}</span>
               </div>
+              </div>
+
+              {/* ---- Árbitro ----
+                   Nombre y comentario libre, para dejar constancia de cómo
+                   arbitró sin depender de la memoria al terminar. Se guarda
+                   con el resto del partido (localStorage mientras se juega,
+                   y en el histórico al cerrar el acta). */}
+              <div className="mt-4">
+                <div className="font-display text-xs uppercase tracking-widest mb-2" style={{ color: C.dim }}>{t("mt.refereeLabel")}</div>
+                <input value={matchInfo.arbitro} onChange={(e) => setMatchInfo((m) => ({ ...m, arbitro: e.target.value }))}
+                  placeholder={t("mt.refereeNamePh")}
+                  className="w-full px-3 py-2 rounded-lg border bg-transparent text-sm" style={{ borderColor: C.line, color: C.chalk }} />
+                <textarea value={matchInfo.arbComentario} onChange={(e) => setMatchInfo((m) => ({ ...m, arbComentario: e.target.value }))}
+                  placeholder={t("mt.refereeCommentPh")} rows={2}
+                  className="w-full mt-2 px-3 py-2 rounded-lg border bg-transparent text-sm resize-none" style={{ borderColor: C.line, color: C.chalk }} />
               </div>
             </>
           )}
@@ -9583,16 +10162,16 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
         {can("editLineup") && (
           <div className="mt-4 pt-4 border-t" style={{ borderColor: C.line }}>
             <div className="flex items-center justify-between gap-2 mb-2">
-              <div className="font-display text-xs uppercase tracking-widest" style={{ color: C.dim }}>Alineación inicial</div>
+              <div className="font-display text-xs uppercase tracking-widest" style={{ color: C.dim }}>{t("mt.lineupInitial")}</div>
               {visibleTabs.includes("alineacion") && (
-                <button onClick={() => setTab("alineacion")} className="text-[11px] px-2.5 py-1 rounded-lg border" style={{ borderColor: C.line, color: C.chalk }}>Editar</button>
+                <button onClick={() => setTab("alineacion")} className="text-[11px] px-2.5 py-1 rounded-lg border" style={{ borderColor: C.line, color: C.chalk }}>{t("mt.lineupEdit")}</button>
               )}
             </div>
             {(() => {
               const once = Object.entries(lineup)
                 .map(([puesto, id]) => ({ puesto, p: players.find((x) => x.id === id) }))
                 .filter((x) => x.p);
-              if (!once.length) return <div className="text-[11px]" style={{ color: C.dim }}>Todavía no has puesto el once. Móntalo en Alineación y lo tendrás aquí.</div>;
+              if (!once.length) return <div className="text-[11px]" style={{ color: C.dim }}>{t("mt.lineupEmpty")}</div>;
               return (
                 <>
                   <div className="flex flex-wrap gap-1.5">
@@ -9606,7 +10185,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                     ))}
                   </div>
                   <div className="text-[11px] mt-2" style={{ color: C.dim }}>
-                    {once.length} en el campo{once.length < 11 ? " · faltan puestos por cubrir" : ""}.
+                    {t("mt.onPitch").replace("{n}", once.length)}{once.length < 11 ? ` · ${t("mt.missingSpots")}` : ""}
                   </div>
                 </>
               );
@@ -9646,7 +10225,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                           <span className="flex-1 min-w-0 truncate text-xs" style={{ color: C.chalk }}>{p.name}</span>
                         </div>
                         <div className="text-[10px] px-0.5 truncate" style={{ color: C.dim }}>
-                          {ti.k ? ABP_NOMBRE(ti.k, lang) : ""}{p.fase === "def" ? " · en contra" : p.fase === "ata" ? " · a favor" : ""}
+                          {ti.k ? ABP_NOMBRE(ti.k, lang) : ""}{p.fase === "def" ? ` · ${t("w.abpAgainst")}` : p.fase === "ata" ? ` · ${t("w.abpFor")}` : ""}
                         </div>
                       </Marco>
                     );
@@ -9662,7 +10241,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
       <Card title={t("mt.events")}>
         {events.length === 0 && <div className="text-sm" style={{ color: C.dim }}>{t("mt.noEvents")}</div>}
         <div className="space-y-2 max-h-[420px] overflow-y-auto pr-1">
-          {events.map((e, i) => (<div key={i} className="flex items-center text-sm border-b pb-2 last:border-0" style={{ borderColor: C.line, color: C.chalk }}><span className="font-display text-lg w-16 shrink-0" style={{ color: AC }}>{e.disp || e.min}'</span><span>{nombreEvento(e.type)}{e.player ? ` — ${e.player}` : ""}</span></div>))}
+          {events.map((e, i) => (<div key={i} className="flex items-center text-sm border-b pb-2 last:border-0" style={{ borderColor: C.line, color: C.chalk }}><span className="font-display text-lg w-16 shrink-0" style={{ color: AC }}>{e.disp || e.min}'</span><span>{descEvento(e, lang)}</span></div>))}
         </div>
         {/* Cerrar el acta se hacía solo desde Análisis, y el partido se acaba
             aquí. Sin esto había que acordarse de cambiar de pantalla, y lo que
@@ -9672,10 +10251,10 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
             <button onClick={() => { guardarEnHistorico(); setActaGuardada(true); }}
               className="w-full min-h-12 rounded-lg font-display uppercase tracking-wide font-semibold"
               style={{ background: actaGuardada ? C.panel2 : AC, color: actaGuardada ? C.dim : C.sobre, border: `1px solid ${actaGuardada ? C.line : AC}` }}>
-              {actaGuardada ? "✓ Acta guardada" : "Cerrar acta y guardar el partido"}
+              {actaGuardada ? t("mt.closeActaSaved") : t("mt.closeActaBtn")}
             </button>
             <div className="text-[11px] mt-2 leading-relaxed" style={{ color: C.dim }}>
-              Guarda el resultado, el acta y lo que hizo cada jugador. Lo tendrás en Estadísticas, partido a partido.
+              {t("mt.closeActaHint")}
             </div>
           </div>
         )}
@@ -9742,11 +10321,15 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
   const fichasDelPartido = () => {
     const convocados = players.filter((p) => called.has(p.id));
     const cuenta = (pid, tipo) => events.filter((e) => e.pid === pid && e.type === tipo).length;
+    const cuentaTarjeta = (pid, card) => events.filter((e) => e.pid === pid && e.type === "tarjeta" && e.card === card).length;
     return convocados.map((p) => ({
       id: p.id, d: p.d, n: p.n, pos: p.pos,
       titular: starters.has(p.id),
       goles: cuenta(p.id, "gol"),
       tarjetas: cuenta(p.id, "tarjeta"),
+      amarillas: cuentaTarjeta(p.id, "amarilla"),
+      dobleAmarilla: cuentaTarjeta(p.id, "doble"),
+      rojas: cuentaTarjeta(p.id, "roja"),
       cambios: cuenta(p.id, "cambio"),
     }));
   };
@@ -9757,6 +10340,9 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
       rival: matchInfo.rival || rivalProx || "Rival",
       j: matchInfo.j || nextMatchFix?.j || "",
       us: score.us, them: score.them,
+      /* Resultado de la tanda de penaltis, si la ha habido -null si no. */
+      penUs: events.some((e) => e.type === "penalti") ? penUs : null,
+      penThem: events.some((e) => e.type === "penalti") ? penThem : null,
       eventos: events.length,
       /* El acta entera y la ficha por jugador viajan con el partido: es lo que
          luego se abre desde Estadísticas, partido a partido. Si ya se había
@@ -9764,8 +10350,15 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
          no, se puede generar más tarde desde la lista de "Análisis
          guardados", sin depender de que siga viva la partida en curso. */
       jugadores: fichasDelPartido(),
-      acta: events.map((e) => ({ disp: e.disp || String(e.min), type: e.type, player: e.player, dorsal: e.dorsal })),
+      acta: events.map((e) => ({
+        disp: e.disp || String(e.min), type: e.type, player: e.player, dorsal: e.dorsal,
+        card: e.card || null, periodoNombre: e.periodoNombre || null, resultado: e.resultado || null, lado: e.lado || null,
+      })),
       lugar: matchInfo.lugar || "",
+      /* Árbitro: nombre y comentario del cuerpo técnico, para tenerlo a mano
+         junto al resto del partido en vez de perderse al cerrar el acta. */
+      arbitro: matchInfo.arbitro || "",
+      arbComentario: matchInfo.arbComentario || "",
       analisis: postTxt || "",
     };
     setHistorial((h) => {
@@ -10527,7 +11120,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                     {Array.isArray(abierto.acta) && abierto.acta.length > 0 && (
                       <div className="px-3 py-2 border-t text-[11px] leading-relaxed" style={{ borderColor: C.line, color: C.dim }}>
                         {[...abierto.acta].reverse().map((e, i) => (
-                          <span key={i}>{i > 0 && " · "}{e.disp}′ {nombreEvento(e.type)}{e.player ? ` ${e.player}` : ""}</span>
+                          <span key={i}>{i > 0 && " · "}{e.disp}′ {descEvento(e, lang)}</span>
                         ))}
                       </div>
                     )}
