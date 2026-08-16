@@ -4522,6 +4522,9 @@ function Auth({ lang, setLang, onLogin, onRegister, tema, cambiarTema }) {
         {/* Versión del build. Permite comprobar de un vistazo si un deploy ha
             entrado de verdad, sin ir buscando cambios de interfaz a ojo. */}
         <div className="text-[11px] mt-1 text-center font-display tracking-widest" style={{ color: C.dim }}>v{APP_VERSION}</div>
+        <div className="text-[11px] mt-2 text-center">
+          <a href="/privacidad" target="_blank" rel="noreferrer" className="underline" style={{ color: C.dim }}>Política de privacidad</a>
+        </div>
       </div>
     </div>
   );
@@ -10692,6 +10695,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
           })()}
           <div className="mt-auto px-3 py-2">
             <a href={EBL} target="_blank" rel="noreferrer" className="text-[10px] block" style={{ color: C.dim }}>{t("c.by")} ↗</a>
+            <a href="/privacidad" target="_blank" rel="noreferrer" className="text-[10px] block mt-0.5" style={{ color: C.dim }}>Política de privacidad</a>
             {/* La versión, también aquí dentro: para comprobar si un despliegue
                 ha entrado no debería hacer falta cerrar la sesión. */}
             <div className="text-[10px] font-display tracking-widest" style={{ color: C.dim, opacity: 0.7 }}>v{APP_VERSION}</div>
