@@ -2472,9 +2472,9 @@ function buildFormationPts(code, isF7) {
 const EX_CATS = ["warmup", "rondo", "buildup", "finish", "cross", "press", "defense", "duel", "setpiece", "technique", "fitness", "gk"];
 const EXERCISES = [
   {
-    id: "rondo", icon: "🔄", cat: "rondo", dur: 15, materials: { es: ["4 conos", "1 balón"], en: ["4 cones", "1 ball"] },
+    id: "rondo", icon: "🔄", cat: "rondo", dur: 15, materials: { es: ["4 conos", "1 balón"], en: ["4 cones", "1 ball"], fr: ["4 plots", "1 ballon"], de: ["4 Hütchen", "1 Ball"], pt: ["4 cones", "1 bola"] },
     name: { es: "Rondo 5v1", en: "5v1 rondo", fr: "Rondo 5v1", de: "5-gegen-1-Rondo", pt: "Rondo 5x1" },
-    desc: { es: "Posesión en espacio reducido. 5 jugadores mantienen el balón, 1 defensor presiona en el centro.", en: "Small-space possession. 5 players keep the ball, 1 defender presses in the middle." },
+    desc: { es: "Posesión en espacio reducido. 5 jugadores mantienen el balón, 1 defensor presiona en el centro.", en: "Small-space possession. 5 players keep the ball, 1 defender presses in the middle.", fr: "Possession en espace réduit. 5 joueurs conservent le ballon, 1 défenseur presse au centre.", de: "Ballbesitz auf engem Raum. 5 Spieler halten den Ball, 1 Verteidiger presst in der Mitte.", pt: "Posse em espaço reduzido. 5 jogadores mantêm a bola, 1 defesa pressiona no centro." },
     build: () => {
       const cx = 500, cy = 320, r = 110;
       const tokens = [];
@@ -2486,9 +2486,9 @@ const EXERCISES = [
     },
   },
   {
-    id: "finish", icon: "🎯", cat: "finish", dur: 20, materials: { es: ["8 balones", "4 petos"], en: ["8 balls", "4 bibs"] },
+    id: "finish", icon: "🎯", cat: "finish", dur: 20, materials: { es: ["8 balones", "4 petos"], en: ["8 balls", "4 bibs"], fr: ["8 ballons", "4 chasubles"], de: ["8 Bälle", "4 Leibchen"], pt: ["8 bolas", "4 coletes"] },
     name: { es: "Finalización por bandas", en: "Wing finishing", fr: "Finition par les côtés", de: "Abschluss über die Flügel", pt: "Finalização pelas alas" },
-    desc: { es: "Centros desde ambas bandas para rematar en el área con dos delanteros.", en: "Crosses from both flanks for two forwards to finish in the box." },
+    desc: { es: "Centros desde ambas bandas para rematar en el área con dos delanteros.", en: "Crosses from both flanks for two forwards to finish in the box.", fr: "Centres depuis les deux côtés pour deux attaquants qui concluent dans la surface.", de: "Flanken von beiden Seiten für zwei Stürmer, die im Strafraum abschließen.", pt: "Cruzamentos pelas duas alas para dois avançados finalizarem na área." },
     build: () => ({
       tokens: [
         { type: "home", x: 120, y: 570, label: "7" }, { type: "home", x: 120, y: 70, label: "11" },
@@ -2504,9 +2504,9 @@ const EXERCISES = [
     }),
   },
   {
-    id: "press", icon: "🧲", cat: "press", dur: 15, materials: { es: ["4 petos"], en: ["4 bibs"] },
+    id: "press", icon: "🧲", cat: "press", dur: 15, materials: { es: ["4 petos"], en: ["4 bibs"], fr: ["4 chasubles"], de: ["4 Leibchen"], pt: ["4 coletes"] },
     name: { es: "Presión tras pérdida", en: "Counter-press", fr: "Pressing après perte", de: "Gegenpressing", pt: "Pressão após perda" },
-    desc: { es: "Los 5 segundos tras perder el balón: cerrar líneas de pase y recuperar rápido.", en: "The five seconds after losing the ball: close passing lanes and win it back fast." },
+    desc: { es: "Los 5 segundos tras perder el balón: cerrar líneas de pase y recuperar rápido.", en: "The five seconds after losing the ball: close passing lanes and win it back fast.", fr: "Les 5 secondes après la perte du ballon : fermer les lignes de passe et récupérer vite.", de: "Die fünf Sekunden nach Ballverlust: Passwege schließen und schnell zurückerobern.", pt: "Os 5 segundos após perder a bola: fechar linhas de passe e recuperar depressa." },
     build: () => ({
       tokens: [
         { type: "away", x: 560, y: 320, label: "6" },
@@ -2522,9 +2522,9 @@ const EXERCISES = [
     }),
   },
   {
-    id: "buildup", icon: "🧩", cat: "buildup", dur: 20, materials: { es: ["6 conos", "petos"], en: ["6 cones", "bibs"] },
+    id: "buildup", icon: "🧩", cat: "buildup", dur: 20, materials: { es: ["6 conos", "petos"], en: ["6 cones", "bibs"], fr: ["6 plots", "chasubles"], de: ["6 Hütchen", "Leibchen"], pt: ["6 cones", "coletes"] },
     name: { es: "Salida de balón en línea de 3", en: "Build-up from a back three", fr: "Relance à trois défenseurs", de: "Spielaufbau mit Dreierkette", pt: "Saída de bola em linha de 3" },
-    desc: { es: "Progresar el balón desde atrás superando la primera línea de presión rival.", en: "Progress the ball from the back, beating the rival's first press line." },
+    desc: { es: "Progresar el balón desde atrás superando la primera línea de presión rival.", en: "Progress the ball from the back, beating the rival's first press line.", fr: "Faire progresser le ballon depuis l'arrière en dépassant la première ligne de pressing adverse.", de: "Den Ball von hinten nach vorne bringen und dabei die erste Pressinglinie des Gegners überspielen.", pt: "Progredir com a bola desde trás, ultrapassando a primeira linha de pressão adversária." },
     build: () => ({
       tokens: [
         { type: "home", x: 90, y: 320, label: "1" },
@@ -2541,9 +2541,9 @@ const EXERCISES = [
     }),
   },
   {
-    id: "corner", icon: "🚩", cat: "setpiece", dur: 15, materials: { es: ["conos", "petos"], en: ["cones", "bibs"] },
+    id: "corner", icon: "🚩", cat: "setpiece", dur: 15, materials: { es: ["conos", "petos"], en: ["cones", "bibs"], fr: ["plots", "chasubles"], de: ["Hütchen", "Leibchen"], pt: ["cones", "coletes"] },
     name: { es: "Córner ofensivo", en: "Attacking corner kick", fr: "Corner offensif", de: "Angriffsecke", pt: "Canto ofensivo" },
-    desc: { es: "Movimientos de ataque en el saque de esquina: bloqueo, primer palo y remate.", en: "Attacking movement patterns from a corner: block, near post and finish." },
+    desc: { es: "Movimientos de ataque en el saque de esquina: bloqueo, primer palo y remate.", en: "Attacking movement patterns from a corner: block, near post and finish.", fr: "Mouvements offensifs sur corner : blocage, premier poteau et finition.", de: "Angriffsbewegungen bei der Ecke: Blocken, kurzer Pfosten und Abschluss.", pt: "Movimentos de ataque no canto: bloqueio, primeiro poste e finalização." },
     build: () => ({
       tokens: [
         { type: "home", x: 970, y: 20, label: "C" },
@@ -2558,9 +2558,9 @@ const EXERCISES = [
     }),
   },
   {
-    id: "dribble", icon: "⛳", cat: "technique", dur: 10, materials: { es: ["6 conos", "1 balón"], en: ["6 cones", "1 ball"] },
+    id: "dribble", icon: "⛳", cat: "technique", dur: 10, materials: { es: ["6 conos", "1 balón"], en: ["6 cones", "1 ball"], fr: ["6 plots", "1 ballon"], de: ["6 Hütchen", "1 Ball"], pt: ["6 cones", "1 bola"] },
     name: { es: "Circuito de conducción (conos)", en: "Cone dribbling circuit", fr: "Circuit de conduite (plots)", de: "Dribbelparcours (Hütchen)", pt: "Circuito de condução (cones)" },
-    desc: { es: "Slalom individual de conducción de balón para mejorar el control y el cambio de ritmo.", en: "Individual slalom to improve ball control and change of pace." },
+    desc: { es: "Slalom individual de conducción de balón para mejorar el control y el cambio de ritmo.", en: "Individual slalom to improve ball control and change of pace.", fr: "Slalom individuel de conduite de balle pour améliorer le contrôle et le changement de rythme.", de: "Individueller Dribbel-Slalom zur Verbesserung von Ballkontrolle und Tempowechsel.", pt: "Slalom individual de condução de bola para melhorar o controlo e a mudança de ritmo." },
     build: () => {
       const tokens = [{ type: "home", x: 90, y: 320, label: "1" }, { type: "ball", x: 90, y: 320, label: "" }];
       const xs = [220, 340, 460, 580, 700, 820];
@@ -2570,9 +2570,9 @@ const EXERCISES = [
     },
   },
   {
-    id: "freekick", icon: "🎯", cat: "setpiece", dur: 15, materials: { es: ["conos (barrera)", "balones"], en: ["cones (wall)", "balls"] },
+    id: "freekick", icon: "🎯", cat: "setpiece", dur: 15, materials: { es: ["conos (barrera)", "balones"], en: ["cones (wall)", "balls"], fr: ["plots (mur)", "ballons"], de: ["Hütchen (Mauer)", "Bälle"], pt: ["cones (barreira)", "bolas"] },
     name: { es: "Tiro libre directo", en: "Direct free kick", fr: "Coup franc direct", de: "Direkter Freistoß", pt: "Livre direto" },
-    desc: { es: "Lanzador, barrera de 3-4 y dos rematadores atacando el rechace.", en: "Taker, a 3-4 player wall and two attackers crashing the rebound." },
+    desc: { es: "Lanzador, barrera de 3-4 y dos rematadores atacando el rechace.", en: "Taker, a 3-4 player wall and two attackers crashing the rebound.", fr: "Tireur, mur de 3-4 joueurs et deux attaquants qui attaquent le rebond.", de: "Schütze, eine 3-4 Mann starke Mauer und zwei Angreifer, die den Abpraller attackieren.", pt: "Marcador, barreira de 3-4 e dois atacantes a atacar o ressalto." },
     build: () => ({
       tokens: [
         { type: "home", x: 740, y: 320, label: "8" }, { type: "ball", x: 740, y: 320, label: "" },
@@ -2588,9 +2588,9 @@ const EXERCISES = [
     }),
   },
   {
-    id: "throwin", icon: "🤾", cat: "setpiece", dur: 10, materials: { es: ["1 balón"], en: ["1 ball"] },
+    id: "throwin", icon: "🤾", cat: "setpiece", dur: 10, materials: { es: ["1 balón"], en: ["1 ball"], fr: ["1 ballon"], de: ["1 Ball"], pt: ["1 bola"] },
     name: { es: "Saque de banda largo", en: "Long throw-in", fr: "Longue touche", de: "Weiter Einwurf", pt: "Lançamento longo" },
-    desc: { es: "Saque de banda al área con un remate al primer palo y un rechace al segundo.", en: "Throw-in into the box with a near-post flick and a second-ball runner." },
+    desc: { es: "Saque de banda al área con un remate al primer palo y un rechace al segundo.", en: "Throw-in into the box with a near-post flick and a second-ball runner.", fr: "Touche vers la surface avec une déviation au premier poteau et un joueur sur le second ballon.", de: "Einwurf in den Strafraum mit Ablenkung am kurzen Pfosten und einem Spieler für den zweiten Ball.", pt: "Lançamento para a área com um desvio no primeiro poste e um jogador na segunda bola." },
     build: () => ({
       tokens: [
         { type: "home", x: 760, y: 12, label: "3" }, { type: "ball", x: 760, y: 12, label: "" },
@@ -2604,9 +2604,9 @@ const EXERCISES = [
     }),
   },
   {
-    id: "penalty", icon: "🥅", cat: "setpiece", dur: 10, materials: { es: ["balones"], en: ["balls"] },
+    id: "penalty", icon: "🥅", cat: "setpiece", dur: 10, materials: { es: ["balones"], en: ["balls"], fr: ["ballons"], de: ["Bälle"], pt: ["bolas"] },
     name: { es: "Lanzamiento de penaltis", en: "Penalty taking", fr: "Tir de penalty", de: "Elfmeterschießen", pt: "Marcação de penáltis" },
-    desc: { es: "Rutina de lanzamiento de penaltis con portero, para lanzadores y para el guardameta.", en: "Penalty-taking routine with a goalkeeper, for both takers and the keeper." },
+    desc: { es: "Rutina de lanzamiento de penaltis con portero, para lanzadores y para el guardameta.", en: "Penalty-taking routine with a goalkeeper, for both takers and the keeper.", fr: "Routine de tirs au but avec gardien, pour les tireurs et pour le gardien.", de: "Elfmeter-Routine mit Torwart, für Schützen und Torhüter gleichermaßen.", pt: "Rotina de marcação de penáltis com guarda-redes, para marcadores e para o guarda-redes." },
     build: () => ({
       tokens: [
         { type: "home", x: 850, y: 320, label: "10" }, { type: "ball", x: 880, y: 320, label: "" },
@@ -2616,9 +2616,9 @@ const EXERCISES = [
     }),
   },
   {
-    id: "possession", icon: "🟢", cat: "rondo", dur: 20, materials: { es: ["4 conos", "petos", "2 balones"], en: ["4 cones", "bibs", "2 balls"] },
+    id: "possession", icon: "🟢", cat: "rondo", dur: 20, materials: { es: ["4 conos", "petos", "2 balones"], en: ["4 cones", "bibs", "2 balls"], fr: ["4 plots", "chasubles", "2 ballons"], de: ["4 Hütchen", "Leibchen", "2 Bälle"], pt: ["4 cones", "coletes", "2 bolas"] },
     name: { es: "Posesión 6v2 en zona", en: "6v2 possession box", fr: "Possession 6v2", de: "6-gegen-2-Ballbesitz", pt: "Posse 6x2" },
-    desc: { es: "Juego de posición en zona amplia: 6 jugadores frente a 2 defensores.", en: "Positional play in a wide zone: 6 players against 2 defenders." },
+    desc: { es: "Juego de posición en zona amplia: 6 jugadores frente a 2 defensores.", en: "Positional play in a wide zone: 6 players against 2 defenders.", fr: "Jeu de position dans une zone large : 6 joueurs contre 2 défenseurs.", de: "Positionsspiel in einer großen Zone: 6 Spieler gegen 2 Verteidiger.", pt: "Jogo de posição numa zona ampla: 6 jogadores contra 2 defesas." },
     build: () => {
       const cx = 500, cy = 320, half = 170;
       const tokens = [];
@@ -2630,9 +2630,9 @@ const EXERCISES = [
     },
   },
   {
-    id: "transition", icon: "⚡", cat: "press", dur: 15, materials: { es: ["petos", "balones"], en: ["bibs", "balls"] },
+    id: "transition", icon: "⚡", cat: "press", dur: 15, materials: { es: ["petos", "balones"], en: ["bibs", "balls"], fr: ["chasubles", "ballons"], de: ["Leibchen", "Bälle"], pt: ["coletes", "bolas"] },
     name: { es: "Transición ofensiva 4v4", en: "4v4 attacking transition", fr: "Transition offensive 4v4", de: "4-gegen-4-Umschalten", pt: "Transição ofensiva 4x4" },
-    desc: { es: "Al recuperar el balón en el centro del campo, atacar rápido antes de que el rival se reorganice.", en: "On winning the ball at the halfway line, attack quickly before the opponent resets." },
+    desc: { es: "Al recuperar el balón en el centro del campo, atacar rápido antes de que el rival se reorganice.", en: "On winning the ball at the halfway line, attack quickly before the opponent resets.", fr: "Après avoir récupéré le ballon au milieu du terrain, attaquer vite avant que l'adversaire ne se réorganise.", de: "Nach Ballgewinn in der Spielfeldmitte schnell angreifen, bevor sich der Gegner neu ordnet.", pt: "Ao recuperar a bola no meio-campo, atacar depressa antes que o adversário se reorganize." },
     build: () => ({
       tokens: [
         { type: "home", x: 300, y: 220, label: "3" }, { type: "home", x: 300, y: 420, label: "5" },
@@ -2649,9 +2649,9 @@ const EXERCISES = [
     }),
   },
   {
-    id: "finish1v1", icon: "🥇", cat: "finish", dur: 15, materials: { es: ["2 conos", "balones"], en: ["2 cones", "balls"] },
+    id: "finish1v1", icon: "🥇", cat: "finish", dur: 15, materials: { es: ["2 conos", "balones"], en: ["2 cones", "balls"], fr: ["2 plots", "ballons"], de: ["2 Hütchen", "Bälle"], pt: ["2 cones", "bolas"] },
     name: { es: "1 contra 1 con portero", en: "1v1 vs the goalkeeper", fr: "1 contre 1 avec gardien", de: "1-gegen-1 mit Torwart", pt: "1x1 com guarda-redes" },
-    desc: { es: "Duelo individual atacante-defensor terminando en remate a portería.", en: "Individual attacker-vs-defender duel finishing with a shot on goal." },
+    desc: { es: "Duelo individual atacante-defensor terminando en remate a portería.", en: "Individual attacker-vs-defender duel finishing with a shot on goal.", fr: "Duel individuel attaquant-défenseur se terminant par un tir au but.", de: "Einzelduell Angreifer gegen Verteidiger, das mit einem Torschuss endet.", pt: "Duelo individual atacante-defesa a terminar em remate à baliza." },
     build: () => ({
       tokens: [
         { type: "home", x: 760, y: 320, label: "9" }, { type: "ball", x: 760, y: 320, label: "" },
@@ -2662,9 +2662,9 @@ const EXERCISES = [
     }),
   },
   {
-    id: "gkwork", icon: "🧤", cat: "gk", dur: 15, materials: { es: ["4 conos", "balones"], en: ["4 cones", "balls"] },
+    id: "gkwork", icon: "🧤", cat: "gk", dur: 15, materials: { es: ["4 conos", "balones"], en: ["4 cones", "balls"], fr: ["4 plots", "ballons"], de: ["4 Hütchen", "Bälle"], pt: ["4 cones", "bolas"] },
     name: { es: "Reflejos de portero", en: "Goalkeeper reflexes", fr: "Réflexes du gardien", de: "Torwart-Reflexe", pt: "Reflexos do guarda-redes" },
-    desc: { es: "Trabajo específico de portero: paradas desde distintos ángulos servidas por el entrenador.", en: "Goalkeeper-specific work: saves from different angles fed by the coach." },
+    desc: { es: "Trabajo específico de portero: paradas desde distintos ángulos servidas por el entrenador.", en: "Goalkeeper-specific work: saves from different angles fed by the coach.", fr: "Travail spécifique du gardien : arrêts sous différents angles servis par l'entraîneur.", de: "Torwartspezifisches Training: Paraden aus verschiedenen Winkeln, zugespielt vom Trainer.", pt: "Trabalho específico de guarda-redes: defesas de vários ângulos servidas pelo treinador." },
     build: () => ({
       tokens: [
         { type: "home", x: 90, y: 320, label: "1" }, { type: "home", x: 260, y: 320, label: "C" }, { type: "ball", x: 260, y: 320, label: "" },
@@ -2674,9 +2674,9 @@ const EXERCISES = [
     }),
   },
   {
-    id: "fitness", icon: "🏃", cat: "fitness", dur: 12, materials: { es: ["6 conos"], en: ["6 cones"] },
+    id: "fitness", icon: "🏃", cat: "fitness", dur: 12, materials: { es: ["6 conos"], en: ["6 cones"], fr: ["6 plots"], de: ["6 Hütchen"], pt: ["6 cones"] },
     name: { es: "Circuito físico por intervalos", en: "Interval fitness circuit", fr: "Circuit physique par intervalles", de: "Intervall-Fitnesszirkel", pt: "Circuito físico por intervalos" },
-    desc: { es: "Circuito continuo de conos para trabajar resistencia y cambios de dirección.", en: "Continuous cone loop to train endurance and change of direction." },
+    desc: { es: "Circuito continuo de conos para trabajar resistencia y cambios de dirección.", en: "Continuous cone loop to train endurance and change of direction.", fr: "Circuit continu de plots pour travailler l'endurance et les changements de direction.", de: "Durchgehender Hütchenparcours zum Training von Ausdauer und Richtungswechseln.", pt: "Circuito contínuo de cones para trabalhar resistência e mudanças de direção." },
     build: () => {
       const pts = [[150, 150], [500, 100], [850, 150], [850, 490], [500, 540], [150, 490], [150, 150]];
       const tokens = pts.slice(0, -1).map((p) => ({ type: "cone", x: p[0], y: p[1], label: "" }));
@@ -2685,9 +2685,9 @@ const EXERCISES = [
     },
   },
   {
-    id: "warmball", icon: "🔥", cat: "warmup", dur: 10, materials: { es: ["6 conos", "3 balones"], en: ["6 cones", "3 balls"] },
+    id: "warmball", icon: "🔥", cat: "warmup", dur: 10, materials: { es: ["6 conos", "3 balones"], en: ["6 cones", "3 balls"], fr: ["6 plots", "3 ballons"], de: ["6 Hütchen", "3 Bälle"], pt: ["6 cones", "3 bolas"] },
     name: { es: "Calentamiento con balón", en: "Ball warm-up", fr: "Échauffement avec ballon", de: "Aufwärmen mit Ball", pt: "Aquecimento com bola" },
-    desc: { es: "Círculo amplio de pases con desplazamiento tras pase. Activa el cuerpo y la cabeza a la vez.", en: "Wide passing circle, follow your pass. Activates body and mind together." },
+    desc: { es: "Círculo amplio de pases con desplazamiento tras pase. Activa el cuerpo y la cabeza a la vez.", en: "Wide passing circle, follow your pass. Activates body and mind together.", fr: "Grand cercle de passes avec déplacement après la passe. Active le corps et la tête en même temps.", de: "Großer Passkreis mit Nachlaufen nach dem Pass. Aktiviert Körper und Kopf gleichzeitig.", pt: "Círculo amplo de passes com deslocamento após o passe. Ativa o corpo e a cabeça ao mesmo tempo." },
     build: () => {
       const cx = 500, cy = 320, r = 190, tokens = [];
       for (let i = 0; i < 8; i++) { const a = (i / 8) * Math.PI * 2 - Math.PI / 2; tokens.push({ type: "home", x: cx + r * Math.cos(a), y: cy + r * Math.sin(a), label: String(i + 1) }); }
@@ -2697,9 +2697,9 @@ const EXERCISES = [
     },
   },
   {
-    id: "coord", icon: "🪜", cat: "warmup", dur: 8, materials: { es: ["escalera", "8 conos"], en: ["ladder", "8 cones"] },
+    id: "coord", icon: "🪜", cat: "warmup", dur: 8, materials: { es: ["escalera", "8 conos"], en: ["ladder", "8 cones"], fr: ["échelle", "8 plots"], de: ["Koordinationsleiter", "8 Hütchen"], pt: ["escada", "8 cones"] },
     name: { es: "Activación coordinativa", en: "Coordination activation", fr: "Activation coordination", de: "Koordinationsaktivierung", pt: "Ativação coordenativa" },
-    desc: { es: "Escalera de coordinación y slalom de conos antes de la parte principal. Series cortas y máxima calidad.", en: "Coordination ladder and cone slalom before the main part. Short sets, maximum quality." },
+    desc: { es: "Escalera de coordinación y slalom de conos antes de la parte principal. Series cortas y máxima calidad.", en: "Coordination ladder and cone slalom before the main part. Short sets, maximum quality.", fr: "Échelle de coordination et slalom de plots avant la partie principale. Séries courtes et qualité maximale.", de: "Koordinationsleiter und Hütchen-Slalom vor dem Hauptteil. Kurze Serien, maximale Qualität.", pt: "Escada de coordenação e slalom de cones antes da parte principal. Séries curtas e qualidade máxima." },
     build: () => {
       const tokens = [];
       for (let i = 0; i < 8; i++) tokens.push({ type: "cone", x: 200 + i * 70, y: 260, label: "" });
@@ -2710,9 +2710,9 @@ const EXERCISES = [
     },
   },
   {
-    id: "zone4", icon: "🛡", cat: "defense", dur: 15, materials: { es: ["petos", "4 conos"], en: ["bibs", "4 cones"] },
+    id: "zone4", icon: "🛡", cat: "defense", dur: 15, materials: { es: ["petos", "4 conos"], en: ["bibs", "4 cones"], fr: ["chasubles", "4 plots"], de: ["Leibchen", "4 Hütchen"], pt: ["coletes", "4 cones"] },
     name: { es: "Defensa en zona: línea de 4", en: "Zonal defending: back four", fr: "Défense de zone : ligne de 4", de: "Raumdeckung: Viererkette", pt: "Defesa à zona: linha de 4" },
-    desc: { es: "La línea se mueve junta según dónde está el balón. Trabajo de distancias, perfiles y coberturas.", en: "The back four moves as a unit with the ball. Distances, body shape and cover." },
+    desc: { es: "La línea se mueve junta según dónde está el balón. Trabajo de distancias, perfiles y coberturas.", en: "The back four moves as a unit with the ball. Distances, body shape and cover.", fr: "La ligne se déplace ensemble selon la position du ballon. Travail des distances, orientations et couvertures.", de: "Die Abwehrkette bewegt sich gemeinsam je nach Ballposition. Arbeit an Abständen, Körperstellung und Absicherung.", pt: "A linha move-se em conjunto consoante a posição da bola. Trabalho de distâncias, orientações e coberturas." },
     /* La línea defiende una portería, así que va en vertical —cuatro fichas a
        la misma altura de campo y repartidas de banda a banda—, no en fila a lo
        largo del campo, que es como estaba y no defendía nada. La portería que
@@ -2732,9 +2732,9 @@ const EXERCISES = [
     },
   },
   {
-    id: "recover", icon: "↩", cat: "defense", dur: 15, materials: { es: ["petos", "balones"], en: ["bibs", "balls"] },
+    id: "recover", icon: "↩", cat: "defense", dur: 15, materials: { es: ["petos", "balones"], en: ["bibs", "balls"], fr: ["chasubles", "ballons"], de: ["Leibchen", "Bälle"], pt: ["coletes", "bolas"] },
     name: { es: "Repliegue y basculación", en: "Recovery and shifting", fr: "Repli et bascule", de: "Zurückfallen und Verschieben", pt: "Recuo e basculação" },
-    desc: { es: "Tras pérdida, el bloque repliega ordenado y bascula al lado del balón sin abrir pasillos interiores.", en: "After losing the ball the block drops in order and shifts ball-side without opening inside lanes." },
+    desc: { es: "Tras pérdida, el bloque repliega ordenado y bascula al lado del balón sin abrir pasillos interiores.", en: "After losing the ball the block drops in order and shifts ball-side without opening inside lanes.", fr: "Après la perte du ballon, le bloc recule de façon ordonnée et bascule côté ballon sans ouvrir de couloirs intérieurs.", de: "Nach Ballverlust fällt der Block geordnet zurück und verschiebt zur Ballseite, ohne innere Passwege zu öffnen.", pt: "Após a perda, o bloco recua ordenado e bascula para o lado da bola sem abrir corredores interiores." },
     /* Dos líneas, las dos en vertical delante de la portería propia: la de
        cuatro atrás y la de tres por delante, basculando las dos al lado del
        balón. Antes estaban tumbadas a lo ancho del campo, con lo que el bloque
@@ -2754,9 +2754,9 @@ const EXERCISES = [
     },
   },
   {
-    id: "cross", icon: "📤", cat: "cross", dur: 20, materials: { es: ["balones", "conos"], en: ["balls", "cones"] },
+    id: "cross", icon: "📤", cat: "cross", dur: 20, materials: { es: ["balones", "conos"], en: ["balls", "cones"], fr: ["ballons", "plots"], de: ["Bälle", "Hütchen"], pt: ["bolas", "cones"] },
     name: { es: "Centros laterales y remate", en: "Wide crosses and finishing", fr: "Centres et finition", de: "Flanken und Abschluss", pt: "Cruzamentos e finalização" },
-    desc: { es: "Centro desde banda con tres llegadas: primer palo, punto de penalti y segundo palo. Alternar lados.", en: "Cross from wide with three runs: near post, penalty spot and far post. Alternate sides." },
+    desc: { es: "Centro desde banda con tres llegadas: primer palo, punto de penalti y segundo palo. Alternar lados.", en: "Cross from wide with three runs: near post, penalty spot and far post. Alternate sides.", fr: "Centre depuis le côté avec trois appels : premier poteau, point de penalty et second poteau. Alterner les côtés.", de: "Flanke von außen mit drei Laufwegen: kurzer Pfosten, Elfmeterpunkt und langer Pfosten. Seiten wechseln.", pt: "Cruzamento da ala com três chegadas: primeiro poste, marca de grande penalidade e segundo poste. Alternar lados." },
     build: () => {
       const tokens = [
         { type: "home", x: 130, y: 200, label: "7" },
@@ -2775,9 +2775,9 @@ const EXERCISES = [
     },
   },
   {
-    id: "duel1v1", icon: "⚔", cat: "duel", dur: 12, materials: { es: ["4 conos", "balones"], en: ["4 cones", "balls"] },
+    id: "duel1v1", icon: "⚔", cat: "duel", dur: 12, materials: { es: ["4 conos", "balones"], en: ["4 cones", "balls"], fr: ["4 plots", "ballons"], de: ["4 Hütchen", "Bälle"], pt: ["4 cones", "bolas"] },
     name: { es: "1v1 defensivo", en: "Defensive 1v1", fr: "1v1 défensif", de: "1-gegen-1 defensiv", pt: "1x1 defensivo" },
-    desc: { es: "Duelo en pasillo estrecho. El defensor orienta al atacante a su pierna mala y temporiza.", en: "Duel in a narrow channel. The defender shows the attacker onto his weak foot and delays." },
+    desc: { es: "Duelo en pasillo estrecho. El defensor orienta al atacante a su pierna mala y temporiza.", en: "Duel in a narrow channel. The defender shows the attacker onto his weak foot and delays.", fr: "Duel dans un couloir étroit. Le défenseur oriente l'attaquant vers son pied faible et temporise.", de: "Duell in einem engen Korridor. Der Verteidiger lenkt den Angreifer auf seinen schwachen Fuß und verzögert.", pt: "Duelo num corredor estreito. O defesa orienta o atacante para o pé fraco e temporiza." },
     build: () => {
       const tokens = [
         { type: "home", x: 300, y: 320, label: "A" },
@@ -2789,9 +2789,9 @@ const EXERCISES = [
     },
   },
   {
-    id: "sup32", icon: "➕", cat: "buildup", dur: 15, materials: { es: ["petos", "balones"], en: ["bibs", "balls"] },
+    id: "sup32", icon: "➕", cat: "buildup", dur: 15, materials: { es: ["petos", "balones"], en: ["bibs", "balls"], fr: ["chasubles", "ballons"], de: ["Leibchen", "Bälle"], pt: ["coletes", "bolas"] },
     name: { es: "Superioridad 3v2", en: "3v2 overload", fr: "Supériorité 3v2", de: "3-gegen-2-Überzahl", pt: "Superioridade 3x2" },
-    desc: { es: "Atacar la superioridad: fijar al defensor antes de pasar y terminar la jugada en menos de 8 segundos.", en: "Attack the overload: fix the defender before passing and finish within 8 seconds." },
+    desc: { es: "Atacar la superioridad: fijar al defensor antes de pasar y terminar la jugada en menos de 8 segundos.", en: "Attack the overload: fix the defender before passing and finish within 8 seconds.", fr: "Attaquer la supériorité numérique : fixer le défenseur avant de passer et terminer l'action en moins de 8 secondes.", de: "Die Überzahl angreifen: den Verteidiger binden, bevor gepasst wird, und die Aktion innerhalb von 8 Sekunden abschließen.", pt: "Atacar a superioridade: fixar o defesa antes de passar e terminar a jogada em menos de 8 segundos." },
     build: () => {
       const tokens = [
         { type: "home", x: 350, y: 200, label: "1" },
@@ -2808,9 +2808,9 @@ const EXERCISES = [
     },
   },
   {
-    id: "gkfeet", icon: "🦶", cat: "gk", dur: 15, materials: { es: ["conos", "balones", "petos"], en: ["cones", "balls", "bibs"] },
+    id: "gkfeet", icon: "🦶", cat: "gk", dur: 15, materials: { es: ["conos", "balones", "petos"], en: ["cones", "balls", "bibs"], fr: ["plots", "ballons", "chasubles"], de: ["Hütchen", "Bälle", "Leibchen"], pt: ["cones", "bolas", "coletes"] },
     name: { es: "Salida del portero con los pies", en: "Goalkeeper distribution", fr: "Relance du gardien au pied", de: "Torwart-Spielaufbau", pt: "Saída do guarda-redes com os pés" },
-    desc: { es: "El portero inicia el juego bajo presión: apoyos abiertos, primer control orientado y decisión rápida.", en: "The keeper starts play under pressure: wide options, open first touch and a quick decision." },
+    desc: { es: "El portero inicia el juego bajo presión: apoyos abiertos, primer control orientado y decisión rápida.", en: "The keeper starts play under pressure: wide options, open first touch and a quick decision.", fr: "Le gardien relance sous pression : appuis larges, premier contrôle orienté et décision rapide.", de: "Der Torwart baut das Spiel unter Druck auf: breite Anspielstationen, offener erster Kontakt und schnelle Entscheidung.", pt: "O guarda-redes inicia o jogo sob pressão: apoios abertos, primeiro toque orientado e decisão rápida." },
     build: () => {
       const tokens = [
         { type: "home", x: 160, y: 320, label: "P" },
@@ -2827,9 +2827,9 @@ const EXERCISES = [
     },
   },
   {
-    id: "rondo42", icon: "🔁", cat: "rondo", dur: 15, materials: { es: ["6 conos", "2 balones", "petos"], en: ["6 cones", "2 balls", "bibs"] },
+    id: "rondo42", icon: "🔁", cat: "rondo", dur: 15, materials: { es: ["6 conos", "2 balones", "petos"], en: ["6 cones", "2 balls", "bibs"], fr: ["6 plots", "2 ballons", "chasubles"], de: ["6 Hütchen", "2 Bälle", "Leibchen"], pt: ["6 cones", "2 bolas", "coletes"] },
     name: { es: "Rondo 4v2 con apoyos", en: "4v2 rondo with support", fr: "Rondo 4v2 avec appuis", de: "4-gegen-2-Rondo mit Anspielstationen", pt: "Rondo 4x2 com apoios" },
-    desc: { es: "Cuadrado con dos comodines exteriores. Buscar el pase interior antes que el fácil de fuera.", en: "Square with two outside jokers. Look for the inside pass before the easy outside one." },
+    desc: { es: "Cuadrado con dos comodines exteriores. Buscar el pase interior antes que el fácil de fuera.", en: "Square with two outside jokers. Look for the inside pass before the easy outside one.", fr: "Carré avec deux jokers extérieurs. Chercher la passe intérieure avant la passe facile vers l'extérieur.", de: "Viereck mit zwei äußeren Jokern. Den Innenpass suchen, bevor der einfache Außenpass gespielt wird.", pt: "Quadrado com dois curingas exteriores. Procurar o passe interior antes do fácil pelo exterior." },
     build: () => {
       const tokens = [
         { type: "home", x: 340, y: 190, label: "1" }, { type: "home", x: 660, y: 190, label: "2" },
@@ -2843,9 +2843,9 @@ const EXERCISES = [
     },
   },
   {
-    id: "passctrl", icon: "🎽", cat: "technique", dur: 12, materials: { es: ["8 conos", "4 balones"], en: ["8 cones", "4 balls"] },
+    id: "passctrl", icon: "🎽", cat: "technique", dur: 12, materials: { es: ["8 conos", "4 balones"], en: ["8 cones", "4 balls"], fr: ["8 plots", "4 ballons"], de: ["8 Hütchen", "4 Bälle"], pt: ["8 cones", "4 bolas"] },
     name: { es: "Circuito de pase y control", en: "Passing and control circuit", fr: "Circuit passe et contrôle", de: "Pass- und Annahme-Parcours", pt: "Circuito de passe e controlo" },
-    desc: { es: "Rombo de pases con control orientado y cambio de sentido cada dos vueltas. Calidad por encima de velocidad.", en: "Passing diamond with an open first touch, changing direction every two laps. Quality over speed." },
+    desc: { es: "Rombo de pases con control orientado y cambio de sentido cada dos vueltas. Calidad por encima de velocidad.", en: "Passing diamond with an open first touch, changing direction every two laps. Quality over speed.", fr: "Losange de passes avec contrôle orienté et changement de sens toutes les deux tours. La qualité avant la vitesse.", de: "Passraute mit offener Ballannahme, Richtungswechsel alle zwei Runden. Qualität vor Tempo.", pt: "Losango de passes com controlo orientado e mudança de sentido a cada duas voltas. Qualidade acima de velocidade." },
     build: () => {
       const pts = [[500, 150], [750, 320], [500, 490], [250, 320]];
       const tokens = pts.map((p, i) => ({ type: "home", x: p[0], y: p[1], label: String(i + 1) }));
@@ -2859,9 +2859,9 @@ const EXERCISES = [
     },
   },
   {
-    id: "counter3", icon: "🏹", cat: "press", dur: 15, materials: { es: ["petos", "balones"], en: ["bibs", "balls"] },
+    id: "counter3", icon: "🏹", cat: "press", dur: 15, materials: { es: ["petos", "balones"], en: ["bibs", "balls"], fr: ["chasubles", "ballons"], de: ["Leibchen", "Bälle"], pt: ["coletes", "bolas"] },
     name: { es: "Contraataque 3v1", en: "3v1 counter-attack", fr: "Contre-attaque 3v1", de: "Konter 3-gegen-1", pt: "Contra-ataque 3x1" },
-    desc: { es: "Tras robo, salir en tres y terminar antes de que llegue la ayuda. Amplitud y último pase al espacio.", en: "After the steal, break in threes and finish before help arrives. Width and a final pass into space." },
+    desc: { es: "Tras robo, salir en tres y terminar antes de que llegue la ayuda. Amplitud y último pase al espacio.", en: "After the steal, break in threes and finish before help arrives. Width and a final pass into space.", fr: "Après la récupération, partir à trois et terminer avant l'arrivée de l'aide défensive. Largeur et dernière passe dans l'espace.", de: "Nach dem Ballgewinn zu dritt kontern und abschließen, bevor Hilfe eintrifft. Breite und letzter Pass in den Raum.", pt: "Após o roubo, sair em três e terminar antes que chegue ajuda. Amplitude e último passe para o espaço." },
     build: () => {
       const tokens = [
         { type: "home", x: 250, y: 320, label: "8" },
@@ -2879,9 +2879,9 @@ const EXERCISES = [
     },
   },
   {
-    id: "posgame", icon: "♟", cat: "buildup", dur: 20, materials: { es: ["8 conos", "petos 3 colores", "balones"], en: ["8 cones", "bibs in 3 colours", "balls"] },
+    id: "posgame", icon: "♟", cat: "buildup", dur: 20, materials: { es: ["8 conos", "petos 3 colores", "balones"], en: ["8 cones", "bibs in 3 colours", "balls"], fr: ["8 plots", "chasubles 3 couleurs", "ballons"], de: ["8 Hütchen", "Leibchen in 3 Farben", "Bälle"], pt: ["8 cones", "coletes 3 cores", "bolas"] },
     name: { es: "Juego de posición 4x4+3", en: "4v4+3 positional game", fr: "Jeu de position 4x4+3", de: "Positionsspiel 4-gegen-4+3", pt: "Jogo de posição 4x4+3" },
-    desc: { es: "Tres comodines siempre con el equipo en posesión. Cambiar de orientación tras seis pases seguidos.", en: "Three jokers always with the team in possession. Switch play after six consecutive passes." },
+    desc: { es: "Tres comodines siempre con el equipo en posesión. Cambiar de orientación tras seis pases seguidos.", en: "Three jokers always with the team in possession. Switch play after six consecutive passes.", fr: "Trois jokers toujours avec l'équipe en possession. Changer l'orientation du jeu après six passes consécutives.", de: "Drei Joker immer beim ballbesitzenden Team. Nach sechs aufeinanderfolgenden Pässen die Spielrichtung wechseln.", pt: "Três curingas sempre com a equipa na posse. Mudar de orientação após seis passes seguidos." },
     build: () => {
       const tokens = [];
       [[320, 200], [320, 440], [520, 200], [520, 440]].forEach((p, i) => tokens.push({ type: "home", x: p[0], y: p[1], label: String(i + 1) }));
