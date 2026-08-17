@@ -41,9 +41,9 @@ const DICT = {
     "a.tagline": "Gestión inteligente para entrenadores de fútbol base", "a.accOff": "Sí, entreno en un club", "a.accOffD": "Tu director deportivo o el Master ya te han dado de alta antes. Pon tu contraseña y entras al momento.", "a.accFree": "No, entreno por mi cuenta", "a.accFreeD": "Tu equipo es tuyo y no depende de nadie. Sin aprobaciones.", "a.have": "Ya soy usuario", "a.register": "Registrarme", "a.name": "Tu nombre", "a.fullname": "Nombre y apellidos", "a.email": "Email", "a.pass": "Contraseña", "a.region": "Comunidad autónoma", "a.clubMadrid": "Club (Comunidad de Madrid)", "a.choose": "Elige tu club…", "a.otherClub": "Nombre de tu club", "a.teamOff": "Equipo", "a.teamFree": "Tu equipo", "a.role": "Tu rol", "a.pending": "Entras al momento y puedes empezar a trabajar con tu equipo. Hasta que el club apruebe tu acceso no verás los datos compartidos del club ni la gestión de usuarios.", "a.freeInc": "Gratis para siempre: plantilla completa sin límite de jugadores, alineación, convocatoria, modo partido, pizarra y Coach AI.", "a.startFree": "Empezar gratis", "a.signin": "Iniciar sesión", "a.create": "Crear cuenta y entrar", "a.proto": "Prototipo — los datos no se guardan en ningún servidor", "a.choice": "¿Perteneces a un club?", "a.choiceD": "Las dos opciones son gratuitas. Solo cambia de quién dependen tus datos.", "a.back": "‹ Volver", "a.badCreds": "Email o contraseña incorrectos.", "a.accPending": "Tu cuenta está pendiente de aprobación por el club.", "a.accSusp": "Tu acceso está suspendido. Contacta con tu club.", "a.exists": "Ese email ya está registrado. Inicia sesión.", "a.registered": "¡Registro recibido! Tu acceso queda pendiente de aprobación por el club.", "a.loading": "Cargando…", "a.entering": "Entrando…", "a.demoHint": "Demo: usuario demo / contraseña demo", "a.demoBtn": "▶ Entrar con usuario demo", "a.demoPick": "¿Qué rol quieres ver?", "a.demoPickD": "Elige un rol para explorar la app tal y como lo vería esa persona.",
     "a.forgot": "¿Has olvidado tu contraseña?", "a.forgotTitle": "Recuperar contraseña", "a.forgotD": "Escribe tu email y te mandamos un enlace para elegir una nueva.", "a.forgotSend": "Enviar enlace", "a.sending": "Enviando…", "a.forgotSent": "Si ese email tiene cuenta, ya está el enlace enviado. Caduca en una hora y solo sirve una vez. Mira también en spam.", "a.forgotNoMail": "El envío de correo no está disponible ahora mismo. Avisa a tu club para que lo revise.", "a.resetTitle": "Elige tu nueva contraseña", "a.resetD": "Este enlace caduca en una hora y solo sirve una vez.", "a.newPass": "Nueva contraseña", "a.newPass2": "Repite la contraseña", "a.resetSave": "Guardar contraseña", "a.resetOk": "Contraseña actualizada. Ya puedes entrar con ella.", "a.resetBad": "Este enlace ya no vale: ha caducado o ya se ha usado. Pide otro.", "a.passRule": "Mínimo 6 caracteres, y las dos deben coincidir.", "a.noBackend": "No hay conexión con el servidor. Inténtalo más tarde.",
     "p.account": "Mi cuenta", "p.changePass": "Cambiar contraseña", "p.current": "Contraseña actual", "p.save": "Guardar", "p.saved": "Contraseña actualizada.", "p.badCurrent": "La contraseña actual no es correcta.", "p.close": "Cerrar",
-    "h.nextMatch": "Próximo partido", "h.nextTrain": "Próximo entrenamiento", "h.available": "Disponibles", "h.lessMin": "Menos participación", "h.alerts": "Alertas", "h.quick": "Accesos rápidos", "h.family": "Avisos para las familias", "h.pending": "accesos pendientes de aprobar", "h.startMatch": "Iniciar partido", "as.title": "Asistencia del día", "as.subtitle": "Quién ha venido y por qué. Sin incidencias ni sanciones: eso sigue en Disciplina.", "as.today": "Hoy", "as.markAll": "✓ Marcar todos presentes", "as.present": "Presente", "as.unmarked": "Sin marcar", "as.studies": "Estudios", "as.noExcuse": "Sin explicación", "as.sick": "Enfermedad", "as.injured": "Lesión", "as.reset": "Quitar marca", "as.noPlayers": "No hay jugadores en la plantilla.", "as.discNote": "¿Retraso o falta con consecuencia disciplinaria? Eso se registra en Disciplina → Pasar lista, que además avisa al cuerpo técnico.", "as.homeTitle": "Asistencia de hoy", "as.homeEmpty": "Todavía no has pasado lista hoy.", "as.homeCta": "Pasar lista", "as.homeSee": "Ver asistencia", "as.homeAll": "Todos presentes.", "as.homeOf": "de",
+    "h.nextMatch": "Próximo partido", "h.nextTrain": "Próximo entrenamiento", "h.available": "Disponibles", "h.lessMin": "Menos participación", "h.alerts": "Alertas", "h.quick": "Accesos rápidos", "h.family": "Avisos para las familias", "h.pending": "accesos pendientes de aprobar", "h.startMatch": "Iniciar partido", "as.title": "Asistencia del día", "as.subtitle": "Quién ha venido y por qué. Sin incidencias ni sanciones: eso sigue en Disciplina.", "as.today": "Hoy", "as.markAll": "✓ Marcar todos presentes", "as.present": "Presente", "as.unmarked": "Sin marcar", "as.studies": "Estudios", "as.noExcuse": "Sin explicación", "as.sick": "Enfermedad", "as.injured": "Lesión", "as.reset": "Quitar marca", "as.noPlayers": "No hay jugadores en la plantilla.", "as.discNote": "¿Retraso o falta con consecuencia disciplinaria? Eso se registra en Disciplina → Pasar lista, que además avisa al cuerpo técnico.", "as.homeTitle": "Asistencia de hoy", "as.homeEmpty": "Todavía no has pasado lista hoy.", "as.homeCta": "Pasar lista", "as.homeSee": "Ver asistencia", "as.homeAll": "Todos presentes.", "as.homeOf": "de", "as.summaryTitle": "Resumen del día",
     "w.title": "Pizarra táctica", "w.move": "Mover", "w.arrow": "Flecha", "w.pass": "Pase", "w.free": "Dibujo", "w.cone": "Cono", "w.ball": "Balón", "w.erase": "Borrar", "w.clear": "Limpiar", "w.home": "Local", "w.away": "Rival", "w.hint": "Elige herramienta · arrastra las fichas · dibuja sobre el campo", "w.form": "Colocar", "w.f11": "Fútbol 11", "w.f7": "Fútbol 7", "w.homeSys": "Sistema local", "w.awaySys": "Sistema rival", "w.exercises": "Ejercicios recomendados", "w.exHint": "Toca un ejercicio para colocarlo en la pizarra", "w.autoSave": "El sistema elegido se guarda automáticamente en este dispositivo", "w.abpForAgainst": "¿A favor o en contra?", "w.abpAttack": "Ataque", "w.abpDefense": "Defensa", "w.abpSide": "¿Por qué lado?", "w.abpLeft": "◂ Izquierda", "w.abpRight": "Derecha ▸", "w.abpPlace": "Colocar situación", "w.abpAgainst": "en contra", "w.abpFor": "a favor", "w.abpOwnBoard": "tablero propio", "w.abpSaveAs": "Guardar la pizarra como", "w.viewFull": "Completo", "w.viewAreaR": "Área ▸", "w.viewAreaL": "◂ Área", "w.viewSideline": "Banda", "w.viewGoal": "Portería", "w.colorWhite": "Blanco", "w.colorLightGray": "Gris claro", "w.colorGray": "Gris", "w.colorSlate": "Pizarra", "w.colorCharcoal": "Carbón", "w.toScale": "a escala real", "w.dribble": "Conducción", "w.zone": "Zona", "w.circle": "Círculo", "w.text": "Texto", "w.disc": "Seta", "w.playerToken": "Jugador", "w.dorsal": "Dorsal", "w.undo": "Deshacer", "w.redo": "Rehacer", "w.grid": "Cuadrícula", "w.searchDrill": "Buscar ejercicio…", "w.aiHelp": "Ayuda IA", "w.tellChange": "Dile el cambio", "w.aiChangePh": "Ej. mueve al 9 al segundo palo y saca al 4 al borde del área", "w.thinking": "Pensando…", "w.applyToBoard": "Aplicar a la pizarra", "w.aiHint": "Cambia las fichas y los trazos de lo que tengas ahora en el campo. Si no te gusta, ↶ Deshacer lo devuelve como estaba.", "w.plays": "Jugadas", "w.saveAsNew": "+ Guardar como nueva", "w.shareTeam": "⬆ Compartir con el equipo", "w.shareTeamHint": "Las verán tu segundo y tu delegado desde su móvil, también en Modo partido.", "w.updateChangesIn": "↻ Guardar los cambios en", "w.moveUp": "Subir", "w.moveDown": "Bajar", "w.rename": "Renombrar", "w.deleteAction": "Borrar", "w.noPlaysSaved": "Aún no hay jugadas guardadas", "w.view": "Vista", "w.board": "Tablero", "w.backToFullPitch": "‹ Volver al campo entero", "w.framing": "Encuadre", "w.zoomLabel": "Zoom", "w.fit": "Ajustar", "w.pinchHint": "Con dos dedos: pellizca para acercar y arrastra para mover.", "w.brightness": "☀ Brillo", "w.steps": "Pasos", "w.addStep": "+ Añadir paso", "w.stepOf": "Paso {a} de {b}", "w.pause": "❚❚ Pausa", "w.play": "▶ Reproducir", "w.deleteSequence": "Borrar secuencia", "w.noStepsSaved": "Guarda instantáneas para explicar la jugada paso a paso.", "w.systems": "Sistemas", "w.exportPng": "Exportar PNG", "w.recordVideo": "Grabar vídeo", "w.video": "Vídeo", "w.exit": "Salir", "w.fullscreen": "Pantalla completa", "w.zoomOut": "Alejar", "w.zoomIn": "Acercar", "w.fullscreenSuffix": "pantalla completa", "w.exitEsc": "✕ Salir (Esc)", "w.otherFormation": "Otro", "w.noVideoSupport": "Este navegador no admite grabación de vídeo. Prueba con Chrome o Firefox actualizados.", "w.playNamePrompt": "Nombre de la jugada", "w.dorsalPrompt": "Dorsal de esta ficha (vacío para quitarlo)", "w.annotationPrompt": "Texto de la anotación", "w.needClubAccount": "Entra con tu cuenta del club para poder compartirlas.", "w.sharing": "Compartiendo…", "w.sharedOk": "✓ Compartidas con tu equipo.", "w.sharedFail": "No se pudieron compartir. Revisa la conexión.", "w.aiNotUnderstood": "No he entendido el cambio. Dilo de otra forma, por ejemplo: \"mueve al 9 al segundo palo\".", "w.aiDone": "✓ Hecho. Si no te convence, deshaz con ↶.", "w.squadLabel": "Plantilla",
-    "ex.title": "Biblioteca de ejercicios", "ex.hint": "Filtra por categoría, mira duración y material, y úsalo en la pizarra o añádelo a un entrenamiento.", "ex.all": "Todos", "ex.cat.rondo": "Rondos y posesión", "ex.cat.finish": "Finalización", "ex.cat.press": "Presión y transición", "ex.cat.buildup": "Salida de balón", "ex.cat.setpiece": "Acciones a balón parado", "ex.cat.technique": "Técnica individual", "ex.cat.fitness": "Físico", "ex.cat.gk": "Porteros", "ex.cat.warmup": "Calentamiento", "ex.cat.defense": "Defensa", "ex.cat.cross": "Centros y remate", "ex.cat.duel": "Duelos 1v1", "ex.dur": "min", "ex.materials": "Material", "ex.useBoard": "Usar en la pizarra", "ex.addTrain": "Añadir a entrenamiento", "ex.added": "✓ Añadido", "ex.preview": "Vista previa", "ex.previewNote": "Vista previa de la pizarra · no editable", "ex.pickToPreview": "Elige un ejercicio para verlo en la pizarra",
+    "ex.title": "Biblioteca de ejercicios", "ex.hint": "Filtra por categoría, mira duración y material, y úsalo en la pizarra o añádelo a un entrenamiento.", "ex.all": "Todos", "ex.cat.rondo": "Rondos y posesión", "ex.cat.finish": "Finalización", "ex.cat.press": "Presión y transición", "ex.cat.buildup": "Salida de balón", "ex.cat.setpiece": "Acciones a balón parado", "ex.cat.technique": "Técnica individual", "ex.cat.fitness": "Físico", "ex.cat.gk": "Porteros", "ex.cat.warmup": "Calentamiento", "ex.cat.defense": "Defensa", "ex.cat.cross": "Centros y remate", "ex.cat.duel": "Duelos 1v1", "ex.dur": "min", "ex.materials": "Material", "ex.useBoard": "Usar en la pizarra", "ex.addTrain": "Añadir a entrenamiento", "ex.added": "✓ Añadido", "ex.preview": "Vista previa", "ex.previewNote": "Vista previa de la pizarra · no editable", "ex.pickToPreview": "Elige un ejercicio para verlo en la pizarra", "co.title": "Coach AI — asistente del cuerpo técnico", "co.thinking": "Coach AI está pensando…", "co.placeholder": "Pregunta a Coach AI…", "co.send": "Enviar", "co.sug1": "¿Quién debería jugar más minutos la próxima jornada?", "co.sug2": "Prepárame un entrenamiento de 75' de transiciones", "co.sug3": "Analiza el partido con los eventos registrados", "co.error": "No he podido conectar con el asistente. Inténtalo de nuevo.", "d.title": "Módulo de comportamiento", "d.desc1a": "Registro de incidencias según el ", "d.codeName": "Código Disciplinario", "d.desc1b": " del equipo. Las consecuencias que se ofrecen son las literales del documento firmado por el club.", "d.note1": "El delegado registra; el cuerpo técnico valida. El documento establece que cada situación se valora de forma individual por el cuerpo técnico y que las medidas tienen siempre carácter educativo.", "d.newIncidentBtn": "+ Registrar incidencia", "d.collectiveMeasureBtn": "⚖ Medida colectiva", "d.viewNormBtn": "📑 Ver normativa y firmas", "d.exportCsvBtn": "⤓ Exportar CSV", "d.unsignedWarn": "⚠ {n} jugador(es) todavía no han firmado el código disciplinario. Sin firma no debe aplicarse ninguna sanción económica.", "d.newTitle": "Nueva incidencia", "d.player": "Jugador", "d.pickPlayer": "Elige jugador…", "d.date": "Fecha", "d.context": "Contexto", "d.normViolated": "Norma infringida", "d.minorFouls": "Faltas leves", "d.majorFouls": "Faltas graves", "d.cardLabel": "Tarjeta", "d.economicSanction": "Sanción económica (opcional)", "d.fault": "Falta", "d.consequenceLabel": "Consecuencia según el código:", "d.measuresApplied": "Medidas aplicadas (las 8 del documento)", "d.whatHappenedPh": "Qué ocurrió (hechos, sin juicios de valor)", "d.noEconomicWarnA": "⚠ El código disciplinario del equipo ", "d.noEconomicBold": "no contempla sanciones económicas", "d.noEconomicWarnB": ": todas sus medidas son educativas. Usa este campo solo si el club tiene aprobado y firmado un régimen económico.", "d.notSignedExtra": "Además, este jugador no ha firmado el código.", "d.saveIncidentBtn": "Guardar incidencia", "d.teamTitle": "Medida colectiva", "d.teamDesc": "Aplica la misma medida a varios jugadores de una vez. Se crea una incidencia por jugador, agrupadas en un lote que puedes anular entero después.", "d.whoApplies": "¿A quién se aplica?", "d.amountPerPlayer": "Importe por jugador (opcional)", "d.measuresApplied2": "Medidas aplicadas", "d.teamReasonPh": "Motivo de la medida colectiva (qué pasó y por qué afecta a todo el grupo)", "d.youthWarnA": "⚠ Vas a poner ", "d.youthWarnB": " en total a {n} menores. El código disciplinario del equipo no contempla sanciones económicas y una multa colectiva castiga por igual a quien no hizo nada. Úsalo solo si el club tiene un régimen económico aprobado y firmado por las familias.", "d.teamPotLine": "Bote del equipo: {amount} € en total ({n} jugadores).", "d.applyToN": "Aplicar a {n} jugador(es)", "d.noMatchCriteria": "No hay jugadores que cumplan ese criterio.", "d.quickTitle": "Pasar lista y registro rápido", "d.presentN": "presentes", "d.latesN": "retrasos", "d.absencesN": "faltas", "d.markAllPresentBtn": "✓ Marcar todos presentes", "d.clearDayBtn": "Limpiar lista del día", "d.faultsParen": "falta(s)", "d.latesParen": "retraso(s)", "d.incidentsParen": "incidencia(s)", "d.unsignedTag": "⚠ sin firmar", "d.conductBtn": "⚠ Conducta", "d.otherFull": "Otra… (formulario completo)", "d.autoNote": "Marcar Retraso o Falta crea automáticamente la incidencia correspondiente del código (L1 puntualidad, L2 comunicación de ausencias), pendiente de validar por el cuerpo técnico. Justificada no genera incidencia.", "d.seeAsistNote": "Esto es para retrasos y faltas con consecuencia. Si solo quieres saber quién ha venido hoy y por qué —estudios, enfermedad, lesión—, sin que abra ninguna incidencia, usa", "d.historyTitle": "Historial de incidencias", "d.allPlayersOpt": "Todos los jugadores", "d.noIncidentsFilter": "No hay incidencias con este filtro.", "d.pendingValidateTag": "Pendiente de validar", "d.paidTag": "pagada", "d.condonedTag": "condonada", "d.pendingTag": "pendiente", "d.markPaidBtn": "Marcar pagada", "d.condoneBtn": "Condonar", "d.famInformedYes": "✓ Familia informada", "d.famInformedNo": "Marcar familia informada", "d.batchTag": "Lote colectivo", "d.validateBtn": "Validar", "d.annulBtn": "Anular", "d.annulBatchBtn": "Anular lote entero", "d.filterAll": "Todas", "d.filterPend": "Pendientes de validar ({n})", "d.filterValidated": "Validadas", "d.filterAnnulled": "Anuladas", "d.summaryTitle": "Resumen por jugador", "d.noIncidentsReg": "Sin incidencias registradas.", "d.playerCol": "Jugador", "d.pendingCol": "Pendiente", "d.notSignedTitle": "No ha firmado el código", "d.reiterationBtn": "G5 reiteración", "d.reiterationTitle": "Reiteración de faltas leves — el código lo tipifica como falta grave G5", "d.reiterationDesc": "Reiteración: {n} faltas leves acumuladas.", "d.economicTitle": "Sanciones económicas", "d.teamPotTitle": "Bote del equipo", "d.pendingCollect": "pendiente de cobro", "d.alreadyPaid": "ya abonado", "d.youthFooter": "Recuerda que el código disciplinario de este equipo no contempla multas: sus ocho medidas son educativas. Si el club cobra importes, deben estar recogidos en una normativa firmada por las familias.", "d.autoLateDesc": "Retraso registrado al pasar lista.", "d.autoAbsentDesc": "Ausencia sin comunicar registrada al pasar lista.", "d.quickRegSuffix": " (registro rápido).", "d.attOk": "Asistió", "d.attLate": "Retraso", "d.attAbsent": "Falta", "d.attJust": "Justificada", "d.tgAll": "Toda la plantilla", "d.tgAbsent": "Han faltado ese día", "d.tgLate": "Han llegado tarde ese día", "d.tgUnsigned": "No han firmado el código", "d.tgManual": "Selección manual", "d.gLeve": "leve", "d.gGrave": "grave", "co.welcome1": "Hola, {name}. Soy Coach AI ({club} · {team}). Tu rol es {role}", "co.welcomeFree": " · plan gratuito", "co.welcome2": ". ¿En qué te ayudo?", "doc.title": "Normativa del club", "doc.signLabel": "Firma", "doc.confirmLabel": "Confirma", "doc.viewPdf": "Ver PDF", "doc.download": "Descargar", "doc.publishedOn": "Publicado el {date} · versión {v}", "doc.requiredSuffix": " · firma obligatoria", "doc.playersExTitle": "Ejercicios · jugadores", "doc.playersSignTitle": "Firmas · jugadores y familias", "doc.doneEx": "realizados", "doc.doneSign": "firmadas", "doc.pending": "Pendiente", "doc.staffExTitle": "Confirmación · cuerpo técnico", "doc.staffSignTitle": "Firmas · cuerpo técnico", "doc.staffDoneEx": "confirmados", "doc.staffDoneSign": "firmadas", "doc.sanctionsTitle": "Control de sanciones", "doc.allSigned": "Toda la plantilla ha firmado el código disciplinario.", "doc.someUnsigned": "{n} jugador(es) sin firmar el código disciplinario.", "doc.sanctionsNote": "Una medida disciplinaria solo es exigible si la persona conoce y ha aceptado la norma. Antes de aplicar cualquier sanción —y con más motivo si es económica— comprueba aquí que la firma está registrada.", "doc.doneExercise": "✓ Realizado", "doc.doneSigned": "✓ Firmado",
     "tr.title": "Modo entrenamiento", "tr.hint": "Planifica la sesión añadiendo bloques desde la biblioteca de ejercicios o bloques libres.", "tr.date": "Fecha", "tr.time": "Hora", "tr.objective": "Objetivo de la sesión", "tr.objectivePh": "Ej. transiciones defensivas", "tr.addFromLib": "+ Añadir desde la biblioteca", "tr.addCustom": "+ Bloque libre", "tr.customName": "Nombre del bloque", "tr.customDur": "Duración (min)", "tr.noBlocks": "Aún no has añadido ningún bloque a esta sesión.", "tr.total": "Duración total", "tr.materials": "Material necesario", "tr.remove": "Quitar", "tr.up": "▲", "tr.down": "▼", "tr.sendBoard": "Ver en pizarra", "tr.summary": "Resumen para compartir", "tr.copy": "Copiar resumen", "tr.copied": "✓ Copiado", "tr.whatsapp": "Abrir WhatsApp", "tr.min": "min", "tr.close": "Cerrar", "tr.newBlock": "Nuevo bloque",
     "st.title": "Estadísticas del equipo", "st.availability": "Disponibilidad de la plantilla", "st.available": "Disponibles", "st.doubt": "Duda", "st.injured": "Lesionados", "st.topAtt": "Mayor asistencia a entrenamientos", "st.lowMin": "Menor participación (minutos)", "st.byPosition": "Plantilla por línea", "st.gkPos": "Porteros", "st.defPos": "Defensas", "st.midPos": "Centrocampistas", "st.fwdPos": "Delanteros", "st.players": "jugadores", "st.byRole": "Desglose por demarcación", "st.roleHint": "Reparto real de la plantilla, posición a posición, con el peso de cada una sobre el total.", "st.total": "Total plantilla", "st.player": "jugador",
     "m.title": "Material para el entrenador", "m.aff": "Enlace de afiliado", "m.note": "Enlaces de afiliado marcados claramente y adaptados a tu país. Una pequeña comisión ayuda a mantener la app; el precio para ti no cambia.", "m.all": "Todo", "m.training": "Entrenamiento", "m.gk": "Porteros", "m.medical": "Botiquín", "m.tech": "Tecnología", "m.apparel": "Vestuario", "m.view": "Ver oferta", "m.from": "desde",
@@ -202,7 +202,7 @@ const DICT = {
     "p.account": "My account", "p.changePass": "Change password", "p.current": "Current password", "p.save": "Save", "p.saved": "Password updated.", "p.badCurrent": "That current password isn't right.", "p.close": "Close",
     "h.nextMatch": "Next match", "h.nextTrain": "Next training", "h.available": "Available", "h.lessMin": "Least game time", "h.alerts": "Alerts", "h.quick": "Quick access", "h.family": "Notices for families", "h.pending": "pending access requests", "h.startMatch": "Start match",
     "w.title": "Tactics board", "w.move": "Move", "w.arrow": "Arrow", "w.pass": "Pass", "w.free": "Draw", "w.cone": "Cone", "w.ball": "Ball", "w.erase": "Erase", "w.clear": "Clear", "w.home": "Home", "w.away": "Away", "w.hint": "Pick a tool · drag the tokens · draw on the pitch", "w.form": "Place", "w.f11": "11-a-side", "w.f7": "7-a-side", "w.homeSys": "Home system", "w.awaySys": "Away system", "w.exercises": "Recommended drills", "w.exHint": "Tap a drill to set it up on the board", "w.autoSave": "Your chosen system is saved automatically on this device", "w.abpForAgainst": "For or against?", "w.abpAttack": "Attack", "w.abpDefense": "Defence", "w.abpSide": "Which side?", "w.abpLeft": "◂ Left", "w.abpRight": "Right ▸", "w.abpPlace": "Set up the situation", "w.abpAgainst": "against", "w.abpFor": "for", "w.abpOwnBoard": "own board", "w.abpSaveAs": "Save the whiteboard as", "w.viewFull": "Full pitch", "w.viewAreaR": "Area ▸", "w.viewAreaL": "◂ Area", "w.viewSideline": "Sideline", "w.viewGoal": "Goal", "w.colorWhite": "White", "w.colorLightGray": "Light grey", "w.colorGray": "Grey", "w.colorSlate": "Slate", "w.colorCharcoal": "Charcoal", "w.toScale": "to scale", "w.dribble": "Dribble", "w.zone": "Zone", "w.circle": "Circle", "w.text": "Text", "w.disc": "Disc", "w.playerToken": "Player", "w.dorsal": "Number", "w.undo": "Undo", "w.redo": "Redo", "w.grid": "Grid", "w.searchDrill": "Search drill…", "w.aiHelp": "AI help", "w.tellChange": "Tell it the change", "w.aiChangePh": "E.g. move the 9 to the far post and bring the 4 to the edge of the box", "w.thinking": "Thinking…", "w.applyToBoard": "Apply to the whiteboard", "w.aiHint": "Changes the tokens and drawings you currently have on the pitch. If you don't like it, ↶ Undo puts it back.", "w.plays": "Plays", "w.saveAsNew": "+ Save as new", "w.shareTeam": "⬆ Share with the team", "w.shareTeamHint": "Your assistant coach and team manager will see it on their phone too, including in Match mode.", "w.updateChangesIn": "↻ Save changes to", "w.moveUp": "Move up", "w.moveDown": "Move down", "w.rename": "Rename", "w.deleteAction": "Delete", "w.noPlaysSaved": "No plays saved yet", "w.view": "View", "w.board": "Board", "w.backToFullPitch": "‹ Back to full pitch", "w.framing": "Framing", "w.zoomLabel": "Zoom", "w.fit": "Fit", "w.pinchHint": "With two fingers: pinch to zoom and drag to move.", "w.brightness": "☀ Brightness", "w.steps": "Steps", "w.addStep": "+ Add step", "w.stepOf": "Step {a} of {b}", "w.pause": "❚❚ Pause", "w.play": "▶ Play", "w.deleteSequence": "Delete sequence", "w.noStepsSaved": "Save snapshots to explain the play step by step.", "w.systems": "Systems", "w.exportPng": "Export PNG", "w.recordVideo": "Record video", "w.video": "Video", "w.exit": "Exit", "w.fullscreen": "Full screen", "w.zoomOut": "Zoom out", "w.zoomIn": "Zoom in", "w.fullscreenSuffix": "full screen", "w.exitEsc": "✕ Exit (Esc)", "w.otherFormation": "Other", "w.noVideoSupport": "This browser doesn't support video recording. Try an up-to-date Chrome or Firefox.", "w.playNamePrompt": "Play name", "w.dorsalPrompt": "This token's number (leave empty to remove it)", "w.annotationPrompt": "Annotation text", "w.needClubAccount": "Sign in with your club account to share these.", "w.sharing": "Sharing…", "w.sharedOk": "✓ Shared with your team.", "w.sharedFail": "Couldn't share. Check your connection.", "w.aiNotUnderstood": "I didn't understand that change. Try saying it another way, e.g. \"move the 9 to the far post\".", "w.aiDone": "✓ Done. If you don't like it, undo with ↶.", "w.squadLabel": "Squad",
-    "ex.title": "Drill library", "ex.hint": "Filter by category, check duration and materials, and use it on the board or add it to a session.", "ex.all": "All", "ex.cat.rondo": "Rondos & possession", "ex.cat.finish": "Finishing", "ex.cat.press": "Pressing & transition", "ex.cat.buildup": "Build-up", "ex.cat.setpiece": "Set pieces", "ex.cat.technique": "Individual technique", "ex.cat.fitness": "Fitness", "ex.cat.gk": "Goalkeeping", "ex.cat.warmup": "Warm-up", "ex.cat.defense": "Defending", "ex.cat.cross": "Crossing & finishing", "ex.cat.duel": "1v1 duels", "ex.dur": "min", "ex.materials": "Materials", "ex.useBoard": "Use on the board", "ex.addTrain": "Add to training", "ex.added": "✓ Added", "ex.preview": "Preview", "ex.previewNote": "Whiteboard preview · not editable", "ex.pickToPreview": "Pick a drill to see it on the board",
+    "ex.title": "Drill library", "ex.hint": "Filter by category, check duration and materials, and use it on the board or add it to a session.", "ex.all": "All", "ex.cat.rondo": "Rondos & possession", "ex.cat.finish": "Finishing", "ex.cat.press": "Pressing & transition", "ex.cat.buildup": "Build-up", "ex.cat.setpiece": "Set pieces", "ex.cat.technique": "Individual technique", "ex.cat.fitness": "Fitness", "ex.cat.gk": "Goalkeeping", "ex.cat.warmup": "Warm-up", "ex.cat.defense": "Defending", "ex.cat.cross": "Crossing & finishing", "ex.cat.duel": "1v1 duels", "ex.dur": "min", "ex.materials": "Materials", "ex.useBoard": "Use on the board", "ex.addTrain": "Add to training", "ex.added": "✓ Added", "ex.preview": "Preview", "ex.previewNote": "Whiteboard preview · not editable", "ex.pickToPreview": "Pick a drill to see it on the board", "co.title": "Coach AI — coaching staff assistant", "co.thinking": "Coach AI is thinking…", "co.placeholder": "Ask Coach AI…", "co.send": "Send", "co.sug1": "Who should play more minutes next matchday?", "co.sug2": "Prepare a 75' transitions training session for me", "co.sug3": "Analyse the match using the logged events", "co.error": "Couldn't connect to the assistant. Try again.", "co.welcome1": "Hi, {name}. I'm Coach AI ({club} · {team}). Your role is {role}", "co.welcomeFree": " · free plan", "co.welcome2": ". How can I help?", "d.title": "Conduct module", "d.desc1a": "Incident log based on the team's ", "d.codeName": "Disciplinary Code", "d.desc1b": ". The consequences shown are the literal wording of the document signed by the club.", "d.note1": "The team manager logs it; the coaching staff validates it. The document states that each situation is assessed individually by the coaching staff and that measures are always educational in nature.", "d.newIncidentBtn": "+ Log incident", "d.collectiveMeasureBtn": "⚖ Collective measure", "d.viewNormBtn": "📑 View rules and signatures", "d.exportCsvBtn": "⤓ Export CSV", "d.unsignedWarn": "⚠ {n} player(s) still haven't signed the disciplinary code. No economic sanction should be applied without a signature.", "d.newTitle": "New incident", "d.player": "Player", "d.pickPlayer": "Choose a player…", "d.date": "Date", "d.context": "Context", "d.normViolated": "Rule broken", "d.minorFouls": "Minor offences", "d.majorFouls": "Serious offences", "d.cardLabel": "Card", "d.economicSanction": "Economic sanction (optional)", "d.fault": "Offence", "d.consequenceLabel": "Consequence per the code:", "d.measuresApplied": "Measures applied (all 8 from the document)", "d.whatHappenedPh": "What happened (facts, no value judgements)", "d.noEconomicWarnA": "⚠ The team's disciplinary code ", "d.noEconomicBold": "does not include economic sanctions", "d.noEconomicWarnB": ": all of its measures are educational. Use this field only if the club has an approved, signed economic policy.", "d.notSignedExtra": "Also, this player hasn't signed the code.", "d.saveIncidentBtn": "Save incident", "d.teamTitle": "Collective measure", "d.teamDesc": "Apply the same measure to several players at once. One incident is created per player, grouped into a batch you can annul entirely afterwards.", "d.whoApplies": "Who does it apply to?", "d.amountPerPlayer": "Amount per player (optional)", "d.measuresApplied2": "Measures applied", "d.teamReasonPh": "Reason for the collective measure (what happened and why it affects the whole group)", "d.youthWarnA": "⚠ You're about to charge ", "d.youthWarnB": " in total to {n} minors. The team's disciplinary code does not include economic sanctions, and a collective fine punishes equally those who did nothing wrong. Use it only if the club has an economic policy approved and signed by the families.", "d.teamPotLine": "Team pot: {amount} € in total ({n} players).", "d.applyToN": "Apply to {n} player(s)", "d.noMatchCriteria": "No players match that criterion.", "d.quickTitle": "Take attendance and quick log", "d.presentN": "present", "d.latesN": "late", "d.absencesN": "absent", "d.markAllPresentBtn": "✓ Mark everyone present", "d.clearDayBtn": "Clear today's list", "d.faultsParen": "absence(s)", "d.latesParen": "late(s)", "d.incidentsParen": "incident(s)", "d.unsignedTag": "⚠ not signed", "d.conductBtn": "⚠ Conduct", "d.otherFull": "Other… (full form)", "d.autoNote": "Marking Late or Absent automatically creates the matching incident from the code (L1 punctuality, L2 notifying absences), pending validation by the coaching staff. Excused does not create an incident.", "d.seeAsistNote": "This is for lates and absences with a consequence. If you just want to know who came today and why —school, illness, injury— without opening an incident, use", "d.historyTitle": "Incident history", "d.allPlayersOpt": "All players", "d.noIncidentsFilter": "No incidents match this filter.", "d.pendingValidateTag": "Pending validation", "d.paidTag": "paid", "d.condonedTag": "waived", "d.pendingTag": "pending", "d.markPaidBtn": "Mark as paid", "d.condoneBtn": "Waive", "d.famInformedYes": "✓ Family informed", "d.famInformedNo": "Mark family informed", "d.batchTag": "Collective batch", "d.validateBtn": "Validate", "d.annulBtn": "Annul", "d.annulBatchBtn": "Annul whole batch", "d.filterAll": "All", "d.filterPend": "Pending validation ({n})", "d.filterValidated": "Validated", "d.filterAnnulled": "Annulled", "d.summaryTitle": "Summary by player", "d.noIncidentsReg": "No incidents logged.", "d.playerCol": "Player", "d.pendingCol": "Pending", "d.notSignedTitle": "Hasn't signed the code", "d.reiterationBtn": "G5 repeat offence", "d.reiterationTitle": "Repeated minor offences — the code classifies this as a serious G5 offence", "d.reiterationDesc": "Repeat offence: {n} accumulated minor offences.", "d.economicTitle": "Economic sanctions", "d.teamPotTitle": "Team pot", "d.pendingCollect": "pending collection", "d.alreadyPaid": "already paid", "d.youthFooter": "Remember this team's disciplinary code does not include fines: its eight measures are educational. If the club charges amounts, they must be set out in rules signed by the families.", "d.autoLateDesc": "Late arrival logged when taking attendance.", "d.autoAbsentDesc": "Unreported absence logged when taking attendance.", "d.quickRegSuffix": " (quick log).", "d.attOk": "Attended", "d.attLate": "Late", "d.attAbsent": "Absent", "d.attJust": "Excused", "d.tgAll": "The whole squad", "d.tgAbsent": "Were absent that day", "d.tgLate": "Arrived late that day", "d.tgUnsigned": "Haven't signed the code", "d.tgManual": "Manual selection", "d.gLeve": "minor", "d.gGrave": "serious", "doc.title": "Club rules", "doc.signLabel": "Sign", "doc.confirmLabel": "Confirm", "doc.viewPdf": "View PDF", "doc.download": "Download", "doc.publishedOn": "Published on {date} · version {v}", "doc.requiredSuffix": " · signature required", "doc.playersExTitle": "Exercises · players", "doc.playersSignTitle": "Signatures · players and families", "doc.doneEx": "done", "doc.doneSign": "signed", "doc.pending": "Pending", "doc.staffExTitle": "Confirmation · coaching staff", "doc.staffSignTitle": "Signatures · coaching staff", "doc.staffDoneEx": "confirmed", "doc.staffDoneSign": "signed", "doc.sanctionsTitle": "Sanctions check", "doc.allSigned": "The whole squad has signed the disciplinary code.", "doc.someUnsigned": "{n} player(s) haven't signed the disciplinary code.", "doc.sanctionsNote": "A disciplinary measure is only enforceable if the person knows and has accepted the rule. Before applying any sanction —especially an economic one— check here that the signature is on record.", "doc.doneExercise": "✓ Done", "doc.doneSigned": "✓ Signed",
     "tr.title": "Training mode", "tr.hint": "Plan the session by adding blocks from the drill library or free-text blocks.", "tr.date": "Date", "tr.time": "Time", "tr.objective": "Session objective", "tr.objectivePh": "E.g. defensive transitions", "tr.addFromLib": "+ Add from library", "tr.addCustom": "+ Free block", "tr.customName": "Block name", "tr.customDur": "Duration (min)", "tr.noBlocks": "You haven't added any blocks to this session yet.", "tr.total": "Total duration", "tr.materials": "Materials needed", "tr.remove": "Remove", "tr.up": "▲", "tr.down": "▼", "tr.sendBoard": "View on board", "tr.summary": "Shareable summary", "tr.copy": "Copy summary", "tr.copied": "✓ Copied", "tr.whatsapp": "Open WhatsApp", "tr.min": "min", "tr.close": "Close", "tr.newBlock": "New block",
     "st.title": "Team statistics", "st.availability": "Squad availability", "st.available": "Available", "st.doubt": "Doubtful", "st.injured": "Injured", "st.topAtt": "Highest training attendance", "st.lowMin": "Least game time (minutes)", "st.byPosition": "Squad by line", "st.gkPos": "Goalkeepers", "st.defPos": "Defenders", "st.midPos": "Midfielders", "st.fwdPos": "Forwards", "st.players": "players", "st.byRole": "Breakdown by position", "st.roleHint": "How the squad actually splits, position by position, with each one's share of the total.", "st.total": "Squad total", "st.player": "player",
     "m.title": "Coaching store", "m.aff": "Affiliate link", "m.note": "Affiliate links are clearly marked and adapted to your country. A small commission helps keep the app running; your price doesn't change.", "m.all": "All", "m.training": "Training", "m.gk": "Goalkeeping", "m.medical": "First aid", "m.tech": "Technology", "m.apparel": "Apparel", "m.view": "View deal", "m.from": "from",
@@ -369,7 +369,7 @@ const DICT = {
     "as.homeCta": "Take attendance",
     "as.homeSee": "View attendance",
     "as.homeAll": "Everyone present.",
-    "as.homeOf": "of",
+    "as.homeOf": "of", "as.summaryTitle": "Day summary",
   },
   fr: {
     "nav.inicio": "Accueil", "nav.jugadores": "Joueurs", "nav.alineacion": "Composition", "nav.pizarra": "Tableau", "nav.convocatoria": "Convocation", "nav.partido": "Mode match", "nav.usuarios": "Utilisateurs", "nav.coachai": "Coach AI", "nav.material": "Boutique", "nav.entrenamiento": "Entraînement", "nav.ejercicios": "Exercices", "nav.estadisticas": "Statistiques", "nav.calendario": "Calendrier", "nav.equipos": "Clubs", "nav.premium": "Premium", "nav.disciplina": "Discipline", "nav.normativa": "Règlement", "nav.familias": "Familles", "nav.equipo": "Club", "mt.toBoard": "Tableau", "p.myTeam": "Mon club et ma catégorie", "p.pickTeam": "Passer à une autre catégorie…", "p.changeTeam": "Changer de catégorie", "p.newTeam": "Nom de la nouvelle catégorie", "p.newTeamPh": "Ex. U16 B", "p.newTeamNote": "La vôtre n'est pas dans la liste ? Créez-la dans votre club :", "p.createTeam": "Créer", "p.deleteAcc": "Supprimer mon compte", "p.deleteWarn": "Votre fiche sera supprimée et vous perdrez l'accès. Irréversible. Les données de l'équipe ne sont pas supprimées.", "p.deleteGo": "Supprimer", "c.proTab": "Section PRO. Touchez pour voir.", "a.resetAgain": "Demander un nouveau lien", "a.resetExp": "Ce lien a expiré (il dure une heure). Demandez-en un autre.", "a.resetUsed": "Ce lien a déjà été utilisé. Si ce n'était pas vous, demandez-en un autre et changez-la sans tarder.", "a.resetServer": "Le serveur n'a pas pu enregistrer le mot de passe. Réessayez dans une minute.", "h.round": "Journée", "h.howTo": "Itinéraire", "h.today": "Aujourd'hui", "h.day": "Jour", "h.days": "Jours", "h.noDate": "Sans date", "h.noGoal": "Séance sans objectif", "h.noTrain": "Aucune séance planifiée.", "h.planTrain": "Planifier", "h.noAlerts": "Rien à signaler. Effectif au complet.", "h.aDoubt1": "incertain", "h.aDoubtN": "incertains", "h.aInj1": "blessé", "h.aInjN": "blessés", "h.aDisc": "incident(s) à valider", "h.aSign": "n'ont pas signé le règlement", "h.fMatch": "Le match est à {h}.", "h.fCalled": "Convocation publiée · {n} convoqués.", "h.fNoCall": "Pas encore de convocation.", "h.fKit": "Apporte une gourde et des protège-tibias.", "h.fNote": "En tant que famille, vous ne voyez que ce que l'entraîneur partage.", "nav.temporada": "Saison", "se.title": "Piliers de la saison", "se.hint": "Répartissez l'année entre les quatre piliers et notez l'objectif de chaque mois.", "se.months": "mois", "se.calendar": "Mois par mois", "se.goal": "Objectif de", "se.goalPh": "Objectif du mois. Ex. relance depuis le gardien", "se.saved": "Planification enregistrée et partagée avec l'équipe.", "se.share": "Partager avec l'équipe", "se.shareNote": "Conservée sur cet appareil pendant l'édition. Une fois partagée, tout le staff la voit.", "se.match": "match", "se.matches": "matchs", "se.noMatches": "Aucun match ce mois-ci", "se.genSession": "✦ Générer une séance d'1h avec l'IA", "se.generating": "Génération…", "se.sessionError": "Impossible de générer la séance. Réessayez.", "se.pickPillarFirst": "Cochez au moins un pilier pour pouvoir la générer.", "se.aiSessionTitle": "Séance proposée (IA)", "se.sendToTraining": "Envoyer vers Entraînement", "se.sentToTraining": "✓ Envoyée. Ouvrez-la dans Entraînement.", "se.trainThis": "Pour travailler cela", "se.seeLess": "Voir moins", "se.seeMore": "+{n} de plus", "se.planNotCloud": "Cette équipe n'est pas encore dans le cloud.", "se.planNoRole": "Votre rôle ne permet pas d'enregistrer la planification de cette équipe.", "se.planSaveFail": "Impossible d'enregistrer. Vérifiez votre connexion.", "mt.abp": "Coups de pied arrêtés", "mt.abpTap": "Touchez une combinaison pour l’ouvrir sur le grand tableau.", "mt.abpEmpty": "Aucun coup de pied arrêté enregistré. Créez-les sur le tableau, menu ABP.", "nav.analisis": "Analyse", "pm.title": "Analyse d'après-match", "pm.events": "événements enregistrés", "pm.empty": "Pas encore de feuille de match. Enregistrez le match en Mode match et revenez ici.", "pm.go": "Générer l'analyse", "pm.again": "Régénérer", "pm.thinking": "Analyse du match…", "pm.note": "Rédigée par Coach AI à partir de la feuille de match. Relisez-la avant de la partager.", "mt.subs": "Fenêtres de remplacement", "mt.subsTotal": "fenêtres au total", "mt.subsOne": "Fenêtre", "mt.subsUndo": "Retirer une fenêtre", "mt.subsOf": "sur", "mt.subsLeft": "Il reste {n} fenêtres.", "mt.subsNone": "Plus de fenêtres.", "tr.target": "Durée de la séance", "tr.left": "Il reste {n} min à remplir.", "tr.over": "{n} min de plus que prévu.", "tr.done": "Séance complète.", "tr.saveSession": "Enregistrer la séance",
@@ -557,7 +557,7 @@ const DICT = {
     "as.homeCta": "Faire l'appel",
     "as.homeSee": "Voir les présences",
     "as.homeAll": "Tous présents.",
-    "as.homeOf": "sur",
+    "as.homeOf": "sur", "as.summaryTitle": "Résumé du jour",
     "ex.title": "Bibliothèque d'exercices",
     "ex.hint": "Filtrez par catégorie, consultez la durée et le matériel, puis utilisez-le sur le tableau ou ajoutez-le à un entraînement.",
     "ex.all": "Tous",
@@ -577,7 +577,7 @@ const DICT = {
     "ex.materials": "Matériel",
     "ex.useBoard": "Utiliser sur le tableau",
     "ex.addTrain": "Ajouter à l'entraînement",
-    "ex.added": "✓ Ajouté", "ex.preview": "Aperçu", "ex.previewNote": "Aperçu du tableau · non modifiable", "ex.pickToPreview": "Choisissez un exercice pour le voir sur le tableau",
+    "ex.added": "✓ Ajouté", "ex.preview": "Aperçu", "ex.previewNote": "Aperçu du tableau · non modifiable", "ex.pickToPreview": "Choisissez un exercice pour le voir sur le tableau", "co.title": "Coach AI — assistant du staff technique", "co.thinking": "Coach AI réfléchit…", "co.placeholder": "Posez une question à Coach AI…", "co.send": "Envoyer", "co.sug1": "Qui devrait jouer plus de minutes la prochaine journée ?", "co.sug2": "Préparez-moi un entraînement de 75' sur les transitions", "co.sug3": "Analysez le match à partir des événements enregistrés", "co.error": "Impossible de se connecter à l'assistant. Réessayez.", "co.welcome1": "Bonjour, {name}. Je suis Coach AI ({club} · {team}). Votre rôle est {role}", "co.welcomeFree": " · forfait gratuit", "co.welcome2": ". Comment puis-je vous aider ?", "d.title": "Module de comportement", "d.desc1a": "Registre des incidents selon le ", "d.codeName": "Code disciplinaire", "d.desc1b": " de l'équipe. Les conséquences indiquées sont celles, littérales, du document signé par le club.", "d.note1": "Le délégué l'enregistre ; le staff technique le valide. Le document précise que chaque situation est évaluée individuellement par le staff technique et que les mesures ont toujours un caractère éducatif.", "d.newIncidentBtn": "+ Enregistrer un incident", "d.collectiveMeasureBtn": "⚖ Mesure collective", "d.viewNormBtn": "📑 Voir le règlement et les signatures", "d.exportCsvBtn": "⤓ Exporter en CSV", "d.unsignedWarn": "⚠ {n} joueur(s) n'ont pas encore signé le code disciplinaire. Aucune sanction financière ne doit être appliquée sans signature.", "d.newTitle": "Nouvel incident", "d.player": "Joueur", "d.pickPlayer": "Choisissez un joueur…", "d.date": "Date", "d.context": "Contexte", "d.normViolated": "Règle enfreinte", "d.minorFouls": "Fautes légères", "d.majorFouls": "Fautes graves", "d.cardLabel": "Carton", "d.economicSanction": "Sanction financière (facultatif)", "d.fault": "Faute", "d.consequenceLabel": "Conséquence selon le règlement :", "d.measuresApplied": "Mesures appliquées (les 8 du document)", "d.whatHappenedPh": "Ce qui s'est passé (faits, sans jugement de valeur)", "d.noEconomicWarnA": "⚠ Le code disciplinaire de l'équipe ", "d.noEconomicBold": "ne prévoit pas de sanctions financières", "d.noEconomicWarnB": " : toutes ses mesures sont éducatives. N'utilisez ce champ que si le club dispose d'un régime financier approuvé et signé.", "d.notSignedExtra": "De plus, ce joueur n'a pas signé le code.", "d.saveIncidentBtn": "Enregistrer l'incident", "d.teamTitle": "Mesure collective", "d.teamDesc": "Applique la même mesure à plusieurs joueurs à la fois. Un incident est créé par joueur, regroupés dans un lot que vous pouvez annuler entièrement ensuite.", "d.whoApplies": "À qui s'applique-t-elle ?", "d.amountPerPlayer": "Montant par joueur (facultatif)", "d.measuresApplied2": "Mesures appliquées", "d.teamReasonPh": "Motif de la mesure collective (ce qui s'est passé et pourquoi cela concerne tout le groupe)", "d.youthWarnA": "⚠ Vous allez appliquer ", "d.youthWarnB": " au total à {n} mineurs. Le code disciplinaire de l'équipe ne prévoit pas de sanctions financières, et une amende collective punit également ceux qui n'ont rien fait. Ne l'utilisez que si le club dispose d'un régime financier approuvé et signé par les familles.", "d.teamPotLine": "Cagnotte de l'équipe : {amount} € au total ({n} joueurs).", "d.applyToN": "Appliquer à {n} joueur(s)", "d.noMatchCriteria": "Aucun joueur ne correspond à ce critère.", "d.quickTitle": "Faire l'appel et enregistrement rapide", "d.presentN": "présents", "d.latesN": "retards", "d.absencesN": "absences", "d.markAllPresentBtn": "✓ Marquer tout le monde présent", "d.clearDayBtn": "Effacer la liste du jour", "d.faultsParen": "absence(s)", "d.latesParen": "retard(s)", "d.incidentsParen": "incident(s)", "d.unsignedTag": "⚠ non signé", "d.conductBtn": "⚠ Comportement", "d.otherFull": "Autre… (formulaire complet)", "d.autoNote": "Marquer Retard ou Absence crée automatiquement l'incident correspondant du code (L1 ponctualité, L2 communication des absences), en attente de validation par le staff technique. Justifiée ne génère pas d'incident.", "d.seeAsistNote": "Ceci concerne les retards et absences avec conséquence. Si vous voulez juste savoir qui est venu aujourd'hui et pourquoi — études, maladie, blessure — sans ouvrir d'incident, utilisez", "d.historyTitle": "Historique des incidents", "d.allPlayersOpt": "Tous les joueurs", "d.noIncidentsFilter": "Aucun incident avec ce filtre.", "d.pendingValidateTag": "En attente de validation", "d.paidTag": "payée", "d.condonedTag": "annulée", "d.pendingTag": "en attente", "d.markPaidBtn": "Marquer comme payée", "d.condoneBtn": "Annuler", "d.famInformedYes": "✓ Famille informée", "d.famInformedNo": "Marquer la famille comme informée", "d.batchTag": "Lot collectif", "d.validateBtn": "Valider", "d.annulBtn": "Annuler", "d.annulBatchBtn": "Annuler tout le lot", "d.filterAll": "Tous", "d.filterPend": "En attente de validation ({n})", "d.filterValidated": "Validés", "d.filterAnnulled": "Annulés", "d.summaryTitle": "Résumé par joueur", "d.noIncidentsReg": "Aucun incident enregistré.", "d.playerCol": "Joueur", "d.pendingCol": "En attente", "d.notSignedTitle": "N'a pas signé le code", "d.reiterationBtn": "G5 récidive", "d.reiterationTitle": "Récidive de fautes légères — le code la qualifie de faute grave G5", "d.reiterationDesc": "Récidive : {n} fautes légères accumulées.", "d.economicTitle": "Sanctions financières", "d.teamPotTitle": "Cagnotte de l'équipe", "d.pendingCollect": "en attente de paiement", "d.alreadyPaid": "déjà payé", "d.youthFooter": "Rappelez-vous que le code disciplinaire de cette équipe ne prévoit pas d'amendes : ses huit mesures sont éducatives. Si le club facture des montants, ils doivent figurer dans un règlement signé par les familles.", "d.autoLateDesc": "Retard enregistré lors de l'appel.", "d.autoAbsentDesc": "Absence non signalée enregistrée lors de l'appel.", "d.quickRegSuffix": " (enregistrement rapide).", "d.attOk": "Présent", "d.attLate": "Retard", "d.attAbsent": "Absence", "d.attJust": "Justifiée", "d.tgAll": "Tout l'effectif", "d.tgAbsent": "Étaient absents ce jour-là", "d.tgLate": "Sont arrivés en retard ce jour-là", "d.tgUnsigned": "N'ont pas signé le code", "d.tgManual": "Sélection manuelle", "d.gLeve": "légère", "d.gGrave": "grave", "doc.title": "Règlement du club", "doc.signLabel": "Signature", "doc.confirmLabel": "Confirmation", "doc.viewPdf": "Voir le PDF", "doc.download": "Télécharger", "doc.publishedOn": "Publié le {date} · version {v}", "doc.requiredSuffix": " · signature obligatoire", "doc.playersExTitle": "Exercices · joueurs", "doc.playersSignTitle": "Signatures · joueurs et familles", "doc.doneEx": "réalisés", "doc.doneSign": "signées", "doc.pending": "En attente", "doc.staffExTitle": "Confirmation · staff technique", "doc.staffSignTitle": "Signatures · staff technique", "doc.staffDoneEx": "confirmés", "doc.staffDoneSign": "signées", "doc.sanctionsTitle": "Contrôle des sanctions", "doc.allSigned": "Tout l'effectif a signé le code disciplinaire.", "doc.someUnsigned": "{n} joueur(s) n'ont pas signé le code disciplinaire.", "doc.sanctionsNote": "Une mesure disciplinaire n'est applicable que si la personne connaît et a accepté la règle. Avant d'appliquer une sanction — surtout financière — vérifiez ici que la signature est enregistrée.", "doc.doneExercise": "✓ Réalisé", "doc.doneSigned": "✓ Signé",
     "tr.title": "Mode entraînement",
     "tr.hint": "Planifiez la séance en ajoutant des blocs depuis la bibliothèque d'exercices ou des blocs libres.",
     "tr.date": "Date",
@@ -806,7 +806,7 @@ const DICT = {
     "as.homeCta": "Anwesenheit erfassen",
     "as.homeSee": "Anwesenheit ansehen",
     "as.homeAll": "Alle anwesend.",
-    "as.homeOf": "von",
+    "as.homeOf": "von", "as.summaryTitle": "Tageszusammenfassung",
     "ex.title": "Übungsbibliothek",
     "ex.hint": "Filtere nach Kategorie, sieh dir Dauer und Material an und nutze sie auf der Taktiktafel oder füge sie einem Training hinzu.",
     "ex.all": "Alle",
@@ -826,7 +826,7 @@ const DICT = {
     "ex.materials": "Material",
     "ex.useBoard": "Auf der Taktiktafel nutzen",
     "ex.addTrain": "Zum Training hinzufügen",
-    "ex.added": "✓ Hinzugefügt", "ex.preview": "Vorschau", "ex.previewNote": "Taktiktafel-Vorschau · nicht bearbeitbar", "ex.pickToPreview": "Wähle eine Übung, um sie auf der Taktiktafel zu sehen",
+    "ex.added": "✓ Hinzugefügt", "ex.preview": "Vorschau", "ex.previewNote": "Taktiktafel-Vorschau · nicht bearbeitbar", "ex.pickToPreview": "Wähle eine Übung, um sie auf der Taktiktafel zu sehen", "co.title": "Coach AI — Assistent für das Trainerteam", "co.thinking": "Coach AI denkt nach…", "co.placeholder": "Frag Coach AI…", "co.send": "Senden", "co.sug1": "Wer sollte am nächsten Spieltag mehr Minuten bekommen?", "co.sug2": "Bereite mir eine 75-minütige Einheit zu Umschaltmomenten vor", "co.sug3": "Analysiere das Spiel anhand der erfassten Ereignisse", "co.error": "Verbindung zum Assistenten fehlgeschlagen. Versuch es noch einmal.", "co.welcome1": "Hallo, {name}. Ich bin Coach AI ({club} · {team}). Deine Rolle ist {role}", "co.welcomeFree": " · Gratis-Plan", "co.welcome2": ". Womit kann ich helfen?", "d.title": "Verhaltensmodul", "d.desc1a": "Vorfallprotokoll gemäß dem ", "d.codeName": "Verhaltenskodex", "d.desc1b": " des Teams. Die angezeigten Konsequenzen entsprechen wörtlich dem vom Verein unterzeichneten Dokument.", "d.note1": "Der Betreuer erfasst es, das Trainerteam bestätigt es. Das Dokument legt fest, dass jede Situation individuell vom Trainerteam bewertet wird und die Maßnahmen stets erzieherischen Charakter haben.", "d.newIncidentBtn": "+ Vorfall erfassen", "d.collectiveMeasureBtn": "⚖ Kollektive Maßnahme", "d.viewNormBtn": "📑 Regelwerk und Unterschriften ansehen", "d.exportCsvBtn": "⤓ CSV exportieren", "d.unsignedWarn": "⚠ {n} Spieler haben den Verhaltenskodex noch nicht unterschrieben. Ohne Unterschrift darf keine finanzielle Sanktion verhängt werden.", "d.newTitle": "Neuer Vorfall", "d.player": "Spieler", "d.pickPlayer": "Spieler wählen…", "d.date": "Datum", "d.context": "Kontext", "d.normViolated": "Verstoß gegen", "d.minorFouls": "Leichte Verstöße", "d.majorFouls": "Schwere Verstöße", "d.cardLabel": "Karte", "d.economicSanction": "Finanzielle Sanktion (optional)", "d.fault": "Verstoß", "d.consequenceLabel": "Konsequenz laut Kodex:", "d.measuresApplied": "Angewendete Maßnahmen (alle 8 aus dem Dokument)", "d.whatHappenedPh": "Was ist passiert (Fakten, ohne Wertung)", "d.noEconomicWarnA": "⚠ Der Verhaltenskodex des Teams ", "d.noEconomicBold": "sieht keine finanziellen Sanktionen vor", "d.noEconomicWarnB": ": Alle seine Maßnahmen sind erzieherisch. Nutze dieses Feld nur, wenn der Verein eine genehmigte und unterschriebene Finanzregelung hat.", "d.notSignedExtra": "Außerdem hat dieser Spieler den Kodex nicht unterschrieben.", "d.saveIncidentBtn": "Vorfall speichern", "d.teamTitle": "Kollektive Maßnahme", "d.teamDesc": "Wendet dieselbe Maßnahme auf mehrere Spieler gleichzeitig an. Pro Spieler wird ein Vorfall angelegt, gebündelt in einem Stapel, den du später komplett widerrufen kannst.", "d.whoApplies": "Für wen gilt sie?", "d.amountPerPlayer": "Betrag pro Spieler (optional)", "d.measuresApplied2": "Angewendete Maßnahmen", "d.teamReasonPh": "Grund für die kollektive Maßnahme (was ist passiert und warum betrifft es die ganze Gruppe)", "d.youthWarnA": "⚠ Du wirst insgesamt ", "d.youthWarnB": " an {n} Minderjährige verhängen. Der Verhaltenskodex des Teams sieht keine finanziellen Sanktionen vor, und eine Kollektivstrafe bestraft gleichermaßen diejenigen, die nichts falsch gemacht haben. Nutze dies nur, wenn der Verein eine von den Familien genehmigte und unterschriebene Finanzregelung hat.", "d.teamPotLine": "Mannschaftskasse: {amount} € insgesamt ({n} Spieler).", "d.applyToN": "Auf {n} Spieler anwenden", "d.noMatchCriteria": "Kein Spieler erfüllt dieses Kriterium.", "d.quickTitle": "Anwesenheit erfassen und Schnellerfassung", "d.presentN": "anwesend", "d.latesN": "verspätet", "d.absencesN": "abwesend", "d.markAllPresentBtn": "✓ Alle als anwesend markieren", "d.clearDayBtn": "Tagesliste löschen", "d.faultsParen": "Fehltermin(e)", "d.latesParen": "Verspätung(en)", "d.incidentsParen": "Vorfall/Vorfälle", "d.unsignedTag": "⚠ nicht unterschrieben", "d.conductBtn": "⚠ Verhalten", "d.otherFull": "Andere… (vollständiges Formular)", "d.autoNote": "Die Markierung von Verspätung oder Fehlen erzeugt automatisch den entsprechenden Vorfall aus dem Kodex (L1 Pünktlichkeit, L2 Mitteilung von Abwesenheiten), zur Bestätigung durch das Trainerteam. Entschuldigt erzeugt keinen Vorfall.", "d.seeAsistNote": "Das ist für Verspätungen und Fehlzeiten mit Konsequenz. Wenn du nur wissen willst, wer heute da war und warum — Schule, Krankheit, Verletzung — ohne einen Vorfall zu eröffnen, nutze", "d.historyTitle": "Vorfallverlauf", "d.allPlayersOpt": "Alle Spieler", "d.noIncidentsFilter": "Keine Vorfälle mit diesem Filter.", "d.pendingValidateTag": "Bestätigung ausstehend", "d.paidTag": "bezahlt", "d.condonedTag": "erlassen", "d.pendingTag": "ausstehend", "d.markPaidBtn": "Als bezahlt markieren", "d.condoneBtn": "Erlassen", "d.famInformedYes": "✓ Familie informiert", "d.famInformedNo": "Familie als informiert markieren", "d.batchTag": "Sammelvorgang", "d.validateBtn": "Bestätigen", "d.annulBtn": "Widerrufen", "d.annulBatchBtn": "Gesamten Stapel widerrufen", "d.filterAll": "Alle", "d.filterPend": "Bestätigung ausstehend ({n})", "d.filterValidated": "Bestätigt", "d.filterAnnulled": "Widerrufen", "d.summaryTitle": "Zusammenfassung pro Spieler", "d.noIncidentsReg": "Keine Vorfälle erfasst.", "d.playerCol": "Spieler", "d.pendingCol": "Ausstehend", "d.notSignedTitle": "Hat den Kodex nicht unterschrieben", "d.reiterationBtn": "G5 Wiederholung", "d.reiterationTitle": "Wiederholte leichte Verstöße — der Kodex stuft dies als schweren Verstoß G5 ein", "d.reiterationDesc": "Wiederholung: {n} angesammelte leichte Verstöße.", "d.economicTitle": "Finanzielle Sanktionen", "d.teamPotTitle": "Mannschaftskasse", "d.pendingCollect": "noch einzuziehen", "d.alreadyPaid": "bereits bezahlt", "d.youthFooter": "Denk daran, dass der Verhaltenskodex dieses Teams keine Geldstrafen vorsieht: seine acht Maßnahmen sind erzieherisch. Wenn der Verein Beträge erhebt, müssen sie in einem von den Familien unterschriebenen Regelwerk festgelegt sein.", "d.autoLateDesc": "Verspätung bei der Anwesenheitserfassung protokolliert.", "d.autoAbsentDesc": "Nicht gemeldete Abwesenheit bei der Anwesenheitserfassung protokolliert.", "d.quickRegSuffix": " (Schnellerfassung).", "d.attOk": "Anwesend", "d.attLate": "Verspätet", "d.attAbsent": "Fehlt", "d.attJust": "Entschuldigt", "d.tgAll": "Der gesamte Kader", "d.tgAbsent": "Waren an dem Tag abwesend", "d.tgLate": "Kamen an dem Tag zu spät", "d.tgUnsigned": "Haben den Kodex nicht unterschrieben", "d.tgManual": "Manuelle Auswahl", "d.gLeve": "leicht", "d.gGrave": "schwer", "doc.title": "Vereinsregelwerk", "doc.signLabel": "Unterschrift", "doc.confirmLabel": "Bestätigung", "doc.viewPdf": "PDF ansehen", "doc.download": "Herunterladen", "doc.publishedOn": "Veröffentlicht am {date} · Version {v}", "doc.requiredSuffix": " · Unterschrift erforderlich", "doc.playersExTitle": "Übungen · Spieler", "doc.playersSignTitle": "Unterschriften · Spieler und Familien", "doc.doneEx": "erledigt", "doc.doneSign": "unterschrieben", "doc.pending": "Ausstehend", "doc.staffExTitle": "Bestätigung · Trainerteam", "doc.staffSignTitle": "Unterschriften · Trainerteam", "doc.staffDoneEx": "bestätigt", "doc.staffDoneSign": "unterschrieben", "doc.sanctionsTitle": "Sanktionskontrolle", "doc.allSigned": "Der gesamte Kader hat den Verhaltenskodex unterschrieben.", "doc.someUnsigned": "{n} Spieler haben den Verhaltenskodex nicht unterschrieben.", "doc.sanctionsNote": "Eine disziplinarische Maßnahme ist nur durchsetzbar, wenn die Person die Regel kennt und akzeptiert hat. Bevor du eine Sanktion anwendest — insbesondere eine finanzielle — prüfe hier, dass die Unterschrift erfasst ist.", "doc.doneExercise": "✓ Erledigt", "doc.doneSigned": "✓ Unterschrieben",
     "tr.title": "Trainingsmodus",
     "tr.hint": "Plane die Einheit, indem du Blöcke aus der Übungsbibliothek oder freie Blöcke hinzufügst.",
     "tr.date": "Datum",
@@ -1054,7 +1054,7 @@ const DICT = {
     "as.homeCta": "Fazer chamada",
     "as.homeSee": "Ver presenças",
     "as.homeAll": "Todos presentes.",
-    "as.homeOf": "de",
+    "as.homeOf": "de", "as.summaryTitle": "Resumo do dia",
     "ex.title": "Biblioteca de exercícios",
     "ex.hint": "Filtra por categoria, vê a duração e o material, e usa-o no quadro ou adiciona-o a um treino.",
     "ex.all": "Todos",
@@ -1074,7 +1074,7 @@ const DICT = {
     "ex.materials": "Material",
     "ex.useBoard": "Usar no quadro",
     "ex.addTrain": "Adicionar ao treino",
-    "ex.added": "✓ Adicionado", "ex.preview": "Pré-visualização", "ex.previewNote": "Pré-visualização do quadro · não editável", "ex.pickToPreview": "Escolhe um exercício para o ver no quadro",
+    "ex.added": "✓ Adicionado", "ex.preview": "Pré-visualização", "ex.previewNote": "Pré-visualização do quadro · não editável", "ex.pickToPreview": "Escolhe um exercício para o ver no quadro", "co.title": "Coach AI — assistente da equipa técnica", "co.thinking": "O Coach AI está a pensar…", "co.placeholder": "Pergunta ao Coach AI…", "co.send": "Enviar", "co.sug1": "Quem devia jogar mais minutos na próxima jornada?", "co.sug2": "Prepara-me um treino de 75' de transições", "co.sug3": "Analisa o jogo com os eventos registados", "co.error": "Não foi possível ligar ao assistente. Tenta outra vez.", "co.welcome1": "Olá, {name}. Sou o Coach AI ({club} · {team}). O teu perfil é {role}", "co.welcomeFree": " · plano grátis", "co.welcome2": ". Em que posso ajudar?", "d.title": "Módulo de comportamento", "d.desc1a": "Registo de incidências segundo o ", "d.codeName": "Código Disciplinar", "d.desc1b": " da equipa. As consequências apresentadas são as literais do documento assinado pelo clube.", "d.note1": "O delegado regista; a equipa técnica valida. O documento estabelece que cada situação é avaliada individualmente pela equipa técnica e que as medidas têm sempre caráter educativo.", "d.newIncidentBtn": "+ Registar incidência", "d.collectiveMeasureBtn": "⚖ Medida coletiva", "d.viewNormBtn": "📑 Ver regulamento e assinaturas", "d.exportCsvBtn": "⤓ Exportar CSV", "d.unsignedWarn": "⚠ {n} jogador(es) ainda não assinaram o código disciplinar. Sem assinatura não deve ser aplicada nenhuma sanção económica.", "d.newTitle": "Nova incidência", "d.player": "Jogador", "d.pickPlayer": "Escolhe o jogador…", "d.date": "Data", "d.context": "Contexto", "d.normViolated": "Norma infringida", "d.minorFouls": "Faltas leves", "d.majorFouls": "Faltas graves", "d.cardLabel": "Cartão", "d.economicSanction": "Sanção económica (opcional)", "d.fault": "Falta", "d.consequenceLabel": "Consequência segundo o código:", "d.measuresApplied": "Medidas aplicadas (as 8 do documento)", "d.whatHappenedPh": "O que aconteceu (factos, sem juízos de valor)", "d.noEconomicWarnA": "⚠ O código disciplinar da equipa ", "d.noEconomicBold": "não prevê sanções económicas", "d.noEconomicWarnB": ": todas as suas medidas são educativas. Usa este campo só se o clube tiver um regime económico aprovado e assinado.", "d.notSignedExtra": "Além disso, este jogador não assinou o código.", "d.saveIncidentBtn": "Guardar incidência", "d.teamTitle": "Medida coletiva", "d.teamDesc": "Aplica a mesma medida a vários jogadores de uma vez. Cria-se uma incidência por jogador, agrupadas num lote que podes anular por completo depois.", "d.whoApplies": "A quem se aplica?", "d.amountPerPlayer": "Valor por jogador (opcional)", "d.measuresApplied2": "Medidas aplicadas", "d.teamReasonPh": "Motivo da medida coletiva (o que aconteceu e porque afeta todo o grupo)", "d.youthWarnA": "⚠ Vais aplicar ", "d.youthWarnB": " no total a {n} menores. O código disciplinar da equipa não prevê sanções económicas e uma multa coletiva penaliza da mesma forma quem não fez nada. Usa isto só se o clube tiver um regime económico aprovado e assinado pelas famílias.", "d.teamPotLine": "Fundo da equipa: {amount} € no total ({n} jogadores).", "d.applyToN": "Aplicar a {n} jogador(es)", "d.noMatchCriteria": "Não há jogadores que cumpram esse critério.", "d.quickTitle": "Fazer chamada e registo rápido", "d.presentN": "presentes", "d.latesN": "atrasos", "d.absencesN": "faltas", "d.markAllPresentBtn": "✓ Marcar todos presentes", "d.clearDayBtn": "Limpar lista do dia", "d.faultsParen": "falta(s)", "d.latesParen": "atraso(s)", "d.incidentsParen": "incidência(s)", "d.unsignedTag": "⚠ sem assinar", "d.conductBtn": "⚠ Conduta", "d.otherFull": "Outra… (formulário completo)", "d.autoNote": "Marcar Atraso ou Falta cria automaticamente a incidência correspondente do código (L1 pontualidade, L2 comunicação de faltas), pendente de validação pela equipa técnica. Justificada não gera incidência.", "d.seeAsistNote": "Isto é para atrasos e faltas com consequência. Se só queres saber quem veio hoje e porquê — estudos, doença, lesão —, sem abrir nenhuma incidência, usa", "d.historyTitle": "Histórico de incidências", "d.allPlayersOpt": "Todos os jogadores", "d.noIncidentsFilter": "Não há incidências com este filtro.", "d.pendingValidateTag": "Pendente de validação", "d.paidTag": "paga", "d.condonedTag": "perdoada", "d.pendingTag": "pendente", "d.markPaidBtn": "Marcar como paga", "d.condoneBtn": "Perdoar", "d.famInformedYes": "✓ Família informada", "d.famInformedNo": "Marcar família informada", "d.batchTag": "Lote coletivo", "d.validateBtn": "Validar", "d.annulBtn": "Anular", "d.annulBatchBtn": "Anular lote inteiro", "d.filterAll": "Todas", "d.filterPend": "Pendentes de validação ({n})", "d.filterValidated": "Validadas", "d.filterAnnulled": "Anuladas", "d.summaryTitle": "Resumo por jogador", "d.noIncidentsReg": "Sem incidências registadas.", "d.playerCol": "Jogador", "d.pendingCol": "Pendente", "d.notSignedTitle": "Não assinou o código", "d.reiterationBtn": "G5 reincidência", "d.reiterationTitle": "Reincidência de faltas leves — o código tipifica-a como falta grave G5", "d.reiterationDesc": "Reincidência: {n} faltas leves acumuladas.", "d.economicTitle": "Sanções económicas", "d.teamPotTitle": "Fundo da equipa", "d.pendingCollect": "pendente de cobrança", "d.alreadyPaid": "já pago", "d.youthFooter": "Lembra-te que o código disciplinar desta equipa não prevê multas: as suas oito medidas são educativas. Se o clube cobrar valores, devem estar previstos num regulamento assinado pelas famílias.", "d.autoLateDesc": "Atraso registado ao fazer a chamada.", "d.autoAbsentDesc": "Falta não comunicada registada ao fazer a chamada.", "d.quickRegSuffix": " (registo rápido).", "d.attOk": "Esteve presente", "d.attLate": "Atraso", "d.attAbsent": "Falta", "d.attJust": "Justificada", "d.tgAll": "Todo o plantel", "d.tgAbsent": "Faltaram nesse dia", "d.tgLate": "Chegaram atrasados nesse dia", "d.tgUnsigned": "Não assinaram o código", "d.tgManual": "Seleção manual", "d.gLeve": "leve", "d.gGrave": "grave", "doc.title": "Regulamento do clube", "doc.signLabel": "Assinatura", "doc.confirmLabel": "Confirmação", "doc.viewPdf": "Ver PDF", "doc.download": "Descarregar", "doc.publishedOn": "Publicado a {date} · versão {v}", "doc.requiredSuffix": " · assinatura obrigatória", "doc.playersExTitle": "Exercícios · jogadores", "doc.playersSignTitle": "Assinaturas · jogadores e famílias", "doc.doneEx": "realizados", "doc.doneSign": "assinadas", "doc.pending": "Pendente", "doc.staffExTitle": "Confirmação · equipa técnica", "doc.staffSignTitle": "Assinaturas · equipa técnica", "doc.staffDoneEx": "confirmados", "doc.staffDoneSign": "assinadas", "doc.sanctionsTitle": "Controlo de sanções", "doc.allSigned": "Todo o plantel assinou o código disciplinar.", "doc.someUnsigned": "{n} jogador(es) sem assinar o código disciplinar.", "doc.sanctionsNote": "Uma medida disciplinar só é exigível se a pessoa conhecer e tiver aceitado a norma. Antes de aplicar qualquer sanção — e com mais razão se for económica — confirma aqui que a assinatura está registada.", "doc.doneExercise": "✓ Realizado", "doc.doneSigned": "✓ Assinado",
     "tr.title": "Modo treino",
     "tr.hint": "Planeia a sessão adicionando blocos da biblioteca de exercícios ou blocos livres.",
     "tr.date": "Data",
@@ -1479,22 +1479,66 @@ const PRO_FEATURES = [
 /* Fuente: "Código Disciplinario — Régimen interno y normas de funcionamiento".
    Las consecuencias son las literales del documento: todas de carácter educativo. */
 const NORMS = [
-  { code: "L1", g: "leve", t: "Puntualidad", c: "Advertencia verbal. La reiteración podrá implicar tareas individuales o pérdida de minutos de juego." },
-  { code: "L2", g: "leve", t: "Comunicación de ausencias", c: "Advertencia y valoración por parte del cuerpo técnico." },
-  { code: "L3", g: "leve", t: "Atención durante las explicaciones", c: "Repetir la explicación al grupo o breve reflexión con el entrenador." },
-  { code: "L4", g: "leve", t: "Uso correcto del material", c: "Recoger material al finalizar o colaborar en su preparación en la siguiente sesión." },
-  { code: "L5", g: "leve", t: "Orden y limpieza", c: "Colaborar en las tareas de recogida y organización del material." },
-  { code: "L6", g: "leve", t: "Uso de dispositivos electrónicos", c: "Advertencia." },
-  { code: "L7", g: "leve", t: "Imagen deportiva", c: "El jugador no comenzará la actividad hasta solucionar la situación." },
-  { code: "L8", g: "leve", t: "Tarjetas por protestar", c: "Valoración interna y conversación individual con el jugador." },
-  { code: "G1", g: "grave", t: "Faltas de respeto", c: "Pérdida de minutos, no convocatoria o suspensión temporal de la actividad." },
-  { code: "G2", g: "grave", t: "Conducta antideportiva", c: "No convocatoria y comunicación inmediata a la coordinación deportiva." },
-  { code: "G3", g: "grave", t: "Abandono del entrenamiento", c: "Valoración deportiva y comunicación con la familia." },
-  { code: "G4", g: "grave", t: "Daños intencionados", c: "Reparar o reponer lo dañado, además de la medida disciplinaria correspondiente." },
-  { code: "G5", g: "grave", t: "Incumplimiento reiterado de las normas", c: "Pérdida de minutos o no convocatoria." },
-  { code: "G6", g: "grave", t: "Actitud y compromiso", c: "Tratamiento individual con el jugador y su familia." },
+  { code: "L1", g: "leve",
+    t: { es: "Puntualidad", en: "Punctuality", fr: "Ponctualité", de: "Pünktlichkeit", pt: "Pontualidade" },
+    c: { es: "Advertencia verbal. La reiteración podrá implicar tareas individuales o pérdida de minutos de juego.", en: "Verbal warning. Repeated cases may lead to individual tasks or loss of playing time.", fr: "Avertissement verbal. La récidive peut entraîner des tâches individuelles ou une perte de temps de jeu.", de: "Mündliche Verwarnung. Wiederholung kann zu individuellen Aufgaben oder weniger Spielzeit führen.", pt: "Advertência verbal. A reincidência pode implicar tarefas individuais ou perda de minutos de jogo." } },
+  { code: "L2", g: "leve",
+    t: { es: "Comunicación de ausencias", en: "Notifying absences", fr: "Communication des absences", de: "Mitteilung von Abwesenheiten", pt: "Comunicação de faltas" },
+    c: { es: "Advertencia y valoración por parte del cuerpo técnico.", en: "Warning and assessment by the coaching staff.", fr: "Avertissement et évaluation par le staff technique.", de: "Verwarnung und Bewertung durch das Trainerteam.", pt: "Advertência e avaliação por parte da equipa técnica." } },
+  { code: "L3", g: "leve",
+    t: { es: "Atención durante las explicaciones", en: "Attention during explanations", fr: "Attention pendant les explications", de: "Aufmerksamkeit bei Erklärungen", pt: "Atenção durante as explicações" },
+    c: { es: "Repetir la explicación al grupo o breve reflexión con el entrenador.", en: "Repeating the explanation to the group or a short talk with the coach.", fr: "Répéter l'explication au groupe ou courte discussion avec l'entraîneur.", de: "Die Erklärung der Gruppe wiederholen oder kurzes Gespräch mit dem Trainer.", pt: "Repetir a explicação ao grupo ou breve conversa com o treinador." } },
+  { code: "L4", g: "leve",
+    t: { es: "Uso correcto del material", en: "Correct use of equipment", fr: "Bon usage du matériel", de: "Richtiger Umgang mit Material", pt: "Uso correto do material" },
+    c: { es: "Recoger material al finalizar o colaborar en su preparación en la siguiente sesión.", en: "Putting equipment away at the end, or helping set it up next session.", fr: "Ranger le matériel à la fin ou aider à sa préparation lors de la séance suivante.", de: "Material am Ende wegräumen oder beim Aufbau in der nächsten Einheit helfen.", pt: "Arrumar o material no final ou ajudar na sua preparação na sessão seguinte." } },
+  { code: "L5", g: "leve",
+    t: { es: "Orden y limpieza", en: "Tidiness", fr: "Ordre et propreté", de: "Ordnung und Sauberkeit", pt: "Ordem e limpeza" },
+    c: { es: "Colaborar en las tareas de recogida y organización del material.", en: "Helping collect and organise the equipment.", fr: "Aider aux tâches de rangement et d'organisation du matériel.", de: "Beim Einsammeln und Organisieren des Materials helfen.", pt: "Colaborar nas tarefas de recolha e organização do material." } },
+  { code: "L6", g: "leve",
+    t: { es: "Uso de dispositivos electrónicos", en: "Use of electronic devices", fr: "Utilisation d'appareils électroniques", de: "Nutzung elektronischer Geräte", pt: "Uso de dispositivos eletrónicos" },
+    c: { es: "Advertencia.", en: "Warning.", fr: "Avertissement.", de: "Verwarnung.", pt: "Advertência." } },
+  { code: "L7", g: "leve",
+    t: { es: "Imagen deportiva", en: "Sporting appearance", fr: "Tenue sportive", de: "Sportliche Erscheinung", pt: "Imagem desportiva" },
+    c: { es: "El jugador no comenzará la actividad hasta solucionar la situación.", en: "The player won't start the session until the situation is resolved.", fr: "Le joueur ne commencera pas l'activité tant que la situation n'est pas réglée.", de: "Der Spieler beginnt die Einheit erst, wenn die Situation gelöst ist.", pt: "O jogador não começa a atividade até resolver a situação." } },
+  { code: "L8", g: "leve",
+    t: { es: "Tarjetas por protestar", en: "Cards for dissent", fr: "Cartons pour contestation", de: "Karten wegen Reklamierens", pt: "Cartões por protesto" },
+    c: { es: "Valoración interna y conversación individual con el jugador.", en: "Internal review and individual talk with the player.", fr: "Évaluation interne et discussion individuelle avec le joueur.", de: "Interne Bewertung und Einzelgespräch mit dem Spieler.", pt: "Avaliação interna e conversa individual com o jogador." } },
+  { code: "G1", g: "grave",
+    t: { es: "Faltas de respeto", en: "Disrespectful behaviour", fr: "Manque de respect", de: "Respektlosigkeit", pt: "Faltas de respeito" },
+    c: { es: "Pérdida de minutos, no convocatoria o suspensión temporal de la actividad.", en: "Loss of playing time, not being called up, or temporary suspension from activity.", fr: "Perte de temps de jeu, non-convocation ou suspension temporaire de l'activité.", de: "Weniger Spielzeit, keine Nominierung oder vorübergehender Ausschluss von der Aktivität.", pt: "Perda de minutos, não convocação ou suspensão temporária da atividade." } },
+  { code: "G2", g: "grave",
+    t: { es: "Conducta antideportiva", en: "Unsporting conduct", fr: "Conduite antisportive", de: "Unsportliches Verhalten", pt: "Conduta antidesportiva" },
+    c: { es: "No convocatoria y comunicación inmediata a la coordinación deportiva.", en: "Not being called up and immediate notification to sports coordination.", fr: "Non-convocation et communication immédiate à la coordination sportive.", de: "Keine Nominierung und sofortige Meldung an die Sportkoordination.", pt: "Não convocação e comunicação imediata à coordenação desportiva." } },
+  { code: "G3", g: "grave",
+    t: { es: "Abandono del entrenamiento", en: "Leaving training", fr: "Abandon de l'entraînement", de: "Verlassen des Trainings", pt: "Abandono do treino" },
+    c: { es: "Valoración deportiva y comunicación con la familia.", en: "Sporting review and communication with the family.", fr: "Évaluation sportive et communication avec la famille.", de: "Sportliche Bewertung und Mitteilung an die Familie.", pt: "Avaliação desportiva e comunicação com a família." } },
+  { code: "G4", g: "grave",
+    t: { es: "Daños intencionados", en: "Intentional damage", fr: "Dommages intentionnels", de: "Absichtliche Beschädigung", pt: "Danos intencionais" },
+    c: { es: "Reparar o reponer lo dañado, además de la medida disciplinaria correspondiente.", en: "Repairing or replacing what was damaged, plus the corresponding disciplinary measure.", fr: "Réparer ou remplacer ce qui a été endommagé, en plus de la mesure disciplinaire correspondante.", de: "Reparatur oder Ersatz des Schadens, zusätzlich zur entsprechenden disziplinarischen Maßnahme.", pt: "Reparar ou repor o que foi danificado, além da medida disciplinar correspondente." } },
+  { code: "G5", g: "grave",
+    t: { es: "Incumplimiento reiterado de las normas", en: "Repeated rule-breaking", fr: "Non-respect répété des règles", de: "Wiederholte Regelverstöße", pt: "Incumprimento reiterado das normas" },
+    c: { es: "Pérdida de minutos o no convocatoria.", en: "Loss of playing time or not being called up.", fr: "Perte de temps de jeu ou non-convocation.", de: "Weniger Spielzeit oder keine Nominierung.", pt: "Perda de minutos ou não convocação." } },
+  { code: "G6", g: "grave",
+    t: { es: "Actitud y compromiso", en: "Attitude and commitment", fr: "Attitude et engagement", de: "Einstellung und Engagement", pt: "Atitude e compromisso" },
+    c: { es: "Tratamiento individual con el jugador y su familia.", en: "Individual approach with the player and their family.", fr: "Suivi individuel avec le joueur et sa famille.", de: "Individuelles Gespräch mit dem Spieler und seiner Familie.", pt: "Acompanhamento individual com o jogador e a sua família." } },
 ];
+/* Etiqueta/consecuencia de una norma en el idioma activo. El código y la
+   gravedad (leve/grave) son el identificador real -se guardan y se comparan
+   tal cual-, así que solo el texto mostrado cambia con el idioma. */
+const normT = (n, lang = "es") => n?.t?.[lang] || n?.t?.es || "";
+const normC = (n, lang = "es") => n?.c?.[lang] || n?.c?.es || "";
 const MEASURES = ["Advertencia verbal", "Conversación individual", "Comunicación con la familia", "Tareas de colaboración", "Pérdida de minutos", "No convocatoria", "Suspensión temporal", "Comunicación a coordinación"];
+const MEASURE_I18N = {
+  "Advertencia verbal": { en: "Verbal warning", fr: "Avertissement verbal", de: "Mündliche Verwarnung", pt: "Advertência verbal" },
+  "Conversación individual": { en: "Individual talk", fr: "Discussion individuelle", de: "Einzelgespräch", pt: "Conversa individual" },
+  "Comunicación con la familia": { en: "Notify the family", fr: "Communication avec la famille", de: "Mitteilung an die Familie", pt: "Comunicação com a família" },
+  "Tareas de colaboración": { en: "Collaboration tasks", fr: "Tâches de collaboration", de: "Mithilfeaufgaben", pt: "Tarefas de colaboração" },
+  "Pérdida de minutos": { en: "Loss of playing time", fr: "Perte de temps de jeu", de: "Weniger Spielzeit", pt: "Perda de minutos" },
+  "No convocatoria": { en: "Not called up", fr: "Non-convocation", de: "Keine Nominierung", pt: "Não convocação" },
+  "Suspensión temporal": { en: "Temporary suspension", fr: "Suspension temporaire", de: "Vorübergehender Ausschluss", pt: "Suspensão temporária" },
+  "Comunicación a coordinación": { en: "Notify coordination", fr: "Communication à la coordination", de: "Meldung an die Koordination", pt: "Comunicação à coordenação" },
+};
+const measureLabel = (m, lang = "es") => (lang === "es" ? m : MEASURE_I18N[m]?.[lang] || m);
 const CARDS = [
   { k: "none", label: "Sin tarjeta", short: "—", color: "#8FA096" },
   { k: "yellow", label: "Amonestación interna (amarilla)", short: "🟨", color: C.warn },
@@ -1502,7 +1546,22 @@ const CARDS = [
   { k: "fedYellow", label: "Amarilla federativa (acta)", short: "🟡", color: "#C9A54A" },
   { k: "fedRed", label: "Roja federativa (acta)", short: "🔴", color: "#B03038" },
 ];
+const CARD_I18N = {
+  none: { en: "No card", fr: "Pas de carton", de: "Keine Karte", pt: "Sem cartão" },
+  yellow: { en: "Internal caution (yellow)", fr: "Avertissement interne (jaune)", de: "Interne Verwarnung (Gelb)", pt: "Advertência interna (amarelo)" },
+  red: { en: "Internal caution (red)", fr: "Avertissement interne (rouge)", de: "Interne Verwarnung (Rot)", pt: "Advertência interna (vermelho)" },
+  fedYellow: { en: "Federation yellow (match report)", fr: "Jaune fédéral (feuille de match)", de: "Verbandsgelb (Spielbericht)", pt: "Amarelo federativo (ata)" },
+  fedRed: { en: "Federation red (match report)", fr: "Rouge fédéral (feuille de match)", de: "Verbandsrot (Spielbericht)", pt: "Vermelho federativo (ata)" },
+};
+const cardLabel = (k, lang = "es") => (lang === "es" ? (cardOf(k).label) : CARD_I18N[k]?.[lang] || cardOf(k).label);
 const CONTEXTS = ["Entrenamiento", "Partido", "Convivencia/Viaje", "Otro"];
+const CONTEXT_I18N = {
+  Entrenamiento: { en: "Training", fr: "Entraînement", de: "Training", pt: "Treino" },
+  Partido: { en: "Match", fr: "Match", de: "Spiel", pt: "Jogo" },
+  "Convivencia/Viaje": { en: "Team trip", fr: "Sortie/Voyage", de: "Ausflug/Reise", pt: "Convívio/Viagem" },
+  Otro: { en: "Other", fr: "Autre", de: "Sonstiges", pt: "Outro" },
+};
+const contextLabel = (v, lang = "es") => (lang === "es" ? v : CONTEXT_I18N[v]?.[lang] || v);
 const cardOf = (k) => CARDS.find((c) => c.k === k) || CARDS[0];
 const normOf = (code) => NORMS.find((n) => n.code === code) || NORMS[0];
 
@@ -6893,9 +6952,12 @@ ACTA:\n${evTxt}`;
   const chatEnd = useRef(null);
   useEffect(() => { chatEnd.current?.scrollIntoView({ behavior: "smooth" }); }, [msgs, loading]);
   useEffect(() => {
-    if (session && msgs.length === 0)
-      setMsgs([{ role: "assistant", content: `Hola, ${session.name}. Soy Coach AI (${session.club} · ${session.team.name}). Tu rol es ${role.label.toLowerCase()}${session.plan === "free" ? " · plan gratuito" : ""}. ¿En qué te ayudo?` }]);
-  }, [session]); // eslint-disable-line
+    /* Solo mientras la conversación siga siendo el saludo inicial: si el
+       usuario ya ha escrito algo, un cambio de idioma no debe reescribirle
+       el historial por debajo. */
+    if (session && (msgs.length === 0 || (msgs.length === 1 && msgs[0].role === "assistant")))
+      setMsgs([{ role: "assistant", content: t("co.welcome1").replace("{name}", session.name).replace("{club}", session.club).replace("{team}", session.team.name).replace("{role}", role.label.toLowerCase()) + (session.plan === "free" ? t("co.welcomeFree") : "") + t("co.welcome2") }]);
+  }, [session, lang]); // eslint-disable-line
 
   /* textoForzado: para preguntas que dispara la propia app desde otra
      pantalla (p.ej. "Preguntar a la IA" en Alineación) sin pasar por la
@@ -6939,7 +7001,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
       const text = (data.content || []).filter((b) => b.type === "text").map((b) => b.text).join("\n") || "…";
       setMsgs((m) => [...m, { role: "assistant", content: text }]);
     } catch {
-      setMsgs((m) => [...m, { role: "assistant", content: "No he podido conectar con el asistente. Inténtalo de nuevo." }]);
+      setMsgs((m) => [...m, { role: "assistant", content: t("co.error") }]);
     }
     setLoading(false);
   };
@@ -8280,10 +8342,10 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
 
   /* --- pasar lista: asistencia por sesión + incidencias automáticas --- */
   const ATT_STATES = [
-    { k: "ok", label: "Asistió", icon: "✓", color: "#3E7A4E" },
-    { k: "late", label: "Retraso", icon: "⏰", color: C.warn },
-    { k: "absent", label: "Falta", icon: "✕", color: "#E5484D" },
-    { k: "just", label: "Justificada", icon: "📝", color: "#36454F" },
+    { k: "ok", label: t("d.attOk"), icon: "✓", color: "#3E7A4E" },
+    { k: "late", label: t("d.attLate"), icon: "⏰", color: C.warn },
+    { k: "absent", label: t("d.attAbsent"), icon: "✕", color: "#E5484D" },
+    { k: "just", label: t("d.attJust"), icon: "📝", color: "#36454F" },
   ];
   const QUICK_NORMS = ["L1", "L2", "L3", "L4", "L6", "G1", "G2"];
   const AUTO_NORM = { late: "L1", absent: "L2" };
@@ -8303,7 +8365,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
       const rest = xs.filter((i) => !(i.auto && i.pid === pid && i.date === attDate && i.ctx === attCtx));
       if (!norm) return rest;
       const row = newIncident(pid, norm,
-        val === "late" ? "Retraso registrado al pasar lista." : "Ausencia sin comunicar registrada al pasar lista.",
+        val === "late" ? t("d.autoLateDesc") : t("d.autoAbsentDesc"),
         { auto: true });
       airResCreate("incidencias", row);
       return [row, ...rest];
@@ -8311,11 +8373,11 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
   };
   /* --- medidas colectivas (lotes), reincidencia y bote --- */
   const TARGETS = [
-    { k: "all", label: "Toda la plantilla" },
-    { k: "absent", label: "Han faltado ese día" },
-    { k: "late", label: "Han llegado tarde ese día" },
-    { k: "unsigned", label: "No han firmado el código" },
-    { k: "manual", label: "Selección manual" },
+    { k: "all", label: t("d.tgAll") },
+    { k: "absent", label: t("d.tgAbsent") },
+    { k: "late", label: t("d.tgLate") },
+    { k: "unsigned", label: t("d.tgUnsigned") },
+    { k: "manual", label: t("d.tgManual") },
   ];
   const targetPlayers = (k, sel = [], dayKey = attKey) => {
     const day = attend[dayKey] || {};
@@ -8355,8 +8417,8 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
     const esc = (v) => String(v ?? "").replace(/[;\r\n]/g, " ").trim();
     const lines = [...incidents]
       .sort((a, b) => (a.date < b.date ? -1 : 1))
-      .map((i) => [i.date, i.ctx, pName(i.pid), `${i.norm} ${normOf(i.norm).t}`, normOf(i.norm).g,
-        cardOf(i.card).label, (i.measure || []).join(" / "), Number(i.amount) || 0, i.pay, i.state, i.batch || "", i.desc]
+      .map((i) => [i.date, contextLabel(i.ctx, lang), pName(i.pid), `${i.norm} ${normT(normOf(i.norm), lang)}`, normOf(i.norm).g,
+        cardLabel(i.card, lang), (i.measure || []).map((m) => measureLabel(m, lang)).join(" / "), Number(i.amount) || 0, i.pay, i.state, i.batch || "", i.desc]
         .map(esc).join(";"));
     const blob = new Blob(["\ufeff" + [head, ...lines].join("\r\n")], { type: "text/csv;charset=utf-8" });
     const a = document.createElement("a");
@@ -8367,7 +8429,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
   };
 
   const quickIncident = (pid, norm) => {
-    const row = newIncident(pid, norm, normOf(norm).t + " (registro rápido).");
+    const row = newIncident(pid, norm, normT(normOf(norm), lang) + t("d.quickRegSuffix"));
     setIncidents((xs) => [row, ...xs]);
     airResCreate("incidencias", row);
     setQuickPid(null);
@@ -8413,127 +8475,124 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
       })
       .filter((x) => x.n > 0)
       .sort((a, b) => b.n - a.n);
-    const chips = [["all", "Todas"], ["pend", `Pendientes de validar (${pendingValid})`], ["validada", "Validadas"], ["anulada", "Anuladas"]];
+    const chips = [["all", t("d.filterAll")], ["pend", t("d.filterPend").replace("{n}", pendingValid)], ["validada", t("d.filterValidated")], ["anulada", t("d.filterAnnulled")]];
     const F = discForm;
     const selNorm = F ? normOf(F.norm) : null;
 
     return (
       <div className="space-y-4">
-        <Card title="Módulo de comportamiento">
+        <Card title={t("d.title")}>
           <div className="text-sm" style={{ color: C.chalk }}>
-            Registro de incidencias según el <strong>Código Disciplinario</strong> del equipo. Las consecuencias que se ofrecen son las
-            literales del documento firmado por el club.
+            {t("d.desc1a")}<strong>{t("d.codeName")}</strong>{t("d.desc1b")}
           </div>
           <div className="text-[11px] mt-2 leading-relaxed" style={{ color: C.dim }}>
-            El delegado registra; el cuerpo técnico valida. El documento establece que cada situación se valora de forma individual por el
-            cuerpo técnico y que las medidas tienen siempre carácter educativo.
+            {t("d.note1")}
           </div>
           <div className="flex flex-wrap gap-2 mt-3">
             {canEdit && (
               <button onClick={() => setDiscForm({ pid: "", date: hoyISO(), ctx: "Entrenamiento", norm: "L1", card: "none", measure: [], amount: 0, desc: "" })}
                 className="font-display uppercase tracking-wide text-sm px-4 py-2 rounded-lg font-semibold" style={{ background: AC, color: C.sobre }}>
-                + Registrar incidencia
+                {t("d.newIncidentBtn")}
               </button>
             )}
             {canEdit && (
               <button onClick={() => (isPro ? setTeamForm({ target: "all", sel: [], date: attDate, ctx: attCtx, norm: "G5", measure: ["Tareas de colaboración"], amount: 0, desc: "" }) : proAlert("discipline"))}
                 className="font-display uppercase tracking-wide text-sm px-4 py-2 rounded-lg border" style={{ borderColor: AC, color: AC }}>
-                ⚖ Medida colectiva
+                {t("d.collectiveMeasureBtn")}
               </button>
             )}
             <button onClick={() => setTab("normativa")} className="text-sm px-4 py-2 rounded-lg border font-display uppercase tracking-wide" style={{ borderColor: C.line, color: C.chalk }}>
-              📑 Ver normativa y firmas
+              {t("d.viewNormBtn")}
             </button>
             {incidents.length > 0 && (
               <button onClick={() => (isPro ? exportDiscCsv() : proAlert("discipline"))} className="text-sm px-4 py-2 rounded-lg border font-display uppercase tracking-wide" style={{ borderColor: C.line, color: C.dim }}>
-                ⤓ Exportar CSV
+                {t("d.exportCsvBtn")}
               </button>
             )}
           </div>
           {pendingSign > 0 && (
             <div className="mt-3 text-xs rounded-lg border px-3 py-2" style={{ borderColor: C.warn, color: C.warn }}>
-              ⚠ {pendingSign} jugador(es) todavía no han firmado el código disciplinario. Sin firma no debe aplicarse ninguna sanción económica.
+              {t("d.unsignedWarn").replace("{n}", pendingSign)}
             </div>
           )}
         </Card>
 
         {F && (
-          <Card title="Nueva incidencia">
+          <Card title={t("d.newTitle")}>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
               <label className="space-y-1">
-                <div style={{ color: C.dim }}>Jugador</div>
+                <div style={{ color: C.dim }}>{t("d.player")}</div>
                 <select value={F.pid} onChange={(e) => setDiscForm({ ...F, pid: e.target.value })} className="w-full px-3 py-2 rounded-lg border bg-transparent" style={{ borderColor: C.line, color: C.chalk }}>
-                  <option value="" style={{ background: C.panel }}>Elige jugador…</option>
+                  <option value="" style={{ background: C.panel }}>{t("d.pickPlayer")}</option>
                   {players.map((p) => (<option key={p.id} value={p.id} style={{ background: C.panel }}>#{p.d} {p.n}</option>))}
                 </select>
               </label>
               <label className="space-y-1">
-                <div style={{ color: C.dim }}>Fecha</div>
+                <div style={{ color: C.dim }}>{t("d.date")}</div>
                 <input type="date" value={F.date} onChange={(e) => setDiscForm({ ...F, date: e.target.value })} className="w-full px-3 py-2 rounded-lg border bg-transparent" style={{ borderColor: C.line, color: C.chalk }} />
               </label>
               <label className="space-y-1">
-                <div style={{ color: C.dim }}>Contexto</div>
+                <div style={{ color: C.dim }}>{t("d.context")}</div>
                 <select value={F.ctx} onChange={(e) => setDiscForm({ ...F, ctx: e.target.value })} className="w-full px-3 py-2 rounded-lg border bg-transparent" style={{ borderColor: C.line, color: C.chalk }}>
-                  {CONTEXTS.map((c) => (<option key={c} value={c} style={{ background: C.panel }}>{c}</option>))}
+                  {CONTEXTS.map((c) => (<option key={c} value={c} style={{ background: C.panel }}>{contextLabel(c, lang)}</option>))}
                 </select>
               </label>
               <label className="space-y-1">
-                <div style={{ color: C.dim }}>Norma infringida</div>
+                <div style={{ color: C.dim }}>{t("d.normViolated")}</div>
                 <select value={F.norm} onChange={(e) => setDiscForm({ ...F, norm: e.target.value })} className="w-full px-3 py-2 rounded-lg border bg-transparent" style={{ borderColor: C.line, color: C.chalk }}>
-                  <optgroup label="Faltas leves" style={{ background: C.panel }}>
-                    {NORMS.filter((n) => n.g === "leve").map((n) => (<option key={n.code} value={n.code} style={{ background: C.panel }}>{n.code} · {n.t}</option>))}
+                  <optgroup label={t("d.minorFouls")} style={{ background: C.panel }}>
+                    {NORMS.filter((n) => n.g === "leve").map((n) => (<option key={n.code} value={n.code} style={{ background: C.panel }}>{n.code} · {normT(n, lang)}</option>))}
                   </optgroup>
-                  <optgroup label="Faltas graves" style={{ background: C.panel }}>
-                    {NORMS.filter((n) => n.g === "grave").map((n) => (<option key={n.code} value={n.code} style={{ background: C.panel }}>{n.code} · {n.t}</option>))}
+                  <optgroup label={t("d.majorFouls")} style={{ background: C.panel }}>
+                    {NORMS.filter((n) => n.g === "grave").map((n) => (<option key={n.code} value={n.code} style={{ background: C.panel }}>{n.code} · {normT(n, lang)}</option>))}
                   </optgroup>
                 </select>
               </label>
               <label className="space-y-1">
-                <div style={{ color: C.dim }}>Tarjeta</div>
+                <div style={{ color: C.dim }}>{t("d.cardLabel")}</div>
                 <select value={F.card} onChange={(e) => setDiscForm({ ...F, card: e.target.value })} className="w-full px-3 py-2 rounded-lg border bg-transparent" style={{ borderColor: C.line, color: C.chalk }}>
-                  {CARDS.map((c) => (<option key={c.k} value={c.k} style={{ background: C.panel }}>{c.label}</option>))}
+                  {CARDS.map((c) => (<option key={c.k} value={c.k} style={{ background: C.panel }}>{cardLabel(c.k, lang)}</option>))}
                 </select>
               </label>
               <label className="space-y-1">
-                <div style={{ color: C.dim }}>Sanción económica (opcional)</div>
+                <div style={{ color: C.dim }}>{t("d.economicSanction")}</div>
                 <input type="number" min="0" step="1" value={F.amount} onChange={(e) => setDiscForm({ ...F, amount: e.target.value })} className="w-full px-3 py-2 rounded-lg border bg-transparent" style={{ borderColor: C.line, color: C.chalk }} />
               </label>
             </div>
 
             {selNorm && (
               <div className="mt-3 rounded-lg border px-3 py-2 text-xs" style={{ borderColor: C.line, color: C.dim }}>
-                <span className="font-display uppercase tracking-wide" style={{ color: selNorm.g === "grave" ? C.red : C.warn }}>Falta {selNorm.g}</span> · Consecuencia según el código: {selNorm.c}
+                <span className="font-display uppercase tracking-wide" style={{ color: selNorm.g === "grave" ? C.red : C.warn }}>{t("d.fault")} {t(selNorm.g === "grave" ? "d.gGrave" : "d.gLeve")}</span> · {t("d.consequenceLabel")} {normC(selNorm, lang)}
               </div>
             )}
 
             <div className="mt-3">
-              <div className="text-xs mb-2" style={{ color: C.dim }}>Medidas aplicadas (las 8 del documento)</div>
+              <div className="text-xs mb-2" style={{ color: C.dim }}>{t("d.measuresApplied")}</div>
               <div className="flex flex-wrap gap-2">
                 {MEASURES.map((m) => {
                   const on = F.measure.includes(m);
                   return (
                     <button key={m} onClick={() => setDiscForm({ ...F, measure: on ? F.measure.filter((x) => x !== m) : [...F.measure, m] })}
                       className="text-xs px-3 py-1.5 rounded-full border" style={{ borderColor: on ? AC : C.line, color: on ? AC : C.dim, background: on ? "rgba(255,255,255,0.04)" : "transparent" }}>
-                      {m}
+                      {measureLabel(m, lang)}
                     </button>
                   );
                 })}
               </div>
             </div>
 
-            <textarea value={F.desc} onChange={(e) => setDiscForm({ ...F, desc: e.target.value })} rows={2} placeholder="Qué ocurrió (hechos, sin juicios de valor)"
+            <textarea value={F.desc} onChange={(e) => setDiscForm({ ...F, desc: e.target.value })} rows={2} placeholder={t("d.whatHappenedPh")}
               className="mt-3 w-full px-3 py-2 rounded-lg border bg-transparent text-sm" style={{ borderColor: C.line, color: C.chalk }} />
 
             {Number(F.amount) > 0 && (
               <div className="mt-3 text-xs rounded-lg border px-3 py-2" style={{ borderColor: C.red, color: C.red }}>
-                ⚠ El código disciplinario del equipo <strong>no contempla sanciones económicas</strong>: todas sus medidas son educativas.
-                Usa este campo solo si el club tiene aprobado y firmado un régimen económico.
-                {F.pid && !hasSigned(Number(F.pid), "d1") && <> Además, este jugador <strong>no ha firmado</strong> el código.</>}
+                {t("d.noEconomicWarnA")}<strong>{t("d.noEconomicBold")}</strong>{t("d.noEconomicWarnB")}
+                {F.pid && !hasSigned(Number(F.pid), "d1") && <> <strong>{t("d.notSignedExtra")}</strong></>}
               </div>
             )}
 
             <div className="flex gap-2 mt-4">
-              <button onClick={saveIncident} disabled={!F.pid} className="font-display uppercase tracking-wide text-sm px-4 py-2 rounded-lg font-semibold disabled:opacity-40" style={{ background: AC, color: C.sobre }}>Guardar incidencia</button>
+              <button onClick={saveIncident} disabled={!F.pid} className="font-display uppercase tracking-wide text-sm px-4 py-2 rounded-lg font-semibold disabled:opacity-40" style={{ background: AC, color: C.sobre }}>{t("d.saveIncidentBtn")}</button>
               <button onClick={() => setDiscForm(null)} className="text-sm px-4 py-2 rounded-lg border" style={{ borderColor: C.line, color: C.dim }}>{t("c.cancel")}</button>
             </div>
           </Card>
@@ -8544,14 +8603,13 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
           const targets = targetPlayers(TF.target, TF.sel, `${TF.date}|${TF.ctx}`);
           const n = normOf(TF.norm);
           return (
-            <Card title="Medida colectiva">
+            <Card title={t("d.teamTitle")}>
               <div className="text-sm" style={{ color: C.chalk }}>
-                Aplica la misma medida a varios jugadores de una vez. Se crea una incidencia por jugador, agrupadas en un lote que puedes
-                anular entero después.
+                {t("d.teamDesc")}
               </div>
 
               <div className="mt-3">
-                <div className="text-xs mb-2" style={{ color: C.dim }}>¿A quién se aplica?</div>
+                <div className="text-xs mb-2" style={{ color: C.dim }}>{t("d.whoApplies")}</div>
                 <div className="flex flex-wrap gap-2">
                   {TARGETS.map((x) => (
                     <button key={x.k} onClick={() => setTeamForm({ ...TF, target: x.k })}
@@ -8575,62 +8633,60 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm mt-3">
                 <label className="space-y-1">
-                  <div style={{ color: C.dim }}>Fecha</div>
+                  <div style={{ color: C.dim }}>{t("d.date")}</div>
                   <input type="date" value={TF.date} onChange={(e) => setTeamForm({ ...TF, date: e.target.value })} className="w-full px-3 py-2 rounded-lg border bg-transparent" style={{ borderColor: C.line, color: C.chalk }} />
                 </label>
                 <label className="space-y-1">
-                  <div style={{ color: C.dim }}>Contexto</div>
+                  <div style={{ color: C.dim }}>{t("d.context")}</div>
                   <select value={TF.ctx} onChange={(e) => setTeamForm({ ...TF, ctx: e.target.value })} className="w-full px-3 py-2 rounded-lg border bg-transparent" style={{ borderColor: C.line, color: C.chalk }}>
-                    {CONTEXTS.map((c) => (<option key={c} value={c} style={{ background: C.panel }}>{c}</option>))}
+                    {CONTEXTS.map((c) => (<option key={c} value={c} style={{ background: C.panel }}>{contextLabel(c, lang)}</option>))}
                   </select>
                 </label>
                 <label className="space-y-1">
-                  <div style={{ color: C.dim }}>Norma</div>
+                  <div style={{ color: C.dim }}>{t("d.normViolated")}</div>
                   <select value={TF.norm} onChange={(e) => setTeamForm({ ...TF, norm: e.target.value })} className="w-full px-3 py-2 rounded-lg border bg-transparent" style={{ borderColor: C.line, color: C.chalk }}>
-                    <optgroup label="Faltas leves" style={{ background: C.panel }}>
-                      {NORMS.filter((x) => x.g === "leve").map((x) => (<option key={x.code} value={x.code} style={{ background: C.panel }}>{x.code} · {x.t}</option>))}
+                    <optgroup label={t("d.minorFouls")} style={{ background: C.panel }}>
+                      {NORMS.filter((x) => x.g === "leve").map((x) => (<option key={x.code} value={x.code} style={{ background: C.panel }}>{x.code} · {normT(x, lang)}</option>))}
                     </optgroup>
-                    <optgroup label="Faltas graves" style={{ background: C.panel }}>
-                      {NORMS.filter((x) => x.g === "grave").map((x) => (<option key={x.code} value={x.code} style={{ background: C.panel }}>{x.code} · {x.t}</option>))}
+                    <optgroup label={t("d.majorFouls")} style={{ background: C.panel }}>
+                      {NORMS.filter((x) => x.g === "grave").map((x) => (<option key={x.code} value={x.code} style={{ background: C.panel }}>{x.code} · {normT(x, lang)}</option>))}
                     </optgroup>
                   </select>
                 </label>
                 <label className="space-y-1">
-                  <div style={{ color: C.dim }}>Importe por jugador (opcional)</div>
+                  <div style={{ color: C.dim }}>{t("d.amountPerPlayer")}</div>
                   <input type="number" min="0" step="1" value={TF.amount} onChange={(e) => setTeamForm({ ...TF, amount: e.target.value })} className="w-full px-3 py-2 rounded-lg border bg-transparent" style={{ borderColor: C.line, color: C.chalk }} />
                 </label>
               </div>
 
               <div className="mt-3 rounded-lg border px-3 py-2 text-xs" style={{ borderColor: C.line, color: C.dim }}>
-                <span className="font-display uppercase tracking-wide" style={{ color: n.g === "grave" ? C.red : C.warn }}>Falta {n.g}</span> · {n.c}
+                <span className="font-display uppercase tracking-wide" style={{ color: n.g === "grave" ? C.red : C.warn }}>{t("d.fault")} {t(n.g === "grave" ? "d.gGrave" : "d.gLeve")}</span> · {normC(n, lang)}
               </div>
 
               <div className="mt-3">
-                <div className="text-xs mb-2" style={{ color: C.dim }}>Medidas aplicadas</div>
+                <div className="text-xs mb-2" style={{ color: C.dim }}>{t("d.measuresApplied2")}</div>
                 <div className="flex flex-wrap gap-2">
                   {MEASURES.map((m) => {
                     const on = TF.measure.includes(m);
                     return (
                       <button key={m} onClick={() => setTeamForm({ ...TF, measure: on ? TF.measure.filter((x) => x !== m) : [...TF.measure, m] })}
                         className="text-xs px-3 py-1.5 rounded-full border"
-                        style={{ borderColor: on ? AC : C.line, color: on ? AC : C.dim }}>{m}</button>
+                        style={{ borderColor: on ? AC : C.line, color: on ? AC : C.dim }}>{measureLabel(m, lang)}</button>
                     );
                   })}
                 </div>
               </div>
 
               <textarea value={TF.desc} onChange={(e) => setTeamForm({ ...TF, desc: e.target.value })} rows={2}
-                placeholder="Motivo de la medida colectiva (qué pasó y por qué afecta a todo el grupo)"
+                placeholder={t("d.teamReasonPh")}
                 className="mt-3 w-full px-3 py-2 rounded-lg border bg-transparent text-sm" style={{ borderColor: C.line, color: C.chalk }} />
 
               {Number(TF.amount) > 0 && (
                 <div className="mt-3 text-xs rounded-lg border px-3 py-2 leading-relaxed" style={{ borderColor: isYouth ? C.red : C.line, color: isYouth ? C.red : C.dim }}>
                   {isYouth ? (
-                    <>⚠ Vas a poner <strong>{Number(TF.amount) * targets.length} €</strong> en total a {targets.length} menores. El código
-                    disciplinario del equipo no contempla sanciones económicas y una multa colectiva castiga por igual a quien no hizo nada.
-                    Úsalo solo si el club tiene un régimen económico aprobado y firmado por las familias.</>
+                    <>{t("d.youthWarnA")}<strong>{Number(TF.amount) * targets.length} €</strong>{t("d.youthWarnB").replace("{n}", targets.length)}</>
                   ) : (
-                    <>Bote del equipo: {Number(TF.amount) * targets.length} € en total ({targets.length} jugadores).</>
+                    <>{t("d.teamPotLine").replace("{amount}", Number(TF.amount) * targets.length).replace("{n}", targets.length)}</>
                   )}
                 </div>
               )}
@@ -8638,36 +8694,36 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
               <div className="flex flex-wrap items-center gap-2 mt-4">
                 <button onClick={saveTeamSanction} disabled={!targets.length}
                   className="font-display uppercase tracking-wide text-sm px-4 py-2 rounded-lg font-semibold disabled:opacity-40" style={{ background: AC, color: C.sobre }}>
-                  Aplicar a {targets.length} jugador{targets.length === 1 ? "" : "es"}
+                  {t("d.applyToN").replace("{n}", targets.length)}
                 </button>
                 <button onClick={() => setTeamForm(null)} className="text-sm px-4 py-2 rounded-lg border" style={{ borderColor: C.line, color: C.dim }}>{t("c.cancel")}</button>
-                {targets.length === 0 && <span className="text-xs" style={{ color: C.warn }}>No hay jugadores que cumplan ese criterio.</span>}
+                {targets.length === 0 && <span className="text-xs" style={{ color: C.warn }}>{t("d.noMatchCriteria")}</span>}
               </div>
             </Card>
           );
         })()}
 
-        <Card title="Pasar lista y registro rápido">
+        <Card title={t("d.quickTitle")}>
           <div className="flex flex-wrap items-center gap-2 mb-3">
             <input type="date" value={attDate} onChange={(e) => setAttDate(e.target.value)}
               className="px-3 py-2 rounded-lg border bg-transparent text-sm" style={{ borderColor: C.line, color: C.chalk }} />
             {CONTEXTS.slice(0, 2).map((c) => (
               <button key={c} onClick={() => setAttCtx(c)} className="text-xs px-3 py-2 rounded-full border"
-                style={{ borderColor: attCtx === c ? AC : C.line, color: attCtx === c ? AC : C.dim }}>{c}</button>
+                style={{ borderColor: attCtx === c ? AC : C.line, color: attCtx === c ? AC : C.dim }}>{contextLabel(c, lang)}</button>
             ))}
             <div className="ml-auto text-xs" style={{ color: C.dim }}>
-              {Object.values(attToday).filter((v) => v === "ok").length} presentes ·{" "}
-              <span style={{ color: C.warn }}>{Object.values(attToday).filter((v) => v === "late").length} retrasos</span> ·{" "}
-              <span style={{ color: C.red }}>{Object.values(attToday).filter((v) => v === "absent").length} faltas</span>
+              {Object.values(attToday).filter((v) => v === "ok").length} {t("d.presentN")} ·{" "}
+              <span style={{ color: C.warn }}>{Object.values(attToday).filter((v) => v === "late").length} {t("d.latesN")}</span> ·{" "}
+              <span style={{ color: C.red }}>{Object.values(attToday).filter((v) => v === "absent").length} {t("d.absencesN")}</span>
             </div>
           </div>
 
           {canEdit && (
             <div className="flex flex-wrap gap-2 mb-3">
               <button onClick={() => players.forEach((p) => setAtt(p.id, "ok"))}
-                className="text-xs px-3 py-1.5 rounded-lg border" style={{ borderColor: C.line, color: C.chalk }}>✓ Marcar todos presentes</button>
+                className="text-xs px-3 py-1.5 rounded-lg border" style={{ borderColor: C.line, color: C.chalk }}>{t("d.markAllPresentBtn")}</button>
               <button onClick={() => setAttend((a) => ({ ...a, [attKey]: {} }))}
-                className="text-xs px-3 py-1.5 rounded-lg border" style={{ borderColor: C.line, color: C.dim }}>Limpiar lista del día</button>
+                className="text-xs px-3 py-1.5 rounded-lg border" style={{ borderColor: C.line, color: C.dim }}>{t("d.clearDayBtn")}</button>
             </div>
           )}
 
@@ -8684,8 +8740,8 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                       <div className="min-w-0">
                         <div className="text-sm truncate" style={{ color: C.chalk }}>#{p.d} {p.n}</div>
                         <div className="text-[10px]" style={{ color: C.dim }}>
-                          {faltas} falta(s) · {retrasos} retraso(s) · {inc} incidencia(s)
-                          {!hasSigned(p.id, "d1") && <span style={{ color: C.warn }}> · ⚠ sin firmar</span>}
+                          {faltas} {t("d.faultsParen")} · {retrasos} {t("d.latesParen")} · {inc} {t("d.incidentsParen")}
+                          {!hasSigned(p.id, "d1") && <span style={{ color: C.warn }}> · {t("d.unsignedTag")}</span>}
                         </div>
                       </div>
                     </div>
@@ -8700,7 +8756,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                       {canEdit && (
                         <button onClick={() => setQuickPid(quickPid === p.id ? null : p.id)}
                           className="h-9 px-3 rounded-lg border text-xs font-display uppercase tracking-wide"
-                          style={{ borderColor: quickPid === p.id ? AC : C.line, color: quickPid === p.id ? AC : C.dim }}>⚠ Conducta</button>
+                          style={{ borderColor: quickPid === p.id ? AC : C.line, color: quickPid === p.id ? AC : C.dim }}>{t("d.conductBtn")}</button>
                       )}
                     </div>
                   </div>
@@ -8712,12 +8768,12 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                           <button key={code} onClick={() => quickIncident(p.id, code)}
                             className="text-[11px] px-2.5 py-1.5 rounded-full border"
                             style={{ borderColor: C.line, color: n.g === "grave" ? C.red : C.warn }}>
-                            {code} · {n.t}
+                            {code} · {normT(n, lang)}
                           </button>
                         );
                       })}
                       <button onClick={() => { setDiscForm({ pid: String(p.id), date: attDate, ctx: attCtx, norm: "L1", card: "none", measure: [], amount: 0, desc: "" }); setQuickPid(null); }}
-                        className="text-[11px] px-2.5 py-1.5 rounded-full border" style={{ borderColor: AC, color: AC }}>Otra… (formulario completo)</button>
+                        className="text-[11px] px-2.5 py-1.5 rounded-full border" style={{ borderColor: AC, color: AC }}>{t("d.otherFull")}</button>
                     </div>
                   )}
                 </div>
@@ -8725,27 +8781,24 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
             })}
           </div>
           <div className="text-[11px] mt-3 leading-relaxed" style={{ color: C.dim }}>
-            Marcar <strong>Retraso</strong> o <strong>Falta</strong> crea automáticamente la incidencia correspondiente del código (L1
-            puntualidad, L2 comunicación de ausencias), pendiente de validar por el cuerpo técnico. <strong>Justificada</strong> no genera
-            incidencia.
+            {t("d.autoNote")}
           </div>
           <div className="text-[11px] mt-2 leading-relaxed" style={{ color: C.dim }}>
-            Esto es para retrasos y faltas con consecuencia. Si solo quieres saber quién ha venido hoy y por qué —estudios, enfermedad,
-            lesión—, sin que abra ninguna incidencia, usa <button onClick={() => setTab("asistencia")} className="underline" style={{ color: AC }}>Asistencia</button>.
+            {t("d.seeAsistNote")} <button onClick={() => setTab("asistencia")} className="underline" style={{ color: AC }}>{t("nav.asistencia")}</button>.
           </div>
         </Card>
 
-        <Card title="Historial de incidencias">
+        <Card title={t("d.historyTitle")}>
           <div className="flex flex-wrap items-center gap-2 mb-3">
             {chips.map(([k, l]) => (
               <button key={k} onClick={() => setDiscFilter(k)} className="text-xs px-3 py-1.5 rounded-full border" style={{ borderColor: discFilter === k ? AC : C.line, color: discFilter === k ? AC : C.dim }}>{l}</button>
             ))}
             <select value={discPid} onChange={(e) => setDiscPid(e.target.value)} className="ml-auto text-xs px-3 py-1.5 rounded-lg border bg-transparent" style={{ borderColor: C.line, color: C.dim }}>
-              <option value="all" style={{ background: C.panel }}>Todos los jugadores</option>
+              <option value="all" style={{ background: C.panel }}>{t("d.allPlayersOpt")}</option>
               {players.map((p) => (<option key={p.id} value={p.id} style={{ background: C.panel }}>#{p.d} {p.n}</option>))}
             </select>
           </div>
-          {list.length === 0 && <div className="text-sm" style={{ color: C.dim }}>No hay incidencias con este filtro.</div>}
+          {list.length === 0 && <div className="text-sm" style={{ color: C.dim }}>{t("d.noIncidentsFilter")}</div>}
           <div className="space-y-2">
             {list.map((i) => {
               const n = normOf(i.norm); const cd = cardOf(i.card);
@@ -8757,41 +8810,41 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                         {cd.k !== "none" && <span className="mr-1">{cd.short}</span>}{pName(i.pid)}
                       </div>
                       <div className="text-xs mt-0.5" style={{ color: C.dim }}>
-                        {i.date} · {i.ctx} · <span style={{ color: n.g === "grave" ? C.red : C.warn }}>{i.norm} {n.t}</span>
+                        {i.date} · {contextLabel(i.ctx, lang)} · <span style={{ color: n.g === "grave" ? C.red : C.warn }}>{i.norm} {normT(n, lang)}</span>
                       </div>
                     </div>
                     <div className="text-[10px] font-display uppercase tracking-wide px-2 py-1 rounded border shrink-0"
                       style={{ borderColor: i.state === "validada" ? C.green : i.state === "anulada" ? C.line : C.warn, color: i.state === "validada" ? C.green : i.state === "anulada" ? C.dim : C.warn }}>
-                      {i.state === "registrada" ? "Pendiente de validar" : i.state}
+                      {i.state === "registrada" ? t("d.pendingValidateTag") : i.state}
                     </div>
                   </div>
                   {i.desc && <div className="text-sm mt-2" style={{ color: C.chalk }}>{i.desc}</div>}
                   {i.measure?.length > 0 && (
                     <div className="flex flex-wrap gap-1.5 mt-2">
-                      {i.measure.map((m) => (<span key={m} className="text-[10px] px-2 py-0.5 rounded-full border" style={{ borderColor: C.line, color: C.dim }}>{m}</span>))}
+                      {i.measure.map((m) => (<span key={m} className="text-[10px] px-2 py-0.5 rounded-full border" style={{ borderColor: C.line, color: C.dim }}>{measureLabel(m, lang)}</span>))}
                     </div>
                   )}
                   <div className="flex flex-wrap items-center gap-2 mt-3 text-xs">
                     {Number(i.amount) > 0 && (
                       <span className="px-2 py-1 rounded border" style={{ borderColor: C.line, color: i.pay === "pagada" ? C.green : C.red }}>
-                        {i.amount} € · {i.pay === "pagada" ? "pagada" : i.pay === "condonada" ? "condonada" : "pendiente"}
+                        {i.amount} € · {i.pay === "pagada" ? t("d.paidTag") : i.pay === "condonada" ? t("d.condonedTag") : t("d.pendingTag")}
                       </span>
                     )}
                     {Number(i.amount) > 0 && can("manageDocs") && i.pay === "pendiente" && (
                       <>
-                        <button onClick={() => setPay(i.id, "pagada")} className="px-2 py-1 rounded border" style={{ borderColor: C.green, color: C.green }}>Marcar pagada</button>
-                        <button onClick={() => setPay(i.id, "condonada")} className="px-2 py-1 rounded border" style={{ borderColor: C.line, color: C.dim }}>Condonar</button>
+                        <button onClick={() => setPay(i.id, "pagada")} className="px-2 py-1 rounded border" style={{ borderColor: C.green, color: C.green }}>{t("d.markPaidBtn")}</button>
+                        <button onClick={() => setPay(i.id, "condonada")} className="px-2 py-1 rounded border" style={{ borderColor: C.line, color: C.dim }}>{t("d.condoneBtn")}</button>
                       </>
                     )}
                     <button onClick={() => toggleFam(i.id)} className="px-2 py-1 rounded border" style={{ borderColor: i.fam ? C.green : C.line, color: i.fam ? C.green : C.dim }}>
-                      {i.fam ? "✓ Familia informada" : "Marcar familia informada"}
+                      {i.fam ? t("d.famInformedYes") : t("d.famInformedNo")}
                     </button>
-                    {i.batch && <span className="px-2 py-1 rounded border" style={{ borderColor: C.line, color: C.dim }}>Lote colectivo</span>}
+                    {i.batch && <span className="px-2 py-1 rounded border" style={{ borderColor: C.line, color: C.dim }}>{t("d.batchTag")}</span>}
                     {canVal && i.state === "registrada" && (
                       <>
-                        <button onClick={() => setIncState(i.id, "validada")} className="px-2 py-1 rounded font-semibold" style={{ background: AC, color: C.sobre }}>Validar</button>
-                        <button onClick={() => setIncState(i.id, "anulada")} className="px-2 py-1 rounded border" style={{ borderColor: C.red, color: C.red }}>Anular</button>
-                        {i.batch && <button onClick={() => annulBatch(i.batch)} className="px-2 py-1 rounded border" style={{ borderColor: C.red, color: C.red }}>Anular lote entero</button>}
+                        <button onClick={() => setIncState(i.id, "validada")} className="px-2 py-1 rounded font-semibold" style={{ background: AC, color: C.sobre }}>{t("d.validateBtn")}</button>
+                        <button onClick={() => setIncState(i.id, "anulada")} className="px-2 py-1 rounded border" style={{ borderColor: C.red, color: C.red }}>{t("d.annulBtn")}</button>
+                        {i.batch && <button onClick={() => annulBatch(i.batch)} className="px-2 py-1 rounded border" style={{ borderColor: C.red, color: C.red }}>{t("d.annulBatchBtn")}</button>}
                       </>
                     )}
                     <span className="ml-auto" style={{ color: C.dim }}>{i.by}</span>
@@ -8802,22 +8855,22 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
           </div>
         </Card>
 
-        <Card title="Resumen por jugador">
-          {rank.length === 0 ? <div className="text-sm" style={{ color: C.dim }}>Sin incidencias registradas.</div> : (
+        <Card title={t("d.summaryTitle")}>
+          {rank.length === 0 ? <div className="text-sm" style={{ color: C.dim }}>{t("d.noIncidentsReg")}</div> : (
             <div className="space-y-1.5">
               <div className="grid grid-cols-12 gap-2 text-[10px] font-display uppercase tracking-wide pb-1 border-b" style={{ borderColor: C.line, color: C.dim }}>
-                <div className="col-span-6">Jugador</div><div className="col-span-2 text-center">🟨</div><div className="col-span-2 text-center">🟥</div><div className="col-span-2 text-right">Pendiente</div>
+                <div className="col-span-6">{t("d.playerCol")}</div><div className="col-span-2 text-center">🟨</div><div className="col-span-2 text-center">🟥</div><div className="col-span-2 text-right">{t("d.pendingCol")}</div>
               </div>
               {rank.map((x) => (
                 <div key={x.p.id} className="grid grid-cols-12 gap-2 text-sm py-1.5 border-b last:border-0" style={{ borderColor: C.line, color: C.chalk }}>
                   <div className="col-span-6 truncate">
                     #{x.p.d} {x.p.n}
-                    {!hasSigned(x.p.id, "d1") && <span title="No ha firmado el código" style={{ color: C.warn }}> ·⚠</span>}
+                    {!hasSigned(x.p.id, "d1") && <span title={t("d.notSignedTitle")} style={{ color: C.warn }}> ·⚠</span>}
                     {levesDe(x.p.id) >= 3 && (
-                      <button onClick={() => canEdit && setDiscForm({ pid: String(x.p.id), date: attDate, ctx: attCtx, norm: "G5", card: "none", measure: ["Pérdida de minutos"], amount: 0, desc: `Reiteración: ${levesDe(x.p.id)} faltas leves acumuladas.` })}
-                        title="Reiteración de faltas leves — el código lo tipifica como falta grave G5"
+                      <button onClick={() => canEdit && setDiscForm({ pid: String(x.p.id), date: attDate, ctx: attCtx, norm: "G5", card: "none", measure: ["Pérdida de minutos"], amount: 0, desc: t("d.reiterationDesc").replace("{n}", levesDe(x.p.id)) })}
+                        title={t("d.reiterationTitle")}
                         className="ml-1 text-[10px] px-1.5 py-0.5 rounded-full border align-middle" style={{ borderColor: C.red, color: C.red }}>
-                        G5 reiteración
+                        {t("d.reiterationBtn")}
                       </button>
                     )}
                   </div>
@@ -8831,21 +8884,20 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
         </Card>
 
         {(pot.pend > 0 || pot.paid > 0) && (
-          <Card title={isYouth ? "Sanciones económicas" : "Bote del equipo"}>
+          <Card title={isYouth ? t("d.economicTitle") : t("d.teamPotTitle")}>
             <div className="grid grid-cols-2 gap-3 text-center">
               <div>
                 <div className="font-display text-3xl font-semibold" style={{ color: C.red }}>{pot.pend} €</div>
-                <div className="text-[11px]" style={{ color: C.dim }}>pendiente de cobro</div>
+                <div className="text-[11px]" style={{ color: C.dim }}>{t("d.pendingCollect")}</div>
               </div>
               <div>
                 <div className="font-display text-3xl font-semibold" style={{ color: C.green }}>{pot.paid} €</div>
-                <div className="text-[11px]" style={{ color: C.dim }}>ya abonado</div>
+                <div className="text-[11px]" style={{ color: C.dim }}>{t("d.alreadyPaid")}</div>
               </div>
             </div>
             {isYouth && (
               <div className="text-[11px] mt-3 leading-relaxed" style={{ color: C.dim }}>
-                Recuerda que el código disciplinario de este equipo no contempla multas: sus ocho medidas son educativas. Si el club cobra
-                importes, deben estar recogidos en una normativa firmada por las familias.
+                {t("d.youthFooter")}
               </div>
             )}
           </Card>
@@ -8939,7 +8991,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
         </Card>
 
         {players.length > 0 && (
-          <Card title="Resumen del día">
+          <Card title={t("as.summaryTitle")}>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
               {[["presente", contar("presente")], ...ASISTENCIA_TIPOS.map((k) => [k, contar(k)]), ["sinMarcar", sinMarcar]].map(([k, n]) => (
                 <div key={k} className="rounded-lg border p-2.5 text-center" style={{ borderColor: C.line, background: C.panel2 }}>
@@ -9212,11 +9264,11 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
        técnico confirma quién ha hecho los ejercicios, así que cambia el
        verbo y los títulos para no hablar de "firmar" un entrenamiento. */
     const isExercise = d.kind === "exercise";
-    const doneLabel = isExercise ? "✓ Realizado" : "✓ Firmado";
-    const chipLabel = isExercise ? "Confirma" : "Firma";
+    const doneLabel = isExercise ? t("doc.doneExercise") : t("doc.doneSigned");
+    const chipLabel = isExercise ? t("doc.confirmLabel") : t("doc.signLabel");
     return (
       <div className="space-y-4">
-        <Card title="Normativa del club">
+        <Card title={t("doc.title")}>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             {docs.map((x) => (
               <button key={x.id} onClick={() => setDocSel(x.id)} className="text-left rounded-lg border p-3"
@@ -9233,14 +9285,14 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
           <div className="flex flex-wrap gap-1.5 mt-3">
             {d.signers.map((x) => (<span key={x} className="text-[10px] px-2 py-0.5 rounded-full border" style={{ borderColor: C.line, color: C.dim }}>{chipLabel}: {x}</span>))}
           </div>
-          <div className="text-[11px] mt-3" style={{ color: C.dim }}>Publicado el {d.date} · versión {d.v}{d.required ? " · firma obligatoria" : ""}</div>
+          <div className="text-[11px] mt-3" style={{ color: C.dim }}>{t("doc.publishedOn").replace("{date}", d.date).replace("{v}", d.v)}{d.required ? t("doc.requiredSuffix") : ""}</div>
           {d.file && (
             <div className="flex gap-2 mt-3">
               <a href={d.file} target="_blank" rel="noreferrer" className="text-sm px-3 py-1.5 rounded-lg font-display uppercase tracking-wide" style={{ background: AC, color: C.sobre }}>
-                Ver PDF
+                {t("doc.viewPdf")}
               </a>
               <a href={d.file} download className="text-sm px-3 py-1.5 rounded-lg border" style={{ borderColor: C.line, color: C.chalk }}>
-                Descargar
+                {t("doc.download")}
               </a>
             </div>
           )}
@@ -9248,8 +9300,8 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           {needPlayers && (
-            <Card title={isExercise ? "Ejercicios · jugadores" : "Firmas · jugadores y familias"}>
-              <div className="text-xs mb-2" style={{ color: C.dim }}>{sg.players.length} de {players.length} {isExercise ? "realizados" : "firmadas"}<Bar2 a={sg.players.length} b={players.length} /></div>
+            <Card title={isExercise ? t("doc.playersExTitle") : t("doc.playersSignTitle")}>
+              <div className="text-xs mb-2" style={{ color: C.dim }}>{sg.players.length} / {players.length} {isExercise ? t("doc.doneEx") : t("doc.doneSign")}<Bar2 a={sg.players.length} b={players.length} /></div>
               <div className="space-y-1 max-h-80 overflow-y-auto pr-1">
                 {players.map((p) => {
                   const ok = sg.players.includes(p.id);
@@ -9257,7 +9309,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                     <div key={p.id} className="flex items-center justify-between text-sm py-1.5 border-b last:border-0" style={{ borderColor: C.line, color: C.chalk }}>
                       <span className="truncate">#{p.d} {p.n}</span>
                       <button disabled={!canManage} onClick={() => toggleSign(d.id, "players", p.id)} className="text-[10px] font-display uppercase tracking-wide px-2 py-1 rounded border disabled:opacity-60"
-                        style={{ borderColor: ok ? C.green : C.warn, color: ok ? C.green : C.warn }}>{ok ? doneLabel : "Pendiente"}</button>
+                        style={{ borderColor: ok ? C.green : C.warn, color: ok ? C.green : C.warn }}>{ok ? doneLabel : t("doc.pending")}</button>
                     </div>
                   );
                 })}
@@ -9265,8 +9317,8 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
             </Card>
           )}
           {needStaff && (
-            <Card title={isExercise ? "Confirmación · cuerpo técnico" : "Firmas · cuerpo técnico"}>
-              <div className="text-xs mb-2" style={{ color: C.dim }}>{sg.staff.length} de {staff.length} {isExercise ? "confirmados" : "firmadas"}<Bar2 a={sg.staff.length} b={staff.length} /></div>
+            <Card title={isExercise ? t("doc.staffExTitle") : t("doc.staffSignTitle")}>
+              <div className="text-xs mb-2" style={{ color: C.dim }}>{sg.staff.length} / {staff.length} {isExercise ? t("doc.staffDoneEx") : t("doc.staffDoneSign")}<Bar2 a={sg.staff.length} b={staff.length} /></div>
               <div className="space-y-1">
                 {staff.map((u) => {
                   const ok = sg.staff.includes(u.id);
@@ -9274,7 +9326,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                     <div key={u.id} className="flex items-center justify-between text-sm py-1.5 border-b last:border-0" style={{ borderColor: C.line, color: C.chalk }}>
                       <span className="truncate">{u.name} <span style={{ color: C.dim }}>· {ROLES[u.role]?.label}</span></span>
                       <button disabled={!canManage} onClick={() => toggleSign(d.id, "staff", u.id)} className="text-[10px] font-display uppercase tracking-wide px-2 py-1 rounded border disabled:opacity-60"
-                        style={{ borderColor: ok ? C.green : C.warn, color: ok ? C.green : C.warn }}>{ok ? doneLabel : "Pendiente"}</button>
+                        style={{ borderColor: ok ? C.green : C.warn, color: ok ? C.green : C.warn }}>{ok ? doneLabel : t("doc.pending")}</button>
                     </div>
                   );
                 })}
@@ -9284,15 +9336,14 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
         </div>
 
         {d.id === "d1" && (
-          <Card title="Control de sanciones">
+          <Card title={t("doc.sanctionsTitle")}>
             <div className="text-sm" style={{ color: C.chalk }}>
               {pendingSign === 0
-                ? "Toda la plantilla ha firmado el código disciplinario."
-                : `${pendingSign} jugador(es) sin firmar el código disciplinario.`}
+                ? t("doc.allSigned")
+                : t("doc.someUnsigned").replace("{n}", pendingSign)}
             </div>
             <div className="text-[11px] mt-2 leading-relaxed" style={{ color: C.dim }}>
-              Una medida disciplinaria solo es exigible si la persona conoce y ha aceptado la norma. Antes de aplicar cualquier sanción
-              —y con más motivo si es económica— comprueba aquí que la firma está registrada.
+              {t("doc.sanctionsNote")}
             </div>
           </Card>
         )}
@@ -11233,22 +11284,22 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
   );
 
   const renderCoach = () => (
-    <Card title="Coach AI — asistente del cuerpo técnico">
+    <Card title={t("co.title")}>
       <div className="space-y-3 overflow-y-auto pr-1" style={{ minHeight: 320, maxHeight: 460 }}>
         {msgs.map((m, i) => (
           <div key={i} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
             <div className="max-w-[85%] rounded-lg px-4 py-2.5 text-sm whitespace-pre-wrap" style={{ background: m.role === "user" ? AC : C.panel2, color: m.role === "user" ? "#141414" : C.chalk, border: m.role === "user" ? "none" : `1px solid ${C.line}` }}>{m.content}</div>
           </div>
         ))}
-        {loading && <div className="text-sm" style={{ color: C.dim }}>Coach AI está pensando…</div>}
+        {loading && <div className="text-sm" style={{ color: C.dim }}>{t("co.thinking")}</div>}
         <div ref={chatEnd} />
       </div>
       <div className="mt-3 flex gap-2">
-        <input value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => e.key === "Enter" && askCoach()} placeholder="Pregunta a Coach AI…" className="flex-1 rounded-lg px-4 py-2.5 text-sm outline-none border" style={{ background: C.panel2, borderColor: C.line, color: C.chalk }} />
-        <button onClick={askCoach} disabled={loading} className="font-display uppercase tracking-wider px-5 rounded-lg font-semibold disabled:opacity-50" style={{ background: AC, color: C.sobre }}>Enviar</button>
+        <input value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => e.key === "Enter" && askCoach()} placeholder={t("co.placeholder")} className="flex-1 rounded-lg px-4 py-2.5 text-sm outline-none border" style={{ background: C.panel2, borderColor: C.line, color: C.chalk }} />
+        <button onClick={askCoach} disabled={loading} className="font-display uppercase tracking-wider px-5 rounded-lg font-semibold disabled:opacity-50" style={{ background: AC, color: C.sobre }}>{t("co.send")}</button>
       </div>
       <div className="mt-2 flex flex-wrap gap-1.5">
-        {["¿Quién debería jugar más minutos la próxima jornada?", "Prepárame un entrenamiento de 75' de transiciones", "Analiza el partido con los eventos registrados"].map((q) => (<button key={q} onClick={() => setInput(q)} className="text-xs px-2.5 py-1 rounded-full border" style={{ borderColor: C.line, color: C.dim }}>{q}</button>))}
+        {[t("co.sug1"), t("co.sug2"), t("co.sug3")].map((q) => (<button key={q} onClick={() => setInput(q)} className="text-xs px-2.5 py-1 rounded-full border" style={{ borderColor: C.line, color: C.dim }}>{q}</button>))}
       </div>
     </Card>
   );
