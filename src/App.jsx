@@ -43,7 +43,7 @@ const DICT = {
     "p.account": "Mi cuenta", "p.changePass": "Cambiar contraseña", "p.current": "Contraseña actual", "p.save": "Guardar", "p.saved": "Contraseña actualizada.", "p.badCurrent": "La contraseña actual no es correcta.", "p.close": "Cerrar",
     "h.nextMatch": "Próximo partido", "h.nextTrain": "Próximo entrenamiento", "h.available": "Disponibles", "h.lessMin": "Menos participación", "h.alerts": "Alertas", "h.quick": "Accesos rápidos", "h.family": "Avisos para las familias", "h.pending": "accesos pendientes de aprobar", "h.startMatch": "Iniciar partido", "as.title": "Asistencia del día", "as.subtitle": "Quién ha venido y por qué. Sin incidencias ni sanciones: eso sigue en Disciplina.", "as.today": "Hoy", "as.markAll": "✓ Marcar todos presentes", "as.present": "Presente", "as.unmarked": "Sin marcar", "as.studies": "Estudios", "as.noExcuse": "Sin explicación", "as.sick": "Enfermedad", "as.injured": "Lesión", "as.reset": "Quitar marca", "as.noPlayers": "No hay jugadores en la plantilla.", "as.discNote": "¿Retraso o falta con consecuencia disciplinaria? Eso se registra en Disciplina → Pasar lista, que además avisa al cuerpo técnico.", "as.homeTitle": "Asistencia de hoy", "as.homeEmpty": "Todavía no has pasado lista hoy.", "as.homeCta": "Pasar lista", "as.homeSee": "Ver asistencia", "as.homeAll": "Todos presentes.", "as.homeOf": "de",
     "w.title": "Pizarra táctica", "w.move": "Mover", "w.arrow": "Flecha", "w.pass": "Pase", "w.free": "Dibujo", "w.cone": "Cono", "w.ball": "Balón", "w.erase": "Borrar", "w.clear": "Limpiar", "w.home": "Local", "w.away": "Rival", "w.hint": "Elige herramienta · arrastra las fichas · dibuja sobre el campo", "w.form": "Colocar", "w.f11": "Fútbol 11", "w.f7": "Fútbol 7", "w.homeSys": "Sistema local", "w.awaySys": "Sistema rival", "w.exercises": "Ejercicios recomendados", "w.exHint": "Toca un ejercicio para colocarlo en la pizarra", "w.autoSave": "El sistema elegido se guarda automáticamente en este dispositivo", "w.abpForAgainst": "¿A favor o en contra?", "w.abpAttack": "Ataque", "w.abpDefense": "Defensa", "w.abpSide": "¿Por qué lado?", "w.abpLeft": "◂ Izquierda", "w.abpRight": "Derecha ▸", "w.abpPlace": "Colocar situación", "w.abpAgainst": "en contra", "w.abpFor": "a favor", "w.abpOwnBoard": "tablero propio", "w.abpSaveAs": "Guardar la pizarra como", "w.viewFull": "Completo", "w.viewAreaR": "Área ▸", "w.viewAreaL": "◂ Área", "w.viewSideline": "Banda", "w.viewGoal": "Portería", "w.colorWhite": "Blanco", "w.colorLightGray": "Gris claro", "w.colorGray": "Gris", "w.colorSlate": "Pizarra", "w.colorCharcoal": "Carbón", "w.toScale": "a escala real", "w.dribble": "Conducción", "w.zone": "Zona", "w.circle": "Círculo", "w.text": "Texto", "w.disc": "Seta", "w.playerToken": "Jugador", "w.dorsal": "Dorsal", "w.undo": "Deshacer", "w.redo": "Rehacer", "w.grid": "Cuadrícula", "w.searchDrill": "Buscar ejercicio…", "w.aiHelp": "Ayuda IA", "w.tellChange": "Dile el cambio", "w.aiChangePh": "Ej. mueve al 9 al segundo palo y saca al 4 al borde del área", "w.thinking": "Pensando…", "w.applyToBoard": "Aplicar a la pizarra", "w.aiHint": "Cambia las fichas y los trazos de lo que tengas ahora en el campo. Si no te gusta, ↶ Deshacer lo devuelve como estaba.", "w.plays": "Jugadas", "w.saveAsNew": "+ Guardar como nueva", "w.shareTeam": "⬆ Compartir con el equipo", "w.shareTeamHint": "Las verán tu segundo y tu delegado desde su móvil, también en Modo partido.", "w.updateChangesIn": "↻ Guardar los cambios en", "w.moveUp": "Subir", "w.moveDown": "Bajar", "w.rename": "Renombrar", "w.deleteAction": "Borrar", "w.noPlaysSaved": "Aún no hay jugadas guardadas", "w.view": "Vista", "w.board": "Tablero", "w.backToFullPitch": "‹ Volver al campo entero", "w.framing": "Encuadre", "w.zoomLabel": "Zoom", "w.fit": "Ajustar", "w.pinchHint": "Con dos dedos: pellizca para acercar y arrastra para mover.", "w.brightness": "☀ Brillo", "w.steps": "Pasos", "w.addStep": "+ Añadir paso", "w.stepOf": "Paso {a} de {b}", "w.pause": "❚❚ Pausa", "w.play": "▶ Reproducir", "w.deleteSequence": "Borrar secuencia", "w.noStepsSaved": "Guarda instantáneas para explicar la jugada paso a paso.", "w.systems": "Sistemas", "w.exportPng": "Exportar PNG", "w.recordVideo": "Grabar vídeo", "w.video": "Vídeo", "w.exit": "Salir", "w.fullscreen": "Pantalla completa", "w.zoomOut": "Alejar", "w.zoomIn": "Acercar", "w.fullscreenSuffix": "pantalla completa", "w.exitEsc": "✕ Salir (Esc)", "w.otherFormation": "Otro", "w.noVideoSupport": "Este navegador no admite grabación de vídeo. Prueba con Chrome o Firefox actualizados.", "w.playNamePrompt": "Nombre de la jugada", "w.dorsalPrompt": "Dorsal de esta ficha (vacío para quitarlo)", "w.annotationPrompt": "Texto de la anotación", "w.needClubAccount": "Entra con tu cuenta del club para poder compartirlas.", "w.sharing": "Compartiendo…", "w.sharedOk": "✓ Compartidas con tu equipo.", "w.sharedFail": "No se pudieron compartir. Revisa la conexión.", "w.aiNotUnderstood": "No he entendido el cambio. Dilo de otra forma, por ejemplo: \"mueve al 9 al segundo palo\".", "w.aiDone": "✓ Hecho. Si no te convence, deshaz con ↶.", "w.squadLabel": "Plantilla",
-    "ex.title": "Biblioteca de ejercicios", "ex.hint": "Filtra por categoría, mira duración y material, y úsalo en la pizarra o añádelo a un entrenamiento.", "ex.all": "Todos", "ex.cat.rondo": "Rondos y posesión", "ex.cat.finish": "Finalización", "ex.cat.press": "Presión y transición", "ex.cat.buildup": "Salida de balón", "ex.cat.setpiece": "Acciones a balón parado", "ex.cat.technique": "Técnica individual", "ex.cat.fitness": "Físico", "ex.cat.gk": "Porteros", "ex.cat.warmup": "Calentamiento", "ex.cat.defense": "Defensa", "ex.cat.cross": "Centros y remate", "ex.cat.duel": "Duelos 1v1", "ex.dur": "min", "ex.materials": "Material", "ex.useBoard": "Usar en la pizarra", "ex.addTrain": "Añadir a entrenamiento", "ex.added": "✓ Añadido",
+    "ex.title": "Biblioteca de ejercicios", "ex.hint": "Filtra por categoría, mira duración y material, y úsalo en la pizarra o añádelo a un entrenamiento.", "ex.all": "Todos", "ex.cat.rondo": "Rondos y posesión", "ex.cat.finish": "Finalización", "ex.cat.press": "Presión y transición", "ex.cat.buildup": "Salida de balón", "ex.cat.setpiece": "Acciones a balón parado", "ex.cat.technique": "Técnica individual", "ex.cat.fitness": "Físico", "ex.cat.gk": "Porteros", "ex.cat.warmup": "Calentamiento", "ex.cat.defense": "Defensa", "ex.cat.cross": "Centros y remate", "ex.cat.duel": "Duelos 1v1", "ex.dur": "min", "ex.materials": "Material", "ex.useBoard": "Usar en la pizarra", "ex.addTrain": "Añadir a entrenamiento", "ex.added": "✓ Añadido", "ex.preview": "Vista previa", "ex.previewNote": "Vista previa de la pizarra · no editable", "ex.pickToPreview": "Elige un ejercicio para verlo en la pizarra",
     "tr.title": "Modo entrenamiento", "tr.hint": "Planifica la sesión añadiendo bloques desde la biblioteca de ejercicios o bloques libres.", "tr.date": "Fecha", "tr.time": "Hora", "tr.objective": "Objetivo de la sesión", "tr.objectivePh": "Ej. transiciones defensivas", "tr.addFromLib": "+ Añadir desde la biblioteca", "tr.addCustom": "+ Bloque libre", "tr.customName": "Nombre del bloque", "tr.customDur": "Duración (min)", "tr.noBlocks": "Aún no has añadido ningún bloque a esta sesión.", "tr.total": "Duración total", "tr.materials": "Material necesario", "tr.remove": "Quitar", "tr.up": "▲", "tr.down": "▼", "tr.sendBoard": "Ver en pizarra", "tr.summary": "Resumen para compartir", "tr.copy": "Copiar resumen", "tr.copied": "✓ Copiado", "tr.whatsapp": "Abrir WhatsApp", "tr.min": "min", "tr.close": "Cerrar", "tr.newBlock": "Nuevo bloque",
     "st.title": "Estadísticas del equipo", "st.availability": "Disponibilidad de la plantilla", "st.available": "Disponibles", "st.doubt": "Duda", "st.injured": "Lesionados", "st.topAtt": "Mayor asistencia a entrenamientos", "st.lowMin": "Menor participación (minutos)", "st.byPosition": "Plantilla por línea", "st.gkPos": "Porteros", "st.defPos": "Defensas", "st.midPos": "Centrocampistas", "st.fwdPos": "Delanteros", "st.players": "jugadores", "st.byRole": "Desglose por demarcación", "st.roleHint": "Reparto real de la plantilla, posición a posición, con el peso de cada una sobre el total.", "st.total": "Total plantilla", "st.player": "jugador",
     "m.title": "Material para el entrenador", "m.aff": "Enlace de afiliado", "m.note": "Enlaces de afiliado marcados claramente y adaptados a tu país. Una pequeña comisión ayuda a mantener la app; el precio para ti no cambia.", "m.all": "Todo", "m.training": "Entrenamiento", "m.gk": "Porteros", "m.medical": "Botiquín", "m.tech": "Tecnología", "m.apparel": "Vestuario", "m.view": "Ver oferta", "m.from": "desde",
@@ -202,7 +202,7 @@ const DICT = {
     "p.account": "My account", "p.changePass": "Change password", "p.current": "Current password", "p.save": "Save", "p.saved": "Password updated.", "p.badCurrent": "That current password isn't right.", "p.close": "Close",
     "h.nextMatch": "Next match", "h.nextTrain": "Next training", "h.available": "Available", "h.lessMin": "Least game time", "h.alerts": "Alerts", "h.quick": "Quick access", "h.family": "Notices for families", "h.pending": "pending access requests", "h.startMatch": "Start match",
     "w.title": "Tactics board", "w.move": "Move", "w.arrow": "Arrow", "w.pass": "Pass", "w.free": "Draw", "w.cone": "Cone", "w.ball": "Ball", "w.erase": "Erase", "w.clear": "Clear", "w.home": "Home", "w.away": "Away", "w.hint": "Pick a tool · drag the tokens · draw on the pitch", "w.form": "Place", "w.f11": "11-a-side", "w.f7": "7-a-side", "w.homeSys": "Home system", "w.awaySys": "Away system", "w.exercises": "Recommended drills", "w.exHint": "Tap a drill to set it up on the board", "w.autoSave": "Your chosen system is saved automatically on this device", "w.abpForAgainst": "For or against?", "w.abpAttack": "Attack", "w.abpDefense": "Defence", "w.abpSide": "Which side?", "w.abpLeft": "◂ Left", "w.abpRight": "Right ▸", "w.abpPlace": "Set up the situation", "w.abpAgainst": "against", "w.abpFor": "for", "w.abpOwnBoard": "own board", "w.abpSaveAs": "Save the whiteboard as", "w.viewFull": "Full pitch", "w.viewAreaR": "Area ▸", "w.viewAreaL": "◂ Area", "w.viewSideline": "Sideline", "w.viewGoal": "Goal", "w.colorWhite": "White", "w.colorLightGray": "Light grey", "w.colorGray": "Grey", "w.colorSlate": "Slate", "w.colorCharcoal": "Charcoal", "w.toScale": "to scale", "w.dribble": "Dribble", "w.zone": "Zone", "w.circle": "Circle", "w.text": "Text", "w.disc": "Disc", "w.playerToken": "Player", "w.dorsal": "Number", "w.undo": "Undo", "w.redo": "Redo", "w.grid": "Grid", "w.searchDrill": "Search drill…", "w.aiHelp": "AI help", "w.tellChange": "Tell it the change", "w.aiChangePh": "E.g. move the 9 to the far post and bring the 4 to the edge of the box", "w.thinking": "Thinking…", "w.applyToBoard": "Apply to the whiteboard", "w.aiHint": "Changes the tokens and drawings you currently have on the pitch. If you don't like it, ↶ Undo puts it back.", "w.plays": "Plays", "w.saveAsNew": "+ Save as new", "w.shareTeam": "⬆ Share with the team", "w.shareTeamHint": "Your assistant coach and team manager will see it on their phone too, including in Match mode.", "w.updateChangesIn": "↻ Save changes to", "w.moveUp": "Move up", "w.moveDown": "Move down", "w.rename": "Rename", "w.deleteAction": "Delete", "w.noPlaysSaved": "No plays saved yet", "w.view": "View", "w.board": "Board", "w.backToFullPitch": "‹ Back to full pitch", "w.framing": "Framing", "w.zoomLabel": "Zoom", "w.fit": "Fit", "w.pinchHint": "With two fingers: pinch to zoom and drag to move.", "w.brightness": "☀ Brightness", "w.steps": "Steps", "w.addStep": "+ Add step", "w.stepOf": "Step {a} of {b}", "w.pause": "❚❚ Pause", "w.play": "▶ Play", "w.deleteSequence": "Delete sequence", "w.noStepsSaved": "Save snapshots to explain the play step by step.", "w.systems": "Systems", "w.exportPng": "Export PNG", "w.recordVideo": "Record video", "w.video": "Video", "w.exit": "Exit", "w.fullscreen": "Full screen", "w.zoomOut": "Zoom out", "w.zoomIn": "Zoom in", "w.fullscreenSuffix": "full screen", "w.exitEsc": "✕ Exit (Esc)", "w.otherFormation": "Other", "w.noVideoSupport": "This browser doesn't support video recording. Try an up-to-date Chrome or Firefox.", "w.playNamePrompt": "Play name", "w.dorsalPrompt": "This token's number (leave empty to remove it)", "w.annotationPrompt": "Annotation text", "w.needClubAccount": "Sign in with your club account to share these.", "w.sharing": "Sharing…", "w.sharedOk": "✓ Shared with your team.", "w.sharedFail": "Couldn't share. Check your connection.", "w.aiNotUnderstood": "I didn't understand that change. Try saying it another way, e.g. \"move the 9 to the far post\".", "w.aiDone": "✓ Done. If you don't like it, undo with ↶.", "w.squadLabel": "Squad",
-    "ex.title": "Drill library", "ex.hint": "Filter by category, check duration and materials, and use it on the board or add it to a session.", "ex.all": "All", "ex.cat.rondo": "Rondos & possession", "ex.cat.finish": "Finishing", "ex.cat.press": "Pressing & transition", "ex.cat.buildup": "Build-up", "ex.cat.setpiece": "Set pieces", "ex.cat.technique": "Individual technique", "ex.cat.fitness": "Fitness", "ex.cat.gk": "Goalkeeping", "ex.cat.warmup": "Warm-up", "ex.cat.defense": "Defending", "ex.cat.cross": "Crossing & finishing", "ex.cat.duel": "1v1 duels", "ex.dur": "min", "ex.materials": "Materials", "ex.useBoard": "Use on the board", "ex.addTrain": "Add to training", "ex.added": "✓ Added",
+    "ex.title": "Drill library", "ex.hint": "Filter by category, check duration and materials, and use it on the board or add it to a session.", "ex.all": "All", "ex.cat.rondo": "Rondos & possession", "ex.cat.finish": "Finishing", "ex.cat.press": "Pressing & transition", "ex.cat.buildup": "Build-up", "ex.cat.setpiece": "Set pieces", "ex.cat.technique": "Individual technique", "ex.cat.fitness": "Fitness", "ex.cat.gk": "Goalkeeping", "ex.cat.warmup": "Warm-up", "ex.cat.defense": "Defending", "ex.cat.cross": "Crossing & finishing", "ex.cat.duel": "1v1 duels", "ex.dur": "min", "ex.materials": "Materials", "ex.useBoard": "Use on the board", "ex.addTrain": "Add to training", "ex.added": "✓ Added", "ex.preview": "Preview", "ex.previewNote": "Whiteboard preview · not editable", "ex.pickToPreview": "Pick a drill to see it on the board",
     "tr.title": "Training mode", "tr.hint": "Plan the session by adding blocks from the drill library or free-text blocks.", "tr.date": "Date", "tr.time": "Time", "tr.objective": "Session objective", "tr.objectivePh": "E.g. defensive transitions", "tr.addFromLib": "+ Add from library", "tr.addCustom": "+ Free block", "tr.customName": "Block name", "tr.customDur": "Duration (min)", "tr.noBlocks": "You haven't added any blocks to this session yet.", "tr.total": "Total duration", "tr.materials": "Materials needed", "tr.remove": "Remove", "tr.up": "▲", "tr.down": "▼", "tr.sendBoard": "View on board", "tr.summary": "Shareable summary", "tr.copy": "Copy summary", "tr.copied": "✓ Copied", "tr.whatsapp": "Open WhatsApp", "tr.min": "min", "tr.close": "Close", "tr.newBlock": "New block",
     "st.title": "Team statistics", "st.availability": "Squad availability", "st.available": "Available", "st.doubt": "Doubtful", "st.injured": "Injured", "st.topAtt": "Highest training attendance", "st.lowMin": "Least game time (minutes)", "st.byPosition": "Squad by line", "st.gkPos": "Goalkeepers", "st.defPos": "Defenders", "st.midPos": "Midfielders", "st.fwdPos": "Forwards", "st.players": "players", "st.byRole": "Breakdown by position", "st.roleHint": "How the squad actually splits, position by position, with each one's share of the total.", "st.total": "Squad total", "st.player": "player",
     "m.title": "Coaching store", "m.aff": "Affiliate link", "m.note": "Affiliate links are clearly marked and adapted to your country. A small commission helps keep the app running; your price doesn't change.", "m.all": "All", "m.training": "Training", "m.gk": "Goalkeeping", "m.medical": "First aid", "m.tech": "Technology", "m.apparel": "Apparel", "m.view": "View deal", "m.from": "from",
@@ -577,7 +577,7 @@ const DICT = {
     "ex.materials": "Matériel",
     "ex.useBoard": "Utiliser sur le tableau",
     "ex.addTrain": "Ajouter à l'entraînement",
-    "ex.added": "✓ Ajouté",
+    "ex.added": "✓ Ajouté", "ex.preview": "Aperçu", "ex.previewNote": "Aperçu du tableau · non modifiable", "ex.pickToPreview": "Choisissez un exercice pour le voir sur le tableau",
     "tr.title": "Mode entraînement",
     "tr.hint": "Planifiez la séance en ajoutant des blocs depuis la bibliothèque d'exercices ou des blocs libres.",
     "tr.date": "Date",
@@ -826,7 +826,7 @@ const DICT = {
     "ex.materials": "Material",
     "ex.useBoard": "Auf der Taktiktafel nutzen",
     "ex.addTrain": "Zum Training hinzufügen",
-    "ex.added": "✓ Hinzugefügt",
+    "ex.added": "✓ Hinzugefügt", "ex.preview": "Vorschau", "ex.previewNote": "Taktiktafel-Vorschau · nicht bearbeitbar", "ex.pickToPreview": "Wähle eine Übung, um sie auf der Taktiktafel zu sehen",
     "tr.title": "Trainingsmodus",
     "tr.hint": "Plane die Einheit, indem du Blöcke aus der Übungsbibliothek oder freie Blöcke hinzufügst.",
     "tr.date": "Datum",
@@ -1074,7 +1074,7 @@ const DICT = {
     "ex.materials": "Material",
     "ex.useBoard": "Usar no quadro",
     "ex.addTrain": "Adicionar ao treino",
-    "ex.added": "✓ Adicionado",
+    "ex.added": "✓ Adicionado", "ex.preview": "Pré-visualização", "ex.previewNote": "Pré-visualização do quadro · não editável", "ex.pickToPreview": "Escolhe um exercício para o ver no quadro",
     "tr.title": "Modo treino",
     "tr.hint": "Planeia a sessão adicionando blocos da biblioteca de exercícios ou blocos livres.",
     "tr.date": "Data",
@@ -2893,6 +2893,73 @@ const EXERCISES = [
     },
   },
 ];
+
+/* Vista de solo lectura del campo, para previsualizar un ejercicio de la
+   biblioteca sin salir de Ejercicios ni abrir la pizarra real. Dibuja las
+   mismas fichas y trazos que devuelve ex.build(), pero sin arrastre, sin
+   herramientas y sin estado propio: es una foto del montaje, no un editor.
+   Coordenadas en el mismo lienzo 1000×640 que usa la pizarra para el campo
+   entero, así que ex.build() vale tal cual para las dos vistas. */
+const exPathOf = (pts) => pts.map((p, i) => (i === 0 ? `M${p.x},${p.y}` : `L${p.x},${p.y}`)).join(" ");
+const exWavyPath = (a, b) => {
+  const dx = b.x - a.x, dy = b.y - a.y, len = Math.hypot(dx, dy) || 1;
+  const ux = dx / len, uy = dy / len, nx = -uy, ny = ux;
+  const step = 16, amp = 7;
+  let d = `M${a.x},${a.y}`;
+  for (let i = step; i < len - step; i += step) {
+    const s = (Math.round(i / step) % 2 === 0 ? 1 : -1) * amp;
+    d += ` L${a.x + ux * i + nx * s},${a.y + uy * i + ny * s}`;
+  }
+  return `${d} L${b.x},${b.y}`;
+};
+const exTokenFill = (ty) => (ty === "home" ? "#FFFFFF" : ty === "away" ? "#36454F" : ty === "ball" ? "#FFFFFF" : ty === "disc" ? "#9FB0BA" : ty === "goal" ? "#E6EAEC" : "#C0C8CD");
+const exDrawShape = (s) => {
+  const col = s.color || "#FFFFFF";
+  const sw = s.width || 4;
+  const common = { fill: "none", stroke: col, strokeWidth: sw, strokeLinecap: "round", strokeLinejoin: "round" };
+  const k = s.id ?? Math.random();
+  if (s.tool === "text") return <text key={k} x={s.pts[0].x} y={s.pts[0].y} fill={col} fontSize={22 + sw * 2} fontFamily="Barlow Condensed, sans-serif" fontWeight="700">{s.text}</text>;
+  if (s.tool === "zone") { const a = s.pts[0], b = s.pts[1]; return <rect key={k} x={Math.min(a.x, b.x)} y={Math.min(a.y, b.y)} width={Math.abs(b.x - a.x)} height={Math.abs(b.y - a.y)} {...common} fill={col} fillOpacity="0.13" strokeDasharray="8 6" />; }
+  if (s.tool === "circle") { const a = s.pts[0], b = s.pts[1]; return <circle key={k} cx={a.x} cy={a.y} r={Math.hypot(b.x - a.x, b.y - a.y)} {...common} fill={col} fillOpacity="0.10" />; }
+  if (s.tool === "pass") return <path key={k} d={exPathOf(s.pts)} strokeDasharray="10 10" markerEnd="url(#exArrow)" {...common} />;
+  if (s.tool === "dribble") return <path key={k} d={exWavyPath(s.pts[0], s.pts[s.pts.length - 1])} markerEnd="url(#exArrow)" {...common} />;
+  if (s.tool === "arrow") return <path key={k} d={exPathOf(s.pts)} markerEnd="url(#exArrow)" {...common} />;
+  return <path key={k} d={exPathOf(s.pts)} {...common} />;
+};
+const ExerciseBoard = ({ ex }) => {
+  const { tokens = [], shapes = [] } = ex?.build ? ex.build() : {};
+  return (
+    <svg viewBox="0 0 1000 640" className="w-full rounded-lg border pointer-events-none select-none"
+      style={{ borderColor: C.line, background: "#152219", aspectRatio: "1000/640" }}>
+      <defs>
+        <marker id="exArrow" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#FFFFFF" /></marker>
+      </defs>
+      {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => <rect key={i} x={i * 125} y="0" width="125" height="640" fill={i % 2 ? "#17251D" : "#152219"} />)}
+      <g stroke="rgba(255,255,255,0.55)" strokeWidth="3" fill="none">
+        <rect x="12" y="12" width="976" height="616" /><line x1="500" y1="12" x2="500" y2="628" /><circle cx="500" cy="320" r="70" />
+        <rect x="12" y="200" width="120" height="240" /><rect x="868" y="200" width="120" height="240" />
+        <rect x="12" y="270" width="45" height="100" /><rect x="943" y="270" width="45" height="100" />
+      </g>
+      {shapes.map((s) => exDrawShape(s))}
+      {tokens.map((tk, i) => (
+        <g key={tk.id ?? i}>
+          {tk.type === "cone"
+            ? <path d={`M${tk.x},${tk.y - 16} L${tk.x + 14},${tk.y + 12} L${tk.x - 14},${tk.y + 12} Z`} fill={exTokenFill(tk.type)} stroke={tk.type === "away" ? "#FFFFFF" : "#36454F"} strokeWidth="2" />
+            : tk.type === "disc"
+            ? <ellipse cx={tk.x} cy={tk.y} rx="14" ry="7" fill={exTokenFill(tk.type)} stroke={tk.type === "away" ? "#FFFFFF" : "#36454F"} strokeWidth="2" />
+            : tk.type === "goal"
+            ? <g><rect x={tk.x - 30} y={tk.y - 12} width="60" height="24" fill="none" stroke={exTokenFill(tk.type)} strokeWidth="4" />
+                <line x1={tk.x - 30} y1={tk.y - 12} x2={tk.x - 30} y2={tk.y + 12} stroke={exTokenFill(tk.type)} strokeWidth="4" />
+                <line x1={tk.x + 30} y1={tk.y - 12} x2={tk.x + 30} y2={tk.y + 12} stroke={exTokenFill(tk.type)} strokeWidth="4" /></g>
+            : <>
+                <circle cx={tk.x} cy={tk.y} r={tk.type === "ball" ? 13 : 20} fill={exTokenFill(tk.type)} stroke={tk.type === "away" ? "#FFFFFF" : "#36454F"} strokeWidth={tk.type === "ball" ? 2 : 3} />
+                {tk.label && <text x={tk.x} y={tk.y} textAnchor="middle" dominantBaseline="central" fontSize="20" fontFamily="Barlow Condensed, sans-serif" fontWeight="700" fill={tk.type === "away" ? "#FFFFFF" : "#36454F"}>{tk.label}</text>}
+              </>}
+        </g>
+      ))}
+    </svg>
+  );
+};
 
 /* Desplegable de la pizarra: mismo comportamiento para ejercicios y jugadas.
    Se cierra al pulsar fuera y con Escape, y el panel se ancla al botón. */
@@ -6032,6 +6099,7 @@ export default function App() {
   const [mkCat, setMkCat] = useState("all");
   const [menuOpen, setMenuOpen] = useState(false);
   const [exCat, setExCat] = useState("all");
+  const [selExId, setSelExId] = useState(null);
   const [pendingExId, setPendingExId] = useState(null);
   /* Jugada que el modo partido manda abrir en la pizarra. */
   const [pendingPlayId, setPendingPlayId] = useState(null);
@@ -11189,6 +11257,10 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
     const cats = [["all", t("ex.all")], ...EX_CATS.map((c) => [c, t("ex.cat." + c)])];
     const exVisible = isPro ? EXERCISES : EXERCISES.slice(0, FREE_CAPS.exercises);
     const items = exVisible.filter((ex) => exCat === "all" || ex.cat === exCat);
+    /* La selección vive fuera de la lista filtrada: si el ejercicio marcado
+       desaparece al cambiar de categoría, el panel cae al primero de la
+       nueva lista en vez de quedarse enseñando algo que ya no se ve arriba. */
+    const activeEx = items.find((ex) => ex.id === selExId) || items[0] || null;
     return (
       <Card title={t("ex.title")}>
         <div className="text-xs mb-3" style={{ color: C.dim }}>{t("ex.hint")}</div>
@@ -11198,32 +11270,60 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
               style={{ borderColor: exCat === k ? AC : C.line, background: exCat === k ? AC : C.panel2, color: exCat === k ? "#141414" : C.chalk }}>{lbl}</button>
           ))}
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-          {items.map((ex) => (
-            <div key={ex.id} className="rounded-lg border p-4 flex flex-col" style={{ borderColor: C.line, background: C.panel2 }}>
-              <div className="flex items-center justify-between mb-1">
-                <div className="text-3xl">{ex.icon}</div>
-                <div className="text-[10px] font-display uppercase tracking-wide px-2 py-0.5 rounded-full border" style={{ borderColor: C.line, color: C.dim }}>{ex.dur} {t("ex.dur")}</div>
-              </div>
-              <div className="font-display text-lg font-semibold leading-tight" style={{ color: C.chalk }}>{ex.name[lang] || ex.name.es}</div>
-              <div className="text-xs mt-1 mb-2 flex-1" style={{ color: C.dim }}>{(ex.desc && (ex.desc[lang] || ex.desc.es)) || ""}</div>
-              <div className="text-[11px] mb-3 flex flex-wrap items-center gap-1" style={{ color: C.dim }}>
-                <span>🎒 {t("ex.materials")}:</span>
-                {((ex.materials && (ex.materials[lang] || ex.materials.es)) || []).map((m) => (
-                  <a key={m} href={amzMat(m)} target="_blank" rel="noreferrer sponsored nofollow"
-                    className="px-2 py-0.5 rounded-full border hover:underline" style={{ borderColor: C.line, color: C.chalk }}>{m} ↗</a>
-                ))}
-                {(!ex.materials || !(ex.materials[lang] || ex.materials.es)?.length) && <span>—</span>}
-              </div>
-              <div className="flex gap-2">
-                <button onClick={() => { setPendingExId(ex.id); setTab("pizarra"); }} className="flex-1 text-sm px-3 py-1.5 rounded-lg font-display uppercase tracking-wide font-semibold" style={{ background: AC, color: C.sobre }}>{t("ex.useBoard")}</button>
-                {can("editTraining") && (
-                  <button onClick={() => addTrainBlock({ name: ex.name[lang] || ex.name.es, dur: ex.dur, materials: (ex.materials && (ex.materials[lang] || ex.materials.es)) || [], exId: ex.id })}
-                    className="flex-1 text-sm px-3 py-1.5 rounded-lg border font-display uppercase tracking-wide" style={{ borderColor: C.line, color: C.chalk }}>{t("ex.addTrain")}</button>
-                )}
-              </div>
-            </div>
-          ))}
+        {/* En móvil es una sola columna: la lista compacta y, justo debajo,
+            el panel con la pizarra falsa del ejercicio marcado. En escritorio
+            el panel se fija a la derecha y no se mueve al hacer scroll de la
+            lista, como un maestro-detalle. */}
+        <div className="grid lg:grid-cols-[1fr_360px] gap-4 items-start">
+          <div className="grid sm:grid-cols-2 gap-2">
+            {items.map((ex) => {
+              const active = activeEx?.id === ex.id;
+              return (
+                <button key={ex.id} onClick={() => setSelExId(ex.id)}
+                  className="text-left rounded-lg border px-3 py-2.5 flex items-center gap-3"
+                  style={{ borderColor: active ? AC : C.line, background: active ? `${C.velo}0.08)` : C.panel2 }}>
+                  <div className="text-2xl shrink-0">{ex.icon}</div>
+                  <div className="flex-1 min-w-0">
+                    <div className="text-sm font-display font-semibold leading-tight truncate" style={{ color: C.chalk }}>{ex.name[lang] || ex.name.es}</div>
+                    <div className="text-[11px] truncate" style={{ color: C.dim }}>{t("ex.cat." + ex.cat)} · {ex.dur} {t("ex.dur")}</div>
+                  </div>
+                  <div className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: active ? AC : "transparent", border: active ? "none" : `1px solid ${C.line}` }} />
+                </button>
+              );
+            })}
+            {items.length === 0 && <div className="sm:col-span-2 text-sm py-6 text-center" style={{ color: C.dim }}>—</div>}
+          </div>
+          <div className="lg:sticky lg:top-4 rounded-lg border p-4" style={{ borderColor: C.line, background: C.panel2 }}>
+            {activeEx ? (
+              <>
+                <div className="flex items-center gap-2 mb-1">
+                  <div className="text-2xl shrink-0">{activeEx.icon}</div>
+                  <div className="font-display text-lg font-semibold leading-tight flex-1" style={{ color: C.chalk }}>{activeEx.name[lang] || activeEx.name.es}</div>
+                  <div className="text-[10px] font-display uppercase tracking-wide px-2 py-0.5 rounded-full border shrink-0" style={{ borderColor: C.line, color: C.dim }}>{activeEx.dur} {t("ex.dur")}</div>
+                </div>
+                <div className="text-xs mb-3" style={{ color: C.dim }}>{(activeEx.desc && (activeEx.desc[lang] || activeEx.desc.es)) || ""}</div>
+                <ExerciseBoard ex={activeEx} />
+                <div className="text-[10px] text-center mt-1.5 mb-3" style={{ color: C.dim }}>{t("ex.previewNote")}</div>
+                <div className="text-[11px] mb-3 flex flex-wrap items-center gap-1" style={{ color: C.dim }}>
+                  <span>🎒 {t("ex.materials")}:</span>
+                  {((activeEx.materials && (activeEx.materials[lang] || activeEx.materials.es)) || []).map((m) => (
+                    <a key={m} href={amzMat(m)} target="_blank" rel="noreferrer sponsored nofollow"
+                      className="px-2 py-0.5 rounded-full border hover:underline" style={{ borderColor: C.line, color: C.chalk }}>{m} ↗</a>
+                  ))}
+                  {(!activeEx.materials || !(activeEx.materials[lang] || activeEx.materials.es)?.length) && <span>—</span>}
+                </div>
+                <div className="flex gap-2">
+                  <button onClick={() => { setPendingExId(activeEx.id); setTab("pizarra"); }} className="flex-1 text-sm px-3 py-1.5 rounded-lg font-display uppercase tracking-wide font-semibold" style={{ background: AC, color: C.sobre }}>{t("ex.useBoard")}</button>
+                  {can("editTraining") && (
+                    <button onClick={() => addTrainBlock({ name: activeEx.name[lang] || activeEx.name.es, dur: activeEx.dur, materials: (activeEx.materials && (activeEx.materials[lang] || activeEx.materials.es)) || [], exId: activeEx.id })}
+                      className="flex-1 text-sm px-3 py-1.5 rounded-lg border font-display uppercase tracking-wide" style={{ borderColor: C.line, color: C.chalk }}>{t("ex.addTrain")}</button>
+                  )}
+                </div>
+              </>
+            ) : (
+              <div className="text-sm text-center py-8" style={{ color: C.dim }}>{t("ex.pickToPreview")}</div>
+            )}
+          </div>
         </div>
       </Card>
     );
