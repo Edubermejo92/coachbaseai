@@ -42,7 +42,7 @@ const DICT = {
     "a.forgot": "¿Has olvidado tu contraseña?", "a.forgotTitle": "Recuperar contraseña", "a.forgotD": "Escribe tu email y te mandamos un enlace para elegir una nueva.", "a.forgotSend": "Enviar enlace", "a.sending": "Enviando…", "a.forgotSent": "Si ese email tiene cuenta, ya está el enlace enviado. Caduca en una hora y solo sirve una vez. Mira también en spam.", "a.forgotNoMail": "El envío de correo no está disponible ahora mismo. Avisa a tu club para que lo revise.", "a.resetTitle": "Elige tu nueva contraseña", "a.resetD": "Este enlace caduca en una hora y solo sirve una vez.", "a.newPass": "Nueva contraseña", "a.newPass2": "Repite la contraseña", "a.resetSave": "Guardar contraseña", "a.resetOk": "Contraseña actualizada. Ya puedes entrar con ella.", "a.resetBad": "Este enlace ya no vale: ha caducado o ya se ha usado. Pide otro.", "a.passRule": "Mínimo 6 caracteres, y las dos deben coincidir.", "a.noBackend": "No hay conexión con el servidor. Inténtalo más tarde.",
     "p.account": "Mi cuenta", "p.changePass": "Cambiar contraseña", "p.current": "Contraseña actual", "p.save": "Guardar", "p.saved": "Contraseña actualizada.", "p.badCurrent": "La contraseña actual no es correcta.", "p.close": "Cerrar",
     "h.nextMatch": "Próximo partido", "h.nextTrain": "Próximo entrenamiento", "h.available": "Disponibles", "h.lessMin": "Menos participación", "h.alerts": "Alertas", "h.quick": "Accesos rápidos", "h.family": "Avisos para las familias", "h.pending": "accesos pendientes de aprobar", "h.startMatch": "Iniciar partido", "as.title": "Asistencia del día", "as.subtitle": "Quién ha venido y por qué. Sin incidencias ni sanciones: eso sigue en Disciplina.", "as.today": "Hoy", "as.markAll": "✓ Marcar todos presentes", "as.present": "Presente", "as.unmarked": "Sin marcar", "as.studies": "Estudios", "as.noExcuse": "Sin explicación", "as.sick": "Enfermedad", "as.injured": "Lesión", "as.reset": "Quitar marca", "as.noPlayers": "No hay jugadores en la plantilla.", "as.discNote": "¿Retraso o falta con consecuencia disciplinaria? Eso se registra en Disciplina → Pasar lista, que además avisa al cuerpo técnico.", "as.homeTitle": "Asistencia de hoy", "as.homeEmpty": "Todavía no has pasado lista hoy.", "as.homeCta": "Pasar lista", "as.homeSee": "Ver asistencia", "as.homeAll": "Todos presentes.", "as.homeOf": "de",
-    "w.title": "Pizarra táctica", "w.move": "Mover", "w.arrow": "Flecha", "w.pass": "Pase", "w.free": "Dibujo", "w.cone": "Cono", "w.ball": "Balón", "w.erase": "Borrar", "w.clear": "Limpiar", "w.home": "Local", "w.away": "Rival", "w.hint": "Elige herramienta · arrastra las fichas · dibuja sobre el campo", "w.form": "Colocar", "w.f11": "Fútbol 11", "w.f7": "Fútbol 7", "w.homeSys": "Sistema local", "w.awaySys": "Sistema rival", "w.exercises": "Ejercicios recomendados", "w.exHint": "Toca un ejercicio para colocarlo en la pizarra", "w.autoSave": "El sistema elegido se guarda automáticamente en este dispositivo", "w.abpForAgainst": "¿A favor o en contra?", "w.abpAttack": "Ataque", "w.abpDefense": "Defensa", "w.abpSide": "¿Por qué lado?", "w.abpLeft": "◂ Izquierda", "w.abpRight": "Derecha ▸", "w.abpPlace": "Colocar situación", "w.abpAgainst": "en contra", "w.abpFor": "a favor", "w.abpOwnBoard": "tablero propio", "w.abpSaveAs": "Guardar la pizarra como",
+    "w.title": "Pizarra táctica", "w.move": "Mover", "w.arrow": "Flecha", "w.pass": "Pase", "w.free": "Dibujo", "w.cone": "Cono", "w.ball": "Balón", "w.erase": "Borrar", "w.clear": "Limpiar", "w.home": "Local", "w.away": "Rival", "w.hint": "Elige herramienta · arrastra las fichas · dibuja sobre el campo", "w.form": "Colocar", "w.f11": "Fútbol 11", "w.f7": "Fútbol 7", "w.homeSys": "Sistema local", "w.awaySys": "Sistema rival", "w.exercises": "Ejercicios recomendados", "w.exHint": "Toca un ejercicio para colocarlo en la pizarra", "w.autoSave": "El sistema elegido se guarda automáticamente en este dispositivo", "w.abpForAgainst": "¿A favor o en contra?", "w.abpAttack": "Ataque", "w.abpDefense": "Defensa", "w.abpSide": "¿Por qué lado?", "w.abpLeft": "◂ Izquierda", "w.abpRight": "Derecha ▸", "w.abpPlace": "Colocar situación", "w.abpAgainst": "en contra", "w.abpFor": "a favor", "w.abpOwnBoard": "tablero propio", "w.abpSaveAs": "Guardar la pizarra como", "w.viewFull": "Completo", "w.viewAreaR": "Área ▸", "w.viewAreaL": "◂ Área", "w.viewSideline": "Banda", "w.viewGoal": "Portería", "w.colorWhite": "Blanco", "w.colorLightGray": "Gris claro", "w.colorGray": "Gris", "w.colorSlate": "Pizarra", "w.colorCharcoal": "Carbón", "w.toScale": "a escala real", "w.dribble": "Conducción", "w.zone": "Zona", "w.circle": "Círculo", "w.text": "Texto", "w.disc": "Seta", "w.playerToken": "Jugador", "w.dorsal": "Dorsal", "w.undo": "Deshacer", "w.redo": "Rehacer", "w.grid": "Cuadrícula", "w.searchDrill": "Buscar ejercicio…", "w.aiHelp": "Ayuda IA", "w.tellChange": "Dile el cambio", "w.aiChangePh": "Ej. mueve al 9 al segundo palo y saca al 4 al borde del área", "w.thinking": "Pensando…", "w.applyToBoard": "Aplicar a la pizarra", "w.aiHint": "Cambia las fichas y los trazos de lo que tengas ahora en el campo. Si no te gusta, ↶ Deshacer lo devuelve como estaba.", "w.plays": "Jugadas", "w.saveAsNew": "+ Guardar como nueva", "w.shareTeam": "⬆ Compartir con el equipo", "w.shareTeamHint": "Las verán tu segundo y tu delegado desde su móvil, también en Modo partido.", "w.updateChangesIn": "↻ Guardar los cambios en", "w.moveUp": "Subir", "w.moveDown": "Bajar", "w.rename": "Renombrar", "w.deleteAction": "Borrar", "w.noPlaysSaved": "Aún no hay jugadas guardadas", "w.view": "Vista", "w.board": "Tablero", "w.backToFullPitch": "‹ Volver al campo entero", "w.framing": "Encuadre", "w.zoomLabel": "Zoom", "w.fit": "Ajustar", "w.pinchHint": "Con dos dedos: pellizca para acercar y arrastra para mover.", "w.brightness": "☀ Brillo", "w.steps": "Pasos", "w.addStep": "+ Añadir paso", "w.stepOf": "Paso {a} de {b}", "w.pause": "❚❚ Pausa", "w.play": "▶ Reproducir", "w.deleteSequence": "Borrar secuencia", "w.noStepsSaved": "Guarda instantáneas para explicar la jugada paso a paso.", "w.systems": "Sistemas", "w.exportPng": "Exportar PNG", "w.recordVideo": "Grabar vídeo", "w.video": "Vídeo", "w.exit": "Salir", "w.fullscreen": "Pantalla completa", "w.zoomOut": "Alejar", "w.zoomIn": "Acercar", "w.fullscreenSuffix": "pantalla completa", "w.exitEsc": "✕ Salir (Esc)", "w.otherFormation": "Otro", "w.noVideoSupport": "Este navegador no admite grabación de vídeo. Prueba con Chrome o Firefox actualizados.", "w.playNamePrompt": "Nombre de la jugada", "w.dorsalPrompt": "Dorsal de esta ficha (vacío para quitarlo)", "w.annotationPrompt": "Texto de la anotación", "w.needClubAccount": "Entra con tu cuenta del club para poder compartirlas.", "w.sharing": "Compartiendo…", "w.sharedOk": "✓ Compartidas con tu equipo.", "w.sharedFail": "No se pudieron compartir. Revisa la conexión.", "w.aiNotUnderstood": "No he entendido el cambio. Dilo de otra forma, por ejemplo: \"mueve al 9 al segundo palo\".", "w.aiDone": "✓ Hecho. Si no te convence, deshaz con ↶.", "w.squadLabel": "Plantilla",
     "ex.title": "Biblioteca de ejercicios", "ex.hint": "Filtra por categoría, mira duración y material, y úsalo en la pizarra o añádelo a un entrenamiento.", "ex.all": "Todos", "ex.cat.rondo": "Rondos y posesión", "ex.cat.finish": "Finalización", "ex.cat.press": "Presión y transición", "ex.cat.buildup": "Salida de balón", "ex.cat.setpiece": "Acciones a balón parado", "ex.cat.technique": "Técnica individual", "ex.cat.fitness": "Físico", "ex.cat.gk": "Porteros", "ex.cat.warmup": "Calentamiento", "ex.cat.defense": "Defensa", "ex.cat.cross": "Centros y remate", "ex.cat.duel": "Duelos 1v1", "ex.dur": "min", "ex.materials": "Material", "ex.useBoard": "Usar en la pizarra", "ex.addTrain": "Añadir a entrenamiento", "ex.added": "✓ Añadido",
     "tr.title": "Modo entrenamiento", "tr.hint": "Planifica la sesión añadiendo bloques desde la biblioteca de ejercicios o bloques libres.", "tr.date": "Fecha", "tr.time": "Hora", "tr.objective": "Objetivo de la sesión", "tr.objectivePh": "Ej. transiciones defensivas", "tr.addFromLib": "+ Añadir desde la biblioteca", "tr.addCustom": "+ Bloque libre", "tr.customName": "Nombre del bloque", "tr.customDur": "Duración (min)", "tr.noBlocks": "Aún no has añadido ningún bloque a esta sesión.", "tr.total": "Duración total", "tr.materials": "Material necesario", "tr.remove": "Quitar", "tr.up": "▲", "tr.down": "▼", "tr.sendBoard": "Ver en pizarra", "tr.summary": "Resumen para compartir", "tr.copy": "Copiar resumen", "tr.copied": "✓ Copiado", "tr.whatsapp": "Abrir WhatsApp", "tr.min": "min", "tr.close": "Cerrar", "tr.newBlock": "Nuevo bloque",
     "st.title": "Estadísticas del equipo", "st.availability": "Disponibilidad de la plantilla", "st.available": "Disponibles", "st.doubt": "Duda", "st.injured": "Lesionados", "st.topAtt": "Mayor asistencia a entrenamientos", "st.lowMin": "Menor participación (minutos)", "st.byPosition": "Plantilla por línea", "st.gkPos": "Porteros", "st.defPos": "Defensas", "st.midPos": "Centrocampistas", "st.fwdPos": "Delanteros", "st.players": "jugadores", "st.byRole": "Desglose por demarcación", "st.roleHint": "Reparto real de la plantilla, posición a posición, con el peso de cada una sobre el total.", "st.total": "Total plantilla", "st.player": "jugador",
@@ -74,11 +74,45 @@ const DICT = {
     "sq.min": "Min.",
     "sq.att": "Asist.",
     "ln.apply": "Aplicar",
+    "ln.proposalTitle": "Propuesta de alineación",
+    "ln.startersTitle": "Titulares",
+    "ln.pendingApproval": "⏳ Tu propuesta de alineación está pendiente de aprobación",
+    "ln.finishAndSend": "Cuando termines de colocar el once, mándala.",
+    "ln.placeAndSend": "Coloca el once y manda la propuesta cuando termines.",
+    "ln.sendProposal": "Enviar propuesta",
+    "ln.dragHint": "Arrastra para recolocar · toque corto para asignar",
+    "ln.askAI": "✦ Preguntar a la IA",
+    "ln.tapPosPlayerSel": "Toca un puesto del campo, o elige uno de esta lista — primero el suyo",
+    "ln.slotSameLine": "Los de {pos} suben arriba, para encontrar rápido a quién meter",
+    "ln.benchTitle": "Banquillo",
+    "ln.assignTo": "Asignar a {slot}",
+    "ln.choosePosFor": "Elegir puesto para {name}",
+    "ln.hisSpot": "Su puesto",
+    "ln.occupiedBy": "Ocupado · {name}",
+    "ln.free": "Libre",
+    "ln.samePos": "Mismo puesto",
     "ln.other": "Otro: 4-1-4-1",
-    "ln.tapPos": "Toca una posición del campo y asigna un jugador",
+    "ln.tapPos": "Toca una posición del campo y asigna un jugador, o toca un jugador de la lista para ver dónde puede jugar.",
     "cl.waMsg": "Mensaje para WhatsApp",
     "cl.waOpen": "Abrir WhatsApp",
     "cl.waLegend": "🧤 portero · dorsal en emoji · porteros primero",
+    "cl.title": "Convocatoria",
+    "cl.readonly": "(solo lectura)",
+    "cl.rival": "Rival",
+    "cl.place": "Lugar",
+    "cl.otherRival": "✎ Otro rival (no está en el calendario)",
+    "cl.rivalNamePh": "Nombre del rival",
+    "cl.noCalendar": "Sin calendario todavía — el director deportivo tiene que cargarlo al empezar la temporada para tener aquí a todos los rivales.",
+    "cl.readonlyNotice": "Modo consulta: la convocatoria la deciden el entrenador y el director deportivo. Como {role} puedes verla, pero no cambiarla.",
+    "cl.markCalled": "Marca los convocados",
+    "cl.calledList": "Convocados",
+    "cl.selected": "seleccionados",
+    "cl.copied": "✓ Copiado",
+    "cl.copyMsg": "Copiar mensaje",
+    "cl.saveHistory": "📌 Guardar en el histórico",
+    "cl.proOnly": "El histórico de convocatorias es una función PRO.",
+    "cl.proposalSent": "✓ Propuesta de convocatoria enviada. Esperando aprobación del entrenador.",
+    "cl.savedHistory": "✓ Convocatoria guardada en el histórico.",
     "mt.half2": "2ª parte",
     "mt.halfLen": "Duración de cada parte",
     "mt.added": "Tiempo añadido por el árbitro",
@@ -167,7 +201,7 @@ const DICT = {
     "a.forgot": "Forgotten your password?", "a.forgotTitle": "Reset password", "a.forgotD": "Enter your email and we'll send you a link to choose a new one.", "a.forgotSend": "Send link", "a.sending": "Sending…", "a.forgotSent": "If that email has an account, the link is on its way. It expires in an hour and works once. Check your spam folder too.", "a.forgotNoMail": "Email sending is unavailable right now. Let your club know so they can look into it.", "a.resetTitle": "Choose your new password", "a.resetD": "This link expires in an hour and works only once.", "a.newPass": "New password", "a.newPass2": "Repeat password", "a.resetSave": "Save password", "a.resetOk": "Password updated. You can sign in with it now.", "a.resetBad": "This link no longer works: it expired or was already used. Request a new one.", "a.passRule": "At least 6 characters, and both must match.", "a.noBackend": "No connection to the server. Try again later.",
     "p.account": "My account", "p.changePass": "Change password", "p.current": "Current password", "p.save": "Save", "p.saved": "Password updated.", "p.badCurrent": "That current password isn't right.", "p.close": "Close",
     "h.nextMatch": "Next match", "h.nextTrain": "Next training", "h.available": "Available", "h.lessMin": "Least game time", "h.alerts": "Alerts", "h.quick": "Quick access", "h.family": "Notices for families", "h.pending": "pending access requests", "h.startMatch": "Start match",
-    "w.title": "Tactics board", "w.move": "Move", "w.arrow": "Arrow", "w.pass": "Pass", "w.free": "Draw", "w.cone": "Cone", "w.ball": "Ball", "w.erase": "Erase", "w.clear": "Clear", "w.home": "Home", "w.away": "Away", "w.hint": "Pick a tool · drag the tokens · draw on the pitch", "w.form": "Place", "w.f11": "11-a-side", "w.f7": "7-a-side", "w.homeSys": "Home system", "w.awaySys": "Away system", "w.exercises": "Recommended drills", "w.exHint": "Tap a drill to set it up on the board", "w.autoSave": "Your chosen system is saved automatically on this device", "w.abpForAgainst": "For or against?", "w.abpAttack": "Attack", "w.abpDefense": "Defence", "w.abpSide": "Which side?", "w.abpLeft": "◂ Left", "w.abpRight": "Right ▸", "w.abpPlace": "Set up the situation", "w.abpAgainst": "against", "w.abpFor": "for", "w.abpOwnBoard": "own board", "w.abpSaveAs": "Save the whiteboard as",
+    "w.title": "Tactics board", "w.move": "Move", "w.arrow": "Arrow", "w.pass": "Pass", "w.free": "Draw", "w.cone": "Cone", "w.ball": "Ball", "w.erase": "Erase", "w.clear": "Clear", "w.home": "Home", "w.away": "Away", "w.hint": "Pick a tool · drag the tokens · draw on the pitch", "w.form": "Place", "w.f11": "11-a-side", "w.f7": "7-a-side", "w.homeSys": "Home system", "w.awaySys": "Away system", "w.exercises": "Recommended drills", "w.exHint": "Tap a drill to set it up on the board", "w.autoSave": "Your chosen system is saved automatically on this device", "w.abpForAgainst": "For or against?", "w.abpAttack": "Attack", "w.abpDefense": "Defence", "w.abpSide": "Which side?", "w.abpLeft": "◂ Left", "w.abpRight": "Right ▸", "w.abpPlace": "Set up the situation", "w.abpAgainst": "against", "w.abpFor": "for", "w.abpOwnBoard": "own board", "w.abpSaveAs": "Save the whiteboard as", "w.viewFull": "Full pitch", "w.viewAreaR": "Area ▸", "w.viewAreaL": "◂ Area", "w.viewSideline": "Sideline", "w.viewGoal": "Goal", "w.colorWhite": "White", "w.colorLightGray": "Light grey", "w.colorGray": "Grey", "w.colorSlate": "Slate", "w.colorCharcoal": "Charcoal", "w.toScale": "to scale", "w.dribble": "Dribble", "w.zone": "Zone", "w.circle": "Circle", "w.text": "Text", "w.disc": "Disc", "w.playerToken": "Player", "w.dorsal": "Number", "w.undo": "Undo", "w.redo": "Redo", "w.grid": "Grid", "w.searchDrill": "Search drill…", "w.aiHelp": "AI help", "w.tellChange": "Tell it the change", "w.aiChangePh": "E.g. move the 9 to the far post and bring the 4 to the edge of the box", "w.thinking": "Thinking…", "w.applyToBoard": "Apply to the whiteboard", "w.aiHint": "Changes the tokens and drawings you currently have on the pitch. If you don't like it, ↶ Undo puts it back.", "w.plays": "Plays", "w.saveAsNew": "+ Save as new", "w.shareTeam": "⬆ Share with the team", "w.shareTeamHint": "Your assistant coach and team manager will see it on their phone too, including in Match mode.", "w.updateChangesIn": "↻ Save changes to", "w.moveUp": "Move up", "w.moveDown": "Move down", "w.rename": "Rename", "w.deleteAction": "Delete", "w.noPlaysSaved": "No plays saved yet", "w.view": "View", "w.board": "Board", "w.backToFullPitch": "‹ Back to full pitch", "w.framing": "Framing", "w.zoomLabel": "Zoom", "w.fit": "Fit", "w.pinchHint": "With two fingers: pinch to zoom and drag to move.", "w.brightness": "☀ Brightness", "w.steps": "Steps", "w.addStep": "+ Add step", "w.stepOf": "Step {a} of {b}", "w.pause": "❚❚ Pause", "w.play": "▶ Play", "w.deleteSequence": "Delete sequence", "w.noStepsSaved": "Save snapshots to explain the play step by step.", "w.systems": "Systems", "w.exportPng": "Export PNG", "w.recordVideo": "Record video", "w.video": "Video", "w.exit": "Exit", "w.fullscreen": "Full screen", "w.zoomOut": "Zoom out", "w.zoomIn": "Zoom in", "w.fullscreenSuffix": "full screen", "w.exitEsc": "✕ Exit (Esc)", "w.otherFormation": "Other", "w.noVideoSupport": "This browser doesn't support video recording. Try an up-to-date Chrome or Firefox.", "w.playNamePrompt": "Play name", "w.dorsalPrompt": "This token's number (leave empty to remove it)", "w.annotationPrompt": "Annotation text", "w.needClubAccount": "Sign in with your club account to share these.", "w.sharing": "Sharing…", "w.sharedOk": "✓ Shared with your team.", "w.sharedFail": "Couldn't share. Check your connection.", "w.aiNotUnderstood": "I didn't understand that change. Try saying it another way, e.g. \"move the 9 to the far post\".", "w.aiDone": "✓ Done. If you don't like it, undo with ↶.", "w.squadLabel": "Squad",
     "ex.title": "Drill library", "ex.hint": "Filter by category, check duration and materials, and use it on the board or add it to a session.", "ex.all": "All", "ex.cat.rondo": "Rondos & possession", "ex.cat.finish": "Finishing", "ex.cat.press": "Pressing & transition", "ex.cat.buildup": "Build-up", "ex.cat.setpiece": "Set pieces", "ex.cat.technique": "Individual technique", "ex.cat.fitness": "Fitness", "ex.cat.gk": "Goalkeeping", "ex.cat.warmup": "Warm-up", "ex.cat.defense": "Defending", "ex.cat.cross": "Crossing & finishing", "ex.cat.duel": "1v1 duels", "ex.dur": "min", "ex.materials": "Materials", "ex.useBoard": "Use on the board", "ex.addTrain": "Add to training", "ex.added": "✓ Added",
     "tr.title": "Training mode", "tr.hint": "Plan the session by adding blocks from the drill library or free-text blocks.", "tr.date": "Date", "tr.time": "Time", "tr.objective": "Session objective", "tr.objectivePh": "E.g. defensive transitions", "tr.addFromLib": "+ Add from library", "tr.addCustom": "+ Free block", "tr.customName": "Block name", "tr.customDur": "Duration (min)", "tr.noBlocks": "You haven't added any blocks to this session yet.", "tr.total": "Total duration", "tr.materials": "Materials needed", "tr.remove": "Remove", "tr.up": "▲", "tr.down": "▼", "tr.sendBoard": "View on board", "tr.summary": "Shareable summary", "tr.copy": "Copy summary", "tr.copied": "✓ Copied", "tr.whatsapp": "Open WhatsApp", "tr.min": "min", "tr.close": "Close", "tr.newBlock": "New block",
     "st.title": "Team statistics", "st.availability": "Squad availability", "st.available": "Available", "st.doubt": "Doubtful", "st.injured": "Injured", "st.topAtt": "Highest training attendance", "st.lowMin": "Least game time (minutes)", "st.byPosition": "Squad by line", "st.gkPos": "Goalkeepers", "st.defPos": "Defenders", "st.midPos": "Midfielders", "st.fwdPos": "Forwards", "st.players": "players", "st.byRole": "Breakdown by position", "st.roleHint": "How the squad actually splits, position by position, with each one's share of the total.", "st.total": "Squad total", "st.player": "player",
@@ -199,11 +233,45 @@ const DICT = {
     "sq.min": "Mins",
     "sq.att": "Att.",
     "ln.apply": "Apply",
+    "ln.proposalTitle": "Line-up proposal",
+    "ln.startersTitle": "Starting XI",
+    "ln.pendingApproval": "⏳ Your line-up proposal is awaiting approval",
+    "ln.finishAndSend": "When you finish setting the XI, send it.",
+    "ln.placeAndSend": "Set the XI and send the proposal when you're done.",
+    "ln.sendProposal": "Send proposal",
+    "ln.dragHint": "Drag to reposition · tap to assign",
+    "ln.askAI": "✦ Ask the AI",
+    "ln.tapPosPlayerSel": "Tap a position on the pitch, or pick one from this list — their own first",
+    "ln.slotSameLine": "Players in {pos} move to the top, so you can quickly find who to bring in",
+    "ln.benchTitle": "Bench",
+    "ln.assignTo": "Assign to {slot}",
+    "ln.choosePosFor": "Choose a position for {name}",
+    "ln.hisSpot": "Their spot",
+    "ln.occupiedBy": "Taken · {name}",
+    "ln.free": "Free",
+    "ln.samePos": "Same position",
     "ln.other": "Other: 4-1-4-1",
-    "ln.tapPos": "Tap a position on the pitch and assign a player",
+    "ln.tapPos": "Tap a position on the pitch and assign a player, or tap a player from the list to see where they can play.",
     "cl.waMsg": "WhatsApp message",
     "cl.waOpen": "Open WhatsApp",
     "cl.waLegend": "🧤 goalkeeper · number as emoji · keepers first",
+    "cl.title": "Squad list",
+    "cl.readonly": "(read only)",
+    "cl.rival": "Opponent",
+    "cl.place": "Venue",
+    "cl.otherRival": "✎ Other opponent (not in the calendar)",
+    "cl.rivalNamePh": "Opponent's name",
+    "cl.noCalendar": "No fixtures yet — the sporting director needs to load them at the start of the season to have every opponent here.",
+    "cl.readonlyNotice": "View only: the squad list is decided by the coach and the sporting director. As {role} you can see it, but not change it.",
+    "cl.markCalled": "Mark who's called up",
+    "cl.calledList": "Called up",
+    "cl.selected": "selected",
+    "cl.copied": "✓ Copied",
+    "cl.copyMsg": "Copy message",
+    "cl.saveHistory": "📌 Save to history",
+    "cl.proOnly": "Squad list history is a PRO feature.",
+    "cl.proposalSent": "✓ Squad list proposal sent. Awaiting the coach's approval.",
+    "cl.savedHistory": "✓ Squad list saved to history.",
     "mt.half2": "2nd half",
     "mt.halfLen": "Length of each half",
     "mt.added": "Added time by the referee",
@@ -312,7 +380,7 @@ const DICT = {
     "a.forgot": "Mot de passe oublié ?", "a.forgotTitle": "Récupérer le mot de passe", "a.forgotD": "Saisissez votre e-mail et nous vous enverrons un lien pour en choisir un nouveau.", "a.forgotSend": "Envoyer le lien", "a.sending": "Envoi…", "a.forgotSent": "Si cet e-mail a un compte, le lien est parti. Il expire dans une heure et ne sert qu'une fois. Vérifiez aussi vos spams.", "a.forgotNoMail": "L'envoi d'e-mails n'est pas disponible pour le moment. Prévenez votre club.", "a.resetTitle": "Choisissez votre nouveau mot de passe", "a.resetD": "Ce lien expire dans une heure et ne sert qu'une fois.", "a.newPass": "Nouveau mot de passe", "a.newPass2": "Répétez le mot de passe", "a.resetSave": "Enregistrer", "a.resetOk": "Mot de passe mis à jour. Vous pouvez vous connecter avec.", "a.resetBad": "Ce lien ne fonctionne plus : il a expiré ou a déjà été utilisé. Demandez-en un autre.", "a.passRule": "6 caractères minimum, et les deux doivent correspondre.", "a.noBackend": "Pas de connexion au serveur. Réessayez plus tard.",
     "p.account": "Mon compte", "p.changePass": "Changer le mot de passe", "p.current": "Mot de passe actuel", "p.save": "Enregistrer", "p.saved": "Mot de passe mis à jour.", "p.badCurrent": "Le mot de passe actuel est incorrect.", "p.close": "Fermer",
     "h.nextMatch": "Prochain match", "h.nextTrain": "Prochain entraînement", "h.available": "Disponibles", "h.lessMin": "Moins de temps de jeu", "h.alerts": "Alertes", "h.quick": "Accès rapides", "h.family": "Infos pour les familles", "h.pending": "accès en attente de validation", "h.startMatch": "Démarrer le match",
-    "w.title": "Tableau tactique", "w.move": "Déplacer", "w.arrow": "Flèche", "w.pass": "Passe", "w.free": "Dessin", "w.cone": "Plot", "w.ball": "Ballon", "w.erase": "Effacer", "w.clear": "Tout effacer", "w.home": "Domicile", "w.away": "Adversaire", "w.hint": "Choisissez un outil · déplacez les jetons · dessinez sur le terrain", "w.form": "Placer", "w.f11": "Foot à 11", "w.f7": "Foot à 7", "w.homeSys": "Système domicile", "w.awaySys": "Système adverse", "w.exercises": "Exercices recommandés", "w.exHint": "Touchez un exercice pour le placer sur le tableau", "w.autoSave": "Le système choisi est enregistré automatiquement sur cet appareil", "w.abpForAgainst": "Pour ou contre ?", "w.abpAttack": "Attaque", "w.abpDefense": "Défense", "w.abpSide": "De quel côté ?", "w.abpLeft": "◂ Gauche", "w.abpRight": "Droite ▸", "w.abpPlace": "Placer la situation", "w.abpAgainst": "en défense", "w.abpFor": "en attaque", "w.abpOwnBoard": "tableau dédié", "w.abpSaveAs": "Enregistrer le tableau comme",
+    "w.title": "Tableau tactique", "w.move": "Déplacer", "w.arrow": "Flèche", "w.pass": "Passe", "w.free": "Dessin", "w.cone": "Plot", "w.ball": "Ballon", "w.erase": "Effacer", "w.clear": "Tout effacer", "w.home": "Domicile", "w.away": "Adversaire", "w.hint": "Choisissez un outil · déplacez les jetons · dessinez sur le terrain", "w.form": "Placer", "w.f11": "Foot à 11", "w.f7": "Foot à 7", "w.homeSys": "Système domicile", "w.awaySys": "Système adverse", "w.exercises": "Exercices recommandés", "w.exHint": "Touchez un exercice pour le placer sur le tableau", "w.autoSave": "Le système choisi est enregistré automatiquement sur cet appareil", "w.abpForAgainst": "Pour ou contre ?", "w.abpAttack": "Attaque", "w.abpDefense": "Défense", "w.abpSide": "De quel côté ?", "w.abpLeft": "◂ Gauche", "w.abpRight": "Droite ▸", "w.abpPlace": "Placer la situation", "w.abpAgainst": "en défense", "w.abpFor": "en attaque", "w.abpOwnBoard": "tableau dédié", "w.abpSaveAs": "Enregistrer le tableau comme", "w.viewFull": "Complet", "w.viewAreaR": "Surface ▸", "w.viewAreaL": "◂ Surface", "w.viewSideline": "Ligne de touche", "w.viewGoal": "But", "w.colorWhite": "Blanc", "w.colorLightGray": "Gris clair", "w.colorGray": "Gris", "w.colorSlate": "Ardoise", "w.colorCharcoal": "Anthracite", "w.toScale": "à l'échelle réelle", "w.dribble": "Conduite", "w.zone": "Zone", "w.circle": "Cercle", "w.text": "Texte", "w.disc": "Disque", "w.playerToken": "Joueur", "w.dorsal": "Numéro", "w.undo": "Annuler", "w.redo": "Rétablir", "w.grid": "Grille", "w.searchDrill": "Rechercher un exercice…", "w.aiHelp": "Aide IA", "w.tellChange": "Décrivez le changement", "w.aiChangePh": "Ex. déplace le 9 au deuxième poteau et amène le 4 au bord de la surface", "w.thinking": "Réflexion…", "w.applyToBoard": "Appliquer au tableau", "w.aiHint": "Modifie les jetons et les tracés actuellement sur le terrain. Si ça ne vous plaît pas, ↶ Annuler restaure l'état précédent.", "w.plays": "Jouées", "w.saveAsNew": "+ Enregistrer comme nouvelle", "w.shareTeam": "⬆ Partager avec l'équipe", "w.shareTeamHint": "Votre adjoint et votre délégué la verront depuis leur mobile, aussi en Mode match.", "w.updateChangesIn": "↻ Enregistrer les changements dans", "w.moveUp": "Monter", "w.moveDown": "Descendre", "w.rename": "Renommer", "w.deleteAction": "Supprimer", "w.noPlaysSaved": "Aucune jouée enregistrée pour l'instant", "w.view": "Vue", "w.board": "Tableau", "w.backToFullPitch": "‹ Retour au terrain entier", "w.framing": "Cadrage", "w.zoomLabel": "Zoom", "w.fit": "Ajuster", "w.pinchHint": "Avec deux doigts : pincez pour zoomer et glissez pour déplacer.", "w.brightness": "☀ Luminosité", "w.steps": "Étapes", "w.addStep": "+ Ajouter une étape", "w.stepOf": "Étape {a} sur {b}", "w.pause": "❚❚ Pause", "w.play": "▶ Lecture", "w.deleteSequence": "Supprimer la séquence", "w.noStepsSaved": "Enregistrez des instantanés pour expliquer la jouée étape par étape.", "w.systems": "Systèmes", "w.exportPng": "Exporter en PNG", "w.recordVideo": "Enregistrer une vidéo", "w.video": "Vidéo", "w.exit": "Quitter", "w.fullscreen": "Plein écran", "w.zoomOut": "Dézoomer", "w.zoomIn": "Zoomer", "w.fullscreenSuffix": "plein écran", "w.exitEsc": "✕ Quitter (Échap)", "w.otherFormation": "Autre", "w.noVideoSupport": "Ce navigateur ne prend pas en charge l'enregistrement vidéo. Essayez avec Chrome ou Firefox à jour.", "w.playNamePrompt": "Nom de la jouée", "w.dorsalPrompt": "Numéro de ce jeton (laissez vide pour le retirer)", "w.annotationPrompt": "Texte de l'annotation", "w.needClubAccount": "Connectez-vous avec votre compte de club pour pouvoir les partager.", "w.sharing": "Partage en cours…", "w.sharedOk": "✓ Partagées avec votre équipe.", "w.sharedFail": "Impossible de partager. Vérifiez votre connexion.", "w.aiNotUnderstood": "Je n'ai pas compris ce changement. Reformulez, par exemple : \"déplace le 9 au deuxième poteau\".", "w.aiDone": "✓ Fait. Si ça ne vous plaît pas, annulez avec ↶.", "w.squadLabel": "Effectif",
     "m.title": "Boutique du coach", "m.aff": "Lien affilié", "m.note": "Liens affiliés clairement indiqués et adaptés à votre pays. Une petite commission aide à maintenir l'app ; votre prix ne change pas.", "m.all": "Tout", "m.training": "Entraînement", "m.gk": "Gardiens", "m.medical": "Premiers secours", "m.tech": "Technologie", "m.apparel": "Vêtements", "m.view": "Voir l'offre", "m.from": "à partir de",
     "u.canGrant": "En tant que directeur sportif ou Master, vous pouvez ajouter des membres et attribuer le rôle de chacun.", "u.readonly": "Lecture seule : seuls le directeur sportif ou le Master peuvent ajouter des membres.", "u.approve": "Approuver", "u.suspend": "Suspendre", "u.note": "Seuls le directeur sportif ou le Master peuvent attribuer le rôle d'entraîneur.", "u.activo": "actif", "u.pendiente": "en attente",
 
@@ -341,11 +409,45 @@ const DICT = {
     "sq.min": "Min.",
     "sq.att": "Prés.",
     "ln.apply": "Appliquer",
+    "ln.proposalTitle": "Proposition de composition",
+    "ln.startersTitle": "Titulaires",
+    "ln.pendingApproval": "⏳ Votre proposition de composition est en attente d'approbation",
+    "ln.finishAndSend": "Une fois le onze placé, envoyez-le.",
+    "ln.placeAndSend": "Placez le onze et envoyez la proposition une fois terminé.",
+    "ln.sendProposal": "Envoyer la proposition",
+    "ln.dragHint": "Glissez pour repositionner · touchez pour affecter",
+    "ln.askAI": "✦ Demander à l'IA",
+    "ln.tapPosPlayerSel": "Touchez une position sur le terrain, ou choisissez-en une dans cette liste — la sienne en premier",
+    "ln.slotSameLine": "Les joueurs de {pos} remontent en haut, pour trouver vite qui faire entrer",
+    "ln.benchTitle": "Remplaçants",
+    "ln.assignTo": "Affecter à {slot}",
+    "ln.choosePosFor": "Choisir un poste pour {name}",
+    "ln.hisSpot": "Son poste",
+    "ln.occupiedBy": "Occupé · {name}",
+    "ln.free": "Libre",
+    "ln.samePos": "Même poste",
     "ln.other": "Autre : 4-1-4-1",
-    "ln.tapPos": "Touchez une position sur le terrain et affectez un joueur",
+    "ln.tapPos": "Touchez une position sur le terrain et affectez un joueur, ou touchez un joueur de la liste pour voir où il peut jouer.",
     "cl.waMsg": "Message pour WhatsApp",
     "cl.waOpen": "Ouvrir WhatsApp",
     "cl.waLegend": "🧤 gardien · numéro en emoji · gardiens d'abord",
+    "cl.title": "Convocation",
+    "cl.readonly": "(lecture seule)",
+    "cl.rival": "Adversaire",
+    "cl.place": "Lieu",
+    "cl.otherRival": "✎ Autre adversaire (absent du calendrier)",
+    "cl.rivalNamePh": "Nom de l'adversaire",
+    "cl.noCalendar": "Pas encore de calendrier — le directeur sportif doit le charger en début de saison pour avoir tous les adversaires ici.",
+    "cl.readonlyNotice": "Mode consultation : la convocation est décidée par l'entraîneur et le directeur sportif. En tant que {role}, vous pouvez la voir, mais pas la modifier.",
+    "cl.markCalled": "Cochez les convoqués",
+    "cl.calledList": "Convoqués",
+    "cl.selected": "sélectionnés",
+    "cl.copied": "✓ Copié",
+    "cl.copyMsg": "Copier le message",
+    "cl.saveHistory": "📌 Enregistrer dans l'historique",
+    "cl.proOnly": "L'historique des convocations est une fonction PRO.",
+    "cl.proposalSent": "✓ Proposition de convocation envoyée. En attente de l'approbation de l'entraîneur.",
+    "cl.savedHistory": "✓ Convocation enregistrée dans l'historique.",
     "mt.half2": "2e mi-temps",
     "mt.halfLen": "Durée de chaque mi-temps",
     "mt.added": "Temps additionnel de l'arbitre",
@@ -527,7 +629,7 @@ const DICT = {
     "a.forgot": "Passwort vergessen?", "a.forgotTitle": "Passwort zurücksetzen", "a.forgotD": "Gib deine E-Mail ein und wir schicken dir einen Link für ein neues Passwort.", "a.forgotSend": "Link senden", "a.sending": "Wird gesendet…", "a.forgotSent": "Falls es zu dieser E-Mail ein Konto gibt, ist der Link unterwegs. Er läuft in einer Stunde ab und gilt nur einmal. Schau auch im Spam-Ordner.", "a.forgotNoMail": "Der E-Mail-Versand ist gerade nicht verfügbar. Sag deinem Verein Bescheid.", "a.resetTitle": "Wähle dein neues Passwort", "a.resetD": "Dieser Link läuft in einer Stunde ab und gilt nur einmal.", "a.newPass": "Neues Passwort", "a.newPass2": "Passwort wiederholen", "a.resetSave": "Passwort speichern", "a.resetOk": "Passwort aktualisiert. Du kannst dich jetzt damit anmelden.", "a.resetBad": "Dieser Link gilt nicht mehr: abgelaufen oder bereits benutzt. Fordere einen neuen an.", "a.passRule": "Mindestens 6 Zeichen, und beide müssen übereinstimmen.", "a.noBackend": "Keine Verbindung zum Server. Versuch es später noch einmal.",
     "p.account": "Mein Konto", "p.changePass": "Passwort ändern", "p.current": "Aktuelles Passwort", "p.save": "Speichern", "p.saved": "Passwort aktualisiert.", "p.badCurrent": "Das aktuelle Passwort stimmt nicht.", "p.close": "Schließen",
     "h.nextMatch": "Nächstes Spiel", "h.nextTrain": "Nächstes Training", "h.available": "Verfügbar", "h.lessMin": "Wenig Spielzeit", "h.alerts": "Warnungen", "h.quick": "Schnellzugriff", "h.family": "Infos für die Familien", "h.pending": "ausstehende Zugänge", "h.startMatch": "Spiel starten",
-    "w.title": "Taktiktafel", "w.move": "Bewegen", "w.arrow": "Pfeil", "w.pass": "Pass", "w.free": "Zeichnen", "w.cone": "Hütchen", "w.ball": "Ball", "w.erase": "Löschen", "w.clear": "Alles löschen", "w.home": "Heim", "w.away": "Gegner", "w.hint": "Werkzeug wählen · Spielsteine ziehen · aufs Feld zeichnen", "w.form": "Aufstellen", "w.f11": "Fußball 11", "w.f7": "Fußball 7", "w.homeSys": "Heimsystem", "w.awaySys": "Gegnersystem", "w.exercises": "Empfohlene Übungen", "w.exHint": "Tippe auf eine Übung, um sie auf der Tafel aufzubauen", "w.autoSave": "Das gewählte System wird automatisch auf diesem Gerät gespeichert", "w.abpForAgainst": "Für oder gegen uns?", "w.abpAttack": "Angriff", "w.abpDefense": "Verteidigung", "w.abpSide": "Auf welcher Seite?", "w.abpLeft": "◂ Links", "w.abpRight": "Rechts ▸", "w.abpPlace": "Situation aufstellen", "w.abpAgainst": "in der Verteidigung", "w.abpFor": "im Angriff", "w.abpOwnBoard": "eigenes Board", "w.abpSaveAs": "Taktiktafel speichern als",
+    "w.title": "Taktiktafel", "w.move": "Bewegen", "w.arrow": "Pfeil", "w.pass": "Pass", "w.free": "Zeichnen", "w.cone": "Hütchen", "w.ball": "Ball", "w.erase": "Löschen", "w.clear": "Alles löschen", "w.home": "Heim", "w.away": "Gegner", "w.hint": "Werkzeug wählen · Spielsteine ziehen · aufs Feld zeichnen", "w.form": "Aufstellen", "w.f11": "Fußball 11", "w.f7": "Fußball 7", "w.homeSys": "Heimsystem", "w.awaySys": "Gegnersystem", "w.exercises": "Empfohlene Übungen", "w.exHint": "Tippe auf eine Übung, um sie auf der Tafel aufzubauen", "w.autoSave": "Das gewählte System wird automatisch auf diesem Gerät gespeichert", "w.abpForAgainst": "Für oder gegen uns?", "w.abpAttack": "Angriff", "w.abpDefense": "Verteidigung", "w.abpSide": "Auf welcher Seite?", "w.abpLeft": "◂ Links", "w.abpRight": "Rechts ▸", "w.abpPlace": "Situation aufstellen", "w.abpAgainst": "in der Verteidigung", "w.abpFor": "im Angriff", "w.abpOwnBoard": "eigenes Board", "w.abpSaveAs": "Taktiktafel speichern als", "w.viewFull": "Komplett", "w.viewAreaR": "Strafraum ▸", "w.viewAreaL": "◂ Strafraum", "w.viewSideline": "Seitenlinie", "w.viewGoal": "Tor", "w.colorWhite": "Weiß", "w.colorLightGray": "Hellgrau", "w.colorGray": "Grau", "w.colorSlate": "Schiefer", "w.colorCharcoal": "Anthrazit", "w.toScale": "im Originalmaßstab", "w.dribble": "Dribbling", "w.zone": "Zone", "w.circle": "Kreis", "w.text": "Text", "w.disc": "Scheibe", "w.playerToken": "Spieler", "w.dorsal": "Rückennummer", "w.undo": "Rückgängig", "w.redo": "Wiederholen", "w.grid": "Raster", "w.searchDrill": "Übung suchen…", "w.aiHelp": "KI-Hilfe", "w.tellChange": "Sag ihr die Änderung", "w.aiChangePh": "Z. B. verschiebe die 9 zum langen Pfosten und die 4 an den Strafraumrand", "w.thinking": "Denkt nach…", "w.applyToBoard": "Auf die Taktiktafel anwenden", "w.aiHint": "Ändert die Spielsteine und Linien, die gerade auf dem Feld sind. Gefällt es dir nicht, macht ↶ Rückgängig es wieder rückgängig.", "w.plays": "Spielzüge", "w.saveAsNew": "+ Als neu speichern", "w.shareTeam": "⬆ Mit dem Team teilen", "w.shareTeamHint": "Dein Co-Trainer und dein Betreuer sehen ihn auf ihrem Handy, auch im Spielmodus.", "w.updateChangesIn": "↻ Änderungen speichern in", "w.moveUp": "Nach oben", "w.moveDown": "Nach unten", "w.rename": "Umbenennen", "w.deleteAction": "Löschen", "w.noPlaysSaved": "Noch keine Spielzüge gespeichert", "w.view": "Ansicht", "w.board": "Board", "w.backToFullPitch": "‹ Zurück zum ganzen Feld", "w.framing": "Ausschnitt", "w.zoomLabel": "Zoom", "w.fit": "Einpassen", "w.pinchHint": "Mit zwei Fingern: zusammenziehen zum Zoomen, ziehen zum Verschieben.", "w.brightness": "☀ Helligkeit", "w.steps": "Schritte", "w.addStep": "+ Schritt hinzufügen", "w.stepOf": "Schritt {a} von {b}", "w.pause": "❚❚ Pause", "w.play": "▶ Abspielen", "w.deleteSequence": "Sequenz löschen", "w.noStepsSaved": "Speichere Momentaufnahmen, um den Spielzug Schritt für Schritt zu erklären.", "w.systems": "Systeme", "w.exportPng": "Als PNG exportieren", "w.recordVideo": "Video aufnehmen", "w.video": "Video", "w.exit": "Beenden", "w.fullscreen": "Vollbild", "w.zoomOut": "Verkleinern", "w.zoomIn": "Vergrößern", "w.fullscreenSuffix": "Vollbild", "w.exitEsc": "✕ Beenden (Esc)", "w.otherFormation": "Andere", "w.noVideoSupport": "Dieser Browser unterstützt keine Videoaufnahme. Versuche es mit einem aktuellen Chrome oder Firefox.", "w.playNamePrompt": "Name des Spielzugs", "w.dorsalPrompt": "Rückennummer dieses Spielsteins (leer lassen zum Entfernen)", "w.annotationPrompt": "Text der Anmerkung", "w.needClubAccount": "Melde dich mit deinem Vereinskonto an, um sie teilen zu können.", "w.sharing": "Wird geteilt…", "w.sharedOk": "✓ Mit deinem Team geteilt.", "w.sharedFail": "Teilen nicht möglich. Prüfe deine Verbindung.", "w.aiNotUnderstood": "Ich habe die Änderung nicht verstanden. Formuliere es anders, z. B. \"verschiebe die 9 zum langen Pfosten\".", "w.aiDone": "✓ Erledigt. Gefällt es dir nicht, mach es mit ↶ rückgängig.", "w.squadLabel": "Kader",
     "m.title": "Trainer-Shop", "m.aff": "Affiliate-Link", "m.note": "Affiliate-Links sind klar gekennzeichnet und an dein Land angepasst. Eine kleine Provision hilft, die App zu finanzieren; dein Preis ändert sich nicht.", "m.all": "Alle", "m.training": "Training", "m.gk": "Torwart", "m.medical": "Erste Hilfe", "m.tech": "Technik", "m.apparel": "Bekleidung", "m.view": "Angebot ansehen", "m.from": "ab",
     "u.canGrant": "Als Sportdirektor oder Master kannst du Mitglieder hinzufügen und Rollen zuweisen.", "u.readonly": "Nur-Lese-Ansicht: nur der Sportdirektor oder der Master können hinzufügen.", "u.approve": "Freigeben", "u.suspend": "Sperren", "u.note": "Nur der Sportdirektor oder der Master können die Trainerrolle vergeben.", "u.activo": "aktiv", "u.pendiente": "ausstehend",
 
@@ -556,11 +658,45 @@ const DICT = {
     "sq.min": "Min.",
     "sq.att": "Anw.",
     "ln.apply": "Anwenden",
+    "ln.proposalTitle": "Aufstellungsvorschlag",
+    "ln.startersTitle": "Startelf",
+    "ln.pendingApproval": "⏳ Dein Aufstellungsvorschlag wartet auf Freigabe",
+    "ln.finishAndSend": "Wenn du die Startelf fertig hast, sende sie.",
+    "ln.placeAndSend": "Stelle die Startelf zusammen und sende den Vorschlag, wenn du fertig bist.",
+    "ln.sendProposal": "Vorschlag senden",
+    "ln.dragHint": "Ziehen zum Umstellen · Antippen zum Zuweisen",
+    "ln.askAI": "✦ KI fragen",
+    "ln.tapPosPlayerSel": "Tippe auf eine Position auf dem Feld, oder wähle eine aus dieser Liste — seine eigene zuerst",
+    "ln.slotSameLine": "Spieler auf {pos} rücken nach oben, damit du schnell findest, wen du einwechselst",
+    "ln.benchTitle": "Bank",
+    "ln.assignTo": "Zuweisen an {slot}",
+    "ln.choosePosFor": "Position für {name} wählen",
+    "ln.hisSpot": "Seine Position",
+    "ln.occupiedBy": "Besetzt · {name}",
+    "ln.free": "Frei",
+    "ln.samePos": "Gleiche Position",
     "ln.other": "Andere: 4-1-4-1",
-    "ln.tapPos": "Tippe auf eine Position auf dem Platz und weise einen Spieler zu",
+    "ln.tapPos": "Tippe auf eine Position auf dem Platz und weise einen Spieler zu, oder tippe auf einen Spieler aus der Liste, um zu sehen, wo er spielen kann.",
     "cl.waMsg": "Nachricht für WhatsApp",
     "cl.waOpen": "WhatsApp öffnen",
     "cl.waLegend": "🧤 Torwart · Nummer als Emoji · Torhüter zuerst",
+    "cl.title": "Kader",
+    "cl.readonly": "(nur Ansicht)",
+    "cl.rival": "Gegner",
+    "cl.place": "Ort",
+    "cl.otherRival": "✎ Anderer Gegner (nicht im Spielplan)",
+    "cl.rivalNamePh": "Name des Gegners",
+    "cl.noCalendar": "Noch kein Spielplan — der Sportdirektor muss ihn zu Saisonbeginn hochladen, damit hier alle Gegner erscheinen.",
+    "cl.readonlyNotice": "Nur-Ansicht-Modus: Den Kader legen der Trainer und der Sportdirektor fest. Als {role} kannst du ihn sehen, aber nicht ändern.",
+    "cl.markCalled": "Markiere die Nominierten",
+    "cl.calledList": "Nominiert",
+    "cl.selected": "ausgewählt",
+    "cl.copied": "✓ Kopiert",
+    "cl.copyMsg": "Nachricht kopieren",
+    "cl.saveHistory": "📌 Im Verlauf speichern",
+    "cl.proOnly": "Der Kaderverlauf ist eine PRO-Funktion.",
+    "cl.proposalSent": "✓ Kadervorschlag gesendet. Wartet auf Freigabe durch den Trainer.",
+    "cl.savedHistory": "✓ Kader im Verlauf gespeichert.",
     "mt.half2": "2. Halbzeit",
     "mt.halfLen": "Dauer jeder Halbzeit",
     "mt.added": "Nachspielzeit des Schiedsrichters",
@@ -742,7 +878,7 @@ const DICT = {
     "a.forgot": "Esqueceste-te da palavra-passe?", "a.forgotTitle": "Recuperar palavra-passe", "a.forgotD": "Escreve o teu email e enviamos-te um link para escolheres uma nova.", "a.forgotSend": "Enviar link", "a.sending": "A enviar…", "a.forgotSent": "Se esse email tiver conta, o link já seguiu. Expira dentro de uma hora e só serve uma vez. Vê também o spam.", "a.forgotNoMail": "O envio de email não está disponível agora. Avisa o teu clube.", "a.resetTitle": "Escolhe a tua nova palavra-passe", "a.resetD": "Este link expira dentro de uma hora e só serve uma vez.", "a.newPass": "Nova palavra-passe", "a.newPass2": "Repete a palavra-passe", "a.resetSave": "Guardar palavra-passe", "a.resetOk": "Palavra-passe atualizada. Já podes entrar com ela.", "a.resetBad": "Este link já não é válido: expirou ou já foi usado. Pede outro.", "a.passRule": "Mínimo 6 caracteres, e as duas têm de coincidir.", "a.noBackend": "Sem ligação ao servidor. Tenta mais tarde.",
     "p.account": "A minha conta", "p.changePass": "Alterar palavra-passe", "p.current": "Palavra-passe atual", "p.save": "Guardar", "p.saved": "Palavra-passe atualizada.", "p.badCurrent": "A palavra-passe atual não está correta.", "p.close": "Fechar",
     "h.nextMatch": "Próximo jogo", "h.nextTrain": "Próximo treino", "h.available": "Disponíveis", "h.lessMin": "Menos participação", "h.alerts": "Alertas", "h.quick": "Acessos rápidos", "h.family": "Avisos para as famílias", "h.pending": "acessos pendentes de aprovação", "h.startMatch": "Iniciar jogo",
-    "w.title": "Quadro tático", "w.move": "Mover", "w.arrow": "Seta", "w.pass": "Passe", "w.free": "Desenho", "w.cone": "Cone", "w.ball": "Bola", "w.erase": "Apagar", "w.clear": "Limpar", "w.home": "Casa", "w.away": "Adversário", "w.hint": "Escolhe uma ferramenta · arrasta as peças · desenha no campo", "w.form": "Colocar", "w.f11": "Futebol 11", "w.f7": "Futebol 7", "w.homeSys": "Sistema da casa", "w.awaySys": "Sistema do adversário", "w.exercises": "Exercícios recomendados", "w.exHint": "Toca num exercício para o colocar no quadro", "w.autoSave": "O sistema escolhido é guardado automaticamente neste dispositivo", "w.abpForAgainst": "A favor ou contra?", "w.abpAttack": "Ataque", "w.abpDefense": "Defesa", "w.abpSide": "De que lado?", "w.abpLeft": "◂ Esquerda", "w.abpRight": "Direita ▸", "w.abpPlace": "Colocar a jogada", "w.abpAgainst": "em defesa", "w.abpFor": "em ataque", "w.abpOwnBoard": "quadro próprio", "w.abpSaveAs": "Guardar o quadro como",
+    "w.title": "Quadro tático", "w.move": "Mover", "w.arrow": "Seta", "w.pass": "Passe", "w.free": "Desenho", "w.cone": "Cone", "w.ball": "Bola", "w.erase": "Apagar", "w.clear": "Limpar", "w.home": "Casa", "w.away": "Adversário", "w.hint": "Escolhe uma ferramenta · arrasta as peças · desenha no campo", "w.form": "Colocar", "w.f11": "Futebol 11", "w.f7": "Futebol 7", "w.homeSys": "Sistema da casa", "w.awaySys": "Sistema do adversário", "w.exercises": "Exercícios recomendados", "w.exHint": "Toca num exercício para o colocar no quadro", "w.autoSave": "O sistema escolhido é guardado automaticamente neste dispositivo", "w.abpForAgainst": "A favor ou contra?", "w.abpAttack": "Ataque", "w.abpDefense": "Defesa", "w.abpSide": "De que lado?", "w.abpLeft": "◂ Esquerda", "w.abpRight": "Direita ▸", "w.abpPlace": "Colocar a jogada", "w.abpAgainst": "em defesa", "w.abpFor": "em ataque", "w.abpOwnBoard": "quadro próprio", "w.abpSaveAs": "Guardar o quadro como", "w.viewFull": "Completo", "w.viewAreaR": "Área ▸", "w.viewAreaL": "◂ Área", "w.viewSideline": "Linha lateral", "w.viewGoal": "Baliza", "w.colorWhite": "Branco", "w.colorLightGray": "Cinzento claro", "w.colorGray": "Cinzento", "w.colorSlate": "Ardósia", "w.colorCharcoal": "Antracite", "w.toScale": "à escala real", "w.dribble": "Condução", "w.zone": "Zona", "w.circle": "Círculo", "w.text": "Texto", "w.disc": "Disco", "w.playerToken": "Jogador", "w.dorsal": "Dorsal", "w.undo": "Desfazer", "w.redo": "Refazer", "w.grid": "Grelha", "w.searchDrill": "Procurar exercício…", "w.aiHelp": "Ajuda IA", "w.tellChange": "Diz a alteração", "w.aiChangePh": "Ex. move o 9 para o segundo poste e leva o 4 para a linha da área", "w.thinking": "A pensar…", "w.applyToBoard": "Aplicar ao quadro", "w.aiHint": "Altera as peças e os traços que tens agora no campo. Se não gostares, ↶ Desfazer repõe como estava.", "w.plays": "Jogadas", "w.saveAsNew": "+ Guardar como nova", "w.shareTeam": "⬆ Partilhar com a equipa", "w.shareTeamHint": "O teu adjunto e o teu delegado vão vê-la no telemóvel, também no Modo jogo.", "w.updateChangesIn": "↻ Guardar as alterações em", "w.moveUp": "Subir", "w.moveDown": "Descer", "w.rename": "Renomear", "w.deleteAction": "Eliminar", "w.noPlaysSaved": "Ainda não há jogadas guardadas", "w.view": "Vista", "w.board": "Quadro", "w.backToFullPitch": "‹ Voltar ao campo inteiro", "w.framing": "Enquadramento", "w.zoomLabel": "Zoom", "w.fit": "Ajustar", "w.pinchHint": "Com dois dedos: belisca para aproximar e arrasta para mover.", "w.brightness": "☀ Brilho", "w.steps": "Passos", "w.addStep": "+ Adicionar passo", "w.stepOf": "Passo {a} de {b}", "w.pause": "❚❚ Pausa", "w.play": "▶ Reproduzir", "w.deleteSequence": "Eliminar sequência", "w.noStepsSaved": "Guarda instantâneos para explicar a jogada passo a passo.", "w.systems": "Sistemas", "w.exportPng": "Exportar PNG", "w.recordVideo": "Gravar vídeo", "w.video": "Vídeo", "w.exit": "Sair", "w.fullscreen": "Ecrã inteiro", "w.zoomOut": "Afastar", "w.zoomIn": "Aproximar", "w.fullscreenSuffix": "ecrã inteiro", "w.exitEsc": "✕ Sair (Esc)", "w.otherFormation": "Outro", "w.noVideoSupport": "Este navegador não suporta gravação de vídeo. Experimenta com um Chrome ou Firefox atualizado.", "w.playNamePrompt": "Nome da jogada", "w.dorsalPrompt": "Dorsal desta peça (deixa vazio para o remover)", "w.annotationPrompt": "Texto da anotação", "w.needClubAccount": "Inicia sessão com a tua conta do clube para as poderes partilhar.", "w.sharing": "A partilhar…", "w.sharedOk": "✓ Partilhadas com a tua equipa.", "w.sharedFail": "Não foi possível partilhar. Verifica a ligação.", "w.aiNotUnderstood": "Não percebi essa alteração. Diz de outra forma, por exemplo: \"move o 9 para o segundo poste\".", "w.aiDone": "✓ Feito. Se não gostares, desfaz com ↶.", "w.squadLabel": "Plantel",
     "m.title": "Loja do treinador", "m.aff": "Link de afiliado", "m.note": "Links de afiliado claramente identificados e adaptados ao teu país. Uma pequena comissão ajuda a manter a app; o teu preço não muda.", "m.all": "Tudo", "m.training": "Treino", "m.gk": "Guarda-redes", "m.medical": "Primeiros socorros", "m.tech": "Tecnologia", "m.apparel": "Vestuário", "m.view": "Ver oferta", "m.from": "desde",
 
     /* v49 — cadenas que antes estaban en español a fuego */
@@ -770,11 +906,45 @@ const DICT = {
     "sq.min": "Min.",
     "sq.att": "Pres.",
     "ln.apply": "Aplicar",
+    "ln.proposalTitle": "Proposta de escalação",
+    "ln.startersTitle": "Titulares",
+    "ln.pendingApproval": "⏳ A tua proposta de escalação está pendente de aprovação",
+    "ln.finishAndSend": "Quando acabares de montar o onze, envia-a.",
+    "ln.placeAndSend": "Monta o onze e envia a proposta quando terminares.",
+    "ln.sendProposal": "Enviar proposta",
+    "ln.dragHint": "Arrasta para recolocar · toque curto para atribuir",
+    "ln.askAI": "✦ Perguntar à IA",
+    "ln.tapPosPlayerSel": "Toca numa posição do campo, ou escolhe uma desta lista — primeiro a dele",
+    "ln.slotSameLine": "Os de {pos} sobem para cima, para encontrares depressa quem meter",
+    "ln.benchTitle": "Banco",
+    "ln.assignTo": "Atribuir a {slot}",
+    "ln.choosePosFor": "Escolher posição para {name}",
+    "ln.hisSpot": "A posição dele",
+    "ln.occupiedBy": "Ocupado · {name}",
+    "ln.free": "Livre",
+    "ln.samePos": "Mesma posição",
     "ln.other": "Outro: 4-1-4-1",
-    "ln.tapPos": "Toca numa posição do campo e atribui um jogador",
+    "ln.tapPos": "Toca numa posição do campo e atribui um jogador, ou toca num jogador da lista para ver onde pode jogar.",
     "cl.waMsg": "Mensagem para WhatsApp",
     "cl.waOpen": "Abrir WhatsApp",
     "cl.waLegend": "🧤 guarda-redes · número em emoji · guarda-redes primeiro",
+    "cl.title": "Convocatória",
+    "cl.readonly": "(apenas leitura)",
+    "cl.rival": "Adversário",
+    "cl.place": "Local",
+    "cl.otherRival": "✎ Outro adversário (não está no calendário)",
+    "cl.rivalNamePh": "Nome do adversário",
+    "cl.noCalendar": "Ainda não há calendário — o diretor desportivo tem de o carregar no início da época para teres aqui todos os adversários.",
+    "cl.readonlyNotice": "Modo consulta: a convocatória é decidida pelo treinador e pelo diretor desportivo. Como {role} podes vê-la, mas não alterá-la.",
+    "cl.markCalled": "Marca os convocados",
+    "cl.calledList": "Convocados",
+    "cl.selected": "selecionados",
+    "cl.copied": "✓ Copiado",
+    "cl.copyMsg": "Copiar mensagem",
+    "cl.saveHistory": "📌 Guardar no histórico",
+    "cl.proOnly": "O histórico de convocatórias é uma função PRO.",
+    "cl.proposalSent": "✓ Proposta de convocatória enviada. A aguardar aprovação do treinador.",
+    "cl.savedHistory": "✓ Convocatória guardada no histórico.",
     "mt.half2": "2.ª parte",
     "mt.halfLen": "Duração de cada parte",
     "mt.added": "Tempo adicionado pelo árbitro",
@@ -2930,6 +3100,17 @@ const TABLEROS = {
      esperar el resto, que es justo de lo que va el ensayo. */
   penalti: tablero({ x0: 11, ancho: 46, sobre: 2.5, label: "Penalti" }),
 };
+/* Nombre del tablero en el idioma activo, para la única etiqueta que lo
+   muestra al usuario (TABLEROS[].label se queda en español, solo se usa
+   tal cual dentro del prompt de la IA). */
+const TABLERO_NOMBRE = {
+  campo: { es: "Campo entero", en: "Full pitch", fr: "Terrain entier", de: "Ganzes Feld", pt: "Campo inteiro" },
+  cornerDer: { es: "Córner derecha", en: "Corner right", fr: "Corner droit", de: "Ecke rechts", pt: "Canto direito" },
+  cornerIzq: { es: "Córner izquierda", en: "Corner left", fr: "Corner gauche", de: "Ecke links", pt: "Canto esquerdo" },
+  falta: { es: "Falta", en: "Free kick", fr: "Coup franc", de: "Freistoß", pt: "Livre" },
+  penalti: { es: "Penalti", en: "Penalty", fr: "Penalty", de: "Elfmeter", pt: "Penálti" },
+};
+const tableroNombre = (k, lang = "es") => TABLERO_NOMBRE[k]?.[lang] || TABLERO_NOMBRE[k]?.es || k;
 
 /* Las líneas de un tablero de ABP. Se dibujan a medida reglamentaria: un
    córner mal proporcionado engaña sobre las distancias, que es exactamente lo
@@ -3538,16 +3719,16 @@ function Whiteboard({ AC, lang, teamId, teamRec, isF7, pendingExId, onConsumePen
   /* Plantillas de campo: cambian solo el recorte (viewBox), las coordenadas de
      fichas y trazos no se mueven de sitio. */
   const PITCH_VIEWS = {
-    completo: { x: 0, y: 0, w: 1000, h: 640, label: "Completo" },
+    completo: { x: 0, y: 0, w: 1000, h: 640, label: t("w.viewFull") },
     /* Un ABP no se dibuja en el campo entero: pasa en un área, la de la
        izquierda o la de la derecha según a qué portería ataques ese día. */
-    areaDer: { x: 500, y: 0, w: 500, h: 640, label: "Área ▸" },
-    areaIzq: { x: 0, y: 0, w: 500, h: 640, label: "◂ Área" },
+    areaDer: { x: 500, y: 0, w: 500, h: 640, label: t("w.viewAreaR") },
+    areaIzq: { x: 0, y: 0, w: 500, h: 640, label: t("w.viewAreaL") },
     /* Aquí no hay encuadre de córner, de falta ni de penalti: cada uno tiene
        su propio tablero dibujado a escala (ver TABLEROS). Recortar el campo
        entero era un zoom, y un zoom se ve como lo que es. */
-    banda: { x: 0, y: 160, w: 1000, h: 320, label: "Banda" },
-    porteria: { x: 200, y: 0, w: 600, h: 640, label: "Portería" },
+    banda: { x: 0, y: 160, w: 1000, h: 320, label: t("w.viewSideline") },
+    porteria: { x: 200, y: 0, w: 600, h: 640, label: t("w.viewGoal") },
   };
   const [pitchView, setPitchViewRaw] = useState("completo");
   /* Lado al que se ataca hoy. Manda sobre los ABP: el mismo córner se coloca
@@ -3663,7 +3844,7 @@ function Whiteboard({ AC, lang, teamId, teamRec, isF7, pendingExId, onConsumePen
   const startRecording = () => {
     if (!canSavePlays) { onPro?.(); return; }
     if (typeof MediaRecorder === "undefined" || !recCanvasRef.current?.captureStream) {
-      window.alert("Este navegador no admite grabación de vídeo. Prueba con Chrome o Firefox actualizados.");
+      window.alert(t("w.noVideoSupport"));
       return;
     }
     const canvas = recCanvasRef.current;
@@ -3696,7 +3877,7 @@ function Whiteboard({ AC, lang, teamId, teamRec, isF7, pendingExId, onConsumePen
   const [bright, setBright] = useState(1);
   const [color, setColor] = useState("#FFFFFF");
   const [width, setWidth] = useState(4);
-  const PALETTE = [["#FFFFFF", "Blanco"], ["#D3D3D3", "Gris claro"], ["#9FB0BA", "Gris"], ["#708090", "Pizarra"], ["#36454F", "Carbón"]];
+  const PALETTE = [["#FFFFFF", t("w.colorWhite")], ["#D3D3D3", t("w.colorLightGray")], ["#9FB0BA", t("w.colorGray")], ["#708090", t("w.colorSlate")], ["#36454F", t("w.colorCharcoal")]];
   const [snapGrid, setSnapGrid] = useState(true);
   const [sysFree, setSysFree] = useState("");
   /* En el móvil la plantilla abierta se come 128 px de los 390 que hay: el campo
@@ -3791,10 +3972,10 @@ function Whiteboard({ AC, lang, teamId, teamRec, isF7, pendingExId, onConsumePen
   }, [teamRec]);
   const compartirJugadas = async () => {
     if (!canSavePlays) { onPro?.(); return; }
-    if (!teamRec) { setNubeMsg("Entra con tu cuenta del club para poder compartirlas."); return; }
-    setNubeMsg("Compartiendo…");
+    if (!teamRec) { setNubeMsg(t("w.needClubAccount")); return; }
+    setNubeMsg(t("w.sharing"));
     const out = await airJugadasGuardar(teamRec, plays);
-    setNubeMsg(out?.ok ? "✓ Compartidas con tu equipo." : "No se pudieron compartir. Revisa la conexión.");
+    setNubeMsg(out?.ok ? t("w.sharedOk") : t("w.sharedFail"));
   };
   useEffect(() => {
     try {
@@ -3897,7 +4078,7 @@ function Whiteboard({ AC, lang, teamId, teamRec, isF7, pendingExId, onConsumePen
     const porDefecto = tipo === "libre"
       ? `Jugada ${plays.length + 1}`
       : `${ABP_NOMBRE(tipo, lang)} ${fase === "def" ? "en contra" : "a favor"} ${mismas}`;
-    const name = window.prompt("Nombre de la jugada", porDefecto);
+    const name = window.prompt(t("w.playNamePrompt"), porDefecto);
     if (!name) return;
     const id = Date.now();
     /* Se guarda también el tablero: una jugada dibujada en el tablero de
@@ -3913,7 +4094,7 @@ function Whiteboard({ AC, lang, teamId, teamRec, isF7, pendingExId, onConsumePen
     setPlays((ps) => ps.map((x) => (x.id === playAbierta ? { ...x, tablero, tokens, shapes } : x)));
   };
   const renombrarPlay = (p) => {
-    const v = window.prompt("Nombre de la jugada", p.name);
+    const v = window.prompt(t("w.playNamePrompt"), p.name);
     if (!v || !v.trim()) return;
     setPlays((ps) => ps.map((x) => (x.id === p.id ? { ...x, name: v.trim() } : x)));
   };
@@ -3972,12 +4153,12 @@ Devuelve SOLO un objeto JSON con las claves "tokens" y "shapes", sin explicació
       const a = txt.indexOf("{"), b = txt.lastIndexOf("}");
       if (a >= 0 && b > a) out = limpiarIA(JSON.parse(txt.slice(a, b + 1)));
     } catch { out = null; }
-    if (!out) { setIaMsg(txt.trim().slice(0, 140) || "No he entendido el cambio. Dilo de otra forma, por ejemplo: \"mueve al 9 al segundo palo\"."); return; }
+    if (!out) { setIaMsg(txt.trim().slice(0, 140) || t("w.aiNotUnderstood")); return; }
     snap();
     setTokens(out.tokens);
     setShapes(out.shapes);
     setDraft(null); setTool("move");
-    setIaTexto(""); setIaMsg("✓ Hecho. Si no te convence, deshaz con ↶.");
+    setIaTexto(""); setIaMsg(t("w.aiDone"));
   };
   const moverPlay = (id, paso) => setPlays((ps) => {
     const i = ps.findIndex((x) => x.id === id);
@@ -4086,7 +4267,7 @@ Devuelve SOLO un objeto JSON con las claves "tokens" y "shapes", sin explicació
     if (tool === "dorsal") {
       const tk = tokens.find((x) => x.id === id);
       if (!tk || !["home", "away"].includes(tk.type)) return;
-      const v = window.prompt("Dorsal de esta ficha (vacío para quitarlo)", tk.label || "");
+      const v = window.prompt(t("w.dorsalPrompt"), tk.label || "");
       if (v === null) return;
       snap();
       setTokens((ts) => ts.map((x) => (x.id === id ? { ...x, label: v.trim().slice(0, 3) } : x)));
@@ -4104,7 +4285,7 @@ Devuelve SOLO un objeto JSON con las claves "tokens" y "shapes", sin explicació
       return;
     }
     if (tool === "text") {
-      const txt = window.prompt("Texto de la anotación");
+      const txt = window.prompt(t("w.annotationPrompt"));
       if (!txt) return;
       snap();
       setShapes((s) => [...s, { id: uid.current++, tool: "text", pts: [p], text: txt, color, width }]);
@@ -4239,13 +4420,13 @@ Devuelve SOLO un objeto JSON con las claves "tokens" y "shapes", sin explicació
 
   const tools = [
     ["move", t("w.move"), "✋"], ["arrow", t("w.arrow"), "↗"], ["pass", t("w.pass"), "⇢"],
-    ["dribble", "Conducción", "〰"], ["free", t("w.free"), "✎"], ["zone", "Zona", "▭"], ["circle", "Círculo", "◯"],
-    ["text", "Texto", "T"], ["cone", t("w.cone"), "▲"], ["disc", "Seta", "●"],
+    ["dribble", t("w.dribble"), "〰"], ["free", t("w.free"), "✎"], ["zone", t("w.zone"), "▭"], ["circle", t("w.circle"), "◯"],
+    ["text", t("w.text"), "T"], ["cone", t("w.cone"), "▲"], ["disc", t("w.disc"), "●"],
     /* Glifos, no emoji: el emoji trae su propio color y su propio dibujo, que
        en cada sistema es distinto, y es lo que delata una interfaz montada
        deprisa. Aquí el color lo pone el estado, no el icono. */
-    ["home", "Jugador", "○"], ["away", "Rival", "◉"], ["goal", "Portería", "⊓"],
-    ["dorsal", "Dorsal", "№"], ["erase", t("w.erase"), "⌫"],
+    ["home", t("w.playerToken"), "○"], ["away", t("w.away"), "◉"], ["goal", t("w.viewGoal"), "⊓"],
+    ["dorsal", t("w.dorsal"), "№"], ["erase", t("w.erase"), "⌫"],
   ];
 
   /* Barra compacta: en movil los botones son solo icono (h-8) y todo lo que no
@@ -4290,9 +4471,9 @@ Devuelve SOLO un objeto JSON con las claves "tokens" y "shapes", sin explicació
             </button>
           ))}
         </div>
-        <button onClick={undo} disabled={!hist.length} title="Deshacer" className={btn + " disabled:opacity-35"} style={{ borderColor: C.line, color: C.chalk }}>↶<span className="hidden lg:inline">Deshacer</span></button>
-        <button onClick={redo} disabled={!fut.length} title="Rehacer" className={btn + " disabled:opacity-35"} style={{ borderColor: C.line, color: C.chalk }}>↷<span className="hidden lg:inline">Rehacer</span></button>
-        <button onClick={() => setSnapGrid((v) => !v)} title={`Cuadrícula ${snapGrid ? "ON" : "OFF"}`} className={btn} style={{ borderColor: snapGrid ? AC : C.line, color: snapGrid ? AC : C.chalk }}>▦<span className="hidden lg:inline">{snapGrid ? "ON" : "OFF"}</span></button>
+        <button onClick={undo} disabled={!hist.length} title={t("w.undo")} className={btn + " disabled:opacity-35"} style={{ borderColor: C.line, color: C.chalk }}>↶<span className="hidden lg:inline">{t("w.undo")}</span></button>
+        <button onClick={redo} disabled={!fut.length} title={t("w.redo")} className={btn + " disabled:opacity-35"} style={{ borderColor: C.line, color: C.chalk }}>↷<span className="hidden lg:inline">{t("w.redo")}</span></button>
+        <button onClick={() => setSnapGrid((v) => !v)} title={`${t("w.grid")} ${snapGrid ? "ON" : "OFF"}`} className={btn} style={{ borderColor: snapGrid ? AC : C.line, color: snapGrid ? AC : C.chalk }}>▦<span className="hidden lg:inline">{snapGrid ? "ON" : "OFF"}</span></button>
         <button onClick={addBall} title={t("w.ball")} className={btn} style={{ borderColor: C.line, color: C.chalk }}>◍<span className="hidden lg:inline">{t("w.ball")}</span></button>
         <button onClick={() => { snap(); setTokens([]); setShapes([]); setDraft(null); }} title={t("w.clear")} className={btn} style={{ borderColor: C.line, color: C.red }}>✕<span className="hidden lg:inline">{t("w.clear")}</span></button>
       </div>
@@ -4303,7 +4484,7 @@ Devuelve SOLO un objeto JSON con las claves "tokens" y "shapes", sin explicació
           {(close) => (
             <div className="flex flex-col" style={{ maxHeight: "min(60vh, 380px)" }}>
               <div className="p-2 border-b shrink-0" style={{ borderColor: C.line }}>
-                <input value={exQ} onChange={(e) => setExQ(e.target.value)} placeholder="Buscar ejercicio…" autoFocus
+                <input value={exQ} onChange={(e) => setExQ(e.target.value)} placeholder={t("w.searchDrill")} autoFocus
                   className="w-full text-sm rounded-lg px-2.5 py-1.5 border bg-transparent outline-none"
                   style={{ borderColor: C.line, color: C.chalk }} />
               </div>
@@ -4401,42 +4582,42 @@ Devuelve SOLO un objeto JSON con las claves "tokens" y "shapes", sin explicació
 
         {/* Retocar la pizarra hablándole en cristiano. Va antes de Jugadas
             porque se usa mientras se dibuja, no al guardar. */}
-        <WbMenu label="Ayuda IA" icon="✦" AC={AC}>
+        <WbMenu label={t("w.aiHelp")} icon="✦" AC={AC}>
           <div className="p-2 w-[min(88vw,380px)]">
-            <div className="text-[10px] font-display uppercase tracking-widest mb-1" style={{ color: C.dim }}>Dile el cambio</div>
+            <div className="text-[10px] font-display uppercase tracking-widest mb-1" style={{ color: C.dim }}>{t("w.tellChange")}</div>
             <textarea value={iaTexto} onChange={(e) => setIaTexto(e.target.value)} rows={3}
-              placeholder="Ej. mueve al 9 al segundo palo y saca al 4 al borde del área"
+              placeholder={t("w.aiChangePh")}
               className="w-full text-xs px-2 py-1.5 rounded-lg border bg-transparent resize-none"
               style={{ borderColor: C.line, color: C.chalk }} />
             <button onClick={pedirIA} disabled={!iaTexto.trim() || iaBusy}
               className="w-full mt-2 h-8 rounded-lg text-xs font-display uppercase tracking-wide font-semibold disabled:opacity-40"
               style={{ background: AC, color: C.sobre }}>
-              {iaBusy ? "Pensando…" : "Aplicar a la pizarra"}
+              {iaBusy ? t("w.thinking") : t("w.applyToBoard")}
             </button>
             {iaMsg && <div className="text-[11px] mt-2" style={{ color: iaMsg.startsWith("✓") ? C.green : C.dim }}>{iaMsg}</div>}
             <div className="text-[10px] mt-2 leading-snug" style={{ color: C.dim }}>
-              Cambia las fichas y los trazos de lo que tengas ahora en el campo. Si no te gusta, ↶ Deshacer lo devuelve como estaba.
+              {t("w.aiHint")}
             </div>
           </div>
         </WbMenu>
 
-        <WbMenu label="Jugadas" icon="💾" count={plays.length} AC={AC}>
+        <WbMenu label={t("w.plays")} icon="💾" count={plays.length} AC={AC}>
           {(close) => (
             <div className="max-h-[min(50vh,300px)] overflow-y-auto">
               <button onClick={() => { savePlay("libre"); close(); }} className="w-full text-left px-2.5 py-2 border-b text-xs font-display uppercase tracking-wide"
-                style={{ borderColor: C.line, color: AC }}>+ Guardar como nueva</button>
+                style={{ borderColor: C.line, color: AC }}>{t("w.saveAsNew")}</button>
               <button onClick={compartirJugadas} className="w-full text-left px-2.5 py-2 border-b text-xs"
                 style={{ borderColor: C.line, color: C.chalk }}>
-                ⬆ Compartir con el equipo
+                {t("w.shareTeam")}
                 <span className="block text-[10px] mt-0.5" style={{ color: C.dim }}>
-                  Las verán tu segundo y tu delegado desde su móvil, también en Modo partido.
+                  {t("w.shareTeamHint")}
                 </span>
               </button>
               {nubeMsg && <div className="px-2.5 py-1.5 text-[11px] border-b" style={{ borderColor: C.line, color: nubeMsg.startsWith("✓") ? C.green : C.dim }}>{nubeMsg}</div>}
               {plays.some((x) => x.id === playAbierta) && (
                 <button onClick={() => { actualizarPlay(); close(); }} className="w-full text-left px-2.5 py-2 border-b text-xs"
                   style={{ borderColor: C.line, color: C.chalk }}>
-                  ↻ Guardar los cambios en <strong>{plays.find((x) => x.id === playAbierta)?.name}</strong>
+                  {t("w.updateChangesIn")} <strong>{plays.find((x) => x.id === playAbierta)?.name}</strong>
                 </button>
               )}
               {plays.map((p, iP) => (
@@ -4449,33 +4630,33 @@ Devuelve SOLO un objeto JSON con las claves "tokens" y "shapes", sin explicació
                     )}
                     <span className="truncate" style={{ color: p.id === playAbierta ? AC : C.chalk }}>{p.name}</span>
                   </button>
-                  <button onClick={() => moverPlay(p.id, -1)} disabled={iP === 0} aria-label="Subir" className="px-1.5 py-2 text-xs disabled:opacity-25" style={{ color: C.dim }}>▲</button>
-                  <button onClick={() => moverPlay(p.id, 1)} disabled={iP === plays.length - 1} aria-label="Bajar" className="px-1.5 py-2 text-xs disabled:opacity-25" style={{ color: C.dim }}>▼</button>
-                  <button onClick={() => renombrarPlay(p)} aria-label="Renombrar" className="px-1.5 py-2 text-xs" style={{ color: C.dim }}>✎</button>
-                  <button onClick={() => { setPlays((ps) => ps.filter((x) => x.id !== p.id)); if (p.id === playAbierta) setPlayAbierta(null); }} aria-label="Borrar" className="px-2 py-2 text-xs" style={{ color: C.dim }}>✕</button>
+                  <button onClick={() => moverPlay(p.id, -1)} disabled={iP === 0} aria-label={t("w.moveUp")} className="px-1.5 py-2 text-xs disabled:opacity-25" style={{ color: C.dim }}>▲</button>
+                  <button onClick={() => moverPlay(p.id, 1)} disabled={iP === plays.length - 1} aria-label={t("w.moveDown")} className="px-1.5 py-2 text-xs disabled:opacity-25" style={{ color: C.dim }}>▼</button>
+                  <button onClick={() => renombrarPlay(p)} aria-label={t("w.rename")} className="px-1.5 py-2 text-xs" style={{ color: C.dim }}>✎</button>
+                  <button onClick={() => { setPlays((ps) => ps.filter((x) => x.id !== p.id)); if (p.id === playAbierta) setPlayAbierta(null); }} aria-label={t("w.deleteAction")} className="px-2 py-2 text-xs" style={{ color: C.dim }}>✕</button>
                 </div>
               ))}
-              {!plays.length && <div className="px-3 py-4 text-xs text-center" style={{ color: C.dim }}>Aún no hay jugadas guardadas</div>}
+              {!plays.length && <div className="px-3 py-4 text-xs text-center" style={{ color: C.dim }}>{t("w.noPlaysSaved")}</div>}
             </div>
           )}
         </WbMenu>
 
-        <WbMenu label="Vista" icon="🔍" AC={AC}>
+        <WbMenu label={t("w.view")} icon="🔍" AC={AC}>
           <div className="p-2">
             {!enCampo && (
               /* En un tablero de balón parado no hay encuadres que elegir: el
                  tablero YA es la zona. Lo único que hace falta es la puerta de
                  vuelta al campo entero. */
               <div className="mb-3">
-                <div className="text-[10px] font-display uppercase tracking-widest mb-1" style={{ color: C.dim }}>Tablero</div>
-                <div className="text-xs mb-2 px-1" style={{ color: C.chalk }}>{TB.label} · a escala real</div>
+                <div className="text-[10px] font-display uppercase tracking-widest mb-1" style={{ color: C.dim }}>{t("w.board")}</div>
+                <div className="text-xs mb-2 px-1" style={{ color: C.chalk }}>{tableroNombre(tablero, lang)} · {t("w.toScale")}</div>
                 <button onClick={() => setPitchView("completo")} className="w-full text-xs px-2 py-2 rounded-lg border"
-                  style={{ borderColor: C.line, color: C.chalk }}>‹ Volver al campo entero</button>
+                  style={{ borderColor: C.line, color: C.chalk }}>{t("w.backToFullPitch")}</button>
               </div>
             )}
             {enCampo && (
               <>
-                <div className="text-[10px] font-display uppercase tracking-widest mb-1" style={{ color: C.dim }}>Encuadre</div>
+                <div className="text-[10px] font-display uppercase tracking-widest mb-1" style={{ color: C.dim }}>{t("w.framing")}</div>
                 <div className="grid grid-cols-2 gap-1 mb-3">
                   {Object.entries(PITCH_VIEWS).map(([k, v]) => (
                     <button key={k} onClick={() => setPitchView(k)} className="text-xs px-2 py-1.5 rounded-lg border"
@@ -4486,56 +4667,56 @@ Devuelve SOLO un objeto JSON con las claves "tokens" y "shapes", sin explicació
                 </div>
               </>
             )}
-            <div className="text-[10px] font-display uppercase tracking-widest mb-1" style={{ color: C.dim }}>Zoom · {zoomPct}%</div>
+            <div className="text-[10px] font-display uppercase tracking-widest mb-1" style={{ color: C.dim }}>{t("w.zoomLabel")} · {zoomPct}%</div>
             <div className="flex items-center gap-1 mb-3">
               <button onClick={() => zoomBy(1.25)} className="flex-1 h-8 rounded-lg border" style={{ borderColor: C.line, color: C.chalk }}>−</button>
-              <button onClick={resetView} className="flex-1 h-8 rounded-lg border text-[11px]" style={{ borderColor: C.line, color: C.chalk }}>Ajustar</button>
+              <button onClick={resetView} className="flex-1 h-8 rounded-lg border text-[11px]" style={{ borderColor: C.line, color: C.chalk }}>{t("w.fit")}</button>
               <button onClick={() => zoomBy(0.8)} className="flex-1 h-8 rounded-lg border" style={{ borderColor: C.line, color: C.chalk }}>+</button>
             </div>
-            <div className="text-[10px] mb-2" style={{ color: C.dim }}>Con dos dedos: pellizca para acercar y arrastra para mover.</div>
-            <div className="text-[10px] font-display uppercase tracking-widest mb-1" style={{ color: C.dim }}>☀ Brillo · {Math.round(bright * 100)}%</div>
+            <div className="text-[10px] mb-2" style={{ color: C.dim }}>{t("w.pinchHint")}</div>
+            <div className="text-[10px] font-display uppercase tracking-widest mb-1" style={{ color: C.dim }}>{t("w.brightness")} · {Math.round(bright * 100)}%</div>
             <input type="range" min="0.6" max="1.8" step="0.05" value={bright} onChange={(e) => setBright(Number(e.target.value))} className="w-full" />
           </div>
         </WbMenu>
 
-        <WbMenu label="Pasos" icon="⏱" count={steps.length || null} AC={AC}>
+        <WbMenu label={t("w.steps")} icon="⏱" count={steps.length || null} AC={AC}>
           <div className="p-2">
             <button onClick={addStep} className="w-full h-8 rounded-lg border text-xs font-display uppercase tracking-wide mb-2"
-              style={{ borderColor: AC, color: AC }}>+ Añadir paso</button>
+              style={{ borderColor: AC, color: AC }}>{t("w.addStep")}</button>
             {steps.length > 0 ? (
               <>
                 <div className="flex items-center gap-1 mb-2">
                   <button onClick={() => goStep(stepIdx - 1)} disabled={stepIdx <= 0} className="w-8 h-8 rounded-lg border disabled:opacity-30" style={{ borderColor: C.line, color: C.chalk }}>‹</button>
-                  <span className="flex-1 text-center text-xs tabular-nums" style={{ color: C.chalk }}>Paso {stepIdx + 1} de {steps.length}</span>
+                  <span className="flex-1 text-center text-xs tabular-nums" style={{ color: C.chalk }}>{t("w.stepOf").replace("{a}", stepIdx + 1).replace("{b}", steps.length)}</span>
                   <button onClick={() => goStep(stepIdx + 1)} disabled={stepIdx >= steps.length - 1} className="w-8 h-8 rounded-lg border disabled:opacity-30" style={{ borderColor: C.line, color: C.chalk }}>›</button>
                 </div>
                 <button onClick={() => setPlaying((v) => !v)} className="w-full h-8 rounded-lg border text-xs font-semibold mb-1"
                   style={{ borderColor: playing ? AC : C.line, background: playing ? AC : "transparent", color: playing ? "#141414" : C.chalk }}>
-                  {playing ? "❚❚ Pausa" : "▶ Reproducir"}
+                  {playing ? t("w.pause") : t("w.play")}
                 </button>
-                <button onClick={clearSteps} className="w-full h-8 rounded-lg border text-xs" style={{ borderColor: C.line, color: C.red }}>Borrar secuencia</button>
+                <button onClick={clearSteps} className="w-full h-8 rounded-lg border text-xs" style={{ borderColor: C.line, color: C.red }}>{t("w.deleteSequence")}</button>
               </>
-            ) : <div className="text-[11px] text-center py-2" style={{ color: C.dim }}>Guarda instantáneas para explicar la jugada paso a paso.</div>}
+            ) : <div className="text-[11px] text-center py-2" style={{ color: C.dim }}>{t("w.noStepsSaved")}</div>}
           </div>
         </WbMenu>
 
         {/* Solo en móvil y fuera de pantalla completa: es quien abre el panel
             de sistemas, que únicamente existe en la vista normal. */}
         {!full && (
-          <button onClick={() => setSistemasAbierto((v) => !v)} title="Sistemas" className={btn + " sm:hidden"}
+          <button onClick={() => setSistemasAbierto((v) => !v)} title={t("w.systems")} className={btn + " sm:hidden"}
             style={{ borderColor: sistemasAbierto ? AC : C.line, color: sistemasAbierto ? AC : C.chalk }}>
             ⊞ {codeHome} <span style={{ color: C.dim }}>vs</span> {codeAway}
           </button>
         )}
-        <button onClick={exportPng} title="Exportar PNG" className={btn} style={{ borderColor: C.line, color: C.chalk }}>⤓<span className="hidden lg:inline">PNG</span></button>
+        <button onClick={exportPng} title={t("w.exportPng")} className={btn} style={{ borderColor: C.line, color: C.chalk }}>⤓<span className="hidden lg:inline">PNG</span></button>
         {!recording
-          ? <button onClick={startRecording} title="Grabar vídeo" className={btn} style={{ borderColor: C.line, color: C.chalk }}>⏺<span className="hidden lg:inline">Vídeo</span></button>
+          ? <button onClick={startRecording} title={t("w.recordVideo")} className={btn} style={{ borderColor: C.line, color: C.chalk }}>⏺<span className="hidden lg:inline">{t("w.video")}</span></button>
           : <button onClick={stopRecording} className={btn + " font-semibold"} style={{ background: C.red, color: "#fff", borderColor: C.red }}>
               ■ {String(Math.floor(recSecs / 60)).padStart(2, "0")}:{String(recSecs % 60).padStart(2, "0")}
             </button>}
         <button onClick={() => setFull((f) => !f)} className={btn + " font-semibold ml-auto"}
           style={{ background: full ? C.red : AC, color: full ? "#fff" : "#141414", borderColor: full ? C.red : AC }}>
-          {full ? "✕" : "⛶"}<span className="hidden sm:inline">{full ? "Salir" : "Pantalla completa"}</span>
+          {full ? "✕" : "⛶"}<span className="hidden sm:inline">{full ? t("w.exit") : t("w.fullscreen")}</span>
         </button>
       </div>
     </>
@@ -4544,11 +4725,11 @@ Devuelve SOLO un objeto JSON con las claves "tokens" y "shapes", sin explicació
   const ZoomPad = (
     <div className="absolute right-2 bottom-2 flex items-center gap-1 rounded-lg border px-1 py-1"
       style={{ borderColor: C.line, background: "rgba(20,20,20,.72)", backdropFilter: "blur(2px)" }}>
-      <button onClick={() => zoomBy(1.25)} aria-label="Alejar" className="w-8 h-8 rounded-md border font-display text-base leading-none"
+      <button onClick={() => zoomBy(1.25)} aria-label={t("w.zoomOut")} className="w-8 h-8 rounded-md border font-display text-base leading-none"
         style={{ borderColor: C.line, color: C.chalk }}>−</button>
       <button onClick={resetView} className="px-2 h-8 rounded-md border text-[11px] tabular-nums"
         style={{ borderColor: C.line, color: zoomPct === 100 ? C.dim : AC }}>{zoomPct}%</button>
-      <button onClick={() => zoomBy(0.8)} aria-label="Acercar" className="w-8 h-8 rounded-md border font-display text-base leading-none"
+      <button onClick={() => zoomBy(0.8)} aria-label={t("w.zoomIn")} className="w-8 h-8 rounded-md border font-display text-base leading-none"
         style={{ borderColor: C.line, color: C.chalk }}>+</button>
     </div>
   );
@@ -4659,7 +4840,7 @@ Devuelve SOLO un objeto JSON con las claves "tokens" y "shapes", sin explicació
       <button onClick={() => setShowSquad((v) => !v)}
         className="w-full text-[10px] font-display uppercase tracking-widest py-1.5 border-b"
         style={{ borderColor: C.line, color: AC }}>
-        {showSquad ? "Plantilla ‹" : "›"}
+        {showSquad ? `${t("w.squadLabel")} ‹` : "›"}
       </button>
       {showSquad && (
         <div className="flex-1 overflow-y-auto">
@@ -4695,9 +4876,9 @@ Devuelve SOLO un objeto JSON con las claves "tokens" y "shapes", sin explicació
     return (
       <div className="z-50 p-2 sm:p-4" style={{ background: C.bg, ...rotStyle }}>
         <div className="flex items-center justify-between mb-2 gap-2">
-          <div className="font-display text-sm uppercase tracking-widest" style={{ color: C.dim }}>{t("w.title")} · pantalla completa</div>
+          <div className="font-display text-sm uppercase tracking-widest" style={{ color: C.dim }}>{t("w.title")} · {t("w.fullscreenSuffix")}</div>
           <button onClick={() => setFull(false)} className="text-sm px-4 py-2 rounded-lg font-display uppercase tracking-wide font-semibold" style={{ background: C.red, color: "#fff" }}>
-            ✕ Salir (Esc)
+            {t("w.exitEsc")}
           </button>
         </div>
         {Toolbar}
@@ -4737,7 +4918,7 @@ Devuelve SOLO un objeto JSON con las claves "tokens" y "shapes", sin explicació
             </select>
             <input value={sysFree} onChange={(e) => setSysFree(e.target.value)}
               onKeyDown={(e) => { if (e.key === "Enter" && /^\d+(-\d+)+$/.test(sysFree.trim())) { setCodeHome(sysFree.trim()); setSysFree(""); } }}
-              placeholder="Otro" className="text-sm rounded-lg px-2 py-1.5 border bg-transparent w-20"
+              placeholder={t("w.otherFormation")} className="text-sm rounded-lg px-2 py-1.5 border bg-transparent w-20"
               style={{ borderColor: C.line, color: C.chalk }} />
             <button onClick={() => place("home")} className="text-sm px-3 py-1.5 rounded-lg border" style={{ borderColor: AC, color: AC }}>{t("w.form")}</button>
           </div>
@@ -9848,21 +10029,21 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
     };
     return (
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <Card title={`${propone ? "Propuesta de alineación" : "Titulares"} — ${sysCode}`}>
+        <Card title={`${propone ? t("ln.proposalTitle") : t("ln.startersTitle")} — ${sysCode}`}>
           {propone && (
             miPropuestaPendiente("lineup") ? (
               <div className="mb-3 rounded-lg border px-3 py-2.5 text-sm" style={{ borderColor: C.warn, background: `${C.warn}10`, color: C.warn }}>
-                ⏳ Tu propuesta de alineación está pendiente de aprobación
+                {t("ln.pendingApproval")}
               </div>
             ) : (
               <div className="mb-3 flex items-center justify-between gap-2 rounded-lg border px-3 py-2.5" style={{ borderColor: C.line, background: C.panel2 }}>
                 <div className="text-xs" style={{ color: C.dim }}>
-                  {lineupDraft ? "Cuando termines de colocar el once, mándala." : "Coloca el once y manda la propuesta cuando termines."}
+                  {lineupDraft ? t("ln.finishAndSend") : t("ln.placeAndSend")}
                 </div>
                 <button onClick={enviarPropuestaAlineacion} disabled={!lineupDraft}
                   className="shrink-0 text-xs px-3 py-1.5 rounded-lg font-display uppercase tracking-wide font-semibold disabled:opacity-40"
                   style={{ background: AC, color: C.sobre }}>
-                  Enviar propuesta
+                  {t("ln.sendProposal")}
                 </button>
               </div>
             )
@@ -9885,13 +10066,13 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
           </div>
           <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
             <div className="text-xs" style={{ color: C.dim }}>
-              Arrastra para recolocar · toque corto para asignar
+              {t("ln.dragHint")}
             </div>
             {can("ai") && (
               <button onClick={preguntarIASobreAlineacion} disabled={loading}
                 className="text-xs px-2.5 py-1 rounded-lg border font-display uppercase tracking-wide disabled:opacity-50"
                 style={{ borderColor: AC, color: AC }}>
-                ✦ Preguntar a la IA
+                {t("ln.askAI")}
               </button>
             )}
           </div>
@@ -9941,15 +10122,15 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
             })}
           </div>
         </Card>
-        <Card title={selSlot ? `Asignar a ${selSlot}` : jugadorSel ? `Elegir puesto para ${jugadorSel.n.split(" ")[0]}` : "Banquillo"}>
+        <Card title={selSlot ? t("ln.assignTo").replace("{slot}", selSlot) : jugadorSel ? t("ln.choosePosFor").replace("{name}", jugadorSel.n.split(" ")[0]) : t("ln.benchTitle")}>
           {!selSlot && !jugadorSel && (
-            <div className="text-xs mb-3" style={{ color: C.dim }}>{t("ln.tapPos")} · o toca un jugador de la lista para ver dónde puede jugar</div>
+            <div className="text-xs mb-3" style={{ color: C.dim }}>{t("ln.tapPos")}</div>
           )}
           {jugadorSel && !selSlot && (
-            <div className="text-xs mb-3" style={{ color: C.dim }}>Toca un puesto del campo, o elige uno de esta lista — primero el suyo</div>
+            <div className="text-xs mb-3" style={{ color: C.dim }}>{t("ln.tapPosPlayerSel")}</div>
           )}
           {selSlot && (
-            <div className="text-xs mb-3" style={{ color: C.dim }}>Los de {puestoDelSlot} suben arriba, para encontrar rápido a quién meter</div>
+            <div className="text-xs mb-3" style={{ color: C.dim }}>{t("ln.slotSameLine").replace("{pos}", puestoDelSlot)}</div>
           )}
           <div className="space-y-1.5 max-h-[520px] overflow-y-auto pr-1">
             {jugadorSel && !selSlot ? (
@@ -9968,9 +10149,9 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                       style={{ borderColor: esSuPuesto ? AC : C.line, background: C.panel2, color: C.chalk }}>
                       <span className="flex items-center gap-2">
                         <span className="font-display text-base" style={{ color: AC }}>{s.label}</span>
-                        {esSuPuesto && <span className="text-[10px] font-display uppercase tracking-wide px-1.5 py-0.5 rounded" style={{ background: AC, color: C.sobre }}>Su puesto</span>}
+                        {esSuPuesto && <span className="text-[10px] font-display uppercase tracking-wide px-1.5 py-0.5 rounded" style={{ background: AC, color: C.sobre }}>{t("ln.hisSpot")}</span>}
                       </span>
-                      <span style={{ color: C.dim }}>{ocupante ? `Ocupado · ${ocupante.n.split(" ")[0]}` : "Libre"}</span>
+                      <span style={{ color: C.dim }}>{ocupante ? t("ln.occupiedBy").replace("{name}", ocupante.n.split(" ")[0]) : t("ln.free")}</span>
                     </button>
                   );
                 })
@@ -9981,7 +10162,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                   className="w-full flex items-center justify-between text-sm py-2 px-3 rounded-lg border text-left hover:opacity-80 disabled:cursor-default" style={{ borderColor: mismoPuesto ? AC : C.line, background: C.panel2, color: C.chalk }}>
                   <span className="flex items-center gap-2">
                     <Avatar p={p} size={26} /><Dot st={p.st} /><span className="font-display text-base" style={{ color: AC }}>{p.d}</span>{p.n}
-                    {mismoPuesto && <span className="text-[10px] font-display uppercase tracking-wide px-1.5 py-0.5 rounded" style={{ background: AC, color: C.sobre }}>Mismo puesto</span>}
+                    {mismoPuesto && <span className="text-[10px] font-display uppercase tracking-wide px-1.5 py-0.5 rounded" style={{ background: AC, color: C.sobre }}>{t("ln.samePos")}</span>}
                   </span>
                   <span style={{ color: C.dim }}>{p.pos}{startersView.has(p.id) ? " · XI" : ""}</span>
                 </button>
@@ -9998,13 +10179,13 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
       id: Date.now(), j: nextMatchFix?.j || "", rival: matchInfo.rival, fecha: matchInfo.fecha,
       hora: matchInfo.hora, lugar: matchInfo.lugar, ids: [...called],
     };
-    if (!isPro) { setCallMsg("El histórico de convocatorias es una función PRO."); setTimeout(() => setCallMsg(""), 4000); return; }
+    if (!isPro) { setCallMsg(t("cl.proOnly")); setTimeout(() => setCallMsg(""), 4000); return; }
     if (canProposeChanges()) {
       proposeChange("call", [row, ...calls]);
-      setCallMsg("✓ Propuesta de convocatoria enviada. Esperando aprobación del entrenador.");
+      setCallMsg(t("cl.proposalSent"));
     } else {
       setCalls([row, ...calls]);
-      setCallMsg("✓ Convocatoria guardada en el histórico.");
+      setCallMsg(t("cl.savedHistory"));
     }
     setTimeout(() => setCallMsg(""), 4000);
   };
@@ -10014,9 +10195,9 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
     const toggle = (id) => editable && setCalled((s) => { const n = new Set(s); n.has(id) ? n.delete(id) : n.add(id); return n; });
     return (
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <Card title={`Convocatoria${matchInfo.j ? ` — J${matchInfo.j}` : ""} ${editable ? "" : "(solo lectura)"}`}>
+        <Card title={`${t("cl.title")}${matchInfo.j ? ` — J${matchInfo.j}` : ""} ${editable ? "" : t("cl.readonly")}`}>
           <div className="grid grid-cols-2 gap-2 mb-4">
-            {[["rival", "Rival"], ["fecha", "Fecha"], ["hora", "Hora"], ["lugar", "Lugar"]].map(([k, lbl]) => (
+            {[["rival", t("cl.rival")], ["fecha", t("tr.date")], ["hora", t("tr.time")], ["lugar", t("cl.place")]].map(([k, lbl]) => (
               <div key={k} className={k === "lugar" ? "col-span-2" : ""}>
                 <div className="text-[11px] font-display uppercase tracking-widest" style={{ color: C.dim }}>{lbl}</div>
                 {k === "rival" ? (
@@ -10042,15 +10223,15 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                       }}
                       className="w-full rounded-lg px-3 py-2 text-sm outline-none border disabled:opacity-60" style={{ background: C.panel2, borderColor: C.line, color: C.chalk }}>
                       {rivalesDelCalendario.map((r) => <option key={r} value={r}>{r}</option>)}
-                      <option value="__otro__">✎ Otro rival (no está en el calendario)</option>
+                      <option value="__otro__">{t("cl.otherRival")}</option>
                     </select>
                     {!rivalesDelCalendario.includes(matchInfo.rival) && (
                       <input value={matchInfo.rival} disabled={!editable} onChange={(e) => setMatchInfo((m) => ({ ...m, rival: e.target.value }))}
-                        placeholder="Nombre del rival" className="w-full mt-1.5 rounded-lg px-3 py-2 text-sm outline-none border disabled:opacity-60" style={{ background: C.panel2, borderColor: C.line, color: C.chalk }} />
+                        placeholder={t("cl.rivalNamePh")} className="w-full mt-1.5 rounded-lg px-3 py-2 text-sm outline-none border disabled:opacity-60" style={{ background: C.panel2, borderColor: C.line, color: C.chalk }} />
                     )}
                     {rivalesDelCalendario.length === 0 && (
                       <div className="text-[11px] mt-1" style={{ color: "#e0b25a" }}>
-                        Sin calendario todavía — el director deportivo tiene que cargarlo al empezar la temporada para tener aquí a todos los rivales.
+                        {t("cl.noCalendar")}
                       </div>
                     )}
                   </>
@@ -10064,10 +10245,10 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
             <div className="rounded-lg border px-3 py-2 mb-2 text-[12px] flex items-start gap-2"
               style={{ borderColor: C.line, background: "rgba(217,164,65,.10)", color: "#e0b25a" }}>
               <span>🔒</span>
-              <span>Modo consulta: la convocatoria la deciden el entrenador y el director deportivo. Como {rLabel(lang, session.role).toLowerCase()} puedes verla, pero no cambiarla.</span>
+              <span>{t("cl.readonlyNotice").replace("{role}", rLabel(lang, session.role).toLowerCase())}</span>
             </div>
           )}
-          <div className="text-xs mb-2" style={{ color: C.dim }}>{editable ? "Marca los convocados" : "Convocados"} — {called.size} seleccionados</div>
+          <div className="text-xs mb-2" style={{ color: C.dim }}>{editable ? t("cl.markCalled") : t("cl.calledList")} — {called.size} {t("cl.selected")}</div>
           <div className="space-y-1 max-h-[340px] overflow-y-auto pr-1" style={{ opacity: editable ? 1 : 0.75 }}>
             {players.map((p) => (
               <button key={p.id} onClick={() => toggle(p.id)} disabled={!editable} className="w-full flex items-center justify-between text-sm py-2 px-3 rounded-lg border text-left disabled:cursor-default" style={{ borderColor: called.has(p.id) ? AC : C.line, background: called.has(p.id) ? C.panel2 : "transparent", color: C.chalk }}>
@@ -10080,14 +10261,14 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
         <Card title={t("cl.waMsg")}>
           <pre className="whitespace-pre-wrap text-sm rounded-lg p-4 border font-body leading-relaxed" style={{ background: C.panel2, borderColor: C.line, color: C.chalk }}>{waText()}</pre>
           <div className="mt-3 flex gap-2">
-            <button onClick={copyWa} className="flex-1 font-display uppercase tracking-wider py-2.5 rounded-lg font-semibold" style={{ background: copied ? C.green : AC, color: C.sobre }}>{copied ? "✓ Copiado" : "Copiar mensaje"}</button>
+            <button onClick={copyWa} className="flex-1 font-display uppercase tracking-wider py-2.5 rounded-lg font-semibold" style={{ background: copied ? C.green : AC, color: C.sobre }}>{copied ? t("cl.copied") : t("cl.copyMsg")}</button>
             <a href={`https://wa.me/?text=${encodeURIComponent(waText())}`} target="_blank" rel="noreferrer" className="flex-1 text-center font-display uppercase tracking-wider py-2.5 rounded-lg font-semibold border" style={{ borderColor: C.line, color: C.chalk }}>{t("cl.waOpen")}</a>
           </div>
           <div className="text-[11px] mt-2" style={{ color: C.dim }}>{t("cl.waLegend")}</div>
           {editable && (
             <div className="mt-4 pt-4 border-t" style={{ borderColor: C.line }}>
               <button onClick={saveCall} className="w-full font-display uppercase tracking-wider py-2.5 rounded-lg border" style={{ borderColor: AC, color: AC }}>
-                📌 Guardar en el histórico
+                {t("cl.saveHistory")}
               </button>
               {callMsg && <div className="text-xs mt-2" style={{ color: C.green }}>{callMsg}</div>}
             </div>
