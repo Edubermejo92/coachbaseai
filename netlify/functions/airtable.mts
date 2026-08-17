@@ -31,6 +31,7 @@ const PR = {
   datos: "fldLyjvNJYFl9L44F", equipo: "fldNDgGcg66K5KLGT",
   propuestoPor: "fldtb0FrZmgtdhOoI", aprobadoPor: "fldeJt8lKbxm0TCdA",
   fechaProp: "fldrRDvRP5IBIcbwG", fechaRes: "fldEZxwoA1k4HLWji",
+  motivo: "fldNre3sjgcXmLIig",
 };
 const T_ENTRENAMIENTOS = "tblinm3lV3FTUcL62";
 /* Plantillas de entrenamiento reutilizables. Viven en la misma tabla que las
@@ -1039,6 +1040,7 @@ export default async (req: Request) => {
       approvedBy: (r.fields[PR.aprobadoPor] || [])[0] || null,
       date: r.fields[PR.fechaProp] || null,
       resolvedDate: r.fields[PR.fechaRes] || null,
+      motivo: r.fields[PR.motivo] || null,
     });
     /* Quien puede aprobar o rechazar: el entrenador principal, el director o
        el master del equipo al que pertenece la propuesta. El segundo y el
@@ -1084,6 +1086,10 @@ export default async (req: Request) => {
         const label = nuevoEstado === "approved" || nuevoEstado === "aprobada" ? "Aprobada"
           : nuevoEstado === "rejected" || nuevoEstado === "rechazada" ? "Rechazada" : "";
         if (!label) return j({ ok: false, reason: "estado_no_valido" }, 400);
+        /* Rechazar exige motivo: sin él, quien propuso se queda sin saber qué
+           cambiar y vuelve a mandar lo mismo o se cansa de proponer. */
+        const motivo = String(b.motivo || "").trim();
+        if (label === "Rechazada" && !motivo) return j({ ok: false, reason: "falta_motivo" }, 400);
         /* La propuesta tiene que ser de un equipo al que este usuario tenga
            alcance -su equipo, o su club si es director/master- para que el
            entrenador de un equipo no pueda resolver la propuesta de otro.
@@ -1101,6 +1107,7 @@ export default async (req: Request) => {
               [PR.estado]: label,
               [PR.aprobadoPor]: sesion?.id ? [sesion.id] : [],
               [PR.fechaRes]: new Date().toISOString(),
+              ...(label === "Rechazada" ? { [PR.motivo]: motivo } : {}),
             }, typecast: true,
           }),
         });

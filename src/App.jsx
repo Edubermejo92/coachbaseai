@@ -108,6 +108,29 @@ const DICT = {
     "mt.refereeNamePh": "Nombre del árbitro",
     "mt.refereeComment": "Comentario sobre el árbitro",
     "mt.refereeCommentPh": "Anota aquí cómo arbitró, decisiones destacadas, etc.",
+    "pr.pendingTitle": "⚠️ Propuestas pendientes de aprobación",
+    "pr.acceptedTitle": "✓ Propuestas aceptadas",
+    "pr.sentTitle": "📤 Mis propuestas enviadas",
+    "pr.proposes": "propone",
+    "pr.unknownUser": "Usuario desconocido",
+    "pr.approve": "✓ Aprobar",
+    "pr.reject": "✕ Rechazar",
+    "pr.proposedBy": "propuesta por",
+    "pr.acceptedOn": "Aceptada el",
+    "pr.acceptedBadge": "✓ Aceptada",
+    "pr.rejectedOn": "Rechazada el",
+    "pr.rejectedBadge": "✕ Rechazada",
+    "pr.pendingBadge": "⏳ Pendiente",
+    "pr.sentOn": "Enviada el",
+    "pr.reasonLabel": "Motivo:",
+    "pr.rejectReasonPh": "Explica qué habría que cambiar…",
+    "pr.rejectConfirm": "Confirmar rechazo",
+    "pr.rejectMotivoRequired": "Escribe un motivo antes de confirmar.",
+    "pr.typeLineup": "Alineación",
+    "pr.typeSquad": "Plantilla",
+    "pr.typeCalendar": "Calendario",
+    "pr.typeCall": "Convocatoria",
+    "pr.typeTraining": "Entrenamiento",
     "ca.title": "Calendario del equipo",
     "ca.empty": "Todavía no hay partidos. Importa el calendario de tu equipo abajo.",
     "ca.import": "Importar calendario",
@@ -210,6 +233,29 @@ const DICT = {
     "mt.refereeNamePh": "Referee's name",
     "mt.refereeComment": "Comment about the referee",
     "mt.refereeCommentPh": "Note how they refereed, key decisions, etc.",
+    "pr.pendingTitle": "⚠️ Proposals awaiting approval",
+    "pr.acceptedTitle": "✓ Accepted proposals",
+    "pr.sentTitle": "📤 My sent proposals",
+    "pr.proposes": "proposes",
+    "pr.unknownUser": "Unknown user",
+    "pr.approve": "✓ Approve",
+    "pr.reject": "✕ Reject",
+    "pr.proposedBy": "proposed by",
+    "pr.acceptedOn": "Accepted on",
+    "pr.acceptedBadge": "✓ Accepted",
+    "pr.rejectedOn": "Rejected on",
+    "pr.rejectedBadge": "✕ Rejected",
+    "pr.pendingBadge": "⏳ Pending",
+    "pr.sentOn": "Sent on",
+    "pr.reasonLabel": "Reason:",
+    "pr.rejectReasonPh": "Explain what should change…",
+    "pr.rejectConfirm": "Confirm rejection",
+    "pr.rejectMotivoRequired": "Write a reason before confirming.",
+    "pr.typeLineup": "Line-up",
+    "pr.typeSquad": "Squad",
+    "pr.typeCalendar": "Fixtures",
+    "pr.typeCall": "Squad list",
+    "pr.typeTraining": "Training",
     "ca.title": "Team fixtures",
     "ca.empty": "No fixtures yet. Import your team's calendar below.",
     "ca.import": "Import fixtures",
@@ -329,6 +375,29 @@ const DICT = {
     "mt.refereeNamePh": "Nom de l'arbitre",
     "mt.refereeComment": "Commentaire sur l'arbitre",
     "mt.refereeCommentPh": "Notez ici son arbitrage, les décisions marquantes, etc.",
+    "pr.pendingTitle": "⚠️ Propositions en attente d'approbation",
+    "pr.acceptedTitle": "✓ Propositions acceptées",
+    "pr.sentTitle": "📤 Mes propositions envoyées",
+    "pr.proposes": "propose",
+    "pr.unknownUser": "Utilisateur inconnu",
+    "pr.approve": "✓ Approuver",
+    "pr.reject": "✕ Refuser",
+    "pr.proposedBy": "proposée par",
+    "pr.acceptedOn": "Acceptée le",
+    "pr.acceptedBadge": "✓ Acceptée",
+    "pr.rejectedOn": "Refusée le",
+    "pr.rejectedBadge": "✕ Refusée",
+    "pr.pendingBadge": "⏳ En attente",
+    "pr.sentOn": "Envoyée le",
+    "pr.reasonLabel": "Motif :",
+    "pr.rejectReasonPh": "Expliquez ce qu'il faudrait changer…",
+    "pr.rejectConfirm": "Confirmer le refus",
+    "pr.rejectMotivoRequired": "Écrivez un motif avant de confirmer.",
+    "pr.typeLineup": "Composition",
+    "pr.typeSquad": "Effectif",
+    "pr.typeCalendar": "Calendrier",
+    "pr.typeCall": "Convocation",
+    "pr.typeTraining": "Entraînement",
     "ca.title": "Calendrier de l'équipe",
     "ca.empty": "Pas encore de matchs. Importez le calendrier de votre équipe ci-dessous.",
     "ca.import": "Importer le calendrier",
@@ -521,6 +590,29 @@ const DICT = {
     "mt.refereeNamePh": "Name des Schiedsrichters",
     "mt.refereeComment": "Kommentar zum Schiedsrichter",
     "mt.refereeCommentPh": "Notiere hier die Leistung, wichtige Entscheidungen usw.",
+    "pr.pendingTitle": "⚠️ Vorschläge zur Freigabe",
+    "pr.acceptedTitle": "✓ Angenommene Vorschläge",
+    "pr.sentTitle": "📤 Meine gesendeten Vorschläge",
+    "pr.proposes": "schlägt vor",
+    "pr.unknownUser": "Unbekannter Benutzer",
+    "pr.approve": "✓ Annehmen",
+    "pr.reject": "✕ Ablehnen",
+    "pr.proposedBy": "vorgeschlagen von",
+    "pr.acceptedOn": "Angenommen am",
+    "pr.acceptedBadge": "✓ Angenommen",
+    "pr.rejectedOn": "Abgelehnt am",
+    "pr.rejectedBadge": "✕ Abgelehnt",
+    "pr.pendingBadge": "⏳ Ausstehend",
+    "pr.sentOn": "Gesendet am",
+    "pr.reasonLabel": "Grund:",
+    "pr.rejectReasonPh": "Erkläre, was geändert werden sollte…",
+    "pr.rejectConfirm": "Ablehnung bestätigen",
+    "pr.rejectMotivoRequired": "Schreibe einen Grund, bevor du bestätigst.",
+    "pr.typeLineup": "Aufstellung",
+    "pr.typeSquad": "Kader",
+    "pr.typeCalendar": "Spielplan",
+    "pr.typeCall": "Spieltagskader",
+    "pr.typeTraining": "Training",
     "ca.title": "Spielplan der Mannschaft",
     "ca.empty": "Noch keine Spiele. Importiere unten den Spielplan deiner Mannschaft.",
     "ca.import": "Spielplan importieren",
@@ -712,6 +804,29 @@ const DICT = {
     "mt.refereeNamePh": "Nome do árbitro",
     "mt.refereeComment": "Comentário sobre o árbitro",
     "mt.refereeCommentPh": "Anota aqui a arbitragem, decisões relevantes, etc.",
+    "pr.pendingTitle": "⚠️ Propostas pendentes de aprovação",
+    "pr.acceptedTitle": "✓ Propostas aceites",
+    "pr.sentTitle": "📤 As minhas propostas enviadas",
+    "pr.proposes": "propõe",
+    "pr.unknownUser": "Utilizador desconhecido",
+    "pr.approve": "✓ Aprovar",
+    "pr.reject": "✕ Rejeitar",
+    "pr.proposedBy": "proposta por",
+    "pr.acceptedOn": "Aceite em",
+    "pr.acceptedBadge": "✓ Aceite",
+    "pr.rejectedOn": "Rejeitada em",
+    "pr.rejectedBadge": "✕ Rejeitada",
+    "pr.pendingBadge": "⏳ Pendente",
+    "pr.sentOn": "Enviada em",
+    "pr.reasonLabel": "Motivo:",
+    "pr.rejectReasonPh": "Explica o que devia mudar…",
+    "pr.rejectConfirm": "Confirmar rejeição",
+    "pr.rejectMotivoRequired": "Escreve um motivo antes de confirmar.",
+    "pr.typeLineup": "Escalação",
+    "pr.typeSquad": "Plantel",
+    "pr.typeCalendar": "Calendário",
+    "pr.typeCall": "Convocatória",
+    "pr.typeTraining": "Treino",
     "ca.title": "Calendário da equipa",
     "ca.empty": "Ainda não há jogos. Importa o calendário da tua equipa abaixo.",
     "ca.import": "Importar calendário",
@@ -1549,11 +1664,11 @@ const airProposalCreate = async (teamRec, type, data) => {
     return await r.json().catch(() => null);
   } catch { return null; }
 };
-const airProposalResolve = async (id, estado) => {
+const airProposalResolve = async (id, estado, motivo) => {
   try {
     const r = await cbFetch(`${AIR}?res=propuestas&id=${encodeURIComponent(id)}`, {
       method: "PATCH", headers: { "content-type": "application/json" },
-      body: JSON.stringify({ estado }),
+      body: JSON.stringify({ estado, motivo }),
     });
     return await r.json().catch(() => null);
   } catch { return null; }
@@ -5741,6 +5856,11 @@ export default function App() {
   const [pendingPlayId, setPendingPlayId] = useState(null);
   /* Propuestas del segundo entrenador esperando aprobación del entrenador principal */
   const [proposals, setProposals] = useState(PROPOSALS_INIT);
+  /* Id de la propuesta que se está rechazando (abre la caja de motivo) y el
+     texto que se va escribiendo en ella. Un solo rechazo abierto a la vez:
+     al abrir uno se cierra cualquier otro que hubiera quedado a medias. */
+  const [rejectingId, setRejectingId] = useState(null);
+  const [rejectMotivo, setRejectMotivo] = useState("");
   /* Categoría actualmente seleccionada si el usuario tiene múltiples */
   const [selectedCategory, setSelectedCategory] = useState(session?.currentCategory);
   /* Orden del menú fijo de abajo (móvil), a elegir por cada persona: por
@@ -6993,16 +7113,21 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
         {/* Histórico de propuestas (segundo/entrenador) */}
         {(tieneRolFront(session, "segundo") || canResolveProposals()) && getProposalHistory().length > 0 && (
           <div className="pt-4 mt-4 border-t" style={{ borderColor: C.line }}>
-            <div className="font-display text-sm uppercase tracking-widest mb-3" style={{ color: C.dim }}>📋 Histórico de propuestas</div>
+            <div className="font-display text-sm uppercase tracking-widest mb-3" style={{ color: C.dim }}>📋 {t("pr.sentTitle").replace(/^📤\s*/, "")}</div>
             <div className="space-y-2 max-h-64 overflow-y-auto">
               {getProposalHistory().map((p) => (
                 <div key={p.id} className="text-xs p-2 rounded-lg border" style={{ borderColor: p.status === "approved" ? C.green : C.red, background: p.status === "approved" ? `${C.green}15` : `${C.red}15` }}>
                   <div style={{ color: p.status === "approved" ? C.green : C.red, fontWeight: "bold" }}>
-                    {p.status === "approved" ? "✓ Aprobada" : "✕ Rechazada"}: {getProposalTypeLabel(p.type)}
+                    {p.status === "approved" ? t("pr.acceptedBadge") : t("pr.rejectedBadge")}: {getProposalTypeLabel(p.type)}
                   </div>
                   <div style={{ color: C.dim, marginTop: "4px" }}>
-                    {new Date(p.date).toLocaleString("es-ES")}
+                    {new Date(p.date).toLocaleString(lang === "es" ? "es-ES" : lang)}
                   </div>
+                  {p.status === "rejected" && p.motivo && (
+                    <div style={{ color: C.chalk, marginTop: "4px" }}>
+                      <span style={{ color: C.dim }}>{t("pr.reasonLabel")}</span> {p.motivo}
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
@@ -8597,7 +8722,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
       id: r.id, categoryId: session.team.rec, type: r.type,
       proposedBy: r.proposedBy, proposedData: r.data, status: r.status,
       approvedBy: r.approvedBy, approvedData: r.status === "approved" ? r.data : null,
-      date: r.date, resolvedDate: r.resolvedDate || null,
+      date: r.date, resolvedDate: r.resolvedDate || null, motivo: r.motivo || null,
     })));
   };
   useEffect(() => {
@@ -8649,17 +8774,22 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
     );
   };
 
-  const rejectProposal = async (proposalId) => {
+  /* El motivo es obligatorio: sin él, quien propuso no sabe qué cambiar.
+     Se comprueba también aquí, no solo en el servidor, para no dejar
+     avanzar el botón con la caja vacía. */
+  const rejectProposal = async (proposalId, motivo) => {
     if (!canResolveProposals()) return;
+    const m = String(motivo || "").trim();
+    if (!m) return;
     if (esSesionRealConEquipo) {
-      await airProposalResolve(proposalId, "rejected");
+      await airProposalResolve(proposalId, "rejected", m);
       await refreshProposals();
       return;
     }
     const resolvedDate = new Date().toISOString();
     setProposals((ps) =>
       ps.map((p) =>
-        p.id === proposalId ? { ...p, status: "rejected", approvedBy: session.userId, resolvedDate } : p
+        p.id === proposalId ? { ...p, status: "rejected", approvedBy: session.userId, resolvedDate, motivo: m } : p
       )
     );
   };
@@ -8693,6 +8823,16 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
         (p.status === "approved" || p.status === "rejected")
     );
 
+  /* "Enviadas": lo que HA PROPUESTO esta persona, con su estado -pendiente,
+     aceptada o rechazada, con el motivo si lo tiene-, sin mezclar con lo que
+     hayan propuesto otros compañeros con el mismo rol en el mismo equipo.
+     Es la bandeja del segundo/delegado; getPendingProposals/getAcceptedProposals
+     de arriba son la del entrenador/director que las resuelve. */
+  const getMyProposals = () =>
+    proposals
+      .filter((p) => p.categoryId === miEquipoKey() && p.proposedBy === session?.userId)
+      .sort((a, b) => new Date(b.resolvedDate || b.date) - new Date(a.resolvedDate || a.date));
+
   /* Propuestas aceptadas, para el panel del entrenador y del director: solo
      aprobadas, la más reciente arriba (por cuándo se aceptó, no por cuándo
      se propuso), con quién la hizo a la vista. */
@@ -8703,11 +8843,8 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
 
   const getProposalTypeLabel = (type) => {
     const labels = {
-      lineup: "Alineación",
-      squad: "Plantilla",
-      calendar: "Calendario",
-      call: "Convocatoria",
-      training: "Entrenamiento",
+      lineup: t("pr.typeLineup"), squad: t("pr.typeSquad"), calendar: t("pr.typeCalendar"),
+      call: t("pr.typeCall"), training: t("pr.typeTraining"),
     };
     return labels[type] || type;
   };
@@ -9030,11 +9167,12 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
           director deportivo, que también puede resolverlas
           (canResolveProposals), se quedaba sin enterarse. */}
       {canResolveProposals() && getPendingProposals().length > 0 && (
-        <Card title="⚠️ Propuestas pendientes de aprobación" className="lg:col-span-3" style={{ borderColor: C.warn, background: `${C.warn}10` }}>
+        <Card title={t("pr.pendingTitle")} className="lg:col-span-3" style={{ borderColor: C.warn, background: `${C.warn}10` }}>
           <div className="space-y-3">
             {getPendingProposals().map((p) => {
               const proposer = users.find((u) => u.id === p.proposedBy);
               const typeLabel = getProposalTypeLabel(p.type);
+              const rechazando = rejectingId === p.id;
 
               let detalle = "";
               if (p.type === "lineup" && p.proposedData) {
@@ -9052,32 +9190,58 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                   <div className="flex items-center justify-between gap-3">
                     <div className="flex-1 min-w-0">
                       <div className="font-semibold text-sm" style={{ color: C.chalk }}>
-                        {proposer?.name || "Usuario desconocido"} propone
+                        {proposer?.name || t("pr.unknownUser")} {t("pr.proposes")}
                       </div>
                       <div className="text-[12px] mt-0.5" style={{ color: AC }}>
                         {typeLabel}{detalle}
                       </div>
                       <div className="text-[11px] mt-1" style={{ color: C.dim }}>
-                        {new Date(p.date).toLocaleString("es-ES")}
+                        {new Date(p.date).toLocaleString(lang === "es" ? "es-ES" : lang)}
                       </div>
                     </div>
-                    <div className="flex gap-2 shrink-0">
-                      <button
-                        onClick={() => approveProposal(p.id)}
-                        className="px-3 py-1.5 rounded-lg text-sm font-semibold whitespace-nowrap"
-                        style={{ background: C.green, color: "white" }}
-                      >
-                        ✓ Aprobar
-                      </button>
-                      <button
-                        onClick={() => rejectProposal(p.id)}
-                        className="px-3 py-1.5 rounded-lg text-sm font-semibold whitespace-nowrap"
-                        style={{ background: C.red, color: "white" }}
-                      >
-                        ✕ Rechazar
-                      </button>
-                    </div>
+                    {!rechazando && (
+                      <div className="flex gap-2 shrink-0">
+                        <button
+                          onClick={() => approveProposal(p.id)}
+                          className="px-3 py-1.5 rounded-lg text-sm font-semibold whitespace-nowrap"
+                          style={{ background: C.green, color: "white" }}
+                        >
+                          {t("pr.approve")}
+                        </button>
+                        <button
+                          onClick={() => { setRejectingId(p.id); setRejectMotivo(""); }}
+                          className="px-3 py-1.5 rounded-lg text-sm font-semibold whitespace-nowrap"
+                          style={{ background: C.red, color: "white" }}
+                        >
+                          {t("pr.reject")}
+                        </button>
+                      </div>
+                    )}
                   </div>
+                  {/* Motivo obligatorio: sin él el botón de confirmar se queda
+                      apagado, así no se puede rechazar sin decir por qué. */}
+                  {rechazando && (
+                    <div className="pt-1">
+                      <textarea value={rejectMotivo} onChange={(e) => setRejectMotivo(e.target.value)}
+                        placeholder={t("pr.rejectReasonPh")} rows={2} autoFocus
+                        className="w-full px-3 py-2 rounded-lg border bg-transparent text-sm resize-none"
+                        style={{ borderColor: C.red, color: C.chalk }} />
+                      <div className="flex gap-2 mt-2">
+                        <button
+                          onClick={() => { rejectProposal(p.id, rejectMotivo); setRejectingId(null); setRejectMotivo(""); }}
+                          disabled={!rejectMotivo.trim()}
+                          className="px-3 py-1.5 rounded-lg text-sm font-semibold whitespace-nowrap disabled:opacity-40"
+                          style={{ background: C.red, color: "white" }}
+                        >
+                          {t("pr.rejectConfirm")}
+                        </button>
+                        <button onClick={() => { setRejectingId(null); setRejectMotivo(""); }}
+                          className="px-3 py-1.5 rounded-lg text-sm border" style={{ borderColor: C.line, color: C.chalk }}>
+                          {t("c.cancel")}
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
               );
             })}
@@ -9090,7 +9254,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
           la propuso. Antes solo había un histórico mezclado (aceptadas y
           rechazadas juntas, sin nombre) escondido dentro del perfil. */}
       {canResolveProposals() && getAcceptedProposals().length > 0 && (
-        <Card title="✓ Propuestas aceptadas" className="lg:col-span-3" style={{ borderColor: C.green, background: `${C.green}0d` }}>
+        <Card title={t("pr.acceptedTitle")} className="lg:col-span-3" style={{ borderColor: C.green, background: `${C.green}0d` }}>
           <div className="space-y-2 max-h-80 overflow-y-auto pr-1">
             {getAcceptedProposals().map((p) => {
               const proposer = users.find((u) => u.id === p.proposedBy);
@@ -9099,13 +9263,50 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                   <div className="min-w-0">
                     <div className="text-sm" style={{ color: C.chalk }}>
                       <span className="font-semibold">{getProposalTypeLabel(p.type)}</span>
-                      <span style={{ color: C.dim }}> · propuesta por {proposer?.name || "usuario desconocido"}</span>
+                      <span style={{ color: C.dim }}> · {t("pr.proposedBy")} {proposer?.name || t("pr.unknownUser")}</span>
                     </div>
                     <div className="text-[11px] mt-0.5" style={{ color: C.dim }}>
-                      Aceptada el {new Date(p.resolvedDate || p.date).toLocaleString("es-ES")}
+                      {t("pr.acceptedOn")} {new Date(p.resolvedDate || p.date).toLocaleString(lang === "es" ? "es-ES" : lang)}
                     </div>
                   </div>
-                  <span className="shrink-0 text-[10px] font-display uppercase tracking-wide px-2 py-1 rounded-full" style={{ background: C.green, color: "white" }}>✓ Aceptada</span>
+                  <span className="shrink-0 text-[10px] font-display uppercase tracking-wide px-2 py-1 rounded-full" style={{ background: C.green, color: "white" }}>{t("pr.acceptedBadge")}</span>
+                </div>
+              );
+            })}
+          </div>
+        </Card>
+      )}
+
+      {/* "Enviadas": la bandeja de quien PROPONE (segundo/delegado), con
+          pendientes, aceptadas y rechazadas -y el motivo si la han
+          rechazado-, sin depender de tener que preguntarle al entrenador. */}
+      {canProposeChanges() && getMyProposals().length > 0 && (
+        <Card title={t("pr.sentTitle")} className="lg:col-span-3">
+          <div className="space-y-2 max-h-80 overflow-y-auto pr-1">
+            {getMyProposals().map((p) => {
+              const badge = p.status === "approved"
+                ? { txt: t("pr.acceptedBadge"), bg: C.green }
+                : p.status === "rejected"
+                ? { txt: t("pr.rejectedBadge"), bg: C.red }
+                : { txt: t("pr.pendingBadge"), bg: C.warn };
+              return (
+                <div key={p.id} className="p-2.5 rounded-lg border" style={{ borderColor: C.line, background: C.panel2 }}>
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="min-w-0">
+                      <div className="text-sm font-semibold" style={{ color: C.chalk }}>{getProposalTypeLabel(p.type)}</div>
+                      <div className="text-[11px] mt-0.5" style={{ color: C.dim }}>
+                        {p.status === "pending"
+                          ? `${t("pr.sentOn")} ${new Date(p.date).toLocaleString(lang === "es" ? "es-ES" : lang)}`
+                          : `${p.status === "approved" ? t("pr.acceptedOn") : t("pr.rejectedOn")} ${new Date(p.resolvedDate || p.date).toLocaleString(lang === "es" ? "es-ES" : lang)}`}
+                      </div>
+                    </div>
+                    <span className="shrink-0 text-[10px] font-display uppercase tracking-wide px-2 py-1 rounded-full" style={{ background: badge.bg, color: "white" }}>{badge.txt}</span>
+                  </div>
+                  {p.status === "rejected" && p.motivo && (
+                    <div className="text-[12px] mt-2 pt-2 border-t leading-relaxed" style={{ borderColor: C.line, color: C.chalk }}>
+                      <span style={{ color: C.dim }}>{t("pr.reasonLabel")}</span> {p.motivo}
+                    </div>
+                  )}
                 </div>
               );
             })}
