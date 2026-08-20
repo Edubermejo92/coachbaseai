@@ -174,6 +174,21 @@ const DICT = {
     "ca.remove": "Quitar",
     "ca.useMatch": "Usar en modo partido", "ca.month": "Calendario del mes", "ca.dayHint": "Toca un día para ver su detalle.", "ca.dayEmpty": "No hay partidos ni entrenamiento programado este día.", "ca.dayTraining": "Día de entrenamiento", "ca.legendMatch": "Partido (del calendario importado)", "ca.legendTrain": "Entrenamiento", "ca.trainDaysLabel": "Días de entreno:",
     "ca.teamCrest": "Escudo del equipo",
+    "pt.title": "Plan de pretemporada",
+    "pt.week": "Semana",
+    "pt.session": "Sesión",
+    "pt.next": "Siguiente",
+    "pt.hint": "Las doce sesiones del plan, con su duración, el RPE que se espera, la prioridad y la carga. Toca una para ver sus bloques y cargarla entera en Entrenamiento.",
+    "pt.blocksTotal": "Bloques:",
+    "pt.blocksNote": "el resto es el contenido táctico que decidas ese día.",
+    "pt.load": "Cargar en Entrenamiento",
+    "pt.loaded": "Cargada en Entrenamiento:",
+    "pt.foot": "El plan es la referencia, no una orden: si el semáforo de la mañana sale con amarillos o el balón ya ha dado suficiente carga, se recorta. El objetivo es alcanzar la carga, no completar el papel.",
+    "cf.target": "RPE previsto:",
+    "cf.real": "real:",
+    "cf.above": "por encima de lo previsto",
+    "cf.below": "por debajo de lo previsto",
+    "cf.noRpeYet": "Todavía no hay ningún RPE registrado de esta sesión.",
     "cf.medNote": "Aviso médico",
     "cf.medNotePh": "Antecedente o limitación permanente: lesiones previas, alergias, condiciones a tener en cuenta al dosificar la carga.",
     "cf.medNoteNone": "Sin aviso.",
@@ -402,6 +417,21 @@ const DICT = {
     "ca.remove": "Remove",
     "ca.useMatch": "Use in match mode", "ca.month": "Month calendar", "ca.dayHint": "Tap a day to see its detail.", "ca.dayEmpty": "No fixtures or training scheduled this day.", "ca.dayTraining": "Training day", "ca.legendMatch": "Fixture (from the imported calendar)", "ca.legendTrain": "Training", "ca.trainDaysLabel": "Training days:",
     "ca.teamCrest": "Team crest",
+    "pt.title": "Pre-season plan",
+    "pt.week": "Week",
+    "pt.session": "Session",
+    "pt.next": "Next",
+    "pt.hint": "The twelve sessions of the plan, with duration, target RPE, priority and load. Tap one to see its blocks and load the whole session into Training.",
+    "pt.blocksTotal": "Blocks:",
+    "pt.blocksNote": "the rest is the tactical content you choose that day.",
+    "pt.load": "Load into Training",
+    "pt.loaded": "Loaded into Training:",
+    "pt.foot": "The plan is a reference, not an order: if the morning traffic light shows ambers, or the ball has already given enough load, cut it short. The goal is to reach the load, not to complete the sheet.",
+    "cf.target": "Target RPE:",
+    "cf.real": "actual:",
+    "cf.above": "above target",
+    "cf.below": "below target",
+    "cf.noRpeYet": "No RPE recorded for this session yet.",
     "cf.medNote": "Medical note",
     "cf.medNotePh": "Permanent history or limitation: past injuries, allergies, conditions to bear in mind when setting the load.",
     "cf.medNoteNone": "No note.",
@@ -647,6 +677,21 @@ const DICT = {
     "ca.remove": "Retirer",
     "ca.useMatch": "Utiliser en mode match", "ca.month": "Calendrier du mois", "ca.dayHint": "Touchez un jour pour voir son détail.", "ca.dayEmpty": "Aucun match ni entraînement prévu ce jour.", "ca.dayTraining": "Jour d'entraînement", "ca.legendMatch": "Match (du calendrier importé)", "ca.legendTrain": "Entraînement", "ca.trainDaysLabel": "Jours d'entraînement :",
     "ca.teamCrest": "Écusson de l'équipe",
+    "pt.title": "Plan de présaison",
+    "pt.week": "Semaine",
+    "pt.session": "Séance",
+    "pt.next": "Suivante",
+    "pt.hint": "Les douze séances du plan, avec durée, RPE attendu, priorité et charge. Touchez-en une pour voir ses blocs et charger la séance entière dans Entraînement.",
+    "pt.blocksTotal": "Blocs :",
+    "pt.blocksNote": "le reste est le contenu tactique que vous choisissez ce jour-là.",
+    "pt.load": "Charger dans Entraînement",
+    "pt.loaded": "Chargée dans Entraînement :",
+    "pt.foot": "Le plan est une référence, pas un ordre : si le feu du matin affiche des oranges, ou si le ballon a déjà apporté assez de charge, on raccourcit. L'objectif est d'atteindre la charge, pas de finir la feuille.",
+    "cf.target": "RPE prévu :",
+    "cf.real": "réel :",
+    "cf.above": "au-dessus du prévu",
+    "cf.below": "en dessous du prévu",
+    "cf.noRpeYet": "Aucun RPE encore enregistré pour cette séance.",
     "cf.medNote": "Avis médical",
     "cf.medNotePh": "Antécédent ou limitation permanente : blessures passées, allergies, conditions à prendre en compte pour doser la charge.",
     "cf.medNoteNone": "Aucun avis.",
@@ -965,6 +1010,21 @@ const DICT = {
     "ca.remove": "Entfernen",
     "ca.useMatch": "Im Spielmodus verwenden", "ca.month": "Monatskalender", "ca.dayHint": "Tippe auf einen Tag, um Details zu sehen.", "ca.dayEmpty": "An diesem Tag sind weder Spiele noch Training geplant.", "ca.dayTraining": "Trainingstag", "ca.legendMatch": "Spiel (aus importiertem Spielplan)", "ca.legendTrain": "Training", "ca.trainDaysLabel": "Trainingstage:",
     "ca.teamCrest": "Mannschaftswappen",
+    "pt.title": "Vorbereitungsplan",
+    "pt.week": "Woche",
+    "pt.session": "Einheit",
+    "pt.next": "Nächste",
+    "pt.hint": "Die zwölf Einheiten des Plans mit Dauer, erwartetem RPE, Schwerpunkt und Belastung. Tippe eine an, um ihre Blöcke zu sehen und die ganze Einheit ins Training zu laden.",
+    "pt.blocksTotal": "Blöcke:",
+    "pt.blocksNote": "der Rest ist der taktische Inhalt, den du an dem Tag wählst.",
+    "pt.load": "Ins Training laden",
+    "pt.loaded": "Ins Training geladen:",
+    "pt.foot": "Der Plan ist eine Richtschnur, kein Befehl: zeigt die Ampel am Morgen Gelb, oder hat der Ball schon genug Belastung gebracht, wird gekürzt. Das Ziel ist die Belastung zu erreichen, nicht das Blatt abzuarbeiten.",
+    "cf.target": "Erwarteter RPE:",
+    "cf.real": "real:",
+    "cf.above": "über dem Erwarteten",
+    "cf.below": "unter dem Erwarteten",
+    "cf.noRpeYet": "Für diese Einheit ist noch kein RPE erfasst.",
     "cf.medNote": "Medizinischer Hinweis",
     "cf.medNotePh": "Dauerhafte Vorgeschichte oder Einschränkung: frühere Verletzungen, Allergien, Dinge, die bei der Belastungssteuerung zu beachten sind.",
     "cf.medNoteNone": "Kein Hinweis.",
@@ -1282,6 +1342,21 @@ const DICT = {
     "ca.remove": "Remover",
     "ca.useMatch": "Usar no modo jogo", "ca.month": "Calendário do mês", "ca.dayHint": "Toca num dia para ver o detalhe.", "ca.dayEmpty": "Não há jogos nem treino marcado para este dia.", "ca.dayTraining": "Dia de treino", "ca.legendMatch": "Jogo (do calendário importado)", "ca.legendTrain": "Treino", "ca.trainDaysLabel": "Dias de treino:",
     "ca.teamCrest": "Emblema da equipa",
+    "pt.title": "Plano de pré-época",
+    "pt.week": "Semana",
+    "pt.session": "Sessão",
+    "pt.next": "Seguinte",
+    "pt.hint": "As doze sessões do plano, com duração, RPE esperado, prioridade e carga. Toca numa para veres os blocos e carregares a sessão inteira no Treino.",
+    "pt.blocksTotal": "Blocos:",
+    "pt.blocksNote": "o resto é o conteúdo tático que decidires nesse dia.",
+    "pt.load": "Carregar no Treino",
+    "pt.loaded": "Carregada no Treino:",
+    "pt.foot": "O plano é a referência, não uma ordem: se o semáforo da manhã tiver amarelos, ou se a bola já deu carga suficiente, corta-se. O objetivo é atingir a carga, não completar o papel.",
+    "cf.target": "RPE previsto:",
+    "cf.real": "real:",
+    "cf.above": "acima do previsto",
+    "cf.below": "abaixo do previsto",
+    "cf.noRpeYet": "Ainda não há nenhum RPE registado desta sessão.",
     "cf.medNote": "Aviso médico",
     "cf.medNotePh": "Antecedente ou limitação permanente: lesões anteriores, alergias, condições a ter em conta ao doseá-la carga.",
     "cf.medNoteNone": "Sem aviso.",
@@ -3564,6 +3639,101 @@ const MESES_TEMP = [
   { k: 1, es: "Enero" }, { k: 2, es: "Febrero" }, { k: 3, es: "Marzo" }, { k: 4, es: "Abril" },
   { k: 5, es: "Mayo" }, { k: 6, es: "Junio" },
 ];
+
+/* ================= PLAN FÍSICO DE PRETEMPORADA =================
+   Las doce sesiones del plan de pretemporada del Infantil B, tal y como las
+   escribió el cuerpo técnico: cuatro semanas con una intención distinta cada
+   una (confirmar cómo llegan, construir, cargar y afinar), y en cada sesión su
+   duración, el RPE que se espera, la prioridad, la carga y los cuatro bloques.
+
+   Está aquí y no en un PDF aparte porque el plan sin la app es papel: el
+   entrenador tenía que leerlo en el móvil y volver a teclear los bloques uno a
+   uno en Entrenamiento cada día. Desde aquí la sesión se carga entera.
+
+   Los minutos de cada bloque son el punto medio del rango del documento. La
+   suma no siempre llega a la duración de la sesión —el propio plan deja aire
+   para el contenido táctico del día—, y eso se ve en Entrenamiento como
+   distancia hasta el objetivo, que es justo la decisión que le toca tomar al
+   entrenador.
+
+   El contenido va en español: es el documento del club, no texto de la
+   interfaz. Lo que rodea a las sesiones (etiquetas, botones) sí está en los
+   cinco idiomas. */
+const PRETEMPORADA = [
+  {
+    n: 1, fase: "Adaptación", rango: "1-6 septiembre",
+    idea: "La primera semana confirma, no castiga: se comprueba cómo llegan del trabajo individual de agosto sin generar fatiga residual.",
+    sesiones: [
+      { n: 1, nombre: "Reentrada colectiva", dur: "70-75", durMin: 72, rpe: "4-5", rpeMin: 4, rpeMax: 5, prioridad: "Fuerza + técnica", carga: "Media-baja",
+        objetivo: "Confirmar cómo llegan del trabajo de agosto y recuperar patrones de movimiento.",
+        bloques: [["Activación neuromuscular", 11], ["Fuerza general A", 14], ["Aceleración corta", 7], ["Integración con balón", 38]] },
+      { n: 2, nombre: "Resistencia intermitente integrada", dur: "75-80", durMin: 78, rpe: "5-6", rpeMin: 5, rpeMax: 6, prioridad: "Resistencia", carga: "Media",
+        objetivo: "Primer estímulo aeróbico-intermitente sin perder balón ni calidad técnica.",
+        bloques: [["Activación neuromuscular", 10], ["Intermitente con balón", 11], ["Juego reducido metabólico", 15], ["Contenido de campo", 38]] },
+      { n: 3, nombre: "Velocidad y duelos", dur: "70-75", durMin: 72, rpe: "5", rpeMin: 5, rpeMax: 5, prioridad: "Velocidad", carga: "Media",
+        objetivo: "Primera exposición de calidad a aceleraciones y conectarlas con duelos y transiciones.",
+        bloques: [["Activación + técnica de carrera", 11], ["Velocidad", 9], ["Duelos intensos", 11], ["Juego competitivo", 38]] },
+    ],
+  },
+  {
+    n: 2, fase: "Construcción", rango: "7-13 septiembre",
+    idea: "Sube el volumen de fuerza y aparece el primer día claramente exigente, siempre con calidad por delante del número.",
+    sesiones: [
+      { n: 4, nombre: "Fuerza y aceleración", dur: "75-80", durMin: 78, rpe: "5-6", rpeMin: 5, rpeMax: 6, prioridad: "Fuerza + velocidad", carga: "Media-alta",
+        objetivo: "Aumentar ligeramente volumen de fuerza y exposición a aceleración.",
+        bloques: [["Activación neuromuscular", 11], ["Fuerza general B", 17], ["Aceleraciones", 9], ["Juego posicional con transición", 38]] },
+      { n: 5, nombre: "Día metabólico", dur: "80", durMin: 80, rpe: "6-7", rpeMin: 6, rpeMax: 7, prioridad: "Resistencia específica", carga: "Alta controlada",
+        objetivo: "Repetir esfuerzos y sostener intensidad. El primer día claramente exigente.",
+        bloques: [["Activación", 10], ["Intermitente corto", 9], ["Juego reducido principal", 19], ["Bloque de sufrimiento", 23]] },
+      { n: 6, nombre: "Velocidad + competitividad", dur: "70-75", durMin: 72, rpe: "5-6", rpeMin: 5, rpeMax: 6, prioridad: "Velocidad", carga: "Media",
+        objetivo: "Recuperar calidad neuromuscular tras el día fuerte: velocidad con descanso completo.",
+        bloques: [["Activación", 11], ["Velocidad de calidad", 11], ["Microdosis de fuerza", 8], ["Fútbol competitivo", 38]] },
+    ],
+  },
+  {
+    n: 3, fase: "Carga alta", rango: "14-20 septiembre",
+    idea: "La semana del mayor estímulo específico del mes. Aquí es donde el semáforo y el RPE mandan más que el papel.",
+    sesiones: [
+      { n: 7, nombre: "Fuerza específica y aceleración", dur: "80", durMin: 80, rpe: "6", rpeMin: 6, rpeMax: 6, prioridad: "Fuerza + aceleración", carga: "Alta",
+        objetivo: "Máximo volumen de fuerza del bloque, manteniendo la técnica por encima del número.",
+        bloques: [["Activación neuromuscular", 11], ["Fuerza general C", 17], ["Aceleración", 9], ["Posesión de alta concentración", 38]] },
+      { n: 8, nombre: "Pico metabólico específico", dur: "80-85", durMin: 83, rpe: "6-7", rpeMin: 6, rpeMax: 7, prioridad: "Resistencia específica", carga: "Alta",
+        objetivo: "El pico del mes: sostener estructura y esfuerzo también cuando el equipo es dominado.",
+        bloques: [["Activación", 11], ["Primer bloque específico", 19], ["Defender cuando somos dominados", 15], ["Juego mayor", 33]] },
+      { n: 9, nombre: "Velocidad + ensayo competitivo", dur: "70-75", durMin: 72, rpe: "5-6", rpeMin: 5, rpeMax: 6, prioridad: "Velocidad + fútbol", carga: "Media-alta",
+        objetivo: "Bajar el volumen y ensayar el partido con velocidad fresca.",
+        bloques: [["Activación", 10], ["Velocidad", 11], ["Transición competitiva", 14], ["Ensayo de partido", 38]] },
+    ],
+  },
+  {
+    n: 4, fase: "Afinamiento", rango: "21-25 septiembre",
+    idea: "Semana de liga: se reduce volumen y se mantienen velocidad e intensidad. Llegar disponibles, no cansados.",
+    sesiones: [
+      { n: 10, nombre: "Consolidación y descarga activa", dur: "70-75", durMin: 72, rpe: "5-6", rpeMin: 5, rpeMax: 6, prioridad: "Fuerza breve + balón", carga: "Media",
+        objetivo: "Mantener el estímulo con la mitad del volumen: nada nuevo a estas alturas.",
+        bloques: [["Activación neuromuscular", 11], ["Fuerza microdosis", 11], ["Aceleración", 8], ["Juego con balón", 38]] },
+      { n: 11, nombre: "Último estímulo intenso", dur: "65-70", durMin: 68, rpe: "6", rpeMin: 6, rpeMax: 6, prioridad: "Específico con balón", carga: "Media",
+        objetivo: "Alta intención y pocas series. La carga sale del balón, no de la carrera.",
+        bloques: [["Activación", 10], ["Juego reducido", 15], ["Juego mayor por intervalos", 14], ["Táctica y balón parado", 28]] },
+      { n: 12, nombre: "Activación precompetitiva", dur: "55-60", durMin: 58, rpe: "4-5", rpeMin: 4, rpeMax: 5, prioridad: "Velocidad + confianza", carga: "Baja",
+        objetivo: "Llegar al partido con piernas rápidas y cabeza clara. Unas 48 h antes: jueves si se juega el sábado, viernes si es el domingo.",
+        bloques: [["Activación", 10], ["Velocidad microdosis", 7], ["Balón de alta calidad", 17], ["Plan de partido", 23]] },
+    ],
+  },
+];
+/* Color de la carga prevista: es lo primero que se mira al elegir la sesión
+   del día, sobre todo si el semáforo de la mañana ha salido con amarillos.
+   Se comprueban primero los compuestos ("media-alta", "media-baja"): mirando
+   solo "alta" o "baja", una carga media-alta saldría en rojo como la del pico
+   metabólico, que es bastante más dura. */
+const COLOR_CARGA = (c) => {
+  const s = String(c || "").toLowerCase();
+  if (s.includes("media-alta")) return "#d9a441";
+  if (s.includes("media-baja")) return "#2f6b4f";
+  if (s.includes("alta")) return "#b4474a";
+  if (s.includes("baja")) return "#2f6b4f";
+  return "#d9a441";
+};
 
 /* ================= TABLEROS DE BALÓN PARADO =================
    Un córner, una falta o un penalti no se dibujan en el campo entero, pero
@@ -11707,6 +11877,36 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
             <div className="text-[11px] pb-2" style={{ color: C.dim }}>{t("cf.realMinHelp")}</div>
           </div>
 
+          {/* Lo que se esperaba frente a lo que ha salido. Es la pregunta que
+              cierra el círculo del plan: si la sesión de carga alta sale en
+              RPE 4, no ha habido estímulo; si la de descarga sale en 8, el
+              grupo llega al partido más cansado de lo previsto. */}
+          {(() => {
+            const s = PRETEMPORADA.flatMap((w) => w.sesiones).find((x) => x.n === Number(sesionRpe.plan));
+            if (!s) return null;
+            const real = Number(rpeMedio);
+            const hay = conRpe.length > 0 && !Number.isNaN(real);
+            const desvio = !hay ? 0 : real > s.rpeMax ? 1 : real < s.rpeMin ? -1 : 0;
+            const col = desvio === 0 ? C.green : desvio > 0 ? "#b4474a" : "#d9a441";
+            return (
+              <div className="rounded-lg border p-2.5 mb-3" style={{ borderColor: hay ? col : C.line, background: C.panel2 }}>
+                <div className="text-[11px] font-display uppercase tracking-wide mb-1" style={{ color: C.dim }}>
+                  {t("pt.session")} {s.n} · {s.nombre}
+                </div>
+                <div className="text-sm" style={{ color: C.chalk }}>
+                  {t("cf.target")} <strong className="tabular-nums">{s.rpe}</strong>
+                  {hay && <> · {t("cf.real")} <strong className="tabular-nums" style={{ color: col }}>{rpeMedio}</strong></>}
+                  {hay && desvio !== 0 && (
+                    <span className="text-[11px] ml-2" style={{ color: col }}>
+                      {desvio > 0 ? `↑ ${t("cf.above")}` : `↓ ${t("cf.below")}`}
+                    </span>
+                  )}
+                </div>
+                {!hay && <div className="text-[11px] mt-1" style={{ color: C.dim }}>{t("cf.noRpeYet")}</div>}
+              </div>
+            );
+          })()}
+
           {/* La escala del plan, a la vista mientras se rellena: sin ella cada
               cual pone el número que le parece y deja de ser comparable. */}
           <div className="flex flex-wrap gap-1.5 mb-3">
@@ -11799,6 +11999,99 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
         </Card>
       )}
       </>
+    );
+  };
+
+  /* ---- El plan de pretemporada, sesión a sesión ----
+     Cargar una sesión no es "sugerirla": deja los cuatro bloques puestos en
+     Entrenamiento, el objetivo escrito y la duración objetivo fijada, y de paso
+     apunta en el control de cargas qué sesión es la de hoy, para poder comparar
+     después el RPE que se esperaba con el que ha salido de verdad. */
+  const [ptAbierta, setPtAbierta] = useState(null);
+  const [ptMsg, setPtMsg] = useState("");
+  const cargarSesionPlan = (s) => {
+    setTrainBlocks([]);
+    s.bloques.forEach(([name, dur]) => addTrainBlock({ name, dur, materials: [] }));
+    setTrainTarget(s.durMin);
+    setTrainMeta((m) => ({ ...m, fecha: m.fecha || hoyISO(), objetivo: `S${s.n} · ${s.nombre} — ${s.objetivo}` }));
+    setCargas((c) => ({ ...c, _sesion: { ...SESION_DEFECTO, ...(c._sesion || {}), min: s.durMin, plan: s.n } }));
+    setPtMsg(`${t("pt.loaded")} ${t("pt.session")} ${s.n}`);
+    setTimeout(() => setPtMsg(""), 5000);
+  };
+
+  const renderPretemporada = () => {
+    /* La sesión que toca: la primera que todavía no se ha cargado nunca. Sin
+       histórico de sesiones hechas no se puede saber más, así que se usa la
+       última cargada como marcador y se propone la siguiente. */
+    const ultima = Number(cargas._sesion?.plan) || 0;
+    const siguiente = ultima < 12 ? ultima + 1 : 12;
+    return (
+      <Card title={`📋 ${t("pt.title")}`}>
+        <div className="text-xs mb-3 leading-relaxed" style={{ color: C.dim }}>{t("pt.hint")}</div>
+        <div className="space-y-3">
+          {PRETEMPORADA.map((sem) => (
+            <div key={sem.n} className="rounded-lg border p-3" style={{ borderColor: C.line, background: C.panel2 }}>
+              <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1 mb-1">
+                <span className="font-display uppercase tracking-wide text-sm" style={{ color: C.chalk }}>
+                  {t("pt.week")} {sem.n} · {sem.fase}
+                </span>
+                <span className="text-[11px]" style={{ color: C.dim }}>{sem.rango}</span>
+              </div>
+              <div className="text-[11px] mb-2 leading-snug" style={{ color: C.dim }}>{sem.idea}</div>
+              <div className="space-y-1.5">
+                {sem.sesiones.map((s) => {
+                  const abierta = ptAbierta === s.n;
+                  const esSiguiente = s.n === siguiente;
+                  const total = s.bloques.reduce((a, [, d]) => a + d, 0);
+                  return (
+                    <div key={s.n} className="rounded-lg border" style={{ borderColor: esSiguiente ? AC : C.line, background: C.panel }}>
+                      <button onClick={() => setPtAbierta(abierta ? null : s.n)} aria-expanded={abierta}
+                        className="w-full text-left p-2.5">
+                        <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                          <span className="font-display text-sm shrink-0" style={{ color: AC }}>S{s.n}</span>
+                          <span className="text-sm flex-1 min-w-[140px]" style={{ color: C.chalk }}>{s.nombre}</span>
+                          {esSiguiente && (
+                            <span className="text-[10px] px-2 py-0.5 rounded-full font-display uppercase tracking-wide shrink-0"
+                              style={{ background: AC, color: C.sobre }}>{t("pt.next")}</span>
+                          )}
+                          <span className="text-[11px] shrink-0" style={{ color: C.dim }}>{abierta ? "▾" : "▸"}</span>
+                        </div>
+                        <div className="flex flex-wrap gap-1.5 mt-1.5">
+                          <span className="text-[10px] px-2 py-0.5 rounded-full border" style={{ borderColor: C.line, color: C.dim }}>⏱ {s.dur}′</span>
+                          <span className="text-[10px] px-2 py-0.5 rounded-full border" style={{ borderColor: C.line, color: C.dim }}>RPE {s.rpe}</span>
+                          <span className="text-[10px] px-2 py-0.5 rounded-full border" style={{ borderColor: C.line, color: C.dim }}>{s.prioridad}</span>
+                          <span className="text-[10px] px-2 py-0.5 rounded-full border" style={{ borderColor: COLOR_CARGA(s.carga), color: COLOR_CARGA(s.carga) }}>{s.carga}</span>
+                        </div>
+                      </button>
+                      {abierta && (
+                        <div className="px-2.5 pb-2.5">
+                          <div className="text-[11px] mb-2 leading-snug" style={{ color: C.chalk }}>{s.objetivo}</div>
+                          <div className="space-y-1">
+                            {s.bloques.map(([name, dur], i) => (
+                              <div key={i} className="flex items-center justify-between text-xs px-2.5 py-1.5 rounded-lg border" style={{ borderColor: C.line, background: C.panel2 }}>
+                                <span style={{ color: C.chalk }}><span style={{ color: C.dim }}>{i + 1}.</span> {name}</span>
+                                <span className="tabular-nums shrink-0 ml-2" style={{ color: C.dim }}>{dur}′</span>
+                              </div>
+                            ))}
+                          </div>
+                          <div className="text-[10px] mt-1.5" style={{ color: C.dim }}>
+                            {t("pt.blocksTotal")} {total}′ / {s.durMin}′ · {t("pt.blocksNote")}
+                          </div>
+                          <button onClick={() => cargarSesionPlan(s)}
+                            className="mt-2 w-full text-sm px-4 py-2.5 rounded-lg font-display uppercase tracking-wide font-semibold"
+                            style={{ background: AC, color: C.sobre }}>{t("pt.load")}</button>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+        </div>
+        {ptMsg && <div className="text-xs mt-3" style={{ color: C.green }}>✓ {ptMsg}</div>}
+        <div className="text-[11px] mt-3 leading-relaxed" style={{ color: C.dim }}>{t("pt.foot")}</div>
+      </Card>
     );
   };
 
@@ -13295,6 +13588,11 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
               se enseña solo a quien le toca. */}
           {tab === "temporada" && (can("editTraining") || can("cargas")) && (
             <div className="space-y-4">
+              {/* Orden del día del entrenador en pretemporada: primero qué
+                  sesión toca, después quién puede hacerla y con cuánta carga, y
+                  al final cómo ha salido de verdad. La planificación por meses
+                  cierra, porque se toca una vez al mes y no cada tarde. */}
+              {can("editTraining") && renderPretemporada()}
               {renderCargas()}
               {can("editTraining") && renderSeason()}
             </div>
