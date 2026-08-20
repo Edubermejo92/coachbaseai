@@ -174,6 +174,8 @@ const DICT = {
     "ca.remove": "Quitar",
     "ca.useMatch": "Usar en modo partido", "ca.month": "Calendario del mes", "ca.dayHint": "Toca un día para ver su detalle.", "ca.dayEmpty": "No hay partidos ni entrenamiento programado este día.", "ca.dayTraining": "Día de entrenamiento", "ca.legendMatch": "Partido (del calendario importado)", "ca.legendTrain": "Entrenamiento", "ca.trainDaysLabel": "Días de entreno:",
     "ca.teamCrest": "Escudo del equipo",
+    "a.seeDemo": "Ver la demo sin registrarme",
+    "a.seeDemoD": "La app completa con un equipo de ejemplo. No se guarda nada y no hace falta correo.",
     "dm.title": "Estás viendo la demostración.",
     "dm.body": "La app completa, con datos de ejemplo. Puedes moverte por todo y probar lo que quieras: nada de lo que toques sale de este dispositivo ni cambia datos de ningún club.",
     "dm.cta": "Crear mi cuenta",
@@ -433,6 +435,8 @@ const DICT = {
     "ca.remove": "Remove",
     "ca.useMatch": "Use in match mode", "ca.month": "Month calendar", "ca.dayHint": "Tap a day to see its detail.", "ca.dayEmpty": "No fixtures or training scheduled this day.", "ca.dayTraining": "Training day", "ca.legendMatch": "Fixture (from the imported calendar)", "ca.legendTrain": "Training", "ca.trainDaysLabel": "Training days:",
     "ca.teamCrest": "Team crest",
+    "a.seeDemo": "See the demo without signing up",
+    "a.seeDemoD": "The full app with a sample team. Nothing is saved and no email is needed.",
     "dm.title": "You are viewing the demo.",
     "dm.body": "The full app, with sample data. Move around and try anything you like: nothing you touch leaves this device or changes any club's data.",
     "dm.cta": "Create my account",
@@ -709,6 +713,8 @@ const DICT = {
     "ca.remove": "Retirer",
     "ca.useMatch": "Utiliser en mode match", "ca.month": "Calendrier du mois", "ca.dayHint": "Touchez un jour pour voir son détail.", "ca.dayEmpty": "Aucun match ni entraînement prévu ce jour.", "ca.dayTraining": "Jour d'entraînement", "ca.legendMatch": "Match (du calendrier importé)", "ca.legendTrain": "Entraînement", "ca.trainDaysLabel": "Jours d'entraînement :",
     "ca.teamCrest": "Écusson de l'équipe",
+    "a.seeDemo": "Voir la démo sans m'inscrire",
+    "a.seeDemoD": "L'application complète avec une équipe d'exemple. Rien n'est enregistré et aucun e-mail n'est requis.",
     "dm.title": "Vous consultez la démonstration.",
     "dm.body": "L'application complète, avec des données d'exemple. Naviguez et essayez ce que vous voulez : rien de ce que vous touchez ne quitte cet appareil ni ne modifie les données d'un club.",
     "dm.cta": "Créer mon compte",
@@ -1058,6 +1064,8 @@ const DICT = {
     "ca.remove": "Entfernen",
     "ca.useMatch": "Im Spielmodus verwenden", "ca.month": "Monatskalender", "ca.dayHint": "Tippe auf einen Tag, um Details zu sehen.", "ca.dayEmpty": "An diesem Tag sind weder Spiele noch Training geplant.", "ca.dayTraining": "Trainingstag", "ca.legendMatch": "Spiel (aus importiertem Spielplan)", "ca.legendTrain": "Training", "ca.trainDaysLabel": "Trainingstage:",
     "ca.teamCrest": "Mannschaftswappen",
+    "a.seeDemo": "Demo ansehen, ohne Konto",
+    "a.seeDemoD": "Die vollständige App mit einer Beispielmannschaft. Nichts wird gespeichert, keine E-Mail nötig.",
     "dm.title": "Du siehst die Demo.",
     "dm.body": "Die vollständige App mit Beispieldaten. Sieh dich um und probiere alles aus: nichts, was du anfasst, verlässt dieses Gerät oder ändert die Daten eines Vereins.",
     "dm.cta": "Konto erstellen",
@@ -1406,6 +1414,8 @@ const DICT = {
     "ca.remove": "Remover",
     "ca.useMatch": "Usar no modo jogo", "ca.month": "Calendário do mês", "ca.dayHint": "Toca num dia para ver o detalhe.", "ca.dayEmpty": "Não há jogos nem treino marcado para este dia.", "ca.dayTraining": "Dia de treino", "ca.legendMatch": "Jogo (do calendário importado)", "ca.legendTrain": "Treino", "ca.trainDaysLabel": "Dias de treino:",
     "ca.teamCrest": "Emblema da equipa",
+    "a.seeDemo": "Ver a demo sem registo",
+    "a.seeDemoD": "A app completa com uma equipa de exemplo. Não se guarda nada e não é preciso email.",
     "dm.title": "Estás a ver a demonstração.",
     "dm.body": "A app completa, com dados de exemplo. Anda à vontade e experimenta o que quiseres: nada do que tocares sai deste dispositivo nem altera dados de nenhum clube.",
     "dm.cta": "Criar a minha conta",
@@ -1980,19 +1990,19 @@ const trialLeft = (email) => {
   } catch { return 0; }
 };
 const PRO_FEATURES = [
-  { k: "squad", icon: "👥", free: "Plantilla completa, sin límite de jugadores", pro: "Además: ficha ampliada y vídeo de presentación" },
-  { k: "exercises", icon: "🎯", free: `${FREE_CAPS.exercises} ejercicios de la biblioteca`, pro: "Los 26 ejercicios, con filtros por categoría" },
-  { k: "plays", icon: "🖊", free: "Pizarra completa: dibujar, sistemas, pantalla completa y brillo", pro: "Además: guardar jugadas, exportar PNG y paleta de colores" },
-  { k: "training", icon: "🏋️", free: `${FREE_CAPS.sessions} sesión de entrenamiento guardada`, pro: "Sesiones ilimitadas y biblioteca propia" },
-  { k: "discipline", icon: "⚖", free: "Pasar lista e incidencias individuales", pro: "Medidas colectivas, control económico y exportación CSV" },
-  { k: "docs", icon: "📑", free: "Consultar la normativa", pro: "Matriz de firmas y control de sanciones" },
-  { k: "calls", icon: "📋", free: "Convocatoria actual", pro: "Histórico completo de convocatorias" },
-  { k: "calendar", icon: "📅", free: `${FREE_CAPS.fixtures} partidos en el calendario`, pro: "Calendario completo por CSV e ICS" },
-  { k: "cargas", icon: "🚦", free: "—", pro: "Semáforo de cargas físicas por jugador y % de carga, compartido con el cuerpo técnico" },
-  { k: "stats", icon: "📊", free: "Resumen básico", pro: "Estadísticas completas del equipo" },
-  { k: "ai", icon: "✦", free: `${FREE_CAPS.aiMsgs} consultas al mes a Coach AI`, pro: "Coach AI sin límite" },
-  { k: "video", icon: "🎬", free: "—", pro: "Vídeo de presentación de jugador" },
-  { k: "users", icon: "🔑", free: "—", pro: "Gestión de usuarios y roles del club" },
+  { k: "squad", nombre: "Plantilla", icon: "👥", free: "Plantilla completa, sin límite de jugadores", pro: "Además: ficha ampliada y vídeo de presentación" },
+  { k: "exercises", nombre: "Ejercicios", icon: "🎯", free: `${FREE_CAPS.exercises} ejercicios de la biblioteca`, pro: "Los 26 ejercicios, con filtros por categoría" },
+  { k: "plays", nombre: "Pizarra", icon: "🖊", free: "Pizarra completa: dibujar, sistemas, pantalla completa y brillo", pro: "Además: guardar jugadas, exportar PNG y paleta de colores" },
+  { k: "training", nombre: "Entrenamiento", icon: "🏋️", free: `${FREE_CAPS.sessions} sesión de entrenamiento guardada`, pro: "Sesiones ilimitadas y biblioteca propia" },
+  { k: "discipline", nombre: "Disciplina", icon: "⚖", free: "Pasar lista e incidencias individuales", pro: "Medidas colectivas, control económico y exportación CSV" },
+  { k: "docs", nombre: "Normativa", icon: "📑", free: "Consultar la normativa", pro: "Matriz de firmas y control de sanciones" },
+  { k: "calls", nombre: "Convocatorias", icon: "📋", free: "Convocatoria actual", pro: "Histórico completo de convocatorias" },
+  { k: "calendar", nombre: "Calendario", icon: "📅", free: `${FREE_CAPS.fixtures} partidos en el calendario`, pro: "Calendario completo por CSV e ICS" },
+  { k: "cargas", nombre: "Cargas físicas", icon: "🚦", free: "—", pro: "Semáforo de cargas físicas por jugador y % de carga, compartido con el cuerpo técnico" },
+  { k: "stats", nombre: "Estadísticas", icon: "📊", free: "Resumen básico", pro: "Estadísticas completas del equipo" },
+  { k: "ai", nombre: "Coach AI", icon: "✦", free: `${FREE_CAPS.aiMsgs} consultas al mes a Coach AI`, pro: "Coach AI sin límite" },
+  { k: "video", nombre: "Vídeo de jugador", icon: "🎬", free: "—", pro: "Vídeo de presentación de jugador" },
+  { k: "users", nombre: "Usuarios y roles", icon: "🔑", free: "—", pro: "Gestión de usuarios y roles del club" },
 ];
 
 
@@ -6418,6 +6428,16 @@ function Auth({ lang, setLang, onLogin, onRegister, tema, cambiarTema }) {
           <div className="text-xs" style={{ color: C.dim }}>{t("a.accOff")} · {t("a.accFree")}</div>
         </button>
       </div>
+      {/* Entrada a la demostración. Existía desde el principio pero solo se
+          llegaba escribiendo demo/demo en el formulario de acceso: quien
+          entraba desde un enlace no tenía forma de saberlo, y mirar antes de
+          registrarse es justo lo que quiere hacer un entrenador que no te
+          conoce de nada. */}
+      <button onClick={() => { setErr(""); setView("demo"); }}
+        className="w-full mt-3 rounded-lg border p-4 text-left" style={{ borderColor: C.line }}>
+        <div className="font-display text-base font-semibold mb-0.5">👀 {t("a.seeDemo")}</div>
+        <div className="text-xs" style={{ color: C.dim }}>{t("a.seeDemoD")}</div>
+      </button>
     </>
   );
 
@@ -8414,7 +8434,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
         </div>
         {PRO_FEATURES.map((f) => (
           <div key={f.k} className="grid grid-cols-12 gap-2 text-sm py-2 border-b last:border-0 items-start" style={{ borderColor: C.line }}>
-            <div className="col-span-4 flex items-center gap-1.5" style={{ color: C.chalk }}><span>{f.icon}</span></div>
+            <div className="col-span-4 flex items-start gap-1.5" style={{ color: C.chalk }}><span className="shrink-0">{f.icon}</span><span className="text-[12px]">{f.nombre}</span></div>
             <div className="col-span-4 text-[12px]" style={{ color: f.free === "—" ? C.dim : C.chalk }}>{f.free}</div>
             <div className="col-span-4 text-[12px]" style={{ color: AC }}>{f.pro}</div>
           </div>
