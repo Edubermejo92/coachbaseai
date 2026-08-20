@@ -174,6 +174,10 @@ const DICT = {
     "ca.remove": "Quitar",
     "ca.useMatch": "Usar en modo partido", "ca.month": "Calendario del mes", "ca.dayHint": "Toca un día para ver su detalle.", "ca.dayEmpty": "No hay partidos ni entrenamiento programado este día.", "ca.dayTraining": "Día de entrenamiento", "ca.legendMatch": "Partido (del calendario importado)", "ca.legendTrain": "Entrenamiento", "ca.trainDaysLabel": "Días de entreno:",
     "ca.teamCrest": "Escudo del equipo",
+    "cf.medNote": "Aviso médico",
+    "cf.medNotePh": "Antecedente o limitación permanente: lesiones previas, alergias, condiciones a tener en cuenta al dosificar la carga.",
+    "cf.medNoteNone": "Sin aviso.",
+    "cf.medNoteSave": "Sale fijo en el control de cargas físicas. Se guarda con la plantilla.",
     "cf.rpeTitle": "RPE post-sesión",
     "cf.rpeHint": "Se pregunta 15-30 minutos después de terminar: «del 1 al 10, ¿cuánto esfuerzo te ha supuesto la sesión en conjunto?». La carga interna (RPE × minutos reales) es orientativa: sirve para comparar al jugador consigo mismo, no con sus compañeros.",
     "cf.sessionDate": "Fecha de la sesión",
@@ -193,7 +197,7 @@ const DICT = {
     "cf.complete": "Completa",
     "cf.adapted": "Adaptada",
     "cf.pain": "Molestia post",
-    "cf.painPh": "Molestia después de la sesión: zona y qué pasó (opcional)",
+    "cf.painPh": "Molestia post: zona (opcional)",
     "cf.title": "Cargas físicas · Pretemporada",
     "cf.hint": "Semáforo antes de entrenar y carga que puede asumir cada jugador. Los verdes no hace falta reportarlos uno a uno; los amarillos y los rojos sí, antes de empezar la sesión.",
     "cf.verde": "Verde",
@@ -398,6 +402,10 @@ const DICT = {
     "ca.remove": "Remove",
     "ca.useMatch": "Use in match mode", "ca.month": "Month calendar", "ca.dayHint": "Tap a day to see its detail.", "ca.dayEmpty": "No fixtures or training scheduled this day.", "ca.dayTraining": "Training day", "ca.legendMatch": "Fixture (from the imported calendar)", "ca.legendTrain": "Training", "ca.trainDaysLabel": "Training days:",
     "ca.teamCrest": "Team crest",
+    "cf.medNote": "Medical note",
+    "cf.medNotePh": "Permanent history or limitation: past injuries, allergies, conditions to bear in mind when setting the load.",
+    "cf.medNoteNone": "No note.",
+    "cf.medNoteSave": "Shown permanently in the physical load control. Saved with the squad.",
     "cf.rpeTitle": "Post-session RPE",
     "cf.rpeHint": "Asked 15-30 minutes after finishing: “from 1 to 10, how hard was the session overall?”. Internal load (RPE × real minutes) is a rough guide: it compares a player with himself, not with his team-mates.",
     "cf.sessionDate": "Session date",
@@ -417,7 +425,7 @@ const DICT = {
     "cf.complete": "Complete",
     "cf.adapted": "Adapted",
     "cf.pain": "Post-session pain",
-    "cf.painPh": "Discomfort after the session: area and what happened (optional)",
+    "cf.painPh": "Post-session pain: area (optional)",
     "cf.title": "Physical load · Pre-season",
     "cf.hint": "Traffic light before training and how much load each player can take. Greens need no one-by-one report; yellows and reds do, before the session starts.",
     "cf.verde": "Green",
@@ -639,6 +647,10 @@ const DICT = {
     "ca.remove": "Retirer",
     "ca.useMatch": "Utiliser en mode match", "ca.month": "Calendrier du mois", "ca.dayHint": "Touchez un jour pour voir son détail.", "ca.dayEmpty": "Aucun match ni entraînement prévu ce jour.", "ca.dayTraining": "Jour d'entraînement", "ca.legendMatch": "Match (du calendrier importé)", "ca.legendTrain": "Entraînement", "ca.trainDaysLabel": "Jours d'entraînement :",
     "ca.teamCrest": "Écusson de l'équipe",
+    "cf.medNote": "Avis médical",
+    "cf.medNotePh": "Antécédent ou limitation permanente : blessures passées, allergies, conditions à prendre en compte pour doser la charge.",
+    "cf.medNoteNone": "Aucun avis.",
+    "cf.medNoteSave": "Affiché en permanence dans le contrôle des charges. Enregistré avec l'effectif.",
     "cf.rpeTitle": "RPE après séance",
     "cf.rpeHint": "On demande 15-30 minutes après la fin : « de 1 à 10, quel effort la séance t'a demandé dans l'ensemble ? ». La charge interne (RPE × minutes réelles) est indicative : elle compare le joueur à lui-même, pas à ses coéquipiers.",
     "cf.sessionDate": "Date de la séance",
@@ -658,7 +670,7 @@ const DICT = {
     "cf.complete": "Complète",
     "cf.adapted": "Adaptée",
     "cf.pain": "Gêne après séance",
-    "cf.painPh": "Gêne après la séance : zone et ce qui s'est passé (facultatif)",
+    "cf.painPh": "Gêne après séance : zone (facultatif)",
     "cf.title": "Charges physiques · Présaison",
     "cf.hint": "Feu tricolore avant l'entraînement et charge que chaque joueur peut assumer. Les verts n'ont pas à être signalés un par un ; les jaunes et les rouges si, avant de commencer.",
     "cf.verde": "Vert",
@@ -953,6 +965,10 @@ const DICT = {
     "ca.remove": "Entfernen",
     "ca.useMatch": "Im Spielmodus verwenden", "ca.month": "Monatskalender", "ca.dayHint": "Tippe auf einen Tag, um Details zu sehen.", "ca.dayEmpty": "An diesem Tag sind weder Spiele noch Training geplant.", "ca.dayTraining": "Trainingstag", "ca.legendMatch": "Spiel (aus importiertem Spielplan)", "ca.legendTrain": "Training", "ca.trainDaysLabel": "Trainingstage:",
     "ca.teamCrest": "Mannschaftswappen",
+    "cf.medNote": "Medizinischer Hinweis",
+    "cf.medNotePh": "Dauerhafte Vorgeschichte oder Einschränkung: frühere Verletzungen, Allergien, Dinge, die bei der Belastungssteuerung zu beachten sind.",
+    "cf.medNoteNone": "Kein Hinweis.",
+    "cf.medNoteSave": "Erscheint dauerhaft in der Belastungskontrolle. Wird mit dem Kader gespeichert.",
     "cf.rpeTitle": "RPE nach der Einheit",
     "cf.rpeHint": "Wird 15-30 Minuten nach Schluss gefragt: „Von 1 bis 10, wie anstrengend war die Einheit insgesamt?“. Die interne Belastung (RPE × reale Minuten) ist ein Richtwert: sie vergleicht den Spieler mit sich selbst, nicht mit den Mitspielern.",
     "cf.sessionDate": "Datum der Einheit",
@@ -972,7 +988,7 @@ const DICT = {
     "cf.complete": "Komplett",
     "cf.adapted": "Angepasst",
     "cf.pain": "Beschwerden danach",
-    "cf.painPh": "Beschwerden nach der Einheit: Bereich und was passiert ist (optional)",
+    "cf.painPh": "Beschwerden danach: Bereich (optional)",
     "cf.title": "Körperliche Belastung · Vorbereitung",
     "cf.hint": "Ampel vor dem Training und wie viel Belastung jeder Spieler verträgt. Grüne müssen nicht einzeln gemeldet werden, Gelbe und Rote schon – vor dem Start der Einheit.",
     "cf.verde": "Grün",
@@ -1266,6 +1282,10 @@ const DICT = {
     "ca.remove": "Remover",
     "ca.useMatch": "Usar no modo jogo", "ca.month": "Calendário do mês", "ca.dayHint": "Toca num dia para ver o detalhe.", "ca.dayEmpty": "Não há jogos nem treino marcado para este dia.", "ca.dayTraining": "Dia de treino", "ca.legendMatch": "Jogo (do calendário importado)", "ca.legendTrain": "Treino", "ca.trainDaysLabel": "Dias de treino:",
     "ca.teamCrest": "Emblema da equipa",
+    "cf.medNote": "Aviso médico",
+    "cf.medNotePh": "Antecedente ou limitação permanente: lesões anteriores, alergias, condições a ter em conta ao doseá-la carga.",
+    "cf.medNoteNone": "Sem aviso.",
+    "cf.medNoteSave": "Aparece fixo no controlo de cargas físicas. Guarda-se com o plantel.",
     "cf.rpeTitle": "RPE pós-sessão",
     "cf.rpeHint": "Pergunta-se 15-30 minutos depois de acabar: «de 1 a 10, quanto esforço te exigiu a sessão no conjunto?». A carga interna (RPE × minutos reais) é orientativa: serve para comparar o jogador consigo próprio, não com os colegas.",
     "cf.sessionDate": "Data da sessão",
@@ -1285,7 +1305,7 @@ const DICT = {
     "cf.complete": "Completa",
     "cf.adapted": "Adaptada",
     "cf.pain": "Desconforto pós",
-    "cf.painPh": "Desconforto depois da sessão: zona e o que aconteceu (opcional)",
+    "cf.painPh": "Desconforto pós: zona (opcional)",
     "cf.title": "Cargas físicas · Pré-época",
     "cf.hint": "Semáforo antes de treinar e carga que cada jogador pode assumir. Os verdes não é preciso reportar um a um; os amarelos e vermelhos sim, antes de começar a sessão.",
     "cf.verde": "Verde",
@@ -2651,6 +2671,11 @@ const POS_NOMBRE = {
 };
 const jugToAir = (p, teamRec) => ({
   Nombre: p.n, Dorsal: Number(p.d) || 0,
+  /* Aviso médico permanente del jugador. Va en su ficha y no en el parte
+     diario de cargas a propósito: un antecedente de lesión no caduca al
+     acabar el día, y si viviera en la hoja de cada sesión dependería de que
+     alguien se acordara de reescribirlo cada mañana. */
+  "Aviso medico": p.aviso || "",
   ...(POS_OK.includes(p.pos) ? { "Posición": p.pos } : {}),
   Estado: p.st === "lesionado" ? "Lesionado" : p.st === "duda" ? "Duda" : p.st === "sancionado" ? "Sancionado" : "Disponible",
   Minutos: Number(p.min) || 0,
@@ -2663,6 +2688,7 @@ const jugFromAir = (r, i) => ({
     : String(r.Estado || "").toLowerCase() === "duda" ? "duda"
     : String(r.Estado || "").toLowerCase() === "sancionado" ? "sancionado" : "disponible",
   min: Number(r.Minutos) || 0, att: 0,
+  aviso: r["Aviso medico"] || "",
 });
 const partToAir = (f, teamRec) => ({
   Referencia: `${f.date || ""} ${f.home || ""}-${f.away || ""}`.trim().slice(0, 60),
@@ -5456,7 +5482,12 @@ const PLAYERS_INIT = [
   { id: 13, n: "José Bello", d: 13, pos: "MC", st: "disponible", att: 0, min: 0 },
   { id: 14, n: "Enrique de Sebastián", d: 14, pos: "ED", st: "disponible", att: 0, min: 0 },
   { id: 15, n: "Álvaro Rey", d: 15, pos: "EI", st: "disponible", att: 0, min: 0 },
-  { id: 16, n: "Martín Fernández", d: 16, pos: "ED", st: "disponible", att: 0, min: 0 },
+  /* El plan físico de pretemporada lo deja por escrito: Martín queda fuera de
+     cualquier progresión colectiva hasta que su retorno esté autorizado y
+     coordinado con quien lleve su rehabilitación. Es un dato de su ficha, no
+     una nota del día. */
+  { id: 16, n: "Martín Fernández", d: 16, pos: "ED", st: "disponible", att: 0, min: 0,
+    aviso: "Antecedente de lesión de cruzado: fuera de cualquier progresión colectiva hasta que su retorno esté expresamente autorizado y coordinado con los profesionales que lleven su rehabilitación." },
   { id: 17, n: "Manuel Gómez", d: 17, pos: "EI", st: "disponible", att: 0, min: 0 },
   { id: 18, n: "Mateo Rivera", d: 18, pos: "ED", st: "disponible", att: 0, min: 0 },
   { id: 19, n: "Adrian Bianchi", d: 19, pos: "DC", st: "disponible", att: 0, min: 0 },
@@ -7911,6 +7942,25 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
               <div style={{ color: k === "Estado" ? stColor(profile.st) : C.chalk }}>{v}</div>
             </div>
           ))}
+        </div>
+        {/* Aviso médico permanente: antecedentes y limitaciones que hay que
+            tener delante cada vez que se dosifica la carga de este jugador.
+            Se escribe una vez aquí y sale fijo en el control de cargas, en vez
+            de depender de que alguien lo reescriba en la nota de cada día. */}
+        <div className="mt-3 rounded-lg border p-2.5" style={{ borderColor: profile.aviso ? C.warn : C.line, background: C.panel2 }}>
+          <div className="text-[10px] font-display uppercase tracking-widest mb-1.5" style={{ color: profile.aviso ? C.warn : C.dim }}>
+            ⚠ {t("cf.medNote")}
+          </div>
+          {can("editSquad") ? (
+            <textarea value={profile.aviso || ""} rows={3}
+              onChange={(e) => setPlayers((ps) => ps.map((x) => (x.id === profile.id ? { ...x, aviso: e.target.value } : x)))}
+              placeholder={t("cf.medNotePh")} aria-label={t("cf.medNote")}
+              className="w-full px-2.5 py-1.5 rounded-lg border bg-transparent text-xs"
+              style={{ borderColor: C.line, color: C.chalk }} />
+          ) : (
+            <div className="text-xs" style={{ color: profile.aviso ? C.chalk : C.dim }}>{profile.aviso || t("cf.medNoteNone")}</div>
+          )}
+          {can("editSquad") && <div className="text-[10px] mt-1.5" style={{ color: C.dim }}>{t("cf.medNoteSave")}</div>}
         </div>
       </div>
     </div>
@@ -11597,7 +11647,7 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
                           <input type="range" min={0} max={100} step={5} value={c.carga} disabled={!puede}
                             onChange={(e) => setCarga(p.id, "carga", Number(e.target.value))}
                             aria-label={`${t("cf.load")} ${p.n}`}
-                            className="flex-1 sm:w-32 accent-current" style={{ color: col }} />
+                            className="flex-1 sm:w-32 h-6 accent-current" style={{ color: col }} />
                           <input type="number" min={0} max={100} value={c.carga} disabled={!puede}
                             onChange={(e) => setCarga(p.id, "carga", Math.max(0, Math.min(100, Number(e.target.value) || 0)))}
                             className="w-16 px-2 py-1 rounded-lg border bg-transparent text-sm tabular-nums text-right"
@@ -11605,6 +11655,12 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
                           <span className="text-sm" style={{ color: C.dim }}>%</span>
                         </div>
                       </div>
+                      {p.aviso && (
+                        <div className="mt-2 text-[11px] px-2.5 py-1.5 rounded-lg border leading-snug"
+                          style={{ borderColor: C.warn, background: `${C.warn}14`, color: C.warn }}>
+                          ⚠ {p.aviso}
+                        </div>
+                      )}
                       {(puede || c.nota) && (
                         <input value={c.nota} disabled={!puede}
                           onChange={(e) => setCarga(p.id, "nota", e.target.value)}
@@ -11700,25 +11756,33 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
                         <input type="range" min={0} max={10} step={1} value={c.rpe} disabled={!puede}
                           onChange={(e) => setCarga(p.id, "rpe", Number(e.target.value))}
                           aria-label={`${t("cf.rpe")} ${p.n}`}
-                          className="flex-1 sm:w-28 accent-current" style={{ color: z.color }} />
+                          className="flex-1 sm:w-28 h-6 accent-current" style={{ color: z.color }} />
                         <input type="number" min={0} max={10} value={c.rpe} disabled={!puede}
                           onChange={(e) => setCarga(p.id, "rpe", Math.max(0, Math.min(10, Number(e.target.value) || 0)))}
                           className="w-14 px-2 py-1 rounded-lg border bg-transparent text-sm tabular-nums text-right"
                           style={{ borderColor: C.line, color: C.chalk }} />
-                        <span className="text-[11px] w-20 shrink-0" style={{ color: z.color }}>{z.label}</span>
+                        <span className="text-[11px] whitespace-nowrap shrink-0" style={{ color: z.color }}>{z.label}</span>
                       </div>
-                      <div className="text-[11px] tabular-nums w-24 shrink-0" style={{ color: C.dim }}>
-                        {Number(c.rpe) > 0 ? `${cargaInterna(p.id)} ${t("cf.units")}` : "—"}
-                      </div>
-                      <button onClick={() => puede && setCarga(p.id, "adaptada", !c.adaptada)} disabled={!puede}
+                      <div className="flex items-center gap-3 w-full sm:w-auto">
+                        <div className="text-[11px] tabular-nums shrink-0" style={{ color: C.dim }}>
+                          {Number(c.rpe) > 0 ? `${cargaInterna(p.id)} ${t("cf.units")}` : "—"}
+                        </div>
+                        <button onClick={() => puede && setCarga(p.id, "adaptada", !c.adaptada)} disabled={!puede}
                         aria-pressed={c.adaptada}
-                        className="text-[11px] px-2.5 py-1.5 rounded-full border font-display uppercase tracking-wide disabled:opacity-60"
+                        className="text-[11px] px-2.5 py-1.5 rounded-full border font-display uppercase tracking-wide disabled:opacity-60 ml-auto sm:ml-0 shrink-0"
                         style={{
                           borderColor: c.adaptada ? "#d9a441" : C.line,
                           color: c.adaptada ? "#d9a441" : C.dim,
                           background: c.adaptada ? "rgba(217,164,65,.12)" : "transparent",
                         }}>{c.adaptada ? t("cf.adapted") : t("cf.complete")}</button>
+                      </div>
                     </div>
+                    {p.aviso && (
+                      <div className="mt-2 text-[11px] px-2.5 py-1.5 rounded-lg border leading-snug"
+                        style={{ borderColor: C.warn, background: `${C.warn}14`, color: C.warn }}>
+                        ⚠ {p.aviso}
+                      </div>
+                    )}
                     {(puede || c.dolorPost) && (
                       <input value={c.dolorPost} disabled={!puede}
                         onChange={(e) => setCarga(p.id, "dolorPost", e.target.value)}
