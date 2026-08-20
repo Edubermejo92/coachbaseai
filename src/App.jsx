@@ -174,6 +174,10 @@ const DICT = {
     "ca.remove": "Quitar",
     "ca.useMatch": "Usar en modo partido", "ca.month": "Calendario del mes", "ca.dayHint": "Toca un día para ver su detalle.", "ca.dayEmpty": "No hay partidos ni entrenamiento programado este día.", "ca.dayTraining": "Día de entrenamiento", "ca.legendMatch": "Partido (del calendario importado)", "ca.legendTrain": "Entrenamiento", "ca.trainDaysLabel": "Días de entreno:",
     "ca.teamCrest": "Escudo del equipo",
+    "dm.title": "Estás viendo la demostración.",
+    "dm.body": "La app completa, con datos de ejemplo. Puedes moverte por todo y probar lo que quieras: nada de lo que toques sale de este dispositivo ni cambia datos de ningún club.",
+    "dm.cta": "Crear mi cuenta",
+    "dm.masterRO": "En la demostración el panel Master se ve entero pero no guarda: crear clubes, equipos o altas de usuario está desactivado.",
     "cf.closeDay": "Cerrar el día",
     "cf.dayClosed": "✓ Día cerrado y guardado en el histórico.",
     "cf.dayClosedLocal": "✓ Día cerrado. Sin equipo en la nube, el histórico se queda en este dispositivo.",
@@ -429,6 +433,10 @@ const DICT = {
     "ca.remove": "Remove",
     "ca.useMatch": "Use in match mode", "ca.month": "Month calendar", "ca.dayHint": "Tap a day to see its detail.", "ca.dayEmpty": "No fixtures or training scheduled this day.", "ca.dayTraining": "Training day", "ca.legendMatch": "Fixture (from the imported calendar)", "ca.legendTrain": "Training", "ca.trainDaysLabel": "Training days:",
     "ca.teamCrest": "Team crest",
+    "dm.title": "You are viewing the demo.",
+    "dm.body": "The full app, with sample data. Move around and try anything you like: nothing you touch leaves this device or changes any club's data.",
+    "dm.cta": "Create my account",
+    "dm.masterRO": "In the demo the Master panel is fully visible but saves nothing: creating clubs, teams or user accounts is disabled.",
     "cf.closeDay": "Close the day",
     "cf.dayClosed": "✓ Day closed and saved to the history.",
     "cf.dayClosedLocal": "✓ Day closed. With no team in the cloud, the history stays on this device.",
@@ -701,6 +709,10 @@ const DICT = {
     "ca.remove": "Retirer",
     "ca.useMatch": "Utiliser en mode match", "ca.month": "Calendrier du mois", "ca.dayHint": "Touchez un jour pour voir son détail.", "ca.dayEmpty": "Aucun match ni entraînement prévu ce jour.", "ca.dayTraining": "Jour d'entraînement", "ca.legendMatch": "Match (du calendrier importé)", "ca.legendTrain": "Entraînement", "ca.trainDaysLabel": "Jours d'entraînement :",
     "ca.teamCrest": "Écusson de l'équipe",
+    "dm.title": "Vous consultez la démonstration.",
+    "dm.body": "L'application complète, avec des données d'exemple. Naviguez et essayez ce que vous voulez : rien de ce que vous touchez ne quitte cet appareil ni ne modifie les données d'un club.",
+    "dm.cta": "Créer mon compte",
+    "dm.masterRO": "En démonstration, le panneau Master est entièrement visible mais n'enregistre rien : créer des clubs, des équipes ou des comptes est désactivé.",
     "cf.closeDay": "Clore la journée",
     "cf.dayClosed": "✓ Journée close et enregistrée dans l'historique.",
     "cf.dayClosedLocal": "✓ Journée close. Sans équipe dans le cloud, l'historique reste sur cet appareil.",
@@ -1046,6 +1058,10 @@ const DICT = {
     "ca.remove": "Entfernen",
     "ca.useMatch": "Im Spielmodus verwenden", "ca.month": "Monatskalender", "ca.dayHint": "Tippe auf einen Tag, um Details zu sehen.", "ca.dayEmpty": "An diesem Tag sind weder Spiele noch Training geplant.", "ca.dayTraining": "Trainingstag", "ca.legendMatch": "Spiel (aus importiertem Spielplan)", "ca.legendTrain": "Training", "ca.trainDaysLabel": "Trainingstage:",
     "ca.teamCrest": "Mannschaftswappen",
+    "dm.title": "Du siehst die Demo.",
+    "dm.body": "Die vollständige App mit Beispieldaten. Sieh dich um und probiere alles aus: nichts, was du anfasst, verlässt dieses Gerät oder ändert die Daten eines Vereins.",
+    "dm.cta": "Konto erstellen",
+    "dm.masterRO": "In der Demo ist das Master-Panel vollständig sichtbar, speichert aber nichts: Vereine, Mannschaften oder Benutzerkonten anzulegen ist deaktiviert.",
     "cf.closeDay": "Tag abschließen",
     "cf.dayClosed": "✓ Tag abgeschlossen und im Verlauf gespeichert.",
     "cf.dayClosedLocal": "✓ Tag abgeschlossen. Ohne Mannschaft in der Cloud bleibt der Verlauf auf diesem Gerät.",
@@ -1390,6 +1406,10 @@ const DICT = {
     "ca.remove": "Remover",
     "ca.useMatch": "Usar no modo jogo", "ca.month": "Calendário do mês", "ca.dayHint": "Toca num dia para ver o detalhe.", "ca.dayEmpty": "Não há jogos nem treino marcado para este dia.", "ca.dayTraining": "Dia de treino", "ca.legendMatch": "Jogo (do calendário importado)", "ca.legendTrain": "Treino", "ca.trainDaysLabel": "Dias de treino:",
     "ca.teamCrest": "Emblema da equipa",
+    "dm.title": "Estás a ver a demonstração.",
+    "dm.body": "A app completa, com dados de exemplo. Anda à vontade e experimenta o que quiseres: nada do que tocares sai deste dispositivo nem altera dados de nenhum clube.",
+    "dm.cta": "Criar a minha conta",
+    "dm.masterRO": "Na demonstração o painel Master vê-se por inteiro mas não guarda: criar clubes, equipas ou contas de utilizador está desativado.",
     "cf.closeDay": "Fechar o dia",
     "cf.dayClosed": "✓ Dia fechado e guardado no histórico.",
     "cf.dayClosedLocal": "✓ Dia fechado. Sem equipa na nuvem, o histórico fica neste dispositivo.",
@@ -2362,10 +2382,38 @@ const setAuthToken = (t) => {
 };
 let onAuthExpired = () => {};
 const setAuthExpiredHandler = (fn) => { onAuthExpired = fn; };
+/* ---------------- Modo demostración ----------------
+   demo/demo enseña la app entera —todas las pantallas, todos los roles, todas
+   las funciones PRO— para que cualquiera pueda verla sin cuenta. Lo que no
+   puede es escribir: ni crear clubes, ni dar de alta usuarios, ni tocar la
+   plantilla de un equipo real, aunque se entre con el rol Master.
+
+   El candado va aquí, en el único sitio por el que pasan todas las llamadas al
+   servidor, y no botón a botón: una pantalla nueva que olvide comprobarlo
+   seguiría sin poder escribir. Se dejan pasar las lecturas (así la demo enseña
+   el catálogo real de clubes, como ya hacía) y se corta cualquier método que
+   modifique. Lo que se toca en pantalla sigue cambiando en el dispositivo, así
+   que la demo se siente viva; simplemente no sale de ahí. */
+let DEMO_MODE = false;
+const setDemoMode = (v) => { DEMO_MODE = !!v; };
+const ESCRITURA = ["POST", "PUT", "PATCH", "DELETE"];
 const cbFetch = async (url, init = {}) => {
-  const headers = { ...(init.headers || {}) };
+  const metodo = String(init.method || "GET").toUpperCase();
+  /* La única escritura que la demo sí hace: pedir su propio pase de lectura.
+     No crea nada ni toca ningún club —sin él Coach AI respondería 401 y la
+     demo enseñaría el asistente roto—, así que se deja pasar a mano en vez de
+     depender del orden en que arranquen las llamadas al entrar. */
+  if (DEMO_MODE && ESCRITURA.includes(metodo) && !init.allowInDemo) {
+    /* Se responde con la misma forma que da el backend cuando deniega, para
+       que cada pantalla enseñe su propio aviso sin cambiar ni una línea. */
+    return new Response(JSON.stringify({ ok: false, reason: "demo" }), {
+      status: 403, headers: { "content-type": "application/json" },
+    });
+  }
+  const { allowInDemo, ...opts } = init;
+  const headers = { ...(opts.headers || {}) };
   if (AUTH_TOKEN) headers["x-cb-token"] = AUTH_TOKEN;
-  const r = await fetch(url, { ...init, headers });
+  const r = await fetch(url, { ...opts, headers });
   if (r.status === 401) { setAuthToken(null); onAuthExpired(); }
   return r;
 };
@@ -2416,9 +2464,9 @@ const airRegister = (payload) => airPost({ action: "register", ...payload });
    está desplegada— y un corte de red daban exactamente el mismo mensaje, y no
    había forma de saber cuál de las dos cosas pasaba. */
 let ultimoFalloAir = null;
-const airPost = async (body) => {
+const airPost = async (body, opts = {}) => {
   try {
-    const r = await cbFetch(AIR, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) });
+    const r = await cbFetch(AIR, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body), ...opts });
     if (r.status === 404) { ultimoFalloAir = "no_desplegado"; return null; }
     if (r.status >= 500) { ultimoFalloAir = "servidor"; return null; }
     ultimoFalloAir = null;
@@ -2510,7 +2558,7 @@ const airBorrarmeCuenta = (password) => airPost({ action: "borrarmeCuenta", pass
 /* Clubs: los crea y los borra solo el Master. Un club es el nivel de arriba
    (el Chamartín Vergara); sus categorías —Juvenil A, Infantil B— cuelgan de él
    y las añade cada usuario dentro de su propio club. */
-const airDemoToken = () => airPost({ action: "demoToken" });
+const airDemoToken = () => airPost({ action: "demoToken" }, { allowInDemo: true });
 const airCrearClub = (nombre, comunidad) => airPost({ action: "crearClub", nombre, comunidad });
 const airBorrarClub = (clubRec) => airPost({ action: "borrarClub", clubRec });
 // Espejo de los usuarios sembrados en Airtable, para poder probar el login en el preview (sin backend). Contraseña demo: coach1234
@@ -7856,7 +7904,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
     setBajaBusy(true); setBajaErr("");
     const out = await airBorrarmeCuenta(bajaPass);
     setBajaBusy(false);
-    if (out?.ok) { setAuthToken(null); setSession(null); setMsgs([]); return; }
+    if (out?.ok) { setDemoMode(false); setAuthToken(null); setSession(null); setMsgs([]); return; }
     setBajaErr(out?.reason === "bad" ? t("p.badCurrent")
       : out?.reason === "master" ? "La cuenta Master no se puede eliminar."
       : "No se pudo eliminar. Inténtalo más tarde.");
@@ -8470,6 +8518,15 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
           <div className="text-[11px] mb-3" style={{ color: C.dim }}>
             {t("tm.hintA")}<strong>{t("tm.hintBold")}</strong>{t("tm.hintB")}
           </div>
+          {/* El panel Master se enseña entero en la demo —es parte de la app y
+              quien la mira tiene que poder verlo—, pero aquí es donde se
+              crean clubes y equipos de verdad, así que se avisa antes de que
+              alguien rellene un formulario que no va a guardar nada. */}
+          {esDemo && (
+            <div className="text-[12px] mb-3 rounded-lg border px-3 py-2" style={{ borderColor: AC, background: `${AC}12`, color: C.chalk }}>
+              👀 {t("dm.masterRO")}
+            </div>
+          )}
           <div className="flex flex-wrap gap-2 mb-3">
             <button onClick={loadTeams} className="text-sm px-4 py-2 rounded-lg border font-display uppercase tracking-wide" style={{ borderColor: C.line, color: C.chalk }}>{t("mp.reload")}</button>
             <button onClick={() => setClubNuevo({ nombre: "", comunidad: session.comunidad || "" })}
@@ -13222,6 +13279,7 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
       /* Pase firmado solo para la demo: sin él, Coach AI responde 401. No abre
          ningún dato —las lecturas de Airtable exigen id o equipo—, solo permite
          hablar con el asistente. */
+      setDemoMode(true);
       airDemoToken().then((out) => { if (out?.token) setAuthToken(out.token); });
       const demoTeam = makeTeam("infantil", "B");
       const demoCategories = getCategoriesForUser(1, r, DEMO_CLUB);
@@ -13246,6 +13304,7 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
       setTab("inicio");
       return null;
     }
+    setDemoMode(false);
     const res = await airLogin(em, password);
     let name, roleLabel, estado, plan = "oficial";
     let club = DEMO_CLUB, comunidad = "Comunidad de Madrid", team = makeTeam("infantil", "B");
@@ -13291,6 +13350,7 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
     return null;
   };
   const doRegister = async (p) => {
+    setDemoMode(false);
     const esLibre = p.plan === "free";
     const esClubFounder = p.plan === "club";
     const res = await airRegister({
@@ -13515,7 +13575,7 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
             {tema === "oscuro" ? "☀" : "☾"}
           </button>
           <LangPicker lang={lang} setLang={setLang} />
-          <button onClick={() => { setAuthToken(null); setSession(null); setMsgs([]); }} className="text-xs px-3 py-1.5 rounded-lg border" style={{ borderColor: C.line, color: C.dim }}>{t("c.exit")}</button>
+          <button onClick={() => { setDemoMode(false); setAuthToken(null); setSession(null); setMsgs([]); }} className="text-xs px-3 py-1.5 rounded-lg border" style={{ borderColor: C.line, color: C.dim }}>{t("c.exit")}</button>
           <button onClick={() => setMenuOpen((v) => !v)} aria-expanded={menuOpen} className="relative lg:hidden text-xs px-3 py-2 rounded-lg border font-display uppercase tracking-wide" style={{ borderColor: menuOpen ? MC : C.line, color: menuOpen ? MC : C.chalk }}>
             ☰<span className="hidden sm:inline"> Menú</span>
             {hayAvisosNav && <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full" style={{ background: C.red, boxShadow: `0 0 0 2px ${C.bg}` }} />}
@@ -13528,9 +13588,24 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
           style={{ background: "rgba(229,72,77,.12)", borderBottom: `1px solid ${C.line}`, color: "#f0a3a5" }}>
           <span>🔒</span>
           <span className="flex-1">{authMsg}</span>
-          <button onClick={() => { setAuthToken(null); setAuthMsg(""); setSession(null); setMsgs([]); }}
+          <button onClick={() => { setDemoMode(false); setAuthToken(null); setAuthMsg(""); setSession(null); setMsgs([]); }}
             className="text-[11px] font-display uppercase tracking-wide px-2.5 py-1 rounded border shrink-0"
             style={{ borderColor: C.red, color: "#f0a3a5" }}>Volver a entrar</button>
+        </div>
+      )}
+
+      {/* Modo demostración: se dice desde el principio qué se está viendo y
+          qué no va a pasar al tocar, para que nadie crea que ha guardado algo
+          y para que se entienda que lo que ve es la app entera, no un recorte. */}
+      {esDemo && (
+        <div className="px-3 sm:px-5 py-2 text-[12px] flex items-start gap-2" style={{ background: `${AC}14`, borderBottom: `1px solid ${C.line}`, color: C.chalk }}>
+          <span>👀</span>
+          <span className="flex-1">
+            <strong>{t("dm.title")}</strong> {t("dm.body")}
+          </span>
+          <button onClick={() => { setDemoMode(false); setAuthToken(null); setSession(null); setMsgs([]); }}
+            className="shrink-0 text-[11px] font-display uppercase tracking-wide px-2.5 py-1 rounded font-semibold"
+            style={{ background: AC, color: C.sobre }}>{t("dm.cta")}</button>
         </div>
       )}
 
