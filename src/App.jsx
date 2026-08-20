@@ -174,6 +174,26 @@ const DICT = {
     "ca.remove": "Quitar",
     "ca.useMatch": "Usar en modo partido", "ca.month": "Calendario del mes", "ca.dayHint": "Toca un día para ver su detalle.", "ca.dayEmpty": "No hay partidos ni entrenamiento programado este día.", "ca.dayTraining": "Día de entrenamiento", "ca.legendMatch": "Partido (del calendario importado)", "ca.legendTrain": "Entrenamiento", "ca.trainDaysLabel": "Días de entreno:",
     "ca.teamCrest": "Escudo del equipo",
+    "cf.rpeTitle": "RPE post-sesión",
+    "cf.rpeHint": "Se pregunta 15-30 minutos después de terminar: «del 1 al 10, ¿cuánto esfuerzo te ha supuesto la sesión en conjunto?». La carga interna (RPE × minutos reales) es orientativa: sirve para comparar al jugador consigo mismo, no con sus compañeros.",
+    "cf.sessionDate": "Fecha de la sesión",
+    "cf.realMin": "Minutos reales",
+    "cf.realMinHelp": "Los que de verdad se completaron, no los del plan.",
+    "cf.rpe": "RPE",
+    "cf.rpeNone": "Sin registrar",
+    "cf.rpeEasy": "Cómodo",
+    "cf.rpeMod": "Moderado",
+    "cf.rpeHard": "Exigente",
+    "cf.rpeReview": "Revisar",
+    "cf.rpeAvg": "RPE medio",
+    "cf.internalAvg": "Carga interna media",
+    "cf.toReview": "A revisar (8+)",
+    "cf.recorded": "Registrados",
+    "cf.units": "ud.",
+    "cf.complete": "Completa",
+    "cf.adapted": "Adaptada",
+    "cf.pain": "Molestia post",
+    "cf.painPh": "Molestia después de la sesión: zona y qué pasó (opcional)",
     "cf.title": "Cargas físicas · Pretemporada",
     "cf.hint": "Semáforo antes de entrenar y carga que puede asumir cada jugador. Los verdes no hace falta reportarlos uno a uno; los amarillos y los rojos sí, antes de empezar la sesión.",
     "cf.verde": "Verde",
@@ -188,7 +208,7 @@ const DICT = {
     "cf.notePh": "Molestia, zona, adaptación… (opcional)",
     "cf.noPlayers": "Todavía no hay jugadores en la plantilla.",
     "cf.share": "Guardar y compartir",
-    "cf.reset": "Poner todo en verde",
+    "cf.reset": "Empezar día nuevo",
     "cf.saved": "✓ Cargas guardadas.",
     "cf.saveFail": "No se han podido guardar. Inténtalo otra vez.",
     "cf.noRole": "Tu rol no puede guardar las cargas de este equipo.",
@@ -378,6 +398,26 @@ const DICT = {
     "ca.remove": "Remove",
     "ca.useMatch": "Use in match mode", "ca.month": "Month calendar", "ca.dayHint": "Tap a day to see its detail.", "ca.dayEmpty": "No fixtures or training scheduled this day.", "ca.dayTraining": "Training day", "ca.legendMatch": "Fixture (from the imported calendar)", "ca.legendTrain": "Training", "ca.trainDaysLabel": "Training days:",
     "ca.teamCrest": "Team crest",
+    "cf.rpeTitle": "Post-session RPE",
+    "cf.rpeHint": "Asked 15-30 minutes after finishing: “from 1 to 10, how hard was the session overall?”. Internal load (RPE × real minutes) is a rough guide: it compares a player with himself, not with his team-mates.",
+    "cf.sessionDate": "Session date",
+    "cf.realMin": "Real minutes",
+    "cf.realMinHelp": "The ones actually completed, not the ones on the plan.",
+    "cf.rpe": "RPE",
+    "cf.rpeNone": "Not recorded",
+    "cf.rpeEasy": "Comfortable",
+    "cf.rpeMod": "Moderate",
+    "cf.rpeHard": "Demanding",
+    "cf.rpeReview": "Review",
+    "cf.rpeAvg": "Average RPE",
+    "cf.internalAvg": "Average internal load",
+    "cf.toReview": "To review (8+)",
+    "cf.recorded": "Recorded",
+    "cf.units": "u.",
+    "cf.complete": "Complete",
+    "cf.adapted": "Adapted",
+    "cf.pain": "Post-session pain",
+    "cf.painPh": "Discomfort after the session: area and what happened (optional)",
     "cf.title": "Physical load · Pre-season",
     "cf.hint": "Traffic light before training and how much load each player can take. Greens need no one-by-one report; yellows and reds do, before the session starts.",
     "cf.verde": "Green",
@@ -392,7 +432,7 @@ const DICT = {
     "cf.notePh": "Discomfort, area, adjustment… (optional)",
     "cf.noPlayers": "No players in the squad yet.",
     "cf.share": "Save and share",
-    "cf.reset": "Set everyone to green",
+    "cf.reset": "Start a new day",
     "cf.saved": "✓ Loads saved.",
     "cf.saveFail": "Could not save. Try again.",
     "cf.noRole": "Your role cannot save this team's loads.",
@@ -599,6 +639,26 @@ const DICT = {
     "ca.remove": "Retirer",
     "ca.useMatch": "Utiliser en mode match", "ca.month": "Calendrier du mois", "ca.dayHint": "Touchez un jour pour voir son détail.", "ca.dayEmpty": "Aucun match ni entraînement prévu ce jour.", "ca.dayTraining": "Jour d'entraînement", "ca.legendMatch": "Match (du calendrier importé)", "ca.legendTrain": "Entraînement", "ca.trainDaysLabel": "Jours d'entraînement :",
     "ca.teamCrest": "Écusson de l'équipe",
+    "cf.rpeTitle": "RPE après séance",
+    "cf.rpeHint": "On demande 15-30 minutes après la fin : « de 1 à 10, quel effort la séance t'a demandé dans l'ensemble ? ». La charge interne (RPE × minutes réelles) est indicative : elle compare le joueur à lui-même, pas à ses coéquipiers.",
+    "cf.sessionDate": "Date de la séance",
+    "cf.realMin": "Minutes réelles",
+    "cf.realMinHelp": "Celles réellement effectuées, pas celles du plan.",
+    "cf.rpe": "RPE",
+    "cf.rpeNone": "Non renseigné",
+    "cf.rpeEasy": "Confortable",
+    "cf.rpeMod": "Modéré",
+    "cf.rpeHard": "Exigeant",
+    "cf.rpeReview": "À revoir",
+    "cf.rpeAvg": "RPE moyen",
+    "cf.internalAvg": "Charge interne moyenne",
+    "cf.toReview": "À revoir (8+)",
+    "cf.recorded": "Renseignés",
+    "cf.units": "u.",
+    "cf.complete": "Complète",
+    "cf.adapted": "Adaptée",
+    "cf.pain": "Gêne après séance",
+    "cf.painPh": "Gêne après la séance : zone et ce qui s'est passé (facultatif)",
     "cf.title": "Charges physiques · Présaison",
     "cf.hint": "Feu tricolore avant l'entraînement et charge que chaque joueur peut assumer. Les verts n'ont pas à être signalés un par un ; les jaunes et les rouges si, avant de commencer.",
     "cf.verde": "Vert",
@@ -613,7 +673,7 @@ const DICT = {
     "cf.notePh": "Gêne, zone, adaptation… (facultatif)",
     "cf.noPlayers": "Aucun joueur dans l'effectif pour l'instant.",
     "cf.share": "Enregistrer et partager",
-    "cf.reset": "Tout mettre au vert",
+    "cf.reset": "Commencer une nouvelle journée",
     "cf.saved": "✓ Charges enregistrées.",
     "cf.saveFail": "Enregistrement impossible. Réessayez.",
     "cf.noRole": "Votre rôle ne peut pas enregistrer les charges de cette équipe.",
@@ -893,6 +953,26 @@ const DICT = {
     "ca.remove": "Entfernen",
     "ca.useMatch": "Im Spielmodus verwenden", "ca.month": "Monatskalender", "ca.dayHint": "Tippe auf einen Tag, um Details zu sehen.", "ca.dayEmpty": "An diesem Tag sind weder Spiele noch Training geplant.", "ca.dayTraining": "Trainingstag", "ca.legendMatch": "Spiel (aus importiertem Spielplan)", "ca.legendTrain": "Training", "ca.trainDaysLabel": "Trainingstage:",
     "ca.teamCrest": "Mannschaftswappen",
+    "cf.rpeTitle": "RPE nach der Einheit",
+    "cf.rpeHint": "Wird 15-30 Minuten nach Schluss gefragt: „Von 1 bis 10, wie anstrengend war die Einheit insgesamt?“. Die interne Belastung (RPE × reale Minuten) ist ein Richtwert: sie vergleicht den Spieler mit sich selbst, nicht mit den Mitspielern.",
+    "cf.sessionDate": "Datum der Einheit",
+    "cf.realMin": "Reale Minuten",
+    "cf.realMinHelp": "Die tatsächlich absolvierten, nicht die aus dem Plan.",
+    "cf.rpe": "RPE",
+    "cf.rpeNone": "Nicht erfasst",
+    "cf.rpeEasy": "Locker",
+    "cf.rpeMod": "Moderat",
+    "cf.rpeHard": "Fordernd",
+    "cf.rpeReview": "Prüfen",
+    "cf.rpeAvg": "Durchschnittlicher RPE",
+    "cf.internalAvg": "Durchschnittliche interne Belastung",
+    "cf.toReview": "Zu prüfen (8+)",
+    "cf.recorded": "Erfasst",
+    "cf.units": "E.",
+    "cf.complete": "Komplett",
+    "cf.adapted": "Angepasst",
+    "cf.pain": "Beschwerden danach",
+    "cf.painPh": "Beschwerden nach der Einheit: Bereich und was passiert ist (optional)",
     "cf.title": "Körperliche Belastung · Vorbereitung",
     "cf.hint": "Ampel vor dem Training und wie viel Belastung jeder Spieler verträgt. Grüne müssen nicht einzeln gemeldet werden, Gelbe und Rote schon – vor dem Start der Einheit.",
     "cf.verde": "Grün",
@@ -907,7 +987,7 @@ const DICT = {
     "cf.notePh": "Beschwerden, Bereich, Anpassung… (optional)",
     "cf.noPlayers": "Noch keine Spieler im Kader.",
     "cf.share": "Speichern und teilen",
-    "cf.reset": "Alle auf Grün setzen",
+    "cf.reset": "Neuen Tag beginnen",
     "cf.saved": "✓ Belastungen gespeichert.",
     "cf.saveFail": "Speichern nicht möglich. Versuch es noch einmal.",
     "cf.noRole": "Deine Rolle darf die Belastungen dieser Mannschaft nicht speichern.",
@@ -1186,6 +1266,26 @@ const DICT = {
     "ca.remove": "Remover",
     "ca.useMatch": "Usar no modo jogo", "ca.month": "Calendário do mês", "ca.dayHint": "Toca num dia para ver o detalhe.", "ca.dayEmpty": "Não há jogos nem treino marcado para este dia.", "ca.dayTraining": "Dia de treino", "ca.legendMatch": "Jogo (do calendário importado)", "ca.legendTrain": "Treino", "ca.trainDaysLabel": "Dias de treino:",
     "ca.teamCrest": "Emblema da equipa",
+    "cf.rpeTitle": "RPE pós-sessão",
+    "cf.rpeHint": "Pergunta-se 15-30 minutos depois de acabar: «de 1 a 10, quanto esforço te exigiu a sessão no conjunto?». A carga interna (RPE × minutos reais) é orientativa: serve para comparar o jogador consigo próprio, não com os colegas.",
+    "cf.sessionDate": "Data da sessão",
+    "cf.realMin": "Minutos reais",
+    "cf.realMinHelp": "Os que foram mesmo cumpridos, não os do plano.",
+    "cf.rpe": "RPE",
+    "cf.rpeNone": "Por registar",
+    "cf.rpeEasy": "Confortável",
+    "cf.rpeMod": "Moderado",
+    "cf.rpeHard": "Exigente",
+    "cf.rpeReview": "Rever",
+    "cf.rpeAvg": "RPE médio",
+    "cf.internalAvg": "Carga interna média",
+    "cf.toReview": "A rever (8+)",
+    "cf.recorded": "Registados",
+    "cf.units": "un.",
+    "cf.complete": "Completa",
+    "cf.adapted": "Adaptada",
+    "cf.pain": "Desconforto pós",
+    "cf.painPh": "Desconforto depois da sessão: zona e o que aconteceu (opcional)",
     "cf.title": "Cargas físicas · Pré-época",
     "cf.hint": "Semáforo antes de treinar e carga que cada jogador pode assumir. Os verdes não é preciso reportar um a um; os amarelos e vermelhos sim, antes de começar a sessão.",
     "cf.verde": "Verde",
@@ -1200,7 +1300,7 @@ const DICT = {
     "cf.notePh": "Desconforto, zona, adaptação… (opcional)",
     "cf.noPlayers": "Ainda não há jogadores no plantel.",
     "cf.share": "Guardar e partilhar",
-    "cf.reset": "Pôr todos a verde",
+    "cf.reset": "Começar dia novo",
     "cf.saved": "✓ Cargas guardadas.",
     "cf.saveFail": "Não foi possível guardar. Tenta outra vez.",
     "cf.noRole": "O teu papel não pode guardar as cargas desta equipa.",
@@ -11334,7 +11434,19 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
     { k: "amarillo", icon: "🟡", color: "#d9a441" },
     { k: "rojo", icon: "🔴", color: "#b4474a" },
   ];
-  const CARGA_DEFECTO = { estado: "verde", carga: 100, nota: "" };
+  const CARGA_DEFECTO = { estado: "verde", carga: 100, nota: "", rpe: 0, adaptada: false, dolorPost: "" };
+  /* Zonas del RPE tal y como las fija el plan: 3-4 cómodo, 5-6 moderado, 7
+     exigente y 8 o más "revisar". No son notas del jugador ni una competición
+     entre compañeros: sirven para comparar a cada uno consigo mismo y ver si
+     la sesión ha salido donde se esperaba. */
+  const rpeZona = (v) => {
+    const n = Number(v) || 0;
+    if (!n) return { color: C.dim, label: t("cf.rpeNone") };
+    if (n <= 4) return { color: "#2f6b4f", label: t("cf.rpeEasy") };
+    if (n <= 6) return { color: AC, label: t("cf.rpeMod") };
+    if (n === 7) return { color: "#d9a441", label: t("cf.rpeHard") };
+    return { color: "#b4474a", label: t("cf.rpeReview") };
+  };
   const [cargas, setCargas] = useState({});
   const [cargasMsg, setCargasMsg] = useState("");
   const [cargasBusy, setCargasBusy] = useState(false);
@@ -11377,6 +11489,26 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
     : 0;
   const porEstado = (k) => players.filter((p) => cargaDe(p.id).estado === k).length;
 
+  /* Datos de la sesión a la que se refiere el RPE. Van en la misma bolsa que
+     las cargas —bajo una clave reservada que no puede chocar con ningún id de
+     jugador— para que se guarden y se compartan de una sola vez. Los minutos
+     reales los rellena quien controla los tiempos; son los que de verdad se
+     completaron, no los que estaban escritos en el plan. */
+  const SESION_DEFECTO = { fecha: hoyISO(), min: 70 };
+  const sesionRpe = { ...SESION_DEFECTO, ...(cargas._sesion || {}) };
+  const setSesionRpe = (campo, valor) => setCargas((c) => ({ ...c, _sesion: { ...SESION_DEFECTO, ...(c._sesion || {}), [campo]: valor } }));
+  /* Carga interna orientativa = RPE × minutos reales. El plan insiste en que
+     no hay números mágicos: es para ver tendencias del propio jugador. */
+  const cargaInterna = (id) => (Number(cargaDe(id).rpe) || 0) * (Number(sesionRpe.min) || 0);
+  const conRpe = players.filter((p) => Number(cargaDe(p.id).rpe) > 0);
+  const rpeMedio = conRpe.length
+    ? (conRpe.reduce((s, p) => s + Number(cargaDe(p.id).rpe), 0) / conRpe.length).toFixed(1)
+    : "—";
+  const internaMedia = conRpe.length
+    ? Math.round(conRpe.reduce((s, p) => s + cargaInterna(p.id), 0) / conRpe.length)
+    : 0;
+  const aRevisar = players.filter((p) => Number(cargaDe(p.id).rpe) >= 8).length;
+
   const renderCargas = () => {
     const puede = can("cargas");
     /* Primero los rojos, después los amarillos: es el orden en el que hay que
@@ -11386,7 +11518,25 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
       const d = orden[cargaDe(a.id).estado] - orden[cargaDe(b.id).estado];
       return d !== 0 ? d : (Number(a.d) || 0) - (Number(b.d) || 0);
     });
+    /* Barra de guardado. Aparece al final de las dos hojas —la de antes de
+       entrenar y la de después— porque las rellenan momentos distintos del día
+       y quien termina cualquiera de las dos tiene el botón a mano. Las dos
+       guardan lo mismo: un único documento por equipo. */
+    const barraGuardar = () => puede ? (
+      <div className="mt-4 pt-3 border-t flex flex-wrap items-center gap-3" style={{ borderColor: C.line }}>
+        <button onClick={guardarCargas} disabled={cargasBusy}
+          className="font-display uppercase tracking-wide text-sm px-4 py-2.5 rounded-lg font-semibold disabled:opacity-50"
+          style={{ background: AC, color: C.sobre }}>
+          {cargasBusy ? t("a.sending") : t("cf.share")}
+        </button>
+        <button onClick={() => setCargas({ _sesion: { ...SESION_DEFECTO, fecha: hoyISO() } })}
+          className="text-sm px-4 py-2.5 rounded-lg border font-display uppercase tracking-wide"
+          style={{ borderColor: C.line, color: C.dim }}>{t("cf.reset")}</button>
+        {cargasMsg && <span className="text-xs" style={{ color: cargasMsg === t("cf.saved") ? C.green : C.red }}>{cargasMsg}</span>}
+      </div>
+    ) : <div className="text-[11px] mt-3" style={{ color: C.dim }}>{t("cf.readOnly")}</div>;
     return (
+      <>
       <Card title={`🚦 ${t("cf.title")}`}>
         {!isPro ? (
           <div className="rounded-lg border p-4 text-center" style={{ borderColor: AC, background: C.panel2 }}>
@@ -11468,23 +11618,123 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
               </div>
             )}
 
-            {puede && (
-              <div className="mt-4 pt-3 border-t flex flex-wrap items-center gap-3" style={{ borderColor: C.line }}>
-                <button onClick={guardarCargas} disabled={cargasBusy}
-                  className="font-display uppercase tracking-wide text-sm px-4 py-2.5 rounded-lg font-semibold disabled:opacity-50"
-                  style={{ background: AC, color: C.sobre }}>
-                  {cargasBusy ? t("a.sending") : t("cf.share")}
-                </button>
-                <button onClick={() => setCargas({})}
-                  className="text-sm px-4 py-2.5 rounded-lg border font-display uppercase tracking-wide"
-                  style={{ borderColor: C.line, color: C.dim }}>{t("cf.reset")}</button>
-                {cargasMsg && <span className="text-xs" style={{ color: cargasMsg === t("cf.saved") ? C.green : C.red }}>{cargasMsg}</span>}
-              </div>
-            )}
-            {!puede && <div className="text-[11px] mt-3" style={{ color: C.dim }}>{t("cf.readOnly")}</div>}
+            {barraGuardar()}
           </>
         )}
       </Card>
+
+      {/* ---- Hoja de después: RPE post-sesión ----
+          Se pregunta 15-30 minutos después de terminar, y siempre en los
+          mismos términos: "del 1 al 10, ¿cuánto esfuerzo te ha supuesto la
+          sesión en conjunto?". La carga interna (RPE × minutos reales) es
+          orientativa: sirve para comparar al jugador consigo mismo, no para
+          compararlo con sus compañeros ni contra un número universal. */}
+      {isPro && (
+        <Card title={`⏱ ${t("cf.rpeTitle")}`}>
+          <div className="text-xs mb-3 leading-relaxed" style={{ color: C.dim }}>{t("cf.rpeHint")}</div>
+
+          <div className="flex flex-wrap items-end gap-3 mb-3">
+            <label className="block">
+              <span className="text-[11px] block mb-1" style={{ color: C.dim }}>{t("cf.sessionDate")}</span>
+              <input type="date" value={sesionRpe.fecha} disabled={!puede}
+                onChange={(e) => setSesionRpe("fecha", e.target.value)}
+                className="px-2.5 py-1.5 rounded-lg border bg-transparent text-sm"
+                style={{ borderColor: C.line, color: C.chalk }} />
+            </label>
+            <label className="block">
+              <span className="text-[11px] block mb-1" style={{ color: C.dim }}>{t("cf.realMin")}</span>
+              <input type="number" min={0} max={200} value={sesionRpe.min} disabled={!puede}
+                onChange={(e) => setSesionRpe("min", Math.max(0, Math.min(200, Number(e.target.value) || 0)))}
+                className="w-24 px-2.5 py-1.5 rounded-lg border bg-transparent text-sm tabular-nums"
+                style={{ borderColor: C.line, color: C.chalk }} />
+            </label>
+            <div className="text-[11px] pb-2" style={{ color: C.dim }}>{t("cf.realMinHelp")}</div>
+          </div>
+
+          {/* La escala del plan, a la vista mientras se rellena: sin ella cada
+              cual pone el número que le parece y deja de ser comparable. */}
+          <div className="flex flex-wrap gap-1.5 mb-3">
+            {[["3-4", t("cf.rpeEasy"), "#2f6b4f"], ["5-6", t("cf.rpeMod"), AC], ["7", t("cf.rpeHard"), "#d9a441"], ["8+", t("cf.rpeReview"), "#b4474a"]].map(([n, lbl, col]) => (
+              <span key={n} className="text-[11px] px-2.5 py-1 rounded-full border" style={{ borderColor: col, color: col }}>
+                <strong className="tabular-nums">{n}</strong> · {lbl}
+              </span>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-3">
+            <div className="rounded-lg border p-2.5" style={{ borderColor: C.line, background: C.panel2 }}>
+              <div className="text-[11px] font-display uppercase tracking-wide" style={{ color: C.dim }}>{t("cf.rpeAvg")}</div>
+              <div className="font-display text-2xl tabular-nums" style={{ color: C.chalk }}>{rpeMedio}</div>
+            </div>
+            <div className="rounded-lg border p-2.5" style={{ borderColor: C.line, background: C.panel2 }}>
+              <div className="text-[11px] font-display uppercase tracking-wide" style={{ color: C.dim }}>{t("cf.internalAvg")}</div>
+              <div className="font-display text-2xl tabular-nums" style={{ color: C.chalk }}>{internaMedia}</div>
+            </div>
+            <div className="rounded-lg border p-2.5" style={{ borderColor: aRevisar ? "#b4474a" : C.line, background: C.panel2 }}>
+              <div className="text-[11px] font-display uppercase tracking-wide" style={{ color: aRevisar ? "#b4474a" : C.dim }}>{t("cf.toReview")}</div>
+              <div className="font-display text-2xl tabular-nums" style={{ color: aRevisar ? C.chalk : C.dim }}>{aRevisar}</div>
+            </div>
+            <div className="rounded-lg border p-2.5" style={{ borderColor: C.line, background: C.panel2 }}>
+              <div className="text-[11px] font-display uppercase tracking-wide" style={{ color: C.dim }}>{t("cf.recorded")}</div>
+              <div className="font-display text-2xl tabular-nums" style={{ color: C.chalk }}>{conRpe.length}<span className="text-sm" style={{ color: C.dim }}> / {players.length}</span></div>
+            </div>
+          </div>
+
+          {players.length === 0 ? (
+            <div className="text-sm" style={{ color: C.dim }}>{t("cf.noPlayers")}</div>
+          ) : (
+            <div className="space-y-1.5">
+              {/* Aquí el orden es por dorsal y no por RPE: se rellena
+                  preguntando uno a uno según van saliendo, y una lista que se
+                  reordena sola bajo el dedo es imposible de ir marcando. */}
+              {[...players].sort((a, b) => (Number(a.d) || 0) - (Number(b.d) || 0)).map((p) => {
+                const c = cargaDe(p.id);
+                const z = rpeZona(c.rpe);
+                return (
+                  <div key={p.id} className="rounded-lg border p-2.5" style={{ borderColor: Number(c.rpe) >= 8 ? z.color : C.line, background: C.panel2 }}>
+                    <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+                      <div className="text-sm flex-1 min-w-[150px]" style={{ color: C.chalk }}>
+                        <span className="tabular-nums" style={{ color: C.dim }}>#{p.d}</span> {p.n}
+                      </div>
+                      <div className="flex items-center gap-2 w-full sm:w-auto">
+                        <input type="range" min={0} max={10} step={1} value={c.rpe} disabled={!puede}
+                          onChange={(e) => setCarga(p.id, "rpe", Number(e.target.value))}
+                          aria-label={`${t("cf.rpe")} ${p.n}`}
+                          className="flex-1 sm:w-28 accent-current" style={{ color: z.color }} />
+                        <input type="number" min={0} max={10} value={c.rpe} disabled={!puede}
+                          onChange={(e) => setCarga(p.id, "rpe", Math.max(0, Math.min(10, Number(e.target.value) || 0)))}
+                          className="w-14 px-2 py-1 rounded-lg border bg-transparent text-sm tabular-nums text-right"
+                          style={{ borderColor: C.line, color: C.chalk }} />
+                        <span className="text-[11px] w-20 shrink-0" style={{ color: z.color }}>{z.label}</span>
+                      </div>
+                      <div className="text-[11px] tabular-nums w-24 shrink-0" style={{ color: C.dim }}>
+                        {Number(c.rpe) > 0 ? `${cargaInterna(p.id)} ${t("cf.units")}` : "—"}
+                      </div>
+                      <button onClick={() => puede && setCarga(p.id, "adaptada", !c.adaptada)} disabled={!puede}
+                        aria-pressed={c.adaptada}
+                        className="text-[11px] px-2.5 py-1.5 rounded-full border font-display uppercase tracking-wide disabled:opacity-60"
+                        style={{
+                          borderColor: c.adaptada ? "#d9a441" : C.line,
+                          color: c.adaptada ? "#d9a441" : C.dim,
+                          background: c.adaptada ? "rgba(217,164,65,.12)" : "transparent",
+                        }}>{c.adaptada ? t("cf.adapted") : t("cf.complete")}</button>
+                    </div>
+                    {(puede || c.dolorPost) && (
+                      <input value={c.dolorPost} disabled={!puede}
+                        onChange={(e) => setCarga(p.id, "dolorPost", e.target.value)}
+                        placeholder={t("cf.painPh")} aria-label={`${t("cf.pain")} ${p.n}`}
+                        className="mt-2 w-full px-2.5 py-1.5 rounded-lg border bg-transparent text-xs"
+                        style={{ borderColor: C.line, color: C.chalk }} />
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          )}
+          {barraGuardar()}
+        </Card>
+      )}
+      </>
     );
   };
 
