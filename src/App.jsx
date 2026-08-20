@@ -174,6 +174,29 @@ const DICT = {
     "ca.remove": "Quitar",
     "ca.useMatch": "Usar en modo partido", "ca.month": "Calendario del mes", "ca.dayHint": "Toca un día para ver su detalle.", "ca.dayEmpty": "No hay partidos ni entrenamiento programado este día.", "ca.dayTraining": "Día de entrenamiento", "ca.legendMatch": "Partido (del calendario importado)", "ca.legendTrain": "Entrenamiento", "ca.trainDaysLabel": "Días de entreno:",
     "ca.teamCrest": "Escudo del equipo",
+    "cf.title": "Cargas físicas · Pretemporada",
+    "cf.hint": "Semáforo antes de entrenar y carga que puede asumir cada jugador. Los verdes no hace falta reportarlos uno a uno; los amarillos y los rojos sí, antes de empezar la sesión.",
+    "cf.verde": "Verde",
+    "cf.amarillo": "Amarillo",
+    "cf.rojo": "Rojo",
+    "cf.verdeHelp": "Sin dolor, fatiga baja, sueño aceptable y energía normal. Entrena según plan.",
+    "cf.amarilloHelp": "Molestia leve, mala noche, fatiga 3-4/5 o energía baja. El entrenador decide la adaptación.",
+    "cf.rojoHelp": "Dolor que altera el gesto, cojera, enfermedad, mareo o fatiga extrema. No hace la sesión normal.",
+    "cf.avg": "Carga media",
+    "cf.load": "Carga",
+    "cf.note": "Nota",
+    "cf.notePh": "Molestia, zona, adaptación… (opcional)",
+    "cf.noPlayers": "Todavía no hay jugadores en la plantilla.",
+    "cf.share": "Guardar y compartir",
+    "cf.reset": "Poner todo en verde",
+    "cf.saved": "✓ Cargas guardadas.",
+    "cf.saveFail": "No se han podido guardar. Inténtalo otra vez.",
+    "cf.noRole": "Tu rol no puede guardar las cargas de este equipo.",
+    "cf.notCloud": "Este equipo todavía no está en la nube: las cargas se guardan solo en este dispositivo.",
+    "cf.readOnly": "Tu rol puede consultar las cargas, pero no cambiarlas.",
+    "cf.proTitle": "Cargas físicas es de PRO",
+    "cf.proWhat": "Semáforo por jugador, porcentaje de carga y notas, compartido con todo el cuerpo técnico.",
+    "cf.proBtn": "Ver planes",
     "ca.seeMore": "Ver más",
     "ca.seeMonth": "Ver solo este mes",
     "ca.emptyMonth": "Ningún partido este mes.",
@@ -355,6 +378,29 @@ const DICT = {
     "ca.remove": "Remove",
     "ca.useMatch": "Use in match mode", "ca.month": "Month calendar", "ca.dayHint": "Tap a day to see its detail.", "ca.dayEmpty": "No fixtures or training scheduled this day.", "ca.dayTraining": "Training day", "ca.legendMatch": "Fixture (from the imported calendar)", "ca.legendTrain": "Training", "ca.trainDaysLabel": "Training days:",
     "ca.teamCrest": "Team crest",
+    "cf.title": "Physical load · Pre-season",
+    "cf.hint": "Traffic light before training and how much load each player can take. Greens need no one-by-one report; yellows and reds do, before the session starts.",
+    "cf.verde": "Green",
+    "cf.amarillo": "Amber",
+    "cf.rojo": "Red",
+    "cf.verdeHelp": "No pain, low fatigue, acceptable sleep and normal energy. Trains as planned.",
+    "cf.amarilloHelp": "Slight discomfort, bad night, fatigue 3-4/5 or low energy. The coach decides the adjustment.",
+    "cf.rojoHelp": "Pain that alters movement, limping, illness, dizziness or extreme fatigue. Does not do the normal session.",
+    "cf.avg": "Average load",
+    "cf.load": "Load",
+    "cf.note": "Note",
+    "cf.notePh": "Discomfort, area, adjustment… (optional)",
+    "cf.noPlayers": "No players in the squad yet.",
+    "cf.share": "Save and share",
+    "cf.reset": "Set everyone to green",
+    "cf.saved": "✓ Loads saved.",
+    "cf.saveFail": "Could not save. Try again.",
+    "cf.noRole": "Your role cannot save this team's loads.",
+    "cf.notCloud": "This team is not in the cloud yet: loads are saved on this device only.",
+    "cf.readOnly": "Your role can view the loads but not change them.",
+    "cf.proTitle": "Physical load is a PRO feature",
+    "cf.proWhat": "Per-player traffic light, load percentage and notes, shared with the whole coaching staff.",
+    "cf.proBtn": "See plans",
     "ca.seeMore": "See more",
     "ca.seeMonth": "Show this month only",
     "ca.emptyMonth": "No fixtures this month.",
@@ -553,6 +599,29 @@ const DICT = {
     "ca.remove": "Retirer",
     "ca.useMatch": "Utiliser en mode match", "ca.month": "Calendrier du mois", "ca.dayHint": "Touchez un jour pour voir son détail.", "ca.dayEmpty": "Aucun match ni entraînement prévu ce jour.", "ca.dayTraining": "Jour d'entraînement", "ca.legendMatch": "Match (du calendrier importé)", "ca.legendTrain": "Entraînement", "ca.trainDaysLabel": "Jours d'entraînement :",
     "ca.teamCrest": "Écusson de l'équipe",
+    "cf.title": "Charges physiques · Présaison",
+    "cf.hint": "Feu tricolore avant l'entraînement et charge que chaque joueur peut assumer. Les verts n'ont pas à être signalés un par un ; les jaunes et les rouges si, avant de commencer.",
+    "cf.verde": "Vert",
+    "cf.amarillo": "Orange",
+    "cf.rojo": "Rouge",
+    "cf.verdeHelp": "Sans douleur, fatigue basse, sommeil correct et énergie normale. S'entraîne comme prévu.",
+    "cf.amarilloHelp": "Gêne légère, mauvaise nuit, fatigue 3-4/5 ou énergie basse. L'entraîneur décide de l'adaptation.",
+    "cf.rojoHelp": "Douleur qui altère le geste, boiterie, maladie, vertiges ou fatigue extrême. Ne fait pas la séance normale.",
+    "cf.avg": "Charge moyenne",
+    "cf.load": "Charge",
+    "cf.note": "Note",
+    "cf.notePh": "Gêne, zone, adaptation… (facultatif)",
+    "cf.noPlayers": "Aucun joueur dans l'effectif pour l'instant.",
+    "cf.share": "Enregistrer et partager",
+    "cf.reset": "Tout mettre au vert",
+    "cf.saved": "✓ Charges enregistrées.",
+    "cf.saveFail": "Enregistrement impossible. Réessayez.",
+    "cf.noRole": "Votre rôle ne peut pas enregistrer les charges de cette équipe.",
+    "cf.notCloud": "Cette équipe n'est pas encore dans le cloud : les charges ne sont enregistrées que sur cet appareil.",
+    "cf.readOnly": "Votre rôle peut consulter les charges mais pas les modifier.",
+    "cf.proTitle": "Les charges physiques sont une option PRO",
+    "cf.proWhat": "Feu tricolore par joueur, pourcentage de charge et notes, partagés avec tout le staff.",
+    "cf.proBtn": "Voir les offres",
     "ca.seeMore": "Voir plus",
     "ca.seeMonth": "Voir ce mois seulement",
     "ca.emptyMonth": "Aucun match ce mois-ci.",
@@ -824,6 +893,29 @@ const DICT = {
     "ca.remove": "Entfernen",
     "ca.useMatch": "Im Spielmodus verwenden", "ca.month": "Monatskalender", "ca.dayHint": "Tippe auf einen Tag, um Details zu sehen.", "ca.dayEmpty": "An diesem Tag sind weder Spiele noch Training geplant.", "ca.dayTraining": "Trainingstag", "ca.legendMatch": "Spiel (aus importiertem Spielplan)", "ca.legendTrain": "Training", "ca.trainDaysLabel": "Trainingstage:",
     "ca.teamCrest": "Mannschaftswappen",
+    "cf.title": "Körperliche Belastung · Vorbereitung",
+    "cf.hint": "Ampel vor dem Training und wie viel Belastung jeder Spieler verträgt. Grüne müssen nicht einzeln gemeldet werden, Gelbe und Rote schon – vor dem Start der Einheit.",
+    "cf.verde": "Grün",
+    "cf.amarillo": "Gelb",
+    "cf.rojo": "Rot",
+    "cf.verdeHelp": "Keine Schmerzen, geringe Müdigkeit, akzeptabler Schlaf und normale Energie. Trainiert nach Plan.",
+    "cf.amarilloHelp": "Leichte Beschwerden, schlechte Nacht, Müdigkeit 3-4/5 oder wenig Energie. Der Trainer entscheidet über die Anpassung.",
+    "cf.rojoHelp": "Schmerz, der die Bewegung verändert, Hinken, Krankheit, Schwindel oder extreme Müdigkeit. Macht die normale Einheit nicht mit.",
+    "cf.avg": "Durchschnittliche Belastung",
+    "cf.load": "Belastung",
+    "cf.note": "Notiz",
+    "cf.notePh": "Beschwerden, Bereich, Anpassung… (optional)",
+    "cf.noPlayers": "Noch keine Spieler im Kader.",
+    "cf.share": "Speichern und teilen",
+    "cf.reset": "Alle auf Grün setzen",
+    "cf.saved": "✓ Belastungen gespeichert.",
+    "cf.saveFail": "Speichern nicht möglich. Versuch es noch einmal.",
+    "cf.noRole": "Deine Rolle darf die Belastungen dieser Mannschaft nicht speichern.",
+    "cf.notCloud": "Diese Mannschaft ist noch nicht in der Cloud: die Belastungen werden nur auf diesem Gerät gespeichert.",
+    "cf.readOnly": "Deine Rolle darf die Belastungen ansehen, aber nicht ändern.",
+    "cf.proTitle": "Körperliche Belastung ist PRO",
+    "cf.proWhat": "Ampel pro Spieler, Belastungsprozent und Notizen, geteilt mit dem gesamten Trainerteam.",
+    "cf.proBtn": "Pläne ansehen",
     "ca.seeMore": "Mehr anzeigen",
     "ca.seeMonth": "Nur diesen Monat",
     "ca.emptyMonth": "Diesen Monat keine Spiele.",
@@ -1094,6 +1186,29 @@ const DICT = {
     "ca.remove": "Remover",
     "ca.useMatch": "Usar no modo jogo", "ca.month": "Calendário do mês", "ca.dayHint": "Toca num dia para ver o detalhe.", "ca.dayEmpty": "Não há jogos nem treino marcado para este dia.", "ca.dayTraining": "Dia de treino", "ca.legendMatch": "Jogo (do calendário importado)", "ca.legendTrain": "Treino", "ca.trainDaysLabel": "Dias de treino:",
     "ca.teamCrest": "Emblema da equipa",
+    "cf.title": "Cargas físicas · Pré-época",
+    "cf.hint": "Semáforo antes de treinar e carga que cada jogador pode assumir. Os verdes não é preciso reportar um a um; os amarelos e vermelhos sim, antes de começar a sessão.",
+    "cf.verde": "Verde",
+    "cf.amarillo": "Amarelo",
+    "cf.rojo": "Vermelho",
+    "cf.verdeHelp": "Sem dor, fadiga baixa, sono aceitável e energia normal. Treina conforme o plano.",
+    "cf.amarilloHelp": "Desconforto leve, má noite, fadiga 3-4/5 ou energia baixa. O treinador decide a adaptação.",
+    "cf.rojoHelp": "Dor que altera o gesto, coxear, doença, tonturas ou fadiga extrema. Não faz a sessão normal.",
+    "cf.avg": "Carga média",
+    "cf.load": "Carga",
+    "cf.note": "Nota",
+    "cf.notePh": "Desconforto, zona, adaptação… (opcional)",
+    "cf.noPlayers": "Ainda não há jogadores no plantel.",
+    "cf.share": "Guardar e partilhar",
+    "cf.reset": "Pôr todos a verde",
+    "cf.saved": "✓ Cargas guardadas.",
+    "cf.saveFail": "Não foi possível guardar. Tenta outra vez.",
+    "cf.noRole": "O teu papel não pode guardar as cargas desta equipa.",
+    "cf.notCloud": "Esta equipa ainda não está na nuvem: as cargas ficam guardadas só neste dispositivo.",
+    "cf.readOnly": "O teu papel pode consultar as cargas, mas não alterá-las.",
+    "cf.proTitle": "Cargas físicas é PRO",
+    "cf.proWhat": "Semáforo por jogador, percentagem de carga e notas, partilhado com todo o corpo técnico.",
+    "cf.proBtn": "Ver planos",
     "ca.seeMore": "Ver mais",
     "ca.seeMonth": "Ver só este mês",
     "ca.emptyMonth": "Nenhum jogo este mês.",
@@ -1464,23 +1579,27 @@ const ROLES = {
        sistema"— le salía el apartado en gris y con el aviso de que su rol no
        tiene acceso. */
     tabs: ["inicio", "equipo", "jugadores", "alineacion", "pizarra", "ejercicios", "entrenamiento", "temporada", "estadisticas", "convocatoria", "calendario", "partido", "analisis", "asistencia", "disciplina", "normativa", "usuarios", "coachai", "material", "premium"],
-    perms: ["editSquad", "editLineup", "editCall", "events", "ai", "viewUsers", "grantAccess", "createUsers", "editTraining", "viewStats", "discipline", "editDiscipline", "validateDiscipline", "viewDocs", "manageDocs", "editCal"] },
+    perms: ["editSquad", "editLineup", "editCall", "events", "ai", "viewUsers", "grantAccess", "createUsers", "editTraining", "viewStats", "discipline", "editDiscipline", "validateDiscipline", "viewDocs", "manageDocs", "editCal", "cargas"] },
   entrenador: { label: "Entrenador principal", color: "#36454F", icon: "◆",
     desc: "Control total de su equipo: edición de todo excepto gestión de usuarios.",
     tabs: ["inicio", "equipo", "jugadores", "alineacion", "pizarra", "ejercicios", "entrenamiento", "temporada", "estadisticas", "convocatoria", "calendario", "partido", "analisis", "asistencia", "disciplina", "normativa", "usuarios", "coachai", "material", "premium"],
-    perms: ["editSquad", "editLineup", "editCall", "events", "ai", "createUsers", "editTraining", "viewStats", "discipline", "editDiscipline", "viewDocs", "editCal"] },
+    perms: ["editSquad", "editLineup", "editCall", "events", "ai", "createUsers", "editTraining", "viewStats", "discipline", "editDiscipline", "viewDocs", "editCal", "cargas"] },
   segundo: { label: "Segundo entrenador", color: "#36454F", icon: "◈",
     desc: "Asiste al entrenador: alineaciones, entrenamiento y partido.",
     tabs: ["inicio", "equipo", "jugadores", "alineacion", "pizarra", "ejercicios", "entrenamiento", "temporada", "estadisticas", "convocatoria", "calendario", "partido", "analisis", "asistencia", "disciplina", "normativa", "coachai", "material", "premium"],
-    perms: ["editSquad", "editLineup", "events", "ai", "editTraining", "viewStats", "discipline", "editDiscipline", "viewDocs", "editCal"] },
+    perms: ["editSquad", "editLineup", "events", "ai", "editTraining", "viewStats", "discipline", "editDiscipline", "viewDocs", "editCal", "cargas"] },
   delegado: { label: "Delegado", color: "#36454F", icon: "▣",
     desc: "Logística del equipo: acta del partido, disciplina y normativa.",
-    tabs: ["inicio", "equipo", "jugadores", "convocatoria", "calendario", "partido", "asistencia", "disciplina", "normativa", "coachai", "material", "premium"],
-    perms: ["editSquad", "events", "ai", "discipline", "editDiscipline", "viewDocs", "manageDocs", "editCal"] },
+    /* "temporada" está aquí solo por las cargas físicas de pretemporada: en el
+       plan físico el delegado es quien pasa el semáforo diario y recoge el RPE,
+       así que necesita entrar. La planificación de pilares por meses de esa
+       misma pestaña sigue siendo del cuerpo técnico y a él no se le enseña. */
+    tabs: ["inicio", "equipo", "jugadores", "convocatoria", "calendario", "partido", "temporada", "asistencia", "disciplina", "normativa", "coachai", "material", "premium"],
+    perms: ["editSquad", "events", "ai", "discipline", "editDiscipline", "viewDocs", "manageDocs", "editCal", "cargas"] },
   master: { label: "Master · EBLDigital", color: "#36454F", icon: "★",
     desc: "Administración total: crea los equipos oficiales y da de alta a cualquiera.",
     tabs: ["inicio", "master", "equipos", "equipo", "jugadores", "alineacion", "pizarra", "ejercicios", "entrenamiento", "temporada", "estadisticas", "convocatoria", "calendario", "partido", "analisis", "asistencia", "disciplina", "normativa", "usuarios", "coachai", "material"],
-    perms: ["editSquad", "editLineup", "editCall", "events", "ai", "viewUsers", "grantAccess", "createUsers", "editTraining", "viewStats", "discipline", "editDiscipline", "validateDiscipline", "viewDocs", "manageDocs", "editCal", "master"] },
+    perms: ["editSquad", "editLineup", "editCall", "events", "ai", "viewUsers", "grantAccess", "createUsers", "editTraining", "viewStats", "discipline", "editDiscipline", "validateDiscipline", "viewDocs", "manageDocs", "editCal", "cargas", "master"] },
 };
 
 /* Qué roles puede repartir cada rol. No es lo mismo poder dar de alta que
@@ -1594,6 +1713,7 @@ const PRO_FEATURES = [
   { k: "docs", icon: "📑", free: "Consultar la normativa", pro: "Matriz de firmas y control de sanciones" },
   { k: "calls", icon: "📋", free: "Convocatoria actual", pro: "Histórico completo de convocatorias" },
   { k: "calendar", icon: "📅", free: `${FREE_CAPS.fixtures} partidos en el calendario`, pro: "Calendario completo por CSV e ICS" },
+  { k: "cargas", icon: "🚦", free: "—", pro: "Semáforo de cargas físicas por jugador y % de carga, compartido con el cuerpo técnico" },
   { k: "stats", icon: "📊", free: "Resumen básico", pro: "Estadísticas completas del equipo" },
   { k: "ai", icon: "✦", free: `${FREE_CAPS.aiMsgs} consultas al mes a Coach AI`, pro: "Coach AI sin límite" },
   { k: "video", icon: "🎬", free: "—", pro: "Vídeo de presentación de jugador" },
@@ -2071,6 +2191,21 @@ try { console.info(`COACHBASE Ai · v${APP_VERSION} · logotipo SVG integrado`);
    equipo, en Airtable, además de en este dispositivo. */
 const airPlanLeer = async (teamRec) => {
   try { const r = await cbFetch(`${AIR}?res=plan&team=${encodeURIComponent(teamRec)}`); if (!r.ok) return null; return await r.json(); } catch { return null; }
+};
+/* Cargas físicas de pretemporada por jugador (semáforo + % de carga). Mismo
+   patrón que el plan: un documento JSON por equipo en Airtable, para que el
+   semáforo que pasa el delegado por la mañana lo vea el entrenador antes de
+   montar la sesión, y no se quede en el móvil de quien lo escribió. */
+const airCargasLeer = async (teamRec) => {
+  try { const r = await cbFetch(`${AIR}?res=cargas&team=${encodeURIComponent(teamRec)}`); if (!r.ok) return null; return await r.json(); } catch { return null; }
+};
+const airCargasGuardar = async (teamRec, cargas) => {
+  try {
+    const r = await cbFetch(`${AIR}?res=cargas&team=${encodeURIComponent(teamRec)}`, {
+      method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ cargas: JSON.stringify(cargas) }),
+    });
+    return await r.json().catch(() => null);
+  } catch { return null; }
 };
 const airPlanGuardar = async (teamRec, plan) => {
   try {
@@ -11186,6 +11321,173 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
     setIaSesionEnviada((m) => ({ ...m, [mesKey]: true }));
   };
 
+  /* ================= CARGAS FÍSICAS DE PRETEMPORADA =================
+     El semáforo diario del plan físico, jugador a jugador. La idea del plan es
+     que quien pasa el control de bienestar no reporte los verdes uno a uno:
+     solo eleva amarillos y rojos antes de empezar. Por eso la pantalla ordena
+     por estado y saca arriba el recuento de a cuántos hay que mirar hoy.
+     El porcentaje de carga es una estimación de cuánto del trabajo previsto
+     puede asumir ese jugador; se escribe a mano porque quien la pone es quien
+     ha hablado con el chaval, no un cálculo. */
+  const SEMAFORO = [
+    { k: "verde", icon: "🟢", color: "#2f6b4f" },
+    { k: "amarillo", icon: "🟡", color: "#d9a441" },
+    { k: "rojo", icon: "🔴", color: "#b4474a" },
+  ];
+  const CARGA_DEFECTO = { estado: "verde", carga: 100, nota: "" };
+  const [cargas, setCargas] = useState({});
+  const [cargasMsg, setCargasMsg] = useState("");
+  const [cargasBusy, setCargasBusy] = useState(false);
+  const cargasKey = `cb_cargas_${session?.team?.id || "demo"}`;
+  useEffect(() => {
+    if (!session) return;
+    try { const raw = localStorage.getItem(cargasKey); if (raw) setCargas(JSON.parse(raw) || {}); } catch { /* noop */ }
+  }, [cargasKey]); // eslint-disable-line
+  useEffect(() => {
+    if (!session) return;
+    try { localStorage.setItem(cargasKey, JSON.stringify(cargas)); } catch { /* noop */ }
+  }, [cargas, cargasKey]); // eslint-disable-line
+  useEffect(() => {
+    const rec = session?.team?.rec;
+    if (!rec || session?.email === "demo") return;
+    let vivo = true;
+    (async () => {
+      const d = await airCargasLeer(rec);
+      if (!vivo || !d?.cargas) return;
+      try { const remoto = JSON.parse(d.cargas); if (remoto && typeof remoto === "object") setCargas(remoto); } catch { /* json roto en Airtable: se ignora */ }
+    })();
+    return () => { vivo = false; };
+  }, [session?.team?.rec]); // eslint-disable-line
+  const cargaDe = (id) => ({ ...CARGA_DEFECTO, ...(cargas[id] || {}) });
+  const setCarga = (id, campo, valor) => setCargas((c) => ({ ...c, [id]: { ...CARGA_DEFECTO, ...(c[id] || {}), [campo]: valor } }));
+  const guardarCargas = async () => {
+    if (cargasBusy) return;
+    if (!session?.team?.rec) { setCargasMsg(t("cf.notCloud")); return; }
+    setCargasBusy(true); setCargasMsg("");
+    const out = await airCargasGuardar(session.team.rec, cargas);
+    setCargasBusy(false);
+    setCargasMsg(out?.ok ? t("cf.saved") : out?.reason === "no_autorizado" ? t("cf.noRole") : t("cf.saveFail"));
+    if (out?.ok) setTimeout(() => setCargasMsg(""), 4000);
+  };
+  /* Media de carga del grupo: la referencia rápida de si hoy se entrena el plan
+     completo o hay que recortarlo. Solo cuenta a los jugadores de la plantilla,
+     no a los que ya no están pero siguen en el JSON guardado. */
+  const cargaMedia = players.length
+    ? Math.round(players.reduce((s, p) => s + (Number(cargaDe(p.id).carga) || 0), 0) / players.length)
+    : 0;
+  const porEstado = (k) => players.filter((p) => cargaDe(p.id).estado === k).length;
+
+  const renderCargas = () => {
+    const puede = can("cargas");
+    /* Primero los rojos, después los amarillos: es el orden en el que hay que
+       mirarlos antes de empezar la sesión. Dentro de cada estado, por dorsal. */
+    const orden = { rojo: 0, amarillo: 1, verde: 2 };
+    const lista = [...players].sort((a, b) => {
+      const d = orden[cargaDe(a.id).estado] - orden[cargaDe(b.id).estado];
+      return d !== 0 ? d : (Number(a.d) || 0) - (Number(b.d) || 0);
+    });
+    return (
+      <Card title={`🚦 ${t("cf.title")}`}>
+        {!isPro ? (
+          <div className="rounded-lg border p-4 text-center" style={{ borderColor: AC, background: C.panel2 }}>
+            <div className="font-display uppercase tracking-wide text-lg" style={{ color: AC }}>★ {t("cf.proTitle")}</div>
+            <div className="text-sm mt-1.5" style={{ color: C.chalk }}>{t("cf.proWhat")}</div>
+            <button onClick={() => proAlert("cargas")}
+              className="mt-3 text-sm px-4 py-2 rounded-lg font-display uppercase tracking-wide font-semibold"
+              style={{ background: AC, color: C.sobre }}>{t("cf.proBtn")}</button>
+          </div>
+        ) : (
+          <>
+            <div className="text-xs mb-3 leading-relaxed" style={{ color: C.dim }}>{t("cf.hint")}</div>
+            {/* Lo que hay que mirar hoy, de un vistazo: los verdes no se
+                reportan uno a uno, los amarillos y rojos sí. */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-3">
+              {SEMAFORO.map((s) => (
+                <div key={s.k} className="rounded-lg border p-2.5" style={{ borderColor: C.line, background: C.panel2 }}>
+                  <div className="text-[11px] font-display uppercase tracking-wide" style={{ color: s.color }}>{s.icon} {t(`cf.${s.k}`)}</div>
+                  <div className="font-display text-2xl tabular-nums" style={{ color: porEstado(s.k) ? C.chalk : C.dim }}>{porEstado(s.k)}</div>
+                </div>
+              ))}
+              <div className="rounded-lg border p-2.5" style={{ borderColor: AC, background: C.panel2 }}>
+                <div className="text-[11px] font-display uppercase tracking-wide" style={{ color: AC }}>{t("cf.avg")}</div>
+                <div className="font-display text-2xl tabular-nums" style={{ color: C.chalk }}>{cargaMedia}%</div>
+              </div>
+            </div>
+
+            {players.length === 0 ? (
+              <div className="text-sm" style={{ color: C.dim }}>{t("cf.noPlayers")}</div>
+            ) : (
+              <div className="space-y-1.5">
+                {lista.map((p) => {
+                  const c = cargaDe(p.id);
+                  const col = (SEMAFORO.find((s) => s.k === c.estado) || SEMAFORO[0]).color;
+                  return (
+                    <div key={p.id} className="rounded-lg border p-2.5" style={{ borderColor: c.estado === "verde" ? C.line : col, background: C.panel2 }}>
+                      <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+                        <div className="text-sm flex-1 min-w-[150px]" style={{ color: C.chalk }}>
+                          <span className="tabular-nums" style={{ color: C.dim }}>#{p.d}</span> {p.n}
+                        </div>
+                        <div className="flex gap-1.5">
+                          {SEMAFORO.map((s) => (
+                            <button key={s.k} onClick={() => puede && setCarga(p.id, "estado", s.k)} disabled={!puede}
+                              aria-pressed={c.estado === s.k} aria-label={`${p.n}: ${t(`cf.${s.k}`)}`} title={t(`cf.${s.k}Help`)}
+                              className="text-base w-9 h-9 rounded-lg border flex items-center justify-center disabled:opacity-60"
+                              style={{
+                                borderColor: c.estado === s.k ? s.color : C.line,
+                                borderWidth: c.estado === s.k ? 2 : 1,
+                                background: c.estado === s.k ? `${s.color}22` : "transparent",
+                                filter: c.estado === s.k ? "none" : "grayscale(1) opacity(.55)",
+                              }}>{s.icon}</button>
+                          ))}
+                        </div>
+                        {/* El porcentaje va con barra además del número: el
+                            número dice cuánto y la barra deja comparar la fila
+                            con las de arriba sin leerlas una a una. */}
+                        <div className="flex items-center gap-2 w-full sm:w-auto">
+                          <input type="range" min={0} max={100} step={5} value={c.carga} disabled={!puede}
+                            onChange={(e) => setCarga(p.id, "carga", Number(e.target.value))}
+                            aria-label={`${t("cf.load")} ${p.n}`}
+                            className="flex-1 sm:w-32 accent-current" style={{ color: col }} />
+                          <input type="number" min={0} max={100} value={c.carga} disabled={!puede}
+                            onChange={(e) => setCarga(p.id, "carga", Math.max(0, Math.min(100, Number(e.target.value) || 0)))}
+                            className="w-16 px-2 py-1 rounded-lg border bg-transparent text-sm tabular-nums text-right"
+                            style={{ borderColor: C.line, color: C.chalk }} />
+                          <span className="text-sm" style={{ color: C.dim }}>%</span>
+                        </div>
+                      </div>
+                      {(puede || c.nota) && (
+                        <input value={c.nota} disabled={!puede}
+                          onChange={(e) => setCarga(p.id, "nota", e.target.value)}
+                          placeholder={t("cf.notePh")} aria-label={`${t("cf.note")} ${p.n}`}
+                          className="mt-2 w-full px-2.5 py-1.5 rounded-lg border bg-transparent text-xs"
+                          style={{ borderColor: C.line, color: C.chalk }} />
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+
+            {puede && (
+              <div className="mt-4 pt-3 border-t flex flex-wrap items-center gap-3" style={{ borderColor: C.line }}>
+                <button onClick={guardarCargas} disabled={cargasBusy}
+                  className="font-display uppercase tracking-wide text-sm px-4 py-2.5 rounded-lg font-semibold disabled:opacity-50"
+                  style={{ background: AC, color: C.sobre }}>
+                  {cargasBusy ? t("a.sending") : t("cf.share")}
+                </button>
+                <button onClick={() => setCargas({})}
+                  className="text-sm px-4 py-2.5 rounded-lg border font-display uppercase tracking-wide"
+                  style={{ borderColor: C.line, color: C.dim }}>{t("cf.reset")}</button>
+                {cargasMsg && <span className="text-xs" style={{ color: cargasMsg === t("cf.saved") ? C.green : C.red }}>{cargasMsg}</span>}
+              </div>
+            )}
+            {!puede && <div className="text-[11px] mt-3" style={{ color: C.dim }}>{t("cf.readOnly")}</div>}
+          </>
+        )}
+      </Card>
+    );
+  };
+
   const renderSeason = () => (
     <div className="space-y-4">
       <Card title={t("se.title")}>
@@ -12672,7 +12974,17 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
           {tab === "usuarios" && can("viewUsers") && renderUsers()}
           {tab === "pizarra" && <Whiteboard AC={AC} lang={lang} squad={players} teamId={session.team?.id} teamRec={session.team?.rec} isF7={!!session.team?.f7} canSavePlays={isPro} onPro={proAlert} pendingExId={pendingExId} onConsumePending={() => setPendingExId(null)} pendingPlayId={pendingPlayId} onConsumePlay={() => setPendingPlayId(null)} />}
           {tab === "ejercicios" && can("editTraining") && renderExercises()}
-          {tab === "temporada" && can("editTraining") && renderSeason()}
+          {/* Dos apartados con dueños distintos: las cargas físicas las lleva
+              quien pasa el semáforo a diario (delegado incluido) y la
+              planificación por meses el cuerpo técnico que entrena. Por eso la
+              pestaña se abre con cualquiera de los dos permisos y cada bloque
+              se enseña solo a quien le toca. */}
+          {tab === "temporada" && (can("editTraining") || can("cargas")) && (
+            <div className="space-y-4">
+              {renderCargas()}
+              {can("editTraining") && renderSeason()}
+            </div>
+          )}
           {tab === "entrenamiento" && can("editTraining") && renderTraining()}
           {tab === "estadisticas" && can("viewStats") && renderStats()}
           {tab === "coachai" && can("ai") && renderCoach()}

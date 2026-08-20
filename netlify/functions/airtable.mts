@@ -113,6 +113,11 @@ const EQ = {
      hace que el segundo entrenador y el delegado vean en el banquillo la misma
      jugada que preparó el entrenador el martes. */
   jugadas: "fldAMfVva4jTk0PCH",
+  /* Cargas físicas de pretemporada por jugador (semáforo, % de carga y nota),
+     en JSON y por el mismo motivo que el plan: un documento por equipo. Lo
+     rellena a diario quien pasa el control de bienestar —en el reparto del
+     plan físico, el delegado— y lo lee el cuerpo técnico antes de la sesión. */
+  cargas: "fld57z5y3QWsk1DnF",
 };
 const I = {
   ref: "fldv5Gtrpw2e6xopC", fecha: "fldxhO3y8YcOA5XBI", ctx: "fldRG05YcO16bs8Mu",
@@ -652,6 +657,42 @@ export default async (req: Request) => {
         if (!r.ok) {
           const err = await r.text().catch(() => "");
           console.error(`[plan] Airtable ${r.status}: ${err.slice(0, 300)}`);
+          return j({ ok: false, reason: "airtable" }, 400);
+        }
+        return j({ ok: true });
+      }
+      return j({ error: "Petición no soportada" }, 400);
+    }
+
+    /* ============ CARGAS FÍSICAS DE PRETEMPORADA ============
+       GET  ?res=cargas&team=recX -> el JSON guardado
+       POST ?res=cargas&team=recX { cargas }
+       Mismas reglas que el plan de temporada y las jugadas: un documento por
+       equipo, lo lee el cuerpo técnico y lo escribe el propio equipo. Aquí
+       "el propio equipo" incluye al delegado a propósito: en el plan físico
+       es quien pasa el semáforo diario y avisa de amarillos y rojos antes de
+       empezar, así que si no pudiera escribir, el control no existiría. */
+    if (res === "cargas") {
+      const team = url.searchParams.get("team") || "";
+      if (!team) return j({ error: "falta_equipo" }, 400);
+      if (req.method === "GET") {
+        const r = await fetch(`${table(T_EQUIPOS)}/${team}?returnFieldsByFieldId=true`, { headers: H });
+        if (!r.ok) return j({ error: "no_encontrado" }, 404);
+        const d = await r.json().catch(() => ({}));
+        return j({ cargas: d?.fields?.[EQ.cargas] || "" });
+      }
+      if (req.method === "POST") {
+        const suyo = String(sesion?.equipo || "") === team;
+        const puede = suyo || ["master", "director"].includes(rolKey(sesion?.rol));
+        if (!puede) return j({ ok: false, reason: "no_autorizado" }, 403);
+        const b = await req.json();
+        const r = await fetch(`${table(T_EQUIPOS)}/${team}`, {
+          method: "PATCH", headers: H,
+          body: JSON.stringify({ fields: { [EQ.cargas]: String(b.cargas || "") }, typecast: true }),
+        });
+        if (!r.ok) {
+          const err = await r.text().catch(() => "");
+          console.error(`[cargas] Airtable ${r.status}: ${err.slice(0, 300)}`);
           return j({ ok: false, reason: "airtable" }, 400);
         }
         return j({ ok: true });
