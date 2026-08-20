@@ -174,6 +174,19 @@ const DICT = {
     "ca.remove": "Quitar",
     "ca.useMatch": "Usar en modo partido", "ca.month": "Calendario del mes", "ca.dayHint": "Toca un día para ver su detalle.", "ca.dayEmpty": "No hay partidos ni entrenamiento programado este día.", "ca.dayTraining": "Día de entrenamiento", "ca.legendMatch": "Partido (del calendario importado)", "ca.legendTrain": "Entrenamiento", "ca.trainDaysLabel": "Días de entreno:",
     "ca.teamCrest": "Escudo del equipo",
+    "cf.closeDay": "Cerrar el día",
+    "cf.dayClosed": "✓ Día cerrado y guardado en el histórico.",
+    "cf.dayClosedLocal": "✓ Día cerrado. Sin equipo en la nube, el histórico se queda en este dispositivo.",
+    "cf.histTitle": "Histórico de cargas",
+    "cf.histHint": "Los días ya cerrados. Sirve para ver la tendencia del grupo y, sobre todo, para comparar a un jugador consigo mismo a lo largo del bloque: nunca con sus compañeros.",
+    "cf.histTrend": "Carga interna por sesión",
+    "cf.histPlayer": "Ver un jugador",
+    "cf.histPickPlayer": "Elige un jugador…",
+    "cf.histNoPlayerData": "Este jugador no tiene ningún RPE registrado en estos días.",
+    "cf.histSessions": "sesiones",
+    "cf.histMissing": "sin registrar",
+    "cf.histNoPlan": "Sesión fuera del plan",
+    "cf.histShowing": "Mostrando los últimos",
     "pt.title": "Plan de pretemporada",
     "pt.week": "Semana",
     "pt.session": "Sesión",
@@ -227,7 +240,6 @@ const DICT = {
     "cf.notePh": "Molestia, zona, adaptación… (opcional)",
     "cf.noPlayers": "Todavía no hay jugadores en la plantilla.",
     "cf.share": "Guardar y compartir",
-    "cf.reset": "Empezar día nuevo",
     "cf.saved": "✓ Cargas guardadas.",
     "cf.saveFail": "No se han podido guardar. Inténtalo otra vez.",
     "cf.noRole": "Tu rol no puede guardar las cargas de este equipo.",
@@ -417,6 +429,19 @@ const DICT = {
     "ca.remove": "Remove",
     "ca.useMatch": "Use in match mode", "ca.month": "Month calendar", "ca.dayHint": "Tap a day to see its detail.", "ca.dayEmpty": "No fixtures or training scheduled this day.", "ca.dayTraining": "Training day", "ca.legendMatch": "Fixture (from the imported calendar)", "ca.legendTrain": "Training", "ca.trainDaysLabel": "Training days:",
     "ca.teamCrest": "Team crest",
+    "cf.closeDay": "Close the day",
+    "cf.dayClosed": "✓ Day closed and saved to the history.",
+    "cf.dayClosedLocal": "✓ Day closed. With no team in the cloud, the history stays on this device.",
+    "cf.histTitle": "Load history",
+    "cf.histHint": "The days already closed. Use it to see the group's trend and, above all, to compare a player with himself across the block — never with his team-mates.",
+    "cf.histTrend": "Internal load per session",
+    "cf.histPlayer": "View a player",
+    "cf.histPickPlayer": "Pick a player…",
+    "cf.histNoPlayerData": "This player has no RPE recorded on these days.",
+    "cf.histSessions": "sessions",
+    "cf.histMissing": "not recorded",
+    "cf.histNoPlan": "Session outside the plan",
+    "cf.histShowing": "Showing the last",
     "pt.title": "Pre-season plan",
     "pt.week": "Week",
     "pt.session": "Session",
@@ -470,7 +495,6 @@ const DICT = {
     "cf.notePh": "Discomfort, area, adjustment… (optional)",
     "cf.noPlayers": "No players in the squad yet.",
     "cf.share": "Save and share",
-    "cf.reset": "Start a new day",
     "cf.saved": "✓ Loads saved.",
     "cf.saveFail": "Could not save. Try again.",
     "cf.noRole": "Your role cannot save this team's loads.",
@@ -677,6 +701,19 @@ const DICT = {
     "ca.remove": "Retirer",
     "ca.useMatch": "Utiliser en mode match", "ca.month": "Calendrier du mois", "ca.dayHint": "Touchez un jour pour voir son détail.", "ca.dayEmpty": "Aucun match ni entraînement prévu ce jour.", "ca.dayTraining": "Jour d'entraînement", "ca.legendMatch": "Match (du calendrier importé)", "ca.legendTrain": "Entraînement", "ca.trainDaysLabel": "Jours d'entraînement :",
     "ca.teamCrest": "Écusson de l'équipe",
+    "cf.closeDay": "Clore la journée",
+    "cf.dayClosed": "✓ Journée close et enregistrée dans l'historique.",
+    "cf.dayClosedLocal": "✓ Journée close. Sans équipe dans le cloud, l'historique reste sur cet appareil.",
+    "cf.histTitle": "Historique des charges",
+    "cf.histHint": "Les journées déjà closes. Sert à voir la tendance du groupe et surtout à comparer un joueur à lui-même sur le bloc — jamais à ses coéquipiers.",
+    "cf.histTrend": "Charge interne par séance",
+    "cf.histPlayer": "Voir un joueur",
+    "cf.histPickPlayer": "Choisissez un joueur…",
+    "cf.histNoPlayerData": "Ce joueur n'a aucun RPE enregistré sur ces journées.",
+    "cf.histSessions": "séances",
+    "cf.histMissing": "non renseignées",
+    "cf.histNoPlan": "Séance hors plan",
+    "cf.histShowing": "Affichage des dernières",
     "pt.title": "Plan de présaison",
     "pt.week": "Semaine",
     "pt.session": "Séance",
@@ -730,7 +767,6 @@ const DICT = {
     "cf.notePh": "Gêne, zone, adaptation… (facultatif)",
     "cf.noPlayers": "Aucun joueur dans l'effectif pour l'instant.",
     "cf.share": "Enregistrer et partager",
-    "cf.reset": "Commencer une nouvelle journée",
     "cf.saved": "✓ Charges enregistrées.",
     "cf.saveFail": "Enregistrement impossible. Réessayez.",
     "cf.noRole": "Votre rôle ne peut pas enregistrer les charges de cette équipe.",
@@ -1010,6 +1046,19 @@ const DICT = {
     "ca.remove": "Entfernen",
     "ca.useMatch": "Im Spielmodus verwenden", "ca.month": "Monatskalender", "ca.dayHint": "Tippe auf einen Tag, um Details zu sehen.", "ca.dayEmpty": "An diesem Tag sind weder Spiele noch Training geplant.", "ca.dayTraining": "Trainingstag", "ca.legendMatch": "Spiel (aus importiertem Spielplan)", "ca.legendTrain": "Training", "ca.trainDaysLabel": "Trainingstage:",
     "ca.teamCrest": "Mannschaftswappen",
+    "cf.closeDay": "Tag abschließen",
+    "cf.dayClosed": "✓ Tag abgeschlossen und im Verlauf gespeichert.",
+    "cf.dayClosedLocal": "✓ Tag abgeschlossen. Ohne Mannschaft in der Cloud bleibt der Verlauf auf diesem Gerät.",
+    "cf.histTitle": "Belastungsverlauf",
+    "cf.histHint": "Die bereits abgeschlossenen Tage. Zeigt den Trend der Mannschaft und vor allem den Vergleich eines Spielers mit sich selbst über den Block — nie mit seinen Mitspielern.",
+    "cf.histTrend": "Interne Belastung pro Einheit",
+    "cf.histPlayer": "Spieler ansehen",
+    "cf.histPickPlayer": "Spieler auswählen…",
+    "cf.histNoPlayerData": "Für diesen Spieler ist an diesen Tagen kein RPE erfasst.",
+    "cf.histSessions": "Einheiten",
+    "cf.histMissing": "nicht erfasst",
+    "cf.histNoPlan": "Einheit außerhalb des Plans",
+    "cf.histShowing": "Angezeigt die letzten",
     "pt.title": "Vorbereitungsplan",
     "pt.week": "Woche",
     "pt.session": "Einheit",
@@ -1063,7 +1112,6 @@ const DICT = {
     "cf.notePh": "Beschwerden, Bereich, Anpassung… (optional)",
     "cf.noPlayers": "Noch keine Spieler im Kader.",
     "cf.share": "Speichern und teilen",
-    "cf.reset": "Neuen Tag beginnen",
     "cf.saved": "✓ Belastungen gespeichert.",
     "cf.saveFail": "Speichern nicht möglich. Versuch es noch einmal.",
     "cf.noRole": "Deine Rolle darf die Belastungen dieser Mannschaft nicht speichern.",
@@ -1342,6 +1390,19 @@ const DICT = {
     "ca.remove": "Remover",
     "ca.useMatch": "Usar no modo jogo", "ca.month": "Calendário do mês", "ca.dayHint": "Toca num dia para ver o detalhe.", "ca.dayEmpty": "Não há jogos nem treino marcado para este dia.", "ca.dayTraining": "Dia de treino", "ca.legendMatch": "Jogo (do calendário importado)", "ca.legendTrain": "Treino", "ca.trainDaysLabel": "Dias de treino:",
     "ca.teamCrest": "Emblema da equipa",
+    "cf.closeDay": "Fechar o dia",
+    "cf.dayClosed": "✓ Dia fechado e guardado no histórico.",
+    "cf.dayClosedLocal": "✓ Dia fechado. Sem equipa na nuvem, o histórico fica neste dispositivo.",
+    "cf.histTitle": "Histórico de cargas",
+    "cf.histHint": "Os dias já fechados. Serve para ver a tendência do grupo e, sobretudo, para comparar um jogador consigo próprio ao longo do bloco — nunca com os colegas.",
+    "cf.histTrend": "Carga interna por sessão",
+    "cf.histPlayer": "Ver um jogador",
+    "cf.histPickPlayer": "Escolhe um jogador…",
+    "cf.histNoPlayerData": "Este jogador não tem nenhum RPE registado nestes dias.",
+    "cf.histSessions": "sessões",
+    "cf.histMissing": "por registar",
+    "cf.histNoPlan": "Sessão fora do plano",
+    "cf.histShowing": "A mostrar os últimos",
     "pt.title": "Plano de pré-época",
     "pt.week": "Semana",
     "pt.session": "Sessão",
@@ -1395,7 +1456,6 @@ const DICT = {
     "cf.notePh": "Desconforto, zona, adaptação… (opcional)",
     "cf.noPlayers": "Ainda não há jogadores no plantel.",
     "cf.share": "Guardar e partilhar",
-    "cf.reset": "Começar dia novo",
     "cf.saved": "✓ Cargas guardadas.",
     "cf.saveFail": "Não foi possível guardar. Tenta outra vez.",
     "cf.noRole": "O teu papel não pode guardar as cargas desta equipa.",
@@ -6821,6 +6881,8 @@ export default function App() {
      obliga a bajar media pantalla para llegar al importador. Con "ver más" se
      despliega la temporada entera cuando de verdad hace falta. */
   const [calVerTodo, setCalVerTodo] = useState(false);
+  /* Jugador elegido en el histórico de cargas, para verlo contra sí mismo. */
+  const [histPlayer, setHistPlayer] = useState(null);
   useEffect(() => {
     if (!session) return;
     try { const raw = localStorage.getItem(trainDaysKey); if (raw) setTrainDays(JSON.parse(raw)); } catch { /* noop */ }
@@ -11729,6 +11791,177 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
     : 0;
   const aRevisar = players.filter((p) => Number(cargaDe(p.id).rpe) >= 8).length;
 
+  /* ---------------- Histórico de partes ----------------
+     El parte del día se sobrescribía: al abrir la app al día siguiente no
+     quedaba nada de lo anterior. Pero el plan dice que el RPE sirve para
+     "comparar al jugador consigo mismo y observar tendencias", y sin días
+     guardados no hay tendencia que observar.
+
+     Cada día cerrado se archiva comprimido en la misma bolsa del equipo: fecha,
+     sesión del plan, minutos reales y, por jugador, [semáforo, carga, RPE,
+     adaptada]. Un día con 19 jugadores ocupa unos 300 caracteres, así que una
+     temporada entera cabe de sobra en el documento del equipo y no hace falta
+     una tabla nueva. Se guardan los 200 últimos por si acaso. */
+  const HIST_MAX = 200;
+  const EST_IDX = ["verde", "amarillo", "rojo"];
+  const historico = Array.isArray(cargas._hist) ? cargas._hist : [];
+  /* Cuentas de un día archivado. Se recalculan al leer en vez de guardarse:
+     así un día viejo sigue cuadrando aunque cambie la plantilla. */
+  const resumenDia = (d) => {
+    const filas = Object.values(d.j || {});
+    const conRpeD = filas.filter((f) => Number(f[2]) > 0);
+    const media = conRpeD.length ? conRpeD.reduce((s, f) => s + Number(f[2]), 0) / conRpeD.length : 0;
+    return {
+      media, interna: Math.round(media * (Number(d.m) || 0)),
+      registrados: conRpeD.length, total: filas.length,
+      amarillos: filas.filter((f) => f[0] === 1).length,
+      rojos: filas.filter((f) => f[0] === 2).length,
+      revisar: filas.filter((f) => Number(f[2]) >= 8).length,
+      adaptadas: filas.filter((f) => f[3] === 1).length,
+    };
+  };
+  const cerrarDia = async () => {
+    if (cargasBusy) return;
+    const j = {};
+    for (const p of players) {
+      const c = cargaDe(p.id);
+      j[p.id] = [Math.max(0, EST_IDX.indexOf(c.estado)), Number(c.carga) || 0, Number(c.rpe) || 0, c.adaptada ? 1 : 0];
+    }
+    const entrada = { f: sesionRpe.fecha || hoyISO(), p: Number(sesionRpe.plan) || 0, m: Number(sesionRpe.min) || 0, j };
+    /* Si ya hay un parte archivado de esa misma fecha se sustituye, no se
+       duplica: cerrar el día dos veces por error no debe inventar sesiones. */
+    const resto = historico.filter((d) => d.f !== entrada.f);
+    const nuevo = [...resto, entrada].sort((a, b) => (a.f < b.f ? -1 : 1)).slice(-HIST_MAX);
+    /* La plantilla arranca limpia el día siguiente, pero el histórico y la
+       sesión del plan que tocaba se conservan. */
+    const siguiente = { _hist: nuevo, _sesion: { ...SESION_DEFECTO, fecha: hoyISO(), min: sesionRpe.min, plan: sesionRpe.plan } };
+    setCargas(siguiente);
+    setCargasBusy(true); setCargasMsg("");
+    if (session?.team?.rec) {
+      const out = await airCargasGuardar(session.team.rec, siguiente);
+      setCargasMsg(out?.ok ? t("cf.dayClosed") : out?.reason === "no_autorizado" ? t("cf.noRole") : t("cf.saveFail"));
+    } else {
+      setCargasMsg(t("cf.dayClosedLocal"));
+    }
+    setCargasBusy(false);
+    setTimeout(() => setCargasMsg(""), 5000);
+  };
+
+  const renderHistorico = () => {
+    if (!isPro || historico.length === 0) return null;
+    const dias = [...historico].slice(-20);
+    const maxInterna = Math.max(1, ...dias.map((d) => resumenDia(d).interna));
+    const jugadorSel = players.find((p) => p.id === histPlayer) || null;
+    return (
+      <Card title={`📈 ${t("cf.histTitle")}`}>
+        <div className="text-xs mb-3 leading-relaxed" style={{ color: C.dim }}>{t("cf.histHint")}</div>
+
+        {/* Tendencia del grupo. Se dibuja la carga interna, no el RPE suelto:
+            una sesión corta a RPE 8 y una larga a RPE 5 no cargan lo mismo, y
+            es la subida sostenida lo que hay que ver venir. */}
+        <div className="rounded-lg border p-3 mb-3" style={{ borderColor: C.line, background: C.panel2 }}>
+          <div className="text-[11px] font-display uppercase tracking-wide mb-2" style={{ color: C.dim }}>{t("cf.histTrend")}</div>
+          {/* h-28 y no h-24: la barra más alta más su cifra encima y la fecha
+              debajo no cabían en 96 px y el número quedaba cortado. */}
+          <div className="flex items-end gap-1 h-28 overflow-x-auto">
+            {dias.map((d) => {
+              const r = resumenDia(d);
+              const col = r.media >= 8 ? "#b4474a" : r.media === 0 ? C.line : r.media >= 7 ? "#d9a441" : r.media >= 5 ? AC : "#2f6b4f";
+              return (
+                <div key={d.f} className="flex flex-col items-center justify-end gap-1 shrink-0" style={{ width: 26 }}
+                  title={`${d.f} · ${t("cf.rpeAvg")} ${r.media.toFixed(1)} · ${r.interna} ${t("cf.units")}`}>
+                  <span className="text-[9px] tabular-nums" style={{ color: C.dim }}>{r.media ? r.media.toFixed(1) : ""}</span>
+                  <div className="w-full rounded-t" style={{ height: `${Math.max(3, (r.interna / maxInterna) * 68)}px`, background: col }} />
+                  <span className="text-[9px] tabular-nums" style={{ color: C.dim }}>{d.f.slice(8, 10)}/{d.f.slice(5, 7)}</span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Un jugador contra sí mismo, que es la comparación que pide el plan
+            —nunca contra sus compañeros—. */}
+        <div className="mb-3">
+          <label className="block">
+            <span className="text-[11px] block mb-1" style={{ color: C.dim }}>{t("cf.histPlayer")}</span>
+            <select value={histPlayer || ""} onChange={(e) => setHistPlayer(Number(e.target.value) || null)}
+              className="w-full sm:w-72 px-2.5 py-1.5 rounded-lg border text-sm"
+              style={{ background: C.panel2, borderColor: C.line, color: C.chalk }}>
+              <option value="" style={{ background: C.panel }}>{t("cf.histPickPlayer")}</option>
+              {players.map((p) => <option key={p.id} value={p.id} style={{ background: C.panel }}>#{p.d} {p.n}</option>)}
+            </select>
+          </label>
+          {jugadorSel && (
+            <div className="mt-2 rounded-lg border p-3" style={{ borderColor: C.line, background: C.panel2 }}>
+              {jugadorSel.aviso && (
+                <div className="text-[11px] px-2.5 py-1.5 rounded-lg border mb-2 leading-snug"
+                  style={{ borderColor: C.warn, background: `${C.warn}14`, color: C.warn }}>⚠ {jugadorSel.aviso}</div>
+              )}
+              <div className="flex flex-wrap gap-1.5">
+                {dias.map((d) => {
+                  const f = (d.j || {})[jugadorSel.id];
+                  const rpe = f ? Number(f[2]) : 0;
+                  const est = f ? EST_IDX[f[0]] || "verde" : "verde";
+                  const col = !f ? C.line : est === "rojo" ? "#b4474a" : est === "amarillo" ? "#d9a441" : rpe >= 8 ? "#b4474a" : rpe >= 7 ? "#d9a441" : rpe > 0 ? "#2f6b4f" : C.line;
+                  return (
+                    <div key={d.f} className="rounded-lg border px-2 py-1.5 text-center shrink-0" style={{ borderColor: col, minWidth: 54 }}
+                      title={`${d.f}${f ? ` · ${t("cf.load")} ${f[1]}%${f[3] === 1 ? ` · ${t("cf.adapted")}` : ""}` : ""}`}>
+                      <div className="text-[9px] tabular-nums" style={{ color: C.dim }}>{d.f.slice(8, 10)}/{d.f.slice(5, 7)}</div>
+                      <div className="font-display text-sm tabular-nums" style={{ color: col }}>{rpe > 0 ? rpe : "—"}</div>
+                    </div>
+                  );
+                })}
+              </div>
+              {(() => {
+                const suyos = dias.map((d) => Number(((d.j || {})[jugadorSel.id] || [])[2]) || 0).filter((x) => x > 0);
+                if (!suyos.length) return <div className="text-[11px] mt-2" style={{ color: C.dim }}>{t("cf.histNoPlayerData")}</div>;
+                const media = (suyos.reduce((a, b) => a + b, 0) / suyos.length).toFixed(1);
+                const faltas = dias.length - suyos.length;
+                return (
+                  <div className="text-[11px] mt-2" style={{ color: C.dim }}>
+                    {t("cf.rpeAvg")} <strong style={{ color: C.chalk }}>{media}</strong> · {suyos.length} {t("cf.histSessions")}
+                    {faltas > 0 && ` · ${faltas} ${t("cf.histMissing")}`}
+                  </div>
+                );
+              })()}
+            </div>
+          )}
+        </div>
+
+        {/* El detalle, del más reciente al más antiguo. */}
+        <div className="space-y-1.5">
+          {[...dias].reverse().map((d) => {
+            const r = resumenDia(d);
+            const s = PRETEMPORADA.flatMap((w) => w.sesiones).find((x) => x.n === d.p);
+            const desvio = !s || !r.media ? 0 : r.media > s.rpeMax ? 1 : r.media < s.rpeMin ? -1 : 0;
+            const col = desvio === 0 ? C.green : desvio > 0 ? "#b4474a" : "#d9a441";
+            return (
+              <div key={d.f} className="rounded-lg border p-2.5 flex flex-wrap items-center gap-x-3 gap-y-1" style={{ borderColor: C.line, background: C.panel2 }}>
+                <div className="text-sm tabular-nums shrink-0" style={{ color: C.chalk }}>{d.f.slice(8, 10)}/{d.f.slice(5, 7)}</div>
+                <div className="text-sm flex-1 min-w-[150px]" style={{ color: C.chalk }}>
+                  {s ? `S${s.n} · ${s.nombre}` : t("cf.histNoPlan")}
+                </div>
+                <div className="text-[11px] tabular-nums shrink-0" style={{ color: C.dim }}>{d.m}′</div>
+                <div className="text-[11px] tabular-nums shrink-0" style={{ color: s && r.media ? col : C.dim }}>
+                  {t("cf.rpe")} {r.media ? r.media.toFixed(1) : "—"}{s ? ` / ${s.rpe}` : ""}
+                </div>
+                <div className="text-[11px] tabular-nums shrink-0" style={{ color: C.dim }}>{r.interna} {t("cf.units")}</div>
+                <div className="flex gap-1.5 shrink-0 text-[11px]">
+                  {r.amarillos > 0 && <span style={{ color: "#d9a441" }}>🟡 {r.amarillos}</span>}
+                  {r.rojos > 0 && <span style={{ color: "#b4474a" }}>🔴 {r.rojos}</span>}
+                  {r.adaptadas > 0 && <span style={{ color: C.dim }}>{r.adaptadas} {t("cf.adapted").toLowerCase()}</span>}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        {historico.length > dias.length && (
+          <div className="text-[11px] mt-2" style={{ color: C.dim }}>{t("cf.histShowing")} {dias.length} / {historico.length}</div>
+        )}
+      </Card>
+    );
+  };
+
   const renderCargas = () => {
     const puede = can("cargas");
     /* Primero los rojos, después los amarillos: es el orden en el que hay que
@@ -11749,9 +11982,11 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
           style={{ background: AC, color: C.sobre }}>
           {cargasBusy ? t("a.sending") : t("cf.share")}
         </button>
-        <button onClick={() => setCargas({ _sesion: { ...SESION_DEFECTO, fecha: hoyISO() } })}
-          className="text-sm px-4 py-2.5 rounded-lg border font-display uppercase tracking-wide"
-          style={{ borderColor: C.line, color: C.dim }}>{t("cf.reset")}</button>
+        {/* "Cerrar el día" archiva el parte antes de limpiarlo: si solo lo
+            borrara, la tendencia que el plan pide observar no existiría. */}
+        <button onClick={cerrarDia} disabled={cargasBusy}
+          className="text-sm px-4 py-2.5 rounded-lg border font-display uppercase tracking-wide disabled:opacity-50"
+          style={{ borderColor: C.line, color: C.chalk }}>{t("cf.closeDay")}</button>
         {cargasMsg && <span className="text-xs" style={{ color: cargasMsg === t("cf.saved") ? C.green : C.red }}>{cargasMsg}</span>}
       </div>
     ) : <div className="text-[11px] mt-3" style={{ color: C.dim }}>{t("cf.readOnly")}</div>;
@@ -11998,6 +12233,7 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
           {barraGuardar()}
         </Card>
       )}
+      {renderHistorico()}
       </>
     );
   };
