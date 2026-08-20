@@ -13909,7 +13909,14 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
           {tab === "convocatoria" && renderCall()}
           {tab === "partido" && can("events") && renderMatch()}
           {tab === "analisis" && can("ai") && can("editLineup") && renderPostMatch()}
-          {tab === "usuarios" && can("viewUsers") && renderUsers()}
+          {/* Se abre con ver O con crear, no solo con ver. El entrenador
+              principal tiene "createUsers" —monta su propio cuerpo técnico,
+              segundo y delegado— pero no "viewUsers", así que con la condición
+              anterior pulsaba Usuarios en el menú, que su rol sí le enseña, y
+              se quedaba mirando una pantalla en blanco: no podía dar de alta a
+              nadie pese a tener el permiso. Dentro, renderUsers ya reparte por
+              permiso lo que ve cada rol (aprobar accesos, crear, editar). */}
+          {tab === "usuarios" && (can("viewUsers") || can("createUsers")) && renderUsers()}
           {tab === "pizarra" && <Whiteboard AC={AC} lang={lang} squad={players} teamId={session.team?.id} teamRec={session.team?.rec} isF7={!!session.team?.f7} canSavePlays={isPro} onPro={proAlert} pendingExId={pendingExId} onConsumePending={() => setPendingExId(null)} pendingPlayId={pendingPlayId} onConsumePlay={() => setPendingPlayId(null)} />}
           {tab === "ejercicios" && can("editTraining") && renderExercises()}
           {/* Dos apartados con dueños distintos: las cargas físicas las lleva
