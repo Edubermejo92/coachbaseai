@@ -174,6 +174,24 @@ const DICT = {
     "ca.remove": "Quitar",
     "ca.useMatch": "Usar en modo partido", "ca.month": "Calendario del mes", "ca.dayHint": "Toca un día para ver su detalle.", "ca.dayEmpty": "No hay partidos ni entrenamiento programado este día.", "ca.dayTraining": "Día de entrenamiento", "ca.legendMatch": "Partido (del calendario importado)", "ca.legendTrain": "Entrenamiento", "ca.trainDaysLabel": "Días de entreno:",
     "ca.teamCrest": "Escudo del equipo",
+    "ca.edit": "Editar",
+    "ca.editMatch": "Editar partido",
+    "ca.newMatch": "Añadir partido",
+    "ca.addOnDay": "Añadir partido este día",
+    "ca.deleteMatch": "Borrar partido",
+    "ca.fRound": "Jornada",
+    "ca.fDate": "Fecha",
+    "ca.fTime": "Hora",
+    "ca.fHome": "Local",
+    "ca.fAway": "Visitante",
+    "ca.fPlace": "Campo",
+    "ca.needDate": "Pon una fecha válida para el partido.",
+    "ca.needTeams": "Escribe al menos uno de los dos equipos.",
+    "ca.matchSaved": "✓ Partido guardado.",
+    "ca.matchDeleted": "✓ Partido borrado.",
+    "ca.capMatchesA": "El plan gratuito guarda",
+    "ca.capMatchesB": "partidos. Suscríbete a PRO para el calendario completo.",
+    "ca.localOnly": "Este equipo todavía no está en la nube: el cambio se guarda solo en este dispositivo.",
 
     /* v50 — plantillas de entrenamiento */
     "pl.title": "Plantillas de entrenamiento",
@@ -333,6 +351,24 @@ const DICT = {
     "ca.remove": "Remove",
     "ca.useMatch": "Use in match mode", "ca.month": "Month calendar", "ca.dayHint": "Tap a day to see its detail.", "ca.dayEmpty": "No fixtures or training scheduled this day.", "ca.dayTraining": "Training day", "ca.legendMatch": "Fixture (from the imported calendar)", "ca.legendTrain": "Training", "ca.trainDaysLabel": "Training days:",
     "ca.teamCrest": "Team crest",
+    "ca.edit": "Edit",
+    "ca.editMatch": "Edit fixture",
+    "ca.newMatch": "Add fixture",
+    "ca.addOnDay": "Add a fixture on this day",
+    "ca.deleteMatch": "Delete fixture",
+    "ca.fRound": "Round",
+    "ca.fDate": "Date",
+    "ca.fTime": "Time",
+    "ca.fHome": "Home",
+    "ca.fAway": "Away",
+    "ca.fPlace": "Ground",
+    "ca.needDate": "Set a valid date for the fixture.",
+    "ca.needTeams": "Enter at least one of the two teams.",
+    "ca.matchSaved": "✓ Fixture saved.",
+    "ca.matchDeleted": "✓ Fixture deleted.",
+    "ca.capMatchesA": "The free plan keeps",
+    "ca.capMatchesB": "fixtures. Go PRO for the full calendar.",
+    "ca.localOnly": "This team is not in the cloud yet: the change is saved on this device only.",
 
     /* v50 — plantillas de entrenamiento */
     "pl.title": "Training templates",
@@ -509,6 +545,24 @@ const DICT = {
     "ca.remove": "Retirer",
     "ca.useMatch": "Utiliser en mode match", "ca.month": "Calendrier du mois", "ca.dayHint": "Touchez un jour pour voir son détail.", "ca.dayEmpty": "Aucun match ni entraînement prévu ce jour.", "ca.dayTraining": "Jour d'entraînement", "ca.legendMatch": "Match (du calendrier importé)", "ca.legendTrain": "Entraînement", "ca.trainDaysLabel": "Jours d'entraînement :",
     "ca.teamCrest": "Écusson de l'équipe",
+    "ca.edit": "Modifier",
+    "ca.editMatch": "Modifier le match",
+    "ca.newMatch": "Ajouter un match",
+    "ca.addOnDay": "Ajouter un match ce jour",
+    "ca.deleteMatch": "Supprimer le match",
+    "ca.fRound": "Journée",
+    "ca.fDate": "Date",
+    "ca.fTime": "Heure",
+    "ca.fHome": "Domicile",
+    "ca.fAway": "Extérieur",
+    "ca.fPlace": "Terrain",
+    "ca.needDate": "Indiquez une date valide pour le match.",
+    "ca.needTeams": "Saisissez au moins une des deux équipes.",
+    "ca.matchSaved": "✓ Match enregistré.",
+    "ca.matchDeleted": "✓ Match supprimé.",
+    "ca.capMatchesA": "Le plan gratuit conserve",
+    "ca.capMatchesB": "matchs. Passez à PRO pour le calendrier complet.",
+    "ca.localOnly": "Cette équipe n'est pas encore dans le cloud : la modification n'est enregistrée que sur cet appareil.",
 
     /* v50 — plantillas de entrenamiento */
     "pl.title": "Modèles d'entraînement",
@@ -758,6 +812,24 @@ const DICT = {
     "ca.remove": "Entfernen",
     "ca.useMatch": "Im Spielmodus verwenden", "ca.month": "Monatskalender", "ca.dayHint": "Tippe auf einen Tag, um Details zu sehen.", "ca.dayEmpty": "An diesem Tag sind weder Spiele noch Training geplant.", "ca.dayTraining": "Trainingstag", "ca.legendMatch": "Spiel (aus importiertem Spielplan)", "ca.legendTrain": "Training", "ca.trainDaysLabel": "Trainingstage:",
     "ca.teamCrest": "Mannschaftswappen",
+    "ca.edit": "Bearbeiten",
+    "ca.editMatch": "Spiel bearbeiten",
+    "ca.newMatch": "Spiel hinzufügen",
+    "ca.addOnDay": "Spiel an diesem Tag hinzufügen",
+    "ca.deleteMatch": "Spiel löschen",
+    "ca.fRound": "Spieltag",
+    "ca.fDate": "Datum",
+    "ca.fTime": "Uhrzeit",
+    "ca.fHome": "Heim",
+    "ca.fAway": "Gast",
+    "ca.fPlace": "Platz",
+    "ca.needDate": "Gib ein gültiges Datum für das Spiel an.",
+    "ca.needTeams": "Trage mindestens eine der beiden Mannschaften ein.",
+    "ca.matchSaved": "✓ Spiel gespeichert.",
+    "ca.matchDeleted": "✓ Spiel gelöscht.",
+    "ca.capMatchesA": "Der Gratis-Plan speichert",
+    "ca.capMatchesB": "Spiele. Mit PRO gibt es den kompletten Spielplan.",
+    "ca.localOnly": "Diese Mannschaft ist noch nicht in der Cloud: die Änderung wird nur auf diesem Gerät gespeichert.",
 
     /* v50 — plantillas de entrenamiento */
     "pl.title": "Trainingsvorlagen",
@@ -1006,6 +1078,24 @@ const DICT = {
     "ca.remove": "Remover",
     "ca.useMatch": "Usar no modo jogo", "ca.month": "Calendário do mês", "ca.dayHint": "Toca num dia para ver o detalhe.", "ca.dayEmpty": "Não há jogos nem treino marcado para este dia.", "ca.dayTraining": "Dia de treino", "ca.legendMatch": "Jogo (do calendário importado)", "ca.legendTrain": "Treino", "ca.trainDaysLabel": "Dias de treino:",
     "ca.teamCrest": "Emblema da equipa",
+    "ca.edit": "Editar",
+    "ca.editMatch": "Editar jogo",
+    "ca.newMatch": "Adicionar jogo",
+    "ca.addOnDay": "Adicionar jogo neste dia",
+    "ca.deleteMatch": "Apagar jogo",
+    "ca.fRound": "Jornada",
+    "ca.fDate": "Data",
+    "ca.fTime": "Hora",
+    "ca.fHome": "Casa",
+    "ca.fAway": "Fora",
+    "ca.fPlace": "Campo",
+    "ca.needDate": "Indica uma data válida para o jogo.",
+    "ca.needTeams": "Escreve pelo menos uma das duas equipas.",
+    "ca.matchSaved": "✓ Jogo guardado.",
+    "ca.matchDeleted": "✓ Jogo apagado.",
+    "ca.capMatchesA": "O plano gratuito guarda",
+    "ca.capMatchesB": "jogos. Assina PRO para o calendário completo.",
+    "ca.localOnly": "Esta equipa ainda não está na nuvem: a alteração fica guardada só neste dispositivo.",
 
     /* v50 — plantillas de entrenamiento */
     "pl.title": "Modelos de treino",
@@ -6258,9 +6348,18 @@ export default function App() {
   const trainDaysKey = `cb_traindays_${session?.team?.id || "demo"}`;
   const [trainDays, setTrainDays] = useState([2, 4]);
   const [calMonth, setCalMonth] = useState(() => { const d = new Date(); return { y: d.getFullYear(), m: d.getMonth() }; });
-  /* Día seleccionado en la cuadrícula mensual de la pestaña Calendario
-     (formato ISO, ej. "2026-08-16"), o null si no hay ninguno pinchado. */
+  /* Día seleccionado en la cuadrícula mensual (formato ISO, ej. "2026-08-16"),
+     o null si no hay ninguno pinchado. Lo comparten Inicio y Calendario: son
+     la misma cuadrícula, así que pulsar un día en una pantalla y verlo abierto
+     al cambiar a la otra es el comportamiento esperado, no un efecto raro. */
   const [selectedDay, setSelectedDay] = useState(null);
+  /* Partido que se está editando o creando desde el calendario. null = no hay
+     formulario abierto; con id = se edita uno existente; con id null = alta.
+     Antes el calendario solo se podía importar en bloque y borrar entero: no
+     había forma de corregir la hora que cambia el viernes por la tarde ni el
+     campo de un amistoso sin volver a pegar el CSV completo. */
+  const [fixEdit, setFixEdit] = useState(null);
+  const [fixMsg, setFixMsg] = useState("");
   useEffect(() => {
     if (!session) return;
     try { const raw = localStorage.getItem(trainDaysKey); if (raw) setTrainDays(JSON.parse(raw)); } catch { /* noop */ }
@@ -8171,6 +8270,239 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
     sortedFix.filter((f) => /^\d+$/.test(String(f.j))).map(rivalDeFixture).filter(Boolean)
   )] : [];
 
+  /* ---------------- Edición de un partido suelto ----------------
+     Cualquiera del cuerpo técnico (los cinco roles llevan "editCal") puede
+     tocar el calendario: el delegado que recibe el cambio de hora por el grupo
+     del club, el segundo que apunta un amistoso, el entrenador que corrige el
+     campo. El cambio se guarda en Airtable en el momento si el equipo está en
+     la nube —si no, no lo vería nadie más que quien lo escribió—; sin nube se
+     queda en el dispositivo, igual que el resto del calendario. */
+  const puedeEditarCal = () => can("editCal");
+  const fixtureNuevo = (fecha) => ({ id: null, rec: "", j: "", date: fecha || todayISO, time: "", home: session?.club || "", away: "", place: "" });
+  const abrirFixture = (f) => { setFixMsg(""); setFixEdit({ ...f }); };
+  const cerrarFixture = () => { setFixMsg(""); setFixEdit(null); };
+  const guardarFixture = async () => {
+    const f = fixEdit;
+    if (!f) return;
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(String(f.date || ""))) { setFixMsg(t("ca.needDate")); return; }
+    if (!String(f.home || "").trim() && !String(f.away || "").trim()) { setFixMsg(t("ca.needTeams")); return; }
+    const esNuevo = !f.id;
+    if (esNuevo && !isPro && fixtures.length + 1 > FREE_CAPS.fixtures) {
+      setFixMsg(`${t("ca.capMatchesA")} ${FREE_CAPS.fixtures} ${t("ca.capMatchesB")}`);
+      return;
+    }
+    const limpio = {
+      ...f, j: String(f.j || "").trim(), time: String(f.time || "").trim(),
+      home: String(f.home || "").trim(), away: String(f.away || "").trim(), place: String(f.place || "").trim(),
+      id: f.id || Date.now(),
+    };
+    setFixtures((fs) => (esNuevo ? [...fs, limpio] : fs.map((x) => (x.id === limpio.id ? { ...x, ...limpio } : x))));
+    setSelectedDay(limpio.date);
+    setFixEdit(null);
+    setFixMsg("");
+    setCalMsg(t("ca.matchSaved"));
+    if (teamRec) {
+      /* Se sincroniza solo ESTE partido, no el calendario entero: subir las 30
+         jornadas para corregir una hora son 30 llamadas de más y arriesga a
+         pisar lo que otro haya cambiado mientras tanto. */
+      if (limpio.rec) await airEdit("partidos", limpio.rec, partToAir(limpio, teamRec));
+      else {
+        const rec = await airNew("partidos", partToAir(limpio, teamRec));
+        if (rec) setFixtures((fs) => fs.map((x) => (x.id === limpio.id ? { ...x, rec } : x)));
+      }
+    }
+  };
+  const borrarFixture = async (f) => {
+    setFixtures((fs) => fs.filter((x) => x.id !== f.id));
+    if (fixEdit && fixEdit.id === f.id) setFixEdit(null);
+    setCalMsg(t("ca.matchDeleted"));
+    if (teamRec && f.rec) await airDrop("partidos", f.rec);
+  };
+
+  /* Formulario de un partido. Mismo bloque para alta y edición: los campos son
+     los mismos que trae el CSV de la federación (jornada, fecha, hora, local,
+     visitante, campo), así lo que se escribe a mano y lo que se importa son la
+     misma cosa y no hay dos formatos de partido conviviendo.
+     Va en una ventana sobre la pantalla, no incrustado en la tarjeta del día:
+     se abre desde el detalle del día, desde la lista completa y desde Inicio,
+     y en un sitio fijo no se mueve al cambiarle la fecha al partido (dentro
+     del día lo haría, porque el partido dejaría de pertenecer a ese día). */
+  const renderFixtureForm = () => {
+    if (!fixEdit) return null;
+    const set = (k, v) => setFixEdit((e) => ({ ...e, [k]: v }));
+    const campo = (label, k, extra = {}) => (
+      <label className="block">
+        <span className="text-[11px] block mb-1" style={{ color: C.dim }}>{label}</span>
+        <input value={fixEdit[k] || ""} onChange={(e) => set(k, e.target.value)}
+          className="w-full px-2.5 py-1.5 rounded-lg border bg-transparent text-sm"
+          style={{ borderColor: C.line, color: C.chalk }} {...extra} />
+      </label>
+    );
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,.72)" }} onClick={cerrarFixture}>
+        <div className="w-full max-w-lg rounded-lg border p-5 max-h-[90vh] overflow-y-auto" style={{ background: C.panel, borderColor: AC }} onClick={(e) => e.stopPropagation()}>
+          <div className="font-display text-lg uppercase tracking-wide mb-3" style={{ color: AC }}>
+            {fixEdit.id ? t("ca.editMatch") : t("ca.newMatch")}
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+            {campo(t("ca.fRound"), "j", { placeholder: "1" })}
+            {campo(t("ca.fDate"), "date", { type: "date" })}
+            {campo(t("ca.fTime"), "time", { type: "time" })}
+            {campo(t("ca.fHome"), "home")}
+            {campo(t("ca.fAway"), "away")}
+            {campo(t("ca.fPlace"), "place")}
+          </div>
+          <div className="flex flex-wrap gap-2 mt-4">
+            <button onClick={guardarFixture} className="font-display uppercase tracking-wide text-sm px-4 py-2 rounded-lg font-semibold" style={{ background: AC, color: C.sobre }}>{t("p.save")}</button>
+            <button onClick={cerrarFixture} className="text-sm px-4 py-2 rounded-lg border" style={{ borderColor: C.line, color: C.dim }}>{t("c.cancel")}</button>
+            {fixEdit.id && (
+              <button onClick={() => borrarFixture(fixEdit)} className="text-sm px-4 py-2 rounded-lg border ml-auto" style={{ borderColor: C.line, color: C.warn }}>{t("ca.deleteMatch")}</button>
+            )}
+          </div>
+          {fixMsg && <div className="text-xs mt-2" style={{ color: C.warn }}>{fixMsg}</div>}
+          {!teamRec && <div className="text-[11px] mt-3" style={{ color: C.dim }}>{t("ca.localOnly")}</div>}
+        </div>
+      </div>
+    );
+  };
+
+  /* Una fila de partido, con sus acciones. La comparten el detalle del día y
+     la lista del calendario completo para que un partido se vea y se edite
+     igual desde los dos sitios. */
+  const renderFixtureRow = (f, { destacado = false, conJornada = false } = {}) => (
+    <div key={f.id} className="rounded-lg border p-2.5 flex flex-wrap items-center gap-x-3 gap-y-1"
+      style={{ borderColor: destacado ? AC : C.line, background: destacado ? C.panel2 : "transparent", opacity: f.date < todayISO ? 0.5 : 1 }}>
+      {conJornada && (
+        /* Ancho fijo (w-10) más una etiqueta larga ("Pretemporada" en vez de
+           "PT") desbordaba encima de la fecha de al lado: flexbox no encoge un
+           texto sin espacios por debajo de su ancho natural aunque se le
+           fuerce un ancho menor. Con max-w + truncate no puede volver a pasar,
+           sea cual sea el texto que traiga f.j (p.ej. un CSV importado). */
+        <div className="font-display text-sm shrink-0 max-w-[72px] overflow-hidden text-ellipsis whitespace-nowrap" title={f.j ? "J" + f.j : ""} style={{ color: AC }}>{f.j ? "J" + f.j : "—"}</div>
+      )}
+      <div className="text-sm tabular-nums shrink-0" style={{ color: C.chalk }}>{conJornada ? `${f.date} ${f.time}` : f.time || "—"}</div>
+      <div className="text-sm flex-1 min-w-[160px]" style={{ color: C.chalk }}>{f.home} <span style={{ color: C.dim }}>vs</span> {f.away}</div>
+      {f.place && <div className="text-[11px] w-full sm:w-auto" style={{ color: C.dim }}>📍 {f.place}</div>}
+      {puedeEditarCal() && (
+        <div className="flex gap-2 text-xs">
+          <button onClick={() => abrirFixture(f)} className="px-2 py-1 rounded border" style={{ borderColor: AC, color: AC }}>✎ {t("ca.edit")}</button>
+          <button onClick={() => useAsNext(f)} className="px-2 py-1 rounded border" style={{ borderColor: C.line, color: C.chalk }}>{t("ca.useMatch")}</button>
+          <button onClick={() => borrarFixture(f)} className="px-2 py-1 rounded border" style={{ borderColor: C.line, color: C.dim }}>✕</button>
+        </div>
+      )}
+    </div>
+  );
+
+  /* ---------------- Cuadrícula mensual + detalle del día ----------------
+     La usan tanto Inicio como la pestaña Calendario. Antes eran dos copias:
+     en Calendario los días eran botones y en Inicio <div> muertos, así que
+     desde la pantalla de entrada no se podía pulsar un día ni, por tanto,
+     editar nada. Con una sola función el calendario se comporta igual en las
+     dos pantallas y para cualquier rol. */
+  const renderMesCalendario = () => {
+    const DIAS = diasSemanaCortos(lang);
+    const { y, m } = calMonth;
+    const primero = new Date(y, m, 1);
+    /* getDay() da 0=domingo; se desplaza para que la semana empiece en lunes */
+    const offset = (primero.getDay() + 6) % 7;
+    const total = new Date(y, m + 1, 0).getDate();
+    const iso = (d) => `${y}-${String(m + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
+    const mover = (delta) => setCalMonth(({ y: yy, m: mm }) => {
+      const nm = mm + delta;
+      return { y: yy + Math.floor(nm / 12), m: ((nm % 12) + 12) % 12 };
+    });
+    const celdas = [];
+    for (let i = 0; i < offset; i++) celdas.push(null);
+    for (let d = 1; d <= total; d++) celdas.push(d);
+    const diaSel = selectedDay ? new Date(selectedDay + "T00:00:00") : null;
+    const partidosDia = selectedDay ? sortedFix.filter((f) => f.date === selectedDay) : [];
+    const entrenoDia = diaSel ? trainDays.includes(diaSel.getDay()) || trainMeta.fecha === selectedDay : false;
+    const canEdit = puedeEditarCal();
+    return (
+      <>
+        <div className="flex items-center justify-between mb-3">
+          <button onClick={() => mover(-1)} className="text-sm px-2.5 py-1 rounded-lg border" style={{ borderColor: C.line, color: C.chalk }}>‹</button>
+          <div className="font-display text-lg uppercase tracking-wide" style={{ color: C.chalk }}>{mesLargo(y, m, lang)} {y}</div>
+          <button onClick={() => mover(1)} className="text-sm px-2.5 py-1 rounded-lg border" style={{ borderColor: C.line, color: C.chalk }}>›</button>
+        </div>
+        <div className="grid grid-cols-7 gap-1 text-center">
+          {DIAS.map((d) => <div key={d} className="text-[10px] font-display uppercase pb-1" style={{ color: C.dim }}>{d}</div>)}
+          {celdas.map((d, i) => {
+            if (!d) return <div key={`x${i}`} />;
+            const fecha = iso(d);
+            const partidos = fixtures.filter((f) => f.date === fecha);
+            const dow = new Date(y, m, d).getDay();
+            const esEntreno = trainDays.includes(dow);
+            const planEse = trainMeta.fecha === fecha;
+            const hoy = fecha === todayISO;
+            const sel = fecha === selectedDay;
+            return (
+              <button key={fecha} type="button" title={t("ca.dayHint")}
+                onClick={() => { setFixEdit(null); setSelectedDay(sel ? null : fecha); }}
+                className="rounded-lg border p-1 min-h-[52px] text-left flex flex-col w-full cursor-pointer hover:opacity-80"
+                style={{ borderColor: sel ? AC : hoy ? AC : C.line, borderWidth: sel ? 2 : 1, background: sel ? `${AC}1a` : hoy ? "rgba(54,69,79,.07)" : "transparent" }}>
+                <div className="text-[11px] font-display" style={{ color: hoy || sel ? AC : C.chalk }}>{d}</div>
+                {partidos.map((f) => (
+                  <div key={f.id} title={`${f.home} vs ${f.away} · ${f.time || ""} · ${f.place || ""}`}
+                    className="mt-0.5 text-[8px] leading-tight px-1 rounded truncate"
+                    style={{ background: AC, color: C.sobre }}>
+                    {f.time || ""} {f.away || f.home}
+                  </div>
+                ))}
+                {(esEntreno || planEse) && partidos.length === 0 && (
+                  <div className="mt-0.5 text-[8px] leading-tight px-1 rounded truncate"
+                    style={{ background: `${C.velo}0.14)`, color: C.dim }}>
+                    {planEse ? trainMeta.hora || t("ca.legendTrain") : t("ca.legendTrain")}
+                  </div>
+                )}
+              </button>
+            );
+          })}
+        </div>
+        <div className="flex flex-wrap items-center gap-3 mt-3 text-[11px]" style={{ color: C.dim }}>
+          <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-sm inline-block" style={{ background: AC }} />{t("ca.legendMatch")}</span>
+          <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-sm inline-block" style={{ background: "rgba(47,107,79,.5)" }} />{t("ca.legendTrain")}</span>
+        </div>
+        {can("editTraining") && (
+          <div className="flex flex-wrap items-center gap-1.5 mt-2">
+            <span className="text-[11px]" style={{ color: C.dim }}>{t("ca.trainDaysLabel")}</span>
+            {diasSemanaCortosDomingoPrimero(lang).map((lbl, idx) => (
+              <button key={idx} onClick={() => setTrainDays((ds) => ds.includes(idx) ? ds.filter((x) => x !== idx) : [...ds, idx])}
+                className="text-[11px] w-7 py-1 rounded border font-display"
+                style={{ borderColor: trainDays.includes(idx) ? C.green : C.line, background: trainDays.includes(idx) ? "rgba(47,107,79,.18)" : "transparent", color: trainDays.includes(idx) ? C.green : C.dim }}>
+                {lbl}
+              </button>
+            ))}
+          </div>
+        )}
+        {!selectedDay && <div className="text-[11px] mt-3" style={{ color: C.dim }}>{t("ca.dayHint")}</div>}
+        {selectedDay && (
+          <div className="mt-3 pt-3 border-t" style={{ borderColor: C.line }}>
+            <div className="flex items-center justify-between mb-2">
+              <div className="font-display text-sm uppercase tracking-wide" style={{ color: C.chalk }}>{fechaLegible(selectedDay, lang)}</div>
+              <button onClick={() => { setFixEdit(null); setSelectedDay(null); }} className="text-xs px-2 py-1 rounded border" style={{ borderColor: C.line, color: C.dim }}>{t("p.close")}</button>
+            </div>
+            {entrenoDia && (
+              <div className="text-xs px-2 py-1.5 rounded mb-2 inline-block" style={{ background: "rgba(47,107,79,.14)", color: C.green }}>
+                🏋️ {t("ca.dayTraining")}
+              </div>
+            )}
+            {partidosDia.length > 0 ? (
+              <div className="space-y-1.5">{partidosDia.map((f) => renderFixtureRow(f))}</div>
+            ) : !entrenoDia && (
+              <div className="text-sm" style={{ color: C.dim }}>{t("ca.dayEmpty")}</div>
+            )}
+            {canEdit && (
+              <button onClick={() => abrirFixture(fixtureNuevo(selectedDay))}
+                className="mt-2 text-xs px-3 py-1.5 rounded-lg border font-display uppercase tracking-wide"
+                style={{ borderColor: AC, color: AC }}>+ {t("ca.addOnDay")}</button>
+            )}
+          </div>
+        )}
+      </>
+    );
+  };
+
   const renderCalendar = () => {
     const canEdit = can("editCal");
     return (
@@ -8189,116 +8521,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
         </Card>
 
         <Card title={t("ca.month")}>
-          {(() => {
-            const DIAS = diasSemanaCortos(lang);
-            const { y, m } = calMonth;
-            const primero = new Date(y, m, 1);
-            /* getDay() da 0=domingo; se desplaza para que la semana empiece en lunes */
-            const offset = (primero.getDay() + 6) % 7;
-            const total = new Date(y, m + 1, 0).getDate();
-            const iso = (d) => `${y}-${String(m + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
-            const mover = (delta) => setCalMonth(({ y: yy, m: mm }) => {
-              const nm = mm + delta;
-              return { y: yy + Math.floor(nm / 12), m: ((nm % 12) + 12) % 12 };
-            });
-            const celdas = [];
-            for (let i = 0; i < offset; i++) celdas.push(null);
-            for (let d = 1; d <= total; d++) celdas.push(d);
-            const diaSel = selectedDay ? new Date(selectedDay + "T00:00:00") : null;
-            const partidosDia = selectedDay ? fixtures.filter((f) => f.date === selectedDay) : [];
-            const entrenoDia = diaSel ? trainDays.includes(diaSel.getDay()) || trainMeta.fecha === selectedDay : false;
-            return (
-              <>
-                <div className="flex items-center justify-between mb-3">
-                  <button onClick={() => mover(-1)} className="text-sm px-2.5 py-1 rounded-lg border" style={{ borderColor: C.line, color: C.chalk }}>‹</button>
-                  <div className="font-display text-lg uppercase tracking-wide" style={{ color: C.chalk }}>{mesLargo(y, m, lang)} {y}</div>
-                  <button onClick={() => mover(1)} className="text-sm px-2.5 py-1 rounded-lg border" style={{ borderColor: C.line, color: C.chalk }}>›</button>
-                </div>
-                <div className="grid grid-cols-7 gap-1 text-center">
-                  {DIAS.map((d) => <div key={d} className="text-[10px] font-display uppercase pb-1" style={{ color: C.dim }}>{d}</div>)}
-                  {celdas.map((d, i) => {
-                    if (!d) return <div key={`x${i}`} />;
-                    const fecha = iso(d);
-                    const partidos = fixtures.filter((f) => f.date === fecha);
-                    const dow = new Date(y, m, d).getDay();
-                    const esEntreno = trainDays.includes(dow);
-                    const planEse = trainMeta.fecha === fecha;
-                    const hoy = fecha === todayISO;
-                    const sel = fecha === selectedDay;
-                    return (
-                      <button key={fecha} type="button" onClick={() => setSelectedDay(sel ? null : fecha)}
-                        className="rounded-lg border p-1 min-h-[52px] text-left flex flex-col w-full"
-                        style={{ borderColor: sel ? AC : hoy ? AC : C.line, borderWidth: sel ? 2 : 1, background: sel ? `${AC}1a` : hoy ? "rgba(54,69,79,.07)" : "transparent" }}>
-                        <div className="text-[11px] font-display" style={{ color: hoy || sel ? AC : C.chalk }}>{d}</div>
-                        {partidos.map((f) => (
-                          <div key={f.id} title={`${f.home} vs ${f.away} · ${f.time || ""} · ${f.place || ""}`}
-                            className="mt-0.5 text-[8px] leading-tight px-1 rounded truncate"
-                            style={{ background: AC, color: C.sobre }}>
-                            {f.time || ""} {f.away || f.home}
-                          </div>
-                        ))}
-                        {(esEntreno || planEse) && partidos.length === 0 && (
-                          <div className="mt-0.5 text-[8px] leading-tight px-1 rounded truncate"
-                            style={{ background: `${C.velo}0.14)`, color: C.dim }}>
-                            {planEse ? trainMeta.hora || t("ca.legendTrain") : t("ca.legendTrain")}
-                          </div>
-                        )}
-                      </button>
-                    );
-                  })}
-                </div>
-                <div className="flex flex-wrap items-center gap-3 mt-3 text-[11px]" style={{ color: C.dim }}>
-                  <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-sm inline-block" style={{ background: AC }} />{t("ca.legendMatch")}</span>
-                  <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-sm inline-block" style={{ background: "rgba(47,107,79,.5)" }} />{t("ca.legendTrain")}</span>
-                </div>
-                {can("editTraining") && (
-                  <div className="flex flex-wrap items-center gap-1.5 mt-2">
-                    <span className="text-[11px]" style={{ color: C.dim }}>{t("ca.trainDaysLabel")}</span>
-                    {diasSemanaCortosDomingoPrimero(lang).map((lbl, idx) => (
-                      <button key={idx} onClick={() => setTrainDays((ds) => ds.includes(idx) ? ds.filter((x) => x !== idx) : [...ds, idx])}
-                        className="text-[11px] w-7 py-1 rounded border font-display"
-                        style={{ borderColor: trainDays.includes(idx) ? C.green : C.line, background: trainDays.includes(idx) ? "rgba(47,107,79,.18)" : "transparent", color: trainDays.includes(idx) ? C.green : C.dim }}>
-                        {lbl}
-                      </button>
-                    ))}
-                  </div>
-                )}
-                {!selectedDay && <div className="text-[11px] mt-3" style={{ color: C.dim }}>{t("ca.dayHint")}</div>}
-                {selectedDay && (
-                  <div className="mt-3 pt-3 border-t" style={{ borderColor: C.line }}>
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="font-display text-sm uppercase tracking-wide" style={{ color: C.chalk }}>{fechaLegible(selectedDay, lang)}</div>
-                      <button onClick={() => setSelectedDay(null)} className="text-xs px-2 py-1 rounded border" style={{ borderColor: C.line, color: C.dim }}>{t("p.close")}</button>
-                    </div>
-                    {entrenoDia && (
-                      <div className="text-xs px-2 py-1.5 rounded mb-2 inline-block" style={{ background: "rgba(47,107,79,.14)", color: C.green }}>
-                        🏋️ {t("ca.dayTraining")}
-                      </div>
-                    )}
-                    {partidosDia.length > 0 ? (
-                      <div className="space-y-1.5">
-                        {partidosDia.map((f) => (
-                          <div key={f.id} className="rounded-lg border p-2.5 flex flex-wrap items-center gap-x-3 gap-y-1" style={{ borderColor: C.line }}>
-                            <div className="text-sm tabular-nums shrink-0" style={{ color: C.chalk }}>{f.time || "—"}</div>
-                            <div className="text-sm flex-1 min-w-[160px]" style={{ color: C.chalk }}>{f.home} <span style={{ color: C.dim }}>vs</span> {f.away}</div>
-                            {f.place && <div className="text-[11px] w-full sm:w-auto" style={{ color: C.dim }}>📍 {f.place}</div>}
-                            {canEdit && (
-                              <div className="flex gap-2 text-xs">
-                                <button onClick={() => useAsNext(f)} className="px-2 py-1 rounded border" style={{ borderColor: C.line, color: C.chalk }}>{t("ca.useMatch")}</button>
-                                <button onClick={() => setFixtures((fs) => fs.filter((x) => x.id !== f.id))} className="px-2 py-1 rounded border" style={{ borderColor: C.line, color: C.dim }}>✕</button>
-                              </div>
-                            )}
-                          </div>
-                        ))}
-                      </div>
-                    ) : !entrenoDia && (
-                      <div className="text-sm" style={{ color: C.dim }}>{t("ca.dayEmpty")}</div>
-                    )}
-                  </div>
-                )}
-              </>
-            );
-          })()}
+          {renderMesCalendario()}
         </Card>
 
         <Card title={t("ca.title")}>
@@ -8306,31 +8529,16 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
             <div className="text-sm" style={{ color: C.dim }}>{t("ca.empty")}</div>
           ) : (
             <div className="space-y-1.5">
-              {sortedFix.map((f) => {
-                const isNext = nextFix && f.id === nextFix.id;
-                return (
-                  <div key={f.id} className="rounded-lg border p-3 flex flex-wrap items-center gap-x-3 gap-y-1"
-                    style={{ borderColor: isNext ? AC : C.line, background: isNext ? C.panel2 : "transparent", opacity: f.date < todayISO ? 0.5 : 1 }}>
-                    {/* Ancho fijo (w-10) más una etiqueta larga ("Pretemporada"
-                        en vez de "PT") desbordaba encima de la fecha de al lado:
-                        flexbox no encoge un texto sin espacios por debajo de su
-                        ancho natural aunque se le fuerce un ancho menor. Con
-                        max-w + truncate no puede volver a pasar, sea cual sea
-                        el texto que traiga f.j (p.ej. un CSV importado). */}
-                    <div className="font-display text-sm shrink-0 max-w-[72px] overflow-hidden text-ellipsis whitespace-nowrap" title={f.j ? "J" + f.j : ""} style={{ color: AC }}>{f.j ? "J" + f.j : "—"}</div>
-                    <div className="text-sm tabular-nums shrink-0" style={{ color: C.chalk }}>{f.date} {f.time}</div>
-                    <div className="text-sm flex-1 min-w-[180px]" style={{ color: C.chalk }}>{f.home} <span style={{ color: C.dim }}>vs</span> {f.away}</div>
-                    {f.place && <div className="text-[11px] w-full sm:w-auto" style={{ color: C.dim }}>📍 {f.place}</div>}
-                    {canEdit && (
-                      <div className="flex gap-2 text-xs">
-                        <button onClick={() => useAsNext(f)} className="px-2 py-1 rounded border" style={{ borderColor: C.line, color: C.chalk }}>{t("ca.useMatch")}</button>
-                        <button onClick={() => setFixtures((fs) => fs.filter((x) => x.id !== f.id))} className="px-2 py-1 rounded border" style={{ borderColor: C.line, color: C.dim }}>✕</button>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
+              {sortedFix.map((f) => renderFixtureRow(f, { destacado: !!(nextFix && f.id === nextFix.id), conJornada: true }))}
             </div>
+          )}
+          {canEdit && (
+            /* El alta a mano vive junto a la lista, no escondida en el
+               importador: la mayoría de los cambios del día a día son un
+               amistoso suelto o un aplazamiento, no un CSV entero. */
+            <button onClick={() => abrirFixture(fixtureNuevo(selectedDay))}
+              className="mt-3 text-sm px-4 py-2 rounded-lg border font-display uppercase tracking-wide"
+              style={{ borderColor: AC, color: AC }}>+ {t("ca.newMatch")}</button>
           )}
         </Card>
 
@@ -9697,78 +9905,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
       )}
 
       <Card title={t("ca.month")} className="lg:col-span-3">
-        {(() => {
-          const DIAS = diasSemanaCortos(lang);
-          const { y, m } = calMonth;
-          const primero = new Date(y, m, 1);
-          /* getDay() da 0=domingo; se desplaza para que la semana empiece en lunes */
-          const offset = (primero.getDay() + 6) % 7;
-          const total = new Date(y, m + 1, 0).getDate();
-          const iso = (d) => `${y}-${String(m + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
-          const mover = (delta) => setCalMonth(({ y: yy, m: mm }) => {
-            const nm = mm + delta;
-            return { y: yy + Math.floor(nm / 12), m: ((nm % 12) + 12) % 12 };
-          });
-          const celdas = [];
-          for (let i = 0; i < offset; i++) celdas.push(null);
-          for (let d = 1; d <= total; d++) celdas.push(d);
-          return (
-            <>
-              <div className="flex items-center justify-between mb-3">
-                <button onClick={() => mover(-1)} className="text-sm px-2.5 py-1 rounded-lg border" style={{ borderColor: C.line, color: C.chalk }}>‹</button>
-                <div className="font-display text-lg uppercase tracking-wide" style={{ color: C.chalk }}>{mesLargo(y, m, lang)} {y}</div>
-                <button onClick={() => mover(1)} className="text-sm px-2.5 py-1 rounded-lg border" style={{ borderColor: C.line, color: C.chalk }}>›</button>
-              </div>
-              <div className="grid grid-cols-7 gap-1 text-center">
-                {DIAS.map((d) => <div key={d} className="text-[10px] font-display uppercase pb-1" style={{ color: C.dim }}>{d}</div>)}
-                {celdas.map((d, i) => {
-                  if (!d) return <div key={`x${i}`} />;
-                  const fecha = iso(d);
-                  const partidos = fixtures.filter((f) => f.date === fecha);
-                  const dow = new Date(y, m, d).getDay();
-                  const esEntreno = trainDays.includes(dow);
-                  const planEse = trainMeta.fecha === fecha;
-                  const hoy = fecha === todayISO;
-                  return (
-                    <div key={fecha} className="rounded-lg border p-1 min-h-[52px] text-left flex flex-col"
-                      style={{ borderColor: hoy ? AC : C.line, background: hoy ? "rgba(54,69,79,.07)" : "transparent" }}>
-                      <div className="text-[11px] font-display" style={{ color: hoy ? AC : C.chalk }}>{d}</div>
-                      {partidos.map((f) => (
-                        <div key={f.id} title={`${f.home} vs ${f.away} · ${f.time || ""} · ${f.place || ""}`}
-                          className="mt-0.5 text-[8px] leading-tight px-1 rounded truncate"
-                          style={{ background: AC, color: C.sobre }}>
-                          {f.time || ""} {f.away || f.home}
-                        </div>
-                      ))}
-                      {(esEntreno || planEse) && partidos.length === 0 && (
-                        <div className="mt-0.5 text-[8px] leading-tight px-1 rounded truncate"
-                          style={{ background: `${C.velo}0.14)`, color: C.dim }}>
-                          {planEse ? trainMeta.hora || t("ca.legendTrain") : t("ca.legendTrain")}
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-              <div className="flex flex-wrap items-center gap-3 mt-3 text-[11px]" style={{ color: C.dim }}>
-                <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-sm inline-block" style={{ background: AC }} />{t("ca.legendMatch")}</span>
-                <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-sm inline-block" style={{ background: "rgba(47,107,79,.5)" }} />{t("ca.legendTrain")}</span>
-              </div>
-              {can("editTraining") && (
-                <div className="flex flex-wrap items-center gap-1.5 mt-2">
-                  <span className="text-[11px]" style={{ color: C.dim }}>{t("ca.trainDaysLabel")}</span>
-                  {diasSemanaCortosDomingoPrimero(lang).map((lbl, idx) => (
-                    <button key={idx} onClick={() => setTrainDays((ds) => ds.includes(idx) ? ds.filter((x) => x !== idx) : [...ds, idx])}
-                      className="text-[11px] w-7 py-1 rounded border font-display"
-                      style={{ borderColor: trainDays.includes(idx) ? C.green : C.line, background: trainDays.includes(idx) ? "rgba(47,107,79,.18)" : "transparent", color: trainDays.includes(idx) ? C.green : C.dim }}>
-                      {lbl}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </>
-          );
-        })()}
+        {renderMesCalendario()}
       </Card>
 
       <Card title={t("h.nextTrain")} className="lg:col-span-2">
@@ -12209,6 +12346,12 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
           <span>Ya puedes trabajar con tu equipo. Tu acceso oficial está pendiente de que el club lo apruebe: hasta entonces no verás datos compartidos del club ni la gestión de usuarios.</span>
         </div>
       )}
+
+      {/* Editor de partido del calendario. Se monta una sola vez aquí arriba
+          porque se abre desde tres sitios (el día en Inicio, el día en
+          Calendario y la lista completa) y así es la misma ventana en los
+          tres, esté donde esté la página en ese momento. */}
+      {renderFixtureForm()}
 
       {welcome && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,.78)" }}>
