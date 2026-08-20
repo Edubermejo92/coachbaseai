@@ -174,6 +174,10 @@ const DICT = {
     "ca.remove": "Quitar",
     "ca.useMatch": "Usar en modo partido", "ca.month": "Calendario del mes", "ca.dayHint": "Toca un día para ver su detalle.", "ca.dayEmpty": "No hay partidos ni entrenamiento programado este día.", "ca.dayTraining": "Día de entrenamiento", "ca.legendMatch": "Partido (del calendario importado)", "ca.legendTrain": "Entrenamiento", "ca.trainDaysLabel": "Días de entreno:",
     "ca.teamCrest": "Escudo del equipo",
+    "ca.seeMore": "Ver más",
+    "ca.seeMonth": "Ver solo este mes",
+    "ca.emptyMonth": "Ningún partido este mes.",
+    "ca.wholeSeason": "Temporada completa",
     "ca.edit": "Editar",
     "ca.editMatch": "Editar partido",
     "ca.newMatch": "Añadir partido",
@@ -351,6 +355,10 @@ const DICT = {
     "ca.remove": "Remove",
     "ca.useMatch": "Use in match mode", "ca.month": "Month calendar", "ca.dayHint": "Tap a day to see its detail.", "ca.dayEmpty": "No fixtures or training scheduled this day.", "ca.dayTraining": "Training day", "ca.legendMatch": "Fixture (from the imported calendar)", "ca.legendTrain": "Training", "ca.trainDaysLabel": "Training days:",
     "ca.teamCrest": "Team crest",
+    "ca.seeMore": "See more",
+    "ca.seeMonth": "Show this month only",
+    "ca.emptyMonth": "No fixtures this month.",
+    "ca.wholeSeason": "Full season",
     "ca.edit": "Edit",
     "ca.editMatch": "Edit fixture",
     "ca.newMatch": "Add fixture",
@@ -545,6 +553,10 @@ const DICT = {
     "ca.remove": "Retirer",
     "ca.useMatch": "Utiliser en mode match", "ca.month": "Calendrier du mois", "ca.dayHint": "Touchez un jour pour voir son détail.", "ca.dayEmpty": "Aucun match ni entraînement prévu ce jour.", "ca.dayTraining": "Jour d'entraînement", "ca.legendMatch": "Match (du calendrier importé)", "ca.legendTrain": "Entraînement", "ca.trainDaysLabel": "Jours d'entraînement :",
     "ca.teamCrest": "Écusson de l'équipe",
+    "ca.seeMore": "Voir plus",
+    "ca.seeMonth": "Voir ce mois seulement",
+    "ca.emptyMonth": "Aucun match ce mois-ci.",
+    "ca.wholeSeason": "Saison complète",
     "ca.edit": "Modifier",
     "ca.editMatch": "Modifier le match",
     "ca.newMatch": "Ajouter un match",
@@ -812,6 +824,10 @@ const DICT = {
     "ca.remove": "Entfernen",
     "ca.useMatch": "Im Spielmodus verwenden", "ca.month": "Monatskalender", "ca.dayHint": "Tippe auf einen Tag, um Details zu sehen.", "ca.dayEmpty": "An diesem Tag sind weder Spiele noch Training geplant.", "ca.dayTraining": "Trainingstag", "ca.legendMatch": "Spiel (aus importiertem Spielplan)", "ca.legendTrain": "Training", "ca.trainDaysLabel": "Trainingstage:",
     "ca.teamCrest": "Mannschaftswappen",
+    "ca.seeMore": "Mehr anzeigen",
+    "ca.seeMonth": "Nur diesen Monat",
+    "ca.emptyMonth": "Diesen Monat keine Spiele.",
+    "ca.wholeSeason": "Ganze Saison",
     "ca.edit": "Bearbeiten",
     "ca.editMatch": "Spiel bearbeiten",
     "ca.newMatch": "Spiel hinzufügen",
@@ -1078,6 +1094,10 @@ const DICT = {
     "ca.remove": "Remover",
     "ca.useMatch": "Usar no modo jogo", "ca.month": "Calendário do mês", "ca.dayHint": "Toca num dia para ver o detalhe.", "ca.dayEmpty": "Não há jogos nem treino marcado para este dia.", "ca.dayTraining": "Dia de treino", "ca.legendMatch": "Jogo (do calendário importado)", "ca.legendTrain": "Treino", "ca.trainDaysLabel": "Dias de treino:",
     "ca.teamCrest": "Emblema da equipa",
+    "ca.seeMore": "Ver mais",
+    "ca.seeMonth": "Ver só este mês",
+    "ca.emptyMonth": "Nenhum jogo este mês.",
+    "ca.wholeSeason": "Época completa",
     "ca.edit": "Editar",
     "ca.editMatch": "Editar jogo",
     "ca.newMatch": "Adicionar jogo",
@@ -6360,6 +6380,11 @@ export default function App() {
      campo de un amistoso sin volver a pegar el CSV completo. */
   const [fixEdit, setFixEdit] = useState(null);
   const [fixMsg, setFixMsg] = useState("");
+  /* La lista del calendario arranca enseñando solo el mes que hay abierto en
+     la cuadrícula: una temporada son 30 jornadas y volcarlas todas de golpe
+     obliga a bajar media pantalla para llegar al importador. Con "ver más" se
+     despliega la temporada entera cuando de verdad hace falta. */
+  const [calVerTodo, setCalVerTodo] = useState(false);
   useEffect(() => {
     if (!session) return;
     try { const raw = localStorage.getItem(trainDaysKey); if (raw) setTrainDays(JSON.parse(raw)); } catch { /* noop */ }
@@ -8525,13 +8550,37 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
         </Card>
 
         <Card title={t("ca.title")}>
-          {sortedFix.length === 0 ? (
-            <div className="text-sm" style={{ color: C.dim }}>{t("ca.empty")}</div>
-          ) : (
-            <div className="space-y-1.5">
-              {sortedFix.map((f) => renderFixtureRow(f, { destacado: !!(nextFix && f.id === nextFix.id), conJornada: true }))}
-            </div>
-          )}
+          {(() => {
+            /* El mes que se enseña es el que esté abierto arriba en la
+               cuadrícula: las flechas ‹ › mueven las dos cosas a la vez, que es
+               lo que espera quien las pulsa. */
+            const prefijoMes = `${calMonth.y}-${String(calMonth.m + 1).padStart(2, "0")}`;
+            const delMes = sortedFix.filter((f) => String(f.date || "").startsWith(prefijoMes));
+            const visibles = calVerTodo ? sortedFix : delMes;
+            const restantes = sortedFix.length - delMes.length;
+            if (sortedFix.length === 0) return <div className="text-sm" style={{ color: C.dim }}>{t("ca.empty")}</div>;
+            return (
+              <>
+                <div className="text-[11px] uppercase font-display tracking-wide mb-2" style={{ color: C.dim }}>
+                  {calVerTodo ? `${t("ca.wholeSeason")} · ${sortedFix.length}` : `${mesLargo(calMonth.y, calMonth.m, lang)} ${calMonth.y} · ${delMes.length}`}
+                </div>
+                {visibles.length === 0 ? (
+                  <div className="text-sm" style={{ color: C.dim }}>{t("ca.emptyMonth")}</div>
+                ) : (
+                  <div className="space-y-1.5">
+                    {visibles.map((f) => renderFixtureRow(f, { destacado: !!(nextFix && f.id === nextFix.id), conJornada: true }))}
+                  </div>
+                )}
+                {restantes > 0 && (
+                  <button onClick={() => setCalVerTodo((v) => !v)}
+                    className="mt-3 text-sm px-4 py-2 rounded-lg border w-full font-display uppercase tracking-wide"
+                    style={{ borderColor: C.line, color: C.chalk }}>
+                    {calVerTodo ? t("ca.seeMonth") : `${t("ca.seeMore")} (${restantes})`}
+                  </button>
+                )}
+              </>
+            );
+          })()}
           {canEdit && (
             /* El alta a mano vive junto a la lista, no escondida en el
                importador: la mayoría de los cambios del día a día son un
