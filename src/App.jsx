@@ -174,6 +174,9 @@ const DICT = {
     "ca.remove": "Quitar",
     "ca.useMatch": "Usar en modo partido", "ca.month": "Calendario del mes", "ca.dayHint": "Toca un día para ver su detalle.", "ca.dayEmpty": "No hay partidos ni entrenamiento programado este día.", "ca.dayTraining": "Día de entrenamiento", "ca.legendMatch": "Partido (del calendario importado)", "ca.legendTrain": "Entrenamiento", "ca.trainDaysLabel": "Días de entreno:",
     "ca.teamCrest": "Escudo del equipo",
+    "sq.load": "Carga",
+    "sq.loadGo": "Ver y cambiar en Temporada",
+    "ca.note": "Aviso",
     "a.seeDemo": "Ver la demo sin registrarme",
     "a.seeDemoD": "La app completa con un equipo de ejemplo. No se guarda nada y no hace falta correo.",
     "dm.title": "Estás viendo la demostración.",
@@ -435,6 +438,9 @@ const DICT = {
     "ca.remove": "Remove",
     "ca.useMatch": "Use in match mode", "ca.month": "Month calendar", "ca.dayHint": "Tap a day to see its detail.", "ca.dayEmpty": "No fixtures or training scheduled this day.", "ca.dayTraining": "Training day", "ca.legendMatch": "Fixture (from the imported calendar)", "ca.legendTrain": "Training", "ca.trainDaysLabel": "Training days:",
     "ca.teamCrest": "Team crest",
+    "sq.load": "Load",
+    "sq.loadGo": "View and change in Season",
+    "ca.note": "Note",
     "a.seeDemo": "See the demo without signing up",
     "a.seeDemoD": "The full app with a sample team. Nothing is saved and no email is needed.",
     "dm.title": "You are viewing the demo.",
@@ -713,6 +719,9 @@ const DICT = {
     "ca.remove": "Retirer",
     "ca.useMatch": "Utiliser en mode match", "ca.month": "Calendrier du mois", "ca.dayHint": "Touchez un jour pour voir son détail.", "ca.dayEmpty": "Aucun match ni entraînement prévu ce jour.", "ca.dayTraining": "Jour d'entraînement", "ca.legendMatch": "Match (du calendrier importé)", "ca.legendTrain": "Entraînement", "ca.trainDaysLabel": "Jours d'entraînement :",
     "ca.teamCrest": "Écusson de l'équipe",
+    "sq.load": "Charge",
+    "sq.loadGo": "Voir et modifier dans Saison",
+    "ca.note": "Note",
     "a.seeDemo": "Voir la démo sans m'inscrire",
     "a.seeDemoD": "L'application complète avec une équipe d'exemple. Rien n'est enregistré et aucun e-mail n'est requis.",
     "dm.title": "Vous consultez la démonstration.",
@@ -1064,6 +1073,9 @@ const DICT = {
     "ca.remove": "Entfernen",
     "ca.useMatch": "Im Spielmodus verwenden", "ca.month": "Monatskalender", "ca.dayHint": "Tippe auf einen Tag, um Details zu sehen.", "ca.dayEmpty": "An diesem Tag sind weder Spiele noch Training geplant.", "ca.dayTraining": "Trainingstag", "ca.legendMatch": "Spiel (aus importiertem Spielplan)", "ca.legendTrain": "Training", "ca.trainDaysLabel": "Trainingstage:",
     "ca.teamCrest": "Mannschaftswappen",
+    "sq.load": "Belastung",
+    "sq.loadGo": "In Saison ansehen und ändern",
+    "ca.note": "Hinweis",
     "a.seeDemo": "Demo ansehen, ohne Konto",
     "a.seeDemoD": "Die vollständige App mit einer Beispielmannschaft. Nichts wird gespeichert, keine E-Mail nötig.",
     "dm.title": "Du siehst die Demo.",
@@ -1414,6 +1426,9 @@ const DICT = {
     "ca.remove": "Remover",
     "ca.useMatch": "Usar no modo jogo", "ca.month": "Calendário do mês", "ca.dayHint": "Toca num dia para ver o detalhe.", "ca.dayEmpty": "Não há jogos nem treino marcado para este dia.", "ca.dayTraining": "Dia de treino", "ca.legendMatch": "Jogo (do calendário importado)", "ca.legendTrain": "Treino", "ca.trainDaysLabel": "Dias de treino:",
     "ca.teamCrest": "Emblema da equipa",
+    "sq.load": "Carga",
+    "sq.loadGo": "Ver e alterar em Época",
+    "ca.note": "Aviso",
     "a.seeDemo": "Ver a demo sem registo",
     "a.seeDemoD": "A app completa com uma equipa de exemplo. Não se guarda nada e não é preciso email.",
     "dm.title": "Estás a ver a demonstração.",
@@ -8872,6 +8887,24 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
      caracteres ("c.d. c"), y eso confundía al Chamartín con cualquier otro
      club que también empezara por "C.D. C…" -Canillas, Colmenar…-, colando
      el propio equipo como "rival" de sí mismo en el desplegable. */
+  /* Hay filas del calendario que no son partidos: los avisos de pretemporada
+     que la federación no publica y que el club apunta a mano ("Trabajo
+     individual de pretemporada", "Inicio de la pretemporada de equipo"). Se
+     guardan en la misma tabla porque ocupan un día del calendario, pero no
+     tienen rival, así que pintarlas como un cruce deja frases sin sentido:
+     "C.D. Chamartín Vergara vs Inicio de la pretemporada de equipo". Se
+     reconocen por la jornada: "PT". */
+  const esAviso = (f) => String(f.j || "").trim().toUpperCase() === "PT";
+  /* El texto del aviso vive en el campo del visitante, que es donde lo dejó
+     quien lo apuntó; el local es el propio equipo. */
+  const textoAviso = (f) => (f.away || f.home || "").trim();
+  /* "J" solo delante de un número de jornada. Con "J" + lo que venga, un aviso
+     de pretemporada salía como "JPT" y un amistoso como "JAM". */
+  const etiquetaJornada = (f) => {
+    const j = String(f.j || "").trim();
+    if (!j) return "—";
+    return /^\d+$/.test(j) ? "J" + j : j.toUpperCase();
+  };
   const rivalDeFixture = (f) => {
     const mio = normClub(session.club);
     return (mio && normClub(f.home).includes(mio) ? f.away : f.home) || f.away || f.home;
@@ -8988,7 +9021,24 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
   /* Una fila de partido, con sus acciones. La comparten el detalle del día y
      la lista del calendario completo para que un partido se vea y se edite
      igual desde los dos sitios. */
-  const renderFixtureRow = (f, { destacado = false, conJornada = false } = {}) => (
+  const renderFixtureRow = (f, { destacado = false, conJornada = false } = {}) => esAviso(f) ? (
+    /* Aviso, no partido: sin "vs", sin rival y sin "usar en modo partido" —el
+       modo partido necesita un rival y aquí no lo hay—. Se puede editar y
+       borrar como cualquier otra fila del calendario. */
+    <div key={f.id} className="rounded-lg border border-dashed p-2.5 flex flex-wrap items-center gap-x-3 gap-y-1"
+      style={{ borderColor: C.line, background: "transparent", opacity: f.date < todayISO ? 0.5 : 1 }}>
+      <span className="text-[10px] font-display uppercase tracking-wide px-2 py-0.5 rounded-full border shrink-0"
+        style={{ borderColor: C.dim, color: C.dim }}>{t("ca.note")}</span>
+      {conJornada && <div className="text-sm tabular-nums shrink-0" style={{ color: C.chalk }}>{f.date}</div>}
+      <div className="text-sm flex-1 min-w-[160px]" style={{ color: C.chalk }}>{textoAviso(f)}</div>
+      {puedeEditarCal() && (
+        <div className="flex gap-2 text-xs">
+          <button onClick={() => abrirFixture(f)} className="px-2 py-1 rounded border" style={{ borderColor: AC, color: AC }}>✎ {t("ca.edit")}</button>
+          <button onClick={() => borrarFixture(f)} className="px-2 py-1 rounded border" style={{ borderColor: C.line, color: C.dim }}>✕</button>
+        </div>
+      )}
+    </div>
+  ) : (
     <div key={f.id} className="rounded-lg border p-2.5 flex flex-wrap items-center gap-x-3 gap-y-1"
       style={{ borderColor: destacado ? AC : C.line, background: destacado ? C.panel2 : "transparent", opacity: f.date < todayISO ? 0.5 : 1 }}>
       {conJornada && (
@@ -8997,7 +9047,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
            texto sin espacios por debajo de su ancho natural aunque se le
            fuerce un ancho menor. Con max-w + truncate no puede volver a pasar,
            sea cual sea el texto que traiga f.j (p.ej. un CSV importado). */
-        <div className="font-display text-sm shrink-0 max-w-[72px] overflow-hidden text-ellipsis whitespace-nowrap" title={f.j ? "J" + f.j : ""} style={{ color: AC }}>{f.j ? "J" + f.j : "—"}</div>
+        <div className="font-display text-sm shrink-0 max-w-[72px] overflow-hidden text-ellipsis whitespace-nowrap" title={etiquetaJornada(f)} style={{ color: AC }}>{etiquetaJornada(f)}</div>
       )}
       <div className="text-sm tabular-nums shrink-0" style={{ color: C.chalk }}>{conJornada ? `${f.date} ${f.time}` : f.time || "—"}</div>
       <div className="text-sm flex-1 min-w-[160px]" style={{ color: C.chalk }}>{f.home} <span style={{ color: C.dim }}>vs</span> {f.away}</div>
@@ -9062,10 +9112,13 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                 style={{ borderColor: sel ? AC : hoy ? AC : C.line, borderWidth: sel ? 2 : 1, background: sel ? `${AC}1a` : hoy ? "rgba(54,69,79,.07)" : "transparent" }}>
                 <div className="text-[11px] font-display" style={{ color: hoy || sel ? AC : C.chalk }}>{d}</div>
                 {partidos.map((f) => (
-                  <div key={f.id} title={`${f.home} vs ${f.away} · ${f.time || ""} · ${f.place || ""}`}
+                  <div key={f.id}
+                    title={esAviso(f) ? textoAviso(f) : `${f.home} vs ${f.away} · ${f.time || ""} · ${f.place || ""}`}
                     className="mt-0.5 text-[8px] leading-tight px-1 rounded truncate"
-                    style={{ background: AC, color: C.sobre }}>
-                    {f.time || ""} {f.away || f.home}
+                    style={esAviso(f)
+                      ? { border: `1px dashed ${C.dim}`, color: C.dim }
+                      : { background: AC, color: C.sobre }}>
+                    {esAviso(f) ? textoAviso(f) : `${f.time || ""} ${f.away || f.home}`}
                   </div>
                 ))}
                 {(esEntreno || planEse) && partidos.length === 0 && (
@@ -10873,7 +10926,11 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
     </div>
   );
 
-  const renderSquad = () => (
+  const renderSquad = () => {
+    /* La columna de carga es parte de las cargas físicas, que son PRO: si no,
+       aquí se enseñaría de tapadillo una función de pago. */
+    const verCargas = isPro && can("cargas");
+    return (
     <div className="space-y-4">
       {can("editSquad") && (
         <Card title="Importar plantilla desde CSV">
@@ -10905,24 +10962,45 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
         <div className="overflow-x-auto">
           <table className="w-full text-sm" style={{ color: C.chalk }}>
             <thead><tr className="font-display uppercase tracking-widest text-xs" style={{ color: C.dim }}>
-              <th className="text-left py-2" colSpan={2}>Jugador</th><th className="text-left">Pos</th><th className="text-left">Estado</th><th className="text-right">Asist.</th><th className="text-right">Min.</th>
+              <th className="text-left py-2" colSpan={2}>Jugador</th><th className="text-left">Pos</th><th className="text-left">Estado</th>
+              {verCargas && <th className="text-left">{t("sq.load")}</th>}
+              <th className="text-right">Asist.</th><th className="text-right">Min.</th>
             </tr></thead>
             <tbody>
-              {players.map((p) => (
+              {players.map((p) => {
+                const c = cargaDe(p.id);
+                const colC = (SEMAFORO.find((x) => x.k === c.estado) || SEMAFORO[0]).color;
+                return (
                 <tr key={p.id} className="border-t" style={{ borderColor: C.line }}>
                   <td className="py-2 w-10"><button onClick={() => setProfileId(p.id)}><Avatar p={p} /></button></td>
-                  <td><button onClick={() => setProfileId(p.id)} className="text-left hover:opacity-80"><span className="font-display text-base mr-2" style={{ color: AC }}>{p.d}</span>{p.n}{p.video && " 🎬"}{starters.has(p.id) && <span className="ml-2 text-xs" style={{ color: C.dim }}>· XI</span>}</button></td>
+                  <td><button onClick={() => setProfileId(p.id)} className="text-left hover:opacity-80"><span className="font-display text-base mr-2" style={{ color: AC }}>{p.d}</span>{p.n}{p.video && " 🎬"}{p.aviso && <span className="ml-1.5" title={p.aviso} style={{ color: C.warn }}>⚠</span>}{starters.has(p.id) && <span className="ml-2 text-xs" style={{ color: C.dim }}>· XI</span>}</button></td>
                   <td style={{ color: C.dim }}>{p.pos}</td>
                   <td><button onClick={() => cycleStatus(p.id)} className="flex items-center hover:opacity-80" style={{ cursor: can("editSquad") ? "pointer" : "default" }}><Dot st={p.st} />{p.st}</button></td>
+                  {/* Resumen de la carga física del día: el mismo semáforo y el
+                      mismo porcentaje que se rellenan en Temporada. Aquí solo se
+                      consulta —se toca para ir a cambiarlo—, porque esta pantalla
+                      es la foto de la plantilla y el parte se pasa en la suya. */}
+                  {verCargas && (
+                    <td>
+                      <button onClick={() => setTab("temporada")} title={c.nota || t("sq.loadGo")}
+                        className="flex items-center gap-2 hover:opacity-80">
+                        <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: colC }} />
+                        <span className="tabular-nums" style={{ color: C.chalk }}>{c.carga}%</span>
+                        {Number(c.rpe) > 0 && <span className="text-[11px]" style={{ color: C.dim }}>RPE {c.rpe}</span>}
+                      </button>
+                    </td>
+                  )}
                   <td className="text-right">{attPct(p)}%</td><td className="text-right">{p.min}</td>
                 </tr>
-              ))}
+                );
+              })}
             </tbody>
           </table>
         </div>
       </Card>
     </div>
-  );
+    );
+  };
 
   const renderLineup = () => {
     /* El segundo entrenador mira y edita su borrador (lineupDraft); todos
@@ -13805,7 +13883,12 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
           </div>
         </div>
       )}
-        <nav className="hidden lg:flex flex-col gap-1 p-3 border-r min-h-[calc(100vh-57px)] w-52 shrink-0 sticky top-[57px] self-start max-h-[calc(100vh-57px)] overflow-y-auto" style={{ borderColor: C.line }}>
+        {/* w-60 y no w-52: con 208 px la etiqueta se quedaba en 128 px y
+            "Entrenamiento" ya necesitaba 137 aquí. Con la fuente de Windows,
+            más ancha, se cortaban también "Convocatoria" y "Modo partido".
+            240 px, y sin el tracking extra en la etiqueta, dan sitio a la
+            palabra más larga con holgura para cualquier fuente de respaldo. */}
+        <nav className="hidden lg:flex flex-col gap-1 p-3 border-r min-h-[calc(100vh-57px)] w-60 shrink-0 sticky top-[57px] self-start max-h-[calc(100vh-57px)] overflow-y-auto" style={{ borderColor: C.line }}>
           {/* Escudo del equipo, grande y fijo: identifica de un vistazo en qué
               equipo estás trabajando. Solo en cuentas oficiales, es decir,
               cuando el club te ha dado de alta. */}
@@ -13848,7 +13931,7 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
               if (sinRol) return (
                 <div key={k} aria-disabled="true"
                   title={`${t("nav." + k)} — tu rol (${role.label}) no tiene acceso a este apartado`}
-                  className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-left font-display uppercase tracking-wide text-sm cursor-not-allowed"
+                  className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-left font-display uppercase text-sm cursor-not-allowed"
                   style={{ color: C.dim, opacity: 0.45, borderLeft: "3px solid transparent" }}>
                   <span className="w-4 shrink-0 flex justify-center"><Icono n={k} s={16} /></span>
                   <span className="flex-1 min-w-0 truncate" title={t("nav." + k)}>{t("nav." + k)}</span>
@@ -13858,7 +13941,7 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
               return (
               <button key={k} onClick={() => (bloq ? setTab("premium") : setTab(k))} aria-current={tab === k ? "page" : undefined}
                 title={bloq ? t("c.proTab") : undefined}
-                className="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-left font-display uppercase tracking-wide text-sm"
+                className="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-left font-display uppercase text-sm"
                 style={{ background: tab === k ? "rgba(54,69,79,.06)" : "transparent", color: tab === k ? MC : bloq ? C.dim : C.chalk, borderLeft: tab === k ? `3px solid ${MC}` : "3px solid transparent" }}>
                 <span className="w-4 shrink-0 flex justify-center" style={{ color: tab === k ? MC : C.dim }}><Icono n={k} s={16} /></span>
                 <span className="flex-1 min-w-0 truncate" title={t("nav." + k)}>{t("nav." + k)}</span>
