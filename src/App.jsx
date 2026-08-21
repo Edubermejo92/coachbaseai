@@ -174,6 +174,25 @@ const DICT = {
     "ca.remove": "Quitar",
     "ca.useMatch": "Usar en modo partido", "ca.month": "Calendario del mes", "ca.dayHint": "Toca un día para ver su detalle.", "ca.dayEmpty": "No hay partidos ni entrenamiento programado este día.", "ca.dayTraining": "Día de entrenamiento", "ca.legendMatch": "Partido (del calendario importado)", "ca.legendTrain": "Entrenamiento", "ca.trainDaysLabel": "Días de entreno:",
     "ca.teamCrest": "Escudo del equipo",
+    "pt.orphanOne": "sesión se queda sin día.",
+    "pt.orphanMany": "sesiones se quedan sin día.",
+    "pt.orphanFix": "El plan pide tres por semana y ahora hay estos días de entreno marcados en el calendario:",
+    "pt.orphanNone": "ninguno",
+    "pf.name": "Nombre",
+    "pf.number": "Dorsal",
+    "pf.pos": "Demarcación",
+    "pf.status": "Estado",
+    "pf.att": "Asistencia",
+    "pf.min": "Minutos",
+    "pf.save": "Guardar ficha",
+    "pf.saved": "✓ Ficha guardada.",
+    "pf.savedLocal": "Guardada en este dispositivo: el equipo aún no está en la nube.",
+    "pf.needName": "El jugador necesita un nombre.",
+    "ln.openProfile": "Abrir ficha",
+    "se.tabPre": "Pretemporada",
+    "se.tabSeason": "Temporada",
+    "pt.exercises": "Ejercicios recomendados esta semana",
+    "pt.noDay": "Sin día",
     "sq.load": "Carga",
     "sq.loadGo": "Ver y cambiar en Temporada",
     "ca.note": "Aviso",
@@ -438,6 +457,25 @@ const DICT = {
     "ca.remove": "Remove",
     "ca.useMatch": "Use in match mode", "ca.month": "Month calendar", "ca.dayHint": "Tap a day to see its detail.", "ca.dayEmpty": "No fixtures or training scheduled this day.", "ca.dayTraining": "Training day", "ca.legendMatch": "Fixture (from the imported calendar)", "ca.legendTrain": "Training", "ca.trainDaysLabel": "Training days:",
     "ca.teamCrest": "Team crest",
+    "pt.orphanOne": "session has no day.",
+    "pt.orphanMany": "sessions have no day.",
+    "pt.orphanFix": "The plan asks for three a week and these training days are currently set in the calendar:",
+    "pt.orphanNone": "none",
+    "pf.name": "Name",
+    "pf.number": "Number",
+    "pf.pos": "Position",
+    "pf.status": "Status",
+    "pf.att": "Attendance",
+    "pf.min": "Minutes",
+    "pf.save": "Save player",
+    "pf.saved": "✓ Player saved.",
+    "pf.savedLocal": "Saved on this device: the team is not in the cloud yet.",
+    "pf.needName": "The player needs a name.",
+    "ln.openProfile": "Open player",
+    "se.tabPre": "Pre-season",
+    "se.tabSeason": "Season",
+    "pt.exercises": "Recommended drills this week",
+    "pt.noDay": "No day",
     "sq.load": "Load",
     "sq.loadGo": "View and change in Season",
     "ca.note": "Note",
@@ -719,6 +757,25 @@ const DICT = {
     "ca.remove": "Retirer",
     "ca.useMatch": "Utiliser en mode match", "ca.month": "Calendrier du mois", "ca.dayHint": "Touchez un jour pour voir son détail.", "ca.dayEmpty": "Aucun match ni entraînement prévu ce jour.", "ca.dayTraining": "Jour d'entraînement", "ca.legendMatch": "Match (du calendrier importé)", "ca.legendTrain": "Entraînement", "ca.trainDaysLabel": "Jours d'entraînement :",
     "ca.teamCrest": "Écusson de l'équipe",
+    "pt.orphanOne": "séance reste sans jour.",
+    "pt.orphanMany": "séances restent sans jour.",
+    "pt.orphanFix": "Le plan en demande trois par semaine et voici les jours d'entraînement cochés dans le calendrier :",
+    "pt.orphanNone": "aucun",
+    "pf.name": "Nom",
+    "pf.number": "Numéro",
+    "pf.pos": "Poste",
+    "pf.status": "Statut",
+    "pf.att": "Présence",
+    "pf.min": "Minutes",
+    "pf.save": "Enregistrer la fiche",
+    "pf.saved": "✓ Fiche enregistrée.",
+    "pf.savedLocal": "Enregistrée sur cet appareil : l'équipe n'est pas encore dans le cloud.",
+    "pf.needName": "Le joueur a besoin d'un nom.",
+    "ln.openProfile": "Ouvrir la fiche",
+    "se.tabPre": "Présaison",
+    "se.tabSeason": "Saison",
+    "pt.exercises": "Exercices conseillés cette semaine",
+    "pt.noDay": "Sans jour",
     "sq.load": "Charge",
     "sq.loadGo": "Voir et modifier dans Saison",
     "ca.note": "Note",
@@ -1073,6 +1130,25 @@ const DICT = {
     "ca.remove": "Entfernen",
     "ca.useMatch": "Im Spielmodus verwenden", "ca.month": "Monatskalender", "ca.dayHint": "Tippe auf einen Tag, um Details zu sehen.", "ca.dayEmpty": "An diesem Tag sind weder Spiele noch Training geplant.", "ca.dayTraining": "Trainingstag", "ca.legendMatch": "Spiel (aus importiertem Spielplan)", "ca.legendTrain": "Training", "ca.trainDaysLabel": "Trainingstage:",
     "ca.teamCrest": "Mannschaftswappen",
+    "pt.orphanOne": "Einheit bleibt ohne Tag.",
+    "pt.orphanMany": "Einheiten bleiben ohne Tag.",
+    "pt.orphanFix": "Der Plan verlangt drei pro Woche, und im Kalender sind diese Trainingstage markiert:",
+    "pt.orphanNone": "keiner",
+    "pf.name": "Name",
+    "pf.number": "Nummer",
+    "pf.pos": "Position",
+    "pf.status": "Status",
+    "pf.att": "Anwesenheit",
+    "pf.min": "Minuten",
+    "pf.save": "Spieler speichern",
+    "pf.saved": "✓ Spieler gespeichert.",
+    "pf.savedLocal": "Auf diesem Gerät gespeichert: die Mannschaft ist noch nicht in der Cloud.",
+    "pf.needName": "Der Spieler braucht einen Namen.",
+    "ln.openProfile": "Spielerprofil öffnen",
+    "se.tabPre": "Vorbereitung",
+    "se.tabSeason": "Saison",
+    "pt.exercises": "Empfohlene Übungen diese Woche",
+    "pt.noDay": "Ohne Tag",
     "sq.load": "Belastung",
     "sq.loadGo": "In Saison ansehen und ändern",
     "ca.note": "Hinweis",
@@ -1426,6 +1502,25 @@ const DICT = {
     "ca.remove": "Remover",
     "ca.useMatch": "Usar no modo jogo", "ca.month": "Calendário do mês", "ca.dayHint": "Toca num dia para ver o detalhe.", "ca.dayEmpty": "Não há jogos nem treino marcado para este dia.", "ca.dayTraining": "Dia de treino", "ca.legendMatch": "Jogo (do calendário importado)", "ca.legendTrain": "Treino", "ca.trainDaysLabel": "Dias de treino:",
     "ca.teamCrest": "Emblema da equipa",
+    "pt.orphanOne": "sessão fica sem dia.",
+    "pt.orphanMany": "sessões ficam sem dia.",
+    "pt.orphanFix": "O plano pede três por semana e estão marcados estes dias de treino no calendário:",
+    "pt.orphanNone": "nenhum",
+    "pf.name": "Nome",
+    "pf.number": "Número",
+    "pf.pos": "Posição",
+    "pf.status": "Estado",
+    "pf.att": "Assiduidade",
+    "pf.min": "Minutos",
+    "pf.save": "Guardar ficha",
+    "pf.saved": "✓ Ficha guardada.",
+    "pf.savedLocal": "Guardada neste dispositivo: a equipa ainda não está na nuvem.",
+    "pf.needName": "O jogador precisa de um nome.",
+    "ln.openProfile": "Abrir ficha",
+    "se.tabPre": "Pré-época",
+    "se.tabSeason": "Época",
+    "pt.exercises": "Exercícios recomendados esta semana",
+    "pt.noDay": "Sem dia",
     "sq.load": "Carga",
     "sq.loadGo": "Ver e alterar em Época",
     "ca.note": "Aviso",
@@ -3794,7 +3889,11 @@ const MESES_TEMP = [
    cinco idiomas. */
 const PRETEMPORADA = [
   {
-    n: 1, fase: "Adaptación", rango: "1-6 septiembre",
+    n: 1, fase: "Adaptación", rango: "1-6 septiembre", desde: "2026-09-01", hasta: "2026-09-06",
+    /* Categorías de la biblioteca que encajan con lo que entrena la semana.
+       La semana confirma cómo llegan: calentamiento, técnica y rondos, con el
+       físico dosificado. */
+    cats: ["warmup", "technique", "rondo", "fitness"],
     idea: "La primera semana confirma, no castiga: se comprueba cómo llegan del trabajo individual de agosto sin generar fatiga residual.",
     sesiones: [
       { n: 1, nombre: "Reentrada colectiva", dur: "70-75", durMin: 72, rpe: "4-5", rpeMin: 4, rpeMax: 5, prioridad: "Fuerza + técnica", carga: "Media-baja",
@@ -3809,7 +3908,9 @@ const PRETEMPORADA = [
     ],
   },
   {
-    n: 2, fase: "Construcción", rango: "7-13 septiembre",
+    n: 2, fase: "Construcción", rango: "7-13 septiembre", desde: "2026-09-07", hasta: "2026-09-13",
+    /* Sube el volumen y aparece el día duro: duelos, presión y físico. */
+    cats: ["fitness", "duel", "press", "rondo"],
     idea: "Sube el volumen de fuerza y aparece el primer día claramente exigente, siempre con calidad por delante del número.",
     sesiones: [
       { n: 4, nombre: "Fuerza y aceleración", dur: "75-80", durMin: 78, rpe: "5-6", rpeMin: 5, rpeMax: 6, prioridad: "Fuerza + velocidad", carga: "Media-alta",
@@ -3824,7 +3925,9 @@ const PRETEMPORADA = [
     ],
   },
   {
-    n: 3, fase: "Carga alta", rango: "14-20 septiembre",
+    n: 3, fase: "Carga alta", rango: "14-20 septiembre", desde: "2026-09-14", hasta: "2026-09-20",
+    /* El pico: defender dominados, transición y salida bajo presión. */
+    cats: ["fitness", "duel", "press", "defense", "buildup"],
     idea: "La semana del mayor estímulo específico del mes. Aquí es donde el semáforo y el RPE mandan más que el papel.",
     sesiones: [
       { n: 7, nombre: "Fuerza específica y aceleración", dur: "80", durMin: 80, rpe: "6", rpeMin: 6, rpeMax: 6, prioridad: "Fuerza + aceleración", carga: "Alta",
@@ -3839,7 +3942,9 @@ const PRETEMPORADA = [
     ],
   },
   {
-    n: 4, fase: "Afinamiento", rango: "21-25 septiembre",
+    n: 4, fase: "Afinamiento", rango: "21-25 septiembre", desde: "2026-09-21", hasta: "2026-09-25",
+    /* Semana de liga: balón de calidad, finalización y balón parado. */
+    cats: ["warmup", "rondo", "finish", "setpiece"],
     idea: "Semana de liga: se reduce volumen y se mantienen velocidad e intensidad. Llegar disponibles, no cansados.",
     sesiones: [
       { n: 10, nombre: "Consolidación y descarga activa", dur: "70-75", durMin: 72, rpe: "5-6", rpeMin: 5, rpeMax: 6, prioridad: "Fuerza breve + balón", carga: "Media",
@@ -6013,6 +6118,14 @@ const hoyISO = () => isoLocal(new Date());
 /* "2026-08-21" -> "viernes, 21 de agosto". Si no es una fecha ISO válida, se
    devuelve tal cual (por si queda algún texto libre antiguo en localStorage,
    de cuando el campo de fecha del entrenamiento era un input de texto). */
+/* Fecha corta con el día de la semana: "mar 8 sept". Es lo que hace falta al
+   lado de una sesión del plan —qué día de la semana toca y cuándo—, donde la
+   fecha larga de fechaLegible ocuparía toda la fila. */
+const fechaCorta = (iso, lang = "es") => {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(String(iso || ""))) return iso || "";
+  const [y, m, d] = iso.split("-").map(Number);
+  return new Date(y, m - 1, d).toLocaleDateString(lang === "es" ? "es-ES" : lang, { weekday: "short", day: "numeric", month: "short" });
+};
 const fechaLegible = (iso, lang = "es") => {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(String(iso || ""))) return iso || "";
   const [y, m, d] = iso.split("-").map(Number);
@@ -7773,6 +7886,36 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
   const starters = new Set(Object.values(lineup));
   const profile = players.find((p) => p.id === profileId);
 
+  /* Edita un campo de la ficha de un jugador. Solo toca el estado local: la
+     subida a Airtable va aparte, con "Guardar ficha", para no mandar una
+     llamada por cada tecla mientras se escribe un nombre. */
+  const editarJugador = (id, campos) =>
+    setPlayers((ps) => ps.map((p) => (p.id === id ? { ...p, ...campos } : p)));
+  const [fichaMsg, setFichaMsg] = useState("");
+  const [fichaBusy, setFichaBusy] = useState(false);
+  const guardarFicha = async (p) => {
+    if (fichaBusy) return;
+    if (!String(p.n || "").trim()) { setFichaMsg(t("pf.needName")); return; }
+    setFichaBusy(true); setFichaMsg("");
+    if (!teamRec) {
+      setFichaBusy(false);
+      setFichaMsg(t("pf.savedLocal"));
+      setTimeout(() => setFichaMsg(""), 4000);
+      return;
+    }
+    /* Un jugador que todavía no existe en Airtable se crea; el resto se
+       actualizan. Así la ficha funciona igual para una plantilla recién
+       importada que para una que lleva meses en la nube. */
+    if (p.rec) await airEdit("jugadores", p.rec, jugToAir(p, teamRec));
+    else {
+      const rec = await airNew("jugadores", jugToAir(p, teamRec));
+      if (rec) editarJugador(p.id, { rec });
+    }
+    setFichaBusy(false);
+    setFichaMsg(t("pf.saved"));
+    setTimeout(() => setFichaMsg(""), 4000);
+  };
+
   const cycleStatus = (id) => can("editSquad") &&
     updateSquadWithProposal((ps) => ps.map((p) => p.id === id ? { ...p, st: p.st === "disponible" ? "duda" : p.st === "duda" ? "lesionado" : "disponible" } : p));
 
@@ -8250,14 +8393,77 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
         {profile.video && lim.video && (
           <a href={profile.video} download={`presentacion-${profile.n.replace(/\s+/g, "-")}.webm`} className="block text-center text-xs mb-4 underline" style={{ color: AC }}>Descargar vídeo (.webm)</a>
         )}
-        <div className="grid grid-cols-2 gap-2 text-sm">
-          {[["Posición", profile.pos], ["Estado", profile.st], ["Asistencia", `${attPct(profile)}%`], ["Minutos", `${profile.min}'`]].map(([k, v]) => (
-            <div key={k} className="rounded-lg border p-2.5" style={{ borderColor: C.line, background: C.panel2 }}>
-              <div className="text-[10px] font-display uppercase tracking-widest" style={{ color: C.dim }}>{k}</div>
-              <div style={{ color: k === "Estado" ? stColor(profile.st) : C.chalk }}>{v}</div>
+        {/* Ficha editable. Antes esta ventana solo enseñaba los datos y la única
+            forma de corregir un dorsal o una demarcación era el importador de
+            CSV, que reemplaza la plantilla entera. Cada campo se guarda en
+            Airtable al tocar "Guardar ficha", jugador a jugador. */}
+        {can("editSquad") ? (
+          <div className="grid grid-cols-2 gap-2 text-sm">
+            <label className="col-span-2 block">
+              <span className="text-[10px] font-display uppercase tracking-widest block mb-1" style={{ color: C.dim }}>{t("pf.name")}</span>
+              <input value={profile.n} onChange={(e) => editarJugador(profile.id, { n: e.target.value })}
+                className="w-full px-2.5 py-1.5 rounded-lg border bg-transparent" style={{ borderColor: C.line, color: C.chalk }} />
+            </label>
+            <label className="block">
+              <span className="text-[10px] font-display uppercase tracking-widest block mb-1" style={{ color: C.dim }}>{t("pf.number")}</span>
+              <input type="number" min={1} max={99} value={profile.d}
+                onChange={(e) => editarJugador(profile.id, { d: Math.max(0, Math.min(99, Number(e.target.value) || 0)) })}
+                className="w-full px-2.5 py-1.5 rounded-lg border bg-transparent tabular-nums" style={{ borderColor: C.line, color: C.chalk }} />
+            </label>
+            <label className="block">
+              <span className="text-[10px] font-display uppercase tracking-widest block mb-1" style={{ color: C.dim }}>{t("pf.pos")}</span>
+              <select value={profile.pos} onChange={(e) => editarJugador(profile.id, { pos: e.target.value })}
+                className="w-full px-2.5 py-1.5 rounded-lg border" style={{ background: C.panel2, borderColor: C.line, color: C.chalk }}>
+                {POS_OK.map((x) => <option key={x} value={x} style={{ background: C.panel }}>{x}</option>)}
+              </select>
+            </label>
+            <label className="col-span-2 block">
+              <span className="text-[10px] font-display uppercase tracking-widest block mb-1" style={{ color: C.dim }}>{t("pf.status")}</span>
+              <select value={profile.st} onChange={(e) => editarJugador(profile.id, { st: e.target.value })}
+                className="w-full px-2.5 py-1.5 rounded-lg border" style={{ background: C.panel2, borderColor: C.line, color: stColor(profile.st) }}>
+                {["disponible", "duda", "lesionado", "sancionado"].map((x) => <option key={x} value={x} style={{ background: C.panel, color: C.chalk }}>{x}</option>)}
+              </select>
+            </label>
+            {/* Asistencia y minutos no se escriben a mano: los calcula la app a
+                partir de lo que se ha pasado en lista y jugado. */}
+            <div className="rounded-lg border p-2.5" style={{ borderColor: C.line, background: C.panel2 }}>
+              <div className="text-[10px] font-display uppercase tracking-widest" style={{ color: C.dim }}>{t("pf.att")}</div>
+              <div style={{ color: C.chalk }}>{attPct(profile)}%</div>
             </div>
-          ))}
-        </div>
+            <div className="rounded-lg border p-2.5" style={{ borderColor: C.line, background: C.panel2 }}>
+              <div className="text-[10px] font-display uppercase tracking-widest" style={{ color: C.dim }}>{t("pf.min")}</div>
+              <div style={{ color: C.chalk }}>{profile.min}′</div>
+            </div>
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 gap-2 text-sm">
+            {[[t("pf.pos"), profile.pos], [t("pf.status"), profile.st], [t("pf.att"), `${attPct(profile)}%`], [t("pf.min"), `${profile.min}'`]].map(([k, v]) => (
+              <div key={k} className="rounded-lg border p-2.5" style={{ borderColor: C.line, background: C.panel2 }}>
+                <div className="text-[10px] font-display uppercase tracking-widest" style={{ color: C.dim }}>{k}</div>
+                <div style={{ color: k === t("pf.status") ? stColor(profile.st) : C.chalk }}>{v}</div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Cómo llega hoy, según el parte de cargas. Solo lectura: el parte se
+            pasa en Temporada y duplicar aquí la edición sería tener dos sitios
+            donde escribir lo mismo. */}
+        {isPro && can("cargas") && (() => {
+          const c = cargaDe(profile.id);
+          const col = (SEMAFORO.find((x) => x.k === c.estado) || SEMAFORO[0]).color;
+          return (
+            <button onClick={() => { setProfileId(null); setTab("temporada"); }}
+              className="mt-3 w-full rounded-lg border p-2.5 flex items-center gap-3 text-left" style={{ borderColor: C.line, background: C.panel2 }}>
+              <span className="w-3 h-3 rounded-full shrink-0" style={{ background: col }} />
+              <span className="text-sm flex-1" style={{ color: C.chalk }}>
+                {t("cf.load")} <strong className="tabular-nums">{c.carga}%</strong>
+                {Number(c.rpe) > 0 && <span className="text-[11px] ml-2" style={{ color: C.dim }}>RPE {c.rpe}</span>}
+              </span>
+              <span className="text-[11px] shrink-0" style={{ color: AC }}>{t("sq.loadGo")} ›</span>
+            </button>
+          );
+        })()}
         {/* Aviso médico permanente: antecedentes y limitaciones que hay que
             tener delante cada vez que se dosifica la carga de este jugador.
             Se escribe una vez aquí y sale fijo en el control de cargas, en vez
@@ -8277,6 +8483,18 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
           )}
           {can("editSquad") && <div className="text-[10px] mt-1.5" style={{ color: C.dim }}>{t("cf.medNoteSave")}</div>}
         </div>
+        {can("editSquad") && (
+          <div className="mt-4 pt-3 border-t flex flex-wrap items-center gap-3" style={{ borderColor: C.line }}>
+            <button onClick={() => guardarFicha(profile)} disabled={fichaBusy}
+              className="font-display uppercase tracking-wide text-sm px-4 py-2.5 rounded-lg font-semibold disabled:opacity-50"
+              style={{ background: AC, color: C.sobre }}>
+              {fichaBusy ? t("a.sending") : t("pf.save")}
+            </button>
+            <button onClick={() => setProfileId(null)} className="text-sm px-4 py-2.5 rounded-lg border font-display uppercase tracking-wide"
+              style={{ borderColor: C.line, color: C.dim }}>{t("p.close")}</button>
+            {fichaMsg && <span className="text-xs" style={{ color: fichaMsg === t("pf.saved") ? C.green : C.warn }}>{fichaMsg}</span>}
+          </div>
+        )}
       </div>
     </div>
   );
@@ -9121,12 +9339,19 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                     {esAviso(f) ? textoAviso(f) : `${f.time || ""} ${f.away || f.home}`}
                   </div>
                 ))}
-                {(esEntreno || planEse) && partidos.length === 0 && (
-                  <div className="mt-0.5 text-[8px] leading-tight px-1 rounded truncate"
-                    style={{ background: `${C.velo}0.14)`, color: C.dim }}>
-                    {planEse ? trainMeta.hora || t("ca.legendTrain") : t("ca.legendTrain")}
-                  </div>
-                )}
+                {(esEntreno || planEse) && partidos.length === 0 && (() => {
+                  /* Si ese día le toca una sesión del plan de pretemporada, se
+                     dice cuál: "S5 · Día metabólico" informa; "Entrenamiento",
+                     repetido doce veces seguidas, no. */
+                  const ses = sesionDelDia(fecha);
+                  return (
+                    <div className="mt-0.5 text-[8px] leading-tight px-1 rounded truncate"
+                      title={ses ? `S${ses.n} · ${ses.nombre}` : undefined}
+                      style={{ background: `${C.velo}0.14)`, color: C.dim }}>
+                      {ses ? `S${ses.n} ${ses.nombre}` : planEse ? trainMeta.hora || t("ca.legendTrain") : t("ca.legendTrain")}
+                    </div>
+                  );
+                })()}
               </button>
             );
           })}
@@ -9154,11 +9379,34 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
               <div className="font-display text-sm uppercase tracking-wide" style={{ color: C.chalk }}>{fechaLegible(selectedDay, lang)}</div>
               <button onClick={() => { setFixEdit(null); setSelectedDay(null); }} className="text-xs px-2 py-1 rounded border" style={{ borderColor: C.line, color: C.dim }}>{t("p.close")}</button>
             </div>
-            {entrenoDia && (
-              <div className="text-xs px-2 py-1.5 rounded mb-2 inline-block" style={{ background: "rgba(47,107,79,.14)", color: C.green }}>
-                🏋️ {t("ca.dayTraining")}
-              </div>
-            )}
+            {entrenoDia && (() => {
+              const ses = sesionDelDia(selectedDay);
+              if (!ses) return (
+                <div className="text-xs px-2 py-1.5 rounded mb-2 inline-block" style={{ background: "rgba(47,107,79,.14)", color: C.green }}>
+                  🏋️ {t("ca.dayTraining")}
+                </div>
+              );
+              /* Con sesión del plan asignada, el día de entreno deja de ser una
+                 etiqueta y pasa a ser lo que hay que hacer: qué sesión, con qué
+                 carga y con un botón para dejarla montada en Entrenamiento. */
+              return (
+                <div className="rounded-lg border p-2.5 mb-2" style={{ borderColor: C.line, background: C.panel2 }}>
+                  <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                    <span className="font-display text-sm shrink-0" style={{ color: AC }}>S{ses.n}</span>
+                    <span className="text-sm flex-1 min-w-[140px]" style={{ color: C.chalk }}>{ses.nombre}</span>
+                    <span className="text-[10px] px-2 py-0.5 rounded-full border shrink-0" style={{ borderColor: C.line, color: C.dim }}>⏱ {ses.dur}′</span>
+                    <span className="text-[10px] px-2 py-0.5 rounded-full border shrink-0" style={{ borderColor: C.line, color: C.dim }}>RPE {ses.rpe}</span>
+                    <span className="text-[10px] px-2 py-0.5 rounded-full border shrink-0" style={{ borderColor: COLOR_CARGA(ses.carga), color: COLOR_CARGA(ses.carga) }}>{ses.carga}</span>
+                  </div>
+                  <div className="text-[11px] mt-1.5 leading-snug" style={{ color: C.dim }}>{ses.objetivo}</div>
+                  {can("editTraining") && (
+                    <button onClick={() => cargarSesionPlan(ses)}
+                      className="mt-2 text-xs px-3 py-1.5 rounded-lg border font-display uppercase tracking-wide"
+                      style={{ borderColor: AC, color: AC }}>{t("pt.load")}</button>
+                  )}
+                </div>
+              );
+            })()}
             {partidosDia.length > 0 ? (
               <div className="space-y-1.5">{partidosDia.map((f) => renderFixtureRow(f))}</div>
             ) : !entrenoDia && (
@@ -10982,11 +11230,16 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                       es la foto de la plantilla y el parte se pasa en la suya. */}
                   {verCargas && (
                     <td>
-                      <button onClick={() => setTab("temporada")} title={c.nota || t("sq.loadGo")}
-                        className="flex items-center gap-2 hover:opacity-80">
+                      {/* En móvil solo el punto: con el porcentaje al lado, la
+                          tabla pedía 386 px de los 390 de pantalla y se comía
+                          todo el margen. El color es el dato que se lee de un
+                          vistazo; la cifra cabe a partir de tablet. El py-1
+                          sube el botón a los 24 px mínimos para el dedo. */}
+                      <button onClick={() => setTab("temporada")} title={`${t("cf.load")} ${c.carga}%${Number(c.rpe) > 0 ? ` · RPE ${c.rpe}` : ""}${c.nota ? ` · ${c.nota}` : ""}`}
+                        className="flex items-center gap-2 py-1 hover:opacity-80">
                         <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: colC }} />
-                        <span className="tabular-nums" style={{ color: C.chalk }}>{c.carga}%</span>
-                        {Number(c.rpe) > 0 && <span className="text-[11px]" style={{ color: C.dim }}>RPE {c.rpe}</span>}
+                        <span className="tabular-nums hidden sm:inline" style={{ color: C.chalk }}>{c.carga}%</span>
+                        {Number(c.rpe) > 0 && <span className="text-[11px] hidden md:inline" style={{ color: C.dim }}>RPE {c.rpe}</span>}
                       </button>
                     </td>
                   )}
@@ -11009,6 +11262,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
        lados -convocatoria, estadísticas...-, sin verse afectados por un
        borrador que todavía no se ha aprobado. */
     const propone = canProposeChanges();
+    const verCargasLn = isPro && can("cargas");
     const lineupView = propone ? (lineupDraft || lineup) : lineup;
     const startersView = new Set(Object.values(lineupView));
     const bench = players.filter((p) => !startersView.has(p.id));
@@ -11165,14 +11419,36 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
             ) : jugadoresParaSlot.map((p) => {
               const mismoPuesto = selSlot && p.pos === puestoDelSlot;
               return (
-                <button key={p.id} onClick={() => (selSlot ? asignarJugadorAPuesto(selSlot, p.id) : setSelPlayer(p.id))}
-                  className="w-full flex items-center justify-between text-sm py-2 px-3 rounded-lg border text-left hover:opacity-80 disabled:cursor-default" style={{ borderColor: mismoPuesto ? AC : C.line, background: C.panel2, color: C.chalk }}>
-                  <span className="flex items-center gap-2">
-                    <Avatar p={p} size={26} /><Dot st={p.st} /><span className="font-display text-base" style={{ color: AC }}>{p.d}</span>{p.n}
-                    {mismoPuesto && <span className="text-[10px] font-display uppercase tracking-wide px-1.5 py-0.5 rounded" style={{ background: AC, color: C.sobre }}>{t("ln.samePos")}</span>}
-                  </span>
-                  <span style={{ color: C.dim }}>{p.pos}{startersView.has(p.id) ? " · XI" : ""}</span>
-                </button>
+                <div key={p.id} className="w-full flex items-center gap-2 py-2 px-3 rounded-lg border" style={{ borderColor: mismoPuesto ? AC : C.line, background: C.panel2 }}>
+                  <button onClick={() => (selSlot ? asignarJugadorAPuesto(selSlot, p.id) : setSelPlayer(p.id))}
+                    className="flex items-center justify-between text-sm flex-1 min-w-0 text-left hover:opacity-80" style={{ color: C.chalk }}>
+                    <span className="flex items-center gap-2 min-w-0">
+                      <Avatar p={p} size={26} /><Dot st={p.st} /><span className="font-display text-base" style={{ color: AC }}>{p.d}</span>
+                      <span className="truncate">{p.n}</span>
+                      {p.aviso && <span title={p.aviso} style={{ color: C.warn }}>⚠</span>}
+                      {mismoPuesto && <span className="text-[10px] font-display uppercase tracking-wide px-1.5 py-0.5 rounded shrink-0" style={{ background: AC, color: C.sobre }}>{t("ln.samePos")}</span>}
+                    </span>
+                    <span className="shrink-0 ml-2 flex items-center gap-2" style={{ color: C.dim }}>
+                      {/* Cómo llega ese jugador hoy, aquí mismo: montar el once
+                          sin saber quién viene en amarillo es justo el error
+                          que el semáforo existe para evitar. */}
+                      {verCargasLn && (() => {
+                        const c = cargaDe(p.id);
+                        const col = (SEMAFORO.find((x) => x.k === c.estado) || SEMAFORO[0]).color;
+                        return (
+                          <span className="flex items-center gap-1 text-[11px] tabular-nums" title={c.nota || `${t("cf.load")} ${c.carga}%`}>
+                            <span className="w-2 h-2 rounded-full inline-block" style={{ background: col }} />{c.carga}%
+                          </span>
+                        );
+                      })()}
+                      <span>{p.pos}{startersView.has(p.id) ? " · XI" : ""}</span>
+                    </span>
+                  </button>
+                  {/* Abrir la ficha sin robarle el toque a "poner en el once":
+                      en esta pantalla tocar al jugador significa alinearlo. */}
+                  <button onClick={() => setProfileId(p.id)} title={t("ln.openProfile")} aria-label={`${t("ln.openProfile")} — ${p.n}`}
+                    className="shrink-0 text-xs w-8 h-8 rounded-lg border flex items-center justify-center" style={{ borderColor: C.line, color: C.dim }}>☰</button>
+                </div>
               );
             })}
           </div>
@@ -12398,8 +12674,57 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
      Entrenamiento, el objetivo escrito y la duración objetivo fijada, y de paso
      apunta en el control de cargas qué sesión es la de hoy, para poder comparar
      después el RPE que se esperaba con el que ha salido de verdad. */
+  /* Temporada tiene dentro dos cosas que no se tocan al mismo ritmo: el bloque
+     de pretemporada, que se mira cada tarde durante un mes, y la planificación
+     de los diez meses, que se toca una vez al mes. Mezcladas en una sola
+     columna obligaban a bajar media pantalla para llegar a lo del día. */
+  const [tempSub, setTempSub] = useState("pre");
   const [ptAbierta, setPtAbierta] = useState(null);
   const [ptMsg, setPtMsg] = useState("");
+
+  /* ---- El plan puesto sobre el calendario real ----
+     El plan dice "semana 2, tres sesiones", pero quien lo ejecuta necesita
+     saber qué día cae cada una. Se calcula cruzando el rango de fechas de la
+     semana con los días de entreno configurados del equipo, en orden. No se
+     guarda nada: si se cambian los días de entreno, las fechas se recalculan
+     solas y no queda ninguna copia vieja por ahí contradiciendo al calendario.
+
+     Si la semana tiene menos días de entreno que sesiones, las que sobran se
+     quedan sin fecha y se dice, en vez de inventar un día. */
+  const diasDeEntrenoEntre = (desde, hasta) => {
+    const out = [];
+    const d = new Date(desde + "T12:00:00");
+    const fin = new Date(hasta + "T12:00:00");
+    while (d <= fin) {
+      if (trainDays.includes(d.getDay())) {
+        out.push(`${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`);
+      }
+      d.setDate(d.getDate() + 1);
+    }
+    return out;
+  };
+  /* Fecha asignada a cada sesión del plan, y el índice inverso para que el
+     calendario pueda preguntar "¿qué sesión toca este día?". */
+  const fechasDelPlan = (() => {
+    const porSesion = {};
+    const porFecha = {};
+    for (const sem of PRETEMPORADA) {
+      const dias = diasDeEntrenoEntre(sem.desde, sem.hasta);
+      sem.sesiones.forEach((ses, i) => {
+        const f = dias[i] || null;
+        porSesion[ses.n] = f;
+        if (f) porFecha[f] = ses;
+      });
+    }
+    return { porSesion, porFecha };
+  })();
+  const sesionDelDia = (fecha) => fechasDelPlan.porFecha[fecha] || null;
+
+  /* Ejercicios de la biblioteca que encajan con lo que entrena cada semana.
+     Salen de las categorías reales de los ejercicios, no de una lista escrita
+     a mano: si mañana se añade un ejercicio de presión, aparece solo en las
+     semanas que trabajan presión. */
+  const ejerciciosDeSemana = (sem) => EXERCISES.filter((e) => (sem.cats || []).includes(e.cat));
   const cargarSesionPlan = (s) => {
     setTrainBlocks([]);
     s.bloques.forEach(([name, dur]) => addTrainBlock({ name, dur, materials: [] }));
@@ -12441,6 +12766,12 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
                         <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
                           <span className="font-display text-sm shrink-0" style={{ color: AC }}>S{s.n}</span>
                           <span className="text-sm flex-1 min-w-[140px]" style={{ color: C.chalk }}>{s.nombre}</span>
+                          {/* El día que le toca según los días de entreno del
+                              equipo. Sin día = esa semana tiene menos días de
+                              entreno que sesiones; se dice en vez de callarlo. */}
+                          <span className="text-[11px] shrink-0" style={{ color: fechasDelPlan.porSesion[s.n] ? C.dim : C.warn }}>
+                            {fechasDelPlan.porSesion[s.n] ? fechaCorta(fechasDelPlan.porSesion[s.n]) : t("pt.noDay")}
+                          </span>
                           {esSiguiente && (
                             <span className="text-[10px] px-2 py-0.5 rounded-full font-display uppercase tracking-wide shrink-0"
                               style={{ background: AC, color: C.sobre }}>{t("pt.next")}</span>
@@ -12477,10 +12808,49 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
                   );
                 })}
               </div>
+              {/* Ejercicios de la biblioteca que encajan con lo que entrena
+                  esta semana. Se toca uno y se abre montado en la pizarra, que
+                  es donde se explica; añadirlo a la sesión se hace desde
+                  Ejercicios, que es su sitio. */}
+              {(() => {
+                const ejs = ejerciciosDeSemana(sem);
+                if (!ejs.length) return null;
+                return (
+                  <div className="mt-3 pt-3 border-t" style={{ borderColor: C.line }}>
+                    <div className="text-[10px] font-display uppercase tracking-widest mb-1.5" style={{ color: C.dim }}>
+                      {t("pt.exercises")}
+                    </div>
+                    <div className="flex flex-wrap gap-1.5">
+                      {ejs.map((ex) => (
+                        <button key={ex.id} onClick={() => { setPendingExId(ex.id); setTab("pizarra"); }}
+                          className="flex items-center gap-1.5 text-xs px-2.5 py-2 rounded-lg border"
+                          style={{ borderColor: C.line, background: C.panel, color: C.chalk }}>
+                          <span>{ex.icon}</span>
+                          <span className="truncate max-w-[170px]">{ex.name[lang] || ex.name.es}</span>
+                          <span className="text-[10px]" style={{ color: C.dim }}>{ex.dur}′</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })()}
             </div>
           ))}
         </div>
         {ptMsg && <div className="text-xs mt-3" style={{ color: C.green }}>✓ {ptMsg}</div>}
+        {/* "Sin día" no es un fallo del plan: es que el equipo tiene menos días
+            de entreno configurados que sesiones pide la semana. Se dice cuántas
+            faltan y dónde se arregla, en vez de dejar el hueco en ámbar sin
+            explicación. */}
+        {(() => {
+          const huerfanas = Object.values(fechasDelPlan.porSesion).filter((f) => !f).length;
+          if (!huerfanas) return null;
+          return (
+            <div className="text-[11px] mt-3 rounded-lg border px-3 py-2 leading-relaxed" style={{ borderColor: C.warn, background: `${C.warn}12`, color: C.chalk }}>
+              ⚠ {huerfanas} {huerfanas === 1 ? t("pt.orphanOne") : t("pt.orphanMany")} {t("pt.orphanFix")} <strong>{diasSemanaCortosDomingoPrimero(lang).filter((_, i) => trainDays.includes(i)).join(" · ") || t("pt.orphanNone")}</strong>.
+            </div>
+          );
+        })()}
         <div className="text-[11px] mt-3 leading-relaxed" style={{ color: C.dim }}>{t("pt.foot")}</div>
       </Card>
     );
@@ -14007,17 +14377,36 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
               planificación por meses el cuerpo técnico que entrena. Por eso la
               pestaña se abre con cualquiera de los dos permisos y cada bloque
               se enseña solo a quien le toca. */}
-          {tab === "temporada" && (can("editTraining") || can("cargas")) && (
-            <div className="space-y-4">
-              {/* Orden del día del entrenador en pretemporada: primero qué
-                  sesión toca, después quién puede hacerla y con cuánta carga, y
-                  al final cómo ha salido de verdad. La planificación por meses
-                  cierra, porque se toca una vez al mes y no cada tarde. */}
-              {can("editTraining") && renderPretemporada()}
-              {renderCargas()}
-              {can("editTraining") && renderSeason()}
-            </div>
-          )}
+          {tab === "temporada" && (can("editTraining") || can("cargas")) && (() => {
+            /* El delegado solo lleva las cargas: no ve la planificación de los
+               diez meses ni, por tanto, el conmutador —enseñarle dos pestañas
+               cuando una está vacía para él es ruido. */
+            const puedePlan = can("editTraining");
+            const sub = puedePlan ? tempSub : "pre";
+            return (
+              <div className="space-y-4">
+                {puedePlan && (
+                  <div className="flex gap-1 p-1 rounded-lg border w-full sm:w-auto sm:inline-flex" style={{ borderColor: C.line, background: C.panel2 }}>
+                    {[["pre", t("se.tabPre")], ["temp", t("se.tabSeason")]].map(([k, lbl]) => (
+                      <button key={k} onClick={() => setTempSub(k)} aria-pressed={sub === k}
+                        className="flex-1 sm:flex-none font-display uppercase tracking-wide text-sm px-4 py-2 rounded-md"
+                        style={sub === k
+                          ? { background: AC, color: C.sobre, fontWeight: 600 }
+                          : { background: "transparent", color: C.dim }}>{lbl}</button>
+                    ))}
+                  </div>
+                )}
+                {sub === "pre" ? (
+                  <>
+                    {/* Orden del día del entrenador: qué sesión toca, quién
+                        puede hacerla y con cuánta carga, y cómo ha salido. */}
+                    {puedePlan && renderPretemporada()}
+                    {renderCargas()}
+                  </>
+                ) : renderSeason()}
+              </div>
+            );
+          })()}
           {tab === "entrenamiento" && can("editTraining") && renderTraining()}
           {tab === "estadisticas" && can("viewStats") && renderStats()}
           {tab === "coachai" && can("ai") && renderCoach()}
