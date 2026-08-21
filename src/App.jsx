@@ -174,6 +174,7 @@ const DICT = {
     "ca.remove": "Quitar",
     "ca.useMatch": "Usar en modo partido", "ca.month": "Calendario del mes", "ca.dayHint": "Toca un día para ver su detalle.", "ca.dayEmpty": "No hay partidos ni entrenamiento programado este día.", "ca.dayTraining": "Día de entrenamiento", "ca.legendMatch": "Partido (del calendario importado)", "ca.legendTrain": "Entrenamiento", "ca.trainDaysLabel": "Días de entreno:",
     "ca.teamCrest": "Escudo del equipo",
+    "ca.notes": "Avisos",
     "pt.orphanOne": "sesión se queda sin día.",
     "pt.orphanMany": "sesiones se quedan sin día.",
     "pt.orphanFix": "El plan pide tres por semana y ahora hay estos días de entreno marcados en el calendario:",
@@ -457,6 +458,7 @@ const DICT = {
     "ca.remove": "Remove",
     "ca.useMatch": "Use in match mode", "ca.month": "Month calendar", "ca.dayHint": "Tap a day to see its detail.", "ca.dayEmpty": "No fixtures or training scheduled this day.", "ca.dayTraining": "Training day", "ca.legendMatch": "Fixture (from the imported calendar)", "ca.legendTrain": "Training", "ca.trainDaysLabel": "Training days:",
     "ca.teamCrest": "Team crest",
+    "ca.notes": "Notes",
     "pt.orphanOne": "session has no day.",
     "pt.orphanMany": "sessions have no day.",
     "pt.orphanFix": "The plan asks for three a week and these training days are currently set in the calendar:",
@@ -757,6 +759,7 @@ const DICT = {
     "ca.remove": "Retirer",
     "ca.useMatch": "Utiliser en mode match", "ca.month": "Calendrier du mois", "ca.dayHint": "Touchez un jour pour voir son détail.", "ca.dayEmpty": "Aucun match ni entraînement prévu ce jour.", "ca.dayTraining": "Jour d'entraînement", "ca.legendMatch": "Match (du calendrier importé)", "ca.legendTrain": "Entraînement", "ca.trainDaysLabel": "Jours d'entraînement :",
     "ca.teamCrest": "Écusson de l'équipe",
+    "ca.notes": "Notes",
     "pt.orphanOne": "séance reste sans jour.",
     "pt.orphanMany": "séances restent sans jour.",
     "pt.orphanFix": "Le plan en demande trois par semaine et voici les jours d'entraînement cochés dans le calendrier :",
@@ -1130,6 +1133,7 @@ const DICT = {
     "ca.remove": "Entfernen",
     "ca.useMatch": "Im Spielmodus verwenden", "ca.month": "Monatskalender", "ca.dayHint": "Tippe auf einen Tag, um Details zu sehen.", "ca.dayEmpty": "An diesem Tag sind weder Spiele noch Training geplant.", "ca.dayTraining": "Trainingstag", "ca.legendMatch": "Spiel (aus importiertem Spielplan)", "ca.legendTrain": "Training", "ca.trainDaysLabel": "Trainingstage:",
     "ca.teamCrest": "Mannschaftswappen",
+    "ca.notes": "Hinweise",
     "pt.orphanOne": "Einheit bleibt ohne Tag.",
     "pt.orphanMany": "Einheiten bleiben ohne Tag.",
     "pt.orphanFix": "Der Plan verlangt drei pro Woche, und im Kalender sind diese Trainingstage markiert:",
@@ -1502,6 +1506,7 @@ const DICT = {
     "ca.remove": "Remover",
     "ca.useMatch": "Usar no modo jogo", "ca.month": "Calendário do mês", "ca.dayHint": "Toca num dia para ver o detalhe.", "ca.dayEmpty": "Não há jogos nem treino marcado para este dia.", "ca.dayTraining": "Dia de treino", "ca.legendMatch": "Jogo (do calendário importado)", "ca.legendTrain": "Treino", "ca.trainDaysLabel": "Dias de treino:",
     "ca.teamCrest": "Emblema da equipa",
+    "ca.notes": "Avisos",
     "pt.orphanOne": "sessão fica sem dia.",
     "pt.orphanMany": "sessões ficam sem dia.",
     "pt.orphanFix": "O plano pede três por semana e estão marcados estes dias de treino no calendário:",
@@ -9329,6 +9334,26 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                 className="rounded-lg border p-1 min-h-[52px] text-left flex flex-col w-full cursor-pointer hover:opacity-80"
                 style={{ borderColor: sel ? AC : hoy ? AC : C.line, borderWidth: sel ? 2 : 1, background: sel ? `${AC}1a` : hoy ? "rgba(54,69,79,.07)" : "transparent" }}>
                 <div className="text-[11px] font-display" style={{ color: hoy || sel ? AC : C.chalk }}>{d}</div>
+                {/* Un día puede tener las tres cosas a la vez: entreno por la
+                    tarde, partido el fin de semana y un aviso de pretemporada.
+                    Antes el entreno se escondía en cuanto había un partido, así
+                    que un sábado con amistoso por la mañana y sesión por la
+                    tarde solo enseñaba el amistoso. Se pintan todas, cada una
+                    con su forma: el partido relleno, el entreno con fondo
+                    tenue y el aviso con línea discontinua. */}
+                {(esEntreno || planEse) && (() => {
+                  /* Si ese día le toca una sesión del plan de pretemporada, se
+                     dice cuál: "S5 · Día metabólico" informa; "Entrenamiento",
+                     repetido doce veces seguidas, no. */
+                  const ses = sesionDelDia(fecha);
+                  return (
+                    <div className="mt-0.5 text-[8px] leading-tight px-1 rounded truncate"
+                      title={ses ? `S${ses.n} · ${ses.nombre}` : t("ca.legendTrain")}
+                      style={{ background: "rgba(47,107,79,.16)", color: C.green }}>
+                      {ses ? `S${ses.n} ${ses.nombre}` : planEse ? trainMeta.hora || t("ca.legendTrain") : t("ca.legendTrain")}
+                    </div>
+                  );
+                })()}
                 {partidos.map((f) => (
                   <div key={f.id}
                     title={esAviso(f) ? textoAviso(f) : `${f.home} vs ${f.away} · ${f.time || ""} · ${f.place || ""}`}
@@ -9339,19 +9364,6 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                     {esAviso(f) ? textoAviso(f) : `${f.time || ""} ${f.away || f.home}`}
                   </div>
                 ))}
-                {(esEntreno || planEse) && partidos.length === 0 && (() => {
-                  /* Si ese día le toca una sesión del plan de pretemporada, se
-                     dice cuál: "S5 · Día metabólico" informa; "Entrenamiento",
-                     repetido doce veces seguidas, no. */
-                  const ses = sesionDelDia(fecha);
-                  return (
-                    <div className="mt-0.5 text-[8px] leading-tight px-1 rounded truncate"
-                      title={ses ? `S${ses.n} · ${ses.nombre}` : undefined}
-                      style={{ background: `${C.velo}0.14)`, color: C.dim }}>
-                      {ses ? `S${ses.n} ${ses.nombre}` : planEse ? trainMeta.hora || t("ca.legendTrain") : t("ca.legendTrain")}
-                    </div>
-                  );
-                })()}
               </button>
             );
           })}
@@ -9359,6 +9371,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
         <div className="flex flex-wrap items-center gap-3 mt-3 text-[11px]" style={{ color: C.dim }}>
           <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-sm inline-block" style={{ background: AC }} />{t("ca.legendMatch")}</span>
           <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-sm inline-block" style={{ background: "rgba(47,107,79,.5)" }} />{t("ca.legendTrain")}</span>
+          <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-sm inline-block" style={{ border: `1px dashed ${C.dim}` }} />{t("ca.note")}</span>
         </div>
         {can("editTraining") && (
           <div className="flex flex-wrap items-center gap-1.5 mt-2">
@@ -9407,11 +9420,29 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                 </div>
               );
             })()}
-            {partidosDia.length > 0 ? (
-              <div className="space-y-1.5">{partidosDia.map((f) => renderFixtureRow(f))}</div>
-            ) : !entrenoDia && (
-              <div className="text-sm" style={{ color: C.dim }}>{t("ca.dayEmpty")}</div>
-            )}
+            {/* El día en tres bloques con su rótulo, en el orden en que se
+                miran: qué se entrena, contra quién se juega y qué hay apuntado.
+                Antes partidos y avisos caían mezclados en una sola lista sin
+                distinguirse, y un aviso de pretemporada parecía un partido más. */}
+            {(() => {
+              const jugados = partidosDia.filter((f) => !esAviso(f));
+              const notas = partidosDia.filter(esAviso);
+              if (!jugados.length && !notas.length) {
+                return !entrenoDia ? <div className="text-sm" style={{ color: C.dim }}>{t("ca.dayEmpty")}</div> : null;
+              }
+              const Grupo = (label, filas) => filas.length === 0 ? null : (
+                <div className="mt-2">
+                  <div className="text-[10px] font-display uppercase tracking-widest mb-1" style={{ color: C.dim }}>{label}</div>
+                  <div className="space-y-1.5">{filas.map((f) => renderFixtureRow(f))}</div>
+                </div>
+              );
+              return (
+                <>
+                  {Grupo(jugados.length === 1 ? t("se.match") : t("se.matches"), jugados)}
+                  {Grupo(t("ca.notes"), notas)}
+                </>
+              );
+            })()}
             {canEdit && (
               <button onClick={() => abrirFixture(fixtureNuevo(selectedDay))}
                 className="mt-2 text-xs px-3 py-1.5 rounded-lg border font-display uppercase tracking-wide"
