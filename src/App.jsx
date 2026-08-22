@@ -174,6 +174,62 @@ const DICT = {
     "ca.remove": "Quitar",
     "ca.useMatch": "Usar en modo partido", "ca.month": "Calendario del mes", "ca.dayHint": "Toca un día para ver su detalle.", "ca.dayEmpty": "No hay partidos ni entrenamiento programado este día.", "ca.dayTraining": "Día de entrenamiento", "ca.legendMatch": "Partido (del calendario importado)", "ca.legendTrain": "Entrenamiento", "ca.trainDaysLabel": "Días de entreno:",
     "ca.teamCrest": "Escudo del equipo",
+    "nav.parte": "Material del club",
+    "mt2.title": "Parte de entreno",
+    "mt2.hint": "Una foto al sacar el material y otra al guardarlo, y el recuento de balones. Es lo que respalda el control del club: sin las dos fotos, el recuento no está probado.",
+    "mt2.who": "Entrenador:",
+    "mt2.out": "Al sacar",
+    "mt2.in": "Al guardar",
+    "mt2.noPhoto": "Sin foto",
+    "mt2.take": "Hacer foto",
+    "mt2.retake": "Repetir foto",
+    "mt2.ballsOut": "Balones que recibo",
+    "mt2.ballsIn": "Balones que dejo",
+    "mt2.lost": "Balones perdidos",
+    "mt2.mismatchA": "Faltan",
+    "mt2.mismatchB": "balones y has declarado",
+    "mt2.mismatchC": "Ajusta el recuento o declara los que falten: el club ve el descuadre.",
+    "mt2.matchOk": "El recuento cuadra con los balones declarados.",
+    "mt2.damage": "Material en mal estado",
+    "mt2.damagePh": "Ej. dos balones pinchados y un peto roto",
+    "mt2.session": "Cómo ha ido la sesión",
+    "mt2.late": "He llegado tarde",
+    "mt2.phone": "He usado el teléfono",
+    "mt2.lateMin": "Minutos de retraso",
+    "mt2.playersLate": "Jugadores con retraso",
+    "mt2.playersHurt": "Jugadores con molestias",
+    "mt2.otherPh": "Otra incidencia (opcional)",
+    "mt2.other": "Otras",
+    "mt2.send": "Enviar parte",
+    "mt2.clear": "Empezar de nuevo",
+    "mt2.saved": "✓ Parte enviado al club.",
+    "mt2.savedLocal": "✓ Parte guardado en este dispositivo.",
+    "mt2.saveFail": "No se ha podido enviar. Inténtalo otra vez.",
+    "mt2.needPhoto": "Haz al menos una de las dos fotos antes de enviar.",
+    "mt2.processing": "Preparando la foto…",
+    "mt2.photoFail": "No se ha podido leer la foto.",
+    "mt2.mine": "Mis últimos partes",
+    "mt2.balls": "balones",
+    "mt2.lostShort": "perdidos",
+    "mt2.clubTitle": "Control de material del club",
+    "mt2.clubHint": "Un vistazo a cada entrenador por categoría: qué material saca y devuelve, qué se pierde y si avisa de ello.",
+    "mt2.kpiLost": "Balones perdidos",
+    "mt2.kpiUnreported": "Sin avisar",
+    "mt2.kpiLate": "Retrasos",
+    "mt2.kpiPhone": "Teléfono",
+    "mt2.photosOf": "fotos de las que deberían existir (dos por parte).",
+    "mt2.allCats": "Todas",
+    "mt2.colWho": "Entrenador",
+    "mt2.colCat": "Categoría",
+    "mt2.colReports": "Partes",
+    "mt2.colBalance": "Saca → deja",
+    "mt2.colLost": "Perdidos",
+    "mt2.colUnreported": "Sin avisar",
+    "mt2.colFlags": "Incidencias",
+    "mt2.colPlayers": "Jugadores",
+    "mt2.noData": "Todavía no hay ningún parte enviado.",
+    "mt2.lastReports": "Últimos partes",
+    "mt2.clubFoot": "«Sin avisar» son los balones que faltan en el recuento y que el entrenador no ha declarado como perdidos. Es la diferencia entre perder un balón y no decirlo.",
     "a.firstBtn": "Guardar contraseña y entrar",
     "a.accClub": "Somos un club",
     "a.accClubD": "Registra tu club: tú serás el director deportivo y podrás invitar al resto.",
@@ -465,6 +521,62 @@ const DICT = {
     "ca.remove": "Remove",
     "ca.useMatch": "Use in match mode", "ca.month": "Month calendar", "ca.dayHint": "Tap a day to see its detail.", "ca.dayEmpty": "No fixtures or training scheduled this day.", "ca.dayTraining": "Training day", "ca.legendMatch": "Fixture (from the imported calendar)", "ca.legendTrain": "Training", "ca.trainDaysLabel": "Training days:",
     "ca.teamCrest": "Team crest",
+    "nav.parte": "Club kit",
+    "mt2.title": "Training kit report",
+    "mt2.hint": "One photo when you take the kit out and another when you put it away, plus the ball count. It is what backs the club's records: without both photos the count is not proven.",
+    "mt2.who": "Coach:",
+    "mt2.out": "Taken out",
+    "mt2.in": "Put away",
+    "mt2.noPhoto": "No photo",
+    "mt2.take": "Take photo",
+    "mt2.retake": "Retake photo",
+    "mt2.ballsOut": "Balls received",
+    "mt2.ballsIn": "Balls returned",
+    "mt2.lost": "Balls lost",
+    "mt2.mismatchA": "There are",
+    "mt2.mismatchB": "balls missing and you declared",
+    "mt2.mismatchC": "Fix the count or declare the missing ones: the club sees the gap.",
+    "mt2.matchOk": "The count matches the balls declared.",
+    "mt2.damage": "Damaged kit",
+    "mt2.damagePh": "e.g. two flat balls and a torn bib",
+    "mt2.session": "How the session went",
+    "mt2.late": "I arrived late",
+    "mt2.phone": "I used my phone",
+    "mt2.lateMin": "Minutes late",
+    "mt2.playersLate": "Players late",
+    "mt2.playersHurt": "Players with knocks",
+    "mt2.otherPh": "Other issue (optional)",
+    "mt2.other": "Other",
+    "mt2.send": "Send report",
+    "mt2.clear": "Start again",
+    "mt2.saved": "✓ Report sent to the club.",
+    "mt2.savedLocal": "✓ Report saved on this device.",
+    "mt2.saveFail": "Could not send. Try again.",
+    "mt2.needPhoto": "Take at least one of the two photos before sending.",
+    "mt2.processing": "Preparing the photo…",
+    "mt2.photoFail": "Could not read the photo.",
+    "mt2.mine": "My latest reports",
+    "mt2.balls": "balls",
+    "mt2.lostShort": "lost",
+    "mt2.clubTitle": "Club kit control",
+    "mt2.clubHint": "One look at every coach by category: what kit goes out and comes back, what goes missing and whether they report it.",
+    "mt2.kpiLost": "Balls lost",
+    "mt2.kpiUnreported": "Unreported",
+    "mt2.kpiLate": "Late arrivals",
+    "mt2.kpiPhone": "Phone",
+    "mt2.photosOf": "of the photos that should exist (two per report).",
+    "mt2.allCats": "All",
+    "mt2.colWho": "Coach",
+    "mt2.colCat": "Category",
+    "mt2.colReports": "Reports",
+    "mt2.colBalance": "Out → back",
+    "mt2.colLost": "Lost",
+    "mt2.colUnreported": "Unreported",
+    "mt2.colFlags": "Flags",
+    "mt2.colPlayers": "Players",
+    "mt2.noData": "No reports sent yet.",
+    "mt2.lastReports": "Latest reports",
+    "mt2.clubFoot": "“Unreported” are balls missing from the count that the coach did not declare as lost. It is the difference between losing a ball and not saying so.",
     "a.firstBtn": "Save password and sign in",
     "a.accClub": "We are a club",
     "a.accClubD": "Register your club: you become the sporting director and can invite the rest.",
@@ -773,6 +885,62 @@ const DICT = {
     "ca.remove": "Retirer",
     "ca.useMatch": "Utiliser en mode match", "ca.month": "Calendrier du mois", "ca.dayHint": "Touchez un jour pour voir son détail.", "ca.dayEmpty": "Aucun match ni entraînement prévu ce jour.", "ca.dayTraining": "Jour d'entraînement", "ca.legendMatch": "Match (du calendrier importé)", "ca.legendTrain": "Entraînement", "ca.trainDaysLabel": "Jours d'entraînement :",
     "ca.teamCrest": "Écusson de l'équipe",
+    "nav.parte": "Matériel du club",
+    "mt2.title": "Rapport de matériel",
+    "mt2.hint": "One photo when you take the kit out and another when you put it away, plus the ball count. It is what backs the club's records: without both photos the count is not proven.",
+    "mt2.who": "Coach:",
+    "mt2.out": "À la sortie",
+    "mt2.in": "Au rangement",
+    "mt2.noPhoto": "No photo",
+    "mt2.take": "Take photo",
+    "mt2.retake": "Retake photo",
+    "mt2.ballsOut": "Balls received",
+    "mt2.ballsIn": "Balls returned",
+    "mt2.lost": "Balls lost",
+    "mt2.mismatchA": "There are",
+    "mt2.mismatchB": "balls missing and you declared",
+    "mt2.mismatchC": "Fix the count or declare the missing ones: the club sees the gap.",
+    "mt2.matchOk": "The count matches the balls declared.",
+    "mt2.damage": "Damaged kit",
+    "mt2.damagePh": "e.g. two flat balls and a torn bib",
+    "mt2.session": "How the session went",
+    "mt2.late": "I arrived late",
+    "mt2.phone": "I used my phone",
+    "mt2.lateMin": "Minutes late",
+    "mt2.playersLate": "Players late",
+    "mt2.playersHurt": "Players with knocks",
+    "mt2.otherPh": "Other issue (optional)",
+    "mt2.other": "Other",
+    "mt2.send": "Envoyer le rapport",
+    "mt2.clear": "Start again",
+    "mt2.saved": "✓ Report sent to the club.",
+    "mt2.savedLocal": "✓ Report saved on this device.",
+    "mt2.saveFail": "Could not send. Try again.",
+    "mt2.needPhoto": "Take at least one of the two photos before sending.",
+    "mt2.processing": "Preparing the photo…",
+    "mt2.photoFail": "Could not read the photo.",
+    "mt2.mine": "My latest reports",
+    "mt2.balls": "balls",
+    "mt2.lostShort": "lost",
+    "mt2.clubTitle": "Contrôle du matériel du club",
+    "mt2.clubHint": "One look at every coach by category: what kit goes out and comes back, what goes missing and whether they report it.",
+    "mt2.kpiLost": "Balls lost",
+    "mt2.kpiUnreported": "Unreported",
+    "mt2.kpiLate": "Late arrivals",
+    "mt2.kpiPhone": "Phone",
+    "mt2.photosOf": "of the photos that should exist (two per report).",
+    "mt2.allCats": "Toutes",
+    "mt2.colWho": "Entraîneur",
+    "mt2.colCat": "Catégorie",
+    "mt2.colReports": "Reports",
+    "mt2.colBalance": "Out → back",
+    "mt2.colLost": "Perdus",
+    "mt2.colUnreported": "Non signalés",
+    "mt2.colFlags": "Flags",
+    "mt2.colPlayers": "Players",
+    "mt2.noData": "No reports sent yet.",
+    "mt2.lastReports": "Latest reports",
+    "mt2.clubFoot": "“Unreported” are balls missing from the count that the coach did not declare as lost. It is the difference between losing a ball and not saying so.",
     "a.firstBtn": "Enregistrer le mot de passe et entrer",
     "a.accClub": "Nous sommes un club",
     "a.accClubD": "Enregistrez votre club : vous serez le directeur sportif et pourrez inviter les autres.",
@@ -1154,6 +1322,62 @@ const DICT = {
     "ca.remove": "Entfernen",
     "ca.useMatch": "Im Spielmodus verwenden", "ca.month": "Monatskalender", "ca.dayHint": "Tippe auf einen Tag, um Details zu sehen.", "ca.dayEmpty": "An diesem Tag sind weder Spiele noch Training geplant.", "ca.dayTraining": "Trainingstag", "ca.legendMatch": "Spiel (aus importiertem Spielplan)", "ca.legendTrain": "Training", "ca.trainDaysLabel": "Trainingstage:",
     "ca.teamCrest": "Mannschaftswappen",
+    "nav.parte": "Material des Vereins",
+    "mt2.title": "Materialbericht",
+    "mt2.hint": "One photo when you take the kit out and another when you put it away, plus the ball count. It is what backs the club's records: without both photos the count is not proven.",
+    "mt2.who": "Coach:",
+    "mt2.out": "Beim Herausnehmen",
+    "mt2.in": "Beim Wegräumen",
+    "mt2.noPhoto": "No photo",
+    "mt2.take": "Take photo",
+    "mt2.retake": "Retake photo",
+    "mt2.ballsOut": "Balls received",
+    "mt2.ballsIn": "Balls returned",
+    "mt2.lost": "Balls lost",
+    "mt2.mismatchA": "There are",
+    "mt2.mismatchB": "balls missing and you declared",
+    "mt2.mismatchC": "Fix the count or declare the missing ones: the club sees the gap.",
+    "mt2.matchOk": "The count matches the balls declared.",
+    "mt2.damage": "Damaged kit",
+    "mt2.damagePh": "e.g. two flat balls and a torn bib",
+    "mt2.session": "How the session went",
+    "mt2.late": "I arrived late",
+    "mt2.phone": "I used my phone",
+    "mt2.lateMin": "Minutes late",
+    "mt2.playersLate": "Players late",
+    "mt2.playersHurt": "Players with knocks",
+    "mt2.otherPh": "Other issue (optional)",
+    "mt2.other": "Other",
+    "mt2.send": "Bericht senden",
+    "mt2.clear": "Start again",
+    "mt2.saved": "✓ Report sent to the club.",
+    "mt2.savedLocal": "✓ Report saved on this device.",
+    "mt2.saveFail": "Could not send. Try again.",
+    "mt2.needPhoto": "Take at least one of the two photos before sending.",
+    "mt2.processing": "Preparing the photo…",
+    "mt2.photoFail": "Could not read the photo.",
+    "mt2.mine": "My latest reports",
+    "mt2.balls": "balls",
+    "mt2.lostShort": "lost",
+    "mt2.clubTitle": "Materialkontrolle des Vereins",
+    "mt2.clubHint": "One look at every coach by category: what kit goes out and comes back, what goes missing and whether they report it.",
+    "mt2.kpiLost": "Balls lost",
+    "mt2.kpiUnreported": "Unreported",
+    "mt2.kpiLate": "Late arrivals",
+    "mt2.kpiPhone": "Phone",
+    "mt2.photosOf": "of the photos that should exist (two per report).",
+    "mt2.allCats": "Alle",
+    "mt2.colWho": "Trainer",
+    "mt2.colCat": "Kategorie",
+    "mt2.colReports": "Reports",
+    "mt2.colBalance": "Out → back",
+    "mt2.colLost": "Verloren",
+    "mt2.colUnreported": "Nicht gemeldet",
+    "mt2.colFlags": "Flags",
+    "mt2.colPlayers": "Players",
+    "mt2.noData": "No reports sent yet.",
+    "mt2.lastReports": "Latest reports",
+    "mt2.clubFoot": "“Unreported” are balls missing from the count that the coach did not declare as lost. It is the difference between losing a ball and not saying so.",
     "a.firstBtn": "Passwort speichern und anmelden",
     "a.accClub": "Wir sind ein Verein",
     "a.accClubD": "Registriere deinen Verein: du wirst Sportdirektor und kannst die anderen einladen.",
@@ -1534,6 +1758,62 @@ const DICT = {
     "ca.remove": "Remover",
     "ca.useMatch": "Usar no modo jogo", "ca.month": "Calendário do mês", "ca.dayHint": "Toca num dia para ver o detalhe.", "ca.dayEmpty": "Não há jogos nem treino marcado para este dia.", "ca.dayTraining": "Dia de treino", "ca.legendMatch": "Jogo (do calendário importado)", "ca.legendTrain": "Treino", "ca.trainDaysLabel": "Dias de treino:",
     "ca.teamCrest": "Emblema da equipa",
+    "nav.parte": "Material do clube",
+    "mt2.title": "Relatório de material",
+    "mt2.hint": "Una foto al sacar el material y otra al guardarlo, y el recuento de balones. Es lo que respalda el control del club: sin las dos fotos, el recuento no está probado.",
+    "mt2.who": "Entrenador:",
+    "mt2.out": "Ao tirar",
+    "mt2.in": "Ao guardar",
+    "mt2.noPhoto": "Sin foto",
+    "mt2.take": "Hacer foto",
+    "mt2.retake": "Repetir foto",
+    "mt2.ballsOut": "Balones que recibo",
+    "mt2.ballsIn": "Balones que dejo",
+    "mt2.lost": "Balones perdidos",
+    "mt2.mismatchA": "Faltan",
+    "mt2.mismatchB": "balones y has declarado",
+    "mt2.mismatchC": "Ajusta el recuento o declara los que falten: el club ve el descuadre.",
+    "mt2.matchOk": "El recuento cuadra con los balones declarados.",
+    "mt2.damage": "Material en mal estado",
+    "mt2.damagePh": "Ej. dos balones pinchados y un peto roto",
+    "mt2.session": "Cómo ha ido la sesión",
+    "mt2.late": "He llegado tarde",
+    "mt2.phone": "He usado el teléfono",
+    "mt2.lateMin": "Minutos de retraso",
+    "mt2.playersLate": "Jugadores con retraso",
+    "mt2.playersHurt": "Jugadores con molestias",
+    "mt2.otherPh": "Otra incidencia (opcional)",
+    "mt2.other": "Otras",
+    "mt2.send": "Enviar relatório",
+    "mt2.clear": "Empezar de nuevo",
+    "mt2.saved": "✓ Parte enviado al club.",
+    "mt2.savedLocal": "✓ Parte guardado en este dispositivo.",
+    "mt2.saveFail": "No se ha podido enviar. Inténtalo otra vez.",
+    "mt2.needPhoto": "Haz al menos una de las dos fotos antes de enviar.",
+    "mt2.processing": "Preparando la foto…",
+    "mt2.photoFail": "No se ha podido leer la foto.",
+    "mt2.mine": "Mis últimos partes",
+    "mt2.balls": "balones",
+    "mt2.lostShort": "perdidos",
+    "mt2.clubTitle": "Controlo de material do clube",
+    "mt2.clubHint": "Un vistazo a cada entrenador por categoría: qué material saca y devuelve, qué se pierde y si avisa de ello.",
+    "mt2.kpiLost": "Balones perdidos",
+    "mt2.kpiUnreported": "Sin avisar",
+    "mt2.kpiLate": "Retrasos",
+    "mt2.kpiPhone": "Teléfono",
+    "mt2.photosOf": "fotos de las que deberían existir (dos por parte).",
+    "mt2.allCats": "Todas",
+    "mt2.colWho": "Treinador",
+    "mt2.colCat": "Categoria",
+    "mt2.colReports": "Partes",
+    "mt2.colBalance": "Saca → deja",
+    "mt2.colLost": "Perdidos",
+    "mt2.colUnreported": "Sem avisar",
+    "mt2.colFlags": "Incidencias",
+    "mt2.colPlayers": "Jugadores",
+    "mt2.noData": "Todavía no hay ningún parte enviado.",
+    "mt2.lastReports": "Últimos partes",
+    "mt2.clubFoot": "«Sin avisar» son los balones que faltan en el recuento y que el entrenador no ha declarado como perdidos. Es la diferencia entre perder un balón y no decirlo.",
     "a.firstBtn": "Guardar palavra-passe e entrar",
     "a.accClub": "Somos um clube",
     "a.accClubD": "Regista o teu clube: serás o diretor desportivo e poderás convidar os restantes.",
@@ -2021,28 +2301,28 @@ const ROLES = {
        categorías, y cuya descripción aquí al lado dice "acceso total a todo el
        sistema"— le salía el apartado en gris y con el aviso de que su rol no
        tiene acceso. */
-    tabs: ["inicio", "equipo", "jugadores", "alineacion", "pizarra", "ejercicios", "entrenamiento", "temporada", "estadisticas", "convocatoria", "calendario", "partido", "analisis", "asistencia", "disciplina", "normativa", "usuarios", "coachai", "material", "premium"],
-    perms: ["editSquad", "editLineup", "editCall", "events", "ai", "viewUsers", "grantAccess", "createUsers", "editTraining", "viewStats", "discipline", "editDiscipline", "validateDiscipline", "viewDocs", "manageDocs", "editCal", "cargas"] },
+    tabs: ["inicio", "equipo", "jugadores", "parte", "alineacion", "pizarra", "ejercicios", "entrenamiento", "temporada", "estadisticas", "convocatoria", "calendario", "partido", "analisis", "asistencia", "disciplina", "normativa", "usuarios", "coachai", "material", "premium"],
+    perms: ["editSquad", "editLineup", "editCall", "events", "ai", "viewUsers", "grantAccess", "createUsers", "editTraining", "viewStats", "discipline", "editDiscipline", "validateDiscipline", "viewDocs", "manageDocs", "editCal", "cargas", "parte"] },
   entrenador: { label: "Entrenador principal", color: "#36454F", icon: "◆",
     desc: "Control total de su equipo: edición de todo excepto gestión de usuarios.",
-    tabs: ["inicio", "equipo", "jugadores", "alineacion", "pizarra", "ejercicios", "entrenamiento", "temporada", "estadisticas", "convocatoria", "calendario", "partido", "analisis", "asistencia", "disciplina", "normativa", "usuarios", "coachai", "material", "premium"],
-    perms: ["editSquad", "editLineup", "editCall", "events", "ai", "createUsers", "editTraining", "viewStats", "discipline", "editDiscipline", "viewDocs", "editCal", "cargas"] },
+    tabs: ["inicio", "equipo", "jugadores", "parte", "alineacion", "pizarra", "ejercicios", "entrenamiento", "temporada", "estadisticas", "convocatoria", "calendario", "partido", "analisis", "asistencia", "disciplina", "normativa", "usuarios", "coachai", "material", "premium"],
+    perms: ["editSquad", "editLineup", "editCall", "events", "ai", "createUsers", "editTraining", "viewStats", "discipline", "editDiscipline", "viewDocs", "editCal", "cargas", "parte"] },
   segundo: { label: "Segundo entrenador", color: "#36454F", icon: "◈",
     desc: "Asiste al entrenador: alineaciones, entrenamiento y partido.",
-    tabs: ["inicio", "equipo", "jugadores", "alineacion", "pizarra", "ejercicios", "entrenamiento", "temporada", "estadisticas", "convocatoria", "calendario", "partido", "analisis", "asistencia", "disciplina", "normativa", "coachai", "material", "premium"],
-    perms: ["editSquad", "editLineup", "events", "ai", "editTraining", "viewStats", "discipline", "editDiscipline", "viewDocs", "editCal", "cargas"] },
+    tabs: ["inicio", "equipo", "jugadores", "parte", "alineacion", "pizarra", "ejercicios", "entrenamiento", "temporada", "estadisticas", "convocatoria", "calendario", "partido", "analisis", "asistencia", "disciplina", "normativa", "coachai", "material", "premium"],
+    perms: ["editSquad", "editLineup", "events", "ai", "editTraining", "viewStats", "discipline", "editDiscipline", "viewDocs", "editCal", "cargas", "parte"] },
   delegado: { label: "Delegado", color: "#36454F", icon: "▣",
     desc: "Logística del equipo: acta del partido, disciplina y normativa.",
     /* "temporada" está aquí solo por las cargas físicas de pretemporada: en el
        plan físico el delegado es quien pasa el semáforo diario y recoge el RPE,
        así que necesita entrar. La planificación de pilares por meses de esa
        misma pestaña sigue siendo del cuerpo técnico y a él no se le enseña. */
-    tabs: ["inicio", "equipo", "jugadores", "convocatoria", "calendario", "partido", "temporada", "asistencia", "disciplina", "normativa", "coachai", "material", "premium"],
-    perms: ["editSquad", "events", "ai", "discipline", "editDiscipline", "viewDocs", "manageDocs", "editCal", "cargas"] },
+    tabs: ["inicio", "equipo", "jugadores", "parte", "convocatoria", "calendario", "partido", "temporada", "asistencia", "disciplina", "normativa", "coachai", "material", "premium"],
+    perms: ["editSquad", "events", "ai", "discipline", "editDiscipline", "viewDocs", "manageDocs", "editCal", "cargas", "parte"] },
   master: { label: "Master · EBLDigital", color: "#36454F", icon: "★",
     desc: "Administración total: crea los equipos oficiales y da de alta a cualquiera.",
-    tabs: ["inicio", "master", "equipos", "equipo", "jugadores", "alineacion", "pizarra", "ejercicios", "entrenamiento", "temporada", "estadisticas", "convocatoria", "calendario", "partido", "analisis", "asistencia", "disciplina", "normativa", "usuarios", "coachai", "material"],
-    perms: ["editSquad", "editLineup", "editCall", "events", "ai", "viewUsers", "grantAccess", "createUsers", "editTraining", "viewStats", "discipline", "editDiscipline", "validateDiscipline", "viewDocs", "manageDocs", "editCal", "cargas", "master"] },
+    tabs: ["inicio", "master", "equipos", "equipo", "jugadores", "parte", "alineacion", "pizarra", "ejercicios", "entrenamiento", "temporada", "estadisticas", "convocatoria", "calendario", "partido", "analisis", "asistencia", "disciplina", "normativa", "usuarios", "coachai", "material"],
+    perms: ["editSquad", "editLineup", "editCall", "events", "ai", "viewUsers", "grantAccess", "createUsers", "editTraining", "viewStats", "discipline", "editDiscipline", "validateDiscipline", "viewDocs", "manageDocs", "editCal", "cargas", "parte", "master"] },
 };
 
 /* Qué roles puede repartir cada rol. No es lo mismo poder dar de alta que
@@ -2701,6 +2981,88 @@ const airCargasGuardar = async (teamRec, cargas) => {
     return await r.json().catch(() => null);
   } catch { return null; }
 };
+/* ---------------- Partes de entreno (control de material) ----------------
+   El parte lo rellena el entrenador al sacar el material y al guardarlo. Los
+   campos viajan por NOMBRE porque "partes" es un recurso genérico del proxy,
+   igual que jugadores o partidos. */
+const parteToAir = (p, teamRec, userRec) => ({
+  Referencia: `${p.fecha} · ${p.entrenadorNombre || ""}`.trim().slice(0, 60),
+  Fecha: p.fecha || null,
+  "Entrenador nombre": p.entrenadorNombre || "",
+  "Balones salida": Number(p.salida) || 0,
+  "Balones entrada": Number(p.entrada) || 0,
+  "Balones perdidos": Number(p.perdidos) || 0,
+  Desperfectos: p.desperfectos || "",
+  "Entrenador tarde": !!p.tarde,
+  "Minutos tarde": Number(p.minutosTarde) || 0,
+  "Uso del telefono": !!p.telefono,
+  Penalizaciones: p.penalizaciones || "",
+  "Jugadores con retraso": Number(p.jugTarde) || 0,
+  "Jugadores con molestias": Number(p.jugMolestias) || 0,
+  Notas: p.notas || "",
+  ...(teamRec ? { Equipo: [teamRec] } : {}),
+  ...(userRec ? { Entrenador: [userRec] } : {}),
+});
+const parteFromAir = (r) => ({
+  id: r.rec, rec: r.rec, fecha: r.Fecha || "",
+  entrenadorNombre: r["Entrenador nombre"] || "",
+  salida: Number(r["Balones salida"]) || 0,
+  entrada: Number(r["Balones entrada"]) || 0,
+  perdidos: Number(r["Balones perdidos"]) || 0,
+  fotoSalida: (r["Foto salida"] || [])[0]?.url || null,
+  fotoEntrada: (r["Foto entrada"] || [])[0]?.url || null,
+  desperfectos: r.Desperfectos || "",
+  tarde: !!r["Entrenador tarde"], minutosTarde: Number(r["Minutos tarde"]) || 0,
+  telefono: !!r["Uso del telefono"], penalizaciones: r.Penalizaciones || "",
+  jugTarde: Number(r["Jugadores con retraso"]) || 0,
+  jugMolestias: Number(r["Jugadores con molestias"]) || 0,
+  notas: r.Notas || "",
+  equipoNombre: r.equipoNombre || "",
+});
+/* Vista agregada para la dirección del club: todos los partes de todas sus
+   categorías de una vez. */
+const airPartesClub = async (clubRec) => {
+  try {
+    const r = await cbFetch(`${AIR}?res=partes-club&club=${encodeURIComponent(clubRec)}`);
+    if (!r.ok) return null;
+    const d = await r.json();
+    return (d.records || []).map(parteFromAir);
+  } catch { return null; }
+};
+/* La foto va aparte del registro: Airtable no acepta un data: URL dentro de un
+   adjunto, hay que pasarla por su endpoint de contenido. Se manda ya reducida
+   —una foto de móvil son varios megas y aquí solo hace falta poder contar los
+   balones y ver que el material está entero—. */
+const airParteFoto = async (parteRec, campo, base64, contentType) => {
+  try {
+    const r = await cbFetch(`${AIR}?res=parte-foto&id=${parteRec}&campo=${campo}`, {
+      method: "POST", headers: { "content-type": "application/json" },
+      body: JSON.stringify({ file: base64, contentType, filename: `material-${campo}.jpg` }),
+    });
+    return await r.json().catch(() => null);
+  } catch { return null; }
+};
+/* Reduce una foto a un lado máximo y la devuelve en base64 sin cabecera. */
+const fotoReducida = (file, lado = 900, calidad = 0.72) => new Promise((resolve) => {
+  const fr = new FileReader();
+  fr.onload = () => {
+    const img = new Image();
+    img.onload = () => {
+      const escala = Math.min(1, lado / Math.max(img.width, img.height));
+      const c = document.createElement("canvas");
+      c.width = Math.round(img.width * escala);
+      c.height = Math.round(img.height * escala);
+      c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
+      const url = c.toDataURL("image/jpeg", calidad);
+      resolve({ dataUrl: url, base64: url.split(",")[1] || "", contentType: "image/jpeg" });
+    };
+    img.onerror = () => resolve(null);
+    img.src = String(fr.result || "");
+  };
+  fr.onerror = () => resolve(null);
+  fr.readAsDataURL(file);
+});
+
 const airPlanGuardar = async (teamRec, plan) => {
   try {
     const r = await cbFetch(`${AIR}?res=plan&team=${encodeURIComponent(teamRec)}`, {
@@ -3135,6 +3497,9 @@ const ICONOS = {
   /* Coach AI: el destello. */
   coachai: <><path d="M11 3.4 12.7 8.3 17.6 10 12.7 11.7 11 16.6 9.3 11.7 4.4 10 9.3 8.3z" /><path d="M17.6 15.2l.8 2.3 2.3.8-2.3.8-.8 2.3-.8-2.3-2.3-.8 2.3-.8z" /></>,
   material: <><path d="M4 8.2h16l-1.3 11.4a1.6 1.6 0 0 1-1.6 1.4H6.9a1.6 1.6 0 0 1-1.6-1.4z" /><path d="M8.6 8.2V6.4a3.4 3.4 0 0 1 6.8 0v1.8" /></>,
+  /* Parte de material: la caja abierta con su tapa, distinta del icono de la
+     tienda para que no se confundan dos apartados que se llaman parecido. */
+  parte: <><path d="M3.4 9.6h17.2v9.6a1.4 1.4 0 0 1-1.4 1.4H4.8a1.4 1.4 0 0 1-1.4-1.4z" /><path d="M2.6 5.6h18.8v4H2.6z" /><path d="M9.8 13.6h4.4" /></>,
   premium: <><path d="M12 3.4l2.7 5.6 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z" /></>,
   /* Master: la llave del club. */
   master: <><circle cx="7.6" cy="16.4" r="3.6" /><path d="M10.2 13.8 20.4 3.6M17.4 6.6l2.6 2.6M14.8 9.2l2.6 2.6" /></>,
@@ -3174,7 +3539,7 @@ const TAB_ICON = {
   inicio: "▦", equipos: "⬢", equipo: "▥", jugadores: "◉", calendario: "▤", convocatoria: "▣",
   alineacion: "⬡", partido: "▶", analisis: "◎", entrenamiento: "◈", temporada: "◱", ejercicios: "≡", pizarra: "✎",
   disciplina: "⚑", normativa: "§", estadisticas: "◧", usuarios: "◍", coachai: "✦", asistencia: "☑",
-  material: "◇", premium: "★", master: "❖",
+  material: "◇", parte: "▤", premium: "★", master: "❖",
 };
 /* Menú agrupado en siete apartados, en el orden real de la semana de un
    entrenador: primero con quién cuentas, luego el partido, luego lo que
@@ -3192,7 +3557,7 @@ const NAV_GROUPS = [
   { label: "navg.equipo", tabs: ["equipo", "jugadores"] },
   { label: "navg.partido", tabs: ["calendario", "convocatoria", "alineacion", "partido", "analisis"] },
   { label: "navg.entrenamiento", tabs: ["temporada", "entrenamiento", "ejercicios", "pizarra"] },
-  { label: "navg.delegado", tabs: ["asistencia", "disciplina", "normativa"] },
+  { label: "navg.delegado", tabs: ["parte", "asistencia", "disciplina", "normativa"] },
   { label: "navg.estadisticas", tabs: ["estadisticas"] },
   { label: "navg.roles", tabs: ["usuarios"] },
   { label: "navg.coachai", tabs: ["coachai"] },
@@ -7092,7 +7457,7 @@ export default function App() {
      preguntan por un permiso, y una pantalla nueva que olvide comprobarlo
      seguiría sin poder editar. */
   const PERMS_EDICION = ["editSquad", "editLineup", "editCall", "editTraining", "editDiscipline",
-    "validateDiscipline", "manageDocs", "editCal", "grantAccess", "createUsers", "cargas", "events"];
+    "validateDiscipline", "manageDocs", "editCal", "grantAccess", "createUsers", "cargas", "events", "parte"];
   const tienePermiso = (p) => {
     const hasPermission = role.perms.includes(p);
     const notFreeRestricted = !(session?.plan === "free" && p === "viewUsers" && !esClubChamartinVergara(session?.club));
@@ -10632,6 +10997,387 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
       return { ...sg, [docId]: { ...cur, [kind]: next } };
     });
   };
+  /* ================= PARTE DE ENTRENO · CONTROL DE MATERIAL =================
+     Lo que el club quería saber de cada entrenador y no tenía dónde mirar:
+     cuánto material saca, cuánto devuelve, qué se pierde por el camino y cómo
+     va la sesión. El entrenador rellena un parte por entrenamiento; el club lo
+     ve sumado por categoría y por persona.
+
+     Las dos fotos —al sacar y al guardar— son la prueba, y por eso el balance
+     de balones no se escribe a mano: se calcula restando lo que devuelve de lo
+     que recibió, y si no cuadra con los perdidos que ha declarado, se dice. */
+  const PARTE_VACIO = () => ({
+    id: null, rec: "", fecha: hoyISO(), entrenadorNombre: session?.name || "",
+    salida: 0, entrada: 0, perdidos: 0, fotoSalida: null, fotoEntrada: null,
+    desperfectos: "", tarde: false, minutosTarde: 0, telefono: false,
+    penalizaciones: "", jugTarde: 0, jugMolestias: 0, notas: "",
+  });
+  const [partes, setPartes] = useState([]);
+  const [parte, setParte] = useState(PARTE_VACIO);
+  const [parteMsg, setParteMsg] = useState("");
+  const [parteBusy, setParteBusy] = useState(false);
+  const [partesClub, setPartesClub] = useState([]);
+  const [clubCat, setClubCat] = useState("");
+  const parteKey = `cb_partes_${session?.team?.id || "demo"}`;
+  /* PARTE_VACIO se evalúa al montar el componente, cuando todavía no hay
+     sesión, así que el nombre salía vacío y el parte se firmaba con un guion.
+     En cuanto se sabe quién ha entrado, se rellena —y solo si estaba vacío,
+     para no pisar un parte a medias. */
+  useEffect(() => {
+    if (session?.name) setParte((x) => (x.entrenadorNombre ? x : { ...x, entrenadorNombre: session.name }));
+  }, [session?.name]); // eslint-disable-line
+
+  useEffect(() => {
+    if (!session) return;
+    try { const raw = localStorage.getItem(parteKey); if (raw) setPartes(JSON.parse(raw) || []); } catch { /* noop */ }
+  }, [parteKey]); // eslint-disable-line
+  useEffect(() => {
+    if (!session) return;
+    try { localStorage.setItem(parteKey, JSON.stringify(partes)); } catch { /* noop */ }
+  }, [partes, parteKey]); // eslint-disable-line
+  useEffect(() => {
+    if (!teamRec || esDemo) return;
+    let vivo = true;
+    (async () => {
+      const ps = await airList("partes", teamRec);
+      if (vivo && ps) setPartes(ps.map(parteFromAir).sort((a, b) => (a.fecha < b.fecha ? 1 : -1)));
+    })();
+    return () => { vivo = false; };
+  }, [teamRec]); // eslint-disable-line
+  /* La dirección del club carga de una vez los partes de todas sus categorías:
+     comparar entrenadores es justo el motivo de que este módulo exista. */
+  useEffect(() => {
+    if (!clubInfo.rec || esDemo || !can("master") && session?.role !== "director") return;
+    let vivo = true;
+    (async () => {
+      const ps = await airPartesClub(clubInfo.rec);
+      if (vivo && ps) setPartesClub(ps);
+    })();
+    return () => { vivo = false; };
+  }, [clubInfo.rec, session?.role]); // eslint-disable-line
+
+  const setP = (k, v) => setParte((x) => ({ ...x, [k]: v }));
+  /* Descuadre entre lo que falta y lo que ha declarado perdido. Es la señal que
+     el club pidió: no basta con contar balones, hay que saber si el entrenador
+     AVISA de los que faltan. */
+  const faltan = Math.max(0, (Number(parte.salida) || 0) - (Number(parte.entrada) || 0));
+  const descuadre = faltan !== (Number(parte.perdidos) || 0);
+
+  const subirFoto = async (campo, file) => {
+    if (!file) return;
+    setParteBusy(true); setParteMsg(t("mt2.processing"));
+    const red = await fotoReducida(file);
+    if (!red) { setParteBusy(false); setParteMsg(t("mt2.photoFail")); return; }
+    setP(campo === "salida" ? "fotoSalida" : "fotoEntrada", red.dataUrl);
+    setP(campo === "salida" ? "fotoSalidaB64" : "fotoEntradaB64", red.base64);
+    setParteBusy(false); setParteMsg("");
+  };
+
+  const guardarParte = async () => {
+    if (parteBusy) return;
+    if (!parte.fotoSalida && !parte.fotoEntrada) { setParteMsg(t("mt2.needPhoto")); return; }
+    setParteBusy(true); setParteMsg("");
+    const limpio = { ...parte, id: parte.id || Date.now() };
+    setPartes((ps) => {
+      const resto = ps.filter((x) => x.fecha !== limpio.fecha || x.entrenadorNombre !== limpio.entrenadorNombre);
+      return [limpio, ...resto].sort((a, b) => (a.fecha < b.fecha ? 1 : -1));
+    });
+    if (teamRec && !esDemo) {
+      let rec = limpio.rec;
+      if (rec) await airEdit("partes", rec, parteToAir(limpio, teamRec, session?.userRec));
+      else rec = await airNew("partes", parteToAir(limpio, teamRec, session?.userRec));
+      /* Las fotos se suben después: necesitan el id del registro al que se
+         adjuntan, así que no pueden ir en la misma llamada que lo crea. */
+      if (rec) {
+        if (limpio.fotoSalidaB64) await airParteFoto(rec, "salida", limpio.fotoSalidaB64, "image/jpeg");
+        if (limpio.fotoEntradaB64) await airParteFoto(rec, "entrada", limpio.fotoEntradaB64, "image/jpeg");
+        setPartes((ps) => ps.map((x) => (x.id === limpio.id ? { ...x, rec } : x)));
+      }
+      setParteMsg(rec ? t("mt2.saved") : t("mt2.saveFail"));
+    } else {
+      setParteMsg(t("mt2.savedLocal"));
+    }
+    setParteBusy(false);
+    setTimeout(() => setParteMsg(""), 5000);
+  };
+
+  const renderParte = () => {
+    /* El permiso propio del módulo, no uno prestado: así el club puede dar o
+       quitar el parte de material sin tocar quién planifica entrenamientos. En
+       la demo queda apagado como el resto de permisos de edición. */
+    const puede = can("parte");
+    const campoFoto = (campo, label, valor) => (
+      <div className="rounded-lg border p-3" style={{ borderColor: valor ? C.green : C.line, background: C.panel2 }}>
+        <div className="text-[11px] font-display uppercase tracking-wide mb-2" style={{ color: valor ? C.green : C.dim }}>
+          {valor ? "✓ " : ""}{label}
+        </div>
+        {valor
+          ? <img src={valor} alt={label} className="w-full rounded-lg mb-2 object-cover" style={{ maxHeight: 160 }} />
+          : <div className="rounded-lg mb-2 flex items-center justify-center text-[11px]" style={{ height: 96, border: `1px dashed ${C.line}`, color: C.dim }}>{t("mt2.noPhoto")}</div>}
+        {puede && (
+          <label className="block text-center text-xs px-3 py-2 rounded-lg border cursor-pointer font-display uppercase tracking-wide" style={{ borderColor: C.line, color: C.chalk }}>
+            📷 {valor ? t("mt2.retake") : t("mt2.take")}
+            <input type="file" accept="image/*" capture="environment" className="hidden"
+              onChange={(e) => { const f = e.target.files?.[0]; subirFoto(campo, f); e.target.value = ""; }} />
+          </label>
+        )}
+      </div>
+    );
+    const num = (k, label) => (
+      <label className="block">
+        <span className="text-[11px] block mb-1" style={{ color: C.dim }}>{label}</span>
+        <input type="number" min={0} max={99} value={parte[k]} disabled={!puede}
+          onChange={(e) => setP(k, Math.max(0, Math.min(99, Number(e.target.value) || 0)))}
+          className="w-full px-2.5 py-1.5 rounded-lg border bg-transparent text-sm tabular-nums"
+          style={{ borderColor: C.line, color: C.chalk }} />
+      </label>
+    );
+    const bandera = (k, label, color) => (
+      <button onClick={() => puede && setP(k, !parte[k])} disabled={!puede} aria-pressed={!!parte[k]}
+        className="text-xs px-3 py-2 rounded-lg border font-display uppercase tracking-wide disabled:opacity-60"
+        style={{ borderColor: parte[k] ? color : C.line, color: parte[k] ? color : C.dim, background: parte[k] ? `${color}18` : "transparent" }}>
+        {parte[k] ? "✓ " : ""}{label}
+      </button>
+    );
+    return (
+      <div className="space-y-4">
+        <Card title={`📦 ${t("mt2.title")}`}>
+          <div className="text-xs mb-3 leading-relaxed" style={{ color: C.dim }}>{t("mt2.hint")}</div>
+          <div className="flex flex-wrap items-end gap-3 mb-3">
+            <label className="block">
+              <span className="text-[11px] block mb-1" style={{ color: C.dim }}>{t("cf.sessionDate")}</span>
+              <input type="date" value={parte.fecha} disabled={!puede} onChange={(e) => setP("fecha", e.target.value)}
+                className="px-2.5 py-1.5 rounded-lg border bg-transparent text-sm" style={{ borderColor: C.line, color: C.chalk }} />
+            </label>
+            <div className="text-[11px] pb-2" style={{ color: C.dim }}>{t("mt2.who")} <strong style={{ color: C.chalk }}>{parte.entrenadorNombre || "—"}</strong></div>
+          </div>
+
+          <div className="grid sm:grid-cols-2 gap-3">
+            {campoFoto("salida", t("mt2.out"), parte.fotoSalida)}
+            {campoFoto("entrada", t("mt2.in"), parte.fotoEntrada)}
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mt-3">
+            {num("salida", t("mt2.ballsOut"))}
+            {num("entrada", t("mt2.ballsIn"))}
+            {num("perdidos", t("mt2.lost"))}
+          </div>
+          {/* Aviso de descuadre: faltan balones y no se han declarado, o al
+              revés. Es exactamente lo que el club quiere detectar. */}
+          {(faltan > 0 || Number(parte.perdidos) > 0) && (
+            <div className="text-[12px] mt-2 rounded-lg border px-3 py-2" style={{ borderColor: descuadre ? C.warn : C.line, background: descuadre ? `${C.warn}12` : C.panel2, color: descuadre ? C.warn : C.dim }}>
+              {descuadre
+                ? <>⚠ {t("mt2.mismatchA")} <strong>{faltan}</strong> {t("mt2.mismatchB")} <strong>{parte.perdidos}</strong>. {t("mt2.mismatchC")}</>
+                : <>✓ {t("mt2.matchOk")}</>}
+            </div>
+          )}
+
+          <div className="mt-3">
+            <span className="text-[11px] block mb-1" style={{ color: C.dim }}>{t("mt2.damage")}</span>
+            <textarea value={parte.desperfectos} rows={2} disabled={!puede}
+              onChange={(e) => setP("desperfectos", e.target.value)} placeholder={t("mt2.damagePh")}
+              className="w-full px-2.5 py-1.5 rounded-lg border bg-transparent text-sm" style={{ borderColor: C.line, color: C.chalk }} />
+          </div>
+
+          <div className="mt-3 pt-3 border-t" style={{ borderColor: C.line }}>
+            <div className="text-[11px] font-display uppercase tracking-wide mb-2" style={{ color: C.dim }}>{t("mt2.session")}</div>
+            <div className="flex flex-wrap gap-2 mb-3">
+              {bandera("tarde", t("mt2.late"), "#d9a441")}
+              {bandera("telefono", t("mt2.phone"), "#b4474a")}
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+              {parte.tarde && num("minutosTarde", t("mt2.lateMin"))}
+              {num("jugTarde", t("mt2.playersLate"))}
+              {num("jugMolestias", t("mt2.playersHurt"))}
+            </div>
+            <input value={parte.penalizaciones} disabled={!puede}
+              onChange={(e) => setP("penalizaciones", e.target.value)} placeholder={t("mt2.otherPh")}
+              className="mt-2 w-full px-2.5 py-1.5 rounded-lg border bg-transparent text-sm" style={{ borderColor: C.line, color: C.chalk }} />
+          </div>
+
+          {puede && (
+            <div className="mt-4 pt-3 border-t flex flex-wrap items-center gap-3" style={{ borderColor: C.line }}>
+              <button onClick={guardarParte} disabled={parteBusy}
+                className="font-display uppercase tracking-wide text-sm px-4 py-2.5 rounded-lg font-semibold disabled:opacity-50"
+                style={{ background: AC, color: C.sobre }}>{parteBusy ? t("a.sending") : t("mt2.send")}</button>
+              <button onClick={() => { setParte(PARTE_VACIO()); setParteMsg(""); }}
+                className="text-sm px-4 py-2.5 rounded-lg border font-display uppercase tracking-wide"
+                style={{ borderColor: C.line, color: C.dim }}>{t("mt2.clear")}</button>
+              {parteMsg && <span className="text-xs" style={{ color: parteMsg.startsWith("✓") ? C.green : C.warn }}>{parteMsg}</span>}
+            </div>
+          )}
+        </Card>
+
+        {partes.length > 0 && (
+          <Card title={t("mt2.mine")}>
+            <div className="space-y-1.5">
+              {partes.slice(0, 12).map((p) => (
+                <div key={p.id} className="rounded-lg border p-2.5 flex flex-wrap items-center gap-x-3 gap-y-1" style={{ borderColor: C.line, background: C.panel2 }}>
+                  <div className="text-sm tabular-nums shrink-0" style={{ color: C.chalk }}>{p.fecha}</div>
+                  <div className="text-[12px] flex-1 min-w-[140px]" style={{ color: C.dim }}>
+                    {p.salida} → {p.entrada} {t("mt2.balls")}
+                    {p.perdidos > 0 && <span style={{ color: C.warn }}> · {p.perdidos} {t("mt2.lostShort")}</span>}
+                  </div>
+                  <div className="flex gap-1.5 text-[11px] shrink-0">
+                    {p.fotoSalida && <span title={t("mt2.out")}>📷</span>}
+                    {p.fotoEntrada && <span title={t("mt2.in")}>📷</span>}
+                    {p.tarde && <span style={{ color: "#d9a441" }}>⏱</span>}
+                    {p.telefono && <span style={{ color: "#b4474a" }}>📱</span>}
+                    {p.desperfectos && <span style={{ color: "#d9a441" }}>🔧</span>}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Card>
+        )}
+      </div>
+    );
+  };
+
+  /* ---- Control del club: cada entrenador, por categoría ----
+     Una fila por persona y categoría con lo acumulado. El orden lo marca lo
+     que hay que mirar: primero quien más balones ha perdido sin avisar, que es
+     el motivo por el que el club pidió esto. */
+  const renderControlClub = () => {
+    const fuente = partesClub.length ? partesClub : partes.map((p) => ({ ...p, equipoNombre: session?.team?.name || "" }));
+    const cats = [...new Set(fuente.map((p) => p.equipoNombre).filter(Boolean))].sort();
+    const visibles = clubCat ? fuente.filter((p) => p.equipoNombre === clubCat) : fuente;
+    /* Agrupado por entrenador + categoría: la misma persona en dos categorías
+       son dos filas, porque el club controla el material de cada una. */
+    const porPersona = {};
+    for (const p of visibles) {
+      const k = `${p.equipoNombre}||${p.entrenadorNombre || "—"}`;
+      const a = porPersona[k] || (porPersona[k] = {
+        cat: p.equipoNombre, quien: p.entrenadorNombre || "—", partes: 0,
+        salida: 0, entrada: 0, perdidos: 0, sinAvisar: 0, quejas: 0,
+        tarde: 0, minutosTarde: 0, telefono: 0, penal: 0, jugTarde: 0, jugMolestias: 0, fotos: 0,
+      });
+      a.partes += 1;
+      a.salida += Number(p.salida) || 0;
+      a.entrada += Number(p.entrada) || 0;
+      a.perdidos += Number(p.perdidos) || 0;
+      /* Balones que faltan y NO se han declarado: el dato que de verdad
+         distingue a quien pierde un balón y avisa de quien pierde y calla. */
+      const faltanD = Math.max(0, (Number(p.salida) || 0) - (Number(p.entrada) || 0));
+      a.sinAvisar += Math.max(0, faltanD - (Number(p.perdidos) || 0));
+      if (String(p.desperfectos || "").trim()) a.quejas += 1;
+      if (p.tarde) { a.tarde += 1; a.minutosTarde += Number(p.minutosTarde) || 0; }
+      if (p.telefono) a.telefono += 1;
+      if (String(p.penalizaciones || "").trim()) a.penal += 1;
+      a.jugTarde += Number(p.jugTarde) || 0;
+      a.jugMolestias += Number(p.jugMolestias) || 0;
+      if (p.fotoSalida) a.fotos += 1;
+      if (p.fotoEntrada) a.fotos += 1;
+    }
+    const filas = Object.values(porPersona).sort((a, b) =>
+      (b.sinAvisar - a.sinAvisar) || (b.perdidos - a.perdidos) || a.quien.localeCompare(b.quien));
+    const tot = filas.reduce((s, f) => ({
+      perdidos: s.perdidos + f.perdidos, sinAvisar: s.sinAvisar + f.sinAvisar,
+      tarde: s.tarde + f.tarde, telefono: s.telefono + f.telefono, partes: s.partes + f.partes,
+    }), { perdidos: 0, sinAvisar: 0, tarde: 0, telefono: 0, partes: 0 });
+    /* Cuántas fotos deberían existir: dos por parte, la de sacar y la de
+       guardar. Sin las dos, el recuento no está probado. */
+    const fotosEsperadas = tot.partes * 2;
+    const fotosHechas = filas.reduce((s, f) => s + f.fotos, 0);
+
+    return (
+      <div className="space-y-4">
+        <Card title={`🏛 ${t("mt2.clubTitle")}`}>
+          <div className="text-xs mb-3 leading-relaxed" style={{ color: C.dim }}>{t("mt2.clubHint")}</div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-3">
+            {[[t("mt2.kpiLost"), tot.perdidos, tot.perdidos ? "#d9a441" : C.dim],
+              [t("mt2.kpiUnreported"), tot.sinAvisar, tot.sinAvisar ? "#b4474a" : C.dim],
+              [t("mt2.kpiLate"), tot.tarde, tot.tarde ? "#d9a441" : C.dim],
+              [t("mt2.kpiPhone"), tot.telefono, tot.telefono ? "#b4474a" : C.dim]].map(([k, v, col]) => (
+              <div key={k} className="rounded-lg border p-2.5" style={{ borderColor: C.line, background: C.panel2 }}>
+                <div className="text-[11px] font-display uppercase tracking-wide" style={{ color: col }}>{k}</div>
+                <div className="font-display text-2xl tabular-nums" style={{ color: v ? C.chalk : C.dim }}>{v}</div>
+              </div>
+            ))}
+          </div>
+          <div className="text-[11px] mb-3" style={{ color: fotosHechas < fotosEsperadas ? C.warn : C.dim }}>
+            📷 {fotosHechas} / {fotosEsperadas} {t("mt2.photosOf")}
+          </div>
+
+          {cats.length > 1 && (
+            <div className="flex flex-wrap gap-1.5 mb-3">
+              <button onClick={() => setClubCat("")} className="text-xs px-3 py-1.5 rounded-full border font-display uppercase tracking-wide"
+                style={{ borderColor: !clubCat ? AC : C.line, color: !clubCat ? AC : C.dim }}>{t("mt2.allCats")}</button>
+              {cats.map((c) => (
+                <button key={c} onClick={() => setClubCat(c)} className="text-xs px-3 py-1.5 rounded-full border font-display uppercase tracking-wide"
+                  style={{ borderColor: clubCat === c ? AC : C.line, color: clubCat === c ? AC : C.dim }}>{c}</button>
+              ))}
+            </div>
+          )}
+
+          {filas.length === 0 ? (
+            <div className="text-sm" style={{ color: C.dim }}>{t("mt2.noData")}</div>
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm" style={{ color: C.chalk }}>
+                <thead><tr className="font-display uppercase tracking-widest text-xs" style={{ color: C.dim }}>
+                  <th className="text-left py-2">{t("mt2.colWho")}</th>
+                  <th className="text-left">{t("mt2.colCat")}</th>
+                  <th className="text-right">{t("mt2.colReports")}</th>
+                  <th className="text-right">{t("mt2.colBalance")}</th>
+                  <th className="text-right">{t("mt2.colLost")}</th>
+                  <th className="text-right">{t("mt2.colUnreported")}</th>
+                  <th className="text-right">{t("mt2.colFlags")}</th>
+                  <th className="text-right">{t("mt2.colPlayers")}</th>
+                </tr></thead>
+                <tbody>
+                  {filas.map((f) => (
+                    <tr key={f.cat + f.quien} className="border-t" style={{ borderColor: C.line }}>
+                      <td className="py-2">{f.quien}</td>
+                      <td style={{ color: C.dim }}>{f.cat}</td>
+                      <td className="text-right tabular-nums">{f.partes}</td>
+                      <td className="text-right tabular-nums" style={{ color: C.dim }}>{f.salida} → {f.entrada}</td>
+                      <td className="text-right tabular-nums" style={{ color: f.perdidos ? "#d9a441" : C.dim }}>{f.perdidos}</td>
+                      <td className="text-right tabular-nums font-semibold" style={{ color: f.sinAvisar ? "#b4474a" : C.dim }}>{f.sinAvisar}</td>
+                      <td className="text-right text-[12px] whitespace-nowrap">
+                        {f.tarde > 0 && <span title={t("mt2.late")} style={{ color: "#d9a441" }}>⏱{f.tarde} </span>}
+                        {f.telefono > 0 && <span title={t("mt2.phone")} style={{ color: "#b4474a" }}>📱{f.telefono} </span>}
+                        {f.quejas > 0 && <span title={t("mt2.damage")} style={{ color: "#d9a441" }}>🔧{f.quejas} </span>}
+                        {f.penal > 0 && <span title={t("mt2.other")} style={{ color: C.dim }}>⚑{f.penal}</span>}
+                        {!f.tarde && !f.telefono && !f.quejas && !f.penal && <span style={{ color: C.dim }}>—</span>}
+                      </td>
+                      <td className="text-right text-[12px] whitespace-nowrap" style={{ color: C.dim }}>
+                        {f.jugTarde > 0 && <span>⏱{f.jugTarde} </span>}
+                        {f.jugMolestias > 0 && <span style={{ color: "#d9a441" }}>🩹{f.jugMolestias}</span>}
+                        {!f.jugTarde && !f.jugMolestias && "—"}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+          <div className="text-[11px] mt-3 leading-relaxed" style={{ color: C.dim }}>{t("mt2.clubFoot")}</div>
+        </Card>
+
+        {visibles.length > 0 && (
+          <Card title={t("mt2.lastReports")}>
+            <div className="space-y-1.5">
+              {[...visibles].sort((a, b) => (a.fecha < b.fecha ? 1 : -1)).slice(0, 15).map((p) => (
+                <div key={p.id} className="rounded-lg border p-2.5 flex flex-wrap items-center gap-x-3 gap-y-1" style={{ borderColor: C.line, background: C.panel2 }}>
+                  <div className="text-sm tabular-nums shrink-0" style={{ color: C.chalk }}>{p.fecha}</div>
+                  <div className="text-sm shrink-0" style={{ color: C.chalk }}>{p.entrenadorNombre || "—"}</div>
+                  <div className="text-[11px] shrink-0" style={{ color: C.dim }}>{p.equipoNombre}</div>
+                  <div className="text-[12px] flex-1 min-w-[120px]" style={{ color: C.dim }}>{p.salida} → {p.entrada}</div>
+                  {p.desperfectos && <div className="text-[11px] w-full sm:w-auto" style={{ color: "#d9a441" }}>🔧 {p.desperfectos}</div>}
+                  <div className="flex gap-2 shrink-0">
+                    {p.fotoSalida && <a href={p.fotoSalida} target="_blank" rel="noreferrer" className="text-[11px] underline" style={{ color: AC }}>{t("mt2.out")}</a>}
+                    {p.fotoEntrada && <a href={p.fotoEntrada} target="_blank" rel="noreferrer" className="text-[11px] underline" style={{ color: AC }}>{t("mt2.in")}</a>}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Card>
+        )}
+      </div>
+    );
+  };
+
   const renderDocs = () => {
     const d = docs.find((x) => x.id === docSel) || docs[0];
     const sg = signs[d.id] || { players: [], staff: [] };
@@ -14138,7 +14884,7 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
   const visibleTabs = allTabs;
   const TODAS_TABS = ["inicio", "master", "equipos", "equipo", "jugadores", "calendario", "convocatoria",
     "alineacion", "partido", "analisis", "temporada", "entrenamiento", "ejercicios", "pizarra",
-    "asistencia", "disciplina", "normativa", "estadisticas", "usuarios", "coachai", "material", "premium"];
+    "parte", "asistencia", "disciplina", "normativa", "estadisticas", "usuarios", "coachai", "material", "premium"];
   /* Las del Master no se le enseñan a nadie más: no es que estén bloqueadas, es
      que no existen para el resto de cuentas. */
   const tabsMenu = TODAS_TABS.filter((k) => allTabs.includes(k) || !["master", "equipos"].includes(k));
@@ -14625,6 +15371,12 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
           {tab === "equipos" && can("master") && renderTeams()}
           {tab === "calendario" && renderCalendar()}
           {tab === "disciplina" && can("discipline") && renderDiscipline()}
+          {/* Una pestaña con dos caras: quien dirige el club ve el control de
+              todos sus entrenadores; quien entrena, su propio parte. Es el
+              mismo módulo mirado desde los dos lados. */}
+          {tab === "parte" && verApartado("parte") && (
+            ["director", "master"].includes(session.role) ? renderControlClub() : renderParte()
+          )}
           {tab === "asistencia" && verApartado("editSquad") && renderAsistencia()}
           {tab === "normativa" && can("viewDocs") && renderDocs()}
           {tab === "material" && renderMaterial()}

@@ -17,6 +17,11 @@ const T_USUARIOS = "tblZf4dFeq4FCjHGJ";
 const T_JUGADORES = "tblsZpNBzo2DXlt6X";
 const T_CLUBES = "tblc2wLfnbbJg8KkI";
 const T_EQUIPOS = "tbl7h2mhoWr0W9aSU";
+/* Partes de entreno: uno por sesión y entrenador. Es el control de material
+   del club —qué saca, qué devuelve, qué se pierde— más las incidencias del
+   día. Va en tabla propia y no en un JSON del equipo porque el club necesita
+   leerlo agregado de TODAS sus categorías a la vez. */
+const T_PARTES = "tblBM9evPnnjD3prf";
 const T_INCIDENCIAS = "tblQHTqaiSED689xd";
 const T_NORMATIVA = "tblNgKxTA0TUq93Oa";
 const T_FIRMAS = "tblCiJo9zi21Yeaf7";
@@ -118,6 +123,15 @@ const EQ = {
      rellena a diario quien pasa el control de bienestar —en el reparto del
      plan físico, el delegado— y lo lee el cuerpo técnico antes de la sesión. */
   cargas: "fld57z5y3QWsk1DnF",
+};
+const PA = {
+  ref: "fldVKBSHxPEqCuVk2", fecha: "fldUyP4Qia9GM6lCR", equipo: "fldXvt940m1HPQ3uH",
+  entrenador: "fldIi957OqvZF1lCA", entrenadorNombre: "fldEyuA5hqm0GjxZX",
+  salida: "fldbDBmH77g1DpW7g", entrada: "fldy8c534xQZAbyNW", perdidos: "fldc8hWR8DntfHlSi",
+  fotoSalida: "fldYt0QLeWUmsyWBm", fotoEntrada: "fldc0syR36oJ1iRPW",
+  desperfectos: "fld9cfPju0jijEqRu", tarde: "fldPr3SR2b6PUIQUh", minutosTarde: "fldoEoWloaBFd2VOT",
+  telefono: "fldeoeOvw3mPJivEv", penalizaciones: "fldrcKIaP9UgyjmFP",
+  jugTarde: "fld7GphfCy25HceMW", jugMolestias: "fldL3yZEsiTDkhs9s", notas: "fldL8rT0LpKV1E9mt",
 };
 const I = {
   ref: "fldv5Gtrpw2e6xopC", fecha: "fldxhO3y8YcOA5XBI", ctx: "fldRG05YcO16bs8Mu",
@@ -700,6 +714,54 @@ export default async (req: Request) => {
       return j({ error: "Petición no soportada" }, 400);
     }
 
+    /* ============ PARTES DEL CLUB (vista agregada) ============
+       GET ?res=partes-club&club=recX -> los partes de todas las categorías del
+       club, ya con el nombre de la categoría puesto. Existe aparte del recurso
+       genérico porque ese exige un equipo y aquí hace falta justo lo contrario:
+       cruzar todas las categorías para poder comparar entrenadores. Lo lee
+       quien dirige el club, no cada entrenador. */
+    if (res === "partes-club") {
+      const club = url.searchParams.get("club") || "";
+      if (!club) return j({ error: "falta_club" }, 400);
+      if (req.method !== "GET") return j({ error: "Petición no soportada" }, 400);
+      if (!(await puedeClub(club)) || !["master", "director"].includes(rolKey(sesion?.rol))) {
+        return j({ error: "no_autorizado", reason: "Solo la dirección del club ve el control de material." }, 403);
+      }
+      const equipos = (await list(T_EQUIPOS)).filter((e: any) => (e.fields[EQ.club] || []).includes(club));
+      const nombrePorEq = new Map(equipos.map((e: any) => [e.id, e.fields[EQ.nombre] || "Sin nombre"]));
+      const recs = await listByName(T_PARTES);
+      const out = recs
+        .filter((r: any) => (r.fields?.Equipo || []).some((id: string) => nombrePorEq.has(id)))
+        .map((r: any) => ({
+          rec: r.id,
+          ...r.fields,
+          equipoRec: (r.fields?.Equipo || [])[0] || "",
+          equipoNombre: nombrePorEq.get((r.fields?.Equipo || [])[0]) || "",
+        }));
+      return j({ records: out });
+    }
+
+    /* ============ FOTOS DE UN PARTE ============
+       POST ?res=parte-foto&id=<recParte>&campo=salida|entrada con el base64.
+       Mismo mecanismo que el escudo: Airtable no acepta un data: URL en un
+       adjunto, hay que subirlo por su endpoint de contenido. */
+    if (res === "parte-foto") {
+      if (req.method !== "POST" || !id) return j({ error: "Falta el id del parte" }, 400);
+      const campo = url.searchParams.get("campo") === "entrada" ? PA.fotoEntrada : PA.fotoSalida;
+      const actual = await unoPorId(T_PARTES, id);
+      const equipoDelParte = (actual?.fields?.[PA.equipo] || [])[0] || "";
+      if (!(await puedeEquipo(equipoDelParte))) {
+        return j({ error: "no_autorizado", reason: "Ese parte no es de tu equipo." }, 403);
+      }
+      const b = await req.json();
+      const r = await fetch(`https://content.airtable.com/v0/${BASE()}/${id}/${campo}/uploadAttachment`, {
+        method: "POST", headers: H,
+        body: JSON.stringify({ contentType: b.contentType || "image/jpeg", file: b.file, filename: b.filename || "material.jpg" }),
+      });
+      const d = await r.json().catch(() => ({}));
+      return j({ ok: r.ok, url: d?.fields?.[campo]?.[0]?.url || null }, r.ok ? 200 : 400);
+    }
+
     if (res === "plantillas") {
       const team = url.searchParams.get("team") || "";
       const club = url.searchParams.get("club") || "";
@@ -954,6 +1016,7 @@ export default async (req: Request) => {
        cada equipo solo vea lo suyo; DELETE permite borrar filas desde la app. */
     const GENERICOS: Record<string, string> = {
       jugadores: T_JUGADORES,
+      partes: T_PARTES,
       partidos: T_PARTIDOS,
       convocatorias: T_CONVOCATORIAS,
       entrenamientos: T_ENTRENAMIENTOS,
