@@ -174,6 +174,13 @@ const DICT = {
     "ca.remove": "Quitar",
     "ca.useMatch": "Usar en modo partido", "ca.month": "Calendario del mes", "ca.dayHint": "Toca un día para ver su detalle.", "ca.dayEmpty": "No hay partidos ni entrenamiento programado este día.", "ca.dayTraining": "Día de entrenamiento", "ca.legendMatch": "Partido (del calendario importado)", "ca.legendTrain": "Entrenamiento", "ca.trainDaysLabel": "Días de entreno:",
     "ca.teamCrest": "Escudo del equipo",
+    "a.firstBtn": "Guardar contraseña y entrar",
+    "a.accClub": "Somos un club",
+    "a.accClubD": "Registra tu club: tú serás el director deportivo y podrás invitar al resto.",
+    "a.registerD": "Funda tu club o entrena por tu cuenta",
+    "a.firstLink": "Es mi primera vez · mi club me ha dado de alta",
+    "a.firstTitle": "Primera entrada",
+    "a.firstD": "Tu cuenta ya existe: la creó tu director deportivo o el Master. Usa el mismo correo con el que te dieron de alta y elige aquí tu contraseña. Tu equipo y tu rol ya vienen puestos.",
     "ca.notes": "Avisos",
     "pt.orphanOne": "sesión se queda sin día.",
     "pt.orphanMany": "sesiones se quedan sin día.",
@@ -458,6 +465,13 @@ const DICT = {
     "ca.remove": "Remove",
     "ca.useMatch": "Use in match mode", "ca.month": "Month calendar", "ca.dayHint": "Tap a day to see its detail.", "ca.dayEmpty": "No fixtures or training scheduled this day.", "ca.dayTraining": "Training day", "ca.legendMatch": "Fixture (from the imported calendar)", "ca.legendTrain": "Training", "ca.trainDaysLabel": "Training days:",
     "ca.teamCrest": "Team crest",
+    "a.firstBtn": "Save password and sign in",
+    "a.accClub": "We are a club",
+    "a.accClubD": "Register your club: you become the sporting director and can invite the rest.",
+    "a.registerD": "Start your club or coach on your own",
+    "a.firstLink": "First time here · my club added me",
+    "a.firstTitle": "First sign-in",
+    "a.firstD": "Your account already exists: your sporting director or the Master created it. Use the same email they added you with and choose your password here. Your team and role are already set.",
     "ca.notes": "Notes",
     "pt.orphanOne": "session has no day.",
     "pt.orphanMany": "sessions have no day.",
@@ -759,6 +773,13 @@ const DICT = {
     "ca.remove": "Retirer",
     "ca.useMatch": "Utiliser en mode match", "ca.month": "Calendrier du mois", "ca.dayHint": "Touchez un jour pour voir son détail.", "ca.dayEmpty": "Aucun match ni entraînement prévu ce jour.", "ca.dayTraining": "Jour d'entraînement", "ca.legendMatch": "Match (du calendrier importé)", "ca.legendTrain": "Entraînement", "ca.trainDaysLabel": "Jours d'entraînement :",
     "ca.teamCrest": "Écusson de l'équipe",
+    "a.firstBtn": "Enregistrer le mot de passe et entrer",
+    "a.accClub": "Nous sommes un club",
+    "a.accClubD": "Enregistrez votre club : vous serez le directeur sportif et pourrez inviter les autres.",
+    "a.registerD": "Fondez votre club ou entraînez de votre côté",
+    "a.firstLink": "C'est ma première fois · mon club m'a inscrit",
+    "a.firstTitle": "Première connexion",
+    "a.firstD": "Votre compte existe déjà : le directeur sportif ou le Master l'a créé. Utilisez l'e-mail avec lequel on vous a inscrit et choisissez ici votre mot de passe. Votre équipe et votre rôle sont déjà définis.",
     "ca.notes": "Notes",
     "pt.orphanOne": "séance reste sans jour.",
     "pt.orphanMany": "séances restent sans jour.",
@@ -1133,6 +1154,13 @@ const DICT = {
     "ca.remove": "Entfernen",
     "ca.useMatch": "Im Spielmodus verwenden", "ca.month": "Monatskalender", "ca.dayHint": "Tippe auf einen Tag, um Details zu sehen.", "ca.dayEmpty": "An diesem Tag sind weder Spiele noch Training geplant.", "ca.dayTraining": "Trainingstag", "ca.legendMatch": "Spiel (aus importiertem Spielplan)", "ca.legendTrain": "Training", "ca.trainDaysLabel": "Trainingstage:",
     "ca.teamCrest": "Mannschaftswappen",
+    "a.firstBtn": "Passwort speichern und anmelden",
+    "a.accClub": "Wir sind ein Verein",
+    "a.accClubD": "Registriere deinen Verein: du wirst Sportdirektor und kannst die anderen einladen.",
+    "a.registerD": "Gründe deinen Verein oder trainiere auf eigene Faust",
+    "a.firstLink": "Erstes Mal hier · mein Verein hat mich angelegt",
+    "a.firstTitle": "Erste Anmeldung",
+    "a.firstD": "Dein Konto besteht bereits: der Sportdirektor oder der Master hat es angelegt. Nimm dieselbe E-Mail, mit der du angelegt wurdest, und wähle hier dein Passwort. Mannschaft und Rolle stehen schon fest.",
     "ca.notes": "Hinweise",
     "pt.orphanOne": "Einheit bleibt ohne Tag.",
     "pt.orphanMany": "Einheiten bleiben ohne Tag.",
@@ -1506,6 +1534,13 @@ const DICT = {
     "ca.remove": "Remover",
     "ca.useMatch": "Usar no modo jogo", "ca.month": "Calendário do mês", "ca.dayHint": "Toca num dia para ver o detalhe.", "ca.dayEmpty": "Não há jogos nem treino marcado para este dia.", "ca.dayTraining": "Dia de treino", "ca.legendMatch": "Jogo (do calendário importado)", "ca.legendTrain": "Treino", "ca.trainDaysLabel": "Dias de treino:",
     "ca.teamCrest": "Emblema da equipa",
+    "a.firstBtn": "Guardar palavra-passe e entrar",
+    "a.accClub": "Somos um clube",
+    "a.accClubD": "Regista o teu clube: serás o diretor desportivo e poderás convidar os restantes.",
+    "a.registerD": "Funda o teu clube ou treina por tua conta",
+    "a.firstLink": "É a minha primeira vez · o meu clube inscreveu-me",
+    "a.firstTitle": "Primeira entrada",
+    "a.firstD": "A tua conta já existe: criou-a o teu diretor desportivo ou o Master. Usa o mesmo email com que te inscreveram e escolhe aqui a tua palavra-passe. A tua equipa e o teu papel já vêm definidos.",
     "ca.notes": "Avisos",
     "pt.orphanOne": "sessão fica sem dia.",
     "pt.orphanMany": "sessões ficam sem dia.",
@@ -6439,7 +6474,13 @@ function PassInput({ value, onChange, cls, st, placeholder = "••••••
 function Auth({ lang, setLang, onLogin, onRegister, tema, cambiarTema }) {
   const t = (k) => T(lang, k);
   const [view, setView] = useState("choice");
-  const [account, setAccount] = useState("oficial");
+  /* "oficial" no es un registro: la cuenta ya existe —la creó el director o el
+     Master— y lo único que se hace es elegir contraseña la primera vez. Por eso
+     ya no vive en "Registrarme", donde nadie iba a buscarla, sino detrás de un
+     enlace en la pantalla de acceso. Cuando se llega por ahí, primeraVez marca
+     que no hay que enseñar el selector de tipo de cuenta. */
+  const [account, setAccount] = useState("club");
+  const [primeraVez, setPrimeraVez] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
@@ -6498,7 +6539,13 @@ function Auth({ lang, setLang, onLogin, onRegister, tema, cambiarTema }) {
   );
   const inputCls = "w-full rounded-lg px-4 py-2.5 text-sm outline-none border";
   const inputSt = { background: C.panel2, borderColor: C.line, color: C.chalk };
-  const back = () => { setView("choice"); setErr(""); setOkMsg(""); };
+  const back = () => {
+    /* Quien entra a poner su contraseña por primera vez viene de la pantalla de
+       acceso, no de la portada: "volver" tiene que devolverle donde estaba. */
+    if (primeraVez) { setPrimeraVez(false); setAccount("club"); setView("login"); }
+    else setView("choice");
+    setErr(""); setOkMsg("");
+  };
 
   const submitLogin = async () => {
     setErr(""); if (!email.trim() || !pass.trim() || busy) return;
@@ -6630,9 +6677,9 @@ function Auth({ lang, setLang, onLogin, onRegister, tema, cambiarTema }) {
           <div className="font-display text-xl font-semibold mb-1">{t("a.have")}</div>
           <div className="text-xs" style={{ color: C.dim }}>{t("a.email")} + {t("a.pass")}</div>
         </button>
-        <button onClick={() => { setErr(""); setView("register"); }} className="rounded-lg border p-5 text-left" style={{ borderColor: ac, background: C.panel2 }}>
+        <button onClick={() => { setErr(""); setPrimeraVez(false); setAccount("club"); setView("register"); }} className="rounded-lg border p-5 text-left" style={{ borderColor: ac, background: C.panel2 }}>
           <div className="font-display text-xl font-semibold mb-1" style={{ color: ac }}>{t("a.register")}</div>
-          <div className="text-xs" style={{ color: C.dim }}>{t("a.accOff")} · {t("a.accFree")}</div>
+          <div className="text-xs" style={{ color: C.dim }}>{t("a.registerD")}</div>
         </button>
       </div>
       {/* Entrada a la demostración. Existía desde el principio pero solo se
@@ -6678,6 +6725,15 @@ function Auth({ lang, setLang, onLogin, onRegister, tema, cambiarTema }) {
       <button onClick={() => { setErr(""); setOkMsg(""); setView("forgot"); }} className="w-full text-center text-xs mt-3 underline" style={{ color: C.dim }}>
         {t("a.forgot")}
       </button>
+      {/* Aquí es donde mira quien ya está dado de alta en su club y todavía no
+          tiene contraseña. Antes esto vivía dentro de "Registrarme", que es el
+          último sitio donde lo buscaría alguien cuya cuenta ya existe. */}
+      <div className="mt-4 pt-4 border-t text-center" style={{ borderColor: C.line }}>
+        <button onClick={() => { setErr(""); setOkMsg(""); setPrimeraVez(true); setAccount("oficial"); setView("register"); }}
+          className="text-xs underline" style={{ color: ac }}>
+          {t("a.firstLink")}
+        </button>
+      </div>
     </>
   );
 
@@ -6744,8 +6800,15 @@ function Auth({ lang, setLang, onLogin, onRegister, tema, cambiarTema }) {
         ? <div className="rounded-lg border p-4 text-sm" style={{ borderColor: C.green, background: "rgba(47,107,79,.10)", color: C.chalk }}>{okMsg}</div>
         : <>
           {errBox}
-          <div role="radiogroup" aria-label={t("a.choice")} className="grid sm:grid-cols-3 gap-3 mb-5">
-            {[["oficial", "▣", t("a.accOff"), t("a.accOffD")], ["club", "▦", "Somos un club", "Registra tu club: tú serás el director deportivo y podrás invitar al resto."], ["free", "◇", t("a.accFree"), t("a.accFreeD")]].map(([k, ic, tl, ds]) => {
+          {primeraVez && (
+            <div className="rounded-lg border p-4 mb-5" style={{ borderColor: ac, background: "rgba(54,69,79,.08)" }}>
+              <div className="font-display text-base font-semibold" style={{ color: ac }}>{t("a.firstTitle")}</div>
+              <div className="text-[12px] mt-1 leading-snug" style={{ color: C.dim }}>{t("a.firstD")}</div>
+            </div>
+          )}
+          {!primeraVez && (
+          <div role="radiogroup" aria-label={t("a.choice")} className="grid sm:grid-cols-2 gap-3 mb-5">
+            {[["club", "▦", t("a.accClub"), t("a.accClubD")], ["free", "◇", t("a.accFree"), t("a.accFreeD")]].map(([k, ic, tl, ds]) => {
               const sel = account === k;
               return (
                 <button key={k} type="button" role="radio" aria-checked={sel} onClick={() => setAccount(k)}
@@ -6765,6 +6828,7 @@ function Auth({ lang, setLang, onLogin, onRegister, tema, cambiarTema }) {
               );
             })}
           </div>
+          )}
           <div className="grid sm:grid-cols-2 gap-x-3">
             {Field(t("a.fullname"), <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Emilio B." className={inputCls} style={inputSt} />)}
             {Field(t("a.email"), <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="tu@email.com" type="email" className={inputCls} style={inputSt} />)}
@@ -6846,7 +6910,7 @@ function Auth({ lang, setLang, onLogin, onRegister, tema, cambiarTema }) {
               <div className="text-[11px] mt-2" style={{ color: C.dim }}>{t("a.pending")}</div>
             </>
           ))}
-          {account === "oficial" && (
+          {account === "oficial" && !primeraVez && (
             <div className="mb-5 rounded-lg border p-3 text-xs" style={{ borderColor: C.line, background: C.panel2, color: C.dim }}>
               <div className="font-display uppercase tracking-wide mb-1" style={{ color: C.chalk }}>Alta por el club</div>
               A los equipos oficiales te da de alta el director deportivo o el Master. Usa el <strong>mismo correo</strong> con el que te añadieron y elige aquí tu contraseña. Tu equipo y tu rol ya vienen definidos.
@@ -6854,7 +6918,7 @@ function Auth({ lang, setLang, onLogin, onRegister, tema, cambiarTema }) {
           )}
           {isFree && <div className="mb-5 rounded-lg border p-3 text-xs" style={{ borderColor: C.line, background: C.panel2, color: C.dim }}>{t("a.freeInc")}</div>}
           <button disabled={!regReady || busy} onClick={submitRegister} className="w-full font-display uppercase tracking-wider py-3 rounded-lg font-semibold disabled:opacity-40" style={{ background: ac, color: C.sobre }}>
-            {busy ? t("a.loading") : isFree ? t("a.startFree") : t("a.create")}
+            {busy ? t("a.loading") : primeraVez ? t("a.firstBtn") : isFree ? t("a.startFree") : t("a.create")}
           </button>
         </>}
     </>
