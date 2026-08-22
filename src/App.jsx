@@ -200,9 +200,9 @@ const DICT = {
     "a.seeDemo": "Ver la demo sin registrarme",
     "a.seeDemoD": "La app completa con un equipo de ejemplo. No se guarda nada y no hace falta correo.",
     "dm.title": "Estás viendo la demostración.",
-    "dm.body": "La app completa, con datos de ejemplo. Puedes moverte por todo y probar lo que quieras: nada de lo que toques sale de este dispositivo ni cambia datos de ningún club.",
+    "dm.body": "La app completa, con datos de ejemplo. Puedes recorrer todas las pantallas y ver cómo la usa un entrenador o un delegado. Es solo lectura: no se edita nada.",
     "dm.cta": "Crear mi cuenta",
-    "dm.masterRO": "En la demostración el panel Master se ve entero pero no guarda: crear clubes, equipos o altas de usuario está desactivado.",
+    "dm.masterRO": "La demostración es solo lectura: puedes recorrerlo todo, pero los botones que guardan están desactivados.",
     "cf.closeDay": "Cerrar el día",
     "cf.dayClosed": "✓ Día cerrado y guardado en el histórico.",
     "cf.dayClosedLocal": "✓ Día cerrado. Sin equipo en la nube, el histórico se queda en este dispositivo.",
@@ -484,9 +484,9 @@ const DICT = {
     "a.seeDemo": "See the demo without signing up",
     "a.seeDemoD": "The full app with a sample team. Nothing is saved and no email is needed.",
     "dm.title": "You are viewing the demo.",
-    "dm.body": "The full app, with sample data. Move around and try anything you like: nothing you touch leaves this device or changes any club's data.",
+    "dm.body": "The full app, with sample data. Walk through every screen and see how a coach or a team manager uses it. It is read-only: nothing can be edited.",
     "dm.cta": "Create my account",
-    "dm.masterRO": "In the demo the Master panel is fully visible but saves nothing: creating clubs, teams or user accounts is disabled.",
+    "dm.masterRO": "The demo is read-only: you can walk through everything, but the buttons that save are disabled.",
     "cf.closeDay": "Close the day",
     "cf.dayClosed": "✓ Day closed and saved to the history.",
     "cf.dayClosedLocal": "✓ Day closed. With no team in the cloud, the history stays on this device.",
@@ -785,9 +785,9 @@ const DICT = {
     "a.seeDemo": "Voir la démo sans m'inscrire",
     "a.seeDemoD": "L'application complète avec une équipe d'exemple. Rien n'est enregistré et aucun e-mail n'est requis.",
     "dm.title": "Vous consultez la démonstration.",
-    "dm.body": "L'application complète, avec des données d'exemple. Naviguez et essayez ce que vous voulez : rien de ce que vous touchez ne quitte cet appareil ni ne modifie les données d'un club.",
+    "dm.body": "L'application complète, avec des données d'exemple. Parcourez tous les écrans et voyez comment s'en sert un entraîneur ou un délégué. En lecture seule : rien ne se modifie.",
     "dm.cta": "Créer mon compte",
-    "dm.masterRO": "En démonstration, le panneau Master est entièrement visible mais n'enregistre rien : créer des clubs, des équipes ou des comptes est désactivé.",
+    "dm.masterRO": "La démonstration est en lecture seule : vous pouvez tout parcourir, mais les boutons qui enregistrent sont désactivés.",
     "cf.closeDay": "Clore la journée",
     "cf.dayClosed": "✓ Journée close et enregistrée dans l'historique.",
     "cf.dayClosedLocal": "✓ Journée close. Sans équipe dans le cloud, l'historique reste sur cet appareil.",
@@ -1159,9 +1159,9 @@ const DICT = {
     "a.seeDemo": "Demo ansehen, ohne Konto",
     "a.seeDemoD": "Die vollständige App mit einer Beispielmannschaft. Nichts wird gespeichert, keine E-Mail nötig.",
     "dm.title": "Du siehst die Demo.",
-    "dm.body": "Die vollständige App mit Beispieldaten. Sieh dich um und probiere alles aus: nichts, was du anfasst, verlässt dieses Gerät oder ändert die Daten eines Vereins.",
+    "dm.body": "Die vollständige App mit Beispieldaten. Geh alle Bildschirme durch und sieh, wie ein Trainer oder ein Betreuer sie nutzt. Nur lesen: es wird nichts bearbeitet.",
     "dm.cta": "Konto erstellen",
-    "dm.masterRO": "In der Demo ist das Master-Panel vollständig sichtbar, speichert aber nichts: Vereine, Mannschaften oder Benutzerkonten anzulegen ist deaktiviert.",
+    "dm.masterRO": "Die Demo ist schreibgeschützt: du kannst alles durchgehen, aber die Speichern-Schaltflächen sind deaktiviert.",
     "cf.closeDay": "Tag abschließen",
     "cf.dayClosed": "✓ Tag abgeschlossen und im Verlauf gespeichert.",
     "cf.dayClosedLocal": "✓ Tag abgeschlossen. Ohne Mannschaft in der Cloud bleibt der Verlauf auf diesem Gerät.",
@@ -1532,9 +1532,9 @@ const DICT = {
     "a.seeDemo": "Ver a demo sem registo",
     "a.seeDemoD": "A app completa com uma equipa de exemplo. Não se guarda nada e não é preciso email.",
     "dm.title": "Estás a ver a demonstração.",
-    "dm.body": "A app completa, com dados de exemplo. Anda à vontade e experimenta o que quiseres: nada do que tocares sai deste dispositivo nem altera dados de nenhum clube.",
+    "dm.body": "A app completa, com dados de exemplo. Percorre todos os ecrãs e vê como a usa um treinador ou um delegado. É só leitura: não se edita nada.",
     "dm.cta": "Criar a minha conta",
-    "dm.masterRO": "Na demonstração o painel Master vê-se por inteiro mas não guarda: criar clubes, equipas ou contas de utilizador está desativado.",
+    "dm.masterRO": "A demonstração é só de leitura: podes percorrer tudo, mas os botões que guardam estão desativados.",
     "cf.closeDay": "Fechar o dia",
     "cf.dayClosed": "✓ Dia fechado e guardado no histórico.",
     "cf.dayClosedLocal": "✓ Dia fechado. Sem equipa na nuvem, o histórico fica neste dispositivo.",
@@ -2024,7 +2024,11 @@ const ROLES_ELEGIBLES = ["director", "entrenador", "segundo", "delegado"];
    catálogo de clubes (ya es de lectura abierta en toda la app) pero se
    bloquea entrar en los datos reales de ningún equipo: eso queda para la
    cuenta real de EBLDigital. */
-const ROLES_DEMO = [...ROLES_ELEGIBLES, "master"];
+/* La demo enseña los roles con los que se trabaja en un equipo. Master queda
+   fuera a propósito: es la cuenta única de EBLDigital, administra clubes
+   ajenos y no es un rol que nadie vaya a "probar" —enseñarlo solo invitaba a
+   trastear con la administración del sistema. */
+const ROLES_DEMO = [...ROLES_ELEGIBLES];
 
 /* Sin acentos y en minúsculas, para comparar nombres de club sin que el
    formato exacto (con o sin punto, "C.D." vs "Club Deportivo", el año al
@@ -6946,12 +6950,25 @@ export default function App() {
     return rolesInCat.includes("segundo");
   };
 
-  const can = (p) => {
+  /* Permisos que sirven para CAMBIAR algo. En la demo se apagan todos: se mira,
+     no se toca. Van aquí y no botón a botón porque son 67 los sitios que
+     preguntan por un permiso, y una pantalla nueva que olvide comprobarlo
+     seguiría sin poder editar. */
+  const PERMS_EDICION = ["editSquad", "editLineup", "editCall", "editTraining", "editDiscipline",
+    "validateDiscipline", "manageDocs", "editCal", "grantAccess", "createUsers", "cargas", "events"];
+  const tienePermiso = (p) => {
     const hasPermission = role.perms.includes(p);
     const notFreeRestricted = !(session?.plan === "free" && p === "viewUsers" && !esClubChamartinVergara(session?.club));
     const notPendingRestricted = !(session?.pendingApproval && pendingRestricted.includes(p));
     return hasPermission && notFreeRestricted && notPendingRestricted;
   };
+  /* "¿Puede tocar esto?" — la que consultan los botones y los formularios. */
+  const can = (p) => tienePermiso(p) && !(esDemo && PERMS_EDICION.includes(p));
+  /* "¿Se le enseña este apartado?" — la que consultan las pestañas. La demo
+     tiene que poder ver la app entera, así que aquí no cuenta el modo demo:
+     si no, apagar los permisos de edición dejaría media app en blanco, que es
+     justo lo contrario de lo que la demo existe para hacer. */
+  const verApartado = (p) => tienePermiso(p);
 
   /* Claro u oscuro. Se guarda en el dispositivo: es una preferencia de quien
      mira la pantalla, no del equipo ni de la cuenta. Cambiarlo muta la paleta y
@@ -11139,16 +11156,19 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
      Equipo en vez de encabezar la lista de jugadores. */
   const renderTeamSettings = () => (
     <div className="space-y-4">
-      {can("editSquad") && (
+      {/* Se enseña la pantalla, no se apaga entera: en la demo hay que poder
+          ver cómo es el apartado del club. Los botones que suben datos van
+          desactivados unas líneas más abajo. */}
+      {verApartado("editSquad") && (
         <Card title={t("sq.cloud")}>
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-[11px] px-2 py-1 rounded font-display uppercase tracking-wide"
               style={{ border: `1px solid ${cloudOn ? C.green : C.line}`, color: cloudOn ? C.green : C.dim }}>
               {cloudOn ? t("sq.cloudOn") : t("sq.cloudOff")}
             </span>
-            <button onClick={subirPlantilla} className="text-sm px-3 py-1.5 rounded-lg border font-display uppercase tracking-wide"
+            <button onClick={subirPlantilla} disabled={!can("editSquad")} className="text-sm px-3 py-1.5 rounded-lg border font-display uppercase tracking-wide disabled:opacity-40 disabled:cursor-not-allowed"
               style={{ borderColor: AC, color: AC }}>{t("sq.saveSquad")}</button>
-            <button onClick={subirCalendario} className="text-sm px-3 py-1.5 rounded-lg border font-display uppercase tracking-wide"
+            <button onClick={subirCalendario} disabled={!can("editSquad")} className="text-sm px-3 py-1.5 rounded-lg border font-display uppercase tracking-wide disabled:opacity-40 disabled:cursor-not-allowed"
               style={{ borderColor: C.line, color: C.chalk }}>{t("sq.saveCal")}</button>
             {cloudMsg && <span className="text-[12px]" style={{ color: cloudMsg.startsWith("✓") ? C.green : C.dim }}>{cloudMsg}</span>}
           </div>
@@ -11194,7 +11214,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                   await airClubPatch(clubInfo.rec, { campo: clubInfo.campo, direccion: clubInfo.direccion, maps: clubInfo.maps });
                   setCloudMsg("✓ Datos del club guardados");
                   setTimeout(() => setCloudMsg(""), 4000);
-                }} className="text-sm px-3 py-2 rounded-lg font-display uppercase tracking-wide font-semibold" style={{ background: AC, color: C.sobre }}>
+                }} disabled={!can("editSquad")} className="text-sm px-3 py-2 rounded-lg font-display uppercase tracking-wide font-semibold disabled:opacity-40 disabled:cursor-not-allowed" style={{ background: AC, color: C.sobre }}>
                   Guardar datos del club
                 </button>
               </div>
@@ -14389,12 +14409,12 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
 
         <main className={`flex-1 w-full p-4 sm:p-5 ${session?.categories?.length > 1 ? "pb-32" : "pb-24"} lg:pb-5 max-w-6xl`}>
           {tab === "inicio" && renderHome()}
-          {tab === "equipo" && can("editSquad") && renderTeamSettings()}
+          {tab === "equipo" && verApartado("editSquad") && renderTeamSettings()}
           {tab === "jugadores" && renderSquad()}
-          {tab === "alineacion" && can("editLineup") && renderLineup()}
+          {tab === "alineacion" && verApartado("editLineup") && renderLineup()}
           {tab === "convocatoria" && renderCall()}
-          {tab === "partido" && can("events") && renderMatch()}
-          {tab === "analisis" && can("ai") && can("editLineup") && renderPostMatch()}
+          {tab === "partido" && verApartado("events") && renderMatch()}
+          {tab === "analisis" && verApartado("ai") && verApartado("editLineup") && renderPostMatch()}
           {/* Se abre con ver O con crear, no solo con ver. El entrenador
               principal tiene "createUsers" —monta su propio cuerpo técnico,
               segundo y delegado— pero no "viewUsers", así que con la condición
@@ -14402,19 +14422,21 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
               se quedaba mirando una pantalla en blanco: no podía dar de alta a
               nadie pese a tener el permiso. Dentro, renderUsers ya reparte por
               permiso lo que ve cada rol (aprobar accesos, crear, editar). */}
-          {tab === "usuarios" && (can("viewUsers") || can("createUsers")) && renderUsers()}
+          {tab === "usuarios" && (verApartado("viewUsers") || verApartado("createUsers")) && renderUsers()}
           {tab === "pizarra" && <Whiteboard AC={AC} lang={lang} squad={players} teamId={session.team?.id} teamRec={session.team?.rec} isF7={!!session.team?.f7} canSavePlays={isPro} onPro={proAlert} pendingExId={pendingExId} onConsumePending={() => setPendingExId(null)} pendingPlayId={pendingPlayId} onConsumePlay={() => setPendingPlayId(null)} />}
-          {tab === "ejercicios" && can("editTraining") && renderExercises()}
+          {tab === "ejercicios" && verApartado("editTraining") && renderExercises()}
           {/* Dos apartados con dueños distintos: las cargas físicas las lleva
               quien pasa el semáforo a diario (delegado incluido) y la
               planificación por meses el cuerpo técnico que entrena. Por eso la
               pestaña se abre con cualquiera de los dos permisos y cada bloque
               se enseña solo a quien le toca. */}
-          {tab === "temporada" && (can("editTraining") || can("cargas")) && (() => {
+          {tab === "temporada" && (verApartado("editTraining") || verApartado("cargas")) && (() => {
             /* El delegado solo lleva las cargas: no ve la planificación de los
                diez meses ni, por tanto, el conmutador —enseñarle dos pestañas
                cuando una está vacía para él es ruido. */
-            const puedePlan = can("editTraining");
+            /* Enseñar el plan y la planificación es visibilidad, no edición:
+               en la demo se ven enteros y lo que no se puede es tocarlos. */
+            const puedePlan = verApartado("editTraining");
             const sub = puedePlan ? tempSub : "pre";
             return (
               <div className="space-y-4">
@@ -14440,7 +14462,7 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
               </div>
             );
           })()}
-          {tab === "entrenamiento" && can("editTraining") && renderTraining()}
+          {tab === "entrenamiento" && verApartado("editTraining") && renderTraining()}
           {tab === "estadisticas" && can("viewStats") && renderStats()}
           {tab === "coachai" && can("ai") && renderCoach()}
           {tab === "premium" && renderPremium()}
@@ -14448,7 +14470,7 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
           {tab === "equipos" && can("master") && renderTeams()}
           {tab === "calendario" && renderCalendar()}
           {tab === "disciplina" && can("discipline") && renderDiscipline()}
-          {tab === "asistencia" && can("editSquad") && renderAsistencia()}
+          {tab === "asistencia" && verApartado("editSquad") && renderAsistencia()}
           {tab === "normativa" && can("viewDocs") && renderDocs()}
           {tab === "material" && renderMaterial()}
           {!isPro && <AdBanner />}
