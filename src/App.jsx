@@ -14284,12 +14284,14 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
           </div>
         </div>
       )}
-        {/* w-60 y no w-52: con 208 px la etiqueta se quedaba en 128 px y
-            "Entrenamiento" ya necesitaba 137 aquí. Con la fuente de Windows,
-            más ancha, se cortaban también "Convocatoria" y "Modo partido".
-            240 px, y sin el tracking extra en la etiqueta, dan sitio a la
-            palabra más larga con holgura para cualquier fuente de respaldo. */}
-        <nav className="hidden lg:flex flex-col gap-1 p-3 border-r min-h-[calc(100vh-57px)] w-60 shrink-0 sticky top-[57px] self-start max-h-[calc(100vh-57px)] overflow-y-auto" style={{ borderColor: C.line }}>
+        {/* w-64 y no w-52: con 208 px la etiqueta se quedaba en 128 y
+            "Entrenamiento" ya pedía 138 en esta máquina, que tiene DejaVu Sans
+            —la primera fuente de la pila—. Windows no la trae y cae en Verdana,
+            bastante más ancha, y por eso allí se cortaban además "Convocatoria"
+            y "Modo partido". Con 256 px y sin el tracking extra, la palabra más
+            larga ocupa 138 de 176: un 28% de margen, el mismo que el resto de
+            entradas, así que aguanta cualquier fuente de respaldo. */}
+        <nav className="hidden lg:flex flex-col gap-1 p-3 border-r min-h-[calc(100vh-57px)] w-64 shrink-0 sticky top-[57px] self-start max-h-[calc(100vh-57px)] overflow-y-auto" style={{ borderColor: C.line }}>
           {/* Escudo del equipo, grande y fijo: identifica de un vistazo en qué
               equipo estás trabajando. Solo en cuentas oficiales, es decir,
               cuando el club te ha dado de alta. */}
