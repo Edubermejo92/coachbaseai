@@ -1757,7 +1757,6 @@ const rLabel = (lang, key) => T(lang, "role." + key);
    Sustituye al <datalist> nativo, que no se puede estilizar (sale como popup blanco del SO). */
 function ClubPicker({ value, onChange, options, placeholder, C, AC }) {
   const [open, setOpen] = useState(false);
-  const [q, setQ] = useState("");
   const [letter, setLetter] = useState(null);
   const box = useRef(null);
   const inputRef = useRef(null);
@@ -1773,10 +1772,19 @@ function ClubPicker({ value, onChange, options, placeholder, C, AC }) {
   const letras = [...new Set(options.map((c) => norm(c)[0]?.toUpperCase()).filter(Boolean))].sort();
   /* Sin orden alfabetico: se respeta el orden del array de opciones (los 3 primeros
      y el ultimo son un orden fijo pedido explicitamente). */
+  /* La lista filtra por lo que se escribe en el propio campo. Antes había un
+     segundo buscador dentro del desplegable con autoFocus: al pulsar el campo
+     del club se abría la lista, el buscador se llevaba el foco y el nombre que
+     tecleabas acababa en el filtro en vez de en el club. Quien iba a fundar un
+     club escribía su nombre, no se guardaba nada y el botón de crear cuenta se
+     quedaba apagado sin decir por qué. */
   const filtrados = options
-    .filter((c) => !q || norm(c).includes(norm(q)))
+    .filter((c) => !value || norm(c).includes(norm(value)))
     .filter((c) => !letter || norm(c)[0]?.toUpperCase() === letter);
-  const elegir = (c) => { onChange(c); setOpen(false); setQ(""); setLetter(null); };
+  const elegir = (c) => { onChange(c); setOpen(false); setLetter(null); };
+  /* Lo escrito no coincide con ningún club conocido: se va a crear uno nuevo y
+     hay que decirlo, que es la única señal de que el nombre ha quedado puesto. */
+  const esNuevo = !!String(value || "").trim() && !options.some((c) => norm(c) === norm(value));
   return (
     <div className="relative" ref={box}>
       <input ref={inputRef} value={value} onChange={(e) => onChange(e.target.value)}
@@ -1786,19 +1794,19 @@ function ClubPicker({ value, onChange, options, placeholder, C, AC }) {
       <button type="button" onClick={() => { setOpen((v) => !v); inputRef.current?.focus(); }}
         aria-label="Ver sugerencias" className="absolute right-2 top-1/2 -translate-y-1/2 text-xs px-1"
         style={{ color: C.dim }}>▼</button>
+      {esNuevo && (
+        <div className="text-[11px] mt-1" style={{ color: AC }}>
+          ✓ Club nuevo: se creará <strong>{String(value).trim()}</strong>.
+        </div>
+      )}
       {open && options.length > 0 && (
         <div className="absolute left-0 right-0 mt-1 z-30 rounded-lg border overflow-hidden"
           style={{ background: C.panel, borderColor: C.line, boxShadow: `0 10px 28px ${C.sombra}` }}>
-          <div className="p-2 border-b" style={{ borderColor: C.line }}>
-            <input autoFocus value={q} onChange={(e) => { setQ(e.target.value); setLetter(null); }}
-              placeholder="Buscar club…" className="w-full text-sm px-2.5 py-1.5 rounded border bg-transparent"
-              style={{ borderColor: C.line, color: C.chalk }} />
-          </div>
           <div className="flex" style={{ maxHeight: 220 }}>
             <div className="flex-1 overflow-y-auto" style={{ maxHeight: 220 }}>
               {filtrados.length === 0 && (
                 <div className="px-3 py-3 text-[12px]" style={{ color: C.dim }}>
-                  Sin resultados. Usa el nombre que has escrito: se guardará tal cual.
+                  Ningún club se llama así. Se creará <strong style={{ color: AC }}>{String(value || "").trim()}</strong>.
                 </div>
               )}
               {filtrados.map((c) => (
@@ -2081,11 +2089,30 @@ const PLANES = [
   { k: "mensual",   nombre: "Mensual",         precio: "9,99 €",  ciclo: "al mes",        nota: "Sin permanencia. Cancela cuando quieras." },
   { k: "temporada", nombre: "Temporada",       precio: "79 €",    ciclo: "al año",        nota: "7,90 €/mes. Pagas en septiembre y te olvidas.", destacado: true, ahorro: "Ahorras 41 €" },
 ];
+/* Los planes de club tienen dos topes distintos y hasta ahora solo se decía
+   uno. Son cosas diferentes: los EQUIPOS son las categorías del club (Infantil
+   B, Juvenil A…) y los ACCESOS son las personas del cuerpo técnico que pueden
+   entrar (entrenador, segundo, delegado y el director del club). Un club con
+   cinco equipos no necesita cinco cuentas, necesita unas veinte, y quien
+   contrata tiene que saberlo antes de pagar y no descubrirlo al invitar al
+   cuarto entrenador.
+
+   El criterio son tres personas por equipo —entrenador, segundo y delegado—
+   más un margen para la dirección deportiva. maxUsuarios es el número que se
+   escribe en "Límite usuarios" del club en Airtable, que es lo que de verdad
+   frena las altas. */
 const PLANES_CLUB = [
-  { k: "club_s", nombre: "Club S", equipos: "Hasta 5 equipos",   precio: "249 €", porEquipo: "50 € por equipo" },
-  { k: "club_m", nombre: "Club M", equipos: "Hasta 12 equipos",  precio: "449 €", porEquipo: "37 € por equipo", destacado: true },
-  { k: "club_l", nombre: "Club L", equipos: "Equipos ilimitados", precio: "799 €", porEquipo: "Para clubes grandes" },
+  { k: "club_s", nombre: "Club S", equipos: "Hasta 5 equipos", maxEquipos: 5, usuarios: "20 accesos", maxUsuarios: 20,
+    precio: "249 €", porEquipo: "50 € por equipo" },
+  { k: "club_m", nombre: "Club M", equipos: "Hasta 12 equipos", maxEquipos: 12, usuarios: "50 accesos", maxUsuarios: 50,
+    precio: "449 €", porEquipo: "37 € por equipo", destacado: true },
+  { k: "club_l", nombre: "Club L", equipos: "Equipos ilimitados", maxEquipos: null, usuarios: "Accesos ilimitados", maxUsuarios: null,
+    precio: "799 €", porEquipo: "Para clubes grandes" },
 ];
+/* El plan gratuito de club: un equipo y dos personas —quien lo funda y alguien
+   más—, que es lo que decía la letra pequeña del registro mientras la tarjeta
+   ponía "1 acceso" y se contradecían. */
+const CLUB_GRATIS = { equipos: "1 equipo", maxEquipos: 1, usuarios: "2 accesos", maxUsuarios: 2 };
 /* Topes del plan gratuito. Criterio: NUNCA limitar el montaje del equipo
    (limitarlo ahi expulsa el primer dia); apretar donde el valor ya se ha visto. */
 const FREE_CAPS = { players: Infinity, exercises: 8, fixtures: 5, sessions: 1, aiMsgs: 10, plays: 0 };
@@ -6757,17 +6784,20 @@ function Auth({ lang, setLang, onLogin, onRegister, tema, cambiarTema }) {
               <button type="button" onClick={() => setPlanClub("gratis")} className="rounded-lg border p-2.5 text-left"
                 style={{ borderColor: planClub === "gratis" ? ac : C.line, background: planClub === "gratis" ? "rgba(54,69,79,.08)" : "transparent" }}>
                 <div className="font-display text-sm font-semibold" style={{ color: planClub === "gratis" ? ac : C.chalk }}>Gratis</div>
-                <div className="text-[10px]" style={{ color: C.dim }}>1 acceso de cuerpo técnico</div>
+                <div className="text-[10px]" style={{ color: C.dim }}>{CLUB_GRATIS.equipos}</div>
+                <div className="text-[10px]" style={{ color: C.dim }}>{CLUB_GRATIS.usuarios}</div>
               </button>
               {PLANES_CLUB.map((p) => (
                 <button key={p.k} type="button" onClick={() => setPlanClub(p.k)} className="rounded-lg border p-2.5 text-left"
                   style={{ borderColor: planClub === p.k ? ac : C.line, background: planClub === p.k ? "rgba(54,69,79,.08)" : "transparent" }}>
                   <div className="font-display text-sm font-semibold" style={{ color: planClub === p.k ? ac : C.chalk }}>{p.nombre} · {p.precio}</div>
                   <div className="text-[10px]" style={{ color: C.dim }}>{p.equipos}</div>
+                  <div className="text-[10px]" style={{ color: C.dim }}>{p.usuarios}</div>
                 </button>
               ))}
               <div className="col-span-2 text-[10px]" style={{ color: C.dim }}>
-                {planClub === "gratis" ? "Podrás dar de alta a 1 persona más. Sube de plan cuando quieras desde dentro." : "Al terminar el registro te llevamos a pagar. Las plazas se activan en cuanto se confirma el cobro."}
+                <strong>Equipos</strong> son las categorías del club (Infantil B, Juvenil A…). <strong>Accesos</strong> son las personas del cuerpo técnico que pueden entrar: entrenador, segundo y delegado de cada equipo, más la dirección deportiva.{" "}
+                {planClub === "gratis" ? "Sube de plan cuando quieras desde dentro." : "Al terminar el registro te llevamos a pagar. Las plazas se activan en cuanto se confirma el cobro."}
               </div>
             </div>
           ))}
@@ -8704,15 +8734,28 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
         <Card title="¿Eres el club? Plan para todos tus equipos">
           <div className="text-[12px] mb-3" style={{ color: C.dim }}>
             Todo el cuerpo técnico del club en PRO, con vista agregada para el director deportivo. Precio por temporada.
+            <div className="mt-1.5">
+              <strong>Equipos</strong> son las categorías del club (Infantil B, Juvenil A…). <strong>Accesos</strong> son las
+              personas que pueden entrar: entrenador, segundo y delegado de cada equipo, más la dirección deportiva.
+            </div>
           </div>
           <div className="grid sm:grid-cols-3 gap-3">
             {PLANES_CLUB.map((pl) => (
               <div key={pl.k} className="rounded-lg border p-4 flex flex-col"
                 style={{ borderColor: pl.destacado ? AC : C.line, background: pl.destacado ? "rgba(217,164,65,.07)" : "transparent" }}>
                 <div className="font-display uppercase tracking-wide text-sm" style={{ color: C.chalk }}>{pl.nombre}</div>
-                <div className="text-[11px]" style={{ color: C.dim }}>{pl.equipos}</div>
-                <div className="font-display text-2xl font-semibold mt-2" style={{ color: pl.destacado ? AC : C.chalk }}>{pl.precio}</div>
-                <div className="text-[11px] flex-1" style={{ color: C.dim }}>por temporada · {pl.porEquipo}</div>
+                <div className="font-display text-2xl font-semibold mt-1" style={{ color: pl.destacado ? AC : C.chalk }}>{pl.precio}</div>
+                <div className="text-[11px]" style={{ color: C.dim }}>por temporada · {pl.porEquipo}</div>
+                {/* Los dos topes, uno debajo del otro: cuántas categorías y
+                    cuánta gente del cuerpo técnico. */}
+                <div className="mt-2.5 pt-2.5 border-t space-y-1 flex-1" style={{ borderColor: C.line }}>
+                  <div className="text-[12px] flex items-center gap-1.5" style={{ color: C.chalk }}>
+                    <span style={{ color: C.dim }}>⬡</span>{pl.equipos}
+                  </div>
+                  <div className="text-[12px] flex items-center gap-1.5" style={{ color: C.chalk }}>
+                    <span style={{ color: C.dim }}>👥</span>{pl.usuarios}
+                  </div>
+                </div>
                 <button onClick={() => goCheckout(pl.k)} disabled={payBusy}
                   className="mt-3 w-full font-display uppercase tracking-wide text-xs px-3 py-2 rounded-lg font-semibold disabled:opacity-50 border"
                   style={pl.destacado ? { background: AC, color: C.sobre, borderColor: AC } : { borderColor: C.line, color: C.chalk }}>
