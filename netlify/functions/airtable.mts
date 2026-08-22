@@ -109,6 +109,10 @@ const EQ = {
   nombre: "fldmjUkaMwwLbPO89", categoria: "fldgTxdcJpju1jxt2", formato: "fldSQPSejXh45fRQ8",
   sistema: "fldl20r9arDXNdZdC", club: "fldFGQJQHzeNHi50l", escudo: "fldZ8Eow86UczBCCr",
   web: "fldnk9J5mmwx4ac36", maps: "fldmCTjJcpercjAVl",
+  /* Quién responde del material de esta categoría. Lo nombra el director
+     deportivo y lo puede cambiar la dirección del club; sale en el control de
+     material para saber a quién preguntar cuando falta un balón. */
+  encargado: "fld23b31P4y079j77",
   /* Planificación de temporada en JSON. Vive en el equipo y no en una tabla
      propia porque es un único documento por equipo, no una lista de filas:
      una tabla entera para guardar diez meses sería más ruido que ayuda. */
@@ -496,6 +500,7 @@ export default async (req: Request) => {
       half: CAT_HALF[cat] || 35, sub: `${CAT_SUB[cat]} · ${r.fields[EQ.formato] || "Fútbol 11"} · ${CAT_HALF[cat] || 35}′ por parte`,
       crest: (r.fields[EQ.escudo] || [])[0]?.url || null,
       web: r.fields[EQ.web] || "", maps: r.fields[EQ.maps] || "",
+      encargado: r.fields[EQ.encargado] || "",
       clubRec: clubRec || null, club: club ? club.fields[CL.nombre] : "",
       comunidad: club ? club.fields[CL.comunidad] : "",
     };
@@ -573,8 +578,23 @@ export default async (req: Request) => {
         return j({ records: eqs.map((r) => teamOut(r, clubs)) });
       }
       if (req.method === "PATCH" && id) {
+        /* Antes no había ninguna comprobación aquí: bastaba con mandar el id de
+           cualquier equipo, propio o ajeno, para cambiarle el nombre, la
+           categoría o el sistema. Ahora hace falta el mismo alcance que para
+           el resto de datos de un equipo. */
+        if (!(await puedeEquipo(id))) {
+          return j({ error: "no_autorizado", reason: "No puedes editar un equipo que no es el tuyo." }, 403);
+        }
         const b = await req.json();
         const f: Record<string, unknown> = {};
+        /* Nombrar al encargado de material es cosa de la dirección del club, no
+           de cada entrenador: si no, cualquiera podría quitarse el encargo. */
+        if (b.encargado !== undefined) {
+          if (!["master", "director"].includes(rolKey(sesion?.rol))) {
+            return j({ error: "no_autorizado", reason: "Solo la dirección del club nombra al encargado de material." }, 403);
+          }
+          f[EQ.encargado] = String(b.encargado || "");
+        }
         if (b.name) f[EQ.nombre] = b.name;
         if (b.cat) f[EQ.categoria] = CAT_LABEL[b.cat] || b.cat;
         if (typeof b.f7 === "boolean") f[EQ.formato] = b.f7 ? "Fútbol 7" : "Fútbol 11";
@@ -729,6 +749,7 @@ export default async (req: Request) => {
       }
       const equipos = (await list(T_EQUIPOS)).filter((e: any) => (e.fields[EQ.club] || []).includes(club));
       const nombrePorEq = new Map(equipos.map((e: any) => [e.id, e.fields[EQ.nombre] || "Sin nombre"]));
+      const encargadoPorEq = new Map(equipos.map((e: any) => [e.id, e.fields[EQ.encargado] || ""]));
       const recs = await listByName(T_PARTES);
       const out = recs
         .filter((r: any) => (r.fields?.Equipo || []).some((id: string) => nombrePorEq.has(id)))
@@ -737,8 +758,17 @@ export default async (req: Request) => {
           ...r.fields,
           equipoRec: (r.fields?.Equipo || [])[0] || "",
           equipoNombre: nombrePorEq.get((r.fields?.Equipo || [])[0]) || "",
+          encargado: encargadoPorEq.get((r.fields?.Equipo || [])[0]) || "",
         }));
-      return j({ records: out });
+      /* Las categorías van aparte de los partes: el club tiene que poder ver y
+         cambiar el encargado de una categoría aunque todavía no haya mandado
+         ningún parte. */
+      return j({
+        records: out,
+        categorias: equipos.map((e: any) => ({
+          rec: e.id, nombre: e.fields[EQ.nombre] || "Sin nombre", encargado: e.fields[EQ.encargado] || "",
+        })),
+      });
     }
 
     /* ============ FOTOS DE UN PARTE ============

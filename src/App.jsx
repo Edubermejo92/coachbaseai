@@ -174,6 +174,12 @@ const DICT = {
     "ca.remove": "Quitar",
     "ca.useMatch": "Usar en modo partido", "ca.month": "Calendario del mes", "ca.dayHint": "Toca un día para ver su detalle.", "ca.dayEmpty": "No hay partidos ni entrenamiento programado este día.", "ca.dayTraining": "Día de entrenamiento", "ca.legendMatch": "Partido (del calendario importado)", "ca.legendTrain": "Entrenamiento", "ca.trainDaysLabel": "Días de entreno:",
     "ca.teamCrest": "Escudo del equipo",
+    "mt2.encTitle": "Encargados de material",
+    "mt2.encHint": "Quién responde del material en cada categoría. Lo nombra el director deportivo y la dirección del club puede cambiarlo.",
+    "mt2.encNone": "Sin nombrar",
+    "mt2.encNoCats": "Este club todavía no tiene categorías.",
+    "mt2.encSaved": "✓ Encargado guardado.",
+    "mt2.encFail": "No se ha podido guardar el encargado.",
     "nav.parte": "Material del club",
     "mt2.title": "Parte de entreno",
     "mt2.hint": "Una foto al sacar el material y otra al guardarlo, y el recuento de balones. Es lo que respalda el control del club: sin las dos fotos, el recuento no está probado.",
@@ -521,6 +527,12 @@ const DICT = {
     "ca.remove": "Remove",
     "ca.useMatch": "Use in match mode", "ca.month": "Month calendar", "ca.dayHint": "Tap a day to see its detail.", "ca.dayEmpty": "No fixtures or training scheduled this day.", "ca.dayTraining": "Training day", "ca.legendMatch": "Fixture (from the imported calendar)", "ca.legendTrain": "Training", "ca.trainDaysLabel": "Training days:",
     "ca.teamCrest": "Team crest",
+    "mt2.encTitle": "Kit managers",
+    "mt2.encHint": "Who answers for the kit in each category. The sporting director appoints them and the club's management can change it.",
+    "mt2.encNone": "Not appointed",
+    "mt2.encNoCats": "This club has no categories yet.",
+    "mt2.encSaved": "✓ Kit manager saved.",
+    "mt2.encFail": "Could not save the kit manager.",
     "nav.parte": "Club kit",
     "mt2.title": "Training kit report",
     "mt2.hint": "One photo when you take the kit out and another when you put it away, plus the ball count. It is what backs the club's records: without both photos the count is not proven.",
@@ -885,6 +897,12 @@ const DICT = {
     "ca.remove": "Retirer",
     "ca.useMatch": "Utiliser en mode match", "ca.month": "Calendrier du mois", "ca.dayHint": "Touchez un jour pour voir son détail.", "ca.dayEmpty": "Aucun match ni entraînement prévu ce jour.", "ca.dayTraining": "Jour d'entraînement", "ca.legendMatch": "Match (du calendrier importé)", "ca.legendTrain": "Entraînement", "ca.trainDaysLabel": "Jours d'entraînement :",
     "ca.teamCrest": "Écusson de l'équipe",
+    "mt2.encTitle": "Responsables du matériel",
+    "mt2.encHint": "Qui répond du matériel dans chaque catégorie. Le directeur sportif les nomme et la direction du club peut le changer.",
+    "mt2.encNone": "Non désigné",
+    "mt2.encNoCats": "Ce club n'a pas encore de catégories.",
+    "mt2.encSaved": "✓ Responsable enregistré.",
+    "mt2.encFail": "Impossible d'enregistrer le responsable.",
     "nav.parte": "Matériel du club",
     "mt2.title": "Rapport de matériel",
     "mt2.hint": "One photo when you take the kit out and another when you put it away, plus the ball count. It is what backs the club's records: without both photos the count is not proven.",
@@ -1322,6 +1340,12 @@ const DICT = {
     "ca.remove": "Entfernen",
     "ca.useMatch": "Im Spielmodus verwenden", "ca.month": "Monatskalender", "ca.dayHint": "Tippe auf einen Tag, um Details zu sehen.", "ca.dayEmpty": "An diesem Tag sind weder Spiele noch Training geplant.", "ca.dayTraining": "Trainingstag", "ca.legendMatch": "Spiel (aus importiertem Spielplan)", "ca.legendTrain": "Training", "ca.trainDaysLabel": "Trainingstage:",
     "ca.teamCrest": "Mannschaftswappen",
+    "mt2.encTitle": "Materialverantwortliche",
+    "mt2.encHint": "Wer in jeder Kategorie für das Material geradesteht. Der Sportdirektor benennt sie, die Vereinsleitung kann es ändern.",
+    "mt2.encNone": "Nicht benannt",
+    "mt2.encNoCats": "Dieser Verein hat noch keine Kategorien.",
+    "mt2.encSaved": "✓ Verantwortlicher gespeichert.",
+    "mt2.encFail": "Verantwortlicher konnte nicht gespeichert werden.",
     "nav.parte": "Material des Vereins",
     "mt2.title": "Materialbericht",
     "mt2.hint": "One photo when you take the kit out and another when you put it away, plus the ball count. It is what backs the club's records: without both photos the count is not proven.",
@@ -1758,6 +1782,12 @@ const DICT = {
     "ca.remove": "Remover",
     "ca.useMatch": "Usar no modo jogo", "ca.month": "Calendário do mês", "ca.dayHint": "Toca num dia para ver o detalhe.", "ca.dayEmpty": "Não há jogos nem treino marcado para este dia.", "ca.dayTraining": "Dia de treino", "ca.legendMatch": "Jogo (do calendário importado)", "ca.legendTrain": "Treino", "ca.trainDaysLabel": "Dias de treino:",
     "ca.teamCrest": "Emblema da equipa",
+    "mt2.encTitle": "Responsáveis pelo material",
+    "mt2.encHint": "Quem responde pelo material em cada categoria. Nomeia-o o diretor desportivo e a direção do clube pode alterá-lo.",
+    "mt2.encNone": "Por nomear",
+    "mt2.encNoCats": "Este clube ainda não tem categorias.",
+    "mt2.encSaved": "✓ Responsável guardado.",
+    "mt2.encFail": "Não foi possível guardar o responsável.",
     "nav.parte": "Material do clube",
     "mt2.title": "Relatório de material",
     "mt2.hint": "Una foto al sacar el material y otra al guardarlo, y el recuento de balones. Es lo que respalda el control del club: sin las dos fotos, el recuento no está probado.",
@@ -2332,7 +2362,10 @@ const ROLES = {
    EBLDigital y no se reparte desde la app. */
 const ROLES_ASIGNABLES = {
   master: ["director", "entrenador", "segundo", "delegado"],
-  director: ["entrenador", "segundo", "delegado"],
+  /* El director reparte todo el cuerpo técnico de su club, incluido el nivel de
+     director: un club puede tener dos, o traspasar la dirección deportiva
+     cuando alguien lo deja, y hasta ahora eso obligaba a pedírselo al Master. */
+  director: ["director", "entrenador", "segundo", "delegado"],
   entrenador: ["segundo", "delegado"],
 };
 const asignables = (rol) => ROLES_ASIGNABLES[rol] || [];
@@ -2427,7 +2460,8 @@ const PLANES_CLUB = [
 /* El plan gratuito de club: un equipo y dos personas —quien lo funda y alguien
    más—, que es lo que decía la letra pequeña del registro mientras la tarjeta
    ponía "1 acceso" y se contradecían. */
-const CLUB_GRATIS = { equipos: "1 equipo", maxEquipos: 1, usuarios: "2 accesos", maxUsuarios: 2 };
+const CLUB_GRATIS = { equipos: "1 equipo", maxEquipos: 1, usuarios: "2 accesos", maxUsuarios: 2,
+  detalle: "1 para el club y 1 para un entrenador" };
 /* Topes del plan gratuito. Criterio: NUNCA limitar el montaje del equipo
    (limitarlo ahi expulsa el primer dia); apretar donde el valor ya se ha visto. */
 const FREE_CAPS = { players: Infinity, exercises: 8, fixtures: 5, sessions: 1, aiMsgs: 10, plays: 0 };
@@ -3026,7 +3060,7 @@ const airPartesClub = async (clubRec) => {
     const r = await cbFetch(`${AIR}?res=partes-club&club=${encodeURIComponent(clubRec)}`);
     if (!r.ok) return null;
     const d = await r.json();
-    return (d.records || []).map(parteFromAir);
+    return { partes: (d.records || []).map(parteFromAir), categorias: d.categorias || [] };
   } catch { return null; }
 };
 /* La foto va aparte del registro: Airtable no acepta un data: URL dentro de un
@@ -7215,6 +7249,7 @@ function Auth({ lang, setLang, onLogin, onRegister, tema, cambiarTema }) {
                 <div className="font-display text-sm font-semibold" style={{ color: planClub === "gratis" ? ac : C.chalk }}>Gratis</div>
                 <div className="text-[10px]" style={{ color: C.dim }}>{CLUB_GRATIS.equipos}</div>
                 <div className="text-[10px]" style={{ color: C.dim }}>{CLUB_GRATIS.usuarios}</div>
+                <div className="text-[10px] leading-snug" style={{ color: C.dim }}>{CLUB_GRATIS.detalle}</div>
               </button>
               {PLANES_CLUB.map((p) => (
                 <button key={p.k} type="button" onClick={() => setPlanClub(p.k)} className="rounded-lg border p-2.5 text-left"
@@ -11018,6 +11053,18 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
   const [parteBusy, setParteBusy] = useState(false);
   const [partesClub, setPartesClub] = useState([]);
   const [clubCat, setClubCat] = useState("");
+  /* Categorías del club con su encargado de material. Vienen del mismo sitio
+     que los partes para que el club pueda nombrar encargado en una categoría
+     que todavía no ha mandado ninguno. */
+  const [clubCats, setClubCats] = useState([]);
+  const [encMsg, setEncMsg] = useState("");
+  const guardarEncargado = async (catRec, nombre) => {
+    setClubCats((cs) => cs.map((c) => (c.rec === catRec ? { ...c, encargado: nombre } : c)));
+    setEncMsg("");
+    const ok = await airTeamPatch(catRec, { encargado: nombre });
+    setEncMsg(ok ? t("mt2.encSaved") : t("mt2.encFail"));
+    setTimeout(() => setEncMsg(""), 4000);
+  };
   const parteKey = `cb_partes_${session?.team?.id || "demo"}`;
   /* PARTE_VACIO se evalúa al montar el componente, cuando todavía no hay
      sesión, así que el nombre salía vacío y el parte se firmaba con un guion.
@@ -11050,8 +11097,10 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
     if (!clubInfo.rec || esDemo || !can("master") && session?.role !== "director") return;
     let vivo = true;
     (async () => {
-      const ps = await airPartesClub(clubInfo.rec);
-      if (vivo && ps) setPartesClub(ps);
+      const d = await airPartesClub(clubInfo.rec);
+      if (!vivo || !d) return;
+      setPartesClub(d.partes);
+      setClubCats(d.categorias);
     })();
     return () => { vivo = false; };
   }, [clubInfo.rec, session?.role]); // eslint-disable-line
@@ -11279,6 +11328,15 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
        guardar. Sin las dos, el recuento no está probado. */
     const fotosEsperadas = tot.partes * 2;
     const fotosHechas = filas.reduce((s, f) => s + f.fotos, 0);
+    /* Nombrar encargado es de la dirección del club. El resto lo ve y no lo
+       toca, que es lo que pedía "visibles para el club". */
+    const puedeNombrar = ["director", "master"].includes(session?.role) && !esDemo;
+    /* Candidatos: el cuerpo técnico dado de alta en el club, más quien ya haya
+       firmado algún parte aunque no esté en la lista de usuarios. */
+    const personalClub = [...new Set([
+      ...users.filter((u) => !u.club || normClub(u.club) === normClub(session?.club)).map((u) => u.name),
+      ...fuente.map((p) => p.entrenadorNombre),
+    ].map((x) => String(x || "").trim()).filter(Boolean))].sort();
 
     return (
       <div className="space-y-4">
@@ -11353,6 +11411,46 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
             </div>
           )}
           <div className="text-[11px] mt-3 leading-relaxed" style={{ color: C.dim }}>{t("mt2.clubFoot")}</div>
+        </Card>
+
+        {/* Encargados de material. Los nombra el director deportivo y quedan a
+            la vista del club, que también puede cambiarlos: cuando falta un
+            balón hay que saber a quién preguntar, y eso no puede depender de
+            acordarse de quién lo llevaba. */}
+        <Card title={`🔑 ${t("mt2.encTitle")}`}>
+          <div className="text-xs mb-3 leading-relaxed" style={{ color: C.dim }}>{t("mt2.encHint")}</div>
+          {clubCats.length === 0 ? (
+            <div className="text-sm" style={{ color: C.dim }}>{t("mt2.encNoCats")}</div>
+          ) : (
+            <div className="space-y-1.5">
+              {clubCats.map((c) => (
+                <div key={c.rec} className="rounded-lg border p-2.5 flex flex-wrap items-center gap-x-3 gap-y-2"
+                  style={{ borderColor: c.encargado ? C.line : C.warn, background: C.panel2 }}>
+                  <div className="text-sm flex-1 min-w-[130px]" style={{ color: C.chalk }}>{c.nombre}</div>
+                  {puedeNombrar ? (
+                    <select value={c.encargado || ""} onChange={(e) => guardarEncargado(c.rec, e.target.value)}
+                      aria-label={`${t("mt2.encTitle")} — ${c.nombre}`}
+                      className="w-full sm:w-64 px-2.5 py-1.5 rounded-lg border text-sm"
+                      style={{ background: C.panel, borderColor: c.encargado ? C.line : C.warn, color: C.chalk }}>
+                      <option value="" style={{ background: C.panel }}>{t("mt2.encNone")}</option>
+                      {personalClub.map((n) => <option key={n} value={n} style={{ background: C.panel }}>{n}</option>)}
+                      {/* Quien ya está nombrado pero ya no sale en la lista de
+                          usuarios (se dio de baja) sigue apareciendo: si no, al
+                          abrir el desplegable el nombre se perdería solo. */}
+                      {c.encargado && !personalClub.includes(c.encargado) && (
+                        <option value={c.encargado} style={{ background: C.panel }}>{c.encargado}</option>
+                      )}
+                    </select>
+                  ) : (
+                    <div className="text-sm" style={{ color: c.encargado ? C.chalk : C.warn }}>
+                      {c.encargado || t("mt2.encNone")}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+          {encMsg && <div className="text-xs mt-2" style={{ color: encMsg.startsWith("✓") ? C.green : C.warn }}>{encMsg}</div>}
         </Card>
 
         {visibles.length > 0 && (
