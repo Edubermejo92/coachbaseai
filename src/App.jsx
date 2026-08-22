@@ -37,7 +37,7 @@ const DICT = {
     "nav.inicio": "Inicio", "nav.jugadores": "Jugadores", "nav.alineacion": "Alineación", "nav.pizarra": "Pizarra", "nav.convocatoria": "Convocatoria", "nav.partido": "Modo partido", "nav.usuarios": "Usuarios", "nav.coachai": "Coach AI", "nav.material": "Material", "nav.entrenamiento": "Entrenamiento", "nav.ejercicios": "Ejercicios", "nav.estadisticas": "Estadísticas", "nav.calendario": "Calendario", "nav.equipos": "Clubes", "nav.premium": "Premium", "nav.disciplina": "Disciplina", "nav.normativa": "Normativa", "nav.familias": "Familias", "nav.equipo": "Club", "nav.asistencia": "Asistencia", "mt.toBoard": "Pizarra", "p.myTeam": "Mi club y mi categoría", "p.pickTeam": "Cambiar a otra categoría…", "p.changeTeam": "Cambiar de categoría", "p.newTeam": "Nombre de la categoría nueva", "p.newTeamPh": "Ej. Cadete B", "p.newTeamNote": "¿No está tu categoría en la lista? Créala dentro de tu club:", "p.createTeam": "Crear", "p.deleteAcc": "Eliminar mi cuenta", "p.deleteWarn": "Se borrará tu ficha y perderás el acceso. No se puede deshacer. Los datos del equipo no se borran.", "p.deleteGo": "Eliminar", "c.proTab": "Apartado PRO. Toca para verlo.", "a.resetAgain": "Pedir un enlace nuevo", "a.resetExp": "Este enlace ha caducado (dura una hora). Pide otro desde \"¿Has olvidado tu contraseña?\".", "a.resetUsed": "Este enlace ya se ha usado. Si no fuiste tú, pide otro y cámbiala cuanto antes.", "a.resetServer": "El servidor no pudo guardar la contraseña. Vuelve a intentarlo en un minuto.", "h.round": "Jornada", "h.howTo": "Cómo llegar", "h.today": "Hoy", "h.day": "Día", "h.days": "Días", "h.noDate": "Sin fecha", "h.noGoal": "Sesión sin objetivo", "h.noTrain": "No hay ningún entrenamiento planificado.", "h.planTrain": "Planificar", "h.noAlerts": "Nada que revisar. Plantilla al completo.", "h.aDoubt1": "duda", "h.aDoubtN": "dudas", "h.aInj1": "lesionado", "h.aInjN": "lesionados", "h.aDisc": "incidencia(s) pendientes de validar", "h.aSign": "sin firmar el código disciplinario", "h.fMatch": "El partido es a las {h}.", "h.fCalled": "Convocatoria publicada · {n} convocados.", "h.fNoCall": "Todavía no hay convocatoria publicada.", "h.fKit": "Lleva botella de agua y espinilleras.", "h.fNote": "Como familia solo ves lo que el entrenador comparte.", "nav.temporada": "Temporada", "se.title": "Pilares de la temporada", "se.hint": "Reparte el año entre los cuatro pilares. Marca en qué meses pesa cada uno y anota el objetivo concreto de cada mes.", "se.months": "meses", "se.calendar": "Mes a mes", "se.goal": "Objetivo de", "se.goalPh": "Objetivo del mes. Ej. salida de balón desde portero", "se.saved": "Planificación guardada y compartida con tu equipo.", "se.share": "Compartir con el equipo", "se.shareNote": "Se guarda en este dispositivo mientras la editas. Al compartirla, la ve todo tu cuerpo técnico desde cualquier móvil.", "se.match": "partido", "se.matches": "partidos", "se.noMatches": "Sin partidos este mes", "se.genSession": "✦ Generar sesión de 1h con IA", "se.generating": "Generando…", "se.sessionError": "No se pudo generar la sesión. Vuelve a intentarlo.", "se.pickPillarFirst": "Marca al menos un pilar para poder generarla.", "se.aiSessionTitle": "Sesión propuesta (IA)", "se.sendToTraining": "Enviar a Entrenamiento", "se.sentToTraining": "✓ Enviada. Ábrela en Entrenamiento.", "se.trainThis": "Para entrenar esto", "se.seeLess": "Ver menos", "se.seeMore": "+{n} más", "se.planNotCloud": "Este equipo todavía no está en la nube.", "se.planNoRole": "Tu rol no puede guardar la planificación de este equipo.", "se.planSaveFail": "No se pudo guardar. Revisa la conexión.", "mt.abp": "ABP guardados", "mt.abpTap": "Toca una jugada para abrirla en la pizarra grande.", "mt.abpEmpty": "Aún no has guardado ninguna jugada a balón parado. Créalas en la pizarra, en el menú ABP, y aquí las tendrás a un toque.", "nav.analisis": "Análisis", "pm.title": "Análisis post-partido", "pm.events": "eventos en el acta", "pm.empty": "Aún no hay acta de este partido. Registra el partido en Modo partido y vuelve aquí: el análisis sale de los goles, cambios y tarjetas que hayas ido marcando.", "pm.go": "Generar análisis", "pm.again": "Volver a generar", "pm.thinking": "Analizando el partido…", "pm.note": "Lo redacta Coach AI a partir del acta. Repásalo antes de compartirlo con nadie.", "mt.subs": "Tandas de cambios", "mt.subsTotal": "tandas en total", "mt.subsOne": "Tanda", "mt.subsUndo": "Quitar una tanda", "mt.subsOf": "de", "mt.subsLeft": "Te quedan {n} tandas.", "mt.subsNone": "Sin tandas disponibles.", "tr.target": "Duración de la sesión", "tr.left": "Faltan {n} min por completar.", "tr.over": "Te pasas {n} min del objetivo.", "tr.done": "Sesión completa.", "tr.saveSession": "Guardar sesión completa",
     "navg.equipo": "Equipo", "navg.partido": "Día de partido", "navg.entrenamiento": "Entrenamiento", "navg.delegado": "Delegado", "navg.estadisticas": "Estadísticas", "navg.roles": "Roles", "navg.coachai": "Coach AI",
     "role.entrenador": "Entrenador principal", "role.segundo": "Segundo entrenador", "role.delegado": "Delegado", "role.padre": "Padre / Madre / Tutor", "role.director": "Director deportivo", "role.master": "Master · EBLDigital", 
-    "c.exit": "Salir", "c.planFree": "PLAN GRATIS", "c.upgrade": "Mejorar", "c.by": "Desarrollado por EBLDigital", "c.madeBy": "App creada por EBLDigital ·", "navg.master": "Master", "nav.master": "Panel Master", "c.pro": "Función PRO. Mejora a una cuenta oficial del club para desbloquearla.", "c.cancel": "Cancelar", "c.nav": "Navegación", "c.trialBadge": "PRUEBA PRO", "c.planCurrentFree": "Plan actual · Gratis", "c.goPro": "Ir a PRO",
+    "c.exit": "Salir", "c.planFree": "VERSIÓN BÁSICA", "c.upgrade": "Mejorar", "c.by": "Desarrollado por EBLDigital", "c.madeBy": "App creada por EBLDigital ·", "navg.master": "Master", "nav.master": "Panel Master", "c.pro": "Función PRO. Mejora a una cuenta oficial del club para desbloquearla.", "c.cancel": "Cancelar", "c.nav": "Navegación", "c.trialBadge": "PRUEBA PRO", "c.planCurrentFree": "Versión actual · Básica", "c.goPro": "Ir a Premium",
     "a.tagline": "Gestión inteligente para entrenadores de fútbol base", "a.accOff": "Sí, entreno en un club", "a.accOffD": "Tu director deportivo o el Master ya te han dado de alta antes. Pon tu contraseña y entras al momento.", "a.accFree": "No, entreno por mi cuenta", "a.accFreeD": "Tu equipo es tuyo y no depende de nadie. Sin aprobaciones.", "a.have": "Ya soy usuario", "a.register": "Registrarme", "a.name": "Tu nombre", "a.fullname": "Nombre y apellidos", "a.email": "Email", "a.pass": "Contraseña", "a.region": "Comunidad autónoma", "a.clubMadrid": "Club (Comunidad de Madrid)", "a.choose": "Elige tu club…", "a.otherClub": "Nombre de tu club", "a.teamOff": "Equipo", "a.teamFree": "Tu equipo", "a.role": "Tu rol", "a.pending": "Entras al momento y puedes empezar a trabajar con tu equipo. Hasta que el club apruebe tu acceso no verás los datos compartidos del club ni la gestión de usuarios.", "a.freeInc": "Gratis para siempre: plantilla completa sin límite de jugadores, alineación, convocatoria, modo partido, pizarra y Coach AI.", "a.startFree": "Empezar gratis", "a.signin": "Iniciar sesión", "a.create": "Crear cuenta y entrar", "a.proto": "Prototipo — los datos no se guardan en ningún servidor", "a.choice": "¿Perteneces a un club?", "a.choiceD": "Las dos opciones son gratuitas. Solo cambia de quién dependen tus datos.", "a.back": "‹ Volver", "a.badCreds": "Email o contraseña incorrectos.", "a.accPending": "Tu cuenta está pendiente de aprobación por el club.", "a.accSusp": "Tu acceso está suspendido. Contacta con tu club.", "a.exists": "Ese email ya está registrado. Inicia sesión.", "a.registered": "¡Registro recibido! Tu acceso queda pendiente de aprobación por el club.", "a.loading": "Cargando…", "a.entering": "Entrando…", "a.demoHint": "Demo: usuario demo / contraseña demo", "a.demoBtn": "▶ Entrar con usuario demo", "a.demoPick": "¿Qué rol quieres ver?", "a.demoPickD": "Elige un rol para explorar la app tal y como lo vería esa persona.",
     "a.forgot": "¿Has olvidado tu contraseña?", "a.forgotTitle": "Recuperar contraseña", "a.forgotD": "Escribe tu email y te mandamos un enlace para elegir una nueva.", "a.forgotSend": "Enviar enlace", "a.sending": "Enviando…", "a.forgotSent": "Si ese email tiene cuenta, ya está el enlace enviado. Caduca en una hora y solo sirve una vez. Mira también en spam.", "a.forgotNoMail": "El envío de correo no está disponible ahora mismo. Avisa a tu club para que lo revise.", "a.resetTitle": "Elige tu nueva contraseña", "a.resetD": "Este enlace caduca en una hora y solo sirve una vez.", "a.newPass": "Nueva contraseña", "a.newPass2": "Repite la contraseña", "a.resetSave": "Guardar contraseña", "a.resetOk": "Contraseña actualizada. Ya puedes entrar con ella.", "a.resetBad": "Este enlace ya no vale: ha caducado o ya se ha usado. Pide otro.", "a.passRule": "Mínimo 6 caracteres, y las dos deben coincidir.", "a.noBackend": "No hay conexión con el servidor. Inténtalo más tarde.",
     "p.account": "Mi cuenta", "p.changePass": "Cambiar contraseña", "p.current": "Contraseña actual", "p.save": "Guardar", "p.saved": "Contraseña actualizada.", "p.badCurrent": "La contraseña actual no es correcta.", "p.close": "Cerrar",
@@ -174,6 +174,12 @@ const DICT = {
     "ca.remove": "Quitar",
     "ca.useMatch": "Usar en modo partido", "ca.month": "Calendario del mes", "ca.dayHint": "Toca un día para ver su detalle.", "ca.dayEmpty": "No hay partidos ni entrenamiento programado este día.", "ca.dayTraining": "Día de entrenamiento", "ca.legendMatch": "Partido (del calendario importado)", "ca.legendTrain": "Entrenamiento", "ca.trainDaysLabel": "Días de entreno:",
     "ca.teamCrest": "Escudo del equipo",
+    "cl.staff": "Cuerpo técnico del club",
+    "cl.staffHint": "Quién entrena qué y con qué papel. Las altas y los permisos se gestionan en Usuarios.",
+    "cl.staffEmpty": "Todavía no hay nadie dado de alta en este club.",
+    "cl.noCat": "Sin categoría",
+    "cl.active": "Activo",
+    "cl.pending": "Pendiente",
     "mt2.encTitle": "Encargados de material",
     "mt2.encHint": "Quién responde del material en cada categoría. Lo nombra el director deportivo y la dirección del club puede cambiarlo.",
     "mt2.encNone": "Sin nombrar",
@@ -527,6 +533,12 @@ const DICT = {
     "ca.remove": "Remove",
     "ca.useMatch": "Use in match mode", "ca.month": "Month calendar", "ca.dayHint": "Tap a day to see its detail.", "ca.dayEmpty": "No fixtures or training scheduled this day.", "ca.dayTraining": "Training day", "ca.legendMatch": "Fixture (from the imported calendar)", "ca.legendTrain": "Training", "ca.trainDaysLabel": "Training days:",
     "ca.teamCrest": "Team crest",
+    "cl.staff": "Club coaching staff",
+    "cl.staffHint": "Who coaches what and in what role. Sign-ups and permissions are handled in Users.",
+    "cl.staffEmpty": "Nobody has been added to this club yet.",
+    "cl.noCat": "No category",
+    "cl.active": "Active",
+    "cl.pending": "Pending",
     "mt2.encTitle": "Kit managers",
     "mt2.encHint": "Who answers for the kit in each category. The sporting director appoints them and the club's management can change it.",
     "mt2.encNone": "Not appointed",
@@ -897,6 +909,12 @@ const DICT = {
     "ca.remove": "Retirer",
     "ca.useMatch": "Utiliser en mode match", "ca.month": "Calendrier du mois", "ca.dayHint": "Touchez un jour pour voir son détail.", "ca.dayEmpty": "Aucun match ni entraînement prévu ce jour.", "ca.dayTraining": "Jour d'entraînement", "ca.legendMatch": "Match (du calendrier importé)", "ca.legendTrain": "Entraînement", "ca.trainDaysLabel": "Jours d'entraînement :",
     "ca.teamCrest": "Écusson de l'équipe",
+    "cl.staff": "Staff du club",
+    "cl.staffHint": "Qui entraîne quoi et à quel titre. Les inscriptions et les droits se gèrent dans Utilisateurs.",
+    "cl.staffEmpty": "Personne n'est encore inscrit dans ce club.",
+    "cl.noCat": "Sans catégorie",
+    "cl.active": "Actif",
+    "cl.pending": "En attente",
     "mt2.encTitle": "Responsables du matériel",
     "mt2.encHint": "Qui répond du matériel dans chaque catégorie. Le directeur sportif les nomme et la direction du club peut le changer.",
     "mt2.encNone": "Non désigné",
@@ -1340,6 +1358,12 @@ const DICT = {
     "ca.remove": "Entfernen",
     "ca.useMatch": "Im Spielmodus verwenden", "ca.month": "Monatskalender", "ca.dayHint": "Tippe auf einen Tag, um Details zu sehen.", "ca.dayEmpty": "An diesem Tag sind weder Spiele noch Training geplant.", "ca.dayTraining": "Trainingstag", "ca.legendMatch": "Spiel (aus importiertem Spielplan)", "ca.legendTrain": "Training", "ca.trainDaysLabel": "Trainingstage:",
     "ca.teamCrest": "Mannschaftswappen",
+    "cl.staff": "Trainerteam des Vereins",
+    "cl.staffHint": "Wer was trainiert und in welcher Rolle. Anmeldungen und Rechte laufen über Benutzer.",
+    "cl.staffEmpty": "In diesem Verein ist noch niemand angelegt.",
+    "cl.noCat": "Ohne Kategorie",
+    "cl.active": "Aktiv",
+    "cl.pending": "Ausstehend",
     "mt2.encTitle": "Materialverantwortliche",
     "mt2.encHint": "Wer in jeder Kategorie für das Material geradesteht. Der Sportdirektor benennt sie, die Vereinsleitung kann es ändern.",
     "mt2.encNone": "Nicht benannt",
@@ -1782,6 +1806,12 @@ const DICT = {
     "ca.remove": "Remover",
     "ca.useMatch": "Usar no modo jogo", "ca.month": "Calendário do mês", "ca.dayHint": "Toca num dia para ver o detalhe.", "ca.dayEmpty": "Não há jogos nem treino marcado para este dia.", "ca.dayTraining": "Dia de treino", "ca.legendMatch": "Jogo (do calendário importado)", "ca.legendTrain": "Treino", "ca.trainDaysLabel": "Dias de treino:",
     "ca.teamCrest": "Emblema da equipa",
+    "cl.staff": "Equipa técnica do clube",
+    "cl.staffHint": "Quem treina o quê e com que papel. As inscrições e permissões gerem-se em Utilizadores.",
+    "cl.staffEmpty": "Ainda não há ninguém inscrito neste clube.",
+    "cl.noCat": "Sem categoria",
+    "cl.active": "Ativo",
+    "cl.pending": "Pendente",
     "mt2.encTitle": "Responsáveis pelo material",
     "mt2.encHint": "Quem responde pelo material em cada categoria. Nomeia-o o diretor desportivo e a direção do clube pode alterá-lo.",
     "mt2.encNone": "Por nomear",
@@ -2331,15 +2361,15 @@ const ROLES = {
        categorías, y cuya descripción aquí al lado dice "acceso total a todo el
        sistema"— le salía el apartado en gris y con el aviso de que su rol no
        tiene acceso. */
-    tabs: ["inicio", "equipo", "jugadores", "parte", "alineacion", "pizarra", "ejercicios", "entrenamiento", "temporada", "estadisticas", "convocatoria", "calendario", "partido", "analisis", "asistencia", "disciplina", "normativa", "usuarios", "coachai", "material", "premium"],
+    tabs: ["inicio", "equipo", "jugadores", "alineacion", "pizarra", "ejercicios", "entrenamiento", "temporada", "estadisticas", "convocatoria", "calendario", "partido", "analisis", "asistencia", "disciplina", "normativa", "usuarios", "coachai", "material", "premium"],
     perms: ["editSquad", "editLineup", "editCall", "events", "ai", "viewUsers", "grantAccess", "createUsers", "editTraining", "viewStats", "discipline", "editDiscipline", "validateDiscipline", "viewDocs", "manageDocs", "editCal", "cargas", "parte"] },
   entrenador: { label: "Entrenador principal", color: "#36454F", icon: "◆",
     desc: "Control total de su equipo: edición de todo excepto gestión de usuarios.",
-    tabs: ["inicio", "equipo", "jugadores", "parte", "alineacion", "pizarra", "ejercicios", "entrenamiento", "temporada", "estadisticas", "convocatoria", "calendario", "partido", "analisis", "asistencia", "disciplina", "normativa", "usuarios", "coachai", "material", "premium"],
+    tabs: ["inicio", "jugadores", "parte", "alineacion", "pizarra", "ejercicios", "entrenamiento", "temporada", "estadisticas", "convocatoria", "calendario", "partido", "analisis", "asistencia", "disciplina", "normativa", "usuarios", "coachai", "material", "premium"],
     perms: ["editSquad", "editLineup", "editCall", "events", "ai", "createUsers", "editTraining", "viewStats", "discipline", "editDiscipline", "viewDocs", "editCal", "cargas", "parte"] },
   segundo: { label: "Segundo entrenador", color: "#36454F", icon: "◈",
     desc: "Asiste al entrenador: alineaciones, entrenamiento y partido.",
-    tabs: ["inicio", "equipo", "jugadores", "parte", "alineacion", "pizarra", "ejercicios", "entrenamiento", "temporada", "estadisticas", "convocatoria", "calendario", "partido", "analisis", "asistencia", "disciplina", "normativa", "coachai", "material", "premium"],
+    tabs: ["inicio", "jugadores", "parte", "alineacion", "pizarra", "ejercicios", "entrenamiento", "temporada", "estadisticas", "convocatoria", "calendario", "partido", "analisis", "asistencia", "disciplina", "normativa", "coachai", "material", "premium"],
     perms: ["editSquad", "editLineup", "events", "ai", "editTraining", "viewStats", "discipline", "editDiscipline", "viewDocs", "editCal", "cargas", "parte"] },
   delegado: { label: "Delegado", color: "#36454F", icon: "▣",
     desc: "Logística del equipo: acta del partido, disciplina y normativa.",
@@ -2347,11 +2377,11 @@ const ROLES = {
        plan físico el delegado es quien pasa el semáforo diario y recoge el RPE,
        así que necesita entrar. La planificación de pilares por meses de esa
        misma pestaña sigue siendo del cuerpo técnico y a él no se le enseña. */
-    tabs: ["inicio", "equipo", "jugadores", "parte", "convocatoria", "calendario", "partido", "temporada", "asistencia", "disciplina", "normativa", "coachai", "material", "premium"],
+    tabs: ["inicio", "jugadores", "parte", "convocatoria", "calendario", "partido", "temporada", "asistencia", "disciplina", "normativa", "coachai", "material", "premium"],
     perms: ["editSquad", "events", "ai", "discipline", "editDiscipline", "viewDocs", "manageDocs", "editCal", "cargas", "parte"] },
   master: { label: "Master · EBLDigital", color: "#36454F", icon: "★",
     desc: "Administración total: crea los equipos oficiales y da de alta a cualquiera.",
-    tabs: ["inicio", "master", "equipos", "equipo", "jugadores", "parte", "alineacion", "pizarra", "ejercicios", "entrenamiento", "temporada", "estadisticas", "convocatoria", "calendario", "partido", "analisis", "asistencia", "disciplina", "normativa", "usuarios", "coachai", "material"],
+    tabs: ["inicio", "master", "equipos", "equipo", "jugadores", "alineacion", "pizarra", "ejercicios", "entrenamiento", "temporada", "estadisticas", "convocatoria", "calendario", "partido", "analisis", "asistencia", "disciplina", "normativa", "usuarios", "coachai", "material"],
     perms: ["editSquad", "editLineup", "editCall", "events", "ai", "viewUsers", "grantAccess", "createUsers", "editTraining", "viewStats", "discipline", "editDiscipline", "validateDiscipline", "viewDocs", "manageDocs", "editCal", "cargas", "parte", "master"] },
 };
 
@@ -2415,16 +2445,26 @@ const getAvailableTabs = (club, roleTabs) => roleTabs;
    Para mover un apartado de un lado a otro, basta con sacarlo o meterlo en
    esta lista: no hay nada más que tocar.
    El Master, las familias y quien esté en modo de prueba lo tienen todo. */
+/* Las dos versiones de la app.
+   BÁSICA: el día a día de un equipo —a quién tengo, cuándo juego, a quién
+   convoco, cómo alineo, el partido y quién ha venido—. Es lo que pidió el
+   club y es un producto completo por sí solo.
+   PREMIUM: todo lo que el rol de cada uno permita. Un delegado o un segundo
+   no ven más por pagar: siguen viendo lo suyo, que es lo que su papel exige.
+
+   Van también "inicio" (la portada de la app), "premium" (donde se sube de
+   plan: quitarlo dejaría sin salida a quien quiere pagar) y "material" (la
+   tienda de afiliados, que es ingreso y no función). */
 const TABS_GRATIS = [
-  "inicio", "equipo", "jugadores", "convocatoria", "calendario",
-  "normativa", "material", "premium",
+  "inicio", "premium", "material",
+  "calendario", "alineacion", "partido", "jugadores", "asistencia", "convocatoria",
 ];
 const esTabPro = (k) => !TABS_GRATIS.includes(k);
 
 
 /* Plan gratis: rol entrenador pero con límites */
 const LIMITS = {
-  free: { players: 14, video: false, users: false, label: "PLAN GRATIS" },
+  free: { players: 14, video: false, users: false, label: "VERSIÓN BÁSICA" },
   oficial: { players: 99, video: true, users: true, label: null },
 };
 
@@ -9231,11 +9271,11 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
         </Card>
       )}
 
-      <Card title="Qué incluye cada plan">
+      <Card title="Qué incluye cada versión">
         <div className="grid grid-cols-12 gap-2 text-[10px] font-display uppercase tracking-wide pb-2 border-b" style={{ borderColor: C.line, color: C.dim }}>
           <div className="col-span-4">Función</div>
-          <div className="col-span-4">Gratis</div>
-          <div className="col-span-4" style={{ color: AC }}>PRO</div>
+          <div className="col-span-4">Básica</div>
+          <div className="col-span-4" style={{ color: AC }}>Premium</div>
         </div>
         {PRO_FEATURES.map((f) => (
           <div key={f.k} className="grid grid-cols-12 gap-2 text-sm py-2 border-b last:border-0 items-start" style={{ borderColor: C.line }}>
@@ -12148,30 +12188,54 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
   /* Guardado en la nube y datos del club: es configuración del equipo, no de
      la plantilla, así que vive en su propia pestaña dentro del apartado
      Equipo en vez de encabezar la lista de jugadores. */
+  /* Cuerpo técnico del club, agrupado por rol. Es la otra mitad de lo que la
+     dirección quería tener en un sitio: quién entrena qué y con qué papel, sin
+     entrar en la gestión de usuarios. */
+  const renderCuerpoTecnico = () => {
+    const mios = users.filter((u) => !u.club || normClub(u.club) === normClub(session?.club));
+    const grupos = [["entrenador", ROLES.entrenador], ["segundo", ROLES.segundo], ["delegado", ROLES.delegado], ["director", ROLES.director]]
+      .map(([k, r]) => ({ k, label: r.label, color: r.color, gente: mios.filter((u) => u.role === k) }))
+      .filter((g) => g.gente.length > 0);
+    return (
+      <Card title={`👥 ${t("cl.staff")}`}>
+        <div className="text-xs mb-3" style={{ color: C.dim }}>{t("cl.staffHint")}</div>
+        {grupos.length === 0 ? (
+          <div className="text-sm" style={{ color: C.dim }}>{t("cl.staffEmpty")}</div>
+        ) : (
+          <div className="space-y-3">
+            {grupos.map((g) => (
+              <div key={g.k}>
+                <div className="text-[10px] font-display uppercase tracking-widest mb-1.5" style={{ color: C.dim }}>
+                  {g.label} · {g.gente.length}
+                </div>
+                <div className="space-y-1.5">
+                  {g.gente.map((u) => (
+                    <div key={u.id || u.email} className="rounded-lg border p-2.5 flex flex-wrap items-center gap-x-3 gap-y-1"
+                      style={{ borderColor: C.line, background: C.panel2 }}>
+                      <div className="text-sm flex-1 min-w-[140px]" style={{ color: C.chalk }}>{u.name}</div>
+                      <div className="text-[11px]" style={{ color: C.dim }}>{(u.categories || []).join(" · ") || t("cl.noCat")}</div>
+                      <div className="text-[11px] shrink-0" style={{ color: u.status === "activo" ? C.green : C.warn }}>
+                        {u.status === "activo" ? t("cl.active") : t("cl.pending")}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </Card>
+    );
+  };
+
   const renderTeamSettings = () => (
     <div className="space-y-4">
       {/* Se enseña la pantalla, no se apaga entera: en la demo hay que poder
           ver cómo es el apartado del club. Los botones que suben datos van
           desactivados unas líneas más abajo. */}
       {verApartado("editSquad") && (
-        <Card title={t("sq.cloud")}>
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="text-[11px] px-2 py-1 rounded font-display uppercase tracking-wide"
-              style={{ border: `1px solid ${cloudOn ? C.green : C.line}`, color: cloudOn ? C.green : C.dim }}>
-              {cloudOn ? t("sq.cloudOn") : t("sq.cloudOff")}
-            </span>
-            <button onClick={subirPlantilla} disabled={!can("editSquad")} className="text-sm px-3 py-1.5 rounded-lg border font-display uppercase tracking-wide disabled:opacity-40 disabled:cursor-not-allowed"
-              style={{ borderColor: AC, color: AC }}>{t("sq.saveSquad")}</button>
-            <button onClick={subirCalendario} disabled={!can("editSquad")} className="text-sm px-3 py-1.5 rounded-lg border font-display uppercase tracking-wide disabled:opacity-40 disabled:cursor-not-allowed"
-              style={{ borderColor: C.line, color: C.chalk }}>{t("sq.saveCal")}</button>
-            {cloudMsg && <span className="text-[12px]" style={{ color: cloudMsg.startsWith("✓") ? C.green : C.dim }}>{cloudMsg}</span>}
-          </div>
-          <div className="text-[11px] mt-2" style={{ color: C.dim }}>
-            {t("sq.cloudNote")}
-          </div>
-
-          <div className="mt-4 pt-4 border-t" style={{ borderColor: C.line }}>
-            <div className="font-display text-sm uppercase tracking-widest mb-2" style={{ color: AC }}>{t("sq.clubData")}</div>
+        <Card title={t("sq.clubData")}>
+          <div>
             <div className="flex items-start gap-3 flex-wrap">
               <div className="flex flex-col items-center gap-1">
                 <Crest src={clubInfo.crest || escudoDe(session.club)} name={session.club} size={56} />
@@ -12216,15 +12280,42 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
           </div>
         </Card>
       )}
+      {/* El club, en una sola pestaña: sus datos, quién forma el cuerpo
+          técnico y el control del material. Los entrenadores ya no entran
+          aquí. */}
+      {renderCuerpoTecnico()}
+      {renderControlClub()}
     </div>
   );
-
   const renderSquad = () => {
     /* La columna de carga es parte de las cargas físicas, que son PRO: si no,
        aquí se enseñaría de tapadillo una función de pago. */
     const verCargas = isPro && can("cargas");
     return (
     <div className="space-y-4">
+      {/* Subir la plantilla y el calendario vive aquí desde que la pestaña de
+          Club es solo de la dirección: el entrenador tiene que poder guardar
+          SU plantilla, y este es el sitio donde la tiene delante. */}
+      {verApartado("editSquad") && (
+        <Card title={t("sq.cloud")}>
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-[11px] px-2 py-1 rounded font-display uppercase tracking-wide"
+              style={{ border: `1px solid ${cloudOn ? C.green : C.line}`, color: cloudOn ? C.green : C.dim }}>
+              {cloudOn ? t("sq.cloudOn") : t("sq.cloudOff")}
+            </span>
+            <button onClick={subirPlantilla} disabled={!can("editSquad")} className="text-sm px-3 py-1.5 rounded-lg border font-display uppercase tracking-wide disabled:opacity-40 disabled:cursor-not-allowed"
+              style={{ borderColor: AC, color: AC }}>{t("sq.saveSquad")}</button>
+            <button onClick={subirCalendario} disabled={!can("editSquad")} className="text-sm px-3 py-1.5 rounded-lg border font-display uppercase tracking-wide disabled:opacity-40 disabled:cursor-not-allowed"
+              style={{ borderColor: C.line, color: C.chalk }}>{t("sq.saveCal")}</button>
+            {cloudMsg && <span className="text-[12px]" style={{ color: cloudMsg.startsWith("✓") ? C.green : C.dim }}>{cloudMsg}</span>}
+          </div>
+          <div className="text-[11px] mt-2" style={{ color: C.dim }}>
+            {t("sq.cloudNote")}
+          </div>
+
+        </Card>
+      )}
+
       {can("editSquad") && (
         <Card title="Importar plantilla desde CSV">
           {!csvOpen ? (
@@ -15472,9 +15563,7 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
           {/* Una pestaña con dos caras: quien dirige el club ve el control de
               todos sus entrenadores; quien entrena, su propio parte. Es el
               mismo módulo mirado desde los dos lados. */}
-          {tab === "parte" && verApartado("parte") && (
-            ["director", "master"].includes(session.role) ? renderControlClub() : renderParte()
-          )}
+          {tab === "parte" && verApartado("parte") && renderParte()}
           {tab === "asistencia" && verApartado("editSquad") && renderAsistencia()}
           {tab === "normativa" && can("viewDocs") && renderDocs()}
           {tab === "material" && renderMaterial()}
