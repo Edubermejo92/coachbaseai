@@ -5883,6 +5883,49 @@ Devuelve SOLO un objeto JSON con las claves "tokens" y "shapes", sin explicació
    si no coincide con el lado real. Sin partidos ni entrenamientos todavía
    (pretemporada), así que asistencia y minutos arrancan en 0 y nadie tiene
    duda ni lesión salvo que el club lo indique. */
+/* ---------------- Datos para la DEMOSTRACIÓN pública ----------------
+   La demo la abre cualquiera desde la pantalla de entrada, sin cuenta. No
+   puede enseñar la plantilla real: son diecinueve menores con nombre y
+   apellido, y uno de ellos con un antecedente médico —un dato de salud de un
+   menor, de los que el RGPD trata aparte—. Tampoco los correos del cuerpo
+   técnico. Así que la demo trabaja con un equipo inventado.
+
+   Los nombres son ficticios a propósito y las demarcaciones y dorsales
+   reproducen la forma de una plantilla real para que la demo se vea como se
+   ve la app de verdad. El aviso médico de ejemplo existe para que se pueda
+   enseñar esa función sin usar el caso de nadie. */
+const PLANTILLA_DEMO = [
+  { id: 1, n: "Pablo Arenas", d: 1, pos: "POR", st: "disponible", att: 0, min: 0 },
+  { id: 2, n: "Nico Salvador", d: 2, pos: "POR", st: "disponible", att: 0, min: 0 },
+  { id: 3, n: "Gonzalo Prieto", d: 3, pos: "DFC", st: "disponible", att: 0, min: 0 },
+  { id: 4, n: "Óscar Ferrán", d: 4, pos: "DFC", st: "disponible", att: 0, min: 0 },
+  { id: 5, n: "Hugo Castaño", d: 5, pos: "LD", st: "disponible", att: 0, min: 0 },
+  { id: 6, n: "Bruno Salas", d: 6, pos: "LD", st: "duda", att: 0, min: 0 },
+  { id: 7, n: "Marcos Ledesma", d: 7, pos: "LI", st: "disponible", att: 0, min: 0 },
+  { id: 8, n: "Aitor Vilches", d: 8, pos: "LI", st: "disponible", att: 0, min: 0 },
+  { id: 9, n: "Diego Quintana", d: 9, pos: "MC", st: "disponible", att: 0, min: 0 },
+  { id: 10, n: "Samuel Peiró", d: 10, pos: "MC", st: "disponible", att: 0, min: 0 },
+  { id: 11, n: "Unai Cifuentes", d: 11, pos: "MC", st: "disponible", att: 0, min: 0 },
+  { id: 12, n: "Leo Bermúdez", d: 12, pos: "MC", st: "disponible", att: 0, min: 0 },
+  { id: 13, n: "Adrián Roldán", d: 13, pos: "MC", st: "disponible", att: 0, min: 0 },
+  { id: 14, n: "Teo Villanueva", d: 14, pos: "ED", st: "disponible", att: 0, min: 0 },
+  { id: 15, n: "Álvaro Sanchís", d: 15, pos: "EI", st: "disponible", att: 0, min: 0 },
+  { id: 16, n: "Iker Montalvo", d: 16, pos: "ED", st: "disponible", att: 0, min: 0,
+    aviso: "Ejemplo: jugador con antecedente de lesión de rodilla. Fuera de la progresión colectiva hasta que su retorno esté autorizado por quien lleve su rehabilitación." },
+  { id: 17, n: "Rubén Mateos", d: 17, pos: "EI", st: "disponible", att: 0, min: 0 },
+  { id: 18, n: "Iván Palomares", d: 18, pos: "ED", st: "disponible", att: 0, min: 0 },
+  { id: 19, n: "Enzo Carrasco", d: 19, pos: "DC", st: "disponible", att: 0, min: 0 },
+];
+/* Cuerpo técnico de ejemplo. Los correos son de dominios reservados para
+   documentación (RFC 2606), que no existen y no pueden recibir nada. */
+const USUARIOS_DEMO = [
+  { id: 1, name: "Elena Prados", email: "director@example.org", role: "director", club: DEMO_CLUB, categories: ["Infantil B"], status: "activo" },
+  { id: 2, name: "Carlos Ibáñez", email: "entrenador@example.org", role: "entrenador", club: DEMO_CLUB, categories: ["Infantil B"], status: "activo" },
+  { id: 3, name: "Rocío Valle", email: "segundo@example.org", role: "segundo", club: DEMO_CLUB, categories: ["Infantil B"], status: "activo" },
+  { id: 4, name: "Javier Nieto", email: "delegado@example.org", role: "delegado", club: DEMO_CLUB, categories: ["Infantil B"], status: "activo" },
+  { id: 5, name: "Sara Bonilla", email: "pendiente@example.org", role: "segundo", club: DEMO_CLUB, categories: ["Infantil B"], status: "pendiente" },
+];
+
 const PLAYERS_INIT = [
   { id: 1, n: "Alex Bustos", d: 1, pos: "POR", st: "disponible", att: 0, min: 0 },
   { id: 2, n: "Santiago Bo", d: 2, pos: "POR", st: "disponible", att: 0, min: 0 },
@@ -13799,6 +13842,11 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
          ningún dato —las lecturas de Airtable exigen id o equipo—, solo permite
          hablar con el asistente. */
       setDemoMode(true);
+      /* Datos de ejemplo: la demo es pública y no puede enseñar ni la plantilla
+         real —menores con nombre y apellido, y un antecedente médico— ni los
+         correos del cuerpo técnico. */
+      setPlayers(PLANTILLA_DEMO);
+      setUsers(USUARIOS_DEMO);
       airDemoToken().then((out) => { if (out?.token) setAuthToken(out.token); });
       const demoTeam = makeTeam("infantil", "B");
       const demoCategories = getCategoriesForUser(1, r, DEMO_CLUB);
