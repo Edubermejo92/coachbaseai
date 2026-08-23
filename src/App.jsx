@@ -34,7 +34,7 @@ const LANGS = [
 ];
 const DICT = {
   es: {
-    "nav.inicio": "Inicio", "nav.jugadores": "Jugadores", "nav.alineacion": "Alineación", "nav.pizarra": "Pizarra", "nav.convocatoria": "Convocatoria", "nav.partido": "Modo partido", "nav.usuarios": "Usuarios", "nav.coachai": "Coach AI", "nav.material": "Material", "nav.entrenamiento": "Entrenamiento", "nav.ejercicios": "Ejercicios", "nav.estadisticas": "Estadísticas", "nav.calendario": "Calendario", "nav.equipos": "Clubes", "nav.premium": "Premium", "nav.disciplina": "Disciplina", "nav.normativa": "Normativa", "nav.familias": "Familias", "nav.equipo": "Club", "nav.asistencia": "Asistencia", "mt.toBoard": "Pizarra", "p.myTeam": "Mi club y mi categoría", "p.pickTeam": "Cambiar a otra categoría…", "p.changeTeam": "Cambiar de categoría", "p.newTeam": "Nombre de la categoría nueva", "p.newTeamPh": "Ej. Cadete B", "p.newTeamNote": "¿No está tu categoría en la lista? Créala dentro de tu club:", "p.createTeam": "Crear", "p.deleteAcc": "Eliminar mi cuenta", "p.deleteWarn": "Se borrará tu ficha y perderás el acceso. No se puede deshacer. Los datos del equipo no se borran.", "p.deleteGo": "Eliminar", "c.proTab": "Apartado PRO. Toca para verlo.", "a.resetAgain": "Pedir un enlace nuevo", "a.resetExp": "Este enlace ha caducado (dura una hora). Pide otro desde \"¿Has olvidado tu contraseña?\".", "a.resetUsed": "Este enlace ya se ha usado. Si no fuiste tú, pide otro y cámbiala cuanto antes.", "a.resetServer": "El servidor no pudo guardar la contraseña. Vuelve a intentarlo en un minuto.", "h.round": "Jornada", "h.howTo": "Cómo llegar", "h.today": "Hoy", "h.day": "Día", "h.days": "Días", "h.noDate": "Sin fecha", "h.noGoal": "Sesión sin objetivo", "h.noTrain": "No hay ningún entrenamiento planificado.", "h.planTrain": "Planificar", "h.noAlerts": "Nada que revisar. Plantilla al completo.", "h.aDoubt1": "duda", "h.aDoubtN": "dudas", "h.aInj1": "lesionado", "h.aInjN": "lesionados", "h.aDisc": "incidencia(s) pendientes de validar", "h.aSign": "sin firmar el código disciplinario", "h.fMatch": "El partido es a las {h}.", "h.fCalled": "Convocatoria publicada · {n} convocados.", "h.fNoCall": "Todavía no hay convocatoria publicada.", "h.fKit": "Lleva botella de agua y espinilleras.", "h.fNote": "Como familia solo ves lo que el entrenador comparte.", "nav.temporada": "Temporada", "se.title": "Pilares de la temporada", "se.hint": "Reparte el año entre los cuatro pilares. Marca en qué meses pesa cada uno y anota el objetivo concreto de cada mes.", "se.months": "meses", "se.calendar": "Mes a mes", "se.goal": "Objetivo de", "se.goalPh": "Objetivo del mes. Ej. salida de balón desde portero", "se.saved": "Planificación guardada y compartida con tu equipo.", "se.share": "Compartir con el equipo", "se.shareNote": "Se guarda en este dispositivo mientras la editas. Al compartirla, la ve todo tu cuerpo técnico desde cualquier móvil.", "se.match": "partido", "se.matches": "partidos", "se.noMatches": "Sin partidos este mes", "se.genSession": "✦ Generar sesión de 1h con IA", "se.generating": "Generando…", "se.sessionError": "No se pudo generar la sesión. Vuelve a intentarlo.", "se.pickPillarFirst": "Marca al menos un pilar para poder generarla.", "se.aiSessionTitle": "Sesión propuesta (IA)", "se.sendToTraining": "Enviar a Entrenamiento", "se.sentToTraining": "✓ Enviada. Ábrela en Entrenamiento.", "se.trainThis": "Para entrenar esto", "se.seeLess": "Ver menos", "se.seeMore": "+{n} más", "se.planNotCloud": "Este equipo todavía no está en la nube.", "se.planNoRole": "Tu rol no puede guardar la planificación de este equipo.", "se.planSaveFail": "No se pudo guardar. Revisa la conexión.", "mt.abp": "ABP guardados", "mt.abpTap": "Toca una jugada para abrirla en la pizarra grande.", "mt.abpEmpty": "Aún no has guardado ninguna jugada a balón parado. Créalas en la pizarra, en el menú ABP, y aquí las tendrás a un toque.", "nav.analisis": "Análisis", "pm.title": "Análisis post-partido", "pm.events": "eventos en el acta", "pm.empty": "Aún no hay acta de este partido. Registra el partido en Modo partido y vuelve aquí: el análisis sale de los goles, cambios y tarjetas que hayas ido marcando.", "pm.go": "Generar análisis", "pm.again": "Volver a generar", "pm.thinking": "Analizando el partido…", "pm.note": "Lo redacta Coach AI a partir del acta. Repásalo antes de compartirlo con nadie.", "mt.subs": "Tandas de cambios", "mt.subsTotal": "tandas en total", "mt.subsOne": "Tanda", "mt.subsUndo": "Quitar una tanda", "mt.subsOf": "de", "mt.subsLeft": "Te quedan {n} tandas.", "mt.subsNone": "Sin tandas disponibles.", "tr.target": "Duración de la sesión", "tr.left": "Faltan {n} min por completar.", "tr.over": "Te pasas {n} min del objetivo.", "tr.done": "Sesión completa.", "tr.saveSession": "Guardar sesión completa",
+    "nav.inicio": "Inicio", "nav.jugadores": "Jugadores", "nav.alineacion": "Alineación", "nav.pizarra": "Pizarra", "nav.convocatoria": "Convocatoria", "nav.partido": "Modo partido", "nav.usuarios": "Usuarios", "nav.coachai": "Coach AI", "nav.material": "Tienda", "nav.entrenamiento": "Entrenamiento", "nav.ejercicios": "Ejercicios", "nav.estadisticas": "Estadísticas", "nav.calendario": "Calendario", "nav.equipos": "Clubes", "nav.premium": "Premium", "nav.disciplina": "Disciplina", "nav.normativa": "Normativa", "nav.familias": "Familias", "nav.equipo": "Club", "nav.asistencia": "Asistencia", "mt.toBoard": "Pizarra", "p.myTeam": "Mi club y mi categoría", "p.pickTeam": "Cambiar a otra categoría…", "p.changeTeam": "Cambiar de categoría", "p.newTeam": "Nombre de la categoría nueva", "p.newTeamPh": "Ej. Cadete B", "p.newTeamNote": "¿No está tu categoría en la lista? Créala dentro de tu club:", "p.createTeam": "Crear", "p.deleteAcc": "Eliminar mi cuenta", "p.deleteWarn": "Se borrará tu ficha y perderás el acceso. No se puede deshacer. Los datos del equipo no se borran.", "p.deleteGo": "Eliminar", "c.proTab": "Apartado PRO. Toca para verlo.", "a.resetAgain": "Pedir un enlace nuevo", "a.resetExp": "Este enlace ha caducado (dura una hora). Pide otro desde \"¿Has olvidado tu contraseña?\".", "a.resetUsed": "Este enlace ya se ha usado. Si no fuiste tú, pide otro y cámbiala cuanto antes.", "a.resetServer": "El servidor no pudo guardar la contraseña. Vuelve a intentarlo en un minuto.", "h.round": "Jornada", "h.howTo": "Cómo llegar", "h.today": "Hoy", "h.day": "Día", "h.days": "Días", "h.noDate": "Sin fecha", "h.noGoal": "Sesión sin objetivo", "h.noTrain": "No hay ningún entrenamiento planificado.", "h.planTrain": "Planificar", "h.noAlerts": "Nada que revisar. Plantilla al completo.", "h.aDoubt1": "duda", "h.aDoubtN": "dudas", "h.aInj1": "lesionado", "h.aInjN": "lesionados", "h.aDisc": "incidencia(s) pendientes de validar", "h.aSign": "sin firmar el código disciplinario", "h.fMatch": "El partido es a las {h}.", "h.fCalled": "Convocatoria publicada · {n} convocados.", "h.fNoCall": "Todavía no hay convocatoria publicada.", "h.fKit": "Lleva botella de agua y espinilleras.", "h.fNote": "Como familia solo ves lo que el entrenador comparte.", "nav.temporada": "Temporada", "se.title": "Pilares de la temporada", "se.hint": "Reparte el año entre los cuatro pilares. Marca en qué meses pesa cada uno y anota el objetivo concreto de cada mes.", "se.months": "meses", "se.calendar": "Mes a mes", "se.goal": "Objetivo de", "se.goalPh": "Objetivo del mes. Ej. salida de balón desde portero", "se.saved": "Planificación guardada y compartida con tu equipo.", "se.share": "Compartir con el equipo", "se.shareNote": "Se guarda en este dispositivo mientras la editas. Al compartirla, la ve todo tu cuerpo técnico desde cualquier móvil.", "se.match": "partido", "se.matches": "partidos", "se.noMatches": "Sin partidos este mes", "se.genSession": "✦ Generar sesión de 1h con IA", "se.generating": "Generando…", "se.sessionError": "No se pudo generar la sesión. Vuelve a intentarlo.", "se.pickPillarFirst": "Marca al menos un pilar para poder generarla.", "se.aiSessionTitle": "Sesión propuesta (IA)", "se.sendToTraining": "Enviar a Entrenamiento", "se.sentToTraining": "✓ Enviada. Ábrela en Entrenamiento.", "se.trainThis": "Para entrenar esto", "se.seeLess": "Ver menos", "se.seeMore": "+{n} más", "se.planNotCloud": "Este equipo todavía no está en la nube.", "se.planNoRole": "Tu rol no puede guardar la planificación de este equipo.", "se.planSaveFail": "No se pudo guardar. Revisa la conexión.", "mt.abp": "ABP guardados", "mt.abpTap": "Toca una jugada para abrirla en la pizarra grande.", "mt.abpEmpty": "Aún no has guardado ninguna jugada a balón parado. Créalas en la pizarra, en el menú ABP, y aquí las tendrás a un toque.", "nav.analisis": "Análisis", "pm.title": "Análisis post-partido", "pm.events": "eventos en el acta", "pm.empty": "Aún no hay acta de este partido. Registra el partido en Modo partido y vuelve aquí: el análisis sale de los goles, cambios y tarjetas que hayas ido marcando.", "pm.go": "Generar análisis", "pm.again": "Volver a generar", "pm.thinking": "Analizando el partido…", "pm.note": "Lo redacta Coach AI a partir del acta. Repásalo antes de compartirlo con nadie.", "mt.subs": "Tandas de cambios", "mt.subsTotal": "tandas en total", "mt.subsOne": "Tanda", "mt.subsUndo": "Quitar una tanda", "mt.subsOf": "de", "mt.subsLeft": "Te quedan {n} tandas.", "mt.subsNone": "Sin tandas disponibles.", "tr.target": "Duración de la sesión", "tr.left": "Faltan {n} min por completar.", "tr.over": "Te pasas {n} min del objetivo.", "tr.done": "Sesión completa.", "tr.saveSession": "Guardar sesión completa",
     "navg.equipo": "Equipo", "navg.partido": "Día de partido", "navg.entrenamiento": "Entrenamiento", "navg.delegado": "Delegado", "navg.estadisticas": "Estadísticas", "navg.roles": "Roles", "navg.coachai": "Coach AI",
     "role.entrenador": "Entrenador principal", "role.segundo": "Segundo entrenador", "role.delegado": "Delegado", "role.padre": "Padre / Madre / Tutor", "role.director": "Director deportivo", "role.master": "Master · EBLDigital", 
     "c.exit": "Salir", "c.planFree": "VERSIÓN BÁSICA", "c.upgrade": "Mejorar", "c.by": "Desarrollado por EBLDigital", "c.madeBy": "App creada por EBLDigital ·", "navg.master": "Master", "nav.master": "Panel Master", "c.pro": "Función PRO. Mejora a una cuenta oficial del club para desbloquearla.", "c.cancel": "Cancelar", "c.nav": "Navegación", "c.trialBadge": "PRUEBA PRO", "c.planCurrentFree": "Versión actual · Básica", "c.goPro": "Ir a Premium",
@@ -186,8 +186,8 @@ const DICT = {
     "mt2.encNoCats": "Este club todavía no tiene categorías.",
     "mt2.encSaved": "✓ Encargado guardado.",
     "mt2.encFail": "No se ha podido guardar el encargado.",
-    "nav.parte": "Material del club",
-    "mt2.title": "Parte de entreno",
+    "nav.parte": "Material",
+    "mt2.title": "Control de material",
     "mt2.hint": "Una foto al sacar el material y otra al guardarlo, y el recuento de balones. Es lo que respalda el control del club: sin las dos fotos, el recuento no está probado.",
     "mt2.who": "Entrenador:",
     "mt2.out": "Al sacar",
@@ -241,6 +241,31 @@ const DICT = {
     "mt2.colPlayers": "Jugadores",
     "mt2.noData": "Todavía no hay ningún parte enviado.",
     "mt2.lastReports": "Últimos partes",
+    "mt2.damageOk": "Todo correcto",
+    "mt2.duties": "Obligatorio en cada entreno",
+    "mt2.duty1": "Foto del material que sacas, antes de empezar.",
+    "mt2.duty2": "Foto del material que guardas, al terminar.",
+    "mt2.duty3": "Cuenta los balones que recibes y los que dejas.",
+    "mt2.duty4": "Avisa del material en mal estado: balón pinchado, roto, peto descosido.",
+    "mt2.duty5": "Avisa de cada balón perdido. Perder un balón no es falta; no decirlo, sí.",
+    "mt2.dutyDone": "Hecho",
+    "mt2.dutyTodo": "Falta",
+    "mt2.dutyLeft": "Pendientes: {n} de {t}.",
+    "mt2.dutyAll": "Parte completo: puedes enviarlo.",
+    "mt2.readOnly": "El club revisa los partes, no los rellena: las fotos y el recuento los suben el entrenador, el segundo y el delegado desde su propio Control de material.",
+    "mt2.colWarn": "Aviso",
+    "mt2.warn": "Avisar",
+    "mt2.warnHint": "Prepara un aviso con lo acumulado de esa persona para mandárselo por WhatsApp.",
+    "mt2.warnHead": "CONTROL DE MATERIAL",
+    "mt2.warnReports": "Partes enviados",
+    "mt2.warnBalls": "Balones",
+    "mt2.warnOutIn": "sacados y devueltos",
+    "mt2.warnLost": "Perdidos declarados",
+    "mt2.warnUnreported": "Balones que faltan y no has declarado",
+    "mt2.warnFoot": "Recuerda avisar en el parte de cada balón que se pierda, el mismo día. Con el aviso no pasa nada; sin él, el balón lo paga la categoría.",
+    "mt2.warnCopy": "Copiar aviso",
+    "mt2.warnCopied": "✓ Aviso copiado",
+    "mt2.watch": "Atención",
     "mt2.clubFoot": "«Sin avisar» son los balones que faltan en el recuento y que el entrenador no ha declarado como perdidos. Es la diferencia entre perder un balón y no decirlo.",
     "a.firstBtn": "Guardar contraseña y entrar",
     "a.accClub": "Somos un club",
@@ -545,7 +570,7 @@ const DICT = {
     "mt2.encNoCats": "This club has no categories yet.",
     "mt2.encSaved": "✓ Kit manager saved.",
     "mt2.encFail": "Could not save the kit manager.",
-    "nav.parte": "Club kit",
+    "nav.parte": "Kit control",
     "mt2.title": "Training kit report",
     "mt2.hint": "One photo when you take the kit out and another when you put it away, plus the ball count. It is what backs the club's records: without both photos the count is not proven.",
     "mt2.who": "Coach:",
@@ -600,6 +625,31 @@ const DICT = {
     "mt2.colPlayers": "Players",
     "mt2.noData": "No reports sent yet.",
     "mt2.lastReports": "Latest reports",
+    "mt2.damageOk": "All in order",
+    "mt2.duties": "Required at every session",
+    "mt2.duty1": "Photo of the kit you take out, before you start.",
+    "mt2.duty2": "Photo of the kit you put away, when you finish.",
+    "mt2.duty3": "Count the balls you receive and the ones you leave.",
+    "mt2.duty4": "Report damaged kit: punctured or split balls, torn bibs.",
+    "mt2.duty5": "Report every lost ball. Losing a ball is not the offence; not saying so is.",
+    "mt2.dutyDone": "Done",
+    "mt2.dutyTodo": "Missing",
+    "mt2.dutyLeft": "Still to do: {n} of {t}.",
+    "mt2.dutyAll": "Report complete: you can send it.",
+    "mt2.readOnly": "The club reviews reports, it does not fill them in: photos and counts are uploaded by the coach, the assistant and the team manager from their own Kit control.",
+    "mt2.colWarn": "Notice",
+    "mt2.warn": "Notify",
+    "mt2.warnHint": "Builds a notice with that person's running totals so you can send it over WhatsApp.",
+    "mt2.warnHead": "KIT CONTROL",
+    "mt2.warnReports": "Reports sent",
+    "mt2.warnBalls": "Balls",
+    "mt2.warnOutIn": "taken out and returned",
+    "mt2.warnLost": "Declared lost",
+    "mt2.warnUnreported": "Balls missing that you did not declare",
+    "mt2.warnFoot": "Remember to report every lost ball in that day's report. Reported, nothing happens; unreported, the age group pays for it.",
+    "mt2.warnCopy": "Copy notice",
+    "mt2.warnCopied": "✓ Notice copied",
+    "mt2.watch": "Watch",
     "mt2.clubFoot": "“Unreported” are balls missing from the count that the coach did not declare as lost. It is the difference between losing a ball and not saying so.",
     "a.firstBtn": "Save password and sign in",
     "a.accClub": "We are a club",
@@ -921,7 +971,7 @@ const DICT = {
     "mt2.encNoCats": "Ce club n'a pas encore de catégories.",
     "mt2.encSaved": "✓ Responsable enregistré.",
     "mt2.encFail": "Impossible d'enregistrer le responsable.",
-    "nav.parte": "Matériel du club",
+    "nav.parte": "Matériel",
     "mt2.title": "Rapport de matériel",
     "mt2.hint": "One photo when you take the kit out and another when you put it away, plus the ball count. It is what backs the club's records: without both photos the count is not proven.",
     "mt2.who": "Coach:",
@@ -976,6 +1026,31 @@ const DICT = {
     "mt2.colPlayers": "Players",
     "mt2.noData": "No reports sent yet.",
     "mt2.lastReports": "Latest reports",
+    "mt2.damageOk": "All in order",
+    "mt2.duties": "Required at every session",
+    "mt2.duty1": "Photo of the kit you take out, before you start.",
+    "mt2.duty2": "Photo of the kit you put away, when you finish.",
+    "mt2.duty3": "Count the balls you receive and the ones you leave.",
+    "mt2.duty4": "Report damaged kit: punctured or split balls, torn bibs.",
+    "mt2.duty5": "Report every lost ball. Losing a ball is not the offence; not saying so is.",
+    "mt2.dutyDone": "Done",
+    "mt2.dutyTodo": "Missing",
+    "mt2.dutyLeft": "Still to do: {n} of {t}.",
+    "mt2.dutyAll": "Report complete: you can send it.",
+    "mt2.readOnly": "The club reviews reports, it does not fill them in: photos and counts are uploaded by the coach, the assistant and the team manager from their own Kit control.",
+    "mt2.colWarn": "Notice",
+    "mt2.warn": "Notify",
+    "mt2.warnHint": "Builds a notice with that person's running totals so you can send it over WhatsApp.",
+    "mt2.warnHead": "KIT CONTROL",
+    "mt2.warnReports": "Reports sent",
+    "mt2.warnBalls": "Balls",
+    "mt2.warnOutIn": "taken out and returned",
+    "mt2.warnLost": "Declared lost",
+    "mt2.warnUnreported": "Balls missing that you did not declare",
+    "mt2.warnFoot": "Remember to report every lost ball in that day's report. Reported, nothing happens; unreported, the age group pays for it.",
+    "mt2.warnCopy": "Copy notice",
+    "mt2.warnCopied": "✓ Notice copied",
+    "mt2.watch": "Watch",
     "mt2.clubFoot": "“Unreported” are balls missing from the count that the coach did not declare as lost. It is the difference between losing a ball and not saying so.",
     "a.firstBtn": "Enregistrer le mot de passe et entrer",
     "a.accClub": "Nous sommes un club",
@@ -1370,7 +1445,7 @@ const DICT = {
     "mt2.encNoCats": "Dieser Verein hat noch keine Kategorien.",
     "mt2.encSaved": "✓ Verantwortlicher gespeichert.",
     "mt2.encFail": "Verantwortlicher konnte nicht gespeichert werden.",
-    "nav.parte": "Material des Vereins",
+    "nav.parte": "Material",
     "mt2.title": "Materialbericht",
     "mt2.hint": "One photo when you take the kit out and another when you put it away, plus the ball count. It is what backs the club's records: without both photos the count is not proven.",
     "mt2.who": "Coach:",
@@ -1425,6 +1500,31 @@ const DICT = {
     "mt2.colPlayers": "Players",
     "mt2.noData": "No reports sent yet.",
     "mt2.lastReports": "Latest reports",
+    "mt2.damageOk": "All in order",
+    "mt2.duties": "Required at every session",
+    "mt2.duty1": "Photo of the kit you take out, before you start.",
+    "mt2.duty2": "Photo of the kit you put away, when you finish.",
+    "mt2.duty3": "Count the balls you receive and the ones you leave.",
+    "mt2.duty4": "Report damaged kit: punctured or split balls, torn bibs.",
+    "mt2.duty5": "Report every lost ball. Losing a ball is not the offence; not saying so is.",
+    "mt2.dutyDone": "Done",
+    "mt2.dutyTodo": "Missing",
+    "mt2.dutyLeft": "Still to do: {n} of {t}.",
+    "mt2.dutyAll": "Report complete: you can send it.",
+    "mt2.readOnly": "The club reviews reports, it does not fill them in: photos and counts are uploaded by the coach, the assistant and the team manager from their own Kit control.",
+    "mt2.colWarn": "Notice",
+    "mt2.warn": "Notify",
+    "mt2.warnHint": "Builds a notice with that person's running totals so you can send it over WhatsApp.",
+    "mt2.warnHead": "KIT CONTROL",
+    "mt2.warnReports": "Reports sent",
+    "mt2.warnBalls": "Balls",
+    "mt2.warnOutIn": "taken out and returned",
+    "mt2.warnLost": "Declared lost",
+    "mt2.warnUnreported": "Balls missing that you did not declare",
+    "mt2.warnFoot": "Remember to report every lost ball in that day's report. Reported, nothing happens; unreported, the age group pays for it.",
+    "mt2.warnCopy": "Copy notice",
+    "mt2.warnCopied": "✓ Notice copied",
+    "mt2.watch": "Watch",
     "mt2.clubFoot": "“Unreported” are balls missing from the count that the coach did not declare as lost. It is the difference between losing a ball and not saying so.",
     "a.firstBtn": "Passwort speichern und anmelden",
     "a.accClub": "Wir sind ein Verein",
@@ -1818,7 +1918,7 @@ const DICT = {
     "mt2.encNoCats": "Este clube ainda não tem categorias.",
     "mt2.encSaved": "✓ Responsável guardado.",
     "mt2.encFail": "Não foi possível guardar o responsável.",
-    "nav.parte": "Material do clube",
+    "nav.parte": "Material",
     "mt2.title": "Relatório de material",
     "mt2.hint": "Una foto al sacar el material y otra al guardarlo, y el recuento de balones. Es lo que respalda el control del club: sin las dos fotos, el recuento no está probado.",
     "mt2.who": "Entrenador:",
@@ -1873,6 +1973,31 @@ const DICT = {
     "mt2.colPlayers": "Jugadores",
     "mt2.noData": "Todavía no hay ningún parte enviado.",
     "mt2.lastReports": "Últimos partes",
+    "mt2.damageOk": "Tudo correto",
+    "mt2.duties": "Obligatorio en cada entreno",
+    "mt2.duty1": "Foto del material que sacas, antes de empezar.",
+    "mt2.duty2": "Foto del material que guardas, al terminar.",
+    "mt2.duty3": "Cuenta los balones que recibes y los que dejas.",
+    "mt2.duty4": "Avisa del material en mal estado: balón pinchado, roto, peto descosido.",
+    "mt2.duty5": "Avisa de cada balón perdido. Perder un balón no es falta; no decirlo, sí.",
+    "mt2.dutyDone": "Hecho",
+    "mt2.dutyTodo": "Falta",
+    "mt2.dutyLeft": "Pendientes: {n} de {t}.",
+    "mt2.dutyAll": "Parte completo: puedes enviarlo.",
+    "mt2.readOnly": "El club revisa los partes, no los rellena: las fotos y el recuento los suben el entrenador, el segundo y el delegado desde su propio Control de material.",
+    "mt2.colWarn": "Aviso",
+    "mt2.warn": "Avisar",
+    "mt2.warnHint": "Prepara un aviso con lo acumulado de esa persona para mandárselo por WhatsApp.",
+    "mt2.warnHead": "CONTROL DE MATERIAL",
+    "mt2.warnReports": "Partes enviados",
+    "mt2.warnBalls": "Balones",
+    "mt2.warnOutIn": "sacados y devueltos",
+    "mt2.warnLost": "Perdidos declarados",
+    "mt2.warnUnreported": "Balones que faltan y no has declarado",
+    "mt2.warnFoot": "Recuerda avisar en el parte de cada balón que se pierda, el mismo día. Con el aviso no pasa nada; sin él, el balón lo paga la categoría.",
+    "mt2.warnCopy": "Copiar aviso",
+    "mt2.warnCopied": "✓ Aviso copiado",
+    "mt2.watch": "Atención",
     "mt2.clubFoot": "«Sin avisar» son los balones que faltan en el recuento y que el entrenador no ha declarado como perdidos. Es la diferencia entre perder un balón y no decirlo.",
     "a.firstBtn": "Guardar palavra-passe e entrar",
     "a.accClub": "Somos um clube",
@@ -2127,6 +2252,17 @@ const DICT = {
 };
 const T = (lang, k) => (DICT[lang] && DICT[lang][k]) || DICT.en[k] || DICT.es[k] || k;
 const rLabel = (lang, key) => T(lang, "role." + key);
+
+/* "Todo correcto" en el parte de material NO es una queja: es la respuesta de
+   que se ha revisado el material recibido y estaba bien. El campo es de texto
+   libre y el botón escribe la frase en el idioma de quien rellena, así que el
+   club —que suma los partes de todas las categorías, cada una en su idioma—
+   compara contra las cinco versiones y no contra una sola. */
+const SIN_DESPERFECTOS = new Set(LANGS.map((l) => T(l.code, "mt2.damageOk").toLowerCase()));
+const hayDesperfectos = (txt) => {
+  const v = String(txt || "").trim().toLowerCase();
+  return !!v && !SIN_DESPERFECTOS.has(v);
+};
 
 /* Selector de club: buscador + tira alfabetica + campo libre siempre disponible.
    Sustituye al <datalist> nativo, que no se puede estilizar (sale como popup blanco del SO). */
@@ -3631,7 +3767,11 @@ const NAV_GROUPS = [
   { label: "navg.equipo", tabs: ["equipo", "jugadores"] },
   { label: "navg.partido", tabs: ["calendario", "convocatoria", "alineacion", "partido", "analisis"] },
   { label: "navg.entrenamiento", tabs: ["temporada", "entrenamiento", "ejercicios", "pizarra"] },
-  { label: "navg.delegado", tabs: ["parte", "asistencia", "disciplina", "normativa"] },
+  /* "parte" ya no está aquí: el Control de material es obligatorio en CADA
+     entreno para el entrenador, el segundo y el delegado, así que va fijo
+     arriba del todo, junto a Inicio, y no enterrado en un grupo. Ver
+     agruparNav, que lo excluye de las sueltas por el mismo motivo. */
+  { label: "navg.delegado", tabs: ["asistencia", "disciplina", "normativa"] },
   { label: "navg.estadisticas", tabs: ["estadisticas"] },
   { label: "navg.roles", tabs: ["usuarios"] },
   { label: "navg.coachai", tabs: ["coachai"] },
@@ -3652,7 +3792,9 @@ const agruparNav = (visibleTabs) => {
     }))
     .filter((g) => g.tabs.length > 0);
   const enGrupo = new Set(grupos.flatMap((g) => g.tabs));
-  const sueltas = visibleTabs.filter((k) => k !== "inicio" && !enGrupo.has(k));
+  /* Inicio y Control de material se pintan aparte y fijos arriba; si se
+     dejaran caer aquí saldrían además duplicados al final. */
+  const sueltas = visibleTabs.filter((k) => k !== "inicio" && k !== "parte" && !enGrupo.has(k));
   return { grupos, sueltas };
 };
 
@@ -7573,6 +7715,24 @@ export default function App() {
   }, [tab, isPro]); // eslint-disable-line
   const [mkCat, setMkCat] = useState("all");
   const [menuOpen, setMenuOpen] = useState(false);
+  /* Altura real de la cabecera, publicada como --cb-header. La cabecera se
+     reparte en una, dos o tres líneas según el ancho y según lo que quepa
+     (el equipo, el rol, la versión, el idioma), así que su alto cambia con la
+     ventana. Todo lo que va pegado debajo —el menú lateral fijo— necesita ese
+     número, y hasta ahora lo tenía escrito a mano. */
+  const headerRef = useRef(null);
+  useEffect(() => {
+    const el = headerRef.current;
+    if (!el || typeof ResizeObserver === "undefined") return;
+    const medir = () => {
+      const h = Math.round(el.getBoundingClientRect().height);
+      if (h > 0) document.documentElement.style.setProperty("--cb-header", `${h}px`);
+    };
+    medir();
+    const ro = new ResizeObserver(medir);
+    ro.observe(el);
+    return () => ro.disconnect();
+  });
   const [exCat, setExCat] = useState("all");
   const [selExId, setSelExId] = useState(null);
   const [pendingExId, setPendingExId] = useState(null);
@@ -11086,6 +11246,30 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
      que todavía no ha mandado ninguno. */
   const [clubCats, setClubCats] = useState([]);
   const [encMsg, setEncMsg] = useState("");
+  /* Aviso que el club manda a un entrenador con lo que lleva acumulado en la
+     temporada. El club no rellena partes ni sube fotos: lo suyo es revisar y,
+     cuando alguien pierde material y no lo dice, decírselo. */
+  const [avisoMat, setAvisoMat] = useState(null);
+  const [avisoCopiado, setAvisoCopiado] = useState(false);
+  const textoAvisoMaterial = (f) => [
+    `📦 ${t("mt2.warnHead")} — ${session?.club || ""} · ${f.cat}`,
+    `${t("mt2.who")} ${f.quien}`,
+    "",
+    `${t("mt2.warnReports")}: ${f.partes}`,
+    `${t("mt2.warnBalls")}: ${f.salida} → ${f.entrada} (${t("mt2.warnOutIn")})`,
+    `${t("mt2.warnLost")}: ${f.perdidos}`,
+    `${t("mt2.warnUnreported")}: ${f.sinAvisar}`,
+    "",
+    t("mt2.warnFoot"),
+  ].join("\n");
+  const copiarAvisoMaterial = async () => {
+    if (!avisoMat) return;
+    try {
+      await navigator.clipboard.writeText(textoAvisoMaterial(avisoMat));
+      setAvisoCopiado(true);
+      setTimeout(() => setAvisoCopiado(false), 2500);
+    } catch { /* sin portapapeles: queda el botón de WhatsApp */ }
+  };
   const guardarEncargado = async (catRec, nombre) => {
     setClubCats((cs) => cs.map((c) => (c.rec === catRec ? { ...c, encargado: nombre } : c)));
     setEncMsg("");
@@ -11183,6 +11367,20 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
        quitar el parte de material sin tocar quién planifica entrenamientos. En
        la demo queda apagado como el resto de permisos de edición. */
     const puede = can("parte");
+    /* Las cinco obligaciones del entrenador, del segundo y del delegado, cada
+       una con su condición de "cumplida". Las dos últimas se dan por atendidas
+       en cuanto se ha escrito algo o el recuento cuadra: no se puede exigir un
+       desperfecto ni un balón perdido que no existen, pero sí que se haya
+       mirado. Por eso el punto 5 mira el descuadre y no el número de perdidos:
+       lo que hay que cumplir es AVISAR de lo que falta, no perder menos. */
+    const deberes = [
+      { k: "d1", txt: t("mt2.duty1"), ok: !!parte.fotoSalida },
+      { k: "d2", txt: t("mt2.duty2"), ok: !!parte.fotoEntrada },
+      { k: "d3", txt: t("mt2.duty3"), ok: (Number(parte.salida) || 0) > 0 && (Number(parte.entrada) || 0) > 0 },
+      { k: "d4", txt: t("mt2.duty4"), ok: !!String(parte.desperfectos || "").trim() },
+      { k: "d5", txt: t("mt2.duty5"), ok: (Number(parte.salida) || 0) > 0 && !descuadre },
+    ];
+    const deberesFaltan = deberes.filter((d) => !d.ok).length;
     const campoFoto = (campo, label, valor) => (
       <div className="rounded-lg border p-3" style={{ borderColor: valor ? C.green : C.line, background: C.panel2 }}>
         <div className="text-[11px] font-display uppercase tracking-wide mb-2" style={{ color: valor ? C.green : C.dim }}>
@@ -11220,6 +11418,31 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
       <div className="space-y-4">
         <Card title={`📦 ${t("mt2.title")}`}>
           <div className="text-xs mb-3 leading-relaxed" style={{ color: C.dim }}>{t("mt2.hint")}</div>
+          {/* Las indicaciones, con el estado de cada una en vivo. Antes solo
+              había una frase de dos líneas explicando el módulo: quien entraba
+              por primera vez no sabía cuántas cosas tenía que hacer ni cuáles
+              llevaba. Cada punto se marca solo en cuanto queda cubierto, así
+              que la lista sirve de guía la primera vez y de repaso el resto. */}
+          <div className="rounded-lg border p-3 mb-3" style={{ borderColor: C.line, background: C.panel2 }}>
+            <div className="text-[11px] font-display uppercase tracking-wide mb-2" style={{ color: C.dim }}>
+              ✱ {t("mt2.duties")}
+            </div>
+            <ul className="space-y-1">
+              {deberes.map((d) => (
+                <li key={d.k} className="flex items-start gap-2 text-[12px] leading-snug"
+                  style={{ color: d.ok ? C.chalk : C.dim }}>
+                  <span className="shrink-0 font-display" style={{ color: d.ok ? C.green : C.dim }}
+                    title={d.ok ? t("mt2.dutyDone") : t("mt2.dutyTodo")}>{d.ok ? "✓" : "○"}</span>
+                  <span>{d.txt}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="text-[11px] mt-2 pt-2 border-t" style={{ borderColor: C.line, color: deberesFaltan ? C.warn : C.green }}>
+              {deberesFaltan
+                ? t("mt2.dutyLeft").replace("{n}", deberesFaltan).replace("{t}", deberes.length)
+                : `✓ ${t("mt2.dutyAll")}`}
+            </div>
+          </div>
           <div className="flex flex-wrap items-end gap-3 mb-3">
             <label className="block">
               <span className="text-[11px] block mb-1" style={{ color: C.dim }}>{t("cf.sessionDate")}</span>
@@ -11250,7 +11473,18 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
           )}
 
           <div className="mt-3">
-            <span className="text-[11px] block mb-1" style={{ color: C.dim }}>{t("mt2.damage")}</span>
+            <div className="flex items-center justify-between gap-2 mb-1">
+              <span className="text-[11px]" style={{ color: C.dim }}>{t("mt2.damage")}</span>
+              {/* Revisar el material recibido es obligatorio, y "no había nada
+                  roto" también es una respuesta: sin este botón, dejarlo en
+                  blanco significaba lo mismo que no haberlo mirado y el club no
+                  podía distinguir una cosa de la otra. */}
+              {puede && (
+                <button onClick={() => setP("desperfectos", t("mt2.damageOk"))}
+                  className="text-[11px] px-2.5 py-1 rounded-lg border font-display uppercase tracking-wide"
+                  style={{ borderColor: C.line, color: C.dim }}>✓ {t("mt2.damageOk")}</button>
+              )}
+            </div>
             <textarea value={parte.desperfectos} rows={2} disabled={!puede}
               onChange={(e) => setP("desperfectos", e.target.value)} placeholder={t("mt2.damagePh")}
               className="w-full px-2.5 py-1.5 rounded-lg border bg-transparent text-sm" style={{ borderColor: C.line, color: C.chalk }} />
@@ -11300,7 +11534,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                     {p.fotoEntrada && <span title={t("mt2.in")}>📷</span>}
                     {p.tarde && <span style={{ color: "#d9a441" }}>⏱</span>}
                     {p.telefono && <span style={{ color: "#b4474a" }}>📱</span>}
-                    {p.desperfectos && <span style={{ color: "#d9a441" }}>🔧</span>}
+                    {hayDesperfectos(p.desperfectos) && <span style={{ color: "#d9a441" }}>🔧</span>}
                   </div>
                 </div>
               ))}
@@ -11337,7 +11571,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
          distingue a quien pierde un balón y avisa de quien pierde y calla. */
       const faltanD = Math.max(0, (Number(p.salida) || 0) - (Number(p.entrada) || 0));
       a.sinAvisar += Math.max(0, faltanD - (Number(p.perdidos) || 0));
-      if (String(p.desperfectos || "").trim()) a.quejas += 1;
+      if (hayDesperfectos(p.desperfectos)) a.quejas += 1;
       if (p.tarde) { a.tarde += 1; a.minutosTarde += Number(p.minutosTarde) || 0; }
       if (p.telefono) a.telefono += 1;
       if (String(p.penalizaciones || "").trim()) a.penal += 1;
@@ -11369,7 +11603,13 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
     return (
       <div className="space-y-4">
         <Card title={`🏛 ${t("mt2.clubTitle")}`}>
-          <div className="text-xs mb-3 leading-relaxed" style={{ color: C.dim }}>{t("mt2.clubHint")}</div>
+          <div className="text-xs mb-2 leading-relaxed" style={{ color: C.dim }}>{t("mt2.clubHint")}</div>
+          {/* Quién sube qué. La dirección del club no hace fotos ni cuenta
+              balones: este panel es de revisión, y lo único que sale de aquí
+              hacia el entrenador es el aviso de la última columna. */}
+          <div className="text-[11px] mb-3 rounded-lg border px-3 py-2 leading-relaxed" style={{ borderColor: C.line, background: C.panel2, color: C.dim }}>
+            👁 {t("mt2.readOnly")}
+          </div>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-3">
             {[[t("mt2.kpiLost"), tot.perdidos, tot.perdidos ? "#d9a441" : C.dim],
               [t("mt2.kpiUnreported"), tot.sinAvisar, tot.sinAvisar ? "#b4474a" : C.dim],
@@ -11410,6 +11650,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                   <th className="text-right">{t("mt2.colUnreported")}</th>
                   <th className="text-right">{t("mt2.colFlags")}</th>
                   <th className="text-right">{t("mt2.colPlayers")}</th>
+                  <th className="text-right">{t("mt2.colWarn")}</th>
                 </tr></thead>
                 <tbody>
                   {filas.map((f) => (
@@ -11431,6 +11672,18 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                         {f.jugTarde > 0 && <span>⏱{f.jugTarde} </span>}
                         {f.jugMolestias > 0 && <span style={{ color: "#d9a441" }}>🩹{f.jugMolestias}</span>}
                         {!f.jugTarde && !f.jugMolestias && "—"}
+                      </td>
+                      {/* El aviso solo aparece donde hay algo que avisar: si no
+                          falta ningún balón, no hay nada que reprochar y un
+                          botón ahí solo invita a mandar avisos sin motivo. */}
+                      <td className="text-right">
+                        {(f.sinAvisar > 0 || f.perdidos > 0) ? (
+                          <button onClick={() => { setAvisoMat(f); setAvisoCopiado(false); }} title={t("mt2.warnHint")}
+                            className="text-[11px] px-2.5 py-1 rounded-lg border font-display uppercase tracking-wide whitespace-nowrap"
+                            style={{ borderColor: f.sinAvisar > 0 ? "#b4474a" : C.line, color: f.sinAvisar > 0 ? "#b4474a" : C.dim }}>
+                            {t("mt2.warn")}
+                          </button>
+                        ) : <span style={{ color: C.dim }}>—</span>}
                       </td>
                     </tr>
                   ))}
@@ -11490,7 +11743,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                   <div className="text-sm shrink-0" style={{ color: C.chalk }}>{p.entrenadorNombre || "—"}</div>
                   <div className="text-[11px] shrink-0" style={{ color: C.dim }}>{p.equipoNombre}</div>
                   <div className="text-[12px] flex-1 min-w-[120px]" style={{ color: C.dim }}>{p.salida} → {p.entrada}</div>
-                  {p.desperfectos && <div className="text-[11px] w-full sm:w-auto" style={{ color: "#d9a441" }}>🔧 {p.desperfectos}</div>}
+                  {hayDesperfectos(p.desperfectos) && <div className="text-[11px] w-full sm:w-auto" style={{ color: "#d9a441" }}>🔧 {p.desperfectos}</div>}
                   <div className="flex gap-2 shrink-0">
                     {p.fotoSalida && <a href={p.fotoSalida} target="_blank" rel="noreferrer" className="text-[11px] underline" style={{ color: AC }}>{t("mt2.out")}</a>}
                     {p.fotoEntrada && <a href={p.fotoEntrada} target="_blank" rel="noreferrer" className="text-[11px] underline" style={{ color: AC }}>{t("mt2.in")}</a>}
@@ -11499,6 +11752,39 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
               ))}
             </div>
           </Card>
+        )}
+
+        {/* Aviso al entrenador. Es lo único que el club manda hacia fuera desde
+            este panel: el texto ya viene escrito con lo acumulado de esa
+            persona, para que avisar cueste un toque y no haya que ponerse a
+            redactar —que es como se acaba no avisando a nadie en todo el año. */}
+        {avisoMat && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,.6)" }}
+            onClick={() => setAvisoMat(null)} role="dialog" aria-modal="true">
+            <div className="w-full max-w-lg rounded-xl border p-4 max-h-[88vh] overflow-y-auto"
+              style={{ background: C.panel, borderColor: C.line }} onClick={(e) => e.stopPropagation()}>
+              <div className="flex items-start justify-between gap-3 mb-3">
+                <div className="min-w-0">
+                  <div className="font-display uppercase tracking-wide" style={{ color: C.chalk }}>{t("mt2.warn")} · {avisoMat.quien}</div>
+                  <div className="text-[11px]" style={{ color: C.dim }}>{avisoMat.cat}</div>
+                </div>
+                <button onClick={() => setAvisoMat(null)} className="text-sm px-3 py-1.5 rounded-lg border shrink-0"
+                  style={{ borderColor: C.line, color: C.chalk }}>{t("p.close")}</button>
+              </div>
+              <pre className="text-[12px] whitespace-pre-wrap rounded-lg border p-3 mb-3 font-sans leading-relaxed"
+                style={{ borderColor: C.line, background: C.panel2, color: C.chalk }}>{textoAvisoMaterial(avisoMat)}</pre>
+              <div className="flex flex-wrap gap-2">
+                <button onClick={copiarAvisoMaterial}
+                  className="flex-1 min-w-[140px] font-display uppercase tracking-wider py-2.5 rounded-lg font-semibold border"
+                  style={{ background: avisoCopiado ? C.green : C.panel2, color: avisoCopiado ? "#141414" : C.chalk, borderColor: C.line }}>
+                  {avisoCopiado ? t("mt2.warnCopied") : t("mt2.warnCopy")}
+                </button>
+                <a href={`https://wa.me/?text=${encodeURIComponent(textoAvisoMaterial(avisoMat))}`} target="_blank" rel="noreferrer"
+                  className="flex-1 min-w-[140px] text-center font-display uppercase tracking-wider py-2.5 rounded-lg font-semibold border"
+                  style={{ borderColor: C.line, color: C.chalk }}>{t("tr.whatsapp")}</a>
+              </div>
+            </div>
+          </div>
         )}
       </div>
     );
@@ -15059,9 +15345,9 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
      `visibleTabs` sigue siendo lo que el rol SÍ puede usar, porque de eso
      dependen los permisos y el resto de la app. */
   const visibleTabs = allTabs;
-  const TODAS_TABS = ["inicio", "master", "equipos", "equipo", "jugadores", "calendario", "convocatoria",
+  const TODAS_TABS = ["inicio", "parte", "master", "equipos", "equipo", "jugadores", "calendario", "convocatoria",
     "alineacion", "partido", "analisis", "temporada", "entrenamiento", "ejercicios", "pizarra",
-    "parte", "asistencia", "disciplina", "normativa", "estadisticas", "usuarios", "coachai", "material", "premium"];
+    "asistencia", "disciplina", "normativa", "estadisticas", "usuarios", "coachai", "material", "premium"];
   /* Las del Master no se le enseñan a nadie más: no es que estén bloqueadas, es
      que no existen para el resto de cuentas. */
   /* "parte" se suma a las que no se enseñan apagadas: a la dirección del club
@@ -15109,7 +15395,7 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
           el centro quede centrado de verdad y no dependa de lo largos que
           sean el nombre del club o del rol. Por debajo de lg se apila: marca
           y utilidades arriba, equipo debajo ocupando el ancho. */}
-      <header className="flex flex-wrap items-center justify-between gap-x-2 sm:gap-x-4 gap-y-2 px-3 sm:px-5 py-2 sm:py-3 border-b sticky top-0 z-10
+      <header ref={headerRef} className="flex flex-wrap items-center justify-between gap-x-2 sm:gap-x-4 gap-y-2 px-3 sm:px-5 py-2 sm:py-3 border-b sticky top-0 z-10
                          lg:grid lg:grid-cols-[1fr_auto_1fr] lg:gap-x-6"
         style={{ borderColor: C.line, background: C.bg, borderTop: `3px solid ${AC}` }}>
         {/* IZQUIERDA · la marca, siempre igual */}
@@ -15138,29 +15424,47 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
             <div className="text-[11px] sm:text-[12px] truncate" style={{ color: C.dim }}>
               {session.club}<span className="hidden sm:inline"> · {session.comunidad}</span>
             </div>
+            {/* Con qué papel y con qué versión estás mirando este equipo, pegado
+                al equipo mismo. Los dos datos estaban solo en la esquina
+                derecha: el rol oculto por debajo de 768 px y la versión por
+                debajo de 640, así que en el móvil no había manera de saber si
+                entrabas de delegado o de entrenador, ni si lo que no ves te
+                falta por plan o por rol. Son justo las tres cosas que hay que
+                comprobar antes de tocar nada. */}
+            <div className="flex items-center gap-1.5 mt-1">
+              <span className="text-[10px] font-display uppercase tracking-wide px-1.5 py-0.5 rounded whitespace-nowrap flex items-center gap-1"
+                style={{ color: AC, border: `1px solid ${AC}59` }}>
+                <span>{role.icon}</span>{rLabel(lang, session.role)}
+              </span>
+              <span className="text-[10px] font-display uppercase tracking-wide px-1.5 py-0.5 rounded whitespace-nowrap"
+                style={isPro ? { background: AC, color: C.sobre } : { color: C.dim, border: `1px solid ${C.line}` }}>
+                {isPro ? "★ PRO" : t("c.planFree")}
+              </span>
+            </div>
           </div>
         </div>
 
         {/* DERECHA · quién eres y con qué permisos, más las utilidades */}
         <div className="flex items-center flex-wrap justify-end gap-1.5 sm:gap-3 order-2 lg:order-3">
+          {/* Quién eres, para entrar en Mi cuenta. El rol ya no se repite aquí:
+              desde que va pegado al equipo salía dos veces en la misma barra, y
+              el nombre —que es el dato de esta esquina— quedaba de segundo y en
+              letra pequeña. */}
           <button onClick={() => setAccountOpen(true)} title={t("p.account")} className="text-right hidden md:block rounded-lg px-2 py-1 leading-tight">
-            <div className="font-display text-base lg:text-lg xl:text-xl font-semibold uppercase tracking-wide flex items-center justify-end gap-2 whitespace-nowrap" style={{ color: AC }}>
-              <span>{role.icon}</span>{rLabel(lang, session.role)}
+            <div className="font-display text-base lg:text-lg font-semibold uppercase tracking-wide flex items-center justify-end gap-2 whitespace-nowrap" style={{ color: AC }}>
+              <span>{role.icon}</span><span className="truncate max-w-[14ch]">{session.name}</span>
             </div>
-            <div className="text-[12px] truncate" style={{ color: C.dim }}>{session.name}</div>
+            <div className="text-[12px] truncate" style={{ color: C.dim }}>{t("p.account")}</div>
           </button>
           {onTrial && <button onClick={() => setTab("premium")} className="hidden sm:inline-block text-[10px] font-display uppercase tracking-wide px-2 py-1 rounded" style={{ background: AC, color: C.sobre }}>★ {t("c.trialBadge")} · {trialDaysLeft} {trialDaysLeft === 1 ? t("h.day") : t("h.days")}</button>}
+          {/* Solo la llamada a mejorar: qué versión tienes ya lo dice el distintivo
+              que va junto al equipo, y repetirlo aquí llenaba la barra de dos
+              etiquetas que decían lo mismo. */}
           {!isPro && (
-            <div className="hidden sm:flex items-center gap-1.5">
-              <span className="hidden xl:inline text-[10px] font-display uppercase tracking-wide px-2 py-1 rounded" style={{ color: C.dim, border: `1px solid ${C.line}` }}>
-                {t("c.planCurrentFree")}
-              </span>
-              <button onClick={() => proAlert()} className="text-[10px] font-display uppercase tracking-wide px-2.5 py-1 rounded font-semibold" style={{ background: AC, color: C.sobre }}>
-                {t("c.goPro")}
-              </button>
-            </div>
+            <button onClick={() => proAlert()} className="hidden sm:inline-block text-[10px] font-display uppercase tracking-wide px-2.5 py-1 rounded font-semibold" style={{ background: AC, color: C.sobre }}>
+              {t("c.goPro")}
+            </button>
           )}
-          {isPro && !onTrial && session.role !== "master" && <span className="hidden sm:inline-block text-[10px] font-display uppercase tracking-wide px-2 py-1 rounded" style={{ background: AC, color: C.sobre }}>★ PRO</span>}
           {/* En móvil el rol de arriba está oculto, así que Mi cuenta se abre
               desde este botón. */}
           <button onClick={() => setAccountOpen(true)} aria-label={t("p.account")} title={t("p.account")}
@@ -15368,6 +15672,12 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
               return (
                 <>
                   {visibleTabs.includes("inicio") && Boton("inicio")}
+                  {/* Control de material, fijo debajo de Inicio: es la obligación diaria
+                      del entrenador, del segundo y del delegado —una foto al sacar, otra al
+                      guardar y el recuento de balones— y una obligación que hay que ir a
+                      buscar dentro de un grupo no se cumple. A la dirección del club no le
+                      sale: ella no rellena partes, los revisa desde su pestaña de Club. */}
+                  {tabsMenu.includes("parte") && Boton("parte")}
                   {grupos.map((g) => (
                     <div key={g.label}>
                       {Titulo(g.label)}
@@ -15392,7 +15702,13 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
             y "Modo partido". Con 256 px y sin el tracking extra, la palabra más
             larga ocupa 138 de 176: un 28% de margen, el mismo que el resto de
             entradas, así que aguanta cualquier fuente de respaldo. */}
-        <nav className="hidden lg:flex flex-col gap-1 p-3 border-r min-h-[calc(100vh-57px)] w-64 shrink-0 sticky top-[57px] self-start max-h-[calc(100vh-57px)] overflow-y-auto" style={{ borderColor: C.line }}>
+        {/* La altura de la cabecera iba escrita a mano (57 px) y no es fija: se
+            reparte en varias líneas según el ancho y va de 98 px en un monitor
+            grande a 219 px en tablet, así que el menú se pegaba demasiado
+            arriba y al bajar se metía por debajo de la cabecera. Ahora se mide
+            de verdad, en --cb-header. */}
+        <nav className="hidden lg:flex flex-col gap-1 p-3 border-r w-64 shrink-0 sticky self-start overflow-y-auto"
+          style={{ borderColor: C.line, top: "var(--cb-header, 57px)", minHeight: "calc(100vh - var(--cb-header, 57px))", maxHeight: "calc(100vh - var(--cb-header, 57px))" }}>
           {/* Escudo del equipo, grande y fijo: identifica de un vistazo en qué
               equipo estás trabajando. Solo en cuentas oficiales, es decir,
               cuando el club te ha dado de alta. */}
@@ -15465,6 +15781,12 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
             return (
               <>
                 {visibleTabs.includes("inicio") && Boton("inicio")}
+                {/* Control de material, fijo debajo de Inicio: es la obligación diaria
+                    del entrenador, del segundo y del delegado —una foto al sacar, otra al
+                    guardar y el recuento de balones— y una obligación que hay que ir a
+                    buscar dentro de un grupo no se cumple. A la dirección del club no le
+                    sale: ella no rellena partes, los revisa desde su pestaña de Club. */}
+                {tabsMenu.includes("parte") && Boton("parte")}
                 {grupos.map((g) => (
                   <div key={g.label}>
                     {Titulo(g.label)}
