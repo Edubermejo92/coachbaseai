@@ -27,6 +27,13 @@ const T_NORMATIVA = "tblNgKxTA0TUq93Oa";
 const T_FIRMAS = "tblCiJo9zi21Yeaf7";
 const T_GALERIA = "tblwMuinSKzjvkhk7";
 const T_PARTIDOS = "tblwOCRaTwkZVzVxq";
+/* Ficha que se comparte con el equipo rival de un partido: una copia congelada
+   de la convocatoria y la alineación, y el código del enlace que la abre.
+   Congelada a propósito: compartir es un acto puntual, no una ventana abierta
+   a la app —si el rival viera los cambios en vivo, cada retoque de la
+   alineación del sábado se le estaría enseñando según se hace. */
+const PARTIDO_FICHA = "fldTCEB7wCHsidFMN";
+const PARTIDO_TOKEN = "fld6Q79obeJa46rOf";
 const T_CONVOCATORIAS = "tbl4ahEyv6FpMsYL0";
 /* Cambios propuestos por el segundo entrenador que requieren aprobación del
    entrenador principal (o director/master) antes de aplicarse. */
@@ -441,7 +448,12 @@ export default async (req: Request) => {
      esta puerta sino en el enlace firmado que se manda al correo. */
   const abierto =
     (req.method === "POST" && ["login", "register", "forgotPassword", "resetPassword", "demoToken"].includes(accion)) ||
-    (req.method === "GET" && (res === "clubes" || res === "equipos"));
+    (req.method === "GET" && (res === "clubes" || res === "equipos")) ||
+    /* La ficha para el rival se abre sin cuenta: el delegado del otro equipo no
+       tiene por qué registrarse en COACHBASE para ver a quién se enfrenta. Lo
+       que la protege es el código del enlace, y lo que hay detrás es lo mismo
+       que se entrega en el acta: dorsal, nombre y posición. */
+    (req.method === "GET" && res === "ficha");
   const sesion = await leerSesion(req);
   if (!abierto && !sesion) {
     return j({ error: "no_autorizado", reason: "Sesión no válida o caducada. Vuelve a iniciar sesión." }, 401);
@@ -896,6 +908,89 @@ export default async (req: Request) => {
        genérico porque ese exige un equipo y aquí hace falta justo lo contrario:
        cruzar todas las categorías para poder comparar entrenadores. Lo lee
        quien dirige el club, no cada entrenador. */
+    /* ================= FICHA PARA EL EQUIPO RIVAL =================
+       Lo único que sale de la app hacia fuera. Cuando hay partido, el otro
+       equipo puede ver a quién se enfrenta: la convocatoria y la alineación
+       de ESE partido, y nada más. Es lo mismo que se entrega en el acta.
+
+       GET    ?res=ficha&t=<código>        -> pública, sin cuenta
+       POST   ?res=ficha&id=<recPartido>   -> publica (o actualiza) la ficha
+       DELETE ?res=ficha&id=<recPartido>   -> retira el enlace
+
+       La ficha se guarda congelada en el propio partido, no se calcula al
+       vuelo: compartir es un acto puntual y no una ventana abierta a la app.
+       Si el rival viera los cambios en vivo, cada retoque de la alineación del
+       sábado se le estaría enseñando según se hace. */
+    if (res === "ficha") {
+      if (req.method === "GET") {
+        const tk = (url.searchParams.get("t") || "").trim();
+        /* Un token corto o vacío abriría la ficha de cualquiera a base de
+           probar: se exige la longitud con la que se generan. */
+        if (tk.length < 24) return j({ error: "no_existe" }, 404);
+        const partidos = await list(T_PARTIDOS);
+        const hit = partidos.find((r: any) => String(r.fields[PARTIDO_TOKEN] || "") === tk);
+        if (!hit) return j({ error: "no_existe" }, 404);
+        const crudo = String(hit.fields[PARTIDO_FICHA] || "");
+        if (!crudo) return j({ error: "no_existe" }, 404);
+        try { return j({ ok: true, ficha: JSON.parse(crudo) }); }
+        catch { return j({ error: "no_existe" }, 404); }
+      }
+      if (!id) return j({ error: "falta_id" }, 400);
+      const partido = await unoPorId(T_PARTIDOS, id);
+      if (!partido) return j({ ok: false, reason: "no_existe" }, 404);
+      const equipoDelPartido = (partido.fields?.Equipo || [])[0] || "";
+      if (!(await puedeEquipo(equipoDelPartido))) {
+        return j({ ok: false, reason: "no_autorizado" }, 403);
+      }
+      if (req.method === "DELETE") {
+        const r = await fetch(`${table(T_PARTIDOS)}/${id}`, {
+          method: "PATCH", headers: H,
+          body: JSON.stringify({ fields: { [PARTIDO_FICHA]: "", [PARTIDO_TOKEN]: "" }, typecast: true }),
+        });
+        return j({ ok: r.ok }, r.ok ? 200 : 400);
+      }
+      if (req.method === "POST") {
+        const b = await req.json().catch(() => ({}));
+        /* Se compone aquí y no se acepta lo que mande el navegador tal cual:
+           así la lista de lo que sale de la app está escrita en un solo sitio
+           y no depende de que el front recuerde no mandar de más. De cada
+           jugador salen tres cosas —dorsal, nombre y posición— y ninguna más:
+           ni fecha de nacimiento, ni teléfono, ni estado físico, ni foto. */
+        const limpioJug = (x: any) => ({
+          d: Number(x?.d) || 0,
+          n: String(x?.n || "").slice(0, 60),
+          p: String(x?.p || "").slice(0, 20),
+        });
+        const ficha = {
+          club: String(b.club || "").slice(0, 80),
+          equipo: String(b.equipo || "").slice(0, 80),
+          fecha: String(b.fecha || "").slice(0, 10),
+          hora: String(b.hora || "").slice(0, 5),
+          jornada: String(b.jornada || "").slice(0, 12),
+          local: String(b.local || "").slice(0, 80),
+          visitante: String(b.visitante || "").slice(0, 80),
+          lugar: String(b.lugar || "").slice(0, 120),
+          sistema: String(b.sistema || "").slice(0, 12),
+          convocados: (Array.isArray(b.convocados) ? b.convocados : []).slice(0, 30).map(limpioJug),
+          once: (Array.isArray(b.once) ? b.once : []).slice(0, 11).map((x: any) => ({
+            ...limpioJug(x), s: String(x?.s || "").slice(0, 6),
+          })),
+          publicada: new Date().toISOString(),
+        };
+        /* El token se conserva si ya existe: volver a publicar la ficha
+           —porque cambió la alineación— no debe romper el enlace que el rival
+           ya tiene guardado. */
+        const tokenPrevio = String(partido.fields?.["Token rival"] || "").trim();
+        const token = tokenPrevio || bytesAHex(crypto.getRandomValues(new Uint8Array(16)));
+        const r = await fetch(`${table(T_PARTIDOS)}/${id}`, {
+          method: "PATCH", headers: H,
+          body: JSON.stringify({ fields: { [PARTIDO_FICHA]: JSON.stringify(ficha), [PARTIDO_TOKEN]: token }, typecast: true }),
+        });
+        return j({ ok: r.ok, token }, r.ok ? 200 : 400);
+      }
+      return j({ error: "Petición no soportada" }, 400);
+    }
+
     /* ---- Sanciones de un parte, solo para la dirección del club ----
        El entrenador no va a declarar que llegó tarde o que estuvo con el
        teléfono; eso lo anota el club. Va en su propio recurso, y no como un

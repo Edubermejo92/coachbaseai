@@ -267,6 +267,32 @@ const DICT = {
     "u.newTeamReused": "✓ «{n}» ya existía en tu club. Ya está elegida para el alta.",
     "u.newTeamFail": "No se pudo crear la categoría. Revisa la conexión.",
     "u.newTeamNoClub": "Tu ficha todavía no tiene club, así que no hay dónde colgar la categoría.",
+    "fr.title": "Ficha para el rival",
+    "fr.hint": "Cuando hay partido, el otro equipo puede ver a quién se enfrenta. Es lo único que la app deja salir hacia fuera: la convocatoria y la alineación de ESE partido, con dorsal, nombre y posición. Ni fechas de nacimiento, ni teléfonos, ni estado físico, ni fotos.",
+    "fr.match": "Partido:",
+    "fr.noMatch": "Elige el partido en el Calendario o añade uno: la ficha se comparte de un partido concreto, no de la temporada.",
+    "fr.noCloud": "Este partido todavía no está en la nube, así que no se puede compartir. Guárdalo primero en el calendario.",
+    "fr.share": "Compartir con el rival",
+    "fr.reshare": "Actualizar la ficha",
+    "fr.withdraw": "Retirar el enlace",
+    "fr.live": "Enlace activo. Quien lo tenga ve la ficha de este partido.",
+    "fr.frozen": "La ficha va congelada: si cambias la alineación, el rival sigue viendo la de antes hasta que pulses «Actualizar la ficha».",
+    "fr.copy": "Copiar enlace",
+    "fr.copied": "✓ Enlace copiado",
+    "fr.done": "✓ Ficha compartida.",
+    "fr.updated": "✓ Ficha actualizada.",
+    "fr.gone": "✓ Enlace retirado. El rival ya no puede verla.",
+    "fr.fail": "No se ha podido compartir. Inténtalo otra vez.",
+    "fr.needCalled": "Convoca al menos a un jugador antes de compartir la ficha.",
+    "fr.pubTitle": "Ficha del partido",
+    "fr.pubCalled": "Convocatoria",
+    "fr.pubEleven": "Once inicial",
+    "fr.pubNoEleven": "El once inicial todavía no está publicado.",
+    "fr.pubOn": "Publicada el",
+    "fr.pubNote": "Ficha compartida por el equipo local para este partido. Solo lleva dorsal, nombre y posición, igual que el acta.",
+    "fr.pubGone": "Este enlace ya no está activo. El equipo lo ha retirado, o la ficha todavía no se ha compartido.",
+    "fr.pubLoading": "Abriendo la ficha…",
+    "fr.pubBack": "Ir a COACHBASE Ai",
     "cat.title": "Categorías del club",
     "cat.hint": "Todas las categorías dadas de alta. Eliminar una borra también sus jugadores, partidos, convocatorias, entrenamientos, partes e incidencias. No se puede deshacer.",
     "cat.none": "Este club todavía no tiene categorías.",
@@ -720,6 +746,32 @@ const DICT = {
     "u.newTeamReused": "✓ \u201c{n}\u201d already existed in your club. It is already selected for this account.",
     "u.newTeamFail": "Couldn't create the age group. Check your connection.",
     "u.newTeamNoClub": "Your profile has no club yet, so there is nowhere to put the age group.",
+    "fr.title": "Team sheet for the opposition",
+    "fr.hint": "On a matchday the other team can see who they are up against. It is the only thing the app lets out: the squad list and the line-up for THAT match, with number, name and position. No dates of birth, no phone numbers, no fitness status, no photos.",
+    "fr.match": "Match:",
+    "fr.noMatch": "Pick the match in Fixtures or add one: the sheet is shared for a specific match, not for the season.",
+    "fr.noCloud": "This match isn't in the cloud yet, so it can't be shared. Save it in the calendar first.",
+    "fr.share": "Share with the opposition",
+    "fr.reshare": "Update the sheet",
+    "fr.withdraw": "Withdraw the link",
+    "fr.live": "Link active. Anyone holding it can see this match's sheet.",
+    "fr.frozen": "The sheet is frozen: if you change the line-up, the opposition keeps seeing the old one until you press \u201cUpdate the sheet\u201d.",
+    "fr.copy": "Copy link",
+    "fr.copied": "✓ Link copied",
+    "fr.done": "✓ Sheet shared.",
+    "fr.updated": "✓ Sheet updated.",
+    "fr.gone": "✓ Link withdrawn. The opposition can no longer see it.",
+    "fr.fail": "Couldn't share it. Try again.",
+    "fr.needCalled": "Call up at least one player before sharing the sheet.",
+    "fr.pubTitle": "Match team sheet",
+    "fr.pubCalled": "Squad list",
+    "fr.pubEleven": "Starting eleven",
+    "fr.pubNoEleven": "The starting eleven has not been published yet.",
+    "fr.pubOn": "Published on",
+    "fr.pubNote": "Sheet shared by the home team for this match. It only carries number, name and position, the same as the match sheet.",
+    "fr.pubGone": "This link is no longer active. The team has withdrawn it, or the sheet has not been shared yet.",
+    "fr.pubLoading": "Opening the sheet…",
+    "fr.pubBack": "Go to COACHBASE Ai",
     "cat.title": "Club age groups",
     "cat.hint": "Every age group on file. Deleting one also deletes its players, fixtures, squad lists, sessions, kit reports and incidents. This cannot be undone.",
     "cat.none": "This club has no age groups yet.",
@@ -1190,6 +1242,32 @@ const DICT = {
     "u.newTeamReused": "✓ \u201c{n}\u201d already existed in your club. It is already selected for this account.",
     "u.newTeamFail": "Couldn't create the age group. Check your connection.",
     "u.newTeamNoClub": "Your profile has no club yet, so there is nowhere to put the age group.",
+    "fr.title": "Team sheet for the opposition",
+    "fr.hint": "On a matchday the other team can see who they are up against. It is the only thing the app lets out: the squad list and the line-up for THAT match, with number, name and position. No dates of birth, no phone numbers, no fitness status, no photos.",
+    "fr.match": "Match:",
+    "fr.noMatch": "Pick the match in Fixtures or add one: the sheet is shared for a specific match, not for the season.",
+    "fr.noCloud": "This match isn't in the cloud yet, so it can't be shared. Save it in the calendar first.",
+    "fr.share": "Share with the opposition",
+    "fr.reshare": "Update the sheet",
+    "fr.withdraw": "Withdraw the link",
+    "fr.live": "Link active. Anyone holding it can see this match's sheet.",
+    "fr.frozen": "The sheet is frozen: if you change the line-up, the opposition keeps seeing the old one until you press \u201cUpdate the sheet\u201d.",
+    "fr.copy": "Copy link",
+    "fr.copied": "✓ Link copied",
+    "fr.done": "✓ Sheet shared.",
+    "fr.updated": "✓ Sheet updated.",
+    "fr.gone": "✓ Link withdrawn. The opposition can no longer see it.",
+    "fr.fail": "Couldn't share it. Try again.",
+    "fr.needCalled": "Call up at least one player before sharing the sheet.",
+    "fr.pubTitle": "Match team sheet",
+    "fr.pubCalled": "Squad list",
+    "fr.pubEleven": "Starting eleven",
+    "fr.pubNoEleven": "The starting eleven has not been published yet.",
+    "fr.pubOn": "Published on",
+    "fr.pubNote": "Sheet shared by the home team for this match. It only carries number, name and position, the same as the match sheet.",
+    "fr.pubGone": "This link is no longer active. The team has withdrawn it, or the sheet has not been shared yet.",
+    "fr.pubLoading": "Opening the sheet…",
+    "fr.pubBack": "Go to COACHBASE Ai",
     "cat.title": "Club age groups",
     "cat.hint": "Every age group on file. Deleting one also deletes its players, fixtures, squad lists, sessions, kit reports and incidents. This cannot be undone.",
     "cat.none": "This club has no age groups yet.",
@@ -1733,6 +1811,32 @@ const DICT = {
     "u.newTeamReused": "✓ \u201c{n}\u201d already existed in your club. It is already selected for this account.",
     "u.newTeamFail": "Couldn't create the age group. Check your connection.",
     "u.newTeamNoClub": "Your profile has no club yet, so there is nowhere to put the age group.",
+    "fr.title": "Team sheet for the opposition",
+    "fr.hint": "On a matchday the other team can see who they are up against. It is the only thing the app lets out: the squad list and the line-up for THAT match, with number, name and position. No dates of birth, no phone numbers, no fitness status, no photos.",
+    "fr.match": "Match:",
+    "fr.noMatch": "Pick the match in Fixtures or add one: the sheet is shared for a specific match, not for the season.",
+    "fr.noCloud": "This match isn't in the cloud yet, so it can't be shared. Save it in the calendar first.",
+    "fr.share": "Share with the opposition",
+    "fr.reshare": "Update the sheet",
+    "fr.withdraw": "Withdraw the link",
+    "fr.live": "Link active. Anyone holding it can see this match's sheet.",
+    "fr.frozen": "The sheet is frozen: if you change the line-up, the opposition keeps seeing the old one until you press \u201cUpdate the sheet\u201d.",
+    "fr.copy": "Copy link",
+    "fr.copied": "✓ Link copied",
+    "fr.done": "✓ Sheet shared.",
+    "fr.updated": "✓ Sheet updated.",
+    "fr.gone": "✓ Link withdrawn. The opposition can no longer see it.",
+    "fr.fail": "Couldn't share it. Try again.",
+    "fr.needCalled": "Call up at least one player before sharing the sheet.",
+    "fr.pubTitle": "Match team sheet",
+    "fr.pubCalled": "Squad list",
+    "fr.pubEleven": "Starting eleven",
+    "fr.pubNoEleven": "The starting eleven has not been published yet.",
+    "fr.pubOn": "Published on",
+    "fr.pubNote": "Sheet shared by the home team for this match. It only carries number, name and position, the same as the match sheet.",
+    "fr.pubGone": "This link is no longer active. The team has withdrawn it, or the sheet has not been shared yet.",
+    "fr.pubLoading": "Opening the sheet…",
+    "fr.pubBack": "Go to COACHBASE Ai",
     "cat.title": "Club age groups",
     "cat.hint": "Every age group on file. Deleting one also deletes its players, fixtures, squad lists, sessions, kit reports and incidents. This cannot be undone.",
     "cat.none": "This club has no age groups yet.",
@@ -2275,6 +2379,32 @@ const DICT = {
     "u.newTeamReused": "✓ «{n}» ya existía en tu club. Ya está elegida para el alta.",
     "u.newTeamFail": "No se pudo crear la categoría. Revisa la conexión.",
     "u.newTeamNoClub": "Tu ficha todavía no tiene club, así que no hay dónde colgar la categoría.",
+    "fr.title": "Ficha para el rival",
+    "fr.hint": "Cuando hay partido, el otro equipo puede ver a quién se enfrenta. Es lo único que la app deja salir hacia fuera: la convocatoria y la alineación de ESE partido, con dorsal, nombre y posición. Ni fechas de nacimiento, ni teléfonos, ni estado físico, ni fotos.",
+    "fr.match": "Partido:",
+    "fr.noMatch": "Elige el partido en el Calendario o añade uno: la ficha se comparte de un partido concreto, no de la temporada.",
+    "fr.noCloud": "Este partido todavía no está en la nube, así que no se puede compartir. Guárdalo primero en el calendario.",
+    "fr.share": "Compartir con el rival",
+    "fr.reshare": "Actualizar la ficha",
+    "fr.withdraw": "Retirar el enlace",
+    "fr.live": "Enlace activo. Quien lo tenga ve la ficha de este partido.",
+    "fr.frozen": "La ficha va congelada: si cambias la alineación, el rival sigue viendo la de antes hasta que pulses «Actualizar la ficha».",
+    "fr.copy": "Copiar enlace",
+    "fr.copied": "✓ Enlace copiado",
+    "fr.done": "✓ Ficha compartida.",
+    "fr.updated": "✓ Ficha actualizada.",
+    "fr.gone": "✓ Enlace retirado. El rival ya no puede verla.",
+    "fr.fail": "No se ha podido compartir. Inténtalo otra vez.",
+    "fr.needCalled": "Convoca al menos a un jugador antes de compartir la ficha.",
+    "fr.pubTitle": "Ficha del partido",
+    "fr.pubCalled": "Convocatoria",
+    "fr.pubEleven": "Once inicial",
+    "fr.pubNoEleven": "El once inicial todavía no está publicado.",
+    "fr.pubOn": "Publicada el",
+    "fr.pubNote": "Ficha compartida por el equipo local para este partido. Solo lleva dorsal, nombre y posición, igual que el acta.",
+    "fr.pubGone": "Este enlace ya no está activo. El equipo lo ha retirado, o la ficha todavía no se ha compartido.",
+    "fr.pubLoading": "Abriendo la ficha…",
+    "fr.pubBack": "Ir a COACHBASE Ai",
     "cat.title": "Categorías del club",
     "cat.hint": "Todas las categorías dadas de alta. Eliminar una borra también sus jugadores, partidos, convocatorias, entrenamientos, partes e incidencias. No se puede deshacer.",
     "cat.none": "Este club todavía no tiene categorías.",
@@ -3919,6 +4049,38 @@ const airClubs = async () => { try { const r = await cbFetch(AIR + "?res=clubes"
    Devuelve el cuerpo entero (no solo ok) porque el motivo de la negativa es
    parte de la respuesta: última categoría, categoría actual, nombre que no
    coincide. */
+/* ---- Ficha para el equipo rival ----
+   Lo único que la app deja salir hacia fuera. Se publica congelada sobre un
+   partido concreto: convocatoria y alineación de ESE día, nada más.
+   La compone el backend a partir de lo que se le manda, así que aquí no se
+   decide qué sale —eso está escrito en un solo sitio, en la función. */
+const airFichaPublicar = async (recPartido, ficha) => {
+  try {
+    const r = await cbFetch(`${AIR}?res=ficha&id=${encodeURIComponent(recPartido)}`, {
+      method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(ficha),
+    });
+    if (!r.ok) return null;
+    return await r.json().catch(() => null);
+  } catch { return null; }
+};
+const airFichaRetirar = async (recPartido) => {
+  try {
+    const r = await cbFetch(`${AIR}?res=ficha&id=${encodeURIComponent(recPartido)}`, { method: "DELETE" });
+    return r.ok;
+  } catch { return false; }
+};
+/* La lectura va igualmente por cbFetch, aunque no haga falta sesión: toda la
+   red de la app pasa por ese único punto —es lo que garantiza que la demo no
+   pueda escribir— y abrir un `fetch` suelto aquí rompería esa garantía por un
+   GET que no la necesita. Sin sesión, cbFetch simplemente no adjunta token. */
+const airFichaLeer = async (token) => {
+  try {
+    const r = await cbFetch(`${AIR}?res=ficha&t=${encodeURIComponent(token)}`);
+    if (!r.ok) return null;
+    const d = await r.json().catch(() => null);
+    return d?.ficha || null;
+  } catch { return null; }
+};
 const airTeamDelete = async (rec, { confirmar = false, nombre = "" } = {}) => {
   try {
     /* Los parámetros van en la URL y no en el cuerpo: un DELETE con cuerpo lo
@@ -7412,6 +7574,106 @@ async function makePresentationVideo(player, club, teamName, accent) {
 }
 
 /* ---------------- Acceso ---------------- */
+/* ================= FICHA PARA EL EQUIPO RIVAL =================
+   La única pantalla de COACHBASE que se ve sin cuenta. Se abre con el enlace
+   que manda el equipo local y enseña la convocatoria y el once de ESE partido:
+   dorsal, nombre y posición, igual que el acta. Nada más —ni fechas de
+   nacimiento, ni teléfonos, ni estado físico, ni fotos—, y sin ningún botón
+   que lleve a los datos del equipo. */
+function FichaRival({ token, lang, tema, cambiarTema }) {
+  const tt = (k) => T(lang, k);
+  /* El color de acento se calcula dentro de la app principal, y esta pantalla
+     vive fuera de ella: aquí se toma de la paleta, que sí es del módulo. */
+  const AC = C.mando;
+  const [ficha, setFicha] = useState(null);
+  const [cargando, setCargando] = useState(true);
+  useEffect(() => {
+    let vivo = true;
+    airFichaLeer(token).then((f) => { if (vivo) { setFicha(f); setCargando(false); } });
+    return () => { vivo = false; };
+  }, [token]);
+
+  const Fila = ({ j, extra }) => (
+    <div className="rounded-lg border px-3 py-2 flex items-center gap-3" style={{ borderColor: C.line, background: C.panel2 }}>
+      <span className="font-display text-base tabular-nums w-7 text-center shrink-0" style={{ color: AC }}>{j.d || "—"}</span>
+      <span className="flex-1 min-w-0 truncate" style={{ color: C.chalk }}>{j.n}</span>
+      <span className="text-[11px] shrink-0" style={{ color: C.dim }}>{extra || j.p}</span>
+    </div>
+  );
+
+  return (
+    <div className="min-h-screen" style={{ background: C.bg }}>
+      <header className="flex items-center justify-between gap-3 px-4 py-3 border-b" style={{ borderColor: C.line, borderTop: `3px solid ${AC}` }}>
+        <AppWordmark height={44} />
+        <button onClick={cambiarTema} aria-label={tema === "oscuro" ? "Modo claro" : "Modo oscuro"}
+          className="text-sm w-9 h-9 rounded-lg border flex items-center justify-center shrink-0"
+          style={{ borderColor: C.line, color: C.chalk }}>{tema === "oscuro" ? "☀" : "☾"}</button>
+      </header>
+
+      <main className="max-w-2xl mx-auto p-4 space-y-4">
+        {cargando ? (
+          <div className="text-sm py-10 text-center" style={{ color: C.dim }}>{tt("fr.pubLoading")}</div>
+        ) : !ficha ? (
+          <div className="rounded-xl border p-5 text-center" style={{ borderColor: C.line, background: C.panel }}>
+            <div className="text-3xl mb-2">🔒</div>
+            <div className="text-sm leading-relaxed" style={{ color: C.chalk }}>{tt("fr.pubGone")}</div>
+          </div>
+        ) : (
+          <>
+            <div className="rounded-xl border p-4" style={{ borderColor: C.line, background: C.panel }}>
+              <div className="text-[11px] font-display uppercase tracking-[0.18em] mb-1" style={{ color: C.dim }}>
+                {tt("fr.pubTitle")}{ficha.jornada ? ` · ${/^\d+$/.test(String(ficha.jornada)) ? "J" + ficha.jornada : ficha.jornada}` : ""}
+              </div>
+              <div className="font-display text-xl sm:text-2xl font-semibold leading-tight" style={{ color: C.chalk }}>
+                {ficha.local || "—"} <span style={{ color: C.dim }}>·</span> {ficha.visitante || "—"}
+              </div>
+              <div className="text-[13px] mt-1" style={{ color: C.dim }}>
+                {fechaLegible(ficha.fecha, lang) || ficha.fecha}{ficha.hora ? ` · ${ficha.hora}` : ""}
+                {ficha.lugar ? ` · ${ficha.lugar}` : ""}
+              </div>
+              <div className="text-[12px] mt-2 pt-2 border-t" style={{ borderColor: C.line, color: C.dim }}>
+                {ficha.club}{ficha.equipo ? ` · ${ficha.equipo}` : ""}
+              </div>
+            </div>
+
+            <div className="rounded-xl border p-4" style={{ borderColor: C.line, background: C.panel }}>
+              <div className="font-display uppercase tracking-wide text-sm mb-3" style={{ color: C.chalk }}>
+                ⚽ {tt("fr.pubEleven")}{ficha.sistema ? ` · ${ficha.sistema}` : ""}
+              </div>
+              {(!ficha.once || ficha.once.length === 0) ? (
+                <div className="text-sm" style={{ color: C.dim }}>{tt("fr.pubNoEleven")}</div>
+              ) : (
+                <div className="space-y-1.5">
+                  {ficha.once.map((j, i) => <Fila key={`o${i}`} j={j} extra={j.s} />)}
+                </div>
+              )}
+            </div>
+
+            <div className="rounded-xl border p-4" style={{ borderColor: C.line, background: C.panel }}>
+              <div className="font-display uppercase tracking-wide text-sm mb-3" style={{ color: C.chalk }}>
+                📋 {tt("fr.pubCalled")} · {(ficha.convocados || []).length}
+              </div>
+              <div className="space-y-1.5">
+                {(ficha.convocados || []).map((j, i) => <Fila key={`c${i}`} j={j} />)}
+              </div>
+            </div>
+
+            <div className="text-[11px] leading-relaxed px-1" style={{ color: C.dim }}>
+              {tt("fr.pubNote")}
+              {ficha.publicada && <> {tt("fr.pubOn")} {fechaLegible(String(ficha.publicada).slice(0, 10), lang)}.</>}
+            </div>
+          </>
+        )}
+        <div className="text-center pt-2 pb-8">
+          {/* inline-block + py-3: como enlace de texto medía 13 px de alto y no
+              había manera de acertarle con el dedo. */}
+          <a href="/" className="inline-block px-4 py-3 text-[11px] font-display uppercase tracking-wide" style={{ color: AC }}>{tt("fr.pubBack")} ↗</a>
+        </div>
+      </main>
+    </div>
+  );
+}
+
 function Splash({ lang }) {
   return (
     <div className="font-body min-h-screen flex flex-col items-center justify-center p-6" style={{ background: C.bg, color: C.chalk }}>
@@ -8004,6 +8266,13 @@ const AdBanner = () => {
 export default function App() {
   const [session, setSession] = useState(null);
   const [booting, setBooting] = useState(true);
+  /* Código del enlace de la ficha para el rival, si se ha entrado por ahí.
+     Se lee una vez al montar y no cambia: es una pantalla sin sesión y sin
+     navegación, no una pestaña más de la app. */
+  const [fichaTok] = useState(() => {
+    try { return new URLSearchParams(window.location.search).get("ficha") || ""; }
+    catch { return ""; }
+  });
   useEffect(() => {
     try {
       const raw = localStorage.getItem("cb_session_v1");
@@ -9198,6 +9467,76 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
     if (csvReplace) { setLineup({}); setCalled(new Set()); }
     setCsvMsg(`${nuevos.length} jugadores ${csvReplace ? "cargados (plantilla reemplazada)" : "añadidos"}.`);
     setCsvText("");
+  };
+
+  /* ---- Ficha para el equipo rival ----
+     Se comparte de UN partido, no de la temporada: por eso hay que saber a qué
+     partido del calendario corresponde esta convocatoria. Se busca por fecha
+     —que es lo que el entrenador rellena— y, si no cuadra ninguna, se cae al
+     siguiente partido, que es el caso normal. */
+  const [rivalMsg, setRivalMsg] = useState("");
+  const [rivalBusy, setRivalBusy] = useState(false);
+  const [rivalToken, setRivalToken] = useState("");
+  const [rivalCopiada, setRivalCopiada] = useState(false);
+  const partidoDeLaConvocatoria = (() => {
+    /* Los avisos del calendario (inicio de pretemporada, parón…) no son
+       partidos y no tienen rival al que mandarle nada: se descartan. Sin esto
+       la ficha se ofrecía para "Inicio de la pretemporada". */
+    const jugables = fixtures.filter((f) => String(f.j || "").trim().toUpperCase() !== "PT");
+    const porFecha = matchInfo.fecha && jugables.find((f) => f.date === matchInfo.fecha);
+    if (porFecha) return porFecha;
+    const hoy = hoyISO();
+    return [...jugables].filter((f) => f.date >= hoy).sort((a, b) => (a.date < b.date ? -1 : 1))[0] || null;
+  })();
+  const enlaceFicha = (tk) => `${window.location.origin}/?ficha=${tk}`;
+  const copiarEnlaceFicha = async () => {
+    if (!rivalToken) return;
+    try {
+      await navigator.clipboard.writeText(enlaceFicha(rivalToken));
+      setRivalCopiada(true); setTimeout(() => setRivalCopiada(false), 2500);
+    } catch { /* sin portapapeles: queda el enlace escrito a la vista */ }
+  };
+  const compartirFicha = async () => {
+    const fx = partidoDeLaConvocatoria;
+    if (!fx || rivalBusy) return;
+    if (!fx.rec) { setRivalMsg(t("fr.noCloud")); return; }
+    const convocados = players.filter((p) => called.has(p.id));
+    if (!convocados.length) { setRivalMsg(t("fr.needCalled")); return; }
+    setRivalBusy(true); setRivalMsg("");
+    /* Solo tres cosas por jugador. La lista de lo que sale la vuelve a filtrar
+       el backend, pero tampoco se manda de más desde aquí. */
+    const jug = (p, extra = {}) => ({ d: p.d, n: p.n, p: p.pos, ...extra });
+    const once = Object.entries(lineup)
+      .map(([slot, dorsal]) => {
+        const p = players.find((x) => x.d === dorsal);
+        return p ? jug(p, { s: slotPos[slot]?.label || slot }) : null;
+      })
+      .filter(Boolean);
+    const out = await airFichaPublicar(fx.rec, {
+      club: session.club, equipo: session.team?.name,
+      fecha: fx.date, hora: fx.time, jornada: fx.j,
+      local: fx.home, visitante: fx.away, lugar: fx.place,
+      sistema: sysCode,
+      convocados: convocados.sort((a, b) => a.d - b.d).map((p) => jug(p)),
+      once,
+    });
+    setRivalBusy(false);
+    if (!out?.ok) { setRivalMsg(t("fr.fail")); return; }
+    const yaEstaba = !!rivalToken;
+    setRivalToken(out.token);
+    setRivalMsg(yaEstaba ? t("fr.updated") : t("fr.done"));
+    setTimeout(() => setRivalMsg(""), 6000);
+  };
+  const retirarFicha = async () => {
+    const fx = partidoDeLaConvocatoria;
+    if (!fx?.rec || rivalBusy) return;
+    setRivalBusy(true); setRivalMsg("");
+    const ok = await airFichaRetirar(fx.rec);
+    setRivalBusy(false);
+    if (!ok) { setRivalMsg(t("fr.fail")); return; }
+    setRivalToken("");
+    setRivalMsg(t("fr.gone"));
+    setTimeout(() => setRivalMsg(""), 6000);
   };
 
   const waText = () => {
@@ -13948,6 +14287,58 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
               {callMsg && <div className="text-xs mt-2" style={{ color: C.green }}>{callMsg}</div>}
             </div>
           )}
+
+          {/* Ficha para el rival. Va aquí, debajo del mensaje de la
+              convocatoria, porque es el otro sitio al que se manda la misma
+              lista: uno a las familias y otro al equipo contrario. */}
+          {editable && (
+            <div className="mt-4 pt-4 border-t" style={{ borderColor: C.line }}>
+              <div className="font-display uppercase tracking-wide text-sm mb-1" style={{ color: C.chalk }}>🤝 {t("fr.title")}</div>
+              <div className="text-[11px] mb-3 leading-relaxed" style={{ color: C.dim }}>{t("fr.hint")}</div>
+              {!partidoDeLaConvocatoria ? (
+                <div className="text-[12px]" style={{ color: C.warn }}>{t("fr.noMatch")}</div>
+              ) : (
+                <>
+                  <div className="text-[12px] mb-3" style={{ color: C.dim }}>
+                    {t("fr.match")} <strong style={{ color: C.chalk }}>
+                      {partidoDeLaConvocatoria.home || "—"} · {partidoDeLaConvocatoria.away || "—"}
+                    </strong>
+                    {partidoDeLaConvocatoria.date && <> · {fechaCorta(partidoDeLaConvocatoria.date, lang)}</>}
+                  </div>
+                  {rivalToken && (
+                    <div className="rounded-lg border p-3 mb-3" style={{ borderColor: C.green, background: C.panel2 }}>
+                      <div className="text-[11px] mb-1" style={{ color: C.green }}>✓ {t("fr.live")}</div>
+                      <div className="text-[11px] break-all mb-2" style={{ color: C.dim }}>{enlaceFicha(rivalToken)}</div>
+                      <div className="flex flex-wrap gap-2">
+                        <button onClick={copiarEnlaceFicha}
+                          className="text-xs px-3 py-2 rounded-lg border font-display uppercase tracking-wide"
+                          style={{ borderColor: C.line, color: rivalCopiada ? C.green : C.chalk }}>
+                          {rivalCopiada ? t("fr.copied") : t("fr.copy")}
+                        </button>
+                        <a href={`https://wa.me/?text=${encodeURIComponent(enlaceFicha(rivalToken))}`} target="_blank" rel="noreferrer"
+                          className="text-xs px-3 py-2 rounded-lg border font-display uppercase tracking-wide"
+                          style={{ borderColor: C.line, color: C.chalk }}>{t("tr.whatsapp")}</a>
+                      </div>
+                      <div className="text-[11px] mt-2 leading-relaxed" style={{ color: C.dim }}>{t("fr.frozen")}</div>
+                    </div>
+                  )}
+                  <div className="flex flex-wrap gap-2">
+                    <button onClick={compartirFicha} disabled={rivalBusy}
+                      className="font-display uppercase tracking-wide text-sm px-4 py-2.5 rounded-lg font-semibold disabled:opacity-50"
+                      style={{ background: AC, color: C.sobre }}>
+                      {rivalBusy ? t("a.sending") : (rivalToken ? t("fr.reshare") : t("fr.share"))}
+                    </button>
+                    {rivalToken && (
+                      <button onClick={retirarFicha} disabled={rivalBusy}
+                        className="text-sm px-4 py-2.5 rounded-lg border font-display uppercase tracking-wide disabled:opacity-50"
+                        style={{ borderColor: "#b4474a", color: "#b4474a" }}>{t("fr.withdraw")}</button>
+                    )}
+                  </div>
+                  {rivalMsg && <div className="text-xs mt-2" style={{ color: rivalMsg.startsWith("✓") ? C.green : C.warn }}>{rivalMsg}</div>}
+                </>
+              )}
+            </div>
+          )}
         </Card>
       </div>
     );
@@ -16264,6 +16655,12 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
     return { ok: true, pending: String(res.estado || "").toLowerCase() !== "activo" };
   };
 
+  /* ---- La única pantalla de la app sin cuenta ----
+     El delegado del equipo rival abre el enlace y ve la ficha del partido. No
+     se le pide registrarse: no es usuario de COACHBASE ni tiene por qué serlo,
+     y lo que hay detrás es lo mismo que se entrega en el acta. Va antes que
+     todo lo demás —incluido el splash— porque no depende de sesión ninguna. */
+  if (fichaTok) return <FichaRival token={fichaTok} lang={lang} tema={tema} cambiarTema={cambiarTema} />;
   if (booting) return <Splash lang={lang} />;
   /* Botón flotante de accesibilidad, solo en móvil: zoom de la web y brillo
      de la pantalla, para quien necesita letra más grande o menos luz sin
