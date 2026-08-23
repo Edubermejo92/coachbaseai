@@ -49,5 +49,23 @@ dice("ni el propio club reparte el rol Club", r.body.reason==="rol_no_permitido"
 r=await call("",{method:"POST",body:{action:"register",name:"Fundador",email:"fun@nuevo.com",password:"coach1234",plan:"club",club:"C.D. Nuevo",comunidad:"Comunidad de Madrid",team:{name:"Infantil A",cat:"infantil"}}});
 dice("quien funda un club entra como Club", r.body.rol==="Club", r.body.rol||JSON.stringify(r.body).slice(0,80));
 
+/* ---- Contraseña inicial al dar de alta ---- */
+r=await call("",{method:"POST",token:tClub,body:{action:"createUser",name:"Sin Clave",email:"sinclave@a.com",rol:"Entrenador principal",clubRec:"recCLUBA",teamRec:"recIB"}});
+const sinClave=fake.db[T.USUARIOS].find(u=>u.fields.fldJWlJ17YuZNe4Jx==="sinclave@a.com");
+dice("sin contraseña, la ficha queda Pendiente y sin clave",
+  r.body.activa===false && sinClave.fields.fldEkbPe6UgCx0Lfy==="Pendiente" && !sinClave.fields.fldVX372lPNj7Bab8);
+
+r=await call("",{method:"POST",token:tClub,body:{action:"createUser",name:"Con Clave",email:"conclave@a.com",rol:"Entrenador principal",clubRec:"recCLUBA",teamRec:"recIB",password:"ab"}});
+dice("una contraseña de dos letras se rechaza", r.body.reason==="pass_corta", r.body.reason||"");
+
+r=await call("",{method:"POST",token:tClub,body:{action:"createUser",name:"Con Clave",email:"conclave@a.com",rol:"Entrenador principal",clubRec:"recCLUBA",teamRec:"recIB",password:"chv12345"}});
+const conClave=fake.db[T.USUARIOS].find(u=>u.fields.fldJWlJ17YuZNe4Jx==="conclave@a.com");
+dice("con contraseña, la ficha entra ya Activa", r.body.activa===true && conClave.fields.fldEkbPe6UgCx0Lfy==="Activo");
+dice("y la contraseña se guarda cifrada, no en claro",
+  String(conClave.fields.fldVX372lPNj7Bab8||"").startsWith("pbkdf2$") && !String(conClave.fields.fldVX372lPNj7Bab8||"").includes("chv12345"),
+  String(conClave.fields.fldVX372lPNj7Bab8||"").slice(0,22));
+const tNuevo=await login("conclave@a.com","chv12345");
+dice("y esa persona puede iniciar sesión al momento", !!tNuevo);
+
 console.log(`\n${ok} correctas · ${mal} fallos`);
 process.exit(mal?1:0);

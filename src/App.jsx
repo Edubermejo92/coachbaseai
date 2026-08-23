@@ -262,6 +262,13 @@ const DICT = {
     "cat.current": "Tu categoría actual",
     "u.teamLabel": "Categoría a la que entra",
     "u.newTeamShort": "Categoría",
+    "u.passPh": "Contraseña inicial (opcional)",
+    "u.passLabel": "Contraseña inicial, opcional",
+    "u.passShort": "La contraseña inicial es demasiado corta. Ponle al menos 4 caracteres, o déjala en blanco.",
+    "u.createdActive": "✓ {n} dado de alta y ya puede entrar con {e} y la contraseña que le has puesto. Dile que la cambie desde Mi cuenta.",
+    "u.createdPending": "✓ {n} dado de alta. Dile que entre en «Es mi primera vez» con {e} y elija ahí su contraseña.",
+    "u.roleNotAllowed": "Tu rol no puede repartir ese nivel.",
+    "u.clubUnique": "Este club ya tiene su cuenta de club. Solo puede haber una.",
     "u.newTeam": "Crear categoría nueva…",
     "u.newTeamHint": "Se crea dentro de tu club y la persona entra directamente en ella. Tú te quedas en la tuya.",
     "u.newTeamLevel": "Nivel de la categoría",
@@ -743,6 +750,13 @@ const DICT = {
     "cat.current": "Your current age group",
     "u.teamLabel": "Age group they join",
     "u.newTeamShort": "Age group",
+    "u.passPh": "Initial password (optional)",
+    "u.passLabel": "Initial password, optional",
+    "u.passShort": "The initial password is too short. Give it at least 4 characters, or leave it blank.",
+    "u.createdActive": "✓ {n} registered and can sign in right away with {e} and the password you set. Tell them to change it from My account.",
+    "u.createdPending": "✓ {n} registered. Tell them to use \u201cIt's my first time\u201d with {e} and choose their password there.",
+    "u.roleNotAllowed": "Your role can't hand out that level.",
+    "u.clubUnique": "This club already has its club account. There can only be one.",
     "u.newTeam": "Create a new age group…",
     "u.newTeamHint": "It is created inside your club and the person joins it directly. You stay in yours.",
     "u.newTeamLevel": "Age group level",
@@ -1241,6 +1255,13 @@ const DICT = {
     "cat.current": "Your current age group",
     "u.teamLabel": "Age group they join",
     "u.newTeamShort": "Age group",
+    "u.passPh": "Initial password (optional)",
+    "u.passLabel": "Initial password, optional",
+    "u.passShort": "The initial password is too short. Give it at least 4 characters, or leave it blank.",
+    "u.createdActive": "✓ {n} registered and can sign in right away with {e} and the password you set. Tell them to change it from My account.",
+    "u.createdPending": "✓ {n} registered. Tell them to use \u201cIt's my first time\u201d with {e} and choose their password there.",
+    "u.roleNotAllowed": "Your role can't hand out that level.",
+    "u.clubUnique": "This club already has its club account. There can only be one.",
     "u.newTeam": "Create a new age group…",
     "u.newTeamHint": "It is created inside your club and the person joins it directly. You stay in yours.",
     "u.newTeamLevel": "Age group level",
@@ -1812,6 +1833,13 @@ const DICT = {
     "cat.current": "Your current age group",
     "u.teamLabel": "Age group they join",
     "u.newTeamShort": "Age group",
+    "u.passPh": "Initial password (optional)",
+    "u.passLabel": "Initial password, optional",
+    "u.passShort": "The initial password is too short. Give it at least 4 characters, or leave it blank.",
+    "u.createdActive": "✓ {n} registered and can sign in right away with {e} and the password you set. Tell them to change it from My account.",
+    "u.createdPending": "✓ {n} registered. Tell them to use \u201cIt's my first time\u201d with {e} and choose their password there.",
+    "u.roleNotAllowed": "Your role can't hand out that level.",
+    "u.clubUnique": "This club already has its club account. There can only be one.",
     "u.newTeam": "Create a new age group…",
     "u.newTeamHint": "It is created inside your club and the person joins it directly. You stay in yours.",
     "u.newTeamLevel": "Age group level",
@@ -2382,6 +2410,13 @@ const DICT = {
     "cat.current": "Tu categoría actual",
     "u.teamLabel": "Categoría a la que entra",
     "u.newTeamShort": "Categoría",
+    "u.passPh": "Contraseña inicial (opcional)",
+    "u.passLabel": "Contraseña inicial, opcional",
+    "u.passShort": "La contraseña inicial es demasiado corta. Ponle al menos 4 caracteres, o déjala en blanco.",
+    "u.createdActive": "✓ {n} dado de alta y ya puede entrar con {e} y la contraseña que le has puesto. Dile que la cambie desde Mi cuenta.",
+    "u.createdPending": "✓ {n} dado de alta. Dile que entre en «Es mi primera vez» con {e} y elija ahí su contraseña.",
+    "u.roleNotAllowed": "Tu rol no puede repartir ese nivel.",
+    "u.clubUnique": "Este club ya tiene su cuenta de club. Solo puede haber una.",
     "u.newTeam": "Crear categoría nueva…",
     "u.newTeamHint": "Se crea dentro de tu club y la persona entra directamente en ella. Tú te quedas en la tuya.",
     "u.newTeamLevel": "Nivel de la categoría",
@@ -9067,7 +9102,7 @@ ACTA:\n${evTxt}`;
      que hay que decirlo en vez de dejar la app medio muerta. */
   const [authMsg, setAuthMsg] = useState("");
   /* Alta de cuerpo técnico por el club (director deportivo o Master) */
-  const [nu, setNu] = useState({ name: "", email: "", role: "entrenador", team: "" });
+  const [nu, setNu] = useState({ name: "", email: "", role: "entrenador", team: "", pass: "" });
   const [nuBusy, setNuBusy] = useState(false);
   /* Alta de una categoría desde el propio formulario de dar de alta. Un club
      con tres categorías tenía que meter a todo el mundo en la suya: el equipo
@@ -13711,12 +13746,23 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
           <div className="rounded-lg border p-3 mb-4" style={{ borderColor: AC, background: C.panel2 }}>
             <div className="font-display uppercase tracking-wide text-sm mb-1" style={{ color: AC }}>+ Dar de alta a alguien</div>
             <div className="text-[11px] mb-3" style={{ color: C.dim }}>
-              Nadie puede meterse solo en un equipo oficial. Créale la ficha aquí y dile que se registre en la app con <strong>este mismo correo</strong>: al hacerlo elegirá su contraseña y entrará con el rol y el equipo que le pongas.
+              Nadie puede meterse solo en un equipo oficial: la ficha se crea aquí, con su rol y su categoría.
+              <strong> Si dejas la contraseña en blanco</strong>, la elige esa persona la primera vez que entre, con este mismo correo — es lo más seguro, porque no la sabe nadie más.
+              <strong> Si le pones una</strong>, puede entrar al momento; dile que la cambie desde Mi cuenta.
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
               <input value={nu.name} onChange={(e) => setNu({ ...nu, name: e.target.value })} placeholder="Nombre y apellidos"
                 className="px-3 py-2 rounded-lg border bg-transparent" style={{ borderColor: C.line, color: C.chalk }} />
               <input value={nu.email} onChange={(e) => setNu({ ...nu, email: e.target.value })} placeholder="correo@ejemplo.com" type="email"
+                className="px-3 py-2 rounded-lg border bg-transparent" style={{ borderColor: C.line, color: C.chalk }} />
+              {/* Contraseña inicial, opcional. Lo normal y lo más seguro es
+                  dejarla en blanco: la elige la propia persona en su primera
+                  entrada y nadie más la conoce nunca. Pero eso obliga a que
+                  esté delante, y no siempre lo está —la cuenta del club, o
+                  alguien que no maneja el correo—. Con una escrita aquí, entra
+                  al momento. */}
+              <input value={nu.pass} onChange={(e) => setNu({ ...nu, pass: e.target.value })}
+                placeholder={t("u.passPh")} aria-label={t("u.passLabel")} type="text" autoComplete="off"
                 className="px-3 py-2 rounded-lg border bg-transparent" style={{ borderColor: C.line, color: C.chalk }} />
               <select value={nu.role} onChange={(e) => setNu({ ...nu, role: e.target.value })}
                 className="px-3 py-2 rounded-lg border" style={{ background: C.panel, borderColor: C.line, color: C.chalk }}>
@@ -13761,15 +13807,26 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                 const out = await airUserCreate({
                   name: nu.name.trim(), email: nu.email.trim(), rol: ROL2LABEL[nu.role] || "Entrenador principal",
                   clubRec: clubInfo.rec || undefined, teamRec: catElegida || undefined,
+                  password: nu.pass.trim() || undefined,
                 });
                 setNuBusy(false);
-                if (out?.ok) { setNuMsg(`✓ ${nu.name.trim()} dado de alta. Dile que se registre con ${nu.email.trim()}.`);
-                  setUsers((us) => [...us, { id: out.rec, name: nu.name.trim(), email: nu.email.trim(), role: nu.role, status: "pendiente" }]);
-                  setNu({ name: "", email: "", role: "entrenador", team: nu.team }); }
+                if (out?.ok) {
+                  /* El mensaje cambia según cómo haya quedado la ficha: con
+                     contraseña puesta puede entrar ya, sin ella tiene que
+                     pasar por "Primera entrada" para elegirla. Decir siempre
+                     lo mismo mandaba a la gente al sitio equivocado. */
+                  setNuMsg(out.activa
+                    ? t("u.createdActive").replace("{n}", nu.name.trim()).replace("{e}", nu.email.trim())
+                    : t("u.createdPending").replace("{n}", nu.name.trim()).replace("{e}", nu.email.trim()));
+                  setUsers((us) => [...us, { id: out.rec, name: nu.name.trim(), email: nu.email.trim(), role: nu.role, status: out.activa ? "activo" : "pendiente" }]);
+                  setNu({ name: "", email: "", role: "entrenador", team: nu.team, pass: "" }); }
                 else if (out?.reason === "exists") setNuMsg("Ese correo ya tiene ficha.");
                 else if (out?.reason === "limite_alcanzado") setNuMsg(`Este club ya tiene ${out.ocupadas}/${out.limite} plazas ocupadas. Sube el límite en "Gestionar club" o libera una plaza.`);
                 else if (out?.reason === "director_unico") setNuMsg("Este club ya tiene un director deportivo. Solo puede haber uno; para cambiarlo, primero hay que dar de baja al actual.");
                 else if (out?.reason === "no_autorizado") setNuMsg("Tu rol no puede dar de alta usuarios.");
+                else if (out?.reason === "pass_corta") setNuMsg(t("u.passShort"));
+                else if (out?.reason === "rol_no_permitido") setNuMsg(t("u.roleNotAllowed"));
+                else if (out?.reason === "club_unico") setNuMsg(t("u.clubUnique"));
                 else setNuMsg("No se pudo crear. Revisa la conexión.");
               }} className="px-3 py-2 rounded-lg font-display uppercase tracking-wide font-semibold text-sm disabled:opacity-40"
                 style={{ background: AC, color: C.sobre }}>{nuBusy ? "Creando…" : "Dar de alta"}</button>

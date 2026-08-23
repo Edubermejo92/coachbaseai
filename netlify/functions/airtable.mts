@@ -1966,14 +1966,26 @@ export default async (req: Request) => {
            principal — mismo criterio que "pedido" arriba. */
         const extrasPedidos = (Array.isArray(b.rolesExtra) ? b.rolesExtra : [])
           .map((x: unknown) => rolKey(x)).filter((k: string) => puede.includes(k) && k !== pedido);
+        /* Contraseña inicial, opcional. Por defecto la ficha se crea SIN
+           contraseña y la elige la propia persona en su primera entrada, que
+           es lo mejor: nadie más la conoce nunca. Pero eso obliga a que la
+           persona esté delante, y hay casos en los que no lo está —dar de alta
+           la cuenta del club, o a alguien que no maneja el correo—. Cuando se
+           manda una, la ficha entra ya Activa y esa persona puede iniciar
+           sesión de inmediato.
+           Se guarda con el mismo hash que el resto (PBKDF2, sal propia): ni
+           siquiera queda legible para quien la ha puesto. */
+        const inicial = String(b.password || "");
+        if (inicial && inicial.length < 4) return j({ ok: false, reason: "pass_corta" }, 400);
         const d = await create(T_USUARIOS, {
           [U.nombre]: b.name, [U.email]: email, [U.rol]: b.rol || "Entrenador principal",
-          [U.estado]: "Pendiente", [U.plan]: "Oficial", [U.prueba]: fechaTrial30(),
+          [U.estado]: inicial ? "Activo" : "Pendiente", [U.plan]: "Oficial", [U.prueba]: fechaTrial30(),
+          ...(inicial ? { [U.pass]: await hashPassword(inicial) } : {}),
           ...(b.clubRec ? { [U.club]: [b.clubRec] } : {}),
           ...(b.teamRec ? { [U.equipo]: [b.teamRec] } : {}),
           ...(extrasPedidos.length ? { [U.rolesExtra]: extrasPedidos.map((k: string) => ROL_LABEL[k]) } : {}),
         });
-        return j({ ok: !!d?.id, rec: d?.id }, d?.id ? 200 : 400);
+        return j({ ok: !!d?.id, rec: d?.id, activa: !!inicial }, d?.id ? 200 : 400);
       }
 
       /* ================= ADMINISTRACIÓN DE CLUB (solo Master) =================

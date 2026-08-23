@@ -54,8 +54,8 @@ const hashDe = async (pw) => {
 const pw = await hashDe("coach1234");
 for (const u of fake.db[T.USUARIOS]) u.fields["fldVX372lPNj7Bab8"] = pw;
 
-const login = async (email) => {
-  const r = await handler(new Request("https://x/api", { method:"POST", headers:{"content-type":"application/json"}, body: JSON.stringify({ action:"login", email, password:"coach1234" }) }));
+const login = async (email, password = "coach1234") => {
+  const r = await handler(new Request("https://x/api", { method:"POST", headers:{"content-type":"application/json"}, body: JSON.stringify({ action:"login", email, password }) }));
   const d = await r.json();
   return d.token;
 };
