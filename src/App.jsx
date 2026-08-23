@@ -260,6 +260,13 @@ const DICT = {
     "mt2.sanBtn": "Sanción",
     "mt2.sanNone": "Sin sanciones",
     "cat.current": "Tu categoría actual",
+    "u.newTeam": "Crear categoría nueva…",
+    "u.newTeamHint": "Se crea dentro de tu club y la persona entra directamente en ella. Tú te quedas en la tuya.",
+    "u.newTeamLevel": "Nivel de la categoría",
+    "u.newTeamOk": "✓ Categoría «{n}» creada. Ya está elegida para el alta.",
+    "u.newTeamReused": "✓ «{n}» ya existía en tu club. Ya está elegida para el alta.",
+    "u.newTeamFail": "No se pudo crear la categoría. Revisa la conexión.",
+    "u.newTeamNoClub": "Tu ficha todavía no tiene club, así que no hay dónde colgar la categoría.",
     "cat.title": "Categorías del club",
     "cat.hint": "Todas las categorías dadas de alta. Eliminar una borra también sus jugadores, partidos, convocatorias, entrenamientos, partes e incidencias. No se puede deshacer.",
     "cat.none": "Este club todavía no tiene categorías.",
@@ -706,6 +713,13 @@ const DICT = {
     "mt2.sanBtn": "Sanction",
     "mt2.sanNone": "No sanctions",
     "cat.current": "Your current age group",
+    "u.newTeam": "Create a new age group…",
+    "u.newTeamHint": "It is created inside your club and the person joins it directly. You stay in yours.",
+    "u.newTeamLevel": "Age group level",
+    "u.newTeamOk": "✓ Age group \u201c{n}\u201d created. It is already selected for this account.",
+    "u.newTeamReused": "✓ \u201c{n}\u201d already existed in your club. It is already selected for this account.",
+    "u.newTeamFail": "Couldn't create the age group. Check your connection.",
+    "u.newTeamNoClub": "Your profile has no club yet, so there is nowhere to put the age group.",
     "cat.title": "Club age groups",
     "cat.hint": "Every age group on file. Deleting one also deletes its players, fixtures, squad lists, sessions, kit reports and incidents. This cannot be undone.",
     "cat.none": "This club has no age groups yet.",
@@ -1169,6 +1183,13 @@ const DICT = {
     "mt2.sanBtn": "Sanction",
     "mt2.sanNone": "No sanctions",
     "cat.current": "Your current age group",
+    "u.newTeam": "Create a new age group…",
+    "u.newTeamHint": "It is created inside your club and the person joins it directly. You stay in yours.",
+    "u.newTeamLevel": "Age group level",
+    "u.newTeamOk": "✓ Age group \u201c{n}\u201d created. It is already selected for this account.",
+    "u.newTeamReused": "✓ \u201c{n}\u201d already existed in your club. It is already selected for this account.",
+    "u.newTeamFail": "Couldn't create the age group. Check your connection.",
+    "u.newTeamNoClub": "Your profile has no club yet, so there is nowhere to put the age group.",
     "cat.title": "Club age groups",
     "cat.hint": "Every age group on file. Deleting one also deletes its players, fixtures, squad lists, sessions, kit reports and incidents. This cannot be undone.",
     "cat.none": "This club has no age groups yet.",
@@ -1705,6 +1726,13 @@ const DICT = {
     "mt2.sanBtn": "Sanction",
     "mt2.sanNone": "No sanctions",
     "cat.current": "Your current age group",
+    "u.newTeam": "Create a new age group…",
+    "u.newTeamHint": "It is created inside your club and the person joins it directly. You stay in yours.",
+    "u.newTeamLevel": "Age group level",
+    "u.newTeamOk": "✓ Age group \u201c{n}\u201d created. It is already selected for this account.",
+    "u.newTeamReused": "✓ \u201c{n}\u201d already existed in your club. It is already selected for this account.",
+    "u.newTeamFail": "Couldn't create the age group. Check your connection.",
+    "u.newTeamNoClub": "Your profile has no club yet, so there is nowhere to put the age group.",
     "cat.title": "Club age groups",
     "cat.hint": "Every age group on file. Deleting one also deletes its players, fixtures, squad lists, sessions, kit reports and incidents. This cannot be undone.",
     "cat.none": "This club has no age groups yet.",
@@ -2240,6 +2268,13 @@ const DICT = {
     "mt2.sanBtn": "Sanción",
     "mt2.sanNone": "Sin sanciones",
     "cat.current": "Tu categoría actual",
+    "u.newTeam": "Crear categoría nueva…",
+    "u.newTeamHint": "Se crea dentro de tu club y la persona entra directamente en ella. Tú te quedas en la tuya.",
+    "u.newTeamLevel": "Nivel de la categoría",
+    "u.newTeamOk": "✓ Categoría «{n}» creada. Ya está elegida para el alta.",
+    "u.newTeamReused": "✓ «{n}» ya existía en tu club. Ya está elegida para el alta.",
+    "u.newTeamFail": "No se pudo crear la categoría. Revisa la conexión.",
+    "u.newTeamNoClub": "Tu ficha todavía no tiene club, así que no hay dónde colgar la categoría.",
     "cat.title": "Categorías del club",
     "cat.hint": "Todas las categorías dadas de alta. Eliminar una borra también sus jugadores, partidos, convocatorias, entrenamientos, partes e incidencias. No se puede deshacer.",
     "cat.none": "Este club todavía no tiene categorías.",
@@ -3640,7 +3675,12 @@ const airChangePass = (current, next) => airPost({ action: "changePassword", cur
    darse de baja. Las tres devuelven token nuevo o borran la sesión, así que
    quien las llama tiene que refrescar lo que corresponda. */
 const airCambiarEquipo = (teamRec) => airPost({ action: "cambiarEquipo", teamRec });
-const airCrearEquipo = (nombre, categoria, formato) => airPost({ action: "crearEquipo", nombre, categoria, formato });
+/* `quedarme` la crea sin mover de categoría a quien la pide: desde "Mi cuenta"
+   crear una categoría significa pasarse a ella, pero desde "Dar de alta a
+   alguien" la crea el club para meter a otro y moverse él sería un efecto
+   secundario que nadie ha pedido. */
+const airCrearEquipo = (nombre, categoria, formato, quedarme = false) =>
+  airPost({ action: "crearEquipo", nombre, categoria, formato, quedarme });
 const airBorrarmeCuenta = (password) => airPost({ action: "borrarmeCuenta", password });
 /* Clubs: los crea y los borra solo el Master. Un club es el nivel de arriba
    (el Chamartín Vergara); sus categorías —Juvenil A, Infantil B— cuelgan de él
@@ -8727,8 +8767,36 @@ ACTA:\n${evTxt}`;
      que hay que decirlo en vez de dejar la app medio muerta. */
   const [authMsg, setAuthMsg] = useState("");
   /* Alta de cuerpo técnico por el club (director deportivo o Master) */
-  const [nu, setNu] = useState({ name: "", email: "", role: "entrenador" });
+  const [nu, setNu] = useState({ name: "", email: "", role: "entrenador", team: "" });
   const [nuBusy, setNuBusy] = useState(false);
+  /* Alta de una categoría desde el propio formulario de dar de alta. Un club
+     con tres categorías tenía que meter a todo el mundo en la suya: el equipo
+     iba fijo al de quien daba el alta, sin manera de elegir, y si la categoría
+     todavía no existía no había forma de crearla sin salir de aquí. */
+  const [nuCatNueva, setNuCatNueva] = useState(false);
+  const [nuCatNombre, setNuCatNombre] = useState("");
+  const [nuCatNivel, setNuCatNivel] = useState("infantil");
+  const [nuCatBusy, setNuCatBusy] = useState(false);
+  const crearCategoriaAlta = async () => {
+    const nombre = nuCatNombre.trim();
+    if (!nombre || nuCatBusy) return;
+    setNuCatBusy(true); setNuMsg("");
+    const nivel = CATEGORIAS.find((c) => c.k === nuCatNivel);
+    /* `true` = quedarme: la categoría se crea para meter a otra persona, así
+       que a quien la crea no se le mueve de la suya. */
+    const out = await airCrearEquipo(nombre, nivel?.label, nivel?.f7 ? "Fútbol 7" : "Fútbol 11", true);
+    setNuCatBusy(false);
+    if (!out?.ok) {
+      setNuMsg(out?.reason === "sin_club" ? t("u.newTeamNoClub") : t("u.newTeamFail"));
+      return;
+    }
+    setEquiposApp((xs) => (xs.some((x) => x.rec === out.rec)
+      ? xs
+      : [...xs, { rec: out.rec, id: out.rec, name: nombre, club: session?.club || "" }]));
+    setNu((x) => ({ ...x, team: out.rec }));
+    setNuCatNueva(false); setNuCatNombre("");
+    setNuMsg(out.reutilizado ? t("u.newTeamReused").replace("{n}", nombre) : t("u.newTeamOk").replace("{n}", nombre));
+  };
   const [nuMsg, setNuMsg] = useState("");
   /* Subida del escudo del club (una vez, aplicado a todos sus equipos) */
   const [clubCrestBusy, setClubCrestBusy] = useState(null);
@@ -13228,6 +13296,17 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
   );
 
   const renderUsers = () => {
+    /* Las categorías del club de quien da el alta. Salen de la lista de equipos
+       que la app ya carga (equiposApp), no de una llamada nueva. Se calculan
+       aquí dentro y no en el cuerpo del componente porque equiposApp se declara
+       más abajo: leerlo antes reventaría en la primera pintada. El Master las
+       ve todas: administra clubes ajenos. */
+    const catsDelClub = (equiposApp || [])
+      .filter((e) => session?.role === "master" || !session?.club || igualTexto(e.club, session?.club))
+      .sort((a, b) => String(a.name || "").localeCompare(String(b.name || "")));
+    /* Crear una categoría es de la dirección del club. Un entrenador da de alta
+       a su segundo, pero no monta categorías nuevas. */
+    const puedeCrearCat = ["director", "master"].includes(session?.role) && !esDemo;
     const grant = can("grantAccess");
     /* Los roles que ESTE usuario puede repartir. El entrenador monta su
        cuerpo técnico (segundo, delegado, familias) pero no nombra directores,
@@ -13258,16 +13337,34 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                 className="px-3 py-2 rounded-lg border" style={{ background: C.panel, borderColor: C.line, color: C.chalk }}>
                 {misRoles.map((k) => <option key={k} value={k}>{rLabel(lang, k)}</option>)}
               </select>
-              <button disabled={!nu.name.trim() || !nu.email.trim() || nuBusy} onClick={async () => {
+              {/* En qué categoría entra. Antes iba fija a la de quien daba el
+                  alta: un club con Infantil, Cadete y Sénior no tenía manera de
+                  meter a nadie en otra que no fuera la suya. La última opción
+                  crea una categoría nueva sin salir de aquí. */}
+              <select value={nuCatNueva ? "__nueva" : (nu.team || session.team?.rec || "")}
+                aria-label={t("u.newTeam")}
+                onChange={(e) => {
+                  const v = e.target.value;
+                  if (v === "__nueva") { setNuCatNueva(true); return; }
+                  setNuCatNueva(false); setNu({ ...nu, team: v });
+                }}
+                className="px-3 py-2 rounded-lg border" style={{ background: C.panel, borderColor: C.line, color: C.chalk }}>
+                {catsDelClub.map((e) => <option key={e.rec} value={e.rec} style={{ background: C.panel }}>{e.name}</option>)}
+                {catsDelClub.length === 0 && session.team?.rec && (
+                  <option value={session.team.rec} style={{ background: C.panel }}>{session.team.name}</option>
+                )}
+                {puedeCrearCat && <option value="__nueva" style={{ background: C.panel }}>➕ {t("u.newTeam")}</option>}
+              </select>
+              <button disabled={!nu.name.trim() || !nu.email.trim() || nuBusy || nuCatNueva} onClick={async () => {
                 setNuBusy(true); setNuMsg("");
                 const out = await airUserCreate({
                   name: nu.name.trim(), email: nu.email.trim(), rol: ROL2LABEL[nu.role] || "Entrenador principal",
-                  clubRec: clubInfo.rec || undefined, teamRec: session.team?.rec || undefined,
+                  clubRec: clubInfo.rec || undefined, teamRec: nu.team || session.team?.rec || undefined,
                 });
                 setNuBusy(false);
                 if (out?.ok) { setNuMsg(`✓ ${nu.name.trim()} dado de alta. Dile que se registre con ${nu.email.trim()}.`);
                   setUsers((us) => [...us, { id: out.rec, name: nu.name.trim(), email: nu.email.trim(), role: nu.role, status: "pendiente" }]);
-                  setNu({ name: "", email: "", role: "entrenador" }); }
+                  setNu({ name: "", email: "", role: "entrenador", team: nu.team }); }
                 else if (out?.reason === "exists") setNuMsg("Ese correo ya tiene ficha.");
                 else if (out?.reason === "limite_alcanzado") setNuMsg(`Este club ya tiene ${out.ocupadas}/${out.limite} plazas ocupadas. Sube el límite en "Gestionar club" o libera una plaza.`);
                 else if (out?.reason === "director_unico") setNuMsg("Este club ya tiene un director deportivo. Solo puede haber uno; para cambiarlo, primero hay que dar de baja al actual.");
@@ -13276,6 +13373,27 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
               }} className="px-3 py-2 rounded-lg font-display uppercase tracking-wide font-semibold text-sm disabled:opacity-40"
                 style={{ background: AC, color: C.sobre }}>{nuBusy ? "Creando…" : "Dar de alta"}</button>
             </div>
+            {nuCatNueva && (
+              <div className="mt-2 pt-2 border-t" style={{ borderColor: C.line }}>
+                <div className="text-[11px] mb-1.5" style={{ color: C.dim }}>{t("u.newTeamHint")}</div>
+                <div className="flex flex-wrap gap-2">
+                  <input value={nuCatNombre} onChange={(e) => setNuCatNombre(e.target.value)}
+                    placeholder={t("p.newTeamPh")} aria-label={t("p.newTeam")}
+                    className="flex-1 min-w-[150px] px-3 py-2 rounded-lg border bg-transparent text-sm"
+                    style={{ borderColor: C.line, color: C.chalk }} />
+                  <select value={nuCatNivel} onChange={(e) => setNuCatNivel(e.target.value)} aria-label={t("u.newTeamLevel")}
+                    className="px-3 py-2 rounded-lg border text-sm" style={{ background: C.panel, borderColor: C.line, color: C.chalk }}>
+                    {CATEGORIAS.map((c) => <option key={c.k} value={c.k} style={{ background: C.panel }}>{c.label} · {c.sub}</option>)}
+                  </select>
+                  <button disabled={!nuCatNombre.trim() || nuCatBusy} onClick={crearCategoriaAlta}
+                    className="px-3 py-2 rounded-lg border font-display uppercase tracking-wide text-sm disabled:opacity-40"
+                    style={{ borderColor: AC, color: AC }}>{nuCatBusy ? t("a.sending") : t("p.createTeam")}</button>
+                  <button onClick={() => { setNuCatNueva(false); setNuCatNombre(""); setNuMsg(""); }}
+                    className="px-3 py-2 rounded-lg border font-display uppercase tracking-wide text-sm"
+                    style={{ borderColor: C.line, color: C.dim }}>{t("c.cancel")}</button>
+                </div>
+              </div>
+            )}
             {nuMsg && <div className="text-xs mt-2" style={{ color: nuMsg.startsWith("✓") ? C.green : C.red }}>{nuMsg}</div>}
           </div>
         )}

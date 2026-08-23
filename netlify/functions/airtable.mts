@@ -1679,6 +1679,12 @@ export default async (req: Request) => {
           if (!d?.id) return j({ ok: false, reason: "airtable" }, 400);
           rec = d.id;
         }
+        /* Crear una categoría desde "Mi cuenta" significa "me paso a ella", y
+           por eso se reasigna a quien la crea. Pero la dirección del club
+           también la crea para meter a OTRA persona —al dar de alta a alguien
+           del Sénior—, y ahí moverla de categoría sería sacarla de la suya sin
+           avisar. Con `quedarme` se crea sin tocar la ficha de quien la pide. */
+        if (b.quedarme) return j({ ok: true, rec, reutilizado: !!ya });
         await fetch(`${api}/${sesion.id}`, {
           method: "PATCH", headers: H,
           body: JSON.stringify({ fields: { [U.equipo]: [rec] }, typecast: true }),
