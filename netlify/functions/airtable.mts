@@ -650,7 +650,22 @@ export default async (req: Request) => {
         let clubId = b.clubRec;
         if (!clubId && b.club) {
           const hit = clubs.find((c) => norm(c.fields[CL.nombre]) === norm(b.club));
-          clubId = hit ? hit.id : (await create(T_CLUBES, { [CL.nombre]: b.club, [CL.comunidad]: b.comunidad || "" }))?.id;
+          /* Crear un CLUB sigue siendo solo del Master: un club es el nivel de
+             arriba y darlo de alta es una decisión de EBLDigital, no de un
+             director. Al abrir este POST a la dirección del club se coló, de
+             rebote, la posibilidad de fundar clubes desde aquí. */
+          clubId = hit ? hit.id
+            : (esMaster ? (await create(T_CLUBES, { [CL.nombre]: b.club, [CL.comunidad]: b.comunidad || "" }))?.id : null);
+        }
+        /* Y una categoría solo se crea DENTRO del club propio. Sin esto, un
+           director podía colgar categorías del club de al lado con solo mandar
+           su clubRec: la comprobación de arriba solo miraba el rol, no de qué
+           club. */
+        if (!esMaster) {
+          const mio = await miClub();
+          if (!mio) return j({ ok: false, reason: "sin_club" }, 400);
+          if (clubId && clubId !== mio) return j({ ok: false, reason: "no_autorizado" }, 403);
+          clubId = mio;
         }
         const d = await create(T_EQUIPOS, {
           [EQ.nombre]: b.name, [EQ.categoria]: CAT_LABEL[b.cat] || "Infantil",
@@ -678,15 +693,21 @@ export default async (req: Request) => {
         if (!(await puedeEquipo(id))) {
           return j({ ok: false, reason: "No puedes eliminar una categoría que no es de tu club." }, 403);
         }
-        const eq = await unoPorId(T_EQUIPOS, id);
+        /* Por id de campo y no por nombre: unoPorId devuelve los campos por
+           NOMBRE y este bloque los leía por ID (EQ.nombre, EQ.club), así que
+           el nombre salía vacío, la comprobación de "escribe el nombre exacto"
+           no cuadraba nunca y el borrado no llegaba a hacerse jamás. Se lee de
+           la misma lista que hace falta para contar las categorías hermanas. */
+        const todosEquipos = await list(T_EQUIPOS);
+        const eq = todosEquipos.find((e: any) => e.id === id);
         if (!eq) return j({ ok: false, reason: "no_existe" }, 404);
-        const nombreEq = eq.fields?.[EQ.nombre] || "";
+        const nombreEq = String(eq.fields?.[EQ.nombre] || "");
         const clubDelEq = (eq.fields?.[EQ.club] || [])[0] || null;
 
         /* Un club sin ninguna categoría no es un club: se queda sin plantilla,
            sin calendario y sin sitio al que volver a entrar. */
         if (clubDelEq) {
-          const hermanas = (await list(T_EQUIPOS)).filter((e: any) => (e.fields[EQ.club] || []).includes(clubDelEq));
+          const hermanas = todosEquipos.filter((e: any) => (e.fields[EQ.club] || []).includes(clubDelEq));
           if (hermanas.length <= 1) {
             return j({ ok: false, reason: "ultima_categoria" }, 409);
           }
@@ -1055,7 +1076,12 @@ export default async (req: Request) => {
       if (req.method !== "POST" || !id) return j({ error: "Falta el id del parte" }, 400);
       const campo = url.searchParams.get("campo") === "entrada" ? PA.fotoEntrada : PA.fotoSalida;
       const actual = await unoPorId(T_PARTES, id);
-      const equipoDelParte = (actual?.fields?.[PA.equipo] || [])[0] || "";
+      /* Por NOMBRE de columna: unoPorId no pide returnFieldsByFieldId, así que
+         leerlo por id de campo (PA.equipo) daba SIEMPRE undefined, el equipo
+         salía vacío y puedeEquipo("") deniega siempre. Resultado: subir las
+         fotos del material devolvía 403 en todos los casos y las dos fotos
+         —que son la prueba de todo el módulo— no llegaban nunca a Airtable. */
+      const equipoDelParte = (actual?.fields?.Equipo || [])[0] || "";
       if (!(await puedeEquipo(equipoDelParte))) {
         return j({ error: "no_autorizado", reason: "Ese parte no es de tu equipo." }, 403);
       }
