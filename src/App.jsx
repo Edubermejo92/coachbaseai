@@ -260,6 +260,8 @@ const DICT = {
     "mt2.sanBtn": "Sanción",
     "mt2.sanNone": "Sin sanciones",
     "cat.current": "Tu categoría actual",
+    "u.teamLabel": "Categoría a la que entra",
+    "u.newTeamShort": "Categoría",
     "u.newTeam": "Crear categoría nueva…",
     "u.newTeamHint": "Se crea dentro de tu club y la persona entra directamente en ella. Tú te quedas en la tuya.",
     "u.newTeamLevel": "Nivel de la categoría",
@@ -739,6 +741,8 @@ const DICT = {
     "mt2.sanBtn": "Sanction",
     "mt2.sanNone": "No sanctions",
     "cat.current": "Your current age group",
+    "u.teamLabel": "Age group they join",
+    "u.newTeamShort": "Age group",
     "u.newTeam": "Create a new age group…",
     "u.newTeamHint": "It is created inside your club and the person joins it directly. You stay in yours.",
     "u.newTeamLevel": "Age group level",
@@ -1235,6 +1239,8 @@ const DICT = {
     "mt2.sanBtn": "Sanction",
     "mt2.sanNone": "No sanctions",
     "cat.current": "Your current age group",
+    "u.teamLabel": "Age group they join",
+    "u.newTeamShort": "Age group",
     "u.newTeam": "Create a new age group…",
     "u.newTeamHint": "It is created inside your club and the person joins it directly. You stay in yours.",
     "u.newTeamLevel": "Age group level",
@@ -1804,6 +1810,8 @@ const DICT = {
     "mt2.sanBtn": "Sanction",
     "mt2.sanNone": "No sanctions",
     "cat.current": "Your current age group",
+    "u.teamLabel": "Age group they join",
+    "u.newTeamShort": "Age group",
     "u.newTeam": "Create a new age group…",
     "u.newTeamHint": "It is created inside your club and the person joins it directly. You stay in yours.",
     "u.newTeamLevel": "Age group level",
@@ -2372,6 +2380,8 @@ const DICT = {
     "mt2.sanBtn": "Sanción",
     "mt2.sanNone": "Sin sanciones",
     "cat.current": "Tu categoría actual",
+    "u.teamLabel": "Categoría a la que entra",
+    "u.newTeamShort": "Categoría",
     "u.newTeam": "Crear categoría nueva…",
     "u.newTeamHint": "Se crea dentro de tu club y la persona entra directamente en ella. Tú te quedas en la tuya.",
     "u.newTeamLevel": "Nivel de la categoría",
@@ -9059,9 +9069,11 @@ ACTA:\n${evTxt}`;
       setNuMsg(out?.reason === "sin_club" ? t("u.newTeamNoClub") : t("u.newTeamFail"));
       return;
     }
+    /* Con clubRec: la lista filtra por el registro del club, así que sin él la
+       categoría recién creada se caía de su propio desplegable. */
     setEquiposApp((xs) => (xs.some((x) => x.rec === out.rec)
       ? xs
-      : [...xs, { rec: out.rec, id: out.rec, name: nombre, club: session?.club || "" }]));
+      : [...xs, { rec: out.rec, id: out.rec, name: nombre, club: session?.club || "", clubRec: clubInfo.rec || null }]));
     setNu((x) => ({ ...x, team: out.rec }));
     setNuCatNueva(false); setNuCatNombre("");
     setNuMsg(out.reutilizado ? t("u.newTeamReused").replace("{n}", nombre) : t("u.newTeamOk").replace("{n}", nombre));
@@ -13640,12 +13652,25 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
        aquí dentro y no en el cuerpo del componente porque equiposApp se declara
        más abajo: leerlo antes reventaría en la primera pintada. El Master las
        ve todas: administra clubes ajenos. */
+    /* Se filtra por el REGISTRO del club y no por su nombre. Comparar nombres
+       exigía que coincidieran letra a letra ("Club Deportivo Chamartín Vergara
+       1995" contra "C.D. Chamartín Vergara"), y con que uno de los dos llegara
+       escrito de otra forma —o el equipo no tuviera club puesto— la categoría
+       desaparecía de la lista sin decir nada. El nombre solo se usa mientras
+       no se sepa el registro del club. */
     const catsDelClub = (equiposApp || [])
-      .filter((e) => session?.role === "master" || !session?.club || igualTexto(e.club, session?.club))
+      .filter((e) => session?.role === "master"
+        || (clubInfo.rec ? e.clubRec === clubInfo.rec : (!session?.club || igualTexto(e.club, session?.club))))
       .sort((a, b) => String(a.name || "").localeCompare(String(b.name || "")));
     /* Crear una categoría es de la dirección del club. Un entrenador da de alta
        a su segundo, pero no monta categorías nuevas. */
     const puedeCrearCat = ["director", "master"].includes(session?.role) && !esDemo;
+    /* La categoría que de verdad se va a enviar. Antes el desplegable pintaba
+       `nu.team || session.team?.rec` y el alta mandaba lo mismo, pero cuando
+       las dos estaban vacías el navegador enseñaba la primera opción de la
+       lista y el alta iba sin categoría: se veía una cosa y se mandaba otra.
+       Un único valor para las dos. */
+    const catElegida = nu.team || session.team?.rec || catsDelClub[0]?.rec || "";
     const grant = can("grantAccess");
     /* Los roles que ESTE usuario puede repartir. El entrenador monta su
        cuerpo técnico (segundo, delegado, familias) pero no nombra directores,
@@ -13680,25 +13705,41 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                   alta: un club con Infantil, Cadete y Sénior no tenía manera de
                   meter a nadie en otra que no fuera la suya. La última opción
                   crea una categoría nueva sin salir de aquí. */}
-              <select value={nuCatNueva ? "__nueva" : (nu.team || session.team?.rec || "")}
-                aria-label={t("u.newTeam")}
-                onChange={(e) => {
-                  const v = e.target.value;
-                  if (v === "__nueva") { setNuCatNueva(true); return; }
-                  setNuCatNueva(false); setNu({ ...nu, team: v });
-                }}
-                className="px-3 py-2 rounded-lg border" style={{ background: C.panel, borderColor: C.line, color: C.chalk }}>
-                {catsDelClub.map((e) => <option key={e.rec} value={e.rec} style={{ background: C.panel }}>{e.name}</option>)}
-                {catsDelClub.length === 0 && session.team?.rec && (
-                  <option value={session.team.rec} style={{ background: C.panel }}>{session.team.name}</option>
+              {/* El "crear categoría" estaba escondido como última opción del
+                  desplegable: quien no lo abría no sabía que existía. Sale
+                  fuera, como botón al lado. */}
+              <div className="flex gap-2">
+                <select value={catElegida}
+                  aria-label={t("u.teamLabel")}
+                  onChange={(e) => { setNuCatNueva(false); setNu({ ...nu, team: e.target.value }); }}
+                  className="flex-1 min-w-0 px-3 py-2 rounded-lg border" style={{ background: C.panel, borderColor: C.line, color: C.chalk }}>
+                  {catsDelClub.map((e) => <option key={e.rec} value={e.rec} style={{ background: C.panel }}>{e.name}</option>)}
+                  {/* Si la categoría propia no está en la lista del club (equipo
+                      sin club puesto, o lista aún sin cargar), se añade a mano
+                      para no dejar el desplegable en blanco. */}
+                  {!catsDelClub.some((e) => e.rec === session.team?.rec) && session.team?.rec && (
+                    <option value={session.team.rec} style={{ background: C.panel }}>{session.team.name}</option>
+                  )}
+                </select>
+                {/* Sin aria-label: uno distinto del texto visible convierte
+                    "+ Categoría" en otro nombre para quien usa lector de
+                    pantalla o control por voz, que es justo lo que la pauta de
+                    "etiqueta en el nombre" pide evitar. La explicación larga va
+                    en el title. */}
+                {puedeCrearCat && (
+                  <button onClick={() => { setNuCatNueva((v) => !v); setNuMsg(""); }} title={t("u.newTeam")}
+                    aria-expanded={nuCatNueva}
+                    className="shrink-0 px-3 rounded-lg border font-display uppercase tracking-wide text-sm whitespace-nowrap"
+                    style={{ borderColor: nuCatNueva ? AC : C.line, color: nuCatNueva ? AC : C.chalk }}>
+                    + {t("u.newTeamShort")}
+                  </button>
                 )}
-                {puedeCrearCat && <option value="__nueva" style={{ background: C.panel }}>➕ {t("u.newTeam")}</option>}
-              </select>
+              </div>
               <button disabled={!nu.name.trim() || !nu.email.trim() || nuBusy || nuCatNueva} onClick={async () => {
                 setNuBusy(true); setNuMsg("");
                 const out = await airUserCreate({
                   name: nu.name.trim(), email: nu.email.trim(), rol: ROL2LABEL[nu.role] || "Entrenador principal",
-                  clubRec: clubInfo.rec || undefined, teamRec: nu.team || session.team?.rec || undefined,
+                  clubRec: clubInfo.rec || undefined, teamRec: catElegida || undefined,
                 });
                 setNuBusy(false);
                 if (out?.ok) { setNuMsg(`✓ ${nu.name.trim()} dado de alta. Dile que se registre con ${nu.email.trim()}.`);
