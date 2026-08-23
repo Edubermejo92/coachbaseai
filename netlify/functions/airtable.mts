@@ -270,21 +270,36 @@ async function verificaPassword(password: string, guardado: string): Promise<{ o
 const ROL_KEY: Record<string, string> = {
   "entrenador principal": "entrenador", "segundo entrenador": "segundo",
   "delegado": "delegado", "director deportivo": "director",
-  "master": "master",
+  "club": "club", "master": "master",
 };
 const rolKey = (v: unknown) => ROL_KEY[norm(v)] || norm(v);
 const ROL_LABEL: Record<string, string> = {
   entrenador: "Entrenador principal", segundo: "Segundo entrenador",
   delegado: "Delegado", director: "Director deportivo",
-  master: "Master",
+  club: "Club", master: "Master",
 };
+/* Quién dirige el club: la cuenta del propio club, el director deportivo y el
+   Master. Se pregunta por aquí y no rol a rol porque son quince los sitios que
+   lo comprueban: añadir un nivel por encima no puede depender de acordarse de
+   los quince. El club está por encima del director —lo nombra y le cambia el
+   nivel—, pero en lo que este archivo autoriza, los dos mandan igual sobre su
+   propio club. */
+const NIVEL_CLUB = ["master", "club", "director"];
+const dirigeElClub = (sesion: any) => NIVEL_CLUB.includes(rolKey(sesion?.rol));
 /* Qué roles puede repartir cada rol. Espejo de ROLES_ASIGNABLES en la app: el
    cliente ya limita el desplegable, pero eso solo evita el error honrado —
    quien manda un POST a mano se salta el desplegable entero.
    "master" no está en ninguna lista: no se reparte desde la app. */
 const ASIGNABLES: Record<string, string[]> = {
-  master: ["director", "entrenador", "segundo", "delegado"],
-  director: ["entrenador", "segundo", "delegado"],
+  master: ["club", "director", "entrenador", "segundo", "delegado"],
+  /* El club nombra a su director deportivo y le cambia el nivel: es
+     justamente lo que lo pone por encima. */
+  club: ["director", "entrenador", "segundo", "delegado"],
+  /* El director también puede nombrar a otro director: un club puede tener
+     que traspasar la dirección deportiva cuando alguien lo deja, y la app ya
+     lo ofrecía en su desplegable —pero aquí se rechazaba, así que el intento
+     acababa en un 403 sin explicación. */
+  director: ["director", "entrenador", "segundo", "delegado"],
   entrenador: ["segundo", "delegado"],
 };
 
@@ -469,7 +484,7 @@ export default async (req: Request) => {
      decide en cada rama —PATCH pide puedeEquipo, DELETE pide dirección del
      club, POST pide dirección del club— en vez de con esta única puerta que
      tapaba las tres. */
-  const dirigeClub = esMaster || rolKey(sesion?.rol) === "director";
+  const dirigeClub = dirigeElClub(sesion);
   if (res === "equipos" && ["POST", "DELETE"].includes(req.method) && !dirigeClub) {
     return j({ error: "no_autorizado", reason: "Solo la dirección del club puede crear o eliminar categorías." }, 403);
   }
@@ -571,7 +586,9 @@ export default async (req: Request) => {
     if (!teamId) return false;
     if (esMaster) return true;
     if (sesion?.equipo && String(sesion.equipo) === teamId) return true;
-    if (rolKey(sesion?.rol) === "director") {
+    /* La cuenta del club alcanza a todas sus categorías, igual que el
+       director: es el nivel de arriba del club, no de una categoría. */
+    if (["director", "club"].includes(rolKey(sesion?.rol))) {
       const [clubDelEquipo, clubPropio] = await Promise.all([clubDeEquipo(teamId), miClub()]);
       return !!clubDelEquipo && !!clubPropio && clubDelEquipo === clubPropio;
     }
@@ -622,7 +639,7 @@ export default async (req: Request) => {
         /* Nombrar al encargado de material es cosa de la dirección del club, no
            de cada entrenador: si no, cualquiera podría quitarse el encargo. */
         if (b.encargado !== undefined) {
-          if (!["master", "director"].includes(rolKey(sesion?.rol))) {
+          if (!dirigeElClub(sesion)) {
             return j({ error: "no_autorizado", reason: "Solo la dirección del club nombra al encargado de material." }, 403);
           }
           f[EQ.encargado] = String(b.encargado || "");
@@ -840,7 +857,7 @@ export default async (req: Request) => {
       }
       if (req.method === "POST") {
         const suyo = String(sesion?.equipo || "") === team;
-        const puede = suyo || ["master", "director"].includes(rolKey(sesion?.rol));
+        const puede = suyo || dirigeElClub(sesion);
         if (!puede) return j({ ok: false, reason: "no_autorizado" }, 403);
         const b = await req.json();
         const r = await fetch(`${table(T_EQUIPOS)}/${team}`, {
@@ -870,7 +887,7 @@ export default async (req: Request) => {
         /* Solo el propio equipo: sin esto, cualquiera con sesión podría
            sobrescribir la planificación de otro equipo mandando su id. */
         const suyo = String(sesion?.equipo || "") === team;
-        const puede = suyo || ["master", "director"].includes(rolKey(sesion?.rol));
+        const puede = suyo || dirigeElClub(sesion);
         if (!puede) return j({ ok: false, reason: "no_autorizado" }, 403);
         const b = await req.json();
         const r = await fetch(`${table(T_EQUIPOS)}/${team}`, {
@@ -906,7 +923,7 @@ export default async (req: Request) => {
       }
       if (req.method === "POST") {
         const suyo = String(sesion?.equipo || "") === team;
-        const puede = suyo || ["master", "director"].includes(rolKey(sesion?.rol));
+        const puede = suyo || dirigeElClub(sesion);
         if (!puede) return j({ ok: false, reason: "no_autorizado" }, 403);
         const b = await req.json();
         const r = await fetch(`${table(T_EQUIPOS)}/${team}`, {
@@ -1019,7 +1036,7 @@ export default async (req: Request) => {
        manera de escribir estos cuatro campos es pasando por aquí. */
     if (res === "parte-sancion") {
       if (req.method !== "PATCH" || !id) return j({ error: "Petición no soportada" }, 400);
-      if (!["master", "director"].includes(rolKey(sesion?.rol))) {
+      if (!dirigeElClub(sesion)) {
         return j({ ok: false, reason: "Solo la dirección del club anota sanciones." }, 403);
       }
       const actual = await unoPorId(T_PARTES, id);
@@ -1040,7 +1057,7 @@ export default async (req: Request) => {
       const club = url.searchParams.get("club") || "";
       if (!club) return j({ error: "falta_club" }, 400);
       if (req.method !== "GET") return j({ error: "Petición no soportada" }, 400);
-      if (!(await puedeClub(club)) || !["master", "director"].includes(rolKey(sesion?.rol))) {
+      if (!(await puedeClub(club)) || !dirigeElClub(sesion)) {
         return j({ error: "no_autorizado", reason: "Solo la dirección del club ve el control de material." }, 403);
       }
       const equipos = (await list(T_EQUIPOS)).filter((e: any) => (e.fields[EQ.club] || []).includes(club));
@@ -1436,7 +1453,7 @@ export default async (req: Request) => {
       /* Solo quien ya puede gestionar la normativa del club escribe aquí
          (mismo criterio que manageDocs en el frontend: director, entrenador y
          delegado, además del Master). */
-      const puedeEscribir = esMaster || ["director", "entrenador", "delegado"].includes(rolKey(sesion?.rol));
+      const puedeEscribir = esMaster || ["club", "director", "entrenador", "delegado"].includes(rolKey(sesion?.rol));
       if (req.method === "GET") {
         const team = url.searchParams.get("team") || "";
         if (!team) return j({ error: "falta_equipo" }, 400);
@@ -1493,7 +1510,7 @@ export default async (req: Request) => {
        el master del equipo al que pertenece la propuesta. El segundo y el
        delegado nunca, aunque tengan ambos roles a la vez. */
     const puedeResolverPropuestas = () =>
-      esMaster || rolKey(sesion?.rol) === "director" || tieneRol(sesion, "entrenador");
+      esMaster || ["director", "club"].includes(rolKey(sesion?.rol)) || tieneRol(sesion, "entrenador");
 
     if (res === "propuestas") {
       if (req.method === "GET") {
@@ -1923,13 +1940,13 @@ export default async (req: Request) => {
            reparte el resto de altas, no un cargo compartido. Sin esto, el
            Master podría dar de alta sin querer a un segundo director en un
            club que ya tiene el suyo. */
-        if (pedido === "director" && b.clubRec) {
-          const yaHayDirector = recs.some((r) =>
-            rolKey(r.fields[U.rol]) === "director" &&
+        if (["director", "club"].includes(pedido) && b.clubRec) {
+          const yaHay = recs.some((r) =>
+            rolKey(r.fields[U.rol]) === pedido &&
             (r.fields[U.club] || []).includes(b.clubRec) &&
             norm(r.fields[U.estado]) !== "suspendido",
           );
-          if (yaHayDirector) return j({ ok: false, reason: "director_unico" }, 409);
+          if (yaHay) return j({ ok: false, reason: pedido === "club" ? "club_unico" : "director_unico" }, 409);
         }
         /* Tope de plazas del club: cuentan Activas y Pendientes (una invitación
            sin reclamar ya ocupa la plaza). Vacío/0 en Limite usuarios = sin límite. */
@@ -2049,16 +2066,23 @@ export default async (req: Request) => {
               [EQ.club]: [clubId],
             }))?.id;
           }
+          /* Quien funda el club ES el club, no su director deportivo. Antes se
+             le daba de alta como director y el club se quedaba sin cuenta
+             propia: no había nadie por encima que pudiera nombrar al director,
+             cambiarle el nivel o darlo de baja. Ahora entra como Club y desde
+             ahí invita a su director. Las cuentas de director ya existentes no
+             se tocan: esto solo afecta a los clubes que se registren a partir
+             de ahora. */
           const d = await create(T_USUARIOS, {
-            [U.nombre]: b.name, [U.email]: email, [U.rol]: "Director deportivo", [U.estado]: "Activo",
+            [U.nombre]: b.name, [U.email]: email, [U.rol]: "Club", [U.estado]: "Activo",
             [U.plan]: "Oficial", [U.pass]: await hashPassword(String(b.password || "")), [U.prueba]: fechaTrial30(),
             [U.club]: [clubId], ...(eqId ? { [U.equipo]: [eqId] } : {}),
           });
           const [eqsF, clubsF] = await Promise.all([list(T_EQUIPOS), list(T_CLUBES)]);
           const eqF = eqsF.find((e) => e.id === eqId);
           return j({
-            ok: !!d?.id, rec: d?.id, clubRec: clubId, teamRec: eqId, estado: "Activo", rol: "Director deportivo", name: b.name,
-            token: d?.id ? await firmarSesion({ id: d.id, email, rol: "director", equipo: eqId || null }) : null,
+            ok: !!d?.id, rec: d?.id, clubRec: clubId, teamRec: eqId, estado: "Activo", rol: "Club", name: b.name,
+            token: d?.id ? await firmarSesion({ id: d.id, email, rol: "club", equipo: eqId || null }) : null,
             team: eqF ? teamOut(eqF, clubsF) : null,
           }, d?.id ? 200 : 400);
         }
