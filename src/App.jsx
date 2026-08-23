@@ -38,7 +38,7 @@ const DICT = {
     "navg.equipo": "Equipo", "navg.partido": "Día de partido", "navg.entrenamiento": "Entrenamiento", "navg.delegado": "Delegado", "navg.estadisticas": "Estadísticas", "navg.roles": "Roles", "navg.coachai": "Coach AI",
     "role.entrenador": "Entrenador principal", "role.segundo": "Segundo entrenador", "role.delegado": "Delegado", "role.padre": "Padre / Madre / Tutor", "role.director": "Director deportivo", "role.club": "Club", "role.master": "Master · EBLDigital", 
     "c.exit": "Salir", "c.planFree": "VERSIÓN BÁSICA", "c.upgrade": "Mejorar", "c.by": "Desarrollado por EBLDigital", "c.madeBy": "App creada por EBLDigital ·", "navg.master": "Master", "nav.master": "Panel Master", "c.pro": "Función PRO. Mejora a una cuenta oficial del club para desbloquearla.", "c.cancel": "Cancelar", "c.nav": "Navegación", "c.trialBadge": "PRUEBA PRO", "c.planCurrentFree": "Versión actual · Básica", "c.goPro": "Ir a Premium",
-    "a.tagline": "Gestión inteligente para entrenadores de fútbol base", "a.accOff": "Sí, entreno en un club", "a.accOffD": "Tu director deportivo o el Master ya te han dado de alta antes. Pon tu contraseña y entras al momento.", "a.accFree": "No, entreno por mi cuenta", "a.accFreeD": "Tu equipo es tuyo y no depende de nadie. Sin aprobaciones.", "a.have": "Ya soy usuario", "a.register": "Registrarme", "a.name": "Tu nombre", "a.fullname": "Nombre y apellidos", "a.email": "Email", "a.pass": "Contraseña", "a.region": "Comunidad autónoma", "a.clubMadrid": "Club (Comunidad de Madrid)", "a.choose": "Elige tu club…", "a.otherClub": "Nombre de tu club", "a.teamOff": "Equipo", "a.teamFree": "Tu equipo", "a.role": "Tu rol", "a.pending": "Entras al momento y puedes empezar a trabajar con tu equipo. Hasta que el club apruebe tu acceso no verás los datos compartidos del club ni la gestión de usuarios.", "a.freeInc": "Gratis para siempre: plantilla completa sin límite de jugadores, alineación, convocatoria, modo partido, pizarra y Coach AI.", "a.startFree": "Empezar gratis", "a.signin": "Iniciar sesión", "a.create": "Crear cuenta y entrar", "a.proto": "Prototipo — los datos no se guardan en ningún servidor", "a.choice": "¿Perteneces a un club?", "a.choiceD": "Las dos opciones son gratuitas. Solo cambia de quién dependen tus datos.", "a.back": "‹ Volver", "a.badCreds": "Email o contraseña incorrectos.", "a.accPending": "Tu cuenta está pendiente de aprobación por el club.", "a.accSusp": "Tu acceso está suspendido. Contacta con tu club.", "a.exists": "Ese email ya está registrado. Inicia sesión.", "a.registered": "¡Registro recibido! Tu acceso queda pendiente de aprobación por el club.", "a.loading": "Cargando…", "a.entering": "Entrando…", "a.demoHint": "Demo: usuario demo / contraseña demo", "a.demoBtn": "▶ Entrar con usuario demo", "a.demoPick": "¿Qué rol quieres ver?", "a.demoPickD": "Elige un rol para explorar la app tal y como lo vería esa persona.",
+    "a.tagline": "Gestión inteligente para entrenadores de fútbol base", "a.accOff": "Sí, entreno en un club", "a.accOffD": "Tu director deportivo o el Master ya te han dado de alta antes. Pon tu contraseña y entras al momento.", "a.accFree": "No, entreno por mi cuenta", "a.accFreeD": "Tu equipo es tuyo y no depende de nadie. Sin aprobaciones.", "a.have": "Ya soy usuario", "a.register": "Registrarme", "a.name": "Tu nombre", "a.fullname": "Nombre y apellidos", "a.email": "Email", "a.pass": "Contraseña", "a.region": "Comunidad autónoma", "a.clubMadrid": "Club (Comunidad de Madrid)", "a.choose": "Elige tu club…", "a.otherClub": "Nombre de tu club", "a.teamOff": "Equipo", "a.teamFree": "Tu equipo", "a.role": "Tu rol", "a.pending": "Entras al momento y puedes empezar a trabajar con tu equipo. Hasta que el club apruebe tu acceso no verás los datos compartidos del club ni la gestión de usuarios.", "a.freeInc": "Gratis para siempre: plantilla completa sin límite de jugadores, alineación, convocatoria, modo partido, pizarra y Coach AI.", "a.startFree": "Empezar gratis", "a.signin": "Iniciar sesión", "a.create": "Crear cuenta y entrar", "a.proto": "Prototipo — los datos no se guardan en ningún servidor", "a.choice": "¿Perteneces a un club?", "a.choiceD": "Las dos opciones son gratuitas. Solo cambia de quién dependen tus datos.", "a.back": "‹ Volver", "a.badCreds": "Email o contraseña incorrectos.", "a.badEmail": "Ese correo no tiene forma de correo: revisa que lleve una arroba y un dominio, por ejemplo nombre@club.es.", "a.accPending": "Tu cuenta está pendiente de aprobación por el club.", "a.accSusp": "Tu acceso está suspendido. Contacta con tu club.", "a.exists": "Ese email ya está registrado. Inicia sesión.", "a.registered": "¡Registro recibido! Tu acceso queda pendiente de aprobación por el club.", "a.loading": "Cargando…", "a.entering": "Entrando…", "a.demoHint": "Demo: usuario demo / contraseña demo", "a.demoBtn": "▶ Entrar con usuario demo", "a.demoPick": "¿Qué rol quieres ver?", "a.demoPickD": "Elige un rol para explorar la app tal y como lo vería esa persona.",
     "a.forgot": "¿Has olvidado tu contraseña?", "a.forgotTitle": "Recuperar contraseña", "a.forgotD": "Escribe tu email y te mandamos un enlace para elegir una nueva.", "a.forgotSend": "Enviar enlace", "a.sending": "Enviando…", "a.forgotSent": "Si ese email tiene cuenta, ya está el enlace enviado. Caduca en una hora y solo sirve una vez. Mira también en spam.", "a.forgotNoMail": "El envío de correo no está disponible ahora mismo. Avisa a tu club para que lo revise.", "a.resetTitle": "Elige tu nueva contraseña", "a.resetD": "Este enlace caduca en una hora y solo sirve una vez.", "a.newPass": "Nueva contraseña", "a.newPass2": "Repite la contraseña", "a.resetSave": "Guardar contraseña", "a.resetOk": "Contraseña actualizada. Ya puedes entrar con ella.", "a.resetBad": "Este enlace ya no vale: ha caducado o ya se ha usado. Pide otro.", "a.passRule": "Mínimo 6 caracteres, y las dos deben coincidir.", "a.noBackend": "No hay conexión con el servidor. Inténtalo más tarde.",
     "p.account": "Mi cuenta", "p.changePass": "Cambiar contraseña", "p.current": "Contraseña actual", "p.save": "Guardar", "p.saved": "Contraseña actualizada.", "p.badCurrent": "La contraseña actual no es correcta.", "p.close": "Cerrar",
     "h.nextMatch": "Próximo partido", "h.nextTrain": "Próximo entrenamiento", "h.available": "Disponibles", "h.lessMin": "Menos participación", "h.alerts": "Alertas", "h.quick": "Accesos rápidos", "h.family": "Avisos para las familias", "h.pending": "accesos pendientes de aprobar", "h.startMatch": "Iniciar partido", "as.title": "Asistencia del día", "as.subtitle": "Quién ha venido y por qué. Sin incidencias ni sanciones: eso sigue en Disciplina.", "as.today": "Hoy", "as.markAll": "✓ Marcar todos presentes", "as.present": "Presente", "as.unmarked": "Sin marcar", "as.studies": "Estudios", "as.noExcuse": "Sin explicación", "as.sick": "Enfermedad", "as.injured": "Lesión", "as.reset": "Quitar marca", "as.noPlayers": "No hay jugadores en la plantilla.", "as.discNote": "¿Retraso o falta con consecuencia disciplinaria? Eso se registra en Disciplina → Pasar lista, que además avisa al cuerpo técnico.", "as.homeTitle": "Asistencia de hoy", "as.homeEmpty": "Todavía no has pasado lista hoy.", "as.homeCta": "Pasar lista", "as.homeSee": "Ver asistencia", "as.homeAll": "Todos presentes.", "as.homeOf": "de", "as.summaryTitle": "Resumen del día",
@@ -259,6 +259,10 @@ const DICT = {
     "mt2.sanLocal": "✓ Guardada solo en este dispositivo.",
     "mt2.sanBtn": "Sanción",
     "mt2.sanNone": "Sin sanciones",
+    "cat.work": "Trabajar con esta",
+    "cat.workOk": "✓ Ahora trabajas con {n}. La plantilla, el calendario y todo lo demás son ya de esta categoría.",
+    "cat.workFail": "No se ha podido cambiar. Inténtalo otra vez.",
+    "cat.workOther": "Esa categoría es de otro club.",
     "cat.current": "Tu categoría actual",
     "u.teamLabel": "Categoría a la que entra",
     "u.newTeamShort": "Categoría",
@@ -373,7 +377,7 @@ const DICT = {
     "mt2.clubFoot": "«Sin avisar» son los balones que faltan en el recuento y que el entrenador no ha declarado como perdidos. Es la diferencia entre perder un balón y no decirlo.",
     "a.firstBtn": "Guardar contraseña y entrar",
     "a.accClub": "Somos un club",
-    "a.accClubD": "Registra tu club: tú serás el director deportivo y podrás invitar al resto.",
+    "a.accClubD": "Registra tu club: entras como la cuenta del club y desde ahí nombras a tu director deportivo y al resto del cuerpo técnico.",
     "a.registerD": "Funda tu club o entrena por tu cuenta",
     "a.firstLink": "Es mi primera vez · mi club me ha dado de alta",
     "a.firstTitle": "Primera entrada",
@@ -526,7 +530,7 @@ const DICT = {
     "navg.equipo": "Team", "navg.partido": "Matchday", "navg.entrenamiento": "Training", "navg.delegado": "Team manager", "navg.estadisticas": "Stats", "navg.roles": "Roles", "navg.coachai": "Coach AI",
     "role.entrenador": "Head coach", "role.segundo": "Assistant coach", "role.delegado": "Team manager", "role.padre": "Parent / Guardian", "role.director": "Sporting director", "role.club": "Club", "role.master": "Master · EBLDigital", 
     "c.exit": "Log out", "c.planFree": "FREE PLAN", "c.upgrade": "Upgrade", "c.by": "Built by EBLDigital", "c.madeBy": "App built by EBLDigital ·", "navg.master": "Master", "nav.master": "Master panel", "c.pro": "PRO feature. Upgrade to an official club account to unlock it.", "c.cancel": "Cancel", "c.nav": "Navigation", "c.trialBadge": "TRIAL PRO", "c.planCurrentFree": "Current plan · Free", "c.goPro": "Go PRO",
-    "a.tagline": "Smart management for grassroots football coaches", "a.accOff": "Yes, I coach at a club", "a.accOffD": "Your sporting director or the Master has already added you. Set your password and you're in right away.", "a.accFree": "No, I coach on my own", "a.accFreeD": "Your team is yours alone. No approvals.", "a.have": "I already have an account", "a.register": "Sign up", "a.name": "Your name", "a.fullname": "Full name", "a.email": "Email", "a.pass": "Password", "a.region": "Region", "a.clubMadrid": "Club (Madrid region)", "a.choose": "Choose your club…", "a.otherClub": "Your club name", "a.teamOff": "Team", "a.teamFree": "Your team", "a.role": "Your role", "a.pending": "When you sign up as an official user, your access stays pending until the sporting director or the Master approves it. Not every user can be a coach.", "a.freeInc": "Free forever: full squad with no player limit, line-up, squad list, match mode, whiteboard and Coach AI.", "a.startFree": "Start free", "a.signin": "Sign in", "a.create": "Create account & enter", "a.proto": "Prototype — no data is stored on any server", "a.choice": "Do you belong to a club?", "a.choiceD": "Both options are free. It only changes who owns your data.", "a.back": "‹ Back", "a.badCreds": "Wrong email or password.", "a.accPending": "Your account is pending approval by the club.", "a.accSusp": "Your access is suspended. Contact your club.", "a.exists": "That email is already registered. Sign in.", "a.registered": "Registration received! Your access is pending club approval.", "a.loading": "Loading…", "a.entering": "Entering…", "a.demoHint": "Demo: username demo / password demo", "a.demoBtn": "▶ Enter with demo account", "a.demoPick": "Which role do you want to see?", "a.demoPickD": "Pick a role to explore the app as that person would see it.",
+    "a.tagline": "Smart management for grassroots football coaches", "a.accOff": "Yes, I coach at a club", "a.accOffD": "Your sporting director or the Master has already added you. Set your password and you're in right away.", "a.accFree": "No, I coach on my own", "a.accFreeD": "Your team is yours alone. No approvals.", "a.have": "I already have an account", "a.register": "Sign up", "a.name": "Your name", "a.fullname": "Full name", "a.email": "Email", "a.pass": "Password", "a.region": "Region", "a.clubMadrid": "Club (Madrid region)", "a.choose": "Choose your club…", "a.otherClub": "Your club name", "a.teamOff": "Team", "a.teamFree": "Your team", "a.role": "Your role", "a.pending": "When you sign up as an official user, your access stays pending until the sporting director or the Master approves it. Not every user can be a coach.", "a.freeInc": "Free forever: full squad with no player limit, line-up, squad list, match mode, whiteboard and Coach AI.", "a.startFree": "Start free", "a.signin": "Sign in", "a.create": "Create account & enter", "a.proto": "Prototype — no data is stored on any server", "a.choice": "Do you belong to a club?", "a.choiceD": "Both options are free. It only changes who owns your data.", "a.back": "‹ Back", "a.badCreds": "Wrong email or password.", "a.badEmail": "That is not a valid email address: check it has an @ and a domain, for example name@club.com.", "a.accPending": "Your account is pending approval by the club.", "a.accSusp": "Your access is suspended. Contact your club.", "a.exists": "That email is already registered. Sign in.", "a.registered": "Registration received! Your access is pending club approval.", "a.loading": "Loading…", "a.entering": "Entering…", "a.demoHint": "Demo: username demo / password demo", "a.demoBtn": "▶ Enter with demo account", "a.demoPick": "Which role do you want to see?", "a.demoPickD": "Pick a role to explore the app as that person would see it.",
     "a.forgot": "Forgotten your password?", "a.forgotTitle": "Reset password", "a.forgotD": "Enter your email and we'll send you a link to choose a new one.", "a.forgotSend": "Send link", "a.sending": "Sending…", "a.forgotSent": "If that email has an account, the link is on its way. It expires in an hour and works once. Check your spam folder too.", "a.forgotNoMail": "Email sending is unavailable right now. Let your club know so they can look into it.", "a.resetTitle": "Choose your new password", "a.resetD": "This link expires in an hour and works only once.", "a.newPass": "New password", "a.newPass2": "Repeat password", "a.resetSave": "Save password", "a.resetOk": "Password updated. You can sign in with it now.", "a.resetBad": "This link no longer works: it expired or was already used. Request a new one.", "a.passRule": "At least 6 characters, and both must match.", "a.noBackend": "No connection to the server. Try again later.",
     "p.account": "My account", "p.changePass": "Change password", "p.current": "Current password", "p.save": "Save", "p.saved": "Password updated.", "p.badCurrent": "That current password isn't right.", "p.close": "Close",
     "h.nextMatch": "Next match", "h.nextTrain": "Next training", "h.available": "Available", "h.lessMin": "Least game time", "h.alerts": "Alerts", "h.quick": "Quick access", "h.family": "Notices for families", "h.pending": "pending access requests", "h.startMatch": "Start match",
@@ -747,6 +751,10 @@ const DICT = {
     "mt2.sanLocal": "✓ Saved on this device only.",
     "mt2.sanBtn": "Sanction",
     "mt2.sanNone": "No sanctions",
+    "cat.work": "Work with this one",
+    "cat.workOk": "✓ You are now working with {n}. The squad, the fixtures and everything else are this age group's.",
+    "cat.workFail": "Couldn't switch. Try again.",
+    "cat.workOther": "That age group belongs to another club.",
     "cat.current": "Your current age group",
     "u.teamLabel": "Age group they join",
     "u.newTeamShort": "Age group",
@@ -861,7 +869,7 @@ const DICT = {
     "mt2.clubFoot": "“Unreported” are balls missing from the count that the coach did not declare as lost. It is the difference between losing a ball and not saying so.",
     "a.firstBtn": "Save password and sign in",
     "a.accClub": "We are a club",
-    "a.accClubD": "Register your club: you become the sporting director and can invite the rest.",
+    "a.accClubD": "Register your club: you come in as the club account and from there you appoint your sporting director and the rest of the staff.",
     "a.registerD": "Start your club or coach on your own",
     "a.firstLink": "First time here · my club added me",
     "a.firstTitle": "First sign-in",
@@ -1252,6 +1260,10 @@ const DICT = {
     "mt2.sanLocal": "✓ Saved on this device only.",
     "mt2.sanBtn": "Sanction",
     "mt2.sanNone": "No sanctions",
+    "cat.work": "Work with this one",
+    "cat.workOk": "✓ You are now working with {n}. The squad, the fixtures and everything else are this age group's.",
+    "cat.workFail": "Couldn't switch. Try again.",
+    "cat.workOther": "That age group belongs to another club.",
     "cat.current": "Your current age group",
     "u.teamLabel": "Age group they join",
     "u.newTeamShort": "Age group",
@@ -1366,7 +1378,7 @@ const DICT = {
     "mt2.clubFoot": "“Unreported” are balls missing from the count that the coach did not declare as lost. It is the difference between losing a ball and not saying so.",
     "a.firstBtn": "Enregistrer le mot de passe et entrer",
     "a.accClub": "Nous sommes un club",
-    "a.accClubD": "Enregistrez votre club : vous serez le directeur sportif et pourrez inviter les autres.",
+    "a.accClubD": "Enregistrez votre club : vous entrez comme compte du club et vous nommez ensuite votre directeur sportif et le reste du staff.",
     "a.registerD": "Fondez votre club ou entraînez de votre côté",
     "a.firstLink": "C'est ma première fois · mon club m'a inscrit",
     "a.firstTitle": "Première connexion",
@@ -1518,6 +1530,7 @@ const DICT = {
     "a.choiceD": "Les deux options sont gratuites. Seul change qui héberge vos données.",
     "a.back": "‹ Retour",
     "a.badCreds": "E-mail ou mot de passe incorrect.",
+    "a.badEmail": "Cette adresse n'a pas la forme d'un e-mail : vérifiez qu'elle contient un @ et un domaine, par exemple nom@club.fr.",
     "a.accPending": "Votre compte est en attente d'approbation par le club.",
     "a.accSusp": "Votre accès est suspendu. Contactez votre club.",
     "a.exists": "Cet e-mail est déjà enregistré. Connectez-vous.",
@@ -1830,6 +1843,10 @@ const DICT = {
     "mt2.sanLocal": "✓ Saved on this device only.",
     "mt2.sanBtn": "Sanction",
     "mt2.sanNone": "No sanctions",
+    "cat.work": "Work with this one",
+    "cat.workOk": "✓ You are now working with {n}. The squad, the fixtures and everything else are this age group's.",
+    "cat.workFail": "Couldn't switch. Try again.",
+    "cat.workOther": "That age group belongs to another club.",
     "cat.current": "Your current age group",
     "u.teamLabel": "Age group they join",
     "u.newTeamShort": "Age group",
@@ -1944,7 +1961,7 @@ const DICT = {
     "mt2.clubFoot": "“Unreported” are balls missing from the count that the coach did not declare as lost. It is the difference between losing a ball and not saying so.",
     "a.firstBtn": "Passwort speichern und anmelden",
     "a.accClub": "Wir sind ein Verein",
-    "a.accClubD": "Registriere deinen Verein: du wirst Sportdirektor und kannst die anderen einladen.",
+    "a.accClubD": "Registriere deinen Verein: du kommst als Vereinskonto herein und ernennst von dort deinen Sportdirektor und das übrige Team.",
     "a.registerD": "Gründe deinen Verein oder trainiere auf eigene Faust",
     "a.firstLink": "Erstes Mal hier · mein Verein hat mich angelegt",
     "a.firstTitle": "Erste Anmeldung",
@@ -2096,6 +2113,7 @@ const DICT = {
     "a.choiceD": "Beide Optionen sind kostenlos. Es ändert sich nur, wer deine Daten verwaltet.",
     "a.back": "‹ Zurück",
     "a.badCreds": "E-Mail oder Passwort falsch.",
+    "a.badEmail": "Das sieht nicht nach einer E-Mail-Adresse aus: prüfe, ob ein @ und eine Domain dabei sind, zum Beispiel name@verein.de.",
     "a.accPending": "Dein Konto wartet auf die Freigabe durch den Verein.",
     "a.accSusp": "Dein Zugang ist gesperrt. Wende dich an deinen Verein.",
     "a.exists": "Diese E-Mail ist bereits registriert. Melde dich an.",
@@ -2407,6 +2425,10 @@ const DICT = {
     "mt2.sanLocal": "✓ Guardada solo en este dispositivo.",
     "mt2.sanBtn": "Sanción",
     "mt2.sanNone": "Sin sanciones",
+    "cat.work": "Trabajar con esta",
+    "cat.workOk": "✓ Ahora trabajas con {n}. La plantilla, el calendario y todo lo demás son ya de esta categoría.",
+    "cat.workFail": "No se ha podido cambiar. Inténtalo otra vez.",
+    "cat.workOther": "Esa categoría es de otro club.",
     "cat.current": "Tu categoría actual",
     "u.teamLabel": "Categoría a la que entra",
     "u.newTeamShort": "Categoría",
@@ -2521,7 +2543,7 @@ const DICT = {
     "mt2.clubFoot": "«Sin avisar» son los balones que faltan en el recuento y que el entrenador no ha declarado como perdidos. Es la diferencia entre perder un balón y no decirlo.",
     "a.firstBtn": "Guardar palavra-passe e entrar",
     "a.accClub": "Somos um clube",
-    "a.accClubD": "Regista o teu clube: serás o diretor desportivo e poderás convidar os restantes.",
+    "a.accClubD": "Regista o teu clube: entras como a conta do clube e a partir daí nomeias o teu diretor desportivo e o resto da equipa técnica.",
     "a.registerD": "Funda o teu clube ou treina por tua conta",
     "a.firstLink": "É a minha primeira vez · o meu clube inscreveu-me",
     "a.firstTitle": "Primeira entrada",
@@ -2673,6 +2695,7 @@ const DICT = {
     "a.choiceD": "As duas opções são gratuitas. Só muda quem gere os teus dados.",
     "a.back": "‹ Voltar",
     "a.badCreds": "Email ou palavra-passe incorretos.",
+    "a.badEmail": "Esse correio não tem forma de correio: verifica que leva uma arroba e um domínio, por exemplo nome@clube.pt.",
     "a.accPending": "A tua conta está pendente de aprovação pelo clube.",
     "a.accSusp": "O teu acesso está suspenso. Contacta o teu clube.",
     "a.exists": "Esse email já está registado. Inicia sessão.",
@@ -7873,6 +7896,7 @@ function Auth({ lang, setLang, onLogin, onRegister, tema, cambiarTema }) {
   const submitLogin = async () => {
     setErr(""); if (!email.trim() || !pass.trim() || busy) return;
     if (email.trim().toLowerCase() === "demo" && pass === "demo") { setView("demo"); return; }
+    if (!correoValido(email)) { setErr(t("a.badEmail")); return; }
     setBusy(true);
     const e = await onLogin({ email, password: pass });
     setBusy(false);
@@ -7897,6 +7921,7 @@ function Auth({ lang, setLang, onLogin, onRegister, tema, cambiarTema }) {
   const passOk = pass.length >= PASS_MIN && pass === pass2;
 
   const submitForgot = async () => {
+    if (!correoValido(email)) { setErr(t("a.badEmail")); return; }
     setErr(""); if (!email.trim() || busy) return;
     setBusy(true);
     const r = await airForgot(email.trim());
@@ -7928,6 +7953,12 @@ function Auth({ lang, setLang, onLogin, onRegister, tema, cambiarTema }) {
   /* La cuenta oficial ya no elige club, equipo ni rol: eso viene del alta que
      ha hecho antes el director deportivo o el Master. Solo hace falta el correo
      con el que te dieron de alta y una contraseña. */
+  /* Que el correo TENGA forma de correo. Sin esto, escribir "ch.chv.es" —un
+     punto donde iba la arroba— llegaba al servidor, no encontraba a nadie, y
+     la app respondía "tu club todavía no te ha dado de alta": mandaba a la
+     persona a molestar a su director deportivo cuando lo que había era una
+     tecla mal puesta. Se comprueba antes de salir del navegador. */
+  const correoValido = (v) => /^[^\s@]+@[^\s@.]+\.[^\s@]{2,}$/.test(String(v || "").trim());
   const regReady = isFree
     ? name.trim() && email.trim() && pass.trim() && team
     : isClubFounder
@@ -7935,6 +7966,7 @@ function Auth({ lang, setLang, onLogin, onRegister, tema, cambiarTema }) {
     : name.trim() && email.trim() && pass.trim();
   const submitRegister = async () => {
     setErr(""); setOkMsg(""); if (!regReady || busy) return;
+    if (!correoValido(email)) { setErr(t("a.badEmail")); return; }
     setBusy(true);
     const r = await onRegister({
       name: name.trim(), email, pass, role: isFree ? "entrenador" : role,
@@ -9676,9 +9708,16 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
       /* Solo las categorías de TU club: cambiarte a la Juvenil A de otro club
          no es "cambiar de equipo", es irte a otro sitio, y eso lo decide quien
          te da de alta allí. El Master sí las ve todas. */
-      if (Array.isArray(r)) setEqLista(session.role === "master" ? r : r.filter((e) => !session.club || igualTexto(e.club, session.club)));
+      /* Por el REGISTRO del club, no por su nombre. Comparar "Club Deportivo
+         Chamartín Vergara 1995" letra a letra con lo que trajera cada equipo
+         dejaba la lista vacía y con ella a todo el mundo atrapado en su
+         categoría: no había forma de cambiarse. El nombre solo sirve mientras
+         no se sepa el registro. */
+      if (Array.isArray(r)) setEqLista(session.role === "master"
+        ? r
+        : r.filter((e) => (clubInfo.rec ? e.clubRec === clubInfo.rec : (!session.club || igualTexto(e.club, session.club)))));
     })();
-  }, [accountOpen]); // eslint-disable-line
+  }, [accountOpen, clubInfo.rec]); // eslint-disable-line
   const cambiarDeEquipo = async () => {
     if (!eqSel || eqBusy) return;
     setEqBusy(true); setEqMsg("");
@@ -9751,7 +9790,11 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
               <option value="">{t("p.pickTeam")}</option>
               {eqLista.map((e) => (
                 <option key={e.rec} value={e.rec} style={{ background: C.panel }}>
-                  {e.name}{e.club && !igualTexto(e.club, session.club) ? ` · ${e.club}` : ""}
+                  {/* El club solo se añade cuando de verdad es OTRO club (el
+                      Master ve todos). Comparando el nombre letra a letra, el
+                      club propio parecía ajeno y la lista repetía su nombre
+                      completo en cada línea. */}
+                  {e.name}{e.clubRec && clubInfo.rec && e.clubRec !== clubInfo.rec ? ` · ${e.club}` : ""}
                 </option>
               ))}
             </select>
@@ -12151,6 +12194,21 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
      pasos, y el primero no borra nada: pide al backend el recuento de lo que
      desaparecería y lo enseña escrito. El segundo exige teclear el nombre. */
   const [catBorrar, setCatBorrar] = useState(null);
+  /* Pasarse a otra categoría del club sin salir de esta pantalla. Reutiliza el
+     mismo camino que "Mi cuenta": el backend solo deja cambiarse dentro del
+     club propio, así que no hay una puerta nueva que vigilar. */
+  const [catCambiando, setCatCambiando] = useState("");
+  const irACategoria = async (c) => {
+    if (catCambiando || esDemo) return;
+    setCatCambiando(c.rec); setCatMsg("");
+    const out = await airCambiarEquipo(c.rec);
+    setCatCambiando("");
+    if (!out?.ok) { setCatMsg(t(out?.reason === "otro_club" ? "cat.workOther" : "cat.workFail")); return; }
+    if (out.token) setAuthToken(out.token);
+    setSession((sx) => ({ ...sx, team: { ...sx.team, rec: c.rec, id: c.rec, name: c.nombre } }));
+    setCatMsg(t("cat.workOk").replace("{n}", c.nombre));
+    setTimeout(() => setCatMsg(""), 6000);
+  };
   const [catNombre, setCatNombre] = useState("");
   const [catMsg, setCatMsg] = useState("");
   const [catBusy, setCatBusy] = useState(false);
@@ -12933,11 +12991,26 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                       —el backend también lo rechaza— así que en vez de un botón
                       que va a fallar se dice por qué no está. */}
                   {c.rec === teamRec ? (
-                    <span className="text-[11px]" style={{ color: C.dim }}>{t("cat.current")}</span>
-                  ) : puedeNombrar && (
-                    <button onClick={() => pedirBorrarCat(c)}
-                      className="text-[11px] px-2.5 py-1.5 rounded-lg border font-display uppercase tracking-wide"
-                      style={{ borderColor: "#b4474a", color: "#b4474a" }}>{t("cat.del")}</button>
+                    <span className="text-[11px] font-display uppercase tracking-wide" style={{ color: C.green }}>✓ {t("cat.current")}</span>
+                  ) : (
+                    <div className="flex gap-2">
+                      {/* Pasarse a otra categoría desde aquí, que es donde el
+                          club las tiene delante. Estaba solo dentro de "Mi
+                          cuenta", y quien no lo supiera se quedaba trabajando
+                          siempre sobre la misma. */}
+                      {!esDemo && (
+                        <button onClick={() => irACategoria(c)} disabled={catCambiando === c.rec}
+                          className="text-[11px] px-2.5 py-1.5 rounded-lg border font-display uppercase tracking-wide disabled:opacity-50"
+                          style={{ borderColor: AC, color: AC }}>
+                          {catCambiando === c.rec ? t("a.sending") : t("cat.work")}
+                        </button>
+                      )}
+                      {puedeNombrar && (
+                        <button onClick={() => pedirBorrarCat(c)}
+                          className="text-[11px] px-2.5 py-1.5 rounded-lg border font-display uppercase tracking-wide"
+                          style={{ borderColor: "#b4474a", color: "#b4474a" }}>{t("cat.del")}</button>
+                      )}
+                    </div>
                   )}
                 </div>
               ))}
@@ -16748,7 +16821,11 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
     /* Alta oficial solo por invitación: si el club no ha creado antes la ficha,
        no se puede entrar en un equipo oficial por cuenta propia. */
     if (res.ok === false && res.reason === "sin_invitacion") {
-      return { error: "Tu club todavía no te ha dado de alta. Pide al director deportivo o al Master que te añada con este mismo correo, y vuelve a registrarte." };
+      /* Antes esto daba por hecho que el fallo era del club, y lo más
+         probable es que sea una tecla: un punto donde iba la arroba, un dominio
+         cambiado, .com por .es. Primero se dice qué correo se ha buscado —para
+         que se vea el error de un vistazo— y solo después se manda a pedirlo. */
+      return { error: `No hay ninguna ficha con el correo ${String(p.email).trim()}. Míralo con calma: tiene que ser LETRA POR LETRA el mismo que te dieron de alta. Si está bien escrito, pide a la dirección de tu club que te añada con él.` };
     }
     if (res.ok === false && res.reason === "club_ocupado") {
       return { error: "Ese club ya tiene cuerpo técnico dado de alta. No puedes fundarlo tú: pide a tu director deportivo o al Master que te invite con este correo." };
