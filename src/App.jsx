@@ -6494,18 +6494,6 @@ const DOCS_INIT = [
   { id: "d1", title: "Código Disciplinario Infantil B 26/27", type: "Código disciplinario", season: "2026/27", v: "v1", date: "01/09/2026", required: true,
     signers: ["Jugador", "Padre/Madre/Tutor", "Cuerpo técnico"],
     summary: "Régimen interno y normas de funcionamiento: 8 faltas leves, 6 faltas graves y 8 medidas disciplinarias de carácter educativo. Cada situación se valora de forma individual por el cuerpo técnico." },
-  { id: "d2", title: "Política de protección de datos (RGPD)", type: "Protección de datos (RGPD)", season: "2026/27", v: "v2", date: "01/09/2026", required: true,
-    signers: ["Padre/Madre/Tutor", "Cuerpo técnico"],
-    summary: "Información sobre el tratamiento de datos de menores, base jurídica, plazos de conservación y ejercicio de derechos." },
-  { id: "d3", title: "Cesión de derechos de imagen del menor", type: "Derechos de imagen", season: "2026/27", v: "v1", date: "01/09/2026", required: true,
-    signers: ["Padre/Madre/Tutor"],
-    summary: "Consentimiento expreso y revocable para el uso de imágenes del menor en el ámbito interno del equipo. Sin consentimiento no se publican fotos ni vídeos." },
-  { id: "d4", title: "Protocolo de protección al menor", type: "Protocolo de protección al menor", season: "2026/27", v: "v1", date: "01/09/2026", required: true,
-    signers: ["Cuerpo técnico"],
-    summary: "Obligatorio para todo el cuerpo técnico (LOPIVI). Incluye pautas de comunicación con menores y canal de comunicación de incidencias." },
-  { id: "d5", title: "Plan de Pretemporada Infantil B 26/27", type: "Plan de pretemporada", season: "2026/27", v: "v1", date: "13/08/2026", required: false,
-    signers: ["Jugador", "Cuerpo técnico"], file: "/documents/Plan_Pretemporada_Infantil_B_202627.pdf", kind: "exercise",
-    summary: "Trabajo previo de agosto: tres semanas de reactivación, desarrollo y aproximación antes del inicio de la pretemporada del equipo el 2 de septiembre. El cuerpo técnico (entrenador/a, delegado/a y director/a deportivo/a) confirma aquí, jugador a jugador, quién ha realizado los ejercicios." },
 ];
 /* firmas demo: ids de jugador y de usuario que ya han firmado cada documento.
    Con la plantilla real de Infantil B cargada, nadie ha firmado ni confirmado
@@ -6513,10 +6501,6 @@ const DOCS_INIT = [
    pero dejarlas habría atribuido firmas falsas a jugadores reales. */
 const SIGNS_INIT = {
   d1: { players: [], staff: [1, 2, 3] },
-  d2: { players: [], staff: [1, 2, 3, 4] },
-  d3: { players: [], staff: [] },
-  d4: { players: [], staff: [1, 2] },
-  d5: { players: [], staff: [] },
 };
 /* Sin incidencias de ejemplo: con nombres reales de menores, unas incidencias
    disciplinarias inventadas serían datos falsos sobre personas reales. */
@@ -10157,8 +10141,12 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
   const pendingSign = players.filter((p) => !hasSigned(p.id, "d1")).length;
   const pendingValid = incidents.filter((i) => i.state === "registrada").length;
   /* Jugadores a los que el cuerpo técnico todavía no ha confirmado que han
-     hecho los ejercicios del plan de pretemporada (doc "d5"). */
-  const pretempPend = players.filter((p) => !hasSigned(p.id, "d5"));
+     hecho los ejercicios del plan de pretemporada. Cuelga de un documento
+     concreto, así que si ese documento no está publicado no hay nada que
+     confirmar: sin esta comprobación, al quitarlo de la normativa el aviso
+     saldría con la plantilla entera y sin manera de cerrarlo. */
+  const docPretemp = docs.find((d) => d.kind === "exercise");
+  const pretempPend = docPretemp ? players.filter((p) => !hasSigned(p.id, docPretemp.id)) : [];
 
   /* --- pasar lista: asistencia por sesión + incidencias automáticas --- */
   const ATT_STATES = [
@@ -15076,7 +15064,10 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
     "parte", "asistencia", "disciplina", "normativa", "estadisticas", "usuarios", "coachai", "material", "premium"];
   /* Las del Master no se le enseñan a nadie más: no es que estén bloqueadas, es
      que no existen para el resto de cuentas. */
-  const tabsMenu = TODAS_TABS.filter((k) => allTabs.includes(k) || !["master", "equipos"].includes(k));
+  /* "parte" se suma a las que no se enseñan apagadas: a la dirección del club
+     no le falta ese apartado, es que lo tiene dentro de su pestaña de Club, y
+     dejarle la entrada en gris sugiere que le falta un permiso. */
+  const tabsMenu = TODAS_TABS.filter((k) => allTabs.includes(k) || !["master", "equipos", "parte"].includes(k));
   const sinAcceso = (k) => !allTabs.includes(k);
   const mobileTabsDefault = [...visibleTabs.filter((k) => ["inicio", "pizarra", "entrenamiento", "partido"].includes(k)), ...visibleTabs.filter((k) => !["inicio", "pizarra", "entrenamiento", "partido"].includes(k))].slice(0, 4);
   /* Si la persona ha elegido su propio orden (ver "Personalizar menú" en Mi
