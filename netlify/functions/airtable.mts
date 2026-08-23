@@ -127,6 +127,12 @@ const EQ = {
      rellena a diario quien pasa el control de bienestar —en el reparto del
      plan físico, el delegado— y lo lee el cuerpo técnico antes de la sesión. */
   cargas: "fld57z5y3QWsk1DnF",
+  /* Días de la semana en los que entrena esta categoría, en JSON (0=domingo …
+     6=sábado). Lo guarda el cuerpo técnico desde el calendario. El club lo
+     necesita para el control de material: sin saber qué días toca entrenar no
+     se puede decir que falte un parte, y el aviso de "no ha avisado ni antes
+     ni después del entreno" sería adivinar. */
+  dias: "flddC2z6uAHNSaGXX",
 };
 const PA = {
   ref: "fldVKBSHxPEqCuVk2", fecha: "fldUyP4Qia9GM6lCR", equipo: "fldXvt940m1HPQ3uH",
@@ -501,6 +507,7 @@ export default async (req: Request) => {
       crest: (r.fields[EQ.escudo] || [])[0]?.url || null,
       web: r.fields[EQ.web] || "", maps: r.fields[EQ.maps] || "",
       encargado: r.fields[EQ.encargado] || "",
+      dias: r.fields[EQ.dias] || "",
       clubRec: clubRec || null, club: club ? club.fields[CL.nombre] : "",
       comunidad: club ? club.fields[CL.comunidad] : "",
     };
@@ -601,6 +608,14 @@ export default async (req: Request) => {
         if (b.sistema) f[EQ.sistema] = b.sistema;
         if (b.web !== undefined) f[EQ.web] = b.web;
         if (b.maps !== undefined) f[EQ.maps] = b.maps;
+        /* Días de entreno. Se normalizan aquí y no se guarda lo que llegue: es
+           lo que decide si el club ve un aviso por parte que falta, así que un
+           valor con basura dentro se traduciría en avisos falsos. */
+        if (b.dias !== undefined) {
+          const ds = Array.isArray(b.dias) ? b.dias : [];
+          const limpios = [...new Set(ds.map((n: any) => Number(n)).filter((n: number) => Number.isInteger(n) && n >= 0 && n <= 6))].sort();
+          f[EQ.dias] = JSON.stringify(limpios);
+        }
         const r = await fetch(`${table(T_EQUIPOS)}/${id}`, { method: "PATCH", headers: H, body: JSON.stringify({ fields: f, typecast: true }) });
         return j({ ok: r.ok }, r.ok ? 200 : 400);
       }
@@ -767,6 +782,7 @@ export default async (req: Request) => {
         records: out,
         categorias: equipos.map((e: any) => ({
           rec: e.id, nombre: e.fields[EQ.nombre] || "Sin nombre", encargado: e.fields[EQ.encargado] || "",
+          dias: e.fields[EQ.dias] || "",
         })),
       });
     }

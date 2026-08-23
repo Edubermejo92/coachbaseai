@@ -242,6 +242,26 @@ const DICT = {
     "mt2.noData": "Todavía no hay ningún parte enviado.",
     "mt2.lastReports": "Últimos partes",
     "mt2.damageOk": "Todo correcto",
+    "mt2.homeMissing": "entrenos sin parte de material",
+    "mt2.homeHalf": "partes de material a medias (falta la foto de antes o la de después)",
+    "mt2.homeMine": "entrenos tuyos sin el parte de material",
+    "mt2.alertTitle": "Partes que faltan",
+    "mt2.alertHint": "Días de entreno de las últimas cuatro semanas en los que no llegó el parte, o llegó sin una de las dos fotos. Avisar antes es la foto al sacar el material; avisar después, la foto al guardarlo.",
+    "mt2.alertNone": "Todos los entrenos de las últimas cuatro semanas tienen su parte, con las dos fotos.",
+    "mt2.alertNoDays": "Esta categoría no tiene días de entreno marcados, así que no se puede saber qué partes faltan. Los marca el cuerpo técnico en el calendario.",
+    "mt2.alertMissing": "sin parte",
+    "mt2.alertHalf": "a medias",
+    "mt2.alertNoBefore": "sin la foto de antes",
+    "mt2.alertNoAfter": "sin la foto de después",
+    "mt2.alertInCharge": "Encargado de material:",
+    "mt2.alertNoInCharge": "sin encargado nombrado",
+    "mt2.alertMoreDays": "+{n} días más",
+    "mt2.todayTitle": "Hoy toca entreno",
+    "mt2.todayPend": "Todavía no has mandado el parte de hoy. Haz la foto al sacar el material y otra al guardarlo: si acaba el día sin parte, al club le salta el aviso.",
+    "mt2.todayHalf": "El parte de hoy está a medias: te falta {q}. Si acaba el día así, al club le salta el aviso.",
+    "mt2.mineLate": "Entrenos tuyos sin parte",
+    "mt2.mineLateHint": "Días de entreno de las últimas cuatro semanas sin parte o con el parte a medias. Aún puedes mandarlos: cambia la fecha arriba y complétalos.",
+    "mt2.fixIt": "Rellenar",
     "mt2.duties": "Obligatorio en cada entreno",
     "mt2.duty1": "Foto del material que sacas, antes de empezar.",
     "mt2.duty2": "Foto del material que guardas, al terminar.",
@@ -626,6 +646,26 @@ const DICT = {
     "mt2.noData": "No reports sent yet.",
     "mt2.lastReports": "Latest reports",
     "mt2.damageOk": "All in order",
+    "mt2.homeMissing": "sessions with no kit report",
+    "mt2.homeHalf": "kit reports half done (missing the before or the after photo)",
+    "mt2.homeMine": "of your sessions with no kit report",
+    "mt2.alertTitle": "Missing reports",
+    "mt2.alertHint": "Training days in the last four weeks with no report, or with one of the two photos missing. Reporting before is the photo when taking the kit out; reporting after is the photo when putting it away.",
+    "mt2.alertNone": "Every session in the last four weeks has its report, with both photos.",
+    "mt2.alertNoDays": "This age group has no training days set, so there is no way to tell which reports are missing. The coaching staff sets them in the calendar.",
+    "mt2.alertMissing": "no report",
+    "mt2.alertHalf": "half done",
+    "mt2.alertNoBefore": "no before photo",
+    "mt2.alertNoAfter": "no after photo",
+    "mt2.alertInCharge": "Kit manager:",
+    "mt2.alertNoInCharge": "no manager appointed",
+    "mt2.alertMoreDays": "+{n} more days",
+    "mt2.todayTitle": "Training today",
+    "mt2.todayPend": "You have not sent today's report yet. Take a photo when you get the kit out and another when you put it away: if the day ends with no report, the club gets an alert.",
+    "mt2.todayHalf": "Today's report is half done: {q} is missing. If the day ends like this, the club gets an alert.",
+    "mt2.mineLate": "Your sessions with no report",
+    "mt2.mineLateHint": "Training days in the last four weeks with no report or with the report half done. You can still send them: change the date above and complete them.",
+    "mt2.fixIt": "Fill in",
     "mt2.duties": "Required at every session",
     "mt2.duty1": "Photo of the kit you take out, before you start.",
     "mt2.duty2": "Photo of the kit you put away, when you finish.",
@@ -1027,6 +1067,26 @@ const DICT = {
     "mt2.noData": "No reports sent yet.",
     "mt2.lastReports": "Latest reports",
     "mt2.damageOk": "All in order",
+    "mt2.homeMissing": "sessions with no kit report",
+    "mt2.homeHalf": "kit reports half done (missing the before or the after photo)",
+    "mt2.homeMine": "of your sessions with no kit report",
+    "mt2.alertTitle": "Missing reports",
+    "mt2.alertHint": "Training days in the last four weeks with no report, or with one of the two photos missing. Reporting before is the photo when taking the kit out; reporting after is the photo when putting it away.",
+    "mt2.alertNone": "Every session in the last four weeks has its report, with both photos.",
+    "mt2.alertNoDays": "This age group has no training days set, so there is no way to tell which reports are missing. The coaching staff sets them in the calendar.",
+    "mt2.alertMissing": "no report",
+    "mt2.alertHalf": "half done",
+    "mt2.alertNoBefore": "no before photo",
+    "mt2.alertNoAfter": "no after photo",
+    "mt2.alertInCharge": "Kit manager:",
+    "mt2.alertNoInCharge": "no manager appointed",
+    "mt2.alertMoreDays": "+{n} more days",
+    "mt2.todayTitle": "Training today",
+    "mt2.todayPend": "You have not sent today's report yet. Take a photo when you get the kit out and another when you put it away: if the day ends with no report, the club gets an alert.",
+    "mt2.todayHalf": "Today's report is half done: {q} is missing. If the day ends like this, the club gets an alert.",
+    "mt2.mineLate": "Your sessions with no report",
+    "mt2.mineLateHint": "Training days in the last four weeks with no report or with the report half done. You can still send them: change the date above and complete them.",
+    "mt2.fixIt": "Fill in",
     "mt2.duties": "Required at every session",
     "mt2.duty1": "Photo of the kit you take out, before you start.",
     "mt2.duty2": "Photo of the kit you put away, when you finish.",
@@ -1501,6 +1561,26 @@ const DICT = {
     "mt2.noData": "No reports sent yet.",
     "mt2.lastReports": "Latest reports",
     "mt2.damageOk": "All in order",
+    "mt2.homeMissing": "sessions with no kit report",
+    "mt2.homeHalf": "kit reports half done (missing the before or the after photo)",
+    "mt2.homeMine": "of your sessions with no kit report",
+    "mt2.alertTitle": "Missing reports",
+    "mt2.alertHint": "Training days in the last four weeks with no report, or with one of the two photos missing. Reporting before is the photo when taking the kit out; reporting after is the photo when putting it away.",
+    "mt2.alertNone": "Every session in the last four weeks has its report, with both photos.",
+    "mt2.alertNoDays": "This age group has no training days set, so there is no way to tell which reports are missing. The coaching staff sets them in the calendar.",
+    "mt2.alertMissing": "no report",
+    "mt2.alertHalf": "half done",
+    "mt2.alertNoBefore": "no before photo",
+    "mt2.alertNoAfter": "no after photo",
+    "mt2.alertInCharge": "Kit manager:",
+    "mt2.alertNoInCharge": "no manager appointed",
+    "mt2.alertMoreDays": "+{n} more days",
+    "mt2.todayTitle": "Training today",
+    "mt2.todayPend": "You have not sent today's report yet. Take a photo when you get the kit out and another when you put it away: if the day ends with no report, the club gets an alert.",
+    "mt2.todayHalf": "Today's report is half done: {q} is missing. If the day ends like this, the club gets an alert.",
+    "mt2.mineLate": "Your sessions with no report",
+    "mt2.mineLateHint": "Training days in the last four weeks with no report or with the report half done. You can still send them: change the date above and complete them.",
+    "mt2.fixIt": "Fill in",
     "mt2.duties": "Required at every session",
     "mt2.duty1": "Photo of the kit you take out, before you start.",
     "mt2.duty2": "Photo of the kit you put away, when you finish.",
@@ -1974,6 +2054,26 @@ const DICT = {
     "mt2.noData": "Todavía no hay ningún parte enviado.",
     "mt2.lastReports": "Últimos partes",
     "mt2.damageOk": "Tudo correto",
+    "mt2.homeMissing": "entrenos sin parte de material",
+    "mt2.homeHalf": "partes de material a medias (falta la foto de antes o la de después)",
+    "mt2.homeMine": "entrenos tuyos sin el parte de material",
+    "mt2.alertTitle": "Partes que faltan",
+    "mt2.alertHint": "Días de entreno de las últimas cuatro semanas en los que no llegó el parte, o llegó sin una de las dos fotos. Avisar antes es la foto al sacar el material; avisar después, la foto al guardarlo.",
+    "mt2.alertNone": "Todos los entrenos de las últimas cuatro semanas tienen su parte, con las dos fotos.",
+    "mt2.alertNoDays": "Esta categoría no tiene días de entreno marcados, así que no se puede saber qué partes faltan. Los marca el cuerpo técnico en el calendario.",
+    "mt2.alertMissing": "sin parte",
+    "mt2.alertHalf": "a medias",
+    "mt2.alertNoBefore": "sin la foto de antes",
+    "mt2.alertNoAfter": "sin la foto de después",
+    "mt2.alertInCharge": "Encargado de material:",
+    "mt2.alertNoInCharge": "sin encargado nombrado",
+    "mt2.alertMoreDays": "+{n} días más",
+    "mt2.todayTitle": "Hoy toca entreno",
+    "mt2.todayPend": "Todavía no has mandado el parte de hoy. Haz la foto al sacar el material y otra al guardarlo: si acaba el día sin parte, al club le salta el aviso.",
+    "mt2.todayHalf": "El parte de hoy está a medias: te falta {q}. Si acaba el día así, al club le salta el aviso.",
+    "mt2.mineLate": "Entrenos tuyos sin parte",
+    "mt2.mineLateHint": "Días de entreno de las últimas cuatro semanas sin parte o con el parte a medias. Aún puedes mandarlos: cambia la fecha arriba y complétalos.",
+    "mt2.fixIt": "Rellenar",
     "mt2.duties": "Obligatorio en cada entreno",
     "mt2.duty1": "Foto del material que sacas, antes de empezar.",
     "mt2.duty2": "Foto del material que guardas, al terminar.",
@@ -6794,6 +6894,49 @@ const isoLocal = (d) => {
   return `${x.getFullYear()}-${String(x.getMonth() + 1).padStart(2, "0")}-${String(x.getDate()).padStart(2, "0")}`;
 };
 const hoyISO = () => isoLocal(new Date());
+
+/* ---- Partes de material que faltan o están a medias ----
+   El club pidió enterarse cuando un entrenador no avisa ni antes ni después
+   del entreno. "Avisar antes" es la foto del material al sacarlo y "avisar
+   después" la foto al guardarlo, así que un parte con una sola de las dos
+   está a medias y también salta.
+
+   Se mira hacia atrás una ventana de cuatro semanas y NUNCA el día de hoy: el
+   entreno de esta tarde puede no haber pasado todavía y avisar de él sería
+   dar por perdido algo que aún está a tiempo. El aviso de hoy es otro y solo
+   lo ve el propio entrenador, en su pantalla.
+
+   Sin días de entreno guardados no se devuelve nada y se dice (`revisable`):
+   no se puede afirmar que falte un parte de un día en el que quizá no se
+   entrenaba, y un aviso inventado destruye la confianza en todos los demás. */
+const VENTANA_PARTES = 28;
+const revisarPartes = (lista, dias, hasta = hoyISO()) => {
+  const dd = Array.isArray(dias) ? dias.map(Number).filter((n) => n >= 0 && n <= 6) : [];
+  if (!dd.length) return { sinParte: [], aMedias: [], revisable: false };
+  const porFecha = new Map();
+  for (const p of lista || []) if (p?.fecha) porFecha.set(p.fecha, p);
+  const sinParte = [], aMedias = [];
+  const d = new Date(hasta + "T12:00:00");
+  d.setDate(d.getDate() - 1);
+  for (let i = 0; i < VENTANA_PARTES; i++) {
+    if (dd.includes(d.getDay())) {
+      const f = isoLocal(d);
+      const p = porFecha.get(f);
+      if (!p) sinParte.push(f);
+      else if (!p.fotoSalida || !p.fotoEntrada) {
+        aMedias.push({ fecha: f, quien: p.entrenadorNombre || "", antes: !!p.fotoSalida, despues: !!p.fotoEntrada });
+      }
+    }
+    d.setDate(d.getDate() - 1);
+  }
+  sinParte.reverse(); aMedias.reverse();
+  return { sinParte, aMedias, revisable: true };
+};
+/* Los días de entreno viajan como texto JSON dentro del equipo. */
+const diasDeEquipo = (v) => {
+  try { const a = JSON.parse(v || "null"); return Array.isArray(a) ? a.map(Number).filter((n) => n >= 0 && n <= 6) : []; }
+  catch { return []; }
+};
 /* "2026-08-21" -> "viernes, 21 de agosto". Si no es una fecha ISO válida, se
    devuelve tal cual (por si queda algún texto libre antiguo en localStorage,
    de cuando el campo de fecha del entrenamiento era un input de texto). */
@@ -7824,12 +7967,31 @@ export default function App() {
   const [histPlayer, setHistPlayer] = useState(null);
   useEffect(() => {
     if (!session) return;
+    /* Manda lo que tenga guardado el equipo en la nube; el dispositivo solo
+       decide mientras no haya nada arriba. Los días de entreno dejaron de ser
+       una preferencia local en cuanto el club empezó a avisar de los partes
+       que faltan: si cada móvil tuviera los suyos, el aviso saldría distinto
+       según quién mire. */
+    const enNube = (() => {
+      try { const v = JSON.parse(session?.team?.dias || "null"); return Array.isArray(v) && v.length ? v : null; }
+      catch { return null; }
+    })();
+    if (enNube) { setTrainDays(enNube); return; }
     try { const raw = localStorage.getItem(trainDaysKey); if (raw) setTrainDays(JSON.parse(raw)); } catch { /* noop */ }
-  }, [trainDaysKey]); // eslint-disable-line
+  }, [trainDaysKey, session?.team?.dias]); // eslint-disable-line
   useEffect(() => {
     if (!session) return;
     try { localStorage.setItem(trainDaysKey, JSON.stringify(trainDays)); } catch { /* noop */ }
   }, [trainDays, trainDaysKey]); // eslint-disable-line
+  /* Al cambiar los días de entreno se suben al equipo, para que el club los
+     vea. Solo lo intenta quien puede editar el calendario y solo si de verdad
+     han cambiado respecto a lo guardado: si no, cada montaje del componente
+     escribiría en Airtable sin motivo. */
+  const guardarDiasEntreno = async (dias) => {
+    setTrainDays(dias);
+    if (!teamRec || esDemo || !can("editCal")) return;
+    await airTeamPatch(teamRec, { dias });
+  };
   useEffect(() => {
     if (!session) return;
     try {
@@ -10128,7 +10290,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
           <div className="flex flex-wrap items-center gap-1.5 mt-2">
             <span className="text-[11px]" style={{ color: C.dim }}>{t("ca.trainDaysLabel")}</span>
             {diasSemanaCortosDomingoPrimero(lang).map((lbl, idx) => (
-              <button key={idx} onClick={() => setTrainDays((ds) => ds.includes(idx) ? ds.filter((x) => x !== idx) : [...ds, idx])}
+              <button key={idx} onClick={() => guardarDiasEntreno(trainDays.includes(idx) ? trainDays.filter((x) => x !== idx) : [...trainDays, idx].sort())}
                 className="text-[11px] w-7 py-1 rounded border font-display"
                 style={{ borderColor: trainDays.includes(idx) ? C.green : C.line, background: trainDays.includes(idx) ? "rgba(47,107,79,.18)" : "transparent", color: trainDays.includes(idx) ? C.green : C.dim }}>
                 {lbl}
@@ -11317,6 +11479,34 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
     return () => { vivo = false; };
   }, [clubInfo.rec, session?.role]); // eslint-disable-line
 
+  /* ---- Entrenos sin parte, o con el parte a medias ----
+     Se calcula aquí, fuera del panel del club, porque lo usan tres sitios: la
+     tarjeta de avisos de Inicio (el club tiene que enterarse al entrar, sin
+     acordarse de abrir el control de material), el propio panel de club y la
+     pantalla del entrenador. */
+  const partesFuente = partesClub.length
+    ? partesClub
+    : partes.map((x) => ({ ...x, equipoNombre: session?.team?.name || "" }));
+  const catsMaterial = clubCats.length
+    ? clubCats.map((c) => ({ nombre: c.nombre, encargado: c.encargado, dias: diasDeEquipo(c.dias) }))
+    : [{ nombre: session?.team?.name || "", encargado: session?.team?.encargado || "", dias: trainDays }];
+  const alertasMaterial = catsMaterial
+    .map((c) => ({ ...c, ...revisarPartes(partesFuente.filter((x) => x.equipoNombre === c.nombre), c.dias) }))
+    .filter((c) => !c.revisable || c.sinParte.length > 0 || c.aMedias.length > 0)
+    .sort((a, b) => (b.sinParte.length + b.aMedias.length) - (a.sinParte.length + a.aMedias.length));
+  const totalSinParte = alertasMaterial.reduce((n, a) => n + a.sinParte.length, 0);
+  const totalAMedias = alertasMaterial.reduce((n, a) => n + a.aMedias.length, 0);
+  /* Quién revisa el material del club y quién lo rellena. No vale mirar el
+     permiso "parte": la dirección del club lo tiene —lo necesita para leer los
+     partes— pero no rellena ninguno, así que se mira quién tiene la PESTAÑA,
+     que es justo lo que separa un papel del otro. */
+  const revisaMaterial = ["director", "master"].includes(session?.role);
+  const rellenaMaterial = (ROLES[session?.role]?.tabs || []).includes("parte");
+  /* Lo mismo, pero solo lo del propio entrenador: es lo que se le enseña a él
+     en Inicio y en su pantalla, para que lo arregle antes de que salte arriba. */
+  const misPartes = partes.filter((x) => !x.entrenadorNombre || x.entrenadorNombre === session?.name);
+  const miRepaso = revisarPartes(misPartes, trainDays);
+
   const setP = (k, v) => setParte((x) => ({ ...x, [k]: v }));
   /* Descuadre entre lo que falta y lo que ha declarado perdido. Es la señal que
      el club pidió: no basta con contar balones, hay que saber si el entrenador
@@ -11381,6 +11571,15 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
       { k: "d5", txt: t("mt2.duty5"), ok: (Number(parte.salida) || 0) > 0 && !descuadre },
     ];
     const deberesFaltan = deberes.filter((d) => !d.ok).length;
+    /* Lo que el club va a ver de esta persona si no lo arregla. Se le enseña
+       antes, y con el botón para arreglarlo: el aviso al club es la última
+       parada, no la primera. */
+    const mios = misPartes;
+    const repaso = miRepaso;
+    const hoy = hoyISO();
+    const tocaHoy = trainDays.includes(new Date(hoy + "T12:00:00").getDay());
+    const parteHoy = mios.find((x) => x.fecha === hoy);
+    const faltaHoy = !parteHoy ? "todo" : (!parteHoy.fotoSalida ? "antes" : (!parteHoy.fotoEntrada ? "despues" : null));
     const campoFoto = (campo, label, valor) => (
       <div className="rounded-lg border p-3" style={{ borderColor: valor ? C.green : C.line, background: C.panel2 }}>
         <div className="text-[11px] font-display uppercase tracking-wide mb-2" style={{ color: valor ? C.green : C.dim }}>
@@ -11416,6 +11615,26 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
     );
     return (
       <div className="space-y-4">
+        {/* Aviso de hoy, arriba del todo y solo el día que toca entrenar. Es la
+            única manera de que el parte se rellene el mismo día: el que se deja
+            para mañana no se rellena, y al club le llega el hueco. */}
+        {puede && tocaHoy && faltaHoy && (
+          <div className="rounded-xl border p-3 flex flex-wrap items-center gap-x-3 gap-y-1"
+            style={{ borderColor: C.warn, background: `${C.warn}12` }}>
+            <span className="font-display uppercase tracking-wide text-sm" style={{ color: C.warn }}>⏰ {t("mt2.todayTitle")}</span>
+            <span className="text-[12px] flex-1 min-w-[220px] leading-snug" style={{ color: C.chalk }}>
+              {faltaHoy === "todo"
+                ? t("mt2.todayPend")
+                : t("mt2.todayHalf").replace("{q}", faltaHoy === "antes" ? t("mt2.alertNoBefore") : t("mt2.alertNoAfter"))}
+            </span>
+            {parte.fecha !== hoy && (
+              <button onClick={() => setP("fecha", hoy)}
+                className="text-[11px] px-2.5 py-1 rounded-lg border font-display uppercase tracking-wide"
+                style={{ borderColor: C.warn, color: C.warn }}>{t("mt2.fixIt")}</button>
+            )}
+          </div>
+        )}
+
         <Card title={`📦 ${t("mt2.title")}`}>
           <div className="text-xs mb-3 leading-relaxed" style={{ color: C.dim }}>{t("mt2.hint")}</div>
           {/* Las indicaciones, con el estado de cada una en vivo. Antes solo
@@ -11519,6 +11738,39 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
           )}
         </Card>
 
+        {/* Los huecos propios, con la fecha a un toque para completarlos. Sin
+            esta lista el entrenador se entera de que le falta un parte cuando
+            le llega el aviso del club, que ya es tarde y sienta mal. */}
+        {puede && (repaso.sinParte.length > 0 || repaso.aMedias.length > 0) && (
+          <Card title={`⚠ ${t("mt2.mineLate")}`}>
+            <div className="text-xs mb-3 leading-relaxed" style={{ color: C.dim }}>{t("mt2.mineLateHint")}</div>
+            <div className="space-y-1.5">
+              {repaso.sinParte.map((f) => (
+                <div key={"s" + f} className="rounded-lg border p-2.5 flex flex-wrap items-center gap-x-3 gap-y-1"
+                  style={{ borderColor: C.warn, background: C.panel2 }}>
+                  <div className="text-sm flex-1 min-w-[150px]" style={{ color: C.chalk }}>{fechaCorta(f, lang)}</div>
+                  <div className="text-[12px]" style={{ color: C.warn }}>{t("mt2.alertMissing")}</div>
+                  <button onClick={() => { setParte({ ...PARTE_VACIO(), fecha: f }); setParteMsg(""); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+                    className="text-[11px] px-2.5 py-1 rounded-lg border font-display uppercase tracking-wide"
+                    style={{ borderColor: C.line, color: C.chalk }}>{t("mt2.fixIt")}</button>
+                </div>
+              ))}
+              {repaso.aMedias.map((a) => (
+                <div key={"m" + a.fecha} className="rounded-lg border p-2.5 flex flex-wrap items-center gap-x-3 gap-y-1"
+                  style={{ borderColor: C.line, background: C.panel2 }}>
+                  <div className="text-sm flex-1 min-w-[150px]" style={{ color: C.chalk }}>{fechaCorta(a.fecha, lang)}</div>
+                  <div className="text-[12px]" style={{ color: "#d9a441" }}>
+                    {a.antes ? t("mt2.alertNoAfter") : t("mt2.alertNoBefore")}
+                  </div>
+                  <button onClick={() => { const p0 = partes.find((x) => x.fecha === a.fecha); if (p0) { setParte(p0); setParteMsg(""); window.scrollTo({ top: 0, behavior: "smooth" }); } }}
+                    className="text-[11px] px-2.5 py-1 rounded-lg border font-display uppercase tracking-wide"
+                    style={{ borderColor: C.line, color: C.chalk }}>{t("mt2.fixIt")}</button>
+                </div>
+              ))}
+            </div>
+          </Card>
+        )}
+
         {partes.length > 0 && (
           <Card title={t("mt2.mine")}>
             <div className="space-y-1.5">
@@ -11550,7 +11802,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
      que hay que mirar: primero quien más balones ha perdido sin avisar, que es
      el motivo por el que el club pidió esto. */
   const renderControlClub = () => {
-    const fuente = partesClub.length ? partesClub : partes.map((p) => ({ ...p, equipoNombre: session?.team?.name || "" }));
+    const fuente = partesFuente;
     const cats = [...new Set(fuente.map((p) => p.equipoNombre).filter(Boolean))].sort();
     const visibles = clubCat ? fuente.filter((p) => p.equipoNombre === clubCat) : fuente;
     /* Agrupado por entrenador + categoría: la misma persona en dos categorías
@@ -11600,8 +11852,62 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
       ...fuente.map((p) => p.entrenadorNombre),
     ].map((x) => String(x || "").trim()).filter(Boolean))].sort();
 
+    /* ---- La alerta: entrenos sin parte, o con el parte a medias ----
+       Va por categoría y no por persona porque el día que NO llega el parte no
+       hay nombre al que atribuirlo: quien responde de esa categoría es su
+       encargado de material, que es justo para lo que el club lo nombra.
+       Los partes a medias sí llevan nombre, porque alguien los mandó.
+
+       Cuando el club aún no ha cargado sus categorías (o se está mirando en
+       local), se revisa al menos la del propio equipo con sus días. */
+    const alertas = alertasMaterial.filter((c) => !clubCat || c.nombre === clubCat);
+    const hayAlertas = alertas.some((a) => a.revisable && (a.sinParte.length || a.aMedias.length));
+
     return (
       <div className="space-y-4">
+        {/* La alerta va ANTES de la tabla: la tabla cuenta lo que sí ha
+            llegado, y lo que el club pidió saber es justo lo que no llega. */}
+        <Card title={`${hayAlertas ? "🚨" : "✓"} ${t("mt2.alertTitle")}`}>
+          <div className="text-xs mb-3 leading-relaxed" style={{ color: C.dim }}>{t("mt2.alertHint")}</div>
+          {alertas.length === 0 ? (
+            <div className="text-sm" style={{ color: C.green }}>✓ {t("mt2.alertNone")}</div>
+          ) : (
+            <div className="space-y-2">
+              {alertas.map((a) => (
+                <div key={a.nombre} className="rounded-lg border p-3"
+                  style={{ borderColor: a.revisable ? (a.sinParte.length ? "#b4474a" : "#d9a441") : C.line, background: C.panel2 }}>
+                  <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-1">
+                    <div className="font-display uppercase tracking-wide text-sm" style={{ color: C.chalk }}>{a.nombre || "—"}</div>
+                    <div className="text-[11px]" style={{ color: a.encargado ? C.dim : C.warn }}>
+                      {t("mt2.alertInCharge")} {a.encargado || t("mt2.alertNoInCharge")}
+                    </div>
+                  </div>
+                  {!a.revisable ? (
+                    <div className="text-[12px] leading-snug" style={{ color: C.dim }}>{t("mt2.alertNoDays")}</div>
+                  ) : (
+                    <div className="space-y-1">
+                      {a.sinParte.length > 0 && (
+                        <div className="text-[12px] leading-snug" style={{ color: "#b4474a" }}>
+                          <strong>{a.sinParte.length}</strong> {t("mt2.alertMissing")} ·{" "}
+                          <span style={{ color: C.dim }}>
+                            {a.sinParte.slice(0, 6).map((f) => fechaCorta(f, lang)).join(" · ")}
+                            {a.sinParte.length > 6 && ` · ${t("mt2.alertMoreDays").replace("{n}", a.sinParte.length - 6)}`}
+                          </span>
+                        </div>
+                      )}
+                      {a.aMedias.map((m) => (
+                        <div key={m.fecha} className="text-[12px] leading-snug" style={{ color: "#d9a441" }}>
+                          {fechaCorta(m.fecha, lang)} · {m.quien || "—"} · {m.antes ? t("mt2.alertNoAfter") : t("mt2.alertNoBefore")}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </Card>
+
         <Card title={`🏛 ${t("mt2.clubTitle")}`}>
           <div className="text-xs mb-2 leading-relaxed" style={{ color: C.dim }}>{t("mt2.clubHint")}</div>
           {/* Quién sube qué. La dirección del club no hace fotos ni cuenta
@@ -12287,6 +12593,16 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
             can("discipline") && pendingValid > 0 && { c: C.warn, ico: "disciplina", txt: `${pendingValid} ${t("h.aDisc")}` },
             can("viewDocs") && pendingSign > 0 && { c: C.warn, ico: "normativa", txt: `${pendingSign} ${t("h.aSign")}` },
             can("viewDocs") && pretempPend.length > 0 && { c: C.warn, ico: "normativa", txt: `${pretempPend.length} sin completar los ejercicios de pretemporada: ${pretempPend.map((p) => p.n.split(" ")[0]).join(", ")}` },
+            /* Material. A la dirección del club se le enseña lo de todas sus
+               categorías; a quien rellena el parte, solo lo suyo, y antes de
+               que llegue arriba. Sin esto había que acordarse de entrar en el
+               control de material para enterarse de que faltaba un parte. */
+            revisaMaterial && totalSinParte > 0
+              && { c: C.red, ico: "parte", txt: `${totalSinParte} ${t("mt2.homeMissing")}` },
+            revisaMaterial && totalAMedias > 0
+              && { c: C.warn, ico: "parte", txt: `${totalAMedias} ${t("mt2.homeHalf")}` },
+            rellenaMaterial && miRepaso.sinParte.length > 0
+              && { c: C.warn, ico: "parte", txt: `${miRepaso.sinParte.length} ${t("mt2.homeMine")}: ${miRepaso.sinParte.map((f) => fechaCorta(f, lang)).join(" · ")}` },
           ].filter(Boolean);
           if (!avisos.length) return <div className="text-sm" style={{ color: C.dim }}>{t("h.noAlerts")}</div>;
           return (
@@ -15375,7 +15691,9 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
   const hayAvisosNav = getPendingProposals().length > 0
     || pendUsersCount > 0
     || (can("discipline") && pendingValid > 0)
-    || (can("viewDocs") && pendingSign > 0);
+    || (can("viewDocs") && pendingSign > 0)
+    || (rellenaMaterial && miRepaso.sinParte.length > 0)
+    || (revisaMaterial && totalSinParte > 0);
 
   /* Escudo a mostrar: el del equipo, si no el del club de Airtable, y si no el
      archivo local. Antes la cabecera solo miraba el primero. */
