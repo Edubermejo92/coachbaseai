@@ -60,6 +60,12 @@ const U = {
   /* Roles extra, ademas del Rol principal: permite que una misma persona sea
      a la vez, por ejemplo, Segundo entrenador Y Delegado en su categoria. */
   rolesExtra: "fldJRASqTraLecDMa",
+  /* Solo para el director deportivo: si está marcada, además de revisar el
+     control de material del club tiene su propia pestaña Control de material
+     para mandar partes de la categoría que entrene. La activa el propio
+     director. El entrenador, el segundo y el delegado la tienen siempre y no
+     dependen de esta casilla. */
+  parteMat: "fld4okYQmHxbEQ6C8",
 };
 
 /* El Master es UNA cuenta, la de EBLDigital, y no se reparte desde la app.
@@ -1327,6 +1333,7 @@ export default async (req: Request) => {
             id: rec.id, name: rec.fields[U.nombre] || "", email: rec.fields[U.email] || "",
             rol: ROL_LABEL[rolDeSesion] || rec.fields[U.rol] || "", estado: rec.fields[U.estado] || "",
             rolesExtra: rolesExtraDeSesion,
+            parteMat: !!rec.fields[U.parteMat],
             plan: rec.fields[U.plan] || "Oficial",
             /* Días de prueba que le quedan según Airtable. 0 = sin prueba. */
             prueba: pruebaDias(rec.fields[U.prueba]),
@@ -1837,6 +1844,7 @@ export default async (req: Request) => {
         id: rec.id, name: rec.fields[U.nombre] || "", email: rec.fields[U.email] || "",
         rol: rec.fields[U.rol] || "", estado: rec.fields[U.estado] || "", teamRec: (rec.fields[U.equipo] || [])[0] || null,
         rolesExtra: rolesExtraKeys(rec.fields[U.rolesExtra]),
+        parteMat: !!rec.fields[U.parteMat],
       }));
       return j({ records: rows });
     }
@@ -1864,6 +1872,13 @@ export default async (req: Request) => {
         fields[U.rolesExtra] = extras.map((k: string) => ROL_LABEL[k]);
       }
       if (b.estado) fields[U.estado] = b.estado;
+      /* La pestaña propia de Control de material del director deportivo. Es
+         opcional y se la pone él: solo se acepta sobre la propia ficha —o
+         desde el Master—, para que un director no se la imponga a otro. */
+      if (b.parteMat !== undefined) {
+        if (!esMaster && id !== sesion?.id) return j({ ok: false, reason: "no_autorizado" }, 403);
+        fields[U.parteMat] = !!b.parteMat;
+      }
       if (!esMaster) {
         const recs = await allUsers();
         const yo = recs.find((r) => r.id === sesion?.id);

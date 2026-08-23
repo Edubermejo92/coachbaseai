@@ -245,6 +245,11 @@ const DICT = {
     "mt2.homeMissing": "entrenos sin parte de material",
     "mt2.homeHalf": "partes de material a medias (falta la foto de antes o la de después)",
     "mt2.homeMine": "entrenos tuyos sin el parte de material",
+    "mt2.ownTab": "Yo también entreno una categoría",
+    "mt2.ownTabHint": "Añade a tu menú tu propia pestaña Control de material para mandar los partes de la categoría que entrenes. Revisar el material del club se hace desde aquí y no cambia.",
+    "mt2.ownTabOn": "✓ Ya tienes tu pestaña Control de material en el menú.",
+    "mt2.ownTabOff": "✓ Quitada de tu menú. Sigues revisando el material del club desde aquí.",
+    "mt2.ownTabFail": "No se ha podido guardar. Inténtalo otra vez.",
     "mt2.alertTitle": "Partes que faltan",
     "mt2.alertHint": "Días de entreno de las últimas cuatro semanas en los que no llegó el parte, o llegó sin una de las dos fotos. Avisar antes es la foto al sacar el material; avisar después, la foto al guardarlo.",
     "mt2.alertNone": "Todos los entrenos de las últimas cuatro semanas tienen su parte, con las dos fotos.",
@@ -649,6 +654,11 @@ const DICT = {
     "mt2.homeMissing": "sessions with no kit report",
     "mt2.homeHalf": "kit reports half done (missing the before or the after photo)",
     "mt2.homeMine": "of your sessions with no kit report",
+    "mt2.ownTab": "I also coach an age group",
+    "mt2.ownTabHint": "Adds your own Kit control tab to your menu so you can send reports for the age group you coach. Reviewing the club's kit is done from here and does not change.",
+    "mt2.ownTabOn": "✓ Your Kit control tab is now in your menu.",
+    "mt2.ownTabOff": "✓ Removed from your menu. You still review the club's kit from here.",
+    "mt2.ownTabFail": "Couldn't save. Try again.",
     "mt2.alertTitle": "Missing reports",
     "mt2.alertHint": "Training days in the last four weeks with no report, or with one of the two photos missing. Reporting before is the photo when taking the kit out; reporting after is the photo when putting it away.",
     "mt2.alertNone": "Every session in the last four weeks has its report, with both photos.",
@@ -1070,6 +1080,11 @@ const DICT = {
     "mt2.homeMissing": "sessions with no kit report",
     "mt2.homeHalf": "kit reports half done (missing the before or the after photo)",
     "mt2.homeMine": "of your sessions with no kit report",
+    "mt2.ownTab": "I also coach an age group",
+    "mt2.ownTabHint": "Adds your own Kit control tab to your menu so you can send reports for the age group you coach. Reviewing the club's kit is done from here and does not change.",
+    "mt2.ownTabOn": "✓ Your Kit control tab is now in your menu.",
+    "mt2.ownTabOff": "✓ Removed from your menu. You still review the club's kit from here.",
+    "mt2.ownTabFail": "Couldn't save. Try again.",
     "mt2.alertTitle": "Missing reports",
     "mt2.alertHint": "Training days in the last four weeks with no report, or with one of the two photos missing. Reporting before is the photo when taking the kit out; reporting after is the photo when putting it away.",
     "mt2.alertNone": "Every session in the last four weeks has its report, with both photos.",
@@ -1564,6 +1579,11 @@ const DICT = {
     "mt2.homeMissing": "sessions with no kit report",
     "mt2.homeHalf": "kit reports half done (missing the before or the after photo)",
     "mt2.homeMine": "of your sessions with no kit report",
+    "mt2.ownTab": "I also coach an age group",
+    "mt2.ownTabHint": "Adds your own Kit control tab to your menu so you can send reports for the age group you coach. Reviewing the club's kit is done from here and does not change.",
+    "mt2.ownTabOn": "✓ Your Kit control tab is now in your menu.",
+    "mt2.ownTabOff": "✓ Removed from your menu. You still review the club's kit from here.",
+    "mt2.ownTabFail": "Couldn't save. Try again.",
     "mt2.alertTitle": "Missing reports",
     "mt2.alertHint": "Training days in the last four weeks with no report, or with one of the two photos missing. Reporting before is the photo when taking the kit out; reporting after is the photo when putting it away.",
     "mt2.alertNone": "Every session in the last four weeks has its report, with both photos.",
@@ -2057,6 +2077,11 @@ const DICT = {
     "mt2.homeMissing": "entrenos sin parte de material",
     "mt2.homeHalf": "partes de material a medias (falta la foto de antes o la de después)",
     "mt2.homeMine": "entrenos tuyos sin el parte de material",
+    "mt2.ownTab": "Yo también entreno una categoría",
+    "mt2.ownTabHint": "Añade a tu menú tu propia pestaña Control de material para mandar los partes de la categoría que entrenes. Revisar el material del club se hace desde aquí y no cambia.",
+    "mt2.ownTabOn": "✓ Ya tienes tu pestaña Control de material en el menú.",
+    "mt2.ownTabOff": "✓ Quitada de tu menú. Sigues revisando el material del club desde aquí.",
+    "mt2.ownTabFail": "No se ha podido guardar. Inténtalo otra vez.",
     "mt2.alertTitle": "Partes que faltan",
     "mt2.alertHint": "Días de entreno de las últimas cuatro semanas en los que no llegó el parte, o llegó sin una de las dos fotos. Avisar antes es la foto al sacar el material; avisar después, la foto al guardarlo.",
     "mt2.alertNone": "Todos los entrenos de las últimas cuatro semanas tienen su parte, con las dos fotos.",
@@ -3747,6 +3772,11 @@ const partFromAir = (r) => ({
   home: r.Local || "", away: r.Visitante || "", place: r.Lugar || "",
 });
 
+/* Respaldo local del interruptor "yo también entreno una categoría" del
+   director. Manda siempre lo que diga Airtable; esto solo cubre el caso de no
+   haber backend, para que la pestaña no se pierda al recargar. */
+const parteMatKey = (email) => `cb_partemat_${String(email || "anon").toLowerCase()}`;
+const parteMatLocal = (email) => { try { return localStorage.getItem(parteMatKey(email)) === "1"; } catch { return false; } };
 const airPatch = (id, body) => { try { return cbFetch(AIR + "?id=" + id, { method: "PATCH", headers: { "content-type": "application/json" }, body: JSON.stringify(body) }).catch(() => {}); } catch { return null; } };
 const airDelete = (id) => { try { return cbFetch(AIR + "?id=" + id, { method: "DELETE" }).catch(() => {}); } catch { return null; } };
 const estadoLabel = (status) => (status === "activo" ? "Activo" : "Pendiente");
@@ -7743,6 +7773,15 @@ export default function App() {
   const setLang = (l) => { setLangRaw(l); try { localStorage.setItem("cb_lang", l); } catch { /* noop */ } };
   const t = (k) => T(lang, k);
   const role = session ? ROLES[session.role] : ROLES.entrenador;
+  /* Las pestañas de este rol, más Control de material si el director deportivo
+     la ha activado. Es opcional a propósito: la dirección del club revisa el
+     material y no lo rellena, pero en un club pequeño el mismo director suele
+     entrenar una categoría, y entonces necesita mandar partes como cualquier
+     otro técnico. Al entrenador, al segundo y al delegado no les afecta: ellos
+     la tienen siempre. */
+  const roleTabs = (!role.tabs.includes("parte") && session?.parteMat)
+    ? [...role.tabs, "parte"]
+    : role.tabs;
   /* El color de mando lo pone el TEMA, no el rol: en claro es el carbón y en
      oscuro el gris claro, para que un botón principal se vea en los dos. */
   const AC = C.mando;
@@ -11413,6 +11452,33 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
      cuando alguien pierde material y no lo dice, decírselo. */
   const [avisoMat, setAvisoMat] = useState(null);
   const [avisoCopiado, setAvisoCopiado] = useState(false);
+  const [ownTabMsg, setOwnTabMsg] = useState("");
+  /* El director activa (o quita) su propia pestaña Control de material. Va
+     contra su ficha de Airtable y no contra este dispositivo: si se guardara
+     aquí, activarla en el móvil y luego abrir el portátil dejaría partes a
+     medias sin manera de terminarlos. El backend solo la acepta sobre la
+     ficha de uno mismo. */
+  const cambiarPestanaMaterial = async (valor) => {
+    if (esDemo) return;
+    setSession((x) => ({ ...x, parteMat: valor }));
+    setOwnTabMsg("");
+    try { localStorage.setItem(parteMatKey(session?.email), valor ? "1" : "0"); } catch { /* sin almacenamiento */ }
+    /* Sin ficha en Airtable (arrastre a Netlify sin backend, o vista previa)
+       queda guardado solo en este dispositivo, que es lo que hace el resto de
+       la app en esa situación. */
+    if (!session?.userId) { setOwnTabMsg(valor ? t("mt2.ownTabOn") : t("mt2.ownTabOff")); setTimeout(() => setOwnTabMsg(""), 5000); return; }
+    /* airPatch devuelve la respuesta o undefined si la red falló, así que no
+       vale con mirar r.ok: sin esta comprobación un fallo de red se daría por
+       guardado y la casilla se quedaría marcada mintiendo. */
+    const r = await airPatch(session.userId, { parteMat: valor });
+    const ok = !!(r && r.ok);
+    if (!ok) {
+      setSession((x) => ({ ...x, parteMat: !valor }));
+      try { localStorage.setItem(parteMatKey(session?.email), valor ? "0" : "1"); } catch { /* sin almacenamiento */ }
+    }
+    setOwnTabMsg(ok ? (valor ? t("mt2.ownTabOn") : t("mt2.ownTabOff")) : t("mt2.ownTabFail"));
+    setTimeout(() => setOwnTabMsg(""), 5000);
+  };
   const textoAvisoMaterial = (f) => [
     `📦 ${t("mt2.warnHead")} — ${session?.club || ""} · ${f.cat}`,
     `${t("mt2.who")} ${f.quien}`,
@@ -11501,7 +11567,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
      partes— pero no rellena ninguno, así que se mira quién tiene la PESTAÑA,
      que es justo lo que separa un papel del otro. */
   const revisaMaterial = ["director", "master"].includes(session?.role);
-  const rellenaMaterial = (ROLES[session?.role]?.tabs || []).includes("parte");
+  const rellenaMaterial = roleTabs.includes("parte");
   /* Lo mismo, pero solo lo del propio entrenador: es lo que se le enseña a él
      en Inicio y en su pantalla, para que lo arregle antes de que salte arriba. */
   const misPartes = partes.filter((x) => !x.entrenadorNombre || x.entrenadorNombre === session?.name);
@@ -11915,6 +11981,25 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
               hacia el entrenador es el aviso de la última columna. */}
           <div className="text-[11px] mb-3 rounded-lg border px-3 py-2 leading-relaxed" style={{ borderColor: C.line, background: C.panel2, color: C.dim }}>
             👁 {t("mt2.readOnly")}
+            {/* La excepción a esa frase, y va justo debajo de ella para que se
+                lean juntas. En un club pequeño el director suele entrenar
+                también una categoría; entonces sí rellena partes, pero porque
+                lo pide él, no porque el rol se lo imponga. */}
+            {puedeNombrar && (
+              <div className="mt-2 pt-2 border-t flex flex-wrap items-center gap-x-3 gap-y-1" style={{ borderColor: C.line }}>
+                {/* min-h-11: la etiqueta entera es el objetivo de pulsación, no
+                    solo la casilla, y con el alto del texto se quedaba en 18 px
+                    —imposible de acertar con el dedo—. */}
+                <label className="flex items-center gap-2 cursor-pointer min-h-11 py-1 pr-1">
+                  <input type="checkbox" checked={!!session?.parteMat}
+                    onChange={(e) => cambiarPestanaMaterial(e.target.checked)}
+                    className="w-5 h-5 shrink-0" style={{ accentColor: AC }} />
+                  <span className="font-display uppercase tracking-wide text-[11px]" style={{ color: C.chalk }}>{t("mt2.ownTab")}</span>
+                </label>
+                <span className="flex-1 min-w-[220px] leading-relaxed">{t("mt2.ownTabHint")}</span>
+                {ownTabMsg && <span style={{ color: ownTabMsg.startsWith("✓") ? C.green : C.warn }}>{ownTabMsg}</span>}
+              </div>
+            )}
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-3">
             {[[t("mt2.kpiLost"), tot.perdidos, tot.perdidos ? "#d9a441" : C.dim],
@@ -15543,6 +15628,10 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
       categoryId: defaultCat?.id || team?.rec,
       pendingApproval: estado !== "activo",
       prueba: Number(res?.user?.prueba) || 0,
+      /* Pestaña propia de Control de material del director deportivo. Opcional
+         y suya: si además de dirigir el club entrena una categoría, necesita
+         mandar partes como cualquier otro técnico. */
+      parteMat: (res && res.ok) ? !!res.user.parteMat : parteMatLocal(em),
       userId: res?.user?.id,
     });
     setTab("inicio");
@@ -15654,7 +15743,7 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
       {AccesFAB}
     </>
   );
-  const allTabs = getAvailableTabs(session?.club, role.tabs).filter((k) => k !== "usuarios" || lim.users);
+  const allTabs = getAvailableTabs(session?.club, roleTabs).filter((k) => k !== "usuarios" || lim.users);
   /* El menú enseña TODAS las categorías de la app, no solo las del rol: así se
      ve de un vistazo todo lo que hace COACHBASE y qué desbloquearía otro rol.
      Las que este rol no puede abrir salen apagadas y no llevan a ninguna parte.
