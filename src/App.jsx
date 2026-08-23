@@ -204,14 +204,10 @@ const DICT = {
     "mt2.matchOk": "El recuento cuadra con los balones declarados.",
     "mt2.damage": "Material en mal estado",
     "mt2.damagePh": "Ej. dos balones pinchados y un peto roto",
-    "mt2.session": "Cómo ha ido la sesión",
-    "mt2.late": "He llegado tarde",
-    "mt2.phone": "He usado el teléfono",
+    "mt2.session": "El grupo en esta sesión",
     "mt2.lateMin": "Minutos de retraso",
     "mt2.playersLate": "Jugadores con retraso",
     "mt2.playersHurt": "Jugadores con molestias",
-    "mt2.otherPh": "Otra incidencia (opcional)",
-    "mt2.other": "Otras",
     "mt2.send": "Enviar parte",
     "mt2.clear": "Empezar de nuevo",
     "mt2.saved": "✓ Parte enviado al club.",
@@ -250,6 +246,19 @@ const DICT = {
     "mt2.ownTabOn": "✓ Ya tienes tu pestaña Control de material en el menú.",
     "mt2.ownTabOff": "✓ Quitada de tu menú. Sigues revisando el material del club desde aquí.",
     "mt2.ownTabFail": "No se ha podido guardar. Inténtalo otra vez.",
+    "mt2.sanTitle": "Anotar sanción",
+    "mt2.sanHint": "Lo anota la dirección del club, no el entrenador: nadie declara que ha llegado tarde. Queda en el parte de ese día y el entrenador no puede quitarlo.",
+    "mt2.sanLate": "Llegó tarde",
+    "mt2.sanPhone": "Usó el teléfono",
+    "mt2.sanOther": "Otra penalización",
+    "mt2.sanOtherPh": "Ej. dejó el material sin recoger",
+    "mt2.sanSave": "Guardar sanción",
+    "mt2.sanClear": "Quitar todo",
+    "mt2.sanSaved": "✓ Sanción guardada.",
+    "mt2.sanFail": "No se ha podido guardar. Inténtalo otra vez.",
+    "mt2.sanLocal": "✓ Guardada solo en este dispositivo.",
+    "mt2.sanBtn": "Sanción",
+    "mt2.sanNone": "Sin sanciones",
     "mt2.alertTitle": "Partes que faltan",
     "mt2.alertHint": "Días de entreno de las últimas cuatro semanas en los que no llegó el parte, o llegó sin una de las dos fotos. Avisar antes es la foto al sacar el material; avisar después, la foto al guardarlo.",
     "mt2.alertNone": "Todos los entrenos de las últimas cuatro semanas tienen su parte, con las dos fotos.",
@@ -613,14 +622,10 @@ const DICT = {
     "mt2.matchOk": "The count matches the balls declared.",
     "mt2.damage": "Damaged kit",
     "mt2.damagePh": "e.g. two flat balls and a torn bib",
-    "mt2.session": "How the session went",
-    "mt2.late": "I arrived late",
-    "mt2.phone": "I used my phone",
+    "mt2.session": "The group in this session",
     "mt2.lateMin": "Minutes late",
     "mt2.playersLate": "Players late",
     "mt2.playersHurt": "Players with knocks",
-    "mt2.otherPh": "Other issue (optional)",
-    "mt2.other": "Other",
     "mt2.send": "Send report",
     "mt2.clear": "Start again",
     "mt2.saved": "✓ Report sent to the club.",
@@ -659,6 +664,19 @@ const DICT = {
     "mt2.ownTabOn": "✓ Your Kit control tab is now in your menu.",
     "mt2.ownTabOff": "✓ Removed from your menu. You still review the club's kit from here.",
     "mt2.ownTabFail": "Couldn't save. Try again.",
+    "mt2.sanTitle": "Log a sanction",
+    "mt2.sanHint": "Logged by the club's management, not by the coach: nobody reports themselves for turning up late. It stays on that day's report and the coach cannot remove it.",
+    "mt2.sanLate": "Turned up late",
+    "mt2.sanPhone": "Used their phone",
+    "mt2.sanOther": "Other sanction",
+    "mt2.sanOtherPh": "e.g. left the kit out",
+    "mt2.sanSave": "Save sanction",
+    "mt2.sanClear": "Clear all",
+    "mt2.sanSaved": "✓ Sanction saved.",
+    "mt2.sanFail": "Couldn't save. Try again.",
+    "mt2.sanLocal": "✓ Saved on this device only.",
+    "mt2.sanBtn": "Sanction",
+    "mt2.sanNone": "No sanctions",
     "mt2.alertTitle": "Missing reports",
     "mt2.alertHint": "Training days in the last four weeks with no report, or with one of the two photos missing. Reporting before is the photo when taking the kit out; reporting after is the photo when putting it away.",
     "mt2.alertNone": "Every session in the last four weeks has its report, with both photos.",
@@ -1039,14 +1057,10 @@ const DICT = {
     "mt2.matchOk": "The count matches the balls declared.",
     "mt2.damage": "Damaged kit",
     "mt2.damagePh": "e.g. two flat balls and a torn bib",
-    "mt2.session": "How the session went",
-    "mt2.late": "I arrived late",
-    "mt2.phone": "I used my phone",
+    "mt2.session": "The group in this session",
     "mt2.lateMin": "Minutes late",
     "mt2.playersLate": "Players late",
     "mt2.playersHurt": "Players with knocks",
-    "mt2.otherPh": "Other issue (optional)",
-    "mt2.other": "Other",
     "mt2.send": "Envoyer le rapport",
     "mt2.clear": "Start again",
     "mt2.saved": "✓ Report sent to the club.",
@@ -1085,6 +1099,19 @@ const DICT = {
     "mt2.ownTabOn": "✓ Your Kit control tab is now in your menu.",
     "mt2.ownTabOff": "✓ Removed from your menu. You still review the club's kit from here.",
     "mt2.ownTabFail": "Couldn't save. Try again.",
+    "mt2.sanTitle": "Log a sanction",
+    "mt2.sanHint": "Logged by the club's management, not by the coach: nobody reports themselves for turning up late. It stays on that day's report and the coach cannot remove it.",
+    "mt2.sanLate": "Turned up late",
+    "mt2.sanPhone": "Used their phone",
+    "mt2.sanOther": "Other sanction",
+    "mt2.sanOtherPh": "e.g. left the kit out",
+    "mt2.sanSave": "Save sanction",
+    "mt2.sanClear": "Clear all",
+    "mt2.sanSaved": "✓ Sanction saved.",
+    "mt2.sanFail": "Couldn't save. Try again.",
+    "mt2.sanLocal": "✓ Saved on this device only.",
+    "mt2.sanBtn": "Sanction",
+    "mt2.sanNone": "No sanctions",
     "mt2.alertTitle": "Missing reports",
     "mt2.alertHint": "Training days in the last four weeks with no report, or with one of the two photos missing. Reporting before is the photo when taking the kit out; reporting after is the photo when putting it away.",
     "mt2.alertNone": "Every session in the last four weeks has its report, with both photos.",
@@ -1538,14 +1565,10 @@ const DICT = {
     "mt2.matchOk": "The count matches the balls declared.",
     "mt2.damage": "Damaged kit",
     "mt2.damagePh": "e.g. two flat balls and a torn bib",
-    "mt2.session": "How the session went",
-    "mt2.late": "I arrived late",
-    "mt2.phone": "I used my phone",
+    "mt2.session": "The group in this session",
     "mt2.lateMin": "Minutes late",
     "mt2.playersLate": "Players late",
     "mt2.playersHurt": "Players with knocks",
-    "mt2.otherPh": "Other issue (optional)",
-    "mt2.other": "Other",
     "mt2.send": "Bericht senden",
     "mt2.clear": "Start again",
     "mt2.saved": "✓ Report sent to the club.",
@@ -1584,6 +1607,19 @@ const DICT = {
     "mt2.ownTabOn": "✓ Your Kit control tab is now in your menu.",
     "mt2.ownTabOff": "✓ Removed from your menu. You still review the club's kit from here.",
     "mt2.ownTabFail": "Couldn't save. Try again.",
+    "mt2.sanTitle": "Log a sanction",
+    "mt2.sanHint": "Logged by the club's management, not by the coach: nobody reports themselves for turning up late. It stays on that day's report and the coach cannot remove it.",
+    "mt2.sanLate": "Turned up late",
+    "mt2.sanPhone": "Used their phone",
+    "mt2.sanOther": "Other sanction",
+    "mt2.sanOtherPh": "e.g. left the kit out",
+    "mt2.sanSave": "Save sanction",
+    "mt2.sanClear": "Clear all",
+    "mt2.sanSaved": "✓ Sanction saved.",
+    "mt2.sanFail": "Couldn't save. Try again.",
+    "mt2.sanLocal": "✓ Saved on this device only.",
+    "mt2.sanBtn": "Sanction",
+    "mt2.sanNone": "No sanctions",
     "mt2.alertTitle": "Missing reports",
     "mt2.alertHint": "Training days in the last four weeks with no report, or with one of the two photos missing. Reporting before is the photo when taking the kit out; reporting after is the photo when putting it away.",
     "mt2.alertNone": "Every session in the last four weeks has its report, with both photos.",
@@ -2036,14 +2072,10 @@ const DICT = {
     "mt2.matchOk": "El recuento cuadra con los balones declarados.",
     "mt2.damage": "Material en mal estado",
     "mt2.damagePh": "Ej. dos balones pinchados y un peto roto",
-    "mt2.session": "Cómo ha ido la sesión",
-    "mt2.late": "He llegado tarde",
-    "mt2.phone": "He usado el teléfono",
+    "mt2.session": "El grupo en esta sesión",
     "mt2.lateMin": "Minutos de retraso",
     "mt2.playersLate": "Jugadores con retraso",
     "mt2.playersHurt": "Jugadores con molestias",
-    "mt2.otherPh": "Otra incidencia (opcional)",
-    "mt2.other": "Otras",
     "mt2.send": "Enviar relatório",
     "mt2.clear": "Empezar de nuevo",
     "mt2.saved": "✓ Parte enviado al club.",
@@ -2082,6 +2114,19 @@ const DICT = {
     "mt2.ownTabOn": "✓ Ya tienes tu pestaña Control de material en el menú.",
     "mt2.ownTabOff": "✓ Quitada de tu menú. Sigues revisando el material del club desde aquí.",
     "mt2.ownTabFail": "No se ha podido guardar. Inténtalo otra vez.",
+    "mt2.sanTitle": "Anotar sanción",
+    "mt2.sanHint": "Lo anota la dirección del club, no el entrenador: nadie declara que ha llegado tarde. Queda en el parte de ese día y el entrenador no puede quitarlo.",
+    "mt2.sanLate": "Llegó tarde",
+    "mt2.sanPhone": "Usó el teléfono",
+    "mt2.sanOther": "Otra penalización",
+    "mt2.sanOtherPh": "Ej. dejó el material sin recoger",
+    "mt2.sanSave": "Guardar sanción",
+    "mt2.sanClear": "Quitar todo",
+    "mt2.sanSaved": "✓ Sanción guardada.",
+    "mt2.sanFail": "No se ha podido guardar. Inténtalo otra vez.",
+    "mt2.sanLocal": "✓ Guardada solo en este dispositivo.",
+    "mt2.sanBtn": "Sanción",
+    "mt2.sanNone": "Sin sanciones",
     "mt2.alertTitle": "Partes que faltan",
     "mt2.alertHint": "Días de entreno de las últimas cuatro semanas en los que no llegó el parte, o llegó sin una de las dos fotos. Avisar antes es la foto al sacar el material; avisar después, la foto al guardarlo.",
     "mt2.alertNone": "Todos los entrenos de las últimas cuatro semanas tienen su parte, con las dos fotos.",
@@ -3328,10 +3373,12 @@ const parteToAir = (p, teamRec, userRec) => ({
   "Balones entrada": Number(p.entrada) || 0,
   "Balones perdidos": Number(p.perdidos) || 0,
   Desperfectos: p.desperfectos || "",
-  "Entrenador tarde": !!p.tarde,
-  "Minutos tarde": Number(p.minutosTarde) || 0,
-  "Uso del telefono": !!p.telefono,
-  Penalizaciones: p.penalizaciones || "",
+  /* Aquí NO van "Entrenador tarde", "Minutos tarde", "Uso del telefono" ni
+     "Penalizaciones": son sanciones y las anota la dirección del club, no
+     quien las recibe. Ningún entrenador va a declarar que llegó tarde, y
+     dejarle el campo solo servía para que el dato saliera siempre a cero.
+     Se escriben por res=parte-sancion, que comprueba el rol; el backend
+     además las descarta si llegan por esta vía. */
   "Jugadores con retraso": Number(p.jugTarde) || 0,
   "Jugadores con molestias": Number(p.jugMolestias) || 0,
   Notas: p.notas || "",
@@ -3354,6 +3401,18 @@ const parteFromAir = (r) => ({
   notas: r.Notas || "",
   equipoNombre: r.equipoNombre || "",
 });
+/* Sanciones de un parte (llegó tarde, usó el teléfono, otras). Recurso aparte
+   y no un campo más del parte, justo para que el backend compruebe el rol: las
+   anota la dirección del club y el entrenador no puede quitárselas volviendo a
+   mandar el parte. */
+const airParteSancion = async (rec, body) => {
+  try {
+    const r = await cbFetch(`${AIR}?res=parte-sancion&id=${encodeURIComponent(rec)}`, {
+      method: "PATCH", headers: { "content-type": "application/json" }, body: JSON.stringify(body),
+    });
+    return r.ok;
+  } catch { return false; }
+};
 /* Vista agregada para la dirección del club: todos los partes de todas sus
    categorías de una vez. */
 const airPartesClub = async (clubRec) => {
@@ -11453,6 +11512,42 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
   const [avisoMat, setAvisoMat] = useState(null);
   const [avisoCopiado, setAvisoCopiado] = useState(false);
   const [ownTabMsg, setOwnTabMsg] = useState("");
+  /* Sanción que está anotando la dirección del club sobre un parte concreto.
+     Guarda el borrador aparte del parte para poder cancelar sin dejar rastro. */
+  const [sancion, setSancion] = useState(null);
+  const [sanMsg, setSanMsg] = useState("");
+  const [sanBusy, setSanBusy] = useState(false);
+  const guardarSancion = async () => {
+    if (!sancion || sanBusy) return;
+    setSanBusy(true); setSanMsg("");
+    const datos = {
+      tarde: !!sancion.tarde,
+      minutosTarde: sancion.tarde ? Math.max(0, Number(sancion.minutosTarde) || 0) : 0,
+      telefono: !!sancion.telefono,
+      penalizaciones: String(sancion.penalizaciones || "").trim(),
+    };
+    /* Se pinta ya en las dos listas —la del club y la del equipo— para que la
+       tabla y los totales cuadren sin esperar a recargar.
+       El parte se identifica por su registro de Airtable, y solo por el id
+       local cuando todavía no tiene: comparar `rec` a secas marcaba TODOS los
+       partes cuando ninguno estaba subido, porque "" === "". */
+    const mismo = (x) => (sancion.rec
+      ? x.rec === sancion.rec
+      : (!x.rec && x.id !== undefined && x.id === sancion.id));
+    const aplicar = (x) => (mismo(x) ? { ...x, ...datos } : x);
+    setPartesClub((ps) => ps.map(aplicar));
+    setPartes((ps) => ps.map(aplicar));
+    if (sancion.rec && !esDemo) {
+      const ok = await airParteSancion(sancion.rec, datos);
+      setSanMsg(ok ? t("mt2.sanSaved") : t("mt2.sanFail"));
+      if (ok) setTimeout(() => setSancion(null), 900);
+    } else {
+      setSanMsg(t("mt2.sanLocal"));
+      setTimeout(() => setSancion(null), 900);
+    }
+    setSanBusy(false);
+    setTimeout(() => setSanMsg(""), 5000);
+  };
   /* El director activa (o quita) su propia pestaña Control de material. Va
      contra su ficha de Airtable y no contra este dispositivo: si se guardara
      aquí, activarla en el móvil y luego abrir el portátil dejaría partes a
@@ -11672,13 +11767,6 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
           style={{ borderColor: C.line, color: C.chalk }} />
       </label>
     );
-    const bandera = (k, label, color) => (
-      <button onClick={() => puede && setP(k, !parte[k])} disabled={!puede} aria-pressed={!!parte[k]}
-        className="text-xs px-3 py-2 rounded-lg border font-display uppercase tracking-wide disabled:opacity-60"
-        style={{ borderColor: parte[k] ? color : C.line, color: parte[k] ? color : C.dim, background: parte[k] ? `${color}18` : "transparent" }}>
-        {parte[k] ? "✓ " : ""}{label}
-      </button>
-    );
     return (
       <div className="space-y-4">
         {/* Aviso de hoy, arriba del todo y solo el día que toca entrenar. Es la
@@ -11775,20 +11863,18 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
               className="w-full px-2.5 py-1.5 rounded-lg border bg-transparent text-sm" style={{ borderColor: C.line, color: C.chalk }} />
           </div>
 
+          {/* Solo el grupo. Lo que era "cómo ha ido la sesión" incluía dos
+              casillas para que el entrenador declarase que había llegado tarde
+              o usado el teléfono: nadie se sanciona a sí mismo, así que el dato
+              salía siempre a cero y el club creía que no pasaba nada. Eso lo
+              anota ahora la dirección del club sobre el parte. Estos dos
+              números sí son del grupo, no del entrenador, y se quedan. */}
           <div className="mt-3 pt-3 border-t" style={{ borderColor: C.line }}>
             <div className="text-[11px] font-display uppercase tracking-wide mb-2" style={{ color: C.dim }}>{t("mt2.session")}</div>
-            <div className="flex flex-wrap gap-2 mb-3">
-              {bandera("tarde", t("mt2.late"), "#d9a441")}
-              {bandera("telefono", t("mt2.phone"), "#b4474a")}
-            </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-              {parte.tarde && num("minutosTarde", t("mt2.lateMin"))}
+            <div className="grid grid-cols-2 gap-2">
               {num("jugTarde", t("mt2.playersLate"))}
               {num("jugMolestias", t("mt2.playersHurt"))}
             </div>
-            <input value={parte.penalizaciones} disabled={!puede}
-              onChange={(e) => setP("penalizaciones", e.target.value)} placeholder={t("mt2.otherPh")}
-              className="mt-2 w-full px-2.5 py-1.5 rounded-lg border bg-transparent text-sm" style={{ borderColor: C.line, color: C.chalk }} />
           </div>
 
           {puede && (
@@ -12053,10 +12139,10 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                       <td className="text-right tabular-nums" style={{ color: f.perdidos ? "#d9a441" : C.dim }}>{f.perdidos}</td>
                       <td className="text-right tabular-nums font-semibold" style={{ color: f.sinAvisar ? "#b4474a" : C.dim }}>{f.sinAvisar}</td>
                       <td className="text-right text-[12px] whitespace-nowrap">
-                        {f.tarde > 0 && <span title={t("mt2.late")} style={{ color: "#d9a441" }}>⏱{f.tarde} </span>}
-                        {f.telefono > 0 && <span title={t("mt2.phone")} style={{ color: "#b4474a" }}>📱{f.telefono} </span>}
+                        {f.tarde > 0 && <span title={t("mt2.sanLate")} style={{ color: "#d9a441" }}>⏱{f.tarde} </span>}
+                        {f.telefono > 0 && <span title={t("mt2.sanPhone")} style={{ color: "#b4474a" }}>📱{f.telefono} </span>}
                         {f.quejas > 0 && <span title={t("mt2.damage")} style={{ color: "#d9a441" }}>🔧{f.quejas} </span>}
-                        {f.penal > 0 && <span title={t("mt2.other")} style={{ color: C.dim }}>⚑{f.penal}</span>}
+                        {f.penal > 0 && <span title={t("mt2.sanOther")} style={{ color: C.dim }}>⚑{f.penal}</span>}
                         {!f.tarde && !f.telefono && !f.quejas && !f.penal && <span style={{ color: C.dim }}>—</span>}
                       </td>
                       <td className="text-right text-[12px] whitespace-nowrap" style={{ color: C.dim }}>
@@ -12135,14 +12221,89 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                   <div className="text-[11px] shrink-0" style={{ color: C.dim }}>{p.equipoNombre}</div>
                   <div className="text-[12px] flex-1 min-w-[120px]" style={{ color: C.dim }}>{p.salida} → {p.entrada}</div>
                   {hayDesperfectos(p.desperfectos) && <div className="text-[11px] w-full sm:w-auto" style={{ color: "#d9a441" }}>🔧 {p.desperfectos}</div>}
-                  <div className="flex gap-2 shrink-0">
+                  <div className="flex items-center gap-2 shrink-0">
                     {p.fotoSalida && <a href={p.fotoSalida} target="_blank" rel="noreferrer" className="text-[11px] underline" style={{ color: AC }}>{t("mt2.out")}</a>}
                     {p.fotoEntrada && <a href={p.fotoEntrada} target="_blank" rel="noreferrer" className="text-[11px] underline" style={{ color: AC }}>{t("mt2.in")}</a>}
+                    {/* Lo que el club haya anotado de ese día, a la vista en la
+                        propia fila: si hay que abrir un formulario para saber
+                        si alguien llegó tarde, no se mira nunca. */}
+                    <span className="text-[12px] whitespace-nowrap">
+                      {p.tarde && <span title={t("mt2.sanLate")} style={{ color: "#d9a441" }}>⏱{p.minutosTarde ? `${p.minutosTarde}′` : ""} </span>}
+                      {p.telefono && <span title={t("mt2.sanPhone")} style={{ color: "#b4474a" }}>📱 </span>}
+                      {String(p.penalizaciones || "").trim() && <span title={p.penalizaciones} style={{ color: "#d9a441" }}>⚑</span>}
+                    </span>
+                    {puedeNombrar && (
+                      <button onClick={() => { setSancion({ ...p }); setSanMsg(""); }}
+                        className="text-[11px] px-2.5 py-1.5 rounded-lg border font-display uppercase tracking-wide whitespace-nowrap"
+                        style={{ borderColor: C.line, color: C.dim }}>{t("mt2.sanBtn")}</button>
+                    )}
                   </div>
                 </div>
               ))}
             </div>
           </Card>
+        )}
+
+        {/* Anotar sanción. La pone el club sobre el parte de ese día: ningún
+            entrenador se declara a sí mismo un retraso, así que las dos
+            casillas que tenía en su formulario salían siempre a cero y el club
+            leía "no ha pasado nada" cuando podía haber pasado de todo. */}
+        {sancion && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,.6)" }}
+            onClick={() => setSancion(null)} role="dialog" aria-modal="true">
+            <div className="w-full max-w-md rounded-xl border p-4 max-h-[88vh] overflow-y-auto"
+              style={{ background: C.panel, borderColor: C.line }} onClick={(e) => e.stopPropagation()}>
+              <div className="flex items-start justify-between gap-3 mb-2">
+                <div className="min-w-0">
+                  <div className="font-display uppercase tracking-wide" style={{ color: C.chalk }}>{t("mt2.sanTitle")}</div>
+                  <div className="text-[11px]" style={{ color: C.dim }}>
+                    {sancion.entrenadorNombre || "—"} · {sancion.equipoNombre || ""} · {fechaCorta(sancion.fecha, lang)}
+                  </div>
+                </div>
+                <button onClick={() => setSancion(null)} className="text-sm px-3 py-1.5 rounded-lg border shrink-0"
+                  style={{ borderColor: C.line, color: C.chalk }}>{t("p.close")}</button>
+              </div>
+              <div className="text-xs mb-3 leading-relaxed" style={{ color: C.dim }}>{t("mt2.sanHint")}</div>
+
+              <div className="flex flex-wrap gap-2 mb-3">
+                {[["tarde", t("mt2.sanLate"), "#d9a441"], ["telefono", t("mt2.sanPhone"), "#b4474a"]].map(([k, label, color]) => (
+                  <button key={k} onClick={() => setSancion((x) => ({ ...x, [k]: !x[k] }))} aria-pressed={!!sancion[k]}
+                    className="text-xs px-3 py-2.5 rounded-lg border font-display uppercase tracking-wide"
+                    style={{ borderColor: sancion[k] ? color : C.line, color: sancion[k] ? color : C.dim, background: sancion[k] ? `${color}18` : "transparent" }}>
+                    {sancion[k] ? "✓ " : ""}{label}
+                  </button>
+                ))}
+              </div>
+
+              {sancion.tarde && (
+                <label className="block mb-3">
+                  <span className="text-[11px] block mb-1" style={{ color: C.dim }}>{t("mt2.lateMin")}</span>
+                  <input type="number" min={0} max={999} value={sancion.minutosTarde || 0}
+                    onChange={(e) => setSancion((x) => ({ ...x, minutosTarde: Math.max(0, Math.min(999, Number(e.target.value) || 0)) }))}
+                    className="w-32 px-2.5 py-2 rounded-lg border bg-transparent text-sm tabular-nums"
+                    style={{ borderColor: C.line, color: C.chalk }} />
+                </label>
+              )}
+
+              <label className="block mb-3">
+                <span className="text-[11px] block mb-1" style={{ color: C.dim }}>{t("mt2.sanOther")}</span>
+                <textarea rows={2} value={sancion.penalizaciones || ""} placeholder={t("mt2.sanOtherPh")}
+                  onChange={(e) => setSancion((x) => ({ ...x, penalizaciones: e.target.value }))}
+                  className="w-full px-2.5 py-2 rounded-lg border bg-transparent text-sm"
+                  style={{ borderColor: C.line, color: C.chalk }} />
+              </label>
+
+              <div className="flex flex-wrap items-center gap-2">
+                <button onClick={guardarSancion} disabled={sanBusy}
+                  className="flex-1 min-w-[150px] font-display uppercase tracking-wider py-2.5 rounded-lg font-semibold disabled:opacity-50"
+                  style={{ background: AC, color: C.sobre }}>{sanBusy ? t("a.sending") : t("mt2.sanSave")}</button>
+                <button onClick={() => setSancion((x) => ({ ...x, tarde: false, telefono: false, minutosTarde: 0, penalizaciones: "" }))}
+                  className="px-4 py-2.5 rounded-lg border font-display uppercase tracking-wide text-sm"
+                  style={{ borderColor: C.line, color: C.dim }}>{t("mt2.sanClear")}</button>
+              </div>
+              {sanMsg && <div className="text-xs mt-2" style={{ color: sanMsg.startsWith("✓") ? C.green : C.warn }}>{sanMsg}</div>}
+            </div>
+          </div>
         )}
 
         {/* Aviso al entrenador. Es lo único que el club manda hacia fuera desde

@@ -761,6 +761,30 @@ export default async (req: Request) => {
        genérico porque ese exige un equipo y aquí hace falta justo lo contrario:
        cruzar todas las categorías para poder comparar entrenadores. Lo lee
        quien dirige el club, no cada entrenador. */
+    /* ---- Sanciones de un parte, solo para la dirección del club ----
+       El entrenador no va a declarar que llegó tarde o que estuvo con el
+       teléfono; eso lo anota el club. Va en su propio recurso, y no como un
+       campo más del parte, justo para que el rol se compruebe: la única
+       manera de escribir estos cuatro campos es pasando por aquí. */
+    if (res === "parte-sancion") {
+      if (req.method !== "PATCH" || !id) return j({ error: "Petición no soportada" }, 400);
+      if (!["master", "director"].includes(rolKey(sesion?.rol))) {
+        return j({ ok: false, reason: "Solo la dirección del club anota sanciones." }, 403);
+      }
+      const actual = await unoPorId(T_PARTES, id);
+      const equipoActual = (actual?.fields?.Equipo || [])[0] || "";
+      if (!equipoActual || !(await puedeEquipo(equipoActual))) return j({ ok: false, reason: "no_autorizado" }, 403);
+      const b = await req.json();
+      const fields: Record<string, unknown> = {};
+      if (b.tarde !== undefined) fields[PA.tarde] = !!b.tarde;
+      if (b.minutosTarde !== undefined) fields[PA.minutosTarde] = Math.max(0, Math.min(999, Number(b.minutosTarde) || 0));
+      if (b.telefono !== undefined) fields[PA.telefono] = !!b.telefono;
+      if (b.penalizaciones !== undefined) fields[PA.penalizaciones] = String(b.penalizaciones || "").slice(0, 500);
+      if (!Object.keys(fields).length) return j({ ok: false, reason: "nada_que_guardar" }, 400);
+      const r = await fetch(`${table(T_PARTES)}/${id}`, { method: "PATCH", headers: H, body: JSON.stringify({ fields, typecast: true }) });
+      return j({ ok: r.ok }, r.ok ? 200 : 400);
+    }
+
     if (res === "partes-club") {
       const club = url.searchParams.get("club") || "";
       if (!club) return j({ error: "falta_club" }, 400);
@@ -1106,6 +1130,17 @@ export default async (req: Request) => {
         const equipoActual = (actual?.fields?.Equipo || [])[0] || "";
         if (!(await puedeEquipo(equipoActual))) return j({ ok: false, reason: "no_autorizado" }, 403);
         const b = await req.json();
+        /* Las sanciones de un parte -llegó tarde, usó el teléfono, otras- las
+           pone la dirección del club y NO el propio entrenador: si pudiera
+           tocarlas desde aquí, le bastaría con volver a mandar el parte para
+           borrarse la sanción. Se escriben solo por res=parte-sancion, que
+           comprueba el rol. Aquí se descartan en silencio: el entrenador no
+           las manda nunca, así que si aparecen es que alguien ha construido la
+           petición a mano. */
+        if (res === "partes" && b.fields) {
+          for (const f of [PA.tarde, PA.minutosTarde, PA.telefono, PA.penalizaciones,
+            "Entrenador tarde", "Minutos tarde", "Uso del telefono", "Penalizaciones"]) delete b.fields[f];
+        }
         if (b.fields?.Equipo) {
           const equipoNuevo = (b.fields.Equipo || [])[0] || "";
           if (!(await puedeEquipo(equipoNuevo))) return j({ ok: false, reason: "no_autorizado" }, 403);
