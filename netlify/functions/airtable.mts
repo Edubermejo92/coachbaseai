@@ -446,13 +446,20 @@ export default async (req: Request) => {
   if (!abierto && !sesion) {
     return j({ error: "no_autorizado", reason: "Sesión no válida o caducada. Vuelve a iniciar sesión." }, 401);
   }
-  /* Crear, editar y borrar equipos queda reservado al Master: es quien da de
-     alta los equipos oficiales con su escudo, su web y su campo. */
   /* La sesión ya se firmó con el rol real (ver rolReal), así que aquí basta
      con mirarlo; no se vuelve a consultar Airtable en cada petición. */
   const esMaster = rolKey(sesion?.rol) === "master";
-  if (res === "equipos" && req.method !== "GET" && !esMaster) {
-    return j({ error: "no_autorizado", reason: "Solo el Master puede crear o modificar equipos." }, 403);
+  /* Crear, editar y borrar equipos era exclusivo del Master, y con esa puerta
+     cerrada aquí arriba no llegaba a ejecutarse NADA de lo de más abajo: ni el
+     director podía nombrar al encargado de material de una categoría de su
+     club, ni el cuerpo técnico guardar los días de entreno de su equipo, aunque
+     las dos cosas tuvieran su comprobación propia dentro. Ahora el permiso se
+     decide en cada rama —PATCH pide puedeEquipo, DELETE pide dirección del
+     club, POST pide dirección del club— en vez de con esta única puerta que
+     tapaba las tres. */
+  const dirigeClub = esMaster || rolKey(sesion?.rol) === "director";
+  if (res === "equipos" && ["POST", "DELETE"].includes(req.method) && !dirigeClub) {
+    return j({ error: "no_autorizado", reason: "Solo la dirección del club puede crear o eliminar categorías." }, 403);
   }
   /* borrar usuarios queda reservado al Master */
   if (req.method === "DELETE" && res === "usuarios" && !esMaster) {
@@ -639,6 +646,134 @@ export default async (req: Request) => {
           ...(b.web ? { [EQ.web]: b.web } : {}), ...(b.maps ? { [EQ.maps]: b.maps } : {}),
         });
         return j({ ok: !!d?.id, rec: d?.id }, d?.id ? 200 : 400);
+      }
+
+      /* ---- Eliminar una categoría del club ----
+         Un club retira el Sénior y quiere que deje de estar. Borrar solo la
+         fila del equipo dejaría en la base los jugadores, los partidos, las
+         convocatorias, los partes y las incidencias apuntando a un equipo que
+         ya no existe: invisibles en la app y ahí para siempre. Así que se
+         borra también lo que cuelga de él.
+
+         Por eso va en dos pasos. Sin `confirmar` NO borra nada: cuenta lo que
+         se llevaría por delante y lo devuelve, para que quien lo pide lo vea
+         escrito antes de decidir. Con `confirmar` (y el nombre exacto de la
+         categoría) borra.
+
+         El cuerpo técnico NO se borra: son personas con cuenta propia. Se les
+         quita el enlace a esta categoría y el club los reasigna. */
+      if (req.method === "DELETE" && id) {
+        if (!(await puedeEquipo(id))) {
+          return j({ ok: false, reason: "No puedes eliminar una categoría que no es de tu club." }, 403);
+        }
+        const eq = await unoPorId(T_EQUIPOS, id);
+        if (!eq) return j({ ok: false, reason: "no_existe" }, 404);
+        const nombreEq = eq.fields?.[EQ.nombre] || "";
+        const clubDelEq = (eq.fields?.[EQ.club] || [])[0] || null;
+
+        /* Un club sin ninguna categoría no es un club: se queda sin plantilla,
+           sin calendario y sin sitio al que volver a entrar. */
+        if (clubDelEq) {
+          const hermanas = (await list(T_EQUIPOS)).filter((e: any) => (e.fields[EQ.club] || []).includes(clubDelEq));
+          if (hermanas.length <= 1) {
+            return j({ ok: false, reason: "ultima_categoria" }, 409);
+          }
+        }
+        /* Borrar la categoría en la que estás trabajando dejaría la sesión
+           apuntando a algo que ya no existe. */
+        if (sesion?.equipo && String(sesion.equipo) === id) {
+          return j({ ok: false, reason: "categoria_actual" }, 409);
+        }
+
+        /* Las tablas "genéricas" se leen por NOMBRE de columna, igual que en el
+           resto del archivo (r.fields.Equipo); las demás por id de campo, que
+           es como están mapeadas aquí arriba. Mezclar los dos criterios fue el
+           motivo de que en su día las lecturas devolvieran undefined, así que
+           cada tabla se lee como se lee en su propio sitio. */
+        const [jugadores, partidos, convocatorias, entrenamientos, partes,
+               incidencias, normativa, propuestas, usuarios, firmas, galeria] =
+          await Promise.all([
+            listByName(T_JUGADORES), listByName(T_PARTIDOS), listByName(T_CONVOCATORIAS),
+            listByName(T_ENTRENAMIENTOS), listByName(T_PARTES),
+            list(T_INCIDENCIAS), list(T_NORMATIVA), list(T_PROPUESTAS), list(T_USUARIOS),
+            list(T_FIRMAS), list(T_GALERIA),
+          ]);
+        const porNombre = (rows: any[]) => rows.filter((r: any) => (r.fields?.Equipo || []).includes(id));
+        const porId = (rows: any[], campo: string) => rows.filter((r: any) => (r.fields[campo] || []).includes(id));
+        const misJugadores = porNombre(jugadores);
+        const idsJug = new Set(misJugadores.map((r: any) => r.id));
+        const deJugador = (rows: any[], campo: string) =>
+          rows.filter((r: any) => (r.fields[campo] || []).some((x: string) => idsJug.has(x)));
+        const misFirmas = deJugador(firmas, "fldVmYVSgZoa9A8I3");
+        const miGaleria = deJugador(galeria, "fldcNQ8FQFYAv4NTk");
+        /* Las incidencias anteriores a que este proxy guardara el enlace
+           directo al equipo solo lo tienen a través del jugador. */
+        const misIncidencias = incidencias.filter((r: any) =>
+          (r.fields[I.equipo] || []).includes(id) || (r.fields[I.jugador] || []).some((x: string) => idsJug.has(x)));
+        const misUsuarios = usuarios.filter((r: any) => (r.fields[U.equipo] || []).includes(id));
+        const misPartidos = porNombre(partidos);
+        const misConvocatorias = porNombre(convocatorias);
+        const misEntrenamientos = porNombre(entrenamientos);
+        const misPartes = porNombre(partes);
+        const miNormativa = porId(normativa, "fldOGmAE882lecjEE");
+        const misPropuestas = porId(propuestas, PR.equipo);
+        const lotes: Array<[string, any[]]> = [
+          [T_FIRMAS, misFirmas],
+          [T_GALERIA, miGaleria],
+          [T_INCIDENCIAS, misIncidencias],
+          [T_JUGADORES, misJugadores],
+          [T_PARTIDOS, misPartidos],
+          [T_CONVOCATORIAS, misConvocatorias],
+          [T_ENTRENAMIENTOS, misEntrenamientos],
+          [T_PARTES, misPartes],
+          [T_NORMATIVA, miNormativa],
+          [T_PROPUESTAS, misPropuestas],
+        ];
+        const resumen = {
+          nombre: nombreEq,
+          jugadores: misJugadores.length,
+          partidos: misPartidos.length,
+          convocatorias: misConvocatorias.length,
+          entrenamientos: misEntrenamientos.length,
+          partes: misPartes.length,
+          incidencias: misIncidencias.length,
+          normativa: miNormativa.length,
+          propuestas: misPropuestas.length,
+          firmas: misFirmas.length,
+          galeria: miGaleria.length,
+          usuarios: misUsuarios.length,
+        };
+        /* En la URL y no en el cuerpo: un DELETE con cuerpo lo admite el
+           estándar, pero hay proxies que lo descartan por el camino. */
+        if (url.searchParams.get("confirmar") !== "1") return j({ ok: false, revision: true, resumen });
+        /* El nombre exacto, escrito a mano. Es la única barrera entre "quería
+           mirar qué pasaba si le doy" y perder una temporada entera. */
+        if (norm(url.searchParams.get("nombre") || "") !== norm(nombreEq)) {
+          return j({ ok: false, reason: "nombre_no_coincide", resumen }, 400);
+        }
+
+        /* Airtable borra de diez en diez. Se va de dentro afuera: primero lo
+           que cuelga del jugador, luego el jugador, y el equipo el último; si
+           algo falla a media faena, lo que queda sigue teniendo a quién
+           apuntar en vez de quedarse suelto. */
+        const borrarLote = async (t: string, recs: any[]) => {
+          for (let i = 0; i < recs.length; i += 10) {
+            const trozo = recs.slice(i, i + 10);
+            const qs = trozo.map((r: any) => `records[]=${encodeURIComponent(r.id)}`).join("&");
+            await fetch(`${table(t)}?${qs}`, { method: "DELETE", headers: H });
+          }
+        };
+        for (const [t, recs] of lotes) if (recs.length) await borrarLote(t, recs);
+        /* El cuerpo técnico se queda: solo se le suelta el enlace. */
+        for (let i = 0; i < misUsuarios.length; i += 10) {
+          const trozo = misUsuarios.slice(i, i + 10);
+          await fetch(table(T_USUARIOS), {
+            method: "PATCH", headers: H,
+            body: JSON.stringify({ records: trozo.map((r: any) => ({ id: r.id, fields: { [U.equipo]: [] } })), typecast: true }),
+          });
+        }
+        const rDel = await fetch(`${table(T_EQUIPOS)}/${id}`, { method: "DELETE", headers: H });
+        return j({ ok: rDel.ok, resumen }, rDel.ok ? 200 : 400);
       }
       return j({ error: "Petición no soportada" }, 400);
     }

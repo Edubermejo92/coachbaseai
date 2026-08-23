@@ -259,6 +259,34 @@ const DICT = {
     "mt2.sanLocal": "✓ Guardada solo en este dispositivo.",
     "mt2.sanBtn": "Sanción",
     "mt2.sanNone": "Sin sanciones",
+    "cat.current": "Tu categoría actual",
+    "cat.title": "Categorías del club",
+    "cat.hint": "Todas las categorías dadas de alta. Eliminar una borra también sus jugadores, partidos, convocatorias, entrenamientos, partes e incidencias. No se puede deshacer.",
+    "cat.none": "Este club todavía no tiene categorías.",
+    "cat.del": "Eliminar",
+    "cat.delTitle": "Eliminar categoría",
+    "cat.delWhat": "Se va a borrar, además de la categoría:",
+    "cat.delStaff": "Del cuerpo técnico no se borra a nadie. Estas personas se quedan sin categoría asignada y el club puede volver a asignarlas:",
+    "cat.delType": "Escribe el nombre exacto de la categoría para confirmar:",
+    "cat.delGo": "Eliminar definitivamente",
+    "cat.delChecking": "Comprobando qué se borraría…",
+    "cat.delDone": "✓ Categoría eliminada.",
+    "cat.delFail": "No se ha podido eliminar. Inténtalo otra vez.",
+    "cat.delLast": "No se puede eliminar: es la única categoría del club. Un club sin categorías se queda sin plantilla y sin calendario. Crea otra antes.",
+    "cat.delCurrent": "No se puede eliminar la categoría en la que estás trabajando. Cambia de categoría desde Mi cuenta y vuelve.",
+    "cat.delNoMatch": "El nombre no coincide.",
+    "cat.delNoRole": "Solo la dirección del club puede eliminar categorías.",
+    "cat.delNothing": "Esta categoría no tiene nada guardado todavía.",
+    "cat.players": "jugadores",
+    "cat.matches": "partidos",
+    "cat.calls": "convocatorias",
+    "cat.sessions": "entrenamientos y plantillas",
+    "cat.reports": "partes de material",
+    "cat.incidents": "incidencias",
+    "cat.docs": "documentos de normativa",
+    "cat.proposals": "propuestas",
+    "cat.signs": "firmas",
+    "cat.gallery": "fotos y vídeos",
     "mt2.alertTitle": "Partes que faltan",
     "mt2.alertHint": "Días de entreno de las últimas cuatro semanas en los que no llegó el parte, o llegó sin una de las dos fotos. Avisar antes es la foto al sacar el material; avisar después, la foto al guardarlo.",
     "mt2.alertNone": "Todos los entrenos de las últimas cuatro semanas tienen su parte, con las dos fotos.",
@@ -677,6 +705,34 @@ const DICT = {
     "mt2.sanLocal": "✓ Saved on this device only.",
     "mt2.sanBtn": "Sanction",
     "mt2.sanNone": "No sanctions",
+    "cat.current": "Your current age group",
+    "cat.title": "Club age groups",
+    "cat.hint": "Every age group on file. Deleting one also deletes its players, fixtures, squad lists, sessions, kit reports and incidents. This cannot be undone.",
+    "cat.none": "This club has no age groups yet.",
+    "cat.del": "Delete",
+    "cat.delTitle": "Delete age group",
+    "cat.delWhat": "Besides the age group, this will delete:",
+    "cat.delStaff": "No member of staff is deleted. These people are left with no age group assigned and the club can reassign them:",
+    "cat.delType": "Type the exact name of the age group to confirm:",
+    "cat.delGo": "Delete permanently",
+    "cat.delChecking": "Checking what would be deleted…",
+    "cat.delDone": "✓ Age group deleted.",
+    "cat.delFail": "Couldn't delete it. Try again.",
+    "cat.delLast": "Can't delete: it is the club's only age group. A club with none has no squad and no fixtures. Create another one first.",
+    "cat.delCurrent": "You can't delete the age group you are working in. Switch age group from My account and come back.",
+    "cat.delNoMatch": "The name doesn't match.",
+    "cat.delNoRole": "Only the club's management can delete age groups.",
+    "cat.delNothing": "This age group has nothing saved yet.",
+    "cat.players": "players",
+    "cat.matches": "fixtures",
+    "cat.calls": "squad lists",
+    "cat.sessions": "sessions and templates",
+    "cat.reports": "kit reports",
+    "cat.incidents": "incidents",
+    "cat.docs": "club rule documents",
+    "cat.proposals": "proposals",
+    "cat.signs": "signatures",
+    "cat.gallery": "photos and videos",
     "mt2.alertTitle": "Missing reports",
     "mt2.alertHint": "Training days in the last four weeks with no report, or with one of the two photos missing. Reporting before is the photo when taking the kit out; reporting after is the photo when putting it away.",
     "mt2.alertNone": "Every session in the last four weeks has its report, with both photos.",
@@ -1112,6 +1168,34 @@ const DICT = {
     "mt2.sanLocal": "✓ Saved on this device only.",
     "mt2.sanBtn": "Sanction",
     "mt2.sanNone": "No sanctions",
+    "cat.current": "Your current age group",
+    "cat.title": "Club age groups",
+    "cat.hint": "Every age group on file. Deleting one also deletes its players, fixtures, squad lists, sessions, kit reports and incidents. This cannot be undone.",
+    "cat.none": "This club has no age groups yet.",
+    "cat.del": "Delete",
+    "cat.delTitle": "Delete age group",
+    "cat.delWhat": "Besides the age group, this will delete:",
+    "cat.delStaff": "No member of staff is deleted. These people are left with no age group assigned and the club can reassign them:",
+    "cat.delType": "Type the exact name of the age group to confirm:",
+    "cat.delGo": "Delete permanently",
+    "cat.delChecking": "Checking what would be deleted…",
+    "cat.delDone": "✓ Age group deleted.",
+    "cat.delFail": "Couldn't delete it. Try again.",
+    "cat.delLast": "Can't delete: it is the club's only age group. A club with none has no squad and no fixtures. Create another one first.",
+    "cat.delCurrent": "You can't delete the age group you are working in. Switch age group from My account and come back.",
+    "cat.delNoMatch": "The name doesn't match.",
+    "cat.delNoRole": "Only the club's management can delete age groups.",
+    "cat.delNothing": "This age group has nothing saved yet.",
+    "cat.players": "players",
+    "cat.matches": "fixtures",
+    "cat.calls": "squad lists",
+    "cat.sessions": "sessions and templates",
+    "cat.reports": "kit reports",
+    "cat.incidents": "incidents",
+    "cat.docs": "club rule documents",
+    "cat.proposals": "proposals",
+    "cat.signs": "signatures",
+    "cat.gallery": "photos and videos",
     "mt2.alertTitle": "Missing reports",
     "mt2.alertHint": "Training days in the last four weeks with no report, or with one of the two photos missing. Reporting before is the photo when taking the kit out; reporting after is the photo when putting it away.",
     "mt2.alertNone": "Every session in the last four weeks has its report, with both photos.",
@@ -1620,6 +1704,34 @@ const DICT = {
     "mt2.sanLocal": "✓ Saved on this device only.",
     "mt2.sanBtn": "Sanction",
     "mt2.sanNone": "No sanctions",
+    "cat.current": "Your current age group",
+    "cat.title": "Club age groups",
+    "cat.hint": "Every age group on file. Deleting one also deletes its players, fixtures, squad lists, sessions, kit reports and incidents. This cannot be undone.",
+    "cat.none": "This club has no age groups yet.",
+    "cat.del": "Delete",
+    "cat.delTitle": "Delete age group",
+    "cat.delWhat": "Besides the age group, this will delete:",
+    "cat.delStaff": "No member of staff is deleted. These people are left with no age group assigned and the club can reassign them:",
+    "cat.delType": "Type the exact name of the age group to confirm:",
+    "cat.delGo": "Delete permanently",
+    "cat.delChecking": "Checking what would be deleted…",
+    "cat.delDone": "✓ Age group deleted.",
+    "cat.delFail": "Couldn't delete it. Try again.",
+    "cat.delLast": "Can't delete: it is the club's only age group. A club with none has no squad and no fixtures. Create another one first.",
+    "cat.delCurrent": "You can't delete the age group you are working in. Switch age group from My account and come back.",
+    "cat.delNoMatch": "The name doesn't match.",
+    "cat.delNoRole": "Only the club's management can delete age groups.",
+    "cat.delNothing": "This age group has nothing saved yet.",
+    "cat.players": "players",
+    "cat.matches": "fixtures",
+    "cat.calls": "squad lists",
+    "cat.sessions": "sessions and templates",
+    "cat.reports": "kit reports",
+    "cat.incidents": "incidents",
+    "cat.docs": "club rule documents",
+    "cat.proposals": "proposals",
+    "cat.signs": "signatures",
+    "cat.gallery": "photos and videos",
     "mt2.alertTitle": "Missing reports",
     "mt2.alertHint": "Training days in the last four weeks with no report, or with one of the two photos missing. Reporting before is the photo when taking the kit out; reporting after is the photo when putting it away.",
     "mt2.alertNone": "Every session in the last four weeks has its report, with both photos.",
@@ -2127,6 +2239,34 @@ const DICT = {
     "mt2.sanLocal": "✓ Guardada solo en este dispositivo.",
     "mt2.sanBtn": "Sanción",
     "mt2.sanNone": "Sin sanciones",
+    "cat.current": "Tu categoría actual",
+    "cat.title": "Categorías del club",
+    "cat.hint": "Todas las categorías dadas de alta. Eliminar una borra también sus jugadores, partidos, convocatorias, entrenamientos, partes e incidencias. No se puede deshacer.",
+    "cat.none": "Este club todavía no tiene categorías.",
+    "cat.del": "Eliminar",
+    "cat.delTitle": "Eliminar categoría",
+    "cat.delWhat": "Se va a borrar, además de la categoría:",
+    "cat.delStaff": "Del cuerpo técnico no se borra a nadie. Estas personas se quedan sin categoría asignada y el club puede volver a asignarlas:",
+    "cat.delType": "Escribe el nombre exacto de la categoría para confirmar:",
+    "cat.delGo": "Eliminar definitivamente",
+    "cat.delChecking": "Comprobando qué se borraría…",
+    "cat.delDone": "✓ Categoría eliminada.",
+    "cat.delFail": "No se ha podido eliminar. Inténtalo otra vez.",
+    "cat.delLast": "No se puede eliminar: es la única categoría del club. Un club sin categorías se queda sin plantilla y sin calendario. Crea otra antes.",
+    "cat.delCurrent": "No se puede eliminar la categoría en la que estás trabajando. Cambia de categoría desde Mi cuenta y vuelve.",
+    "cat.delNoMatch": "El nombre no coincide.",
+    "cat.delNoRole": "Solo la dirección del club puede eliminar categorías.",
+    "cat.delNothing": "Esta categoría no tiene nada guardado todavía.",
+    "cat.players": "jugadores",
+    "cat.matches": "partidos",
+    "cat.calls": "convocatorias",
+    "cat.sessions": "entrenamientos y plantillas",
+    "cat.reports": "partes de material",
+    "cat.incidents": "incidencias",
+    "cat.docs": "documentos de normativa",
+    "cat.proposals": "propuestas",
+    "cat.signs": "firmas",
+    "cat.gallery": "fotos y vídeos",
     "mt2.alertTitle": "Partes que faltan",
     "mt2.alertHint": "Días de entreno de las últimas cuatro semanas en los que no llegó el parte, o llegó sin una de las dos fotos. Avisar antes es la foto al sacar el material; avisar después, la foto al guardarlo.",
     "mt2.alertNone": "Todos los entrenos de las últimas cuatro semanas tienen su parte, con las dos fotos.",
@@ -3733,6 +3873,24 @@ const airUserCreate = async (body) => { try { const r = await cbFetch(AIR, { met
 const airClubAdmin = async (clubRec, limite) => { try { const r = await cbFetch(AIR, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ action: "clubAdmin", clubRec, ...(limite !== undefined ? { limite } : {}) }) }); return await r.json().catch(() => null); } catch { return null; } };
 const airTeamPatch = async (rec, body) => { try { const r = await cbFetch(AIR + "?res=equipos&id=" + rec, { method: "PATCH", headers: { "content-type": "application/json" }, body: JSON.stringify(body) }); return r.ok; } catch { return false; } };
 const airClubs = async () => { try { const r = await cbFetch(AIR + "?res=clubes"); if (!r.ok) return null; const d = await r.json(); return d.records || null; } catch { return null; } };
+/* Eliminar una categoría del club. En dos pasos: sin `confirmar` el backend no
+   borra nada y devuelve el recuento de lo que se llevaría por delante, para
+   poder enseñarlo antes de decidir; con `confirmar` y el nombre exacto, borra.
+   Devuelve el cuerpo entero (no solo ok) porque el motivo de la negativa es
+   parte de la respuesta: última categoría, categoría actual, nombre que no
+   coincide. */
+const airTeamDelete = async (rec, { confirmar = false, nombre = "" } = {}) => {
+  try {
+    /* Los parámetros van en la URL y no en el cuerpo: un DELETE con cuerpo lo
+       admite el estándar, pero hay proxies y CDNs que lo descartan por el
+       camino, y aquí perder el "confirmar" significaría no borrar nunca —o,
+       peor, que se pierda solo el nombre y falle la comprobación. */
+    const q = confirmar ? `&confirmar=1&nombre=${encodeURIComponent(nombre)}` : "";
+    const r = await cbFetch(`${AIR}?res=equipos&id=${encodeURIComponent(rec)}${q}`, { method: "DELETE" });
+    const d = await r.json().catch(() => ({}));
+    return { http: r.status, ...d };
+  } catch { return { http: 0, ok: false }; }
+};
 const airTeamCreate = async (body) => { try { const r = await cbFetch(AIR + "?res=equipos", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) }); if (!r.ok) return null; return await r.json(); } catch { return null; } };
 /* Escudo del club: se sube una vez y el backend lo copia a todos los equipos
    de ese club que aún no tengan escudo propio (o a todos, si forzarTodos). */
@@ -11512,6 +11670,45 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
   const [avisoMat, setAvisoMat] = useState(null);
   const [avisoCopiado, setAvisoCopiado] = useState(false);
   const [ownTabMsg, setOwnTabMsg] = useState("");
+  /* ---- Eliminar una categoría del club ----
+     Es la acción más destructiva de la app: se lleva la plantilla, el
+     calendario, los partes y las incidencias de esa categoría. Por eso son dos
+     pasos, y el primero no borra nada: pide al backend el recuento de lo que
+     desaparecería y lo enseña escrito. El segundo exige teclear el nombre. */
+  const [catBorrar, setCatBorrar] = useState(null);
+  const [catNombre, setCatNombre] = useState("");
+  const [catMsg, setCatMsg] = useState("");
+  const [catBusy, setCatBusy] = useState(false);
+  const MOTIVOS_CAT = {
+    ultima_categoria: "cat.delLast",
+    categoria_actual: "cat.delCurrent",
+    nombre_no_coincide: "cat.delNoMatch",
+  };
+  const pedirBorrarCat = async (c) => {
+    if (esDemo) return;
+    setCatBorrar({ rec: c.rec, nombre: c.nombre, resumen: null });
+    setCatNombre(""); setCatMsg(""); setCatBusy(true);
+    const d = await airTeamDelete(c.rec);
+    setCatBusy(false);
+    if (d.resumen) { setCatBorrar({ rec: c.rec, nombre: c.nombre, resumen: d.resumen }); return; }
+    /* 403 sin resumen: el rol no llega. El resto de negativas traen motivo. */
+    setCatMsg(t(MOTIVOS_CAT[d.reason] || (d.http === 403 ? "cat.delNoRole" : "cat.delFail")));
+  };
+  const confirmarBorrarCat = async () => {
+    if (!catBorrar?.rec || catBusy) return;
+    setCatBusy(true); setCatMsg("");
+    const d = await airTeamDelete(catBorrar.rec, { confirmar: true, nombre: catNombre });
+    setCatBusy(false);
+    if (d.ok) {
+      setClubCats((cs) => cs.filter((x) => x.rec !== catBorrar.rec));
+      setPartesClub((ps) => ps.filter((x) => x.equipoRec !== catBorrar.rec));
+      setCatBorrar(null);
+      setCatMsg(t("cat.delDone"));
+      setTimeout(() => setCatMsg(""), 6000);
+      return;
+    }
+    setCatMsg(t(MOTIVOS_CAT[d.reason] || (d.http === 403 ? "cat.delNoRole" : "cat.delFail")));
+  };
   /* Sanción que está anotando la dirección del club sobre un parte concreto.
      Guarda el borrador aparte del parte para poder cancelar sin dejar rastro. */
   const [sancion, setSancion] = useState(null);
@@ -12242,6 +12439,111 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
               ))}
             </div>
           </Card>
+        )}
+
+        {/* Categorías del club. Va aquí, junto a los encargados de material,
+            porque es la misma lista de categorías y quien la administra es la
+            misma persona. */}
+        <Card title={`🗂 ${t("cat.title")}`}>
+          <div className="text-xs mb-3 leading-relaxed" style={{ color: C.dim }}>{t("cat.hint")}</div>
+          {clubCats.length === 0 ? (
+            <div className="text-sm" style={{ color: C.dim }}>{t("cat.none")}</div>
+          ) : (
+            <div className="space-y-1.5">
+              {clubCats.map((c) => (
+                <div key={c.rec} className="rounded-lg border p-2.5 flex flex-wrap items-center gap-x-3 gap-y-2"
+                  style={{ borderColor: C.line, background: C.panel2 }}>
+                  <div className="text-sm flex-1 min-w-[140px]" style={{ color: C.chalk }}>{c.nombre}</div>
+                  {/* La categoría en la que estás trabajando no se puede borrar
+                      —el backend también lo rechaza— así que en vez de un botón
+                      que va a fallar se dice por qué no está. */}
+                  {c.rec === teamRec ? (
+                    <span className="text-[11px]" style={{ color: C.dim }}>{t("cat.current")}</span>
+                  ) : puedeNombrar && (
+                    <button onClick={() => pedirBorrarCat(c)}
+                      className="text-[11px] px-2.5 py-1.5 rounded-lg border font-display uppercase tracking-wide"
+                      style={{ borderColor: "#b4474a", color: "#b4474a" }}>{t("cat.del")}</button>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+          {catMsg && !catBorrar && (
+            <div className="text-xs mt-2 leading-relaxed" style={{ color: catMsg.startsWith("✓") ? C.green : C.warn }}>{catMsg}</div>
+          )}
+        </Card>
+
+        {/* Confirmación. Enseña el recuento real que ha devuelto el servidor,
+            no una advertencia genérica: "se borrarán 19 jugadores y 24
+            partidos" es lo que hace pensar; "esta acción no se puede deshacer",
+            no. Y hay que teclear el nombre. */}
+        {catBorrar && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,.66)" }}
+            onClick={() => !catBusy && setCatBorrar(null)} role="dialog" aria-modal="true">
+            <div className="w-full max-w-md rounded-xl border p-4 max-h-[88vh] overflow-y-auto"
+              style={{ background: C.panel, borderColor: "#b4474a" }} onClick={(e) => e.stopPropagation()}>
+              <div className="flex items-start justify-between gap-3 mb-2">
+                <div className="min-w-0">
+                  <div className="font-display uppercase tracking-wide" style={{ color: "#b4474a" }}>⚠ {t("cat.delTitle")}</div>
+                  <div className="text-sm" style={{ color: C.chalk }}>{catBorrar.nombre}</div>
+                </div>
+                <button onClick={() => setCatBorrar(null)} disabled={catBusy}
+                  className="text-sm px-3 py-1.5 rounded-lg border shrink-0 disabled:opacity-50"
+                  style={{ borderColor: C.line, color: C.chalk }}>{t("p.close")}</button>
+              </div>
+
+              {!catBorrar.resumen ? (
+                <div className="text-sm py-3" style={{ color: C.dim }}>
+                  {catMsg || t("cat.delChecking")}
+                </div>
+              ) : (() => {
+                const r = catBorrar.resumen;
+                const filas = [
+                  [r.jugadores, t("cat.players")], [r.partidos, t("cat.matches")],
+                  [r.convocatorias, t("cat.calls")], [r.entrenamientos, t("cat.sessions")],
+                  [r.partes, t("cat.reports")], [r.incidencias, t("cat.incidents")],
+                  [r.normativa, t("cat.docs")], [r.propuestas, t("cat.proposals")],
+                  [r.firmas, t("cat.signs")], [r.galeria, t("cat.gallery")],
+                ].filter(([n]) => n > 0);
+                return (
+                  <>
+                    <div className="text-xs mb-2" style={{ color: C.dim }}>{t("cat.delWhat")}</div>
+                    {filas.length === 0 ? (
+                      <div className="text-sm mb-3" style={{ color: C.dim }}>{t("cat.delNothing")}</div>
+                    ) : (
+                      <ul className="rounded-lg border p-3 mb-3 space-y-1" style={{ borderColor: C.line, background: C.panel2 }}>
+                        {filas.map(([n, txt]) => (
+                          <li key={txt} className="text-[13px] flex items-baseline gap-2" style={{ color: C.chalk }}>
+                            <strong className="tabular-nums" style={{ color: "#b4474a" }}>{n}</strong>{txt}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                    {r.usuarios > 0 && (
+                      <div className="text-[12px] mb-3 leading-relaxed rounded-lg border px-3 py-2"
+                        style={{ borderColor: C.line, color: C.dim }}>
+                        👥 {t("cat.delStaff")} <strong style={{ color: C.chalk }}>{r.usuarios}</strong>
+                      </div>
+                    )}
+                    <label className="block mb-3">
+                      <span className="text-[12px] block mb-1" style={{ color: C.dim }}>{t("cat.delType")}</span>
+                      <input value={catNombre} onChange={(e) => setCatNombre(e.target.value)}
+                        placeholder={catBorrar.nombre} autoComplete="off"
+                        className="w-full px-2.5 py-2 rounded-lg border bg-transparent text-sm"
+                        style={{ borderColor: C.line, color: C.chalk }} />
+                    </label>
+                    <button onClick={confirmarBorrarCat}
+                      disabled={catBusy || normClub(catNombre) !== normClub(catBorrar.nombre)}
+                      className="w-full font-display uppercase tracking-wider py-2.5 rounded-lg font-semibold disabled:opacity-40"
+                      style={{ background: "#b4474a", color: "#fff" }}>
+                      {catBusy ? t("a.sending") : t("cat.delGo")}
+                    </button>
+                    {catMsg && <div className="text-xs mt-2 leading-relaxed" style={{ color: C.warn }}>{catMsg}</div>}
+                  </>
+                );
+              })()}
+            </div>
+          </div>
         )}
 
         {/* Anotar sanción. La pone el club sobre el parte de ese día: ningún
