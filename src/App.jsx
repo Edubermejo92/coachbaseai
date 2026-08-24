@@ -12347,10 +12347,42 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
   const [parteBusy, setParteBusy] = useState(false);
   const [partesClub, setPartesClub] = useState([]);
   const [clubCat, setClubCat] = useState("");
+  /* ================= RIVALES QUE TAMBIÉN USAN LA APP =================
+     Cuando el rival de un partido es otra categoría dada de alta en COACHBASE,
+     se puede enseñar su escudo de verdad en vez de un nombre suelto, y llevar
+     el histórico de los enfrentamientos entre los dos. El listado de equipos
+     es de lectura abierta, así que vale para cualquier rol.
+     Vive aquí arriba, y no junto al resto de lo de partidos, porque las
+     categorías del club —justo debajo— tiran de él cuando hace falta. */
+  const [equiposApp, setEquiposApp] = useState([]);
+  useEffect(() => {
+    if (!session || session.email === "demo") return;
+    let vivo = true;
+    airTeams().then((rows) => { if (vivo && Array.isArray(rows)) setEquiposApp(rows); });
+    return () => { vivo = false; };
+  }, [session?.email]); // eslint-disable-line
+
   /* Categorías del club con su encargado de material. Vienen del mismo sitio
      que los partes para que el club pueda nombrar encargado en una categoría
      que todavía no ha mandado ninguno. */
   const [clubCats, setClubCats] = useState([]);
+  /* Las mismas categorías, pero con red debajo. El control de material es
+     quien las trae completas —con su encargado y sus días de entreno—, pero
+     es una llamada que puede no contestar: el servidor todavía sin actualizar,
+     un 403, o un club recién creado. Cuando pasaba eso, el club veía "0
+     categorías" teniendo sus equipos dados de alta, y eso es mentira: el
+     Chamartín tiene su Infantil B y su Senior aunque nadie haya mandado un
+     parte. El listado de equipos que la app ya carga sirve de respaldo: trae
+     el nombre y el registro de cada categoría, que es justo lo que hace falta
+     para verlas y entrar en ellas. */
+  const catsClub = clubCats.length ? clubCats : (equiposApp || [])
+    .filter((e) => (clubInfo.rec
+      ? e.clubRec === clubInfo.rec
+      : !!session?.club && igualTexto(e.club, session.club)))
+    /* El listado de equipos ya trae el encargado y los días de entreno, así
+       que el respaldo no pierde nada por el camino. */
+    .map((e) => ({ rec: e.rec, nombre: e.name || "", encargado: e.encargado || "", dias: e.dias || "" }))
+    .sort((a, b) => a.nombre.localeCompare(b.nombre));
   const [encMsg, setEncMsg] = useState("");
   /* Aviso que el club manda a un entrenador con lo que lleva acumulado en la
      temporada. El club no rellena partes ni sube fotos: lo suyo es revisar y,
@@ -12548,8 +12580,8 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
   const partesFuente = partesClub.length
     ? partesClub
     : partes.map((x) => ({ ...x, equipoNombre: session?.team?.name || "" }));
-  const catsMaterial = clubCats.length
-    ? clubCats.map((c) => ({ nombre: c.nombre, encargado: c.encargado, dias: diasDeEquipo(c.dias) }))
+  const catsMaterial = catsClub.length
+    ? catsClub.map((c) => ({ nombre: c.nombre, encargado: c.encargado, dias: diasDeEquipo(c.dias) }))
     : [{ nombre: session?.team?.name || "", encargado: session?.team?.encargado || "", dias: trainDays }];
   const alertasMaterial = catsMaterial
     .map((c) => ({ ...c, ...revisarPartes(partesFuente.filter((x) => x.equipoNombre === c.nombre), c.dias) }))
@@ -12973,11 +13005,11 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
       cada uno, y un toque para meterse dentro. */}
   <Card title={`🏟 ${t("cl.teamsTitle")}`}>
     <div className="text-xs mb-3 leading-relaxed" style={{ color: C.dim }}>{t("cl.teamsHint")}</div>
-    {clubCats.length === 0 ? (
+    {catsClub.length === 0 ? (
       <div className="text-sm" style={{ color: C.dim }}>{t("cat.none")}</div>
     ) : (
       <div className="space-y-2">
-        {clubCats.map((c) => {
+        {catsClub.map((c) => {
           const r = resumenPorEquipo.get(c.nombre) || { partes: 0, perdidos: 0, sinAvisar: 0, aCiegas: 0, quien: new Map() };
           /* Quien más partes ha mandado de esa categoría es quien la
              lleva. Se saca de los partes y no de una lista aparte, para
@@ -13306,11 +13338,11 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
             acordarse de quién lo llevaba. */}
         <Card title={`🔑 ${t("mt2.encTitle")}`}>
           <div className="text-xs mb-3 leading-relaxed" style={{ color: C.dim }}>{t("mt2.encHint")}</div>
-          {clubCats.length === 0 ? (
+          {catsClub.length === 0 ? (
             <div className="text-sm" style={{ color: C.dim }}>{t("mt2.encNoCats")}</div>
           ) : (
             <div className="space-y-1.5">
-              {clubCats.map((c) => (
+              {catsClub.map((c) => (
                 <div key={c.rec} className="rounded-lg border p-2.5 flex flex-wrap items-center gap-x-3 gap-y-2"
                   style={{ borderColor: c.encargado ? C.line : C.warn, background: C.panel2 }}>
                   <div className="text-sm flex-1 min-w-[130px]" style={{ color: C.chalk }}>{c.nombre}</div>
@@ -13378,11 +13410,11 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
             misma persona. */}
         <Card title={`🗂 ${t("cat.title")}`}>
           <div className="text-xs mb-3 leading-relaxed" style={{ color: C.dim }}>{t("cat.hint")}</div>
-          {clubCats.length === 0 ? (
+          {catsClub.length === 0 ? (
             <div className="text-sm" style={{ color: C.dim }}>{t("cat.none")}</div>
           ) : (
             <div className="space-y-1.5">
-              {clubCats.map((c) => (
+              {catsClub.map((c) => (
                 <div key={c.rec} className="rounded-lg border p-2.5 flex flex-wrap items-center gap-x-3 gap-y-2"
                   style={{ borderColor: C.line, background: C.panel2 }}>
                   <div className="text-sm flex-1 min-w-[140px]" style={{ color: C.chalk }}>{c.nombre}</div>
@@ -13740,8 +13772,8 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                 {session.club}
               </div>
               <div className="text-[12px] mt-1.5" style={{ color: C.dim }}>
-                <span style={{ color: C.chalk }}>{clubCats.length}</span>{" "}
-                {clubCats.length === 1 ? t("cl.homeCat") : t("cl.homeCats")}
+                <span style={{ color: C.chalk }}>{catsClub.length}</span>{" "}
+                {catsClub.length === 1 ? t("cl.homeCat") : t("cl.homeCats")}
                 {cuerpo > 0 && <> · <span style={{ color: C.chalk }}>{cuerpo}</span> {t("cl.homeStaff")}</>}
               </div>
             </div>
@@ -15415,18 +15447,6 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
      Si no hay nada guardado en la nube todavía, se respeta la local. */
   /* Mes cuyas recomendaciones están desplegadas. */
   const [mesAbierto, setMesAbierto] = useState(null);
-  /* ================= RIVALES QUE TAMBIÉN USAN LA APP =================
-     Cuando el rival de un partido es otra categoría dada de alta en COACHBASE,
-     se puede enseñar su escudo de verdad en vez de un nombre suelto, y llevar
-     el histórico de los enfrentamientos entre los dos. El listado de equipos
-     es de lectura abierta, así que vale para cualquier rol. */
-  const [equiposApp, setEquiposApp] = useState([]);
-  useEffect(() => {
-    if (!session || session.email === "demo") return;
-    let vivo = true;
-    airTeams().then((rows) => { if (vivo && Array.isArray(rows)) setEquiposApp(rows); });
-    return () => { vivo = false; };
-  }, [session?.email]); // eslint-disable-line
   /* Un rival se reconoce por el nombre del equipo, por el del club, o por los
      dos juntos ("CD Canillas Cadete A"), que es como se suele escribir en el
      calendario de la federación. */
