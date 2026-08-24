@@ -174,6 +174,7 @@ const DICT = {
     "ca.remove": "Quitar",
     "ca.useMatch": "Usar en modo partido", "ca.month": "Calendario del mes", "ca.dayHint": "Toca un día para ver su detalle.", "ca.dayEmpty": "No hay partidos ni entrenamiento programado este día.", "ca.dayTraining": "Día de entrenamiento", "ca.legendMatch": "Partido (del calendario importado)", "ca.legendTrain": "Entrenamiento", "ca.trainDaysLabel": "Días de entreno:",
     "ca.teamCrest": "Escudo del equipo",
+    "c.workingWith": "Trabajando con",
     "cl.teamsTitle": "Equipos del club",
     "cl.teamsHint": "Toca un equipo para trabajar con él: su plantilla, su calendario, su disciplina y todo lo demás pasan a ser los suyos.",
     "cl.teamCoach": "Entrenador:",
@@ -195,7 +196,7 @@ const DICT = {
     "cl.writeSubject": "Material de {equipo} — {club}",
     "cl.staff": "Cuerpo técnico del club",
     "cl.staffHint": "Quién entrena qué y con qué papel. Las altas y los permisos se gestionan en Usuarios.",
-    "cl.staffEmpty": "Todavía no hay nadie dado de alta en este club.",
+    "cl.staffEmpty": "No se ha podido cargar el cuerpo técnico. Si acabas de dar a alguien de alta, recarga; si sigue vacío, comprueba en Airtable que su ficha tiene el club puesto en la columna Club.",
     "cl.noCat": "Sin categoría",
     "cl.active": "Activo",
     "cl.pending": "Pendiente",
@@ -685,6 +686,7 @@ const DICT = {
     "ca.remove": "Remove",
     "ca.useMatch": "Use in match mode", "ca.month": "Month calendar", "ca.dayHint": "Tap a day to see its detail.", "ca.dayEmpty": "No fixtures or training scheduled this day.", "ca.dayTraining": "Training day", "ca.legendMatch": "Fixture (from the imported calendar)", "ca.legendTrain": "Training", "ca.trainDaysLabel": "Training days:",
     "ca.teamCrest": "Team crest",
+    "c.workingWith": "Working with",
     "cl.teamsTitle": "Club teams",
     "cl.teamsHint": "Tap a team to work with it: its squad, its fixtures, its discipline and everything else become that team's.",
     "cl.teamCoach": "Coach:",
@@ -706,7 +708,7 @@ const DICT = {
     "cl.writeSubject": "Kit at {equipo} — {club}",
     "cl.staff": "Club coaching staff",
     "cl.staffHint": "Who coaches what and in what role. Sign-ups and permissions are handled in Users.",
-    "cl.staffEmpty": "Nobody has been added to this club yet.",
+    "cl.staffEmpty": "Couldn't load the coaching staff. If you have just registered someone, reload; if it stays empty, check in Airtable that their record has the club set in the Club column.",
     "cl.noCat": "No category",
     "cl.active": "Active",
     "cl.pending": "Pending",
@@ -1213,6 +1215,7 @@ const DICT = {
     "ca.remove": "Retirer",
     "ca.useMatch": "Utiliser en mode match", "ca.month": "Calendrier du mois", "ca.dayHint": "Touchez un jour pour voir son détail.", "ca.dayEmpty": "Aucun match ni entraînement prévu ce jour.", "ca.dayTraining": "Jour d'entraînement", "ca.legendMatch": "Match (du calendrier importé)", "ca.legendTrain": "Entraînement", "ca.trainDaysLabel": "Jours d'entraînement :",
     "ca.teamCrest": "Écusson de l'équipe",
+    "c.workingWith": "Vous travaillez avec",
     "cl.teamsTitle": "Club teams",
     "cl.teamsHint": "Tap a team to work with it: its squad, its fixtures, its discipline and everything else become that team's.",
     "cl.teamCoach": "Coach:",
@@ -1815,6 +1818,7 @@ const DICT = {
     "ca.remove": "Entfernen",
     "ca.useMatch": "Im Spielmodus verwenden", "ca.month": "Monatskalender", "ca.dayHint": "Tippe auf einen Tag, um Details zu sehen.", "ca.dayEmpty": "An diesem Tag sind weder Spiele noch Training geplant.", "ca.dayTraining": "Trainingstag", "ca.legendMatch": "Spiel (aus importiertem Spielplan)", "ca.legendTrain": "Training", "ca.trainDaysLabel": "Trainingstage:",
     "ca.teamCrest": "Mannschaftswappen",
+    "c.workingWith": "Du arbeitest mit",
     "cl.teamsTitle": "Club teams",
     "cl.teamsHint": "Tap a team to work with it: its squad, its fixtures, its discipline and everything else become that team's.",
     "cl.teamCoach": "Coach:",
@@ -2416,6 +2420,7 @@ const DICT = {
     "ca.remove": "Remover",
     "ca.useMatch": "Usar no modo jogo", "ca.month": "Calendário do mês", "ca.dayHint": "Toca num dia para ver o detalhe.", "ca.dayEmpty": "Não há jogos nem treino marcado para este dia.", "ca.dayTraining": "Dia de treino", "ca.legendMatch": "Jogo (do calendário importado)", "ca.legendTrain": "Treino", "ca.trainDaysLabel": "Dias de treino:",
     "ca.teamCrest": "Emblema da equipa",
+    "c.workingWith": "A trabalhar com",
     "cl.teamsTitle": "Equipos del club",
     "cl.teamsHint": "Toca un equipo para trabajar con él: su plantilla, su calendario, su disciplina y todo lo demás pasan a ser los suyos.",
     "cl.teamCoach": "Entrenador:",
@@ -8503,6 +8508,8 @@ export default function App() {
   const setLang = (l) => { setLangRaw(l); try { localStorage.setItem("cb_lang", l); } catch { /* noop */ } };
   const t = (k) => T(lang, k);
   const role = session ? ROLES[session.role] : ROLES.entrenador;
+  /* La cuenta del propio club. No es de ninguna categoría: lleva todas. */
+  const esCuentaClub = session?.role === "club";
   /* Las pestañas de este rol, más Control de material si el director deportivo
      la ha activado. Es opcional a propósito: la dirección del club revisa el
      material y no lo rellena, pero en un club pequeño el mismo director suele
@@ -9287,10 +9294,19 @@ ACTA:\n${evTxt}`;
   }, []);  useEffect(() => {
     if (!session) return;
     let vivo = true;
+    /* Si la sesión ya trae el registro del club, se usa ese y no se busca por
+       nombre: `|| rows[0]` era una lotería —con el nombre escrito de otra
+       forma, el club de otro. */
     airClubs().then((rows) => {
       if (!vivo || !rows) return;
-      const mio = rows.find((c) => c.name === session.club) || rows[0];
+      const mio = (session.clubRec && rows.find((c) => c.rec === session.clubRec))
+        || rows.find((c) => c.name === session.club)
+        || (session.clubRec ? null : rows[0]);
       if (mio) setClubInfo({ rec: mio.rec, crest: mio.crest || null, campo: mio.campo || "", direccion: mio.direccion || "", maps: mio.maps || "" });
+      /* Aunque la lista de clubes no traiga el suyo (permisos, o un club
+         recién creado), el registro que dio el login vale igual: es lo que
+         hace falta para pedir su cuerpo técnico y su control de material. */
+      else if (session.clubRec) setClubInfo((c) => ({ ...c, rec: session.clubRec, crest: session.clubCrest || c.crest }));
       /* Nota: el escudo del equipo (crest) y el del club son distintos. La
          cabecera usaba solo el del equipo y por eso salía vacía aunque el club
          tuviera escudo; teamCrest unifica la cadena de reservas. */
@@ -9768,7 +9784,13 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
        entre todas las categorías, y su propia cuenta puede no estar en ninguna
        —así no se veía a sí misma en su propia plantilla. */
     const porClub = dirigeElClub(session?.role) && clubInfo.rec;
-    airUsers(porClub ? { clubRec: clubInfo.rec } : { teamRec: session.team?.rec }).then((rows) => {
+    (async () => {
+      let rows = await airUsers(porClub ? { clubRec: clubInfo.rec } : { teamRec: session.team?.rec });
+      /* Si la petición por club no vuelve —una función del servidor anterior a
+         que existiera ?club= responde 400— se pide por equipo antes de darse
+         por vencido: es preferible ver el cuerpo técnico de una categoría que
+         una lista vacía que parece que no hay nadie dado de alta. */
+      if (!rows && porClub && session.team?.rec) rows = await airUsers({ teamRec: session.team.rec });
       if (!alive || !rows) return;
       setUsers(rows.map((r) => ({
         id: r.id, name: r.name, email: r.email,
@@ -9776,7 +9798,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
         team: r.teamName || "",
         status: String(r.estado).toLowerCase() === "activo" ? "activo" : "pendiente",
       })));
-    });
+    })();
     return () => { alive = false; };
   }, [session, clubInfo.rec]);
 
@@ -17091,7 +17113,12 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
       plan = String(res.user.plan || "Oficial").toLowerCase() === "gratis" ? "free" : "oficial";
       if (res.user.club) club = res.user.club;
       if (res.user.comunidad) comunidad = res.user.comunidad;
-      if (res.user.team) team = res.user.team;
+      /* Sin categoría en su ficha NO se inventa una. Antes se caía a un
+         "Infantil B" de relleno, así que la cuenta del club —que no tiene por
+         qué estar en ninguna categoría— entraba diciendo que era del Infantil
+         B, y quien viera la pantalla se lo creía. Se queda sin categoría hasta
+         que elija una. */
+      team = res.user.team || { rec: "", id: "", name: "", cat: "infantil", f7: false, half: 35, sub: "", club: res.user.club || club };
     } else if (res && res.ok === false) {
       return T(lang, "a.badCreds");
     } else {
@@ -17120,6 +17147,11 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
       categoryId: defaultCat?.id || team?.rec,
       pendingApproval: estado !== "activo",
       prueba: Number(res?.user?.prueba) || 0,
+      /* El registro del club, dicho por el servidor. Ver el comentario del
+         backend: emparejar por nombre acababa en el club equivocado o en
+         ninguno, y con él fallaba todo lo que se pide "de mi club". */
+      clubRec: res?.user?.clubRec || "",
+      clubCrest: res?.user?.crest || null,
       /* Pestaña propia de Control de material del director deportivo. Opcional
          y suya: si además de dirigir el club entrena una categoría, necesita
          mandar partes como cualquier otro técnico. */
@@ -17325,13 +17357,23 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
             si convocas al equipo equivocado, el lío es gordo. */}
         <div className="flex items-center gap-3 min-w-0 order-3 lg:order-2 lg:justify-self-center">
           <span className="rounded-lg sm:rounded-lg p-0.5 sm:p-1 shrink-0" style={{ boxShadow: `0 0 0 1px ${AC}` }}>
-            <span className="sm:hidden"><Crest src={teamCrest} name={session.team.name} size={30} /></span>
-            <span className="hidden sm:block"><Crest src={teamCrest} name={session.team.name} size={46} /></span>
+            <span className="sm:hidden"><Crest src={teamCrest} name={esCuentaClub ? session.club : session.team.name} size={30} /></span>
+            <span className="hidden sm:block"><Crest src={teamCrest} name={esCuentaClub ? session.club : session.team.name} size={46} /></span>
           </span>
+          {/* La cuenta del CLUB no es de una categoría: lo que la identifica es
+              su club. Poniéndole "Infantil B" arriba parecía la cuenta del
+              Infantil B, cuando lo que lleva son todas sus categorías. Se le da
+              la vuelta: arriba el club, y debajo la categoría con la que está
+              trabajando ahora mismo, que sí puede cambiar. Para el resto de
+              roles no cambia nada: su equipo es su sitio. */}
           <div className="min-w-0 leading-tight">
-            <div className="font-display text-base sm:text-2xl font-semibold truncate" style={{ color: C.chalk }}>{session.team.name}</div>
+            <div className="font-display text-base sm:text-2xl font-semibold truncate" style={{ color: C.chalk }}>
+              {esCuentaClub ? session.club : session.team.name}
+            </div>
             <div className="text-[11px] sm:text-[12px] truncate" style={{ color: C.dim }}>
-              {session.club}<span className="hidden sm:inline"> · {session.comunidad}</span>
+              {esCuentaClub
+                ? <>{session.team?.name ? `${t("c.workingWith")} ${session.team.name}` : session.comunidad}</>
+                : <>{session.club}<span className="hidden sm:inline"> · {session.comunidad}</span></>}
             </div>
             {/* Con qué papel y con qué versión estás mirando este equipo, pegado
                 al equipo mismo. Los dos datos estaban solo en la esquina
@@ -17627,8 +17669,12 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
                 <Crest src={teamCrest} name={session.team.name} size={84} />
               </div>
               <div className="text-center leading-tight">
-                <div className="font-display uppercase tracking-wide text-sm" style={{ color: C.chalk }}>{session.team.name}</div>
-                <div className="text-[10px]" style={{ color: C.dim }}>{session.club}</div>
+                <div className="font-display uppercase tracking-wide text-sm" style={{ color: C.chalk }}>
+                  {esCuentaClub ? session.club : session.team.name}
+                </div>
+                <div className="text-[10px]" style={{ color: C.dim }}>
+                  {esCuentaClub ? (session.team?.name ? `${t("c.workingWith")} ${session.team.name}` : "") : session.club}
+                </div>
                 {session.team?.web && (
                   <a href={session.team.web} target="_blank" rel="noreferrer" className="text-[10px] hover:underline" style={{ color: MC }}>Web del equipo ↗</a>
                 )}

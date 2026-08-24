@@ -1646,6 +1646,14 @@ export default async (req: Request) => {
             /* Días de prueba que le quedan según Airtable. 0 = sin prueba. */
             prueba: pruebaDias(rec.fields[U.prueba]),
             club: cl ? cl.fields[CL.nombre] : "", comunidad: cl ? cl.fields[CL.comunidad] : "",
+            /* El REGISTRO del club, no solo su nombre. La app lo buscaba
+               emparejando el nombre contra la lista de clubes, y si no cuadraba
+               letra a letra se quedaba con el primero de la lista —el club
+               equivocado— o sin ninguno; a partir de ahí todo lo que se pide
+               "de mi club" fallaba en silencio. Quien sabe de qué club es cada
+               ficha es el servidor: que lo diga él. */
+            clubRec: clRec || null,
+            crest: cl ? (cl.fields[CL.escudo]?.[0]?.url || null) : null,
             team: eq ? teamOut(eq, clubs) : null,
           },
         });
