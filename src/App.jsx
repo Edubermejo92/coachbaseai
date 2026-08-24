@@ -55,7 +55,7 @@ const DICT = {
     "sq.cloudOff": "○ Solo en este dispositivo",
     "sq.saveSquad": "↑ Guardar plantilla",
     "sq.saveCal": "↑ Guardar calendario",
-    "sq.cloudNote": "Sin guardar en la nube, los datos viven solo en este navegador: se pierden al vaciar la caché y no se ven desde otro dispositivo.",
+    "sq.cloudNote": "Sin guardar en la nube, los datos viven solo en este navegador: se pierden al vaciar la caché y no se ven desde otro dispositivo.", "sq.emptyCta": "Añádelos importando un CSV aquí arriba, o dalos de alta uno a uno.",
     "sq.clubData": "Datos del club",
     "sq.crest": "Escudo",
     "sq.fieldName": "Nombre del campo",
@@ -576,7 +576,7 @@ const DICT = {
     "sq.cloudOff": "○ This device only",
     "sq.saveSquad": "↑ Save squad",
     "sq.saveCal": "↑ Save fixtures",
-    "sq.cloudNote": "Without saving to the cloud, your data lives only in this browser: it is lost when you clear the cache and cannot be seen from another device.",
+    "sq.cloudNote": "Without saving to the cloud, your data lives only in this browser: it is lost when you clear the cache and cannot be seen from another device.", "sq.emptyCta": "Add them by importing a CSV above, or enter them one by one.",
     "sq.clubData": "Club details",
     "sq.crest": "Crest",
     "sq.fieldName": "Ground name",
@@ -1111,7 +1111,7 @@ const DICT = {
     "sq.cloudOff": "○ Cet appareil uniquement",
     "sq.saveSquad": "↑ Enregistrer l'effectif",
     "sq.saveCal": "↑ Enregistrer le calendrier",
-    "sq.cloudNote": "Sans sauvegarde dans le cloud, les données ne vivent que dans ce navigateur : elles disparaissent si vous videz le cache et ne sont pas visibles depuis un autre appareil.",
+    "sq.cloudNote": "Sans sauvegarde dans le cloud, les données ne vivent que dans ce navigateur : elles disparaissent si vous videz le cache et ne sont pas visibles depuis un autre appareil.", "sq.emptyCta": "Ajoutez-les en important un CSV ci-dessus, ou un par un.",
     "sq.clubData": "Données du club",
     "sq.crest": "Écusson",
     "sq.fieldName": "Nom du terrain",
@@ -1720,7 +1720,7 @@ const DICT = {
     "sq.cloudOff": "○ Nur auf diesem Gerät",
     "sq.saveSquad": "↑ Kader speichern",
     "sq.saveCal": "↑ Spielplan speichern",
-    "sq.cloudNote": "Ohne Speichern in der Cloud liegen die Daten nur in diesem Browser: Sie gehen beim Leeren des Caches verloren und sind auf anderen Geräten nicht sichtbar.",
+    "sq.cloudNote": "Ohne Speichern in der Cloud liegen die Daten nur in diesem Browser: Sie gehen beim Leeren des Caches verloren und sind auf anderen Geräten nicht sichtbar.", "sq.emptyCta": "Füge sie über den CSV-Import oben hinzu, oder einzeln.",
     "sq.clubData": "Vereinsdaten",
     "sq.crest": "Wappen",
     "sq.fieldName": "Name des Platzes",
@@ -2328,7 +2328,7 @@ const DICT = {
     "sq.cloudOff": "○ Apenas neste dispositivo",
     "sq.saveSquad": "↑ Guardar plantel",
     "sq.saveCal": "↑ Guardar calendário",
-    "sq.cloudNote": "Sem guardar na nuvem, os dados vivem só neste navegador: perdem-se ao limpar a cache e não se veem noutro dispositivo.",
+    "sq.cloudNote": "Sem guardar na nuvem, os dados vivem só neste navegador: perdem-se ao limpar a cache e não se veem noutro dispositivo.", "sq.emptyCta": "Adiciona-os importando um CSV aqui em cima, ou um a um.",
     "sq.clubData": "Dados do clube",
     "sq.crest": "Emblema",
     "sq.fieldName": "Nome do campo",
@@ -7302,13 +7302,6 @@ Devuelve SOLO un objeto JSON con las claves "tokens" y "shapes", sin explicació
 }
 
 /* ---------------- Datos demo ---------------- */
-/* Plantilla oficial real de Infantil B (C.D. Chamartín Vergara), tal y como
-   la aportó el club: 19 jugadores, dorsal y demarcación. La ficha no incluye
-   lado (izquierda/derecha) para los 5 extremos, así que se reparten entre
-   ED/EI a partes iguales; ajusta la demarcación de cada uno desde "Jugadores"
-   si no coincide con el lado real. Sin partidos ni entrenamientos todavía
-   (pretemporada), así que asistencia y minutos arrancan en 0 y nadie tiene
-   duda ni lesión salvo que el club lo indique. */
 /* ---------------- Datos para la DEMOSTRACIÓN pública ----------------
    La demo la abre cualquiera desde la pantalla de entrada, sin cuenta. No
    puede enseñar la plantilla real: son diecinueve menores con nombre y
@@ -7352,32 +7345,17 @@ const USUARIOS_DEMO = [
   { id: 5, name: "Sara Bonilla", email: "pendiente@example.org", role: "segundo", club: DEMO_CLUB, categories: ["Infantil B"], status: "pendiente" },
 ];
 
-const PLAYERS_INIT = [
-  { id: 1, n: "Alex Bustos", d: 1, pos: "POR", st: "disponible", att: 0, min: 0 },
-  { id: 2, n: "Santiago Bo", d: 2, pos: "POR", st: "disponible", att: 0, min: 0 },
-  { id: 3, n: "Daniel Fernández", d: 3, pos: "DFC", st: "disponible", att: 0, min: 0 },
-  { id: 4, n: "Jalel Besnard", d: 4, pos: "DFC", st: "disponible", att: 0, min: 0 },
-  { id: 5, n: "Matteo Martínez", d: 5, pos: "LD", st: "disponible", att: 0, min: 0 },
-  { id: 6, n: "Iván Díez", d: 6, pos: "LD", st: "disponible", att: 0, min: 0 },
-  { id: 7, n: "Guillermo Marañón", d: 7, pos: "LI", st: "disponible", att: 0, min: 0 },
-  { id: 8, n: "Rodrigo Caldeira", d: 8, pos: "LI", st: "disponible", att: 0, min: 0 },
-  { id: 9, n: "Matti Kisters", d: 9, pos: "MC", st: "disponible", att: 0, min: 0 },
-  { id: 10, n: "Lorenzo Meyer", d: 10, pos: "MC", st: "disponible", att: 0, min: 0 },
-  { id: 11, n: "Iñigo Fernández", d: 11, pos: "MC", st: "disponible", att: 0, min: 0 },
-  { id: 12, n: "Deyan Collin", d: 12, pos: "MC", st: "disponible", att: 0, min: 0 },
-  { id: 13, n: "José Bello", d: 13, pos: "MC", st: "disponible", att: 0, min: 0 },
-  { id: 14, n: "Enrique de Sebastián", d: 14, pos: "ED", st: "disponible", att: 0, min: 0 },
-  { id: 15, n: "Álvaro Rey", d: 15, pos: "EI", st: "disponible", att: 0, min: 0 },
-  /* El plan físico de pretemporada lo deja por escrito: Martín queda fuera de
-     cualquier progresión colectiva hasta que su retorno esté autorizado y
-     coordinado con quien lleve su rehabilitación. Es un dato de su ficha, no
-     una nota del día. */
-  { id: 16, n: "Martín Fernández", d: 16, pos: "ED", st: "disponible", att: 0, min: 0,
-    aviso: "Antecedente de lesión de cruzado: fuera de cualquier progresión colectiva hasta que su retorno esté expresamente autorizado y coordinado con los profesionales que lleven su rehabilitación." },
-  { id: 17, n: "Manuel Gómez", d: 17, pos: "EI", st: "disponible", att: 0, min: 0 },
-  { id: 18, n: "Mateo Rivera", d: 18, pos: "ED", st: "disponible", att: 0, min: 0 },
-  { id: 19, n: "Adrian Bianchi", d: 19, pos: "DC", st: "disponible", att: 0, min: 0 },
-];
+/* VACÍO a propósito, como USERS_INIT. Aquí estaban escritos a mano los
+   diecinueve jugadores del Infantil B, y eran el punto de partida de CUALQUIER
+   cuenta: quien abría la app —el entrenador de otro club, una categoría recién
+   creada, alguien con la conexión lenta— veía en su plantilla a diecinueve
+   menores del Chamartín con nombre, apellido y dorsal hasta que Airtable
+   contestara. Si no contestaba, se quedaban ahí.
+
+   Una plantilla de ejemplo tiene sentido en el modo prueba y en ningún sitio
+   más: para eso está PLANTILLA_DEMO, con nombres inventados. La plantilla de
+   verdad de cada categoría sale de Airtable o no sale. */
+const PLAYERS_INIT = [];
 
 /* Cuerpo técnico real del C.D. Chamartín Vergara (Infantil B), igual que en
    Airtable: Eduardo Bermejo (Master), Daniel Bermejo (director deportivo,
@@ -9381,6 +9359,16 @@ ACTA:\n${evTxt}`;
     if (!teamRec) { setCloudMsg("Este equipo todavía no está en la nube."); return; }
     setCloudMsg("Guardando plantilla…");
     const remotos = (await airList("jugadores", teamRec)) || [];
+    /* Guardar borra de Airtable lo que no esté en pantalla, y una plantilla
+       vacía en pantalla casi nunca significa "este equipo no tiene jugadores":
+       significa que todavía no han llegado. Pulsar el botón en ese momento
+       borraría la plantilla entera de la nube sin preguntar. Si arriba hay
+       jugadores y aquí ninguno, no se guarda: se dice qué pasa. */
+    if (!players.length && remotos.length) {
+      setCloudMsg(`No se ha guardado: la plantilla de esta pantalla está vacía y en la nube hay ${remotos.length} jugadores. Recarga para traerlos antes de guardar.`);
+      setTimeout(() => setCloudMsg(""), 8000);
+      return;
+    }
     const porRec = new Map(remotos.map((r) => [r.rec, r]));
     for (const p of players) {
       if (p.rec && porRec.has(p.rec)) { await airEdit("jugadores", p.rec, jugToAir(p, teamRec)); porRec.delete(p.rec); }
@@ -14659,7 +14647,17 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
       )}
       <Card title={`Plantilla — ${session.club} ${session.team.name}`}>
         <div className="text-xs mb-3" style={{ color: C.dim }}>Toca un jugador para abrir su perfil (foto y vídeo){can("editSquad") ? " · toca el estado para cambiarlo" : ""}</div>
-        <div className="overflow-x-auto">
+        {/* Plantilla vacía. Desde que la app ya no arranca con una plantilla de
+            ejemplo, esto es un estado normal —una categoría recién creada— y
+            antes se veía una tabla con sus cabeceras y ni una fila debajo, que
+            parece que algo ha fallado. */}
+        {players.length === 0 && (
+          <div className="text-sm rounded-lg border p-4" style={{ borderColor: C.line, background: C.panel2, color: C.dim }}>
+            {t("tm.squadEmpty")}
+            {can("editSquad") && <div className="mt-1.5">{t("sq.emptyCta")}</div>}
+          </div>
+        )}
+        <div className="overflow-x-auto" hidden={players.length === 0}>
           <table className="w-full text-sm" style={{ color: C.chalk }}>
             <thead><tr className="font-display uppercase tracking-widest text-xs" style={{ color: C.dim }}>
               <th className="text-left py-2" colSpan={2}>Jugador</th><th className="text-left">Pos</th><th className="text-left">Estado</th>
