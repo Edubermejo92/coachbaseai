@@ -174,6 +174,25 @@ const DICT = {
     "ca.remove": "Quitar",
     "ca.useMatch": "Usar en modo partido", "ca.month": "Calendario del mes", "ca.dayHint": "Toca un día para ver su detalle.", "ca.dayEmpty": "No hay partidos ni entrenamiento programado este día.", "ca.dayTraining": "Día de entrenamiento", "ca.legendMatch": "Partido (del calendario importado)", "ca.legendTrain": "Entrenamiento", "ca.trainDaysLabel": "Días de entreno:",
     "ca.teamCrest": "Escudo del equipo",
+    "cl.teamsTitle": "Equipos del club",
+    "cl.teamsHint": "Toca un equipo para trabajar con él: su plantilla, su calendario, su disciplina y todo lo demás pasan a ser los suyos.",
+    "cl.teamCoach": "Entrenador:",
+    "cl.teamNoCoach": "sin entrenador dado de alta",
+    "cl.teamLost": "faltan",
+    "cl.teamUnreported": "sin avisar",
+    "cl.teamReports": "partes",
+    "cl.teamNoData": "Sin partes todavía",
+    "cl.dashLost": "Balones que faltan",
+    "cl.dashLostHint": "Por mes, y el detalle del mes que elijas por días. Cuenta cada balón que falta en el recuento, lo haya declarado el entrenador o no — por eso sale más alto que los «balones perdidos» de la tabla de abajo, que son solo los declarados.",
+    "cl.dashSilent": "Entrenos sin avisar",
+    "cl.dashSilentHint": "Veces que un entrenador no mandó el parte, o lo mandó sin una de las dos fotos. Es lo contrario de perder un balón: aquí no sabemos ni lo que pasó.",
+    "cl.dashNoData": "Todavía no hay partes de los que sacar nada.",
+    "cl.dashMonth": "Mes",
+    "cl.dashDay": "Día",
+    "cl.dashTotal": "Total",
+    "cl.dashPickMonth": "Toca un mes para ver sus días.",
+    "cl.write": "Escribir",
+    "cl.writeSubject": "Material de {equipo} — {club}",
     "cl.staff": "Cuerpo técnico del club",
     "cl.staffHint": "Quién entrena qué y con qué papel. Las altas y los permisos se gestionan en Usuarios.",
     "cl.staffEmpty": "Todavía no hay nadie dado de alta en este club.",
@@ -666,6 +685,25 @@ const DICT = {
     "ca.remove": "Remove",
     "ca.useMatch": "Use in match mode", "ca.month": "Month calendar", "ca.dayHint": "Tap a day to see its detail.", "ca.dayEmpty": "No fixtures or training scheduled this day.", "ca.dayTraining": "Training day", "ca.legendMatch": "Fixture (from the imported calendar)", "ca.legendTrain": "Training", "ca.trainDaysLabel": "Training days:",
     "ca.teamCrest": "Team crest",
+    "cl.teamsTitle": "Club teams",
+    "cl.teamsHint": "Tap a team to work with it: its squad, its fixtures, its discipline and everything else become that team's.",
+    "cl.teamCoach": "Coach:",
+    "cl.teamNoCoach": "no coach registered",
+    "cl.teamLost": "missing",
+    "cl.teamUnreported": "unreported",
+    "cl.teamReports": "reports",
+    "cl.teamNoData": "No reports yet",
+    "cl.dashLost": "Balls missing",
+    "cl.dashLostHint": "By month, and the month you pick broken down by day. It counts every ball missing from the count, whether the coach declared it or not — which is why it runs higher than the \u201cballs lost\u201d in the table below, which are only the declared ones.",
+    "cl.dashSilent": "Sessions with no word",
+    "cl.dashSilentHint": "Times a coach did not send the report, or sent it without one of the two photos. It is the opposite of losing a ball: here we do not even know what happened.",
+    "cl.dashNoData": "No reports to draw anything from yet.",
+    "cl.dashMonth": "Month",
+    "cl.dashDay": "Day",
+    "cl.dashTotal": "Total",
+    "cl.dashPickMonth": "Tap a month to see its days.",
+    "cl.write": "Write",
+    "cl.writeSubject": "Kit at {equipo} — {club}",
     "cl.staff": "Club coaching staff",
     "cl.staffHint": "Who coaches what and in what role. Sign-ups and permissions are handled in Users.",
     "cl.staffEmpty": "Nobody has been added to this club yet.",
@@ -1175,6 +1213,25 @@ const DICT = {
     "ca.remove": "Retirer",
     "ca.useMatch": "Utiliser en mode match", "ca.month": "Calendrier du mois", "ca.dayHint": "Touchez un jour pour voir son détail.", "ca.dayEmpty": "Aucun match ni entraînement prévu ce jour.", "ca.dayTraining": "Jour d'entraînement", "ca.legendMatch": "Match (du calendrier importé)", "ca.legendTrain": "Entraînement", "ca.trainDaysLabel": "Jours d'entraînement :",
     "ca.teamCrest": "Écusson de l'équipe",
+    "cl.teamsTitle": "Club teams",
+    "cl.teamsHint": "Tap a team to work with it: its squad, its fixtures, its discipline and everything else become that team's.",
+    "cl.teamCoach": "Coach:",
+    "cl.teamNoCoach": "no coach registered",
+    "cl.teamLost": "missing",
+    "cl.teamUnreported": "unreported",
+    "cl.teamReports": "reports",
+    "cl.teamNoData": "No reports yet",
+    "cl.dashLost": "Balls missing",
+    "cl.dashLostHint": "By month, and the month you pick broken down by day. It counts every ball missing from the count, whether the coach declared it or not — which is why it runs higher than the \u201cballs lost\u201d in the table below, which are only the declared ones.",
+    "cl.dashSilent": "Sessions with no word",
+    "cl.dashSilentHint": "Times a coach did not send the report, or sent it without one of the two photos. It is the opposite of losing a ball: here we do not even know what happened.",
+    "cl.dashNoData": "No reports to draw anything from yet.",
+    "cl.dashMonth": "Month",
+    "cl.dashDay": "Day",
+    "cl.dashTotal": "Total",
+    "cl.dashPickMonth": "Tap a month to see its days.",
+    "cl.write": "Write",
+    "cl.writeSubject": "Kit at {equipo} — {club}",
     "cl.staff": "Staff du club",
     "cl.staffHint": "Qui entraîne quoi et à quel titre. Les inscriptions et les droits se gèrent dans Utilisateurs.",
     "cl.staffEmpty": "Personne n'est encore inscrit dans ce club.",
@@ -1758,6 +1815,25 @@ const DICT = {
     "ca.remove": "Entfernen",
     "ca.useMatch": "Im Spielmodus verwenden", "ca.month": "Monatskalender", "ca.dayHint": "Tippe auf einen Tag, um Details zu sehen.", "ca.dayEmpty": "An diesem Tag sind weder Spiele noch Training geplant.", "ca.dayTraining": "Trainingstag", "ca.legendMatch": "Spiel (aus importiertem Spielplan)", "ca.legendTrain": "Training", "ca.trainDaysLabel": "Trainingstage:",
     "ca.teamCrest": "Mannschaftswappen",
+    "cl.teamsTitle": "Club teams",
+    "cl.teamsHint": "Tap a team to work with it: its squad, its fixtures, its discipline and everything else become that team's.",
+    "cl.teamCoach": "Coach:",
+    "cl.teamNoCoach": "no coach registered",
+    "cl.teamLost": "missing",
+    "cl.teamUnreported": "unreported",
+    "cl.teamReports": "reports",
+    "cl.teamNoData": "No reports yet",
+    "cl.dashLost": "Balls missing",
+    "cl.dashLostHint": "By month, and the month you pick broken down by day. It counts every ball missing from the count, whether the coach declared it or not — which is why it runs higher than the \u201cballs lost\u201d in the table below, which are only the declared ones.",
+    "cl.dashSilent": "Sessions with no word",
+    "cl.dashSilentHint": "Times a coach did not send the report, or sent it without one of the two photos. It is the opposite of losing a ball: here we do not even know what happened.",
+    "cl.dashNoData": "No reports to draw anything from yet.",
+    "cl.dashMonth": "Month",
+    "cl.dashDay": "Day",
+    "cl.dashTotal": "Total",
+    "cl.dashPickMonth": "Tap a month to see its days.",
+    "cl.write": "Write",
+    "cl.writeSubject": "Kit at {equipo} — {club}",
     "cl.staff": "Trainerteam des Vereins",
     "cl.staffHint": "Wer was trainiert und in welcher Rolle. Anmeldungen und Rechte laufen über Benutzer.",
     "cl.staffEmpty": "In diesem Verein ist noch niemand angelegt.",
@@ -2340,6 +2416,25 @@ const DICT = {
     "ca.remove": "Remover",
     "ca.useMatch": "Usar no modo jogo", "ca.month": "Calendário do mês", "ca.dayHint": "Toca num dia para ver o detalhe.", "ca.dayEmpty": "Não há jogos nem treino marcado para este dia.", "ca.dayTraining": "Dia de treino", "ca.legendMatch": "Jogo (do calendário importado)", "ca.legendTrain": "Treino", "ca.trainDaysLabel": "Dias de treino:",
     "ca.teamCrest": "Emblema da equipa",
+    "cl.teamsTitle": "Equipos del club",
+    "cl.teamsHint": "Toca un equipo para trabajar con él: su plantilla, su calendario, su disciplina y todo lo demás pasan a ser los suyos.",
+    "cl.teamCoach": "Entrenador:",
+    "cl.teamNoCoach": "sin entrenador dado de alta",
+    "cl.teamLost": "faltan",
+    "cl.teamUnreported": "sin avisar",
+    "cl.teamReports": "partes",
+    "cl.teamNoData": "Sin partes todavía",
+    "cl.dashLost": "Balones que faltan",
+    "cl.dashLostHint": "Por mes, y el detalle del mes que elijas por días. Cuenta cada balón que falta en el recuento, lo haya declarado el entrenador o no — por eso sale más alto que los «balones perdidos» de la tabla de abajo, que son solo los declarados.",
+    "cl.dashSilent": "Entrenos sin avisar",
+    "cl.dashSilentHint": "Veces que un entrenador no mandó el parte, o lo mandó sin una de las dos fotos. Es lo contrario de perder un balón: aquí no sabemos ni lo que pasó.",
+    "cl.dashNoData": "Todavía no hay partes de los que sacar nada.",
+    "cl.dashMonth": "Mes",
+    "cl.dashDay": "Día",
+    "cl.dashTotal": "Total",
+    "cl.dashPickMonth": "Toca un mes para ver sus días.",
+    "cl.write": "Escribir",
+    "cl.writeSubject": "Material de {equipo} — {club}",
     "cl.staff": "Equipa técnica do clube",
     "cl.staffHint": "Quem treina o quê e com que papel. As inscrições e permissões gerem-se em Utilizadores.",
     "cl.staffEmpty": "Ainda não há ninguém inscrito neste clube.",
@@ -3663,7 +3758,19 @@ const cbFetch = async (url, init = {}) => {
 };
 const ROL2LABEL = { entrenador: "Entrenador principal", segundo: "Segundo entrenador", delegado: "Delegado", director: "Director deportivo", club: "Club", master: "Master" };
 const LABEL2ROL = { "Entrenador principal": "entrenador", "Segundo entrenador": "segundo", "Delegado": "delegado", "Director deportivo": "director", "Club": "club", "Master": "master" };
-const airUsers = async (teamRec = "") => { try { const r = await cbFetch(AIR + (teamRec ? `?team=${encodeURIComponent(teamRec)}` : "")); if (!r.ok) return null; const d = await r.json(); return d.records || null; } catch { return null; } };
+/* Por club cuando quien pregunta dirige el club —necesita a todo su cuerpo
+   técnico, no solo el de la categoría en la que esté— y por equipo para el
+   resto. */
+const airUsers = async ({ teamRec = "", clubRec = "" } = {}) => {
+  try {
+    const q = clubRec ? `?club=${encodeURIComponent(clubRec)}` : teamRec ? `?team=${encodeURIComponent(teamRec)}` : "";
+    if (!q) return null;
+    const r = await cbFetch(AIR + q);
+    if (!r.ok) return null;
+    const d = await r.json();
+    return d.records || null;
+  } catch { return null; }
+};
 const airCreate = (body) => { try { return cbFetch(AIR, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) }).catch(() => {}); } catch { return null; } };
 /* ================= PROPUESTAS (segundo entrenador -> aprobación) =================
    Persistidas en Airtable (tabla Propuestas): el segundo entrenador propone
@@ -7245,13 +7352,13 @@ const PLAYERS_INIT = [
    - Entrenador: edita su categoría, ve otras del club de lectura
    - Segundo: propuestas en su categoría, ve otras del club de lectura
    - Delegado: lectura de su categoría y otras del club */
-const USERS_INIT = [
-  { id: 1, name: "EDUARDO BERMEJO", email: "edubermejo92@gmail.com", role: "master", club: "C.D. Chamartín Vergara", categories: ["Infantil B"], status: "activo" },
-  { id: 2, name: "DANI BERMEJO", email: "ebldigital92@gmail.com", role: "director", club: "C.D. Chamartín Vergara", categories: ["Infantil B"], status: "activo" },
-  { id: 3, name: "MANUEL BERMEJO", email: "mmanuelb@gmail.com", role: "segundo", club: "C.D. Chamartín Vergara", categories: ["Infantil B"], status: "activo" },
-  { id: 4, name: "FIDEL", email: "fidelber@movistar.es", role: "entrenador", club: "C.D. Chamartín Vergara", categories: ["Infantil B"], status: "activo" },
-  { id: 5, name: "LUIS GARCÍA", email: "luis.garcia@chamartin.es", role: "segundo", club: "C.D. Chamartín Vergara", categories: ["Infantil B"], status: "activo", categoryRoles: { "cat_1": ["segundo", "delegado"] } },
-];
+/* VACÍO a propósito. Aquí había cinco personas escritas a mano —cuatro reales
+   del club y una inventada, "Luis García", con un correo inventado también— y
+   se pintaban como cuerpo técnico de verdad hasta que Airtable respondiera. Si
+   Airtable no respondía, o el rol no podía leer usuarios, se quedaban ahí para
+   siempre: el club veía en su plantilla gente que nunca había dado de alta y
+   correos que no existen. La lista de personas sale de Airtable o no sale. */
+const USERS_INIT = [];
 
 /* Definición de categorías: cada categoría pertenece a un club y tiene roles
    asignados (director, entrenador, segundo, delegado). Un usuario puede estar
@@ -7261,10 +7368,9 @@ const CATEGORIES_INIT = [
     id: "cat_1",
     name: "Infantil B",
     club: "C.D. Chamartín Vergara",
-    director: 2,            // Dani
-    entrenador: 4,          // Fidel
-    segundo: [3, 5],        // Manuel + Luis García
-    delegado: 5,            // Luis García (también segundo)
+    /* Sin nadie asignado: los ids apuntaban a las cinco personas escritas a
+       mano que había arriba —una de ellas inventada—, y de ahí salía el reparto
+       de roles por categoría. Quién ocupa cada puesto lo dice Airtable. */
   },
 ];
 
@@ -9658,12 +9764,21 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
   useEffect(() => {
     if (!session || !can("viewUsers")) return;
     let alive = true;
-    airUsers(session.team?.rec).then((rows) => {
+    /* La dirección del club pide por club: su cuerpo técnico está repartido
+       entre todas las categorías, y su propia cuenta puede no estar en ninguna
+       —así no se veía a sí misma en su propia plantilla. */
+    const porClub = dirigeElClub(session?.role) && clubInfo.rec;
+    airUsers(porClub ? { clubRec: clubInfo.rec } : { teamRec: session.team?.rec }).then((rows) => {
       if (!alive || !rows) return;
-      setUsers(rows.map((r) => ({ id: r.id, name: r.name, email: r.email, role: LABEL2ROL[r.rol] || "entrenador", status: String(r.estado).toLowerCase() === "activo" ? "activo" : "pendiente" })));
+      setUsers(rows.map((r) => ({
+        id: r.id, name: r.name, email: r.email,
+        role: LABEL2ROL[r.rol] || "entrenador",
+        team: r.teamName || "",
+        status: String(r.estado).toLowerCase() === "activo" ? "activo" : "pendiente",
+      })));
     });
     return () => { alive = false; };
-  }, [session]);
+  }, [session, clubInfo.rec]);
 
   /* Card, Dot y Avatar viven fuera de este componente (justo encima de
      App). Ver el comentario de allí: definirlos aquí dentro rompía la
@@ -12679,6 +12794,119 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
     );
   };
 
+  /* ---- Panel del club: sus equipos y dos cuadros de mando ----
+     El club no rellena partes —eso es del cuerpo técnico de cada categoría—,
+     pero necesita ver de un vistazo en qué anda cada equipo y poder meterse en
+     cualquiera de ellos. Todo sale de los partes que ya se guardan: no hay
+     ningún dato nuevo que nadie tenga que teclear. */
+  const [mesMaterial, setMesMaterial] = useState("");
+  const mesLegible = (ym) => {
+    const [y, m] = String(ym).split("-").map(Number);
+    if (!y || !m) return ym;
+    const nom = new Date(y, m - 1, 1).toLocaleDateString(lang === "es" ? "es-ES" : lang, { month: "long", year: "numeric" });
+    return nom.charAt(0).toUpperCase() + nom.slice(1);
+  };
+  /* Balones que faltan en un parte: lo que sale menos lo que vuelve. Es el dato
+     de verdad; los "perdidos" que declara el entrenador son solo la parte que
+     reconoce. */
+  const faltanEnParte = (p) => Math.max(0, (Number(p.salida) || 0) - (Number(p.entrada) || 0));
+  const parteACiegas = (p) => (!p.fotoSalida || !p.fotoEntrada ? 1 : 0);
+  const resumenPorEquipo = (() => {
+    const out = new Map();
+    for (const p of partesFuente) {
+      const k = p.equipoNombre || "";
+      const a = out.get(k) || { partes: 0, perdidos: 0, sinAvisar: 0, aCiegas: 0, quien: new Map() };
+      a.partes += 1;
+      const faltan = faltanEnParte(p);
+      a.perdidos += faltan;
+      a.sinAvisar += Math.max(0, faltan - (Number(p.perdidos) || 0));
+      a.aCiegas += parteACiegas(p);
+      if (p.entrenadorNombre) a.quien.set(p.entrenadorNombre, (a.quien.get(p.entrenadorNombre) || 0) + 1);
+      out.set(k, a);
+    }
+    return out;
+  })();
+  /* Series por mes y, dentro del mes elegido, por día. Dos números por fecha:
+     balones que faltan y entrenos de los que no se supo nada. */
+  const seriesMaterial = (() => {
+    const mes = new Map(), dia = new Map();
+    for (const p of partesFuente) {
+      const f = String(p.fecha || "");
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(f)) continue;
+      const ym = f.slice(0, 7);
+      const acc = (mapa, clave) => {
+        const a = mapa.get(clave) || { perdidos: 0, ciegos: 0 };
+        a.perdidos += faltanEnParte(p);
+        a.ciegos += parteACiegas(p);
+        mapa.set(clave, a);
+      };
+      acc(mes, ym);
+      if (!mesMaterial || ym === mesMaterial) acc(dia, f);
+    }
+    const orden = (m) => [...m.entries()].sort((a, b) => (a[0] < b[0] ? -1 : 1));
+    return { mes: orden(mes), dia: orden(dia) };
+  })();
+  const correoDe = (nombre) => users.find((u) => u.name === nombre)?.email || "";
+  /* Escribirle al entrenador con lo suyo ya escrito. mailto: abre el correo de
+     quien mira, no manda nada por su cuenta: el club decide qué sale de aquí. */
+  const escribirA = (nombre, equipo) => {
+    const to = correoDe(nombre);
+    if (!to) return null;
+    const asunto = t("cl.writeSubject").replace("{equipo}", equipo || "").replace("{club}", session?.club || "");
+    const f = resumenPorEquipo.get(equipo) || { perdidos: 0, sinAvisar: 0, aCiegas: 0, partes: 0 };
+    const cuerpo = [
+      `${t("mt2.warnHead")} — ${session?.club || ""} · ${equipo || ""}`,
+      "",
+      `${t("mt2.warnReports")}: ${f.partes}`,
+      `${t("cl.dashLost")}: ${f.perdidos}`,
+      `${t("mt2.warnUnreported")}: ${f.sinAvisar}`,
+      `${t("cl.dashSilent")}: ${f.aCiegas}`,
+      "",
+      t("mt2.warnFoot"),
+    ].join("\n");
+    return `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+  };
+
+  /* Barras horizontales, sin librería. Horizontales a propósito: las etiquetas
+     son fechas y meses, que en vertical se cortan o se giran, y en un móvil de
+     390 px no hay sitio para doce columnas. Cada fila dice su número, así que
+     el gráfico se puede leer también sin ver los colores. */
+  const Barras = (series, campo, color, etiqueta, sel, onSel) => {
+    const max = Math.max(1, ...series.map(([, v]) => v[campo]));
+    const total = series.reduce((n, [, v]) => n + v[campo], 0);
+    if (!total) return <div className="text-sm" style={{ color: C.dim }}>{t("cl.dashNoData")}</div>;
+    return (
+      <div className="space-y-1">
+        {series.map(([k, v]) => {
+          const n = v[campo];
+          const activo = sel === k;
+          const Fila = (
+            <>
+              <span className="text-[11px] w-[92px] shrink-0 truncate text-left" style={{ color: activo ? AC : C.dim }}>{etiqueta(k)}</span>
+              <span className="flex-1 h-4 rounded" style={{ background: C.panel2 }}>
+                <span className="block h-4 rounded" style={{ width: `${Math.round((n / max) * 100)}%`, background: n ? color : "transparent" }} />
+              </span>
+              <span className="text-[12px] w-8 shrink-0 text-right tabular-nums" style={{ color: n ? C.chalk : C.dim }}>{n}</span>
+            </>
+          );
+          return onSel ? (
+            <button key={k} onClick={() => onSel(activo ? "" : k)}
+              title={t("cl.dashPickMonth")}
+              className="w-full flex items-center gap-2 min-h-8 px-1 rounded"
+              style={{ background: activo ? "rgba(54,69,79,.08)" : "transparent" }}>{Fila}</button>
+          ) : (
+            <div key={k} className="w-full flex items-center gap-2 min-h-8 px-1">{Fila}</div>
+          );
+        })}
+        <div className="flex items-center gap-2 pt-1 mt-1 border-t" style={{ borderColor: C.line }}>
+          <span className="text-[11px] w-[92px] shrink-0 font-display uppercase tracking-wide" style={{ color: C.dim }}>{t("cl.dashTotal")}</span>
+          <span className="flex-1" />
+          <span className="text-[12px] w-8 shrink-0 text-right tabular-nums font-semibold" style={{ color: C.chalk }}>{total}</span>
+        </div>
+      </div>
+    );
+  };
+
   /* ---- Control del club: cada entrenador, por categoría ----
      Una fila por persona y categoría con lo acumulado. El orden lo marca lo
      que hay que mirar: primero quien más balones ha perdido sin avisar, que es
@@ -12747,6 +12975,103 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
 
     return (
       <div className="space-y-4">
+        {/* Los equipos del club, con quien los entrena y cómo van de material.
+            Es la pantalla que el club mira primero: de un vistazo, en qué anda
+            cada uno, y un toque para meterse dentro. */}
+        <Card title={`🏟 ${t("cl.teamsTitle")}`}>
+          <div className="text-xs mb-3 leading-relaxed" style={{ color: C.dim }}>{t("cl.teamsHint")}</div>
+          {clubCats.length === 0 ? (
+            <div className="text-sm" style={{ color: C.dim }}>{t("cat.none")}</div>
+          ) : (
+            <div className="space-y-2">
+              {clubCats.map((c) => {
+                const r = resumenPorEquipo.get(c.nombre) || { partes: 0, perdidos: 0, sinAvisar: 0, aCiegas: 0, quien: new Map() };
+                /* Quien más partes ha mandado de esa categoría es quien la
+                   lleva. Se saca de los partes y no de una lista aparte, para
+                   que no haya dos versiones de lo mismo. */
+                const entrenador = [...r.quien.entries()].sort((a, b) => b[1] - a[1])[0]?.[0]
+                  || users.find((u) => u.team === c.nombre && u.role === "entrenador")?.name || "";
+                const mail = entrenador ? escribirA(entrenador, c.nombre) : null;
+                const actual = c.rec === teamRec;
+                return (
+                  <div key={c.rec} className="rounded-lg border p-3" style={{ borderColor: actual ? AC : C.line, background: C.panel2 }}>
+                    <div className="flex flex-wrap items-start gap-x-4 gap-y-2">
+                      <div className="flex-1 min-w-[170px] leading-tight">
+                        <div className="font-display uppercase tracking-wide text-sm" style={{ color: C.chalk }}>{c.nombre}</div>
+                        <div className="text-[11px]" style={{ color: entrenador ? C.dim : C.warn }}>
+                          {t("cl.teamCoach")} {entrenador || t("cl.teamNoCoach")}
+                        </div>
+                      </div>
+                      {/* A la derecha, los números de material de ese equipo. */}
+                      <div className="flex gap-3 shrink-0 text-center">
+                        {[[r.perdidos, t("cl.teamLost"), r.perdidos ? "#d9a441" : C.dim],
+                          [r.sinAvisar, t("cl.teamUnreported"), r.sinAvisar ? "#b4474a" : C.dim],
+                          [r.partes, t("cl.teamReports"), C.dim]].map(([n, lbl, col]) => (
+                          <div key={lbl}>
+                            <div className="font-display text-xl tabular-nums leading-none" style={{ color: n ? C.chalk : C.dim }}>{n}</div>
+                            <div className="text-[10px] font-display uppercase tracking-wide" style={{ color: col }}>{lbl}</div>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="flex gap-2 shrink-0 w-full sm:w-auto">
+                        {mail && (
+                          <a href={mail} className="text-[11px] px-2.5 py-1.5 rounded-lg border font-display uppercase tracking-wide"
+                            style={{ borderColor: C.line, color: C.chalk }}>✉ {t("cl.write")}</a>
+                        )}
+                        {actual ? (
+                          <span className="text-[11px] px-2.5 py-1.5 font-display uppercase tracking-wide" style={{ color: C.green }}>✓ {t("cat.current")}</span>
+                        ) : !esDemo && (
+                          <button onClick={() => irACategoria(c)} disabled={catCambiando === c.rec}
+                            className="text-[11px] px-2.5 py-1.5 rounded-lg border font-display uppercase tracking-wide disabled:opacity-50"
+                            style={{ borderColor: AC, color: AC }}>
+                            {catCambiando === c.rec ? t("a.sending") : t("cat.work")}
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+          {catMsg && <div className="text-xs mt-2 leading-relaxed" style={{ color: catMsg.startsWith("✓") ? C.green : C.warn }}>{catMsg}</div>}
+        </Card>
+
+        {/* Los dos cuadros de mando. Uno cuenta lo que se pierde; el otro, las
+            veces que no se supo nada, que es peor: un balón perdido y avisado
+            es un gasto, uno del que nadie dijo nada es un agujero. */}
+        <Card title={`📉 ${t("cl.dashLost")}`}>
+          <div className="text-xs mb-3 leading-relaxed" style={{ color: C.dim }}>{t("cl.dashLostHint")}</div>
+          {seriesMaterial.mes.length === 0 ? (
+            <div className="text-sm" style={{ color: C.dim }}>{t("cl.dashNoData")}</div>
+          ) : (
+            <>{Barras(seriesMaterial.mes, "perdidos", "#d9a441", mesLegible, mesMaterial, setMesMaterial)}
+              <div className="mt-4 pt-3 border-t" style={{ borderColor: C.line }}>
+                <div className="text-[11px] font-display uppercase tracking-wide mb-2" style={{ color: C.dim }}>
+                  {t("cl.dashDay")}{mesMaterial ? ` · ${mesLegible(mesMaterial)}` : ""}
+                </div>
+                {Barras(seriesMaterial.dia, "perdidos", "#d9a441", (f) => fechaCorta(f, lang))}
+              </div>
+            </>
+          )}
+        </Card>
+
+        <Card title={`🙈 ${t("cl.dashSilent")}`}>
+          <div className="text-xs mb-3 leading-relaxed" style={{ color: C.dim }}>{t("cl.dashSilentHint")}</div>
+          {seriesMaterial.mes.length === 0 ? (
+            <div className="text-sm" style={{ color: C.dim }}>{t("cl.dashNoData")}</div>
+          ) : (
+            <>{Barras(seriesMaterial.mes, "ciegos", "#b4474a", mesLegible, mesMaterial, setMesMaterial)}
+              <div className="mt-4 pt-3 border-t" style={{ borderColor: C.line }}>
+                <div className="text-[11px] font-display uppercase tracking-wide mb-2" style={{ color: C.dim }}>
+                  {t("cl.dashDay")}{mesMaterial ? ` · ${mesLegible(mesMaterial)}` : ""}
+                </div>
+                {Barras(seriesMaterial.dia, "ciegos", "#b4474a", (f) => fechaCorta(f, lang))}
+              </div>
+            </>
+          )}
+        </Card>
+
         {/* La alerta va ANTES de la tabla: la tabla cuenta lo que sí ha
             llegado, y lo que el club pidió saber es justo lo que no llega. */}
         <Card title={`${hayAlertas ? "🚨" : "✓"} ${t("mt2.alertTitle")}`}>
@@ -12992,25 +13317,15 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                       que va a fallar se dice por qué no está. */}
                   {c.rec === teamRec ? (
                     <span className="text-[11px] font-display uppercase tracking-wide" style={{ color: C.green }}>✓ {t("cat.current")}</span>
-                  ) : (
-                    <div className="flex gap-2">
-                      {/* Pasarse a otra categoría desde aquí, que es donde el
-                          club las tiene delante. Estaba solo dentro de "Mi
-                          cuenta", y quien no lo supiera se quedaba trabajando
-                          siempre sobre la misma. */}
-                      {!esDemo && (
-                        <button onClick={() => irACategoria(c)} disabled={catCambiando === c.rec}
-                          className="text-[11px] px-2.5 py-1.5 rounded-lg border font-display uppercase tracking-wide disabled:opacity-50"
-                          style={{ borderColor: AC, color: AC }}>
-                          {catCambiando === c.rec ? t("a.sending") : t("cat.work")}
-                        </button>
-                      )}
-                      {puedeNombrar && (
-                        <button onClick={() => pedirBorrarCat(c)}
-                          className="text-[11px] px-2.5 py-1.5 rounded-lg border font-display uppercase tracking-wide"
-                          style={{ borderColor: "#b4474a", color: "#b4474a" }}>{t("cat.del")}</button>
-                      )}
-                    </div>
+                  ) : puedeNombrar && (
+                    /* Aquí solo se elimina. Pasarse a una categoría se hace
+                       arriba, en "Equipos del club", que es donde además se ve
+                       quién la entrena y cómo va: tener el mismo botón dos
+                       veces en la misma pantalla solo hacía dudar de si eran
+                       lo mismo. */
+                    <button onClick={() => pedirBorrarCat(c)}
+                      className="text-[11px] px-2.5 py-1.5 rounded-lg border font-display uppercase tracking-wide"
+                      style={{ borderColor: "#b4474a", color: "#b4474a" }}>{t("cat.del")}</button>
                   )}
                 </div>
               ))}
@@ -14001,8 +14316,19 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                   {g.gente.map((u) => (
                     <div key={u.id || u.email} className="rounded-lg border p-2.5 flex flex-wrap items-center gap-x-3 gap-y-1"
                       style={{ borderColor: C.line, background: C.panel2 }}>
-                      <div className="text-sm flex-1 min-w-[140px]" style={{ color: C.chalk }}>{u.name}</div>
-                      <div className="text-[11px]" style={{ color: C.dim }}>{(u.categories || []).join(" · ") || t("cl.noCat")}</div>
+                      {/* Nombre y correo juntos: el correo es lo que se usa
+                          para escribirle, y hasta ahora no salía en ningún
+                          sitio de esta pantalla. */}
+                      <div className="flex-1 min-w-[180px] leading-tight">
+                        <div className="text-sm" style={{ color: C.chalk }}>{u.name}</div>
+                        {/* inline-block + py-1.5: como enlace de texto medía
+                            13 px de alto y no había manera de acertarle con el
+                            dedo. */}
+                        {u.email && (
+                          <a href={`mailto:${u.email}`} className="inline-block py-1.5 pr-2 text-[11px] hover:underline break-all" style={{ color: AC }}>{u.email}</a>
+                        )}
+                      </div>
+                      <div className="text-[11px]" style={{ color: C.dim }}>{u.team || (u.categories || []).join(" · ") || t("cl.noCat")}</div>
                       <div className="text-[11px] shrink-0" style={{ color: u.status === "activo" ? C.green : C.warn }}>
                         {u.status === "activo" ? t("cl.active") : t("cl.pending")}
                       </div>

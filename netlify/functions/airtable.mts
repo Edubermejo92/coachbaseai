@@ -2169,16 +2169,36 @@ export default async (req: Request) => {
          entera si no mandaba ninguno. Ahora hace falta el mismo alcance que
          para cualquier otro dato de equipo. */
       const requestedTeam = url.searchParams.get("team") || "";
-      if (!requestedTeam) return j({ error: "falta_equipo" }, 400);
-      if (!(await puedeEquipo(requestedTeam))) {
-        return j({ error: "no_autorizado", reason: "No tienes acceso a los usuarios de ese equipo." }, 403);
+      const requestedClub = url.searchParams.get("club") || "";
+      /* Por CLUB o por EQUIPO. La dirección del club necesita a todo su cuerpo
+         técnico, no solo el de una categoría: pidiéndolo por equipo, el club
+         solo veía a la gente de la categoría en la que estuviera, y a su propia
+         cuenta —que no tiene por qué estar en ninguna— no la veía nunca. */
+      if (!requestedTeam && !requestedClub) return j({ error: "falta_equipo" }, 400);
+      let filtro: (rec: any) => boolean;
+      if (requestedClub) {
+        if (!(await puedeClub(requestedClub))) {
+          return j({ error: "no_autorizado", reason: "No tienes acceso a los usuarios de ese club." }, 403);
+        }
+        filtro = (rec) => (rec.fields[U.club] || []).includes(requestedClub);
+      } else {
+        if (!(await puedeEquipo(requestedTeam))) {
+          return j({ error: "no_autorizado", reason: "No tienes acceso a los usuarios de ese equipo." }, 403);
+        }
+        filtro = (rec) => (rec.fields[U.equipo] || []).includes(requestedTeam);
       }
-      const rows = (await allUsers()).filter((rec) => (rec.fields[U.equipo] || []).includes(requestedTeam)).map((rec) => ({
-        id: rec.id, name: rec.fields[U.nombre] || "", email: rec.fields[U.email] || "",
-        rol: rec.fields[U.rol] || "", estado: rec.fields[U.estado] || "", teamRec: (rec.fields[U.equipo] || [])[0] || null,
-        rolesExtra: rolesExtraKeys(rec.fields[U.rolesExtra]),
-        parteMat: !!rec.fields[U.parteMat],
-      }));
+      const eqsNombre = new Map((await list(T_EQUIPOS)).map((e: any) => [e.id, e.fields[EQ.nombre] || ""]));
+      const rows = (await allUsers()).filter(filtro)
+        /* El Master es la cuenta de EBLDigital, no cuerpo técnico de nadie: no
+           tiene por qué salir en la plantilla de un club. */
+        .filter((rec) => rolReal(rec.fields[U.rol], rec.fields[U.email]) !== "master")
+        .map((rec) => ({
+          id: rec.id, name: rec.fields[U.nombre] || "", email: rec.fields[U.email] || "",
+          rol: rec.fields[U.rol] || "", estado: rec.fields[U.estado] || "", teamRec: (rec.fields[U.equipo] || [])[0] || null,
+          teamName: eqsNombre.get((rec.fields[U.equipo] || [])[0]) || "",
+          rolesExtra: rolesExtraKeys(rec.fields[U.rolesExtra]),
+          parteMat: !!rec.fields[U.parteMat],
+        }));
       return j({ records: rows });
     }
 
