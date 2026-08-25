@@ -90,5 +90,26 @@ dice("y el club sí la desmarca", !F(T.JUGADORES,"recJ0")["Inscripcion pagada"],
 r=await call("?res=jugadores&team=recSEN",{token:tClub});
 dice("el club lee la plantilla de una categoría suya", (r.body.records||[]).length===19, String((r.body.records||[]).length));
 
+/* ---- "Quién soy": la sesión guardada en el navegador no manda ---- */
+r=await call("?res=yo",{token:tClub});
+dice("?res=yo responde con la ficha de quien pregunta", r.body.ok===true && r.body.user?.email==="club@a.com", JSON.stringify(r.body).slice(0,80));
+dice("y dice que el club NO tiene categoría", r.body.user?.team===null, JSON.stringify(r.body.user?.team));
+dice("y trae un token nuevo", typeof r.body.token==="string" && r.body.token.length>20);
+dice("con el club puesto", r.body.user?.clubRec==="recCLUBA", String(r.body.user?.clubRec));
+
+r=await call("?res=yo");
+dice("sin token no dice nada", r.status===401, String(r.status));
+
+/* Al entrenador lo mueven de categoría: ?res=yo lo refleja al momento, que es
+   justo lo que la foto guardada en el navegador no hacía. */
+await call("?id=recENT",{method:"PATCH",token:tClub,body:{equipoRec:"recIB"}});
+r=await call("?res=yo",{token:tEnt});
+dice("a quien han movido de categoría, ?res=yo se lo dice", r.body.user?.team?.name==="Infantil B", r.body.user?.team?.name||"(ninguna)");
+
+/* Y un cambio de rol también. */
+await call("?id=recENT",{method:"PATCH",token:tClub,body:{rol:"Delegado"}});
+r=await call("?res=yo",{token:tEnt});
+dice("y un cambio de nivel también", r.body.user?.rol==="Delegado", r.body.user?.rol||"");
+
 console.log(`\n${ok} correctas · ${mal} fallos`);
 process.exit(mal ? 1 : 0);

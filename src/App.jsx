@@ -4370,6 +4370,18 @@ const airSub = async (email) => {
     return await r.json();
   } catch { return null; }
 };
+/* Quién soy, según Airtable y no según lo que guardó el navegador. Ver el
+   comentario del backend: la sesión vive en localStorage y se restauraba tal
+   cual, así que cualquier cambio hecho en Airtable —o cualquier dato que una
+   versión anterior se inventara— seguía en pantalla hasta cerrar sesión. */
+const airYo = async () => {
+  try {
+    const r = await cbFetch(AIR + "?res=yo");
+    if (r.status === 401) return { caducada: true };
+    if (!r.ok) return null;
+    return await r.json().catch(() => null);
+  } catch { return null; }
+};
 const airTeams = async () => { try { const r = await cbFetch(AIR + "?res=equipos"); if (!r.ok) return null; const d = await r.json(); return d.records || null; } catch { return null; } };
 /* Alta de un miembro del cuerpo técnico por el club: crea la ficha sin
    contraseña; la persona la reclama registrándose con ese mismo correo. */
@@ -8601,13 +8613,53 @@ export default function App() {
     catch { return ""; }
   });
   useEffect(() => {
+    let guardada = null;
     try {
       const raw = localStorage.getItem("cb_session_v1");
-      if (raw) setSession(JSON.parse(raw));
+      if (raw) { guardada = JSON.parse(raw); setSession(guardada); }
     } catch { /* sesión local no disponible */ }
     const id = setTimeout(() => setBooting(false), 650);
+    /* Y en cuanto se pinta algo, se le pregunta al servidor quién eres de
+       verdad. Restaurar la foto guardada y quedarse ahí dejaba en pantalla lo
+       que hubiera el día que iniciaste sesión: un rol que el club ya te ha
+       cambiado, una categoría de la que te han movido, o —el caso que sacó
+       esto a la luz— un "Infantil B" que una versión anterior se inventó
+       cuando la ficha no tenía ninguna categoría. La foto sirve para arrancar
+       rápido y sin parpadeo; la verdad la dice Airtable un instante después.
+       Si el token ya no vale, se cierra la sesión en vez de seguir enseñando
+       datos de alguien que ya no puede verlos. */
+    if (guardada && guardada.email && guardada.email !== "demo") {
+      (async () => {
+        const d = await airYo();
+        if (!d) return; // sin red: se sigue con lo guardado
+        if (d.caducada) { setSession(null); setAuthToken(null); return; }
+        if (!d.ok || !d.user) return;
+        if (d.token) setAuthToken(d.token);
+        const u = d.user;
+        setSession((sx) => (sx ? {
+          ...sx,
+          name: u.name || sx.name,
+          role: LABEL2ROL[u.rol] || sx.role,
+          plan: String(u.plan || "Oficial").toLowerCase() === "gratis" ? "free" : "oficial",
+          club: u.club || sx.club,
+          comunidad: u.comunidad || sx.comunidad,
+          /* Sin categoría en la ficha, sin categoría en la app: aquí es donde
+             se descarta el "Infantil B" heredado. */
+          team: u.team || { rec: "", id: "", name: "", cat: "infantil", f7: false, half: 35, sub: "", club: u.club || sx.club },
+          categoryId: u.team?.rec || sx.categoryId,
+          currentCategory: u.team?.name || "",
+          rolesExtra: u.rolesExtra || [],
+          clubRec: u.clubRec || "",
+          clubCrest: u.crest || null,
+          parteMat: !!u.parteMat,
+          prueba: Number(u.prueba) || 0,
+          pendingApproval: String(u.estado || "").toLowerCase() !== "activo",
+          userId: u.id,
+        } : sx));
+      })();
+    }
     return () => clearTimeout(id);
-  }, []);
+  }, []); // eslint-disable-line
   useEffect(() => {
     if (booting) return;
     try {
@@ -17695,7 +17747,12 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
     setDemoMode(false);
     const res = await airLogin(em, password);
     let name, roleLabel, estado, plan = "oficial";
-    let club = DEMO_CLUB, comunidad = "Comunidad de Madrid", team = makeTeam("infantil", "B");
+    /* Sin categoría de partida. Esto valía makeTeam("infantil","B"), y aunque
+       la rama del login real ya no la usa, seguía siendo lo que se quedaba en
+       la rama sin servidor: una sesión que decía "Infantil B" sin que nadie lo
+       hubiera dicho. Vacío, y que lo llene Airtable. */
+    const SIN_CAT = { rec: "", id: "", name: "", cat: "infantil", f7: false, half: 35, sub: "", club: "" };
+    let club = DEMO_CLUB, comunidad = "Comunidad de Madrid", team = SIN_CAT;
     if (res && res.ok) {
       setAuthToken(res.token || null);
       name = res.user.name; roleLabel = res.user.rol;

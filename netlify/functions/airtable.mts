@@ -1075,6 +1075,51 @@ export default async (req: Request) => {
       return j({ ok: r.ok }, r.ok ? 200 : 400);
     }
 
+    /* ================= QUIÉN SOY =================
+       GET ?res=yo -> la misma ficha que devuelve el login, para el token que
+       traes.
+
+       Hace falta porque la app guarda la sesión entera en el navegador
+       (localStorage) y la restauraba tal cual al abrir, sin volver a
+       preguntar. Esa foto se queda congelada para siempre: si tu categoría, tu
+       rol o tu plan cambian en Airtable —o si un día una versión anterior te
+       inventó una categoría—, la app sigue enseñando lo de entonces hasta que
+       cierras sesión y vuelves a entrar. De ahí que la cuenta del club
+       apareciera "Trabajando con Infantil B" teniendo la casilla de Equipo
+       vacía en Airtable. */
+    if (res === "yo") {
+      if (req.method !== "GET") return j({ error: "Petición no soportada" }, 400);
+      if (!sesion?.id) return j({ ok: false, reason: "no_autorizado" }, 401);
+      const recs = await list(T_USUARIOS);
+      const rec = recs.find((r: any) => r.id === sesion.id);
+      if (!rec) return j({ ok: false, reason: "no_existe" }, 404);
+      const [eqs, clubs] = await Promise.all([list(T_EQUIPOS), list(T_CLUBES)]);
+      const eqRec = (rec.fields[U.equipo] || [])[0];
+      const clRec = (rec.fields[U.club] || [])[0];
+      const eq = eqs.find((e: any) => e.id === eqRec);
+      const cl = clubs.find((c: any) => c.id === clRec);
+      const rolDeSesion = rolReal(rec.fields[U.rol], rec.fields[U.email]);
+      const rolesExtraDeSesion = rolesExtraKeys(rec.fields[U.rolesExtra]);
+      return j({
+        ok: true,
+        /* Token nuevo: si te han movido de categoría, el que traías apunta a la
+           anterior y el alcance por equipo seguiría siendo el de antes. */
+        token: await firmarSesion({ id: rec.id, email: norm(rec.fields[U.email]), rol: rolDeSesion, equipo: eqRec || null, rolesExtra: rolesExtraDeSesion }),
+        user: {
+          id: rec.id, name: rec.fields[U.nombre] || "", email: rec.fields[U.email] || "",
+          rol: ROL_LABEL[rolDeSesion] || rec.fields[U.rol] || "", estado: rec.fields[U.estado] || "",
+          rolesExtra: rolesExtraDeSesion,
+          parteMat: !!rec.fields[U.parteMat],
+          plan: rec.fields[U.plan] || "Oficial",
+          prueba: pruebaDias(rec.fields[U.prueba]),
+          club: cl ? cl.fields[CL.nombre] : "", comunidad: cl ? cl.fields[CL.comunidad] : "",
+          clubRec: clRec || null,
+          crest: cl ? (cl.fields[CL.escudo]?.[0]?.url || null) : null,
+          team: eq ? teamOut(eq, clubs) : null,
+        },
+      });
+    }
+
     if (res === "partes-club") {
       const club = url.searchParams.get("club") || "";
       if (!club) return j({ error: "falta_club" }, 400);
