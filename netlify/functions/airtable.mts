@@ -73,6 +73,11 @@ const U = {
      director. El entrenador, el segundo y el delegado la tienen siempre y no
      dependen de esta casilla. */
   parteMat: "fld4okYQmHxbEQ6C8",
+  /* Faltas de material que el club le anota a esta persona, en JSON. Van en su
+     ficha y no en la del parte porque la falta que de verdad importa —no mandó
+     el parte, no hizo las fotos— es justo la de un día en que NO hay parte al
+     que colgarla. Las escribe solo la dirección del club. */
+  faltas: "fldqlZapTFUOOLaQl",
 };
 
 /* El Master es UNA cuenta, la de EBLDigital, y no se reparte desde la app.
@@ -575,11 +580,28 @@ export default async (req: Request) => {
     return eq ? ((eq.fields[EQ.club] || [])[0] || null) : null;
   };
   /* El club de la propia sesión no viaja en el token (se firmó antes de que
-     hiciera falta), así que se resuelve una vez a partir del equipo propio. */
+     hiciera falta), así que se resuelve aquí, una vez.
+     Se sacaba SOLO del equipo propio, y eso dejaba fuera justo a la cuenta que
+     más lo necesita: la del club, que no tiene ninguna categoría asignada
+     —porque no entrena a ninguna—. Con el equipo vacío, miClub() devolvía null,
+     puedeClub() decía que no a su propio club y ?res=partes-club le respondía
+     403: el club no podía ver ni sus categorías ni el control de material de su
+     propio club. Si no hay equipo, se mira el club de su ficha. */
   let _miClubCache: string | null | undefined;
   const miClub = async (): Promise<string | null> => {
     if (_miClubCache !== undefined) return _miClubCache;
-    _miClubCache = sesion?.equipo ? await clubDeEquipo(String(sesion.equipo)) : null;
+    if (sesion?.equipo) {
+      _miClubCache = await clubDeEquipo(String(sesion.equipo));
+      if (_miClubCache) return _miClubCache;
+    }
+    if (sesion?.id) {
+      /* list() —y no el allUsers() de más abajo, que vive en otro bloque—:
+         devuelve los campos por ID, que es como se leen aquí. */
+      const yo = (await list(T_USUARIOS)).find((r: any) => r.id === sesion.id);
+      _miClubCache = ((yo?.fields[U.club] || [])[0] as string) || null;
+    } else {
+      _miClubCache = null;
+    }
     return _miClubCache;
   };
   const puedeEquipo = async (teamId: string): Promise<boolean> => {
@@ -1414,6 +1436,15 @@ export default async (req: Request) => {
           for (const f of [PA.tarde, PA.minutosTarde, PA.telefono, PA.penalizaciones,
             "Entrenador tarde", "Minutos tarde", "Uso del telefono", "Penalizaciones"]) delete b.fields[f];
         }
+        /* La inscripción pagada de un jugador es de la dirección del club, por
+           el mismo motivo que las sanciones del parte: es un apunte de dinero,
+           y quien lo cobra no es quien entrena. Guardar la plantilla manda al
+           jugador entero, así que sin esto bastaría con pulsar "Guardar
+           plantilla" para marcar —o desmarcar— pagos sin querer. Se descartan
+           en silencio salvo que quien escribe dirija el club. */
+        if (res === "jugadores" && b.fields && !dirigeClub) {
+          for (const f of ["Inscripcion pagada", "Fecha inscripcion"]) delete b.fields[f];
+        }
         if (b.fields?.Equipo) {
           const equipoNuevo = (b.fields.Equipo || [])[0] || "";
           if (!(await puedeEquipo(equipoNuevo))) return j({ ok: false, reason: "no_autorizado" }, 403);
@@ -2206,6 +2237,7 @@ export default async (req: Request) => {
           teamName: eqsNombre.get((rec.fields[U.equipo] || [])[0]) || "",
           rolesExtra: rolesExtraKeys(rec.fields[U.rolesExtra]),
           parteMat: !!rec.fields[U.parteMat],
+          faltas: rec.fields[U.faltas] || "",
         }));
       return j({ records: rows });
     }
@@ -2233,6 +2265,35 @@ export default async (req: Request) => {
         fields[U.rolesExtra] = extras.map((k: string) => ROL_LABEL[k]);
       }
       if (b.estado) fields[U.estado] = b.estado;
+      /* Cambiar de categoría a alguien del cuerpo técnico. Faltaba: el club
+         podía cambiarle el rol y el estado, pero no moverlo del Infantil B al
+         Cadete A, que es lo primero que se hace cada temporada. Es de la
+         dirección del club —un entrenador no reparte a la gente por las
+         categorías— y la categoría de destino tiene que ser de SU club: si no,
+         bastaría con mandar el id de un equipo ajeno para colar a alguien
+         dentro de otro club. */
+      if (b.equipoRec !== undefined) {
+        if (!dirigeElClub(sesion)) return j({ ok: false, reason: "no_autorizado" }, 403);
+        const destino = String(b.equipoRec || "");
+        if (destino) {
+          if (!(await puedeEquipo(destino))) return j({ ok: false, reason: "equipo_ajeno" }, 403);
+          fields[U.equipo] = [destino];
+        } else {
+          fields[U.equipo] = [];
+        }
+      }
+      /* Faltas de material anotadas por el club. Solo la dirección: el sentido
+         de esto es que el entrenador no pueda borrarse la suya. Se guarda el
+         JSON entero tal cual llega, con un tope para que una petición a mano no
+         pueda dejar la celda inservible. */
+      if (b.faltas !== undefined) {
+        if (!dirigeElClub(sesion)) return j({ ok: false, reason: "no_autorizado" }, 403);
+        const crudo = String(b.faltas || "");
+        if (crudo.length > 20000) return j({ ok: false, reason: "faltas_largas" }, 400);
+        try { if (crudo && !Array.isArray(JSON.parse(crudo))) throw new Error("no es lista"); }
+        catch { return j({ ok: false, reason: "faltas_invalidas" }, 400); }
+        fields[U.faltas] = crudo;
+      }
       /* La pestaña propia de Control de material del director deportivo. Es
          opcional y se la pone él: solo se acepta sobre la propia ficha —o
          desde el Master—, para que un director no se la imponga a otro. */

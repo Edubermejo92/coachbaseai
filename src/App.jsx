@@ -200,6 +200,27 @@ const DICT = {
     "cl.homeControl": "Control del club",
     "cl.homeAlerts": "Avisos del club",
     "cl.homeAllGood": "Nada que revisar. Todas las categorías al día.",
+    /* Faltas de material que anota el club, persona a persona. */
+    "fa.title": "Faltas de material por entrenador",
+    "fa.hint": "Lo que el club ve y el parte no cuenta. El número grande es el total; debajo, cuánto sale de los partes y cuánto has marcado tú.",
+    "fa.coach": "Entrenador", "fa.team": "Equipo",
+    "fa.balls": "Perdió balones", "fa.photos": "No hizo fotos de material",
+    "fa.inReports": "en los partes", "fa.marked2": "marcados", "fa.reports": "partes mandados",
+    "fa.qty": "Cuántos balones", "fa.add": "Anotar una falta", "fa.undo": "Quitar la última que marcaste",
+    "fa.noTeam": "Sin categoría", "fa.noStaff": "Todavía no hay nadie en el cuerpo técnico de este club.",
+    "fa.foot": "Solo el club anota y quita estas faltas: el entrenador las ve, pero no puede borrárselas volviendo a mandar el parte.",
+    "fa.marked": "Falta anotada.", "fa.undone": "Falta quitada.", "fa.moved": "Categoría cambiada.",
+    "fa.saveFail": "No se pudo guardar. Revisa la conexión.",
+    "fa.otherClub": "Esa categoría no es de tu club.",
+    "fa.addCoach": "Añadir a alguien",
+    /* Inscripciones de temporada, jugador a jugador. */
+    "pg.title": "Inscripciones pagadas",
+    "pg.hint": "Elige una categoría y marca quién tiene la inscripción de la temporada al día. Lo marca el club; el cuerpo técnico lo ve pero no lo toca.",
+    "pg.pick": "Elige una categoría para ver su plantilla.",
+    "pg.of": "de", "pg.paid": "con la inscripción pagada", "pg.pending": "por cobrar",
+    "pg.paidOn": "pagada el", "pg.notPaid": "Sin pagar",
+    "pg.saved": "Guardado.", "pg.saveFail": "No se pudo guardar. Revisa la conexión.",
+    "pg.readOnly": "Solo la dirección del club marca las inscripciones.", "fa.addCoachHint": "Se abre Usuarios, donde eliges su correo, su nivel, su categoría y, si quieres, una contraseña para que entre al momento.",
     "cl.dashPickMonth": "Toca un mes para ver sus días.",
     "cl.write": "Escribir",
     "cl.writeSubject": "Material de {equipo} — {club}",
@@ -250,6 +271,7 @@ const DICT = {
     "mt2.lostShort": "perdidos",
     "mt2.clubTitle": "Control de material del club",
     "mt2.clubHint": "Un vistazo a cada entrenador por categoría: qué material saca y devuelve, qué se pierde y si avisa de ello.",
+    "mt2.more": "Ver el detalle, entrenador a entrenador", "mt2.less": "Ocultar el detalle",
     "mt2.kpiLost": "Balones perdidos",
     "mt2.kpiUnreported": "Sin avisar",
     "mt2.kpiLate": "Retrasos",
@@ -718,6 +740,25 @@ const DICT = {
     "cl.homeControl": "Club control",
     "cl.homeAlerts": "Club alerts",
     "cl.homeAllGood": "Nothing to review. Every age group is up to date.",
+    "fa.title": "Kit faults by coach",
+    "fa.hint": "What the club sees and the report does not count. The big number is the total; below it, how much comes from the reports and how much you marked.",
+    "fa.coach": "Coach", "fa.team": "Team",
+    "fa.balls": "Lost balls", "fa.photos": "No kit photos",
+    "fa.inReports": "in reports", "fa.marked2": "marked", "fa.reports": "reports sent",
+    "fa.qty": "How many balls", "fa.add": "Log a fault", "fa.undo": "Remove the last one you marked",
+    "fa.noTeam": "No age group", "fa.noStaff": "No coaching staff in this club yet.",
+    "fa.foot": "Only the club logs and removes these: the coach can see them but cannot clear them by resending the report.",
+    "fa.marked": "Fault logged.", "fa.undone": "Fault removed.", "fa.moved": "Age group changed.",
+    "fa.saveFail": "Couldn't save. Check your connection.",
+    "fa.otherClub": "That age group is not in your club.",
+    "fa.addCoach": "Add someone",
+    "pg.title": "Registration fees paid",
+    "pg.hint": "Pick an age group and tick who is up to date with the season fee. The club ticks it; the coaching staff can see it but not change it.",
+    "pg.pick": "Pick an age group to see its squad.",
+    "pg.of": "of", "pg.paid": "with the fee paid", "pg.pending": "still to collect",
+    "pg.paidOn": "paid on", "pg.notPaid": "Unpaid",
+    "pg.saved": "Saved.", "pg.saveFail": "Couldn't save. Check your connection.",
+    "pg.readOnly": "Only the club management ticks registration fees.", "fa.addCoachHint": "Opens Users, where you pick their email, level, age group and, if you want, a password so they can log in right away.",
     "cl.dashPickMonth": "Tap a month to see its days.",
     "cl.write": "Write",
     "cl.writeSubject": "Kit at {equipo} — {club}",
@@ -768,6 +809,7 @@ const DICT = {
     "mt2.lostShort": "lost",
     "mt2.clubTitle": "Club kit control",
     "mt2.clubHint": "One look at every coach by category: what kit goes out and comes back, what goes missing and whether they report it.",
+    "mt2.more": "See the detail, coach by coach", "mt2.less": "Hide the detail",
     "mt2.kpiLost": "Balls lost",
     "mt2.kpiUnreported": "Unreported",
     "mt2.kpiLate": "Late arrivals",
@@ -1253,6 +1295,25 @@ const DICT = {
     "cl.homeControl": "Contrôle du club",
     "cl.homeAlerts": "Alertes du club",
     "cl.homeAllGood": "Rien à signaler. Toutes les catégories sont à jour.",
+    "fa.title": "Manquements matériel par entraîneur",
+    "fa.hint": "Ce que le club voit et que la fiche ne compte pas. Le grand chiffre est le total ; en dessous, la part des fiches et la part que vous avez marquée.",
+    "fa.coach": "Entraîneur", "fa.team": "Équipe",
+    "fa.balls": "Ballons perdus", "fa.photos": "Pas de photos du matériel",
+    "fa.inReports": "dans les fiches", "fa.marked2": "marqués", "fa.reports": "fiches envoyées",
+    "fa.qty": "Combien de ballons", "fa.add": "Noter un manquement", "fa.undo": "Retirer le dernier que vous avez marqué",
+    "fa.noTeam": "Sans catégorie", "fa.noStaff": "Personne dans le staff de ce club pour l'instant.",
+    "fa.foot": "Seul le club note et retire ces manquements : l'entraîneur les voit mais ne peut pas les effacer en renvoyant sa fiche.",
+    "fa.marked": "Manquement noté.", "fa.undone": "Manquement retiré.", "fa.moved": "Catégorie changée.",
+    "fa.saveFail": "Impossible d'enregistrer. Vérifiez votre connexion.",
+    "fa.otherClub": "Cette catégorie n'est pas de votre club.",
+    "fa.addCoach": "Ajouter quelqu'un",
+    "pg.title": "Inscriptions payées",
+    "pg.hint": "Choisissez une catégorie et cochez qui est à jour de sa cotisation. C'est le club qui coche ; le staff le voit mais n'y touche pas.",
+    "pg.pick": "Choisissez une catégorie pour voir son effectif.",
+    "pg.of": "sur", "pg.paid": "avec l'inscription payée", "pg.pending": "à encaisser",
+    "pg.paidOn": "payée le", "pg.notPaid": "Non payée",
+    "pg.saved": "Enregistré.", "pg.saveFail": "Impossible d'enregistrer. Vérifiez votre connexion.",
+    "pg.readOnly": "Seule la direction du club coche les inscriptions.", "fa.addCoachHint": "Ouvre Utilisateurs, où vous choisissez son e-mail, son niveau, sa catégorie et, si vous voulez, un mot de passe pour qu'il entre tout de suite.",
     "cl.dashPickMonth": "Tap a month to see its days.",
     "cl.write": "Write",
     "cl.writeSubject": "Kit at {equipo} — {club}",
@@ -1303,6 +1364,7 @@ const DICT = {
     "mt2.lostShort": "lost",
     "mt2.clubTitle": "Contrôle du matériel du club",
     "mt2.clubHint": "One look at every coach by category: what kit goes out and comes back, what goes missing and whether they report it.",
+    "mt2.more": "Voir le détail, entraîneur par entraîneur", "mt2.less": "Masquer le détail",
     "mt2.kpiLost": "Balls lost",
     "mt2.kpiUnreported": "Unreported",
     "mt2.kpiLate": "Late arrivals",
@@ -1862,6 +1924,25 @@ const DICT = {
     "cl.homeControl": "Vereinsübersicht",
     "cl.homeAlerts": "Hinweise des Vereins",
     "cl.homeAllGood": "Nichts zu prüfen. Alle Altersklassen sind aktuell.",
+    "fa.title": "Materialverstöße pro Trainer",
+    "fa.hint": "Was der Verein sieht und der Bericht nicht zählt. Die große Zahl ist die Summe; darunter, wie viel aus den Berichten kommt und wie viel du markiert hast.",
+    "fa.coach": "Trainer", "fa.team": "Mannschaft",
+    "fa.balls": "Verlorene Bälle", "fa.photos": "Keine Materialfotos",
+    "fa.inReports": "aus Berichten", "fa.marked2": "markiert", "fa.reports": "Berichte gesendet",
+    "fa.qty": "Wie viele Bälle", "fa.add": "Verstoß eintragen", "fa.undo": "Den letzten von dir markierten entfernen",
+    "fa.noTeam": "Ohne Altersklasse", "fa.noStaff": "Noch kein Trainerteam in diesem Verein.",
+    "fa.foot": "Nur der Verein trägt diese ein und entfernt sie: der Trainer sieht sie, kann sie aber nicht durch erneutes Senden löschen.",
+    "fa.marked": "Verstoß eingetragen.", "fa.undone": "Verstoß entfernt.", "fa.moved": "Altersklasse geändert.",
+    "fa.saveFail": "Speichern nicht möglich. Prüfe deine Verbindung.",
+    "fa.otherClub": "Diese Altersklasse gehört nicht zu deinem Verein.",
+    "fa.addCoach": "Jemanden hinzufügen",
+    "pg.title": "Bezahlte Anmeldungen",
+    "pg.hint": "Wähle eine Altersklasse und hake ab, wer den Saisonbeitrag bezahlt hat. Der Verein hakt ab; das Trainerteam sieht es, ändert es aber nicht.",
+    "pg.pick": "Wähle eine Altersklasse, um ihren Kader zu sehen.",
+    "pg.of": "von", "pg.paid": "mit bezahltem Beitrag", "pg.pending": "noch offen",
+    "pg.paidOn": "bezahlt am", "pg.notPaid": "Nicht bezahlt",
+    "pg.saved": "Gespeichert.", "pg.saveFail": "Speichern nicht möglich. Prüfe deine Verbindung.",
+    "pg.readOnly": "Nur die Vereinsleitung hakt Anmeldungen ab.", "fa.addCoachHint": "Öffnet Benutzer, wo du E-Mail, Stufe, Altersklasse und auf Wunsch ein Passwort für den sofortigen Zugang festlegst.",
     "cl.dashPickMonth": "Tap a month to see its days.",
     "cl.write": "Write",
     "cl.writeSubject": "Kit at {equipo} — {club}",
@@ -1912,6 +1993,7 @@ const DICT = {
     "mt2.lostShort": "lost",
     "mt2.clubTitle": "Materialkontrolle des Vereins",
     "mt2.clubHint": "One look at every coach by category: what kit goes out and comes back, what goes missing and whether they report it.",
+    "mt2.more": "Details ansehen, Trainer für Trainer", "mt2.less": "Details ausblenden",
     "mt2.kpiLost": "Balls lost",
     "mt2.kpiUnreported": "Unreported",
     "mt2.kpiLate": "Late arrivals",
@@ -2470,6 +2552,25 @@ const DICT = {
     "cl.homeControl": "Controlo do clube",
     "cl.homeAlerts": "Avisos do clube",
     "cl.homeAllGood": "Nada a rever. Todos os escalões em dia.",
+    "fa.title": "Faltas de material por treinador",
+    "fa.hint": "O que o clube vê e a ficha não conta. O número grande é o total; por baixo, quanto vem das fichas e quanto marcaste tu.",
+    "fa.coach": "Treinador", "fa.team": "Equipa",
+    "fa.balls": "Perdeu bolas", "fa.photos": "Não fez fotos do material",
+    "fa.inReports": "nas fichas", "fa.marked2": "marcadas", "fa.reports": "fichas enviadas",
+    "fa.qty": "Quantas bolas", "fa.add": "Anotar uma falta", "fa.undo": "Retirar a última que marcaste",
+    "fa.noTeam": "Sem escalão", "fa.noStaff": "Ainda não há ninguém no staff deste clube.",
+    "fa.foot": "Só o clube anota e retira estas faltas: o treinador vê-as mas não as pode apagar reenviando a ficha.",
+    "fa.marked": "Falta anotada.", "fa.undone": "Falta retirada.", "fa.moved": "Escalão alterado.",
+    "fa.saveFail": "Não foi possível guardar. Verifica a ligação.",
+    "fa.otherClub": "Esse escalão não é do teu clube.",
+    "fa.addCoach": "Adicionar alguém",
+    "pg.title": "Inscrições pagas",
+    "pg.hint": "Escolhe um escalão e marca quem tem a inscrição da época em dia. Marca o clube; o staff vê mas não mexe.",
+    "pg.pick": "Escolhe um escalão para ver o plantel.",
+    "pg.of": "de", "pg.paid": "com a inscrição paga", "pg.pending": "por cobrar",
+    "pg.paidOn": "paga a", "pg.notPaid": "Por pagar",
+    "pg.saved": "Guardado.", "pg.saveFail": "Não foi possível guardar. Verifica a ligação.",
+    "pg.readOnly": "Só a direção do clube marca as inscrições.", "fa.addCoachHint": "Abre Utilizadores, onde escolhes o email, o nível, o escalão e, se quiseres, uma palavra-passe para entrar já.",
     "cl.dashPickMonth": "Toca un mes para ver sus días.",
     "cl.write": "Escribir",
     "cl.writeSubject": "Material de {equipo} — {club}",
@@ -2520,6 +2621,7 @@ const DICT = {
     "mt2.lostShort": "perdidos",
     "mt2.clubTitle": "Controlo de material do clube",
     "mt2.clubHint": "Un vistazo a cada entrenador por categoría: qué material saca y devuelve, qué se pierde y si avisa de ello.",
+    "mt2.more": "Ver o detalhe, treinador a treinador", "mt2.less": "Ocultar o detalhe",
     "mt2.kpiLost": "Balones perdidos",
     "mt2.kpiUnreported": "Sin avisar",
     "mt2.kpiLate": "Retrasos",
@@ -4413,6 +4515,11 @@ const jugFromAir = (r, i) => ({
     : String(r.Estado || "").toLowerCase() === "sancionado" ? "sancionado" : "disponible",
   min: Number(r.Minutos) || 0, att: 0,
   aviso: r["Aviso medico"] || "",
+  /* Inscripción de la temporada. Se LEE aquí pero a propósito no se escribe en
+     jugToAir: guardar la plantilla manda el jugador entero, y así un entrenador
+     pulsando "Guardar plantilla" no puede desmarcar —ni marcar— un pago. Eso
+     se toca solo desde la pantalla del club, con su propia escritura. */
+  pagada: !!r["Inscripcion pagada"], fechaPago: r["Fecha inscripcion"] || "",
 });
 const partToAir = (f, teamRec) => ({
   Referencia: `${f.date || ""} ${f.home || ""}-${f.away || ""}`.trim().slice(0, 60),
@@ -9796,6 +9903,49 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
 
   /* Gestión de usuarios */
   const setUserRole = (id, r) => { setUsers((us) => us.map((u) => (u.id === id ? { ...u, role: r } : u))); if (String(id).startsWith("rec")) airPatch(id, { rol: ROL2LABEL[r] }); };
+  /* Mover a alguien de categoría. Es de la dirección del club y el servidor lo
+     comprueba otra vez: aquí solo se pinta. */
+  const setUserTeam = async (id, rec) => {
+    const cat = catsClub.find((c) => c.rec === rec);
+    setUsers((us) => us.map((u) => (u.id === id ? { ...u, teamRec: rec, team: cat?.nombre || "" } : u)));
+    if (!String(id).startsWith("rec")) return;
+    const r = await airPatch(id, { equipoRec: rec });
+    const d = await r?.json?.().catch(() => null);
+    if (d && d.ok === false) setStaffMsg(d.reason === "equipo_ajeno" ? t("fa.otherClub") : t("fa.saveFail"));
+    else { setStaffMsg(`✓ ${t("fa.moved")}`); setTimeout(() => setStaffMsg(""), 3500); }
+  };
+  /* Anotar (o quitar) una falta de material. El histórico entero se guarda en
+     la ficha de la persona: hace falta la fecha para poder contarlas por mes y
+     por día, igual que los partes. */
+  const [staffMsg, setStaffMsg] = useState("");
+  /* Cuántos balones se marcan de una vez, por persona. */
+  const [cuantos, setCuantos] = useState({});
+  /* Si la tabla larga del control del club está desplegada. */
+  const [detalleClub, setDetalleClub] = useState(false);
+  const anotarFalta = async (u, tipo, n) => {
+    const lista = [...(u.faltas || []), {
+      f: hoyISO(), t: tipo, ...(tipo === "balones" ? { n: Math.max(1, Number(n) || 1) } : {}), eq: u.team || "",
+    }];
+    setUsers((us) => us.map((x) => (x.id === u.id ? { ...x, faltas: lista } : x)));
+    if (!String(u.id).startsWith("rec")) return;
+    const r = await airPatch(u.id, { faltas: JSON.stringify(lista) });
+    const d = await r?.json?.().catch(() => null);
+    if (d && d.ok === false) { setStaffMsg(t("fa.saveFail")); setUsers((us) => us.map((x) => (x.id === u.id ? { ...x, faltas: u.faltas || [] } : x))); }
+    else { setStaffMsg(`✓ ${t("fa.marked")}`); setTimeout(() => setStaffMsg(""), 3500); }
+  };
+  /* Deshacer la última. Sin esto, un toque de más en el + se queda para
+     siempre en el historial de alguien, y estas anotaciones tienen nombre y
+     apellidos. */
+  const quitarUltimaFalta = async (u, tipo) => {
+    const lista = [...(u.faltas || [])];
+    const i = [...lista].reverse().findIndex((x) => x.t === tipo);
+    if (i < 0) return;
+    lista.splice(lista.length - 1 - i, 1);
+    setUsers((us) => us.map((x) => (x.id === u.id ? { ...x, faltas: lista } : x)));
+    if (!String(u.id).startsWith("rec")) return;
+    await airPatch(u.id, { faltas: JSON.stringify(lista) });
+    setStaffMsg(`✓ ${t("fa.undone")}`); setTimeout(() => setStaffMsg(""), 3500);
+  };
   const setUserStatus = (id, status) => { setUsers((us) => us.map((u) => (u.id === id ? { ...u, status } : u))); if (String(id).startsWith("rec")) airPatch(id, { estado: estadoLabel(status) }); };
   const removeUser = (id) => { setUsers((us) => us.filter((u) => u.id !== id)); if (String(id).startsWith("rec")) airDelete(id); };
   useEffect(() => {
@@ -9816,7 +9966,11 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
       setUsers(rows.map((r) => ({
         id: r.id, name: r.name, email: r.email,
         role: LABEL2ROL[r.rol] || "entrenador",
-        team: r.teamName || "",
+        team: r.teamName || "", teamRec: r.teamRec || "",
+        /* Las faltas de material que el club le tiene anotadas. Llegan como
+           texto JSON desde Airtable; se leen aquí una vez y con red por si la
+           celda se tocó a mano y quedó rota. */
+        faltas: (() => { try { const x = JSON.parse(r.faltas || "[]"); return Array.isArray(x) ? x : []; } catch { return []; } })(),
         status: String(r.estado).toLowerCase() === "activo" ? "activo" : "pendiente",
       })));
     })();
@@ -12918,9 +13072,34 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
       acc(mes, ym);
       if (!mesMaterial || ym === mesMaterial) acc(dia, f);
     }
+    /* Lo que el club ha marcado a mano cuenta igual que lo que dice el parte, y
+       en el mismo día: si no, el cuadro de mando enseñaría solo lo que los
+       entrenadores han querido contar, que es justo lo contrario de para lo
+       que el club pidió esto. */
+    for (const u of users) {
+      for (const x of u.faltas || []) {
+        const f = String(x.f || "");
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(f)) continue;
+        const ym = f.slice(0, 7);
+        const acc = (mapa, clave) => {
+          const a = mapa.get(clave) || { perdidos: 0, ciegos: 0 };
+          if (x.t === "balones") a.perdidos += Math.max(1, Number(x.n) || 1);
+          else a.ciegos += 1;
+          mapa.set(clave, a);
+        };
+        acc(mes, ym);
+        if (!mesMaterial || ym === mesMaterial) acc(dia, f);
+      }
+    }
     const orden = (m) => [...m.entries()].sort((a, b) => (a[0] < b[0] ? -1 : 1));
     return { mes: orden(mes), dia: orden(dia) };
   })();
+  /* Lo que el club le lleva anotado a una persona, ya sumado. */
+  const faltasDe = (u) => (u.faltas || []).reduce((a, x) => {
+    if (x.t === "balones") { a.balones += Math.max(1, Number(x.n) || 1); a.vecesBalones += 1; }
+    else a.fotos += 1;
+    return a;
+  }, { balones: 0, vecesBalones: 0, fotos: 0 });
   const correoDe = (nombre) => users.find((u) => u.name === nombre)?.email || "";
   /* Escribirle al entrenador con lo suyo ya escrito. mailto: abre el correo de
      quien mira, no manda nada por su cuenta: el club decide qué sale de aquí. */
@@ -13209,8 +13388,19 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
           )}
         </Card>
 
+        {/* La tabla larga, plegada. Lo que el club mira a diario ya está arriba
+            en cuatro columnas; esto es el detalle —partes, saca→deja,
+            incidencias del día, el aviso por correo— y tenerlo siempre
+            desplegado convertía la pestaña en un muro. Se abre cuando hace
+            falta y se queda como estaba. */}
         <Card title={`🏛 ${t("mt2.clubTitle")}`}>
           <div className="text-xs mb-2 leading-relaxed" style={{ color: C.dim }}>{t("mt2.clubHint")}</div>
+          <button onClick={() => setDetalleClub((v) => !v)} aria-expanded={detalleClub}
+            className="text-xs px-3 py-2 rounded-lg border font-display uppercase tracking-wide mb-3"
+            style={{ borderColor: detalleClub ? AC : C.line, color: detalleClub ? AC : C.chalk }}>
+            {detalleClub ? t("mt2.less") : t("mt2.more")}
+          </button>
+          {detalleClub && (<>
           {/* Quién sube qué. La dirección del club no hace fotos ni cuenta
               balones: este panel es de revisión, y lo único que sale de aquí
               hacia el entrenador es el aviso de la última columna. */}
@@ -13318,6 +13508,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
             </div>
           )}
           <div className="text-[11px] mt-3 leading-relaxed" style={{ color: C.dim }}>{t("mt2.clubFoot")}</div>
+          </>)}
         </Card>
 
         {/* Encargados de material. Los nombra el director deportivo y quedan a
@@ -14484,6 +14675,9 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
      entrar en la gestión de usuarios. */
   const renderCuerpoTecnico = () => {
     const mios = users.filter((u) => !u.club || normClub(u.club) === normClub(session?.club));
+    /* Repartir a la gente por las categorías es de la dirección del club; el
+       servidor lo comprueba otra vez. */
+    const puedeMover = dirigeElClub(session?.role) && !esDemo;
     /* De arriba abajo, como manda la jerarquía: el club, su director, y luego
        el cuerpo técnico de cada categoría. */
     const grupos = [["club", ROLES.club], ["director", ROLES.director], ["entrenador", ROLES.entrenador], ["segundo", ROLES.segundo], ["delegado", ROLES.delegado]]
@@ -14492,6 +14686,18 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
     return (
       <Card title={`👥 ${t("cl.staff")}`}>
         <div className="text-xs mb-3" style={{ color: C.dim }}>{t("cl.staffHint")}</div>
+        {/* Dar de alta a alguien vive en Usuarios, con su formulario entero
+            (correo, rol, categoría y contraseña inicial). Aquí va el atajo, en
+            vez de un segundo formulario que habría que mantener dos veces. */}
+        {puedeMover && visibleTabs.includes("usuarios") && (
+          <div className="flex flex-wrap items-center gap-3 mb-3">
+            <button onClick={() => setTab("usuarios")}
+              className="text-sm px-3 py-2 rounded-lg font-display uppercase tracking-wide font-semibold"
+              style={{ background: AC, color: C.sobre }}>+ {t("fa.addCoach")}</button>
+            <span className="text-[11px] flex-1 min-w-[200px] leading-relaxed" style={{ color: C.dim }}>{t("fa.addCoachHint")}</span>
+          </div>
+        )}
+        {staffMsg && <div className="text-xs mb-2" style={{ color: staffMsg.startsWith("✓") ? C.green : C.warn }}>{staffMsg}</div>}
         {grupos.length === 0 ? (
           <div className="text-sm" style={{ color: C.dim }}>{t("cl.staffEmpty")}</div>
         ) : (
@@ -14517,7 +14723,21 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                           <a href={`mailto:${u.email}`} className="inline-block py-1.5 pr-2 text-[11px] hover:underline break-all" style={{ color: AC }}>{u.email}</a>
                         )}
                       </div>
-                      <div className="text-[11px]" style={{ color: C.dim }}>{u.team || (u.categories || []).join(" · ") || t("cl.noCat")}</div>
+                      {/* La categoría, editable. Antes era texto y no había
+                          manera de mover a nadie del Infantil B al Cadete A sin
+                          entrar en Airtable, que es lo primero que se hace cada
+                          temporada. La cuenta del club la cambia aquí mismo. */}
+                      {puedeMover && u.role !== "club" ? (
+                        <select value={u.teamRec || ""} onChange={(e) => setUserTeam(u.id, e.target.value)}
+                          aria-label={`${t("fa.team")} — ${u.name}`}
+                          className="rounded-lg px-2 py-1.5 text-[12px] border min-h-9"
+                          style={{ background: C.panel, borderColor: u.teamRec ? C.line : C.warn, color: C.chalk }}>
+                          <option value="" style={{ background: C.panel }}>{t("fa.noTeam")}</option>
+                          {catsClub.map((c) => <option key={c.rec} value={c.rec} style={{ background: C.panel }}>{c.nombre}</option>)}
+                        </select>
+                      ) : (
+                        <div className="text-[11px]" style={{ color: C.dim }}>{u.team || (u.categories || []).join(" · ") || t("cl.noCat")}</div>
+                      )}
                       <div className="text-[11px] shrink-0" style={{ color: u.status === "activo" ? C.green : C.warn }}>
                         {u.status === "activo" ? t("cl.active") : t("cl.pending")}
                       </div>
@@ -14528,6 +14748,209 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
             ))}
           </div>
         )}
+      </Card>
+    );
+  };
+
+  /* ---- Inscripciones pagadas, equipo por equipo ----
+     Una casilla por jugador y un contador arriba. La plantilla de cada
+     categoría se pide solo al abrirla: cargar de golpe la de todas sería una
+     petición por equipo para enseñar algo que se mira de una en una. */
+  const [pagosCat, setPagosCat] = useState("");
+  const [pagosLista, setPagosLista] = useState(null);
+  const [pagosMsg, setPagosMsg] = useState("");
+  useEffect(() => {
+    if (!pagosCat) { setPagosLista(null); return; }
+    let vivo = true;
+    setPagosLista(undefined); // cargando
+    (async () => {
+      const js = await airList("jugadores", pagosCat);
+      if (!vivo) return;
+      setPagosLista(Array.isArray(js) ? js.map(jugFromAir).sort((a, b) => a.d - b.d) : null);
+    })();
+    return () => { vivo = false; };
+  }, [pagosCat]);
+  const marcarPago = async (jug, pagada) => {
+    const fecha = pagada ? hoyISO() : "";
+    setPagosLista((xs) => (xs || []).map((x) => (x.rec === jug.rec ? { ...x, pagada, fechaPago: fecha } : x)));
+    /* La fecha vacía se manda como null: Airtable rechaza "" en una columna de
+       fecha y devolvería un 422 que aquí se vería como "no se pudo guardar". */
+    const r = await airEdit("jugadores", jug.rec, { "Inscripcion pagada": pagada, "Fecha inscripcion": fecha || null });
+    const d = await r?.json?.().catch(() => null);
+    if (d && d.ok === false) {
+      setPagosMsg(t("pg.saveFail"));
+      setPagosLista((xs) => (xs || []).map((x) => (x.rec === jug.rec ? { ...x, pagada: jug.pagada, fechaPago: jug.fechaPago } : x)));
+    } else { setPagosMsg(`✓ ${t("pg.saved")}`); setTimeout(() => setPagosMsg(""), 3000); }
+  };
+  const renderInscripciones = () => {
+    const puedeCobrar = dirigeElClub(session?.role) && !esDemo;
+    const lista = Array.isArray(pagosLista) ? pagosLista : [];
+    const pagados = lista.filter((x) => x.pagada).length;
+    return (
+      <Card title={`💶 ${t("pg.title")}`}>
+        <div className="text-xs mb-3 leading-relaxed" style={{ color: C.dim }}>{t("pg.hint")}</div>
+        {catsClub.length === 0 ? (
+          <div className="text-sm" style={{ color: C.dim }}>{t("cat.none")}</div>
+        ) : (
+          <>
+            <div className="flex flex-wrap gap-1.5 mb-3">
+              {catsClub.map((c) => (
+                <button key={c.rec} onClick={() => setPagosCat(pagosCat === c.rec ? "" : c.rec)}
+                  className="text-xs px-3 py-2 rounded-full border font-display uppercase tracking-wide"
+                  style={{ borderColor: pagosCat === c.rec ? AC : C.line, color: pagosCat === c.rec ? AC : C.dim }}>
+                  {c.nombre}
+                </button>
+              ))}
+            </div>
+            {!pagosCat ? (
+              <div className="text-sm" style={{ color: C.dim }}>{t("pg.pick")}</div>
+            ) : pagosLista === undefined ? (
+              <div className="text-sm" style={{ color: C.dim }}>{t("tm.loadingSquad")}</div>
+            ) : pagosLista === null ? (
+              <div className="text-sm" style={{ color: C.warn }}>{t("tm.squadLoadFail")}</div>
+            ) : lista.length === 0 ? (
+              <div className="text-sm" style={{ color: C.dim }}>{t("tm.squadEmpty")}</div>
+            ) : (
+              <>
+                {/* El contador arriba: lo que el club quiere saber de un vistazo
+                    no es quién ha pagado, es cuántos faltan. */}
+                <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-3 pb-3 border-b" style={{ borderColor: C.line }}>
+                  <span className="font-display text-3xl tabular-nums leading-none"
+                    style={{ color: pagados === lista.length ? C.green : C.chalk }}>{pagados}</span>
+                  <span className="text-xs" style={{ color: C.dim }}>{t("pg.of")} {lista.length} · {t("pg.paid")}</span>
+                  {pagados < lista.length && (
+                    <span className="text-xs font-display uppercase tracking-wide" style={{ color: C.warn }}>
+                      {lista.length - pagados} {t("pg.pending")}
+                    </span>
+                  )}
+                  {pagosMsg && <span className="text-xs" style={{ color: pagosMsg.startsWith("✓") ? C.green : C.warn }}>{pagosMsg}</span>}
+                </div>
+                <div className="space-y-1.5">
+                  {lista.map((jug) => (
+                    /* La etiqueta entera es la zona de pulsación, no solo la
+                        casilla: con el alto del texto quedaba en 18 px y no hay
+                        manera de acertarle con el dedo. */
+                    <label key={jug.rec} className="rounded-lg border p-2.5 flex flex-wrap items-center gap-x-3 gap-y-1 min-h-12 cursor-pointer"
+                      style={{ borderColor: jug.pagada ? `${C.green}66` : C.line, background: C.panel2 }}>
+                      <input type="checkbox" checked={!!jug.pagada} disabled={!puedeCobrar}
+                        onChange={(e) => marcarPago(jug, e.target.checked)}
+                        className="w-5 h-5 shrink-0 disabled:opacity-40" style={{ accentColor: C.green }} />
+                      <span className="font-display text-base w-7 shrink-0 tabular-nums" style={{ color: AC }}>{jug.d}</span>
+                      <span className="flex-1 min-w-[130px] text-sm" style={{ color: C.chalk }}>{jug.n}</span>
+                      <span className="text-[11px] shrink-0" style={{ color: jug.pagada ? C.green : C.warn }}>
+                        {jug.pagada ? `✓ ${t("pg.paidOn")} ${jug.fechaPago ? fechaCorta(jug.fechaPago, lang) : "—"}` : t("pg.notPaid")}
+                      </span>
+                    </label>
+                  ))}
+                </div>
+                {!puedeCobrar && <div className="text-[11px] mt-3" style={{ color: C.dim }}>👁 {t("pg.readOnly")}</div>}
+              </>
+            )}
+          </>
+        )}
+      </Card>
+    );
+  };
+
+  /* ---- Faltas de material, entrenador a entrenador ----
+     Cuatro columnas y dos botones, que es lo que el club pidió: quién, de qué
+     equipo, cuántos balones ha perdido y cuántas veces no ha hecho las fotos.
+     Lo que sale del parte y lo que marca el club se enseñan juntos pero
+     separados: el número grande es el total, y debajo se dice cuánto viene de
+     cada sitio, para que nadie discuta de dónde sale la cifra. */
+  const renderFaltasMaterial = () => {
+    const puedeMarcar = dirigeElClub(session?.role) && !esDemo;
+    const gente = users
+      .filter((u) => u.role !== "club" && u.role !== "master")
+      .map((u) => {
+        const m = faltasDe(u);
+        const r = resumenPorEquipo.get(u.team) || { perdidos: 0, aCiegas: 0, partes: 0, quien: new Map() };
+        /* Del parte solo se le atribuye lo suyo: si de esa categoría hay dos
+           entrenadores mandando partes, repartir el total entre los dos sería
+           acusar a quien no fue. Se cuenta lo que firmó cada uno. */
+        const suyos = partesFuente.filter((p) => p.entrenadorNombre === u.name);
+        const parteBalones = suyos.reduce((n, p) => n + faltanEnParte(p), 0);
+        const parteFotos = suyos.reduce((n, p) => n + parteACiegas(p), 0);
+        return { u, m, parteBalones, parteFotos, partes: suyos.length,
+          totalB: m.balones + parteBalones, totalF: m.fotos + parteFotos };
+      })
+      .sort((a, b) => (b.totalB + b.totalF) - (a.totalB + a.totalF) || a.u.name.localeCompare(b.u.name));
+
+    const Celda = ({ fila, tipo }) => {
+      const total = tipo === "balones" ? fila.totalB : fila.totalF;
+      const dParte = tipo === "balones" ? fila.parteBalones : fila.parteFotos;
+      const dClub = tipo === "balones" ? fila.m.balones : fila.m.fotos;
+      return (
+        <div className="flex items-center gap-2">
+          <div className="text-right min-w-[54px]">
+            <div className="font-display text-xl tabular-nums leading-none"
+              style={{ color: total ? (tipo === "balones" ? "#d9a441" : "#b4474a") : C.dim }}>{total}</div>
+            <div className="text-[10px] leading-tight mt-0.5" style={{ color: C.dim }}>
+              {dParte} {t("fa.inReports")}{dClub ? ` · ${dClub} ${t("fa.marked2")}` : ""}
+            </div>
+          </div>
+          {puedeMarcar && (
+            <div className="flex gap-1">
+              {tipo === "balones" && (
+                <input type="number" min="1" max="99" value={cuantos[fila.u.id] ?? 1}
+                  onChange={(e) => setCuantos((c) => ({ ...c, [fila.u.id]: e.target.value }))}
+                  aria-label={`${t("fa.qty")} — ${fila.u.name}`}
+                  className="w-14 min-h-11 px-2 rounded-lg border bg-transparent text-sm tabular-nums"
+                  style={{ borderColor: C.line, color: C.chalk }} />
+              )}
+              <button onClick={() => anotarFalta(fila.u, tipo, cuantos[fila.u.id] ?? 1)}
+                aria-label={`${t("fa.add")} — ${fila.u.name}`} title={t("fa.add")}
+                className="min-w-11 min-h-11 rounded-lg border font-display text-base"
+                style={{ borderColor: AC, color: AC }}>+</button>
+              <button onClick={() => quitarUltimaFalta(fila.u, tipo)} disabled={!dClub}
+                aria-label={`${t("fa.undo")} — ${fila.u.name}`} title={t("fa.undo")}
+                className="min-w-11 min-h-11 rounded-lg border font-display text-base disabled:opacity-30"
+                style={{ borderColor: C.line, color: C.dim }}>−</button>
+            </div>
+          )}
+        </div>
+      );
+    };
+
+    return (
+      <Card title={`🧾 ${t("fa.title")}`}>
+        <div className="text-xs mb-3 leading-relaxed" style={{ color: C.dim }}>{t("fa.hint")}</div>
+        {staffMsg && <div className="text-xs mb-2" style={{ color: staffMsg.startsWith("✓") ? C.green : C.warn }}>{staffMsg}</div>}
+        {gente.length === 0 ? (
+          <div className="text-sm" style={{ color: C.dim }}>{t("fa.noStaff")}</div>
+        ) : (
+          <div className="space-y-2">
+            {/* Cabecera solo en pantalla ancha: en el móvil cada fila se lee
+                sola, con su etiqueta encima de cada número. */}
+            <div className="hidden md:flex items-center gap-3 px-3 pb-1 text-[10px] font-display uppercase tracking-widest" style={{ color: C.dim }}>
+              <span className="flex-1 min-w-[150px]">{t("fa.coach")}</span>
+              <span className="w-[130px]">{t("fa.team")}</span>
+              <span className="w-[190px]">{t("fa.balls")}</span>
+              <span className="w-[190px]">{t("fa.photos")}</span>
+            </div>
+            {gente.map((fila) => (
+              <div key={fila.u.id} className="rounded-lg border p-3 flex flex-wrap md:flex-nowrap items-center gap-x-3 gap-y-3"
+                style={{ borderColor: (fila.totalB || fila.totalF) ? "#d9a44155" : C.line, background: C.panel2 }}>
+                <div className="flex-1 min-w-[150px] leading-tight">
+                  <div className="text-sm" style={{ color: C.chalk }}>{fila.u.name}</div>
+                  <div className="text-[10px]" style={{ color: C.dim }}>{fila.partes} {t("fa.reports")}</div>
+                </div>
+                <div className="w-full sm:w-auto md:w-[130px] text-[12px]" style={{ color: fila.u.team ? C.dim : C.warn }}>
+                  {fila.u.team || t("fa.noTeam")}
+                </div>
+                <div className="w-full sm:w-auto md:w-[190px]">
+                  <div className="md:hidden text-[10px] font-display uppercase tracking-widest mb-1" style={{ color: C.dim }}>{t("fa.balls")}</div>
+                  <Celda fila={fila} tipo="balones" />
+                </div>
+                <div className="w-full sm:w-auto md:w-[190px]">
+                  <div className="md:hidden text-[10px] font-display uppercase tracking-widest mb-1" style={{ color: C.dim }}>{t("fa.photos")}</div>
+                  <Celda fila={fila} tipo="fotos" />
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+        <div className="text-[11px] mt-3 leading-relaxed" style={{ color: C.dim }}>{t("fa.foot")}</div>
       </Card>
     );
   };
@@ -14588,6 +15011,8 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
           técnico y el control del material. Los entrenadores ya no entran
           aquí. */}
       {renderCuerpoTecnico()}
+      {renderInscripciones()}
+      {renderFaltasMaterial()}
       {renderControlClub()}
     </div>
   );
@@ -17457,7 +17882,14 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
   /* "parte" se suma a las que no se enseñan apagadas: a la dirección del club
      no le falta ese apartado, es que lo tiene dentro de su pestaña de Club, y
      dejarle la entrada en gris sugiere que le falta un permiso. */
-  const tabsMenu = TODAS_TABS.filter((k) => allTabs.includes(k) || !["master", "equipos", "parte"].includes(k));
+  /* La cuenta del club es la excepción: a ella se le enseña SOLO lo suyo. El
+     menú en gris tiene sentido para un entrenador —le enseña qué hay al otro
+     lado y qué desbloquea otro plan—, pero al club no le falta la pizarra ni
+     el modo partido: es que no son su trabajo. Verlas apagadas le hacía leer
+     ocho apartados que nunca va a abrir para llegar a los seis que usa. */
+  const tabsMenu = esCuentaClub
+    ? TODAS_TABS.filter((k) => allTabs.includes(k))
+    : TODAS_TABS.filter((k) => allTabs.includes(k) || !["master", "equipos", "parte"].includes(k));
   const sinAcceso = (k) => !allTabs.includes(k);
   const mobileTabsDefault = [...visibleTabs.filter((k) => ["inicio", "pizarra", "entrenamiento", "partido"].includes(k)), ...visibleTabs.filter((k) => !["inicio", "pizarra", "entrenamiento", "partido"].includes(k))].slice(0, 4);
   /* Si la persona ha elegido su propio orden (ver "Personalizar menú" en Mi
