@@ -3807,7 +3807,13 @@ const CAL_SAMPLE = "1;06/09/2026;10:00;C.D. Chamartín Vergara;CD Norte;Campo Mu
    tabla Partidos de Airtable — esto es lo que se ve sin conexión o en la demo;
    con sesión real y equipo en la nube, el efecto de sincronización lo
    sustituye por lo que haya en Airtable. */
-const FIXTURES_INIT = [
+/* El calendario de ejemplo, SOLO para el modo prueba. Estaba en
+   FIXTURES_INIT y era el punto de partida de cualquier cuenta: un club nuevo
+   abría la app y se encontraba treinta y dos partidos del Infantil B del
+   Chamartín en su calendario, con sus rivales y sus jornadas, hasta que
+   Airtable contestara —y por el camino se le guardaban en el navegador—.
+   Mismo criterio que la plantilla: lo de ejemplo es del modo prueba. */
+const CAL_DEMO = [
   { id: 8001, j: "PT", date: "2026-08-12", time: "", home: "C.D. Chamartín Vergara - Alcobendas \"B\"", away: "Trabajo individual de pretemporada (ver Plan de Pretemporada en Normativa)", place: "" },
   { id: 8002, j: "PT", date: "2026-09-02", time: "", home: "C.D. Chamartín Vergara - Alcobendas \"B\"", away: "Inicio de la pretemporada de equipo", place: "" },
   { id: 8003, j: "1", date: "2026-09-26", time: "", home: "AULA C.F. - BREZO OSUNA \"A\"", away: "C.D. Chamartín Vergara - Alcobendas \"B\"", place: "" },
@@ -3841,6 +3847,9 @@ const FIXTURES_INIT = [
   { id: 8031, j: "29", date: "2027-05-15", time: "", home: "C.D. Chamartín Vergara - Alcobendas \"B\"", away: "CLUB SAN JOSE DEL PARQUE \"A\"", place: "" },
   { id: 8032, j: "30", date: "2027-05-22", time: "", home: "A.D. OÑA SANCHINARRO \"B\"", away: "C.D. Chamartín Vergara - Alcobendas \"B\"", place: "" },
 ];
+/* VACÍO a propósito, como PLAYERS_INIT y USERS_INIT: el calendario de cada
+   categoría sale de Airtable o no sale. */
+const FIXTURES_INIT = [];
 
 const TAB_LABEL = { inicio: "Inicio", jugadores: "Jugadores", alineacion: "Alineación", convocatoria: "Convocatoria", partido: "Modo partido", usuarios: "Usuarios", coachai: "Coach AI" };
 /* ---------------- Airtable (conexión app <-> base) ---------------- */
@@ -17719,6 +17728,7 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
          real —menores con nombre y apellido, y un antecedente médico— ni los
          correos del cuerpo técnico. */
       setPlayers(PLANTILLA_DEMO);
+      setFixtures(CAL_DEMO);
       setUsers(USUARIOS_DEMO);
       airDemoToken().then((out) => { if (out?.token) setAuthToken(out.token); });
       const demoTeam = makeTeam("infantil", "B");
