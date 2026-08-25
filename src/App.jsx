@@ -18065,9 +18065,17 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
               desde que va pegado al equipo salía dos veces en la misma barra, y
               el nombre —que es el dato de esta esquina— quedaba de segundo y en
               letra pequeña. */}
-          <button onClick={() => setAccountOpen(true)} title={t("p.account")} className="text-right hidden md:block rounded-lg px-2 py-1 leading-tight">
-            <div className="font-display text-base lg:text-lg font-semibold uppercase tracking-wide flex items-center justify-end gap-2 whitespace-nowrap" style={{ color: AC }}>
-              <span>{role.icon}</span><span className="truncate max-w-[14ch]">{session.name}</span>
+          <button onClick={() => setAccountOpen(true)} title={session.name} className="text-right hidden md:block rounded-lg px-2 py-1 leading-tight">
+            {/* El nombre entero, no cortado. Iba con truncate y un tope de
+                14 caracteres, así que "Graciela Presidenta" —diecinueve— salía
+                como "GRACIELA PRE…". El tope estaba para que un nombre largo
+                no empujara la barra; ahora en vez de cortarlo se deja pasar a
+                una segunda línea, que es lo que un nombre necesita. La
+                cabecera ya mide su propio alto sola (ver --cb-header), así que
+                dos líneas no descuadran nada de lo de abajo. */}
+            <div className="font-display text-base lg:text-lg font-semibold uppercase tracking-wide flex items-start justify-end gap-2" style={{ color: AC }}>
+              <span className="shrink-0">{role.icon}</span>
+              <span className="max-w-[20ch] break-words text-right">{session.name}</span>
             </div>
             <div className="text-[12px] truncate" style={{ color: C.dim }}>{t("p.account")}</div>
           </button>
