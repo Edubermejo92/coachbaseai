@@ -38,7 +38,7 @@ const DICT = {
     "navg.equipo": "Equipo", "navg.partido": "Día de partido", "navg.entrenamiento": "Entrenamiento", "navg.delegado": "Delegado", "navg.estadisticas": "Estadísticas", "navg.roles": "Roles", "navg.coachai": "Coach AI",
     "role.entrenador": "Entrenador principal", "role.segundo": "Segundo entrenador", "role.delegado": "Delegado", "role.padre": "Padre / Madre / Tutor", "role.director": "Director deportivo", "role.club": "Club", "role.master": "Master · EBLDigital", 
     "c.exit": "Salir", "c.planFree": "VERSIÓN BÁSICA", "c.upgrade": "Mejorar", "c.by": "Desarrollado por EBLDigital", "c.madeBy": "App creada por EBLDigital ·", "navg.master": "Master", "nav.master": "Panel Master", "c.pro": "Función PRO. Mejora a una cuenta oficial del club para desbloquearla.", "c.cancel": "Cancelar", "c.nav": "Navegación", "c.trialBadge": "PRUEBA PRO", "c.planCurrentFree": "Versión actual · Básica", "c.goPro": "Ir a Premium",
-    "a.tagline": "Gestión inteligente para entrenadores de fútbol base", "a.accOff": "Sí, entreno en un club", "a.accOffD": "Tu director deportivo o el Master ya te han dado de alta antes. Pon tu contraseña y entras al momento.", "a.accFree": "No, entreno por mi cuenta", "a.accFreeD": "Tu equipo es tuyo y no depende de nadie. Sin aprobaciones.", "a.have": "Ya soy usuario", "a.register": "Registrarme", "a.name": "Tu nombre", "a.fullname": "Nombre y apellidos", "a.email": "Email", "a.pass": "Contraseña", "a.region": "Comunidad autónoma", "a.clubMadrid": "Club (Comunidad de Madrid)", "a.choose": "Elige tu club…", "a.otherClub": "Nombre de tu club", "a.teamOff": "Equipo", "a.teamFree": "Tu equipo", "a.role": "Tu rol", "a.pending": "Entras al momento y puedes empezar a trabajar con tu equipo. Hasta que el club apruebe tu acceso no verás los datos compartidos del club ni la gestión de usuarios.", "a.freeInc": "Gratis para siempre: plantilla completa sin límite de jugadores, alineación, convocatoria, modo partido, pizarra y Coach AI.", "a.startFree": "Empezar gratis", "a.signin": "Iniciar sesión", "a.create": "Crear cuenta y entrar", "a.proto": "Prototipo — los datos no se guardan en ningún servidor", "a.choice": "¿Perteneces a un club?", "a.choiceD": "Las dos opciones son gratuitas. Solo cambia de quién dependen tus datos.", "a.back": "‹ Volver", "a.badCreds": "Email o contraseña incorrectos.", "a.badEmail": "Ese correo no tiene forma de correo: revisa que lleve una arroba y un dominio, por ejemplo nombre@club.es.", "a.accPending": "Tu cuenta está pendiente de aprobación por el club.", "a.accSusp": "Tu acceso está suspendido. Contacta con tu club.", "a.exists": "Ese email ya está registrado. Inicia sesión.", "a.registered": "¡Registro recibido! Tu acceso queda pendiente de aprobación por el club.", "a.loading": "Cargando…", "a.entering": "Entrando…", "a.demoHint": "Demo: usuario demo / contraseña demo", "a.demoBtn": "▶ Entrar con usuario demo", "a.demoPick": "¿Qué rol quieres ver?", "a.demoPickD": "Elige un rol para explorar la app tal y como lo vería esa persona.",
+    "a.tagline": "Gestión inteligente para entrenadores de fútbol base", "a.accOff": "Sí, entreno en un club", "a.accOffD": "Tu director deportivo o el Master ya te han dado de alta antes. Pon tu contraseña y entras al momento.", "a.accFree": "No, entreno por mi cuenta", "a.accFreeD": "Tu equipo es tuyo y no depende de nadie. Sin aprobaciones.", "a.have": "Ya soy usuario", "a.register": "Registrarme", "a.name": "Tu nombre", "a.fullname": "Nombre y apellidos", "a.email": "Email", "a.pass": "Contraseña", "a.region": "Comunidad autónoma", "a.clubMadrid": "Club (Comunidad de Madrid)", "a.choose": "Elige tu club…", "a.otherClub": "Nombre de tu club", "a.teamOff": "Equipo", "a.teamFree": "Tu equipo", "a.role": "Tu rol", "a.pending": "Entras al momento y puedes empezar a trabajar con tu equipo. Hasta que el club apruebe tu acceso no verás los datos compartidos del club ni la gestión de usuarios.", "a.freeInc": "Gratis para siempre: plantilla completa hasta {n} jugadores, alineación, convocatoria, modo partido, pizarra y Coach AI.", "a.startFree": "Empezar gratis", "a.signin": "Iniciar sesión", "a.create": "Crear cuenta y entrar", "a.proto": "Prototipo — los datos no se guardan en ningún servidor", "a.choice": "¿Perteneces a un club?", "a.choiceD": "Las dos opciones son gratuitas. Solo cambia de quién dependen tus datos.", "a.back": "‹ Volver", "a.badCreds": "Email o contraseña incorrectos.", "a.badEmail": "Ese correo no tiene forma de correo: revisa que lleve una arroba y un dominio, por ejemplo nombre@club.es.", "a.accPending": "Tu cuenta está pendiente de aprobación por el club.", "a.accSusp": "Tu acceso está suspendido. Contacta con tu club.", "a.exists": "Ese email ya está registrado. Inicia sesión.", "a.registered": "¡Registro recibido! Tu acceso queda pendiente de aprobación por el club.", "a.loading": "Cargando…", "a.entering": "Entrando…", "a.demoHint": "Demo: usuario demo / contraseña demo", "a.demoBtn": "▶ Entrar con usuario demo", "a.demoPick": "¿Qué rol quieres ver?", "a.demoPickD": "Elige un rol para explorar la app tal y como lo vería esa persona.", "a.heroTitle": "Organiza tu equipo. Gana tiempo cada semana.", "a.heroBody": "Plantilla, convocatorias, pizarra y planificación desde el primer día.", "a.heroBadge": "✓ Sin tarjeta para empezar", "a.clubName": "Nombre del club", "a.clubNameHint": "Elige tu club si ya aparece en la lista, o escribe su nombre para crearlo. Si ya tiene cuerpo técnico dado de alta, no podrás fundarlo — pide que te inviten.", "a.clubPlanLabel": "Plan de tu club", "a.clubPlanFreeTail": "Sube de plan cuando quieras desde dentro.", "a.clubPlanPaidTail": "Al terminar el registro te llevamos a pagar. Las plazas se activan en cuanto se confirma el cobro.", "a.officialTitle": "Alta por el club", "a.officialBody": "A los equipos oficiales te da de alta el director deportivo o el Master. Usa el mismo correo con el que te añadieron y elige aquí tu contraseña. Tu equipo y tu rol ya vienen definidos.", "a.teamWillBe": "Tu equipo será {team} — {sub}.", "pln.mensual.nombre": "Mensual", "pln.mensual.ciclo": "al mes", "pln.mensual.nota": "Sin permanencia. Cancela cuando quieras.", "pln.temporada.nombre": "Temporada", "pln.temporada.ciclo": "al año", "pln.temporada.nota": "7,90 €/mes. Pagas en septiembre y te olvidas.", "pln.temporada.ahorro": "Ahorras 41 €", "plc.club_s.nombre": "Club S", "plc.club_s.equipos": "Hasta 5 equipos", "plc.club_s.usuarios": "20 accesos", "plc.club_s.porEquipo": "50 € por equipo", "plc.club_m.nombre": "Club M", "plc.club_m.equipos": "Hasta 12 equipos", "plc.club_m.usuarios": "50 accesos", "plc.club_m.porEquipo": "37 € por equipo", "plc.club_l.nombre": "Club L", "plc.club_l.equipos": "Equipos ilimitados", "plc.club_l.usuarios": "Accesos ilimitados", "plc.club_l.porEquipo": "Para clubes grandes", "plc.gratis.nombre": "Gratis", "plc.gratis.equipos": "1 equipo", "plc.gratis.usuarios": "2 accesos", "plc.gratis.detalle": "1 para el club y 1 para un entrenador", "pf.squad.nombre": "Plantilla", "pf.squad.free": "Plantilla completa, hasta {n} jugadores", "pf.squad.pro": "Además: ficha ampliada y vídeo de presentación", "pf.exercises.nombre": "Ejercicios", "pf.exercises.free": "{n} ejercicios de la biblioteca", "pf.exercises.pro": "Los 26 ejercicios, con filtros por categoría", "pf.plays.nombre": "Pizarra", "pf.plays.free": "Pizarra completa: dibujar, sistemas, pantalla completa y brillo", "pf.plays.pro": "Además: guardar jugadas, exportar PNG y paleta de colores", "pf.training.nombre": "Entrenamiento", "pf.training.free": "{n} sesión de entrenamiento guardada", "pf.training.pro": "Sesiones ilimitadas y biblioteca propia", "pf.discipline.nombre": "Disciplina", "pf.discipline.free": "Pasar lista e incidencias individuales", "pf.discipline.pro": "Medidas colectivas, control económico y exportación CSV", "pf.docs.nombre": "Normativa", "pf.docs.free": "Consultar la normativa", "pf.docs.pro": "Matriz de firmas y control de sanciones", "pf.calls.nombre": "Convocatorias", "pf.calls.free": "Convocatoria actual", "pf.calls.pro": "Histórico completo de convocatorias", "pf.calendar.nombre": "Calendario", "pf.calendar.free": "{n} partidos en el calendario", "pf.calendar.pro": "Calendario completo por CSV e ICS", "pf.cargas.nombre": "Cargas físicas", "pf.cargas.pro": "Semáforo de cargas físicas por jugador y % de carga, compartido con el cuerpo técnico", "pf.stats.nombre": "Estadísticas", "pf.stats.free": "Resumen básico", "pf.stats.pro": "Estadísticas completas del equipo", "pf.ai.nombre": "Coach AI", "pf.ai.free": "{n} consultas al mes a Coach AI", "pf.ai.pro": "Coach AI sin límite", "pf.video.nombre": "Vídeo de jugador", "pf.video.pro": "Vídeo de presentación de jugador", "pf.users.nombre": "Usuarios y roles", "pf.users.pro": "Gestión de usuarios y roles del club", "pm.myPlan": "Tu plan", "pm.masterAccess": "★ Master · acceso total", "pm.proActive": "★ PRO activo", "pm.perMonth": "/ mes", "pm.unlocked": "Tienes desbloqueadas todas las funciones del cuerpo técnico.", "pm.subNote": "Suscripción mensual, sin permanencia. Se cancela cuando quieras desde tu cuenta.", "pm.cancelled": "Cancelada: seguirás con PRO hasta el {d}.", "pm.renews": "Se renueva el {d}.", "pm.openingPay": "Abriendo pago…", "pm.choose": "Elegir", "pm.manageSub": "Gestionar suscripción", "pm.opening": "Abriendo…", "pm.clubTitle": "¿Eres el club? Plan para todos tus equipos", "pm.clubBody": "Todo el cuerpo técnico del club en PRO, con vista agregada para el director deportivo. Precio por temporada.", "pm.clubExplain": "Equipos son las categorías del club (Infantil B, Juvenil A…). Accesos son las personas del cuerpo técnico que pueden entrar: entrenador, segundo y delegado de cada equipo, más la dirección deportiva.", "pm.perSeason": "por temporada · ", "pm.hire": "Contratar", "pm.compareTitle": "Qué incluye cada versión", "pm.colFeature": "Función", "pm.colBasic": "Básica", "pm.errPortal": "No he podido abrir el portal de suscripción.", "pm.errPortalDown": "La gestión de la suscripción no está disponible ahora mismo. Inténtalo más tarde.", "pm.errPayDown": "Los pagos no están disponibles ahora mismo. Inténtalo más tarde.", "pm.modalTitle": "Esto es de PRO", "pm.modalDefault": "Desbloquea todas las funciones de CoachBase AI.", "pm.modalFreeNote": "Con el plan gratuito: {x}.", "pm.modalCta": "Ver PRO · {price}/mes", "pm.modalLater": "Ahora no",
     "a.forgot": "¿Has olvidado tu contraseña?", "a.forgotTitle": "Recuperar contraseña", "a.forgotD": "Escribe tu email y te mandamos un enlace para elegir una nueva.", "a.forgotSend": "Enviar enlace", "a.sending": "Enviando…", "a.forgotSent": "Si ese email tiene cuenta, ya está el enlace enviado. Caduca en una hora y solo sirve una vez. Mira también en spam.", "a.forgotNoMail": "El envío de correo no está disponible ahora mismo. Avisa a tu club para que lo revise.", "a.resetTitle": "Elige tu nueva contraseña", "a.resetD": "Este enlace caduca en una hora y solo sirve una vez.", "a.newPass": "Nueva contraseña", "a.newPass2": "Repite la contraseña", "a.resetSave": "Guardar contraseña", "a.resetOk": "Contraseña actualizada. Ya puedes entrar con ella.", "a.resetBad": "Este enlace ya no vale: ha caducado o ya se ha usado. Pide otro.", "a.passRule": "Mínimo 6 caracteres, y las dos deben coincidir.", "a.noBackend": "No hay conexión con el servidor. Inténtalo más tarde.",
     "p.account": "Mi cuenta", "p.changePass": "Cambiar contraseña", "p.current": "Contraseña actual", "p.save": "Guardar", "p.saved": "Contraseña actualizada.", "p.badCurrent": "La contraseña actual no es correcta.", "p.close": "Cerrar",
     "h.nextMatch": "Próximo partido", "h.nextTrain": "Próximo entrenamiento", "h.available": "Disponibles", "h.lessMin": "Menos participación", "h.alerts": "Alertas", "h.quick": "Accesos rápidos", "h.family": "Avisos para las familias", "h.pending": "accesos pendientes de aprobar", "h.pending1": "acceso pendiente de aprobar", "h.startMatch": "Iniciar partido", "as.title": "Asistencia del día", "as.subtitle": "Quién ha venido y por qué. Sin incidencias ni sanciones: eso sigue en Disciplina.", "as.today": "Hoy", "as.markAll": "✓ Marcar todos presentes", "as.present": "Presente", "as.unmarked": "Sin marcar", "as.studies": "Estudios", "as.noExcuse": "Sin explicación", "as.sick": "Enfermedad", "as.injured": "Lesión", "as.reset": "Quitar marca", "as.noPlayers": "No hay jugadores en la plantilla.", "as.discNote": "¿Retraso o falta con consecuencia disciplinaria? Eso se registra en Disciplina → Pasar lista, que además avisa al cuerpo técnico.", "as.homeTitle": "Asistencia de hoy", "as.homeEmpty": "Todavía no has pasado lista hoy.", "as.homeCta": "Pasar lista", "as.homeSee": "Ver asistencia", "as.homeAll": "Todos presentes.", "as.homeOf": "de", "as.summaryTitle": "Resumen del día",
@@ -581,7 +581,7 @@ const DICT = {
     "navg.equipo": "Team", "navg.partido": "Matchday", "navg.entrenamiento": "Training", "navg.delegado": "Team manager", "navg.estadisticas": "Stats", "navg.roles": "Roles", "navg.coachai": "Coach AI",
     "role.entrenador": "Head coach", "role.segundo": "Assistant coach", "role.delegado": "Team manager", "role.padre": "Parent / Guardian", "role.director": "Sporting director", "role.club": "Club", "role.master": "Master · EBLDigital", 
     "c.exit": "Log out", "c.planFree": "FREE PLAN", "c.upgrade": "Upgrade", "c.by": "Built by EBLDigital", "c.madeBy": "App built by EBLDigital ·", "navg.master": "Master", "nav.master": "Master panel", "c.pro": "PRO feature. Upgrade to an official club account to unlock it.", "c.cancel": "Cancel", "c.nav": "Navigation", "c.trialBadge": "TRIAL PRO", "c.planCurrentFree": "Current plan · Free", "c.goPro": "Go PRO",
-    "a.tagline": "Smart management for grassroots football coaches", "a.accOff": "Yes, I coach at a club", "a.accOffD": "Your sporting director or the Master has already added you. Set your password and you're in right away.", "a.accFree": "No, I coach on my own", "a.accFreeD": "Your team is yours alone. No approvals.", "a.have": "I already have an account", "a.register": "Sign up", "a.name": "Your name", "a.fullname": "Full name", "a.email": "Email", "a.pass": "Password", "a.region": "Region", "a.clubMadrid": "Club (Madrid region)", "a.choose": "Choose your club…", "a.otherClub": "Your club name", "a.teamOff": "Team", "a.teamFree": "Your team", "a.role": "Your role", "a.pending": "When you sign up as an official user, your access stays pending until the sporting director or the Master approves it. Not every user can be a coach.", "a.freeInc": "Free forever: full squad with no player limit, line-up, squad list, match mode, whiteboard and Coach AI.", "a.startFree": "Start free", "a.signin": "Sign in", "a.create": "Create account & enter", "a.proto": "Prototype — no data is stored on any server", "a.choice": "Do you belong to a club?", "a.choiceD": "Both options are free. It only changes who owns your data.", "a.back": "‹ Back", "a.badCreds": "Wrong email or password.", "a.badEmail": "That is not a valid email address: check it has an @ and a domain, for example name@club.com.", "a.accPending": "Your account is pending approval by the club.", "a.accSusp": "Your access is suspended. Contact your club.", "a.exists": "That email is already registered. Sign in.", "a.registered": "Registration received! Your access is pending club approval.", "a.loading": "Loading…", "a.entering": "Entering…", "a.demoHint": "Demo: username demo / password demo", "a.demoBtn": "▶ Enter with demo account", "a.demoPick": "Which role do you want to see?", "a.demoPickD": "Pick a role to explore the app as that person would see it.",
+    "a.tagline": "Smart management for grassroots football coaches", "a.accOff": "Yes, I coach at a club", "a.accOffD": "Your sporting director or the Master has already added you. Set your password and you're in right away.", "a.accFree": "No, I coach on my own", "a.accFreeD": "Your team is yours alone. No approvals.", "a.have": "I already have an account", "a.register": "Sign up", "a.name": "Your name", "a.fullname": "Full name", "a.email": "Email", "a.pass": "Password", "a.region": "Region", "a.clubMadrid": "Club (Madrid region)", "a.choose": "Choose your club…", "a.otherClub": "Your club name", "a.teamOff": "Team", "a.teamFree": "Your team", "a.role": "Your role", "a.pending": "When you sign up as an official user, your access stays pending until the sporting director or the Master approves it. Not every user can be a coach.", "a.freeInc": "Free forever: full squad up to {n} players, line-up, squad list, match mode, whiteboard and Coach AI.", "a.startFree": "Start free", "a.signin": "Sign in", "a.create": "Create account & enter", "a.proto": "Prototype — no data is stored on any server", "a.choice": "Do you belong to a club?", "a.choiceD": "Both options are free. It only changes who owns your data.", "a.back": "‹ Back", "a.badCreds": "Wrong email or password.", "a.badEmail": "That is not a valid email address: check it has an @ and a domain, for example name@club.com.", "a.accPending": "Your account is pending approval by the club.", "a.accSusp": "Your access is suspended. Contact your club.", "a.exists": "That email is already registered. Sign in.", "a.registered": "Registration received! Your access is pending club approval.", "a.loading": "Loading…", "a.entering": "Entering…", "a.demoHint": "Demo: username demo / password demo", "a.demoBtn": "▶ Enter with demo account", "a.demoPick": "Which role do you want to see?", "a.demoPickD": "Pick a role to explore the app as that person would see it.", "a.heroTitle": "Organize your team. Save time every week.", "a.heroBody": "Squad, squad lists, whiteboard and planning from day one.", "a.heroBadge": "✓ No card needed to start", "a.clubName": "Club name", "a.clubNameHint": "Pick your club if it's already listed, or type its name to create it. If it already has a coaching staff registered, you won't be able to found it — ask to be invited instead.", "a.clubPlanLabel": "Your club's plan", "a.clubPlanFreeTail": "Upgrade your plan anytime from inside the app.", "a.clubPlanPaidTail": "Once you finish signing up we'll take you to payment. Seats activate as soon as the charge is confirmed.", "a.officialTitle": "Added by your club", "a.officialBody": "For official teams, the sporting director or the Master adds you. Use the same email they added you with and choose your password here. Your team and role are already set.", "a.teamWillBe": "Your team will be {team} — {sub}.", "pln.mensual.nombre": "Monthly", "pln.mensual.ciclo": "per month", "pln.mensual.nota": "No commitment. Cancel anytime.", "pln.temporada.nombre": "Season", "pln.temporada.ciclo": "per year", "pln.temporada.nota": "€7.90/month. Pay in September and forget about it.", "pln.temporada.ahorro": "Save €41", "plc.club_s.nombre": "Club S", "plc.club_s.equipos": "Up to 5 teams", "plc.club_s.usuarios": "20 seats", "plc.club_s.porEquipo": "€50 per team", "plc.club_m.nombre": "Club M", "plc.club_m.equipos": "Up to 12 teams", "plc.club_m.usuarios": "50 seats", "plc.club_m.porEquipo": "€37 per team", "plc.club_l.nombre": "Club L", "plc.club_l.equipos": "Unlimited teams", "plc.club_l.usuarios": "Unlimited seats", "plc.club_l.porEquipo": "For large clubs", "plc.gratis.nombre": "Free", "plc.gratis.equipos": "1 team", "plc.gratis.usuarios": "2 seats", "plc.gratis.detalle": "1 for the club and 1 for a coach", "pf.squad.nombre": "Squad", "pf.squad.free": "Full squad, up to {n} players", "pf.squad.pro": "Also: extended profile and presentation video", "pf.exercises.nombre": "Drills", "pf.exercises.free": "{n} drills from the library", "pf.exercises.pro": "All 26 drills, filterable by category", "pf.plays.nombre": "Whiteboard", "pf.plays.free": "Full whiteboard: drawing, formations, full screen and brightness", "pf.plays.pro": "Also: save plays, export as PNG and colour palette", "pf.training.nombre": "Training", "pf.training.free": "{n} saved training session", "pf.training.pro": "Unlimited sessions and your own library", "pf.discipline.nombre": "Discipline", "pf.discipline.free": "Attendance and individual incidents", "pf.discipline.pro": "Collective measures, financial tracking and CSV export", "pf.docs.nombre": "Club rules", "pf.docs.free": "View the club rules", "pf.docs.pro": "Signature matrix and sanctions tracking", "pf.calls.nombre": "Squad lists", "pf.calls.free": "Current squad list", "pf.calls.pro": "Full squad-list history", "pf.calendar.nombre": "Fixtures", "pf.calendar.free": "{n} fixtures in the calendar", "pf.calendar.pro": "Full calendar via CSV and ICS", "pf.cargas.nombre": "Physical load", "pf.cargas.pro": "Physical-load traffic light per player and % load, shared with the coaching staff", "pf.stats.nombre": "Stats", "pf.stats.free": "Basic summary", "pf.stats.pro": "Full team statistics", "pf.ai.nombre": "Coach AI", "pf.ai.free": "{n} Coach AI queries a month", "pf.ai.pro": "Unlimited Coach AI", "pf.video.nombre": "Player video", "pf.video.pro": "Player presentation video", "pf.users.nombre": "Users & roles", "pf.users.pro": "User and role management for the club", "pm.myPlan": "Your plan", "pm.masterAccess": "★ Master · full access", "pm.proActive": "★ PRO active", "pm.perMonth": "/ month", "pm.unlocked": "You have every coaching-staff feature unlocked.", "pm.subNote": "Monthly subscription, no commitment. Cancel anytime from your account.", "pm.cancelled": "Cancelled: you'll keep PRO until {d}.", "pm.renews": "Renews on {d}.", "pm.openingPay": "Opening payment…", "pm.choose": "Choose", "pm.manageSub": "Manage subscription", "pm.opening": "Opening…", "pm.clubTitle": "Are you the club? A plan for all your teams", "pm.clubBody": "The whole club's coaching staff on PRO, with an aggregated view for the sporting director. Priced per season.", "pm.clubExplain": "Teams are the club's age groups (U16 B, U18 A…). Seats are the coaching-staff people who can log in: each team's coach, assistant and delegate, plus the sporting director.", "pm.perSeason": "per season · ", "pm.hire": "Get started", "pm.compareTitle": "What's included in each plan", "pm.colFeature": "Feature", "pm.colBasic": "Basic", "pm.errPortal": "Couldn't open the subscription portal.", "pm.errPortalDown": "Subscription management isn't available right now. Try again later.", "pm.errPayDown": "Payments aren't available right now. Try again later.", "pm.modalTitle": "This is a PRO feature", "pm.modalDefault": "Unlock every CoachBase AI feature.", "pm.modalFreeNote": "On the free plan: {x}.", "pm.modalCta": "See PRO · {price}/month", "pm.modalLater": "Not now",
     "a.forgot": "Forgotten your password?", "a.forgotTitle": "Reset password", "a.forgotD": "Enter your email and we'll send you a link to choose a new one.", "a.forgotSend": "Send link", "a.sending": "Sending…", "a.forgotSent": "If that email has an account, the link is on its way. It expires in an hour and works once. Check your spam folder too.", "a.forgotNoMail": "Email sending is unavailable right now. Let your club know so they can look into it.", "a.resetTitle": "Choose your new password", "a.resetD": "This link expires in an hour and works only once.", "a.newPass": "New password", "a.newPass2": "Repeat password", "a.resetSave": "Save password", "a.resetOk": "Password updated. You can sign in with it now.", "a.resetBad": "This link no longer works: it expired or was already used. Request a new one.", "a.passRule": "At least 6 characters, and both must match.", "a.noBackend": "No connection to the server. Try again later.",
     "p.account": "My account", "p.changePass": "Change password", "p.current": "Current password", "p.save": "Save", "p.saved": "Password updated.", "p.badCurrent": "That current password isn't right.", "p.close": "Close",
     "h.nextMatch": "Next match", "h.nextTrain": "Next training", "h.available": "Available", "h.lessMin": "Least game time", "h.alerts": "Alerts", "h.quick": "Quick access", "h.family": "Notices for families", "h.pending": "pending access requests", "h.pending1": "pending access request", "h.startMatch": "Start match",
@@ -1139,7 +1139,7 @@ const DICT = {
     "navg.equipo": "Équipe", "navg.partido": "Jour de match", "navg.entrenamiento": "Entraînement", "navg.delegado": "Délégué", "navg.estadisticas": "Statistiques", "navg.roles": "Rôles", "navg.coachai": "Coach AI",
     "role.entrenador": "Entraîneur principal", "role.segundo": "Entraîneur adjoint", "role.delegado": "Délégué", "role.padre": "Parent / Tuteur", "role.director": "Directeur sportif", "role.club": "Club", "role.master": "Master · EBLDigital", 
     "c.exit": "Quitter", "c.planFree": "FORFAIT GRATUIT", "c.upgrade": "Améliorer", "c.by": "Développé par EBLDigital", "c.madeBy": "App créée par EBLDigital ·", "navg.master": "Master", "nav.master": "Panneau Master", "c.pro": "Fonction PRO. Passez à un compte officiel du club pour la débloquer.", "c.cancel": "Annuler", "c.nav": "Navigation", "c.trialBadge": "ESSAI PRO", "c.planCurrentFree": "Offre actuelle · Gratuite", "c.goPro": "Passer PRO",
-    "a.tagline": "Gestion intelligente pour les éducateurs de football", "a.accOff": "Compte officiel du club", "a.accOffD": "Le directeur sportif ou le Master vous a déjà ajouté. Choisissez votre mot de passe pour accéder.", "a.accFree": "J'entraîne de mon côté", "a.accFreeD": "Gratuit, fonctions limitées.", "a.have": "J'ai déjà un compte", "a.register": "S'inscrire", "a.name": "Votre nom", "a.fullname": "Nom et prénom", "a.email": "E-mail", "a.pass": "Mot de passe", "a.region": "Région", "a.clubMadrid": "Club (région de Madrid)", "a.choose": "Choisissez votre club…", "a.otherClub": "Nom de votre club", "a.teamOff": "Équipe", "a.teamFree": "Votre équipe", "a.role": "Votre rôle", "a.pending": "En vous inscrivant comme utilisateur officiel, votre accès reste en attente jusqu'à validation par le directeur sportif ou le Master. Tous les utilisateurs ne peuvent pas être entraîneurs.", "a.freeInc": "Le forfait gratuit inclut jusqu'à 14 joueurs, la composition, la convocation, le mode match et Coach AI. Il n'inclut pas les vidéos de présentation, la gestion des utilisateurs ni les fonctions de club.", "a.startFree": "Commencer gratuitement", "a.signin": "Se connecter", "a.create": "Créer un compte et entrer", "a.proto": "Prototype — aucune donnée n'est enregistrée sur un serveur", "a.demoHint": "Démo : utilisateur demo / mot de passe demo", "a.demoBtn": "▶ Entrer avec le compte démo",
+    "a.tagline": "Gestion intelligente pour les éducateurs de football", "a.accOff": "Compte officiel du club", "a.accOffD": "Le directeur sportif ou le Master vous a déjà ajouté. Choisissez votre mot de passe pour accéder.", "a.accFree": "J'entraîne de mon côté", "a.accFreeD": "Gratuit, fonctions limitées.", "a.have": "J'ai déjà un compte", "a.register": "S'inscrire", "a.name": "Votre nom", "a.fullname": "Nom et prénom", "a.email": "E-mail", "a.pass": "Mot de passe", "a.region": "Région", "a.clubMadrid": "Club (région de Madrid)", "a.choose": "Choisissez votre club…", "a.otherClub": "Nom de votre club", "a.teamOff": "Équipe", "a.teamFree": "Votre équipe", "a.role": "Votre rôle", "a.pending": "En vous inscrivant comme utilisateur officiel, votre accès reste en attente jusqu'à validation par le directeur sportif ou le Master. Tous les utilisateurs ne peuvent pas être entraîneurs.", "a.freeInc": "Gratuit à vie : effectif complet jusqu'à {n} joueurs, composition, convocation, mode match, tableau tactique et Coach AI.", "a.startFree": "Commencer gratuitement", "a.signin": "Se connecter", "a.create": "Créer un compte et entrer", "a.proto": "Prototype — aucune donnée n'est enregistrée sur un serveur", "a.demoHint": "Démo : utilisateur demo / mot de passe demo", "a.demoBtn": "▶ Entrer avec le compte démo",
     "a.forgot": "Mot de passe oublié ?", "a.forgotTitle": "Récupérer le mot de passe", "a.forgotD": "Saisissez votre e-mail et nous vous enverrons un lien pour en choisir un nouveau.", "a.forgotSend": "Envoyer le lien", "a.sending": "Envoi…", "a.forgotSent": "Si cet e-mail a un compte, le lien est parti. Il expire dans une heure et ne sert qu'une fois. Vérifiez aussi vos spams.", "a.forgotNoMail": "L'envoi d'e-mails n'est pas disponible pour le moment. Prévenez votre club.", "a.resetTitle": "Choisissez votre nouveau mot de passe", "a.resetD": "Ce lien expire dans une heure et ne sert qu'une fois.", "a.newPass": "Nouveau mot de passe", "a.newPass2": "Répétez le mot de passe", "a.resetSave": "Enregistrer", "a.resetOk": "Mot de passe mis à jour. Vous pouvez vous connecter avec.", "a.resetBad": "Ce lien ne fonctionne plus : il a expiré ou a déjà été utilisé. Demandez-en un autre.", "a.passRule": "6 caractères minimum, et les deux doivent correspondre.", "a.noBackend": "Pas de connexion au serveur. Réessayez plus tard.",
     "p.account": "Mon compte", "p.changePass": "Changer le mot de passe", "p.current": "Mot de passe actuel", "p.save": "Enregistrer", "p.saved": "Mot de passe mis à jour.", "p.badCurrent": "Le mot de passe actuel est incorrect.", "p.close": "Fermer",
     "h.nextMatch": "Prochain match", "h.nextTrain": "Prochain entraînement", "h.available": "Disponibles", "h.lessMin": "Moins de temps de jeu", "h.alerts": "Alertes", "h.quick": "Accès rapides", "h.family": "Infos pour les familles", "h.pending": "accès en attente de validation", "h.pending1": "accès en attente de validation", "h.startMatch": "Démarrer le match",
@@ -1681,7 +1681,7 @@ const DICT = {
     "a.loading": "Chargement…",
     "a.entering": "Connexion…",
     "a.demoPick": "Quel rôle voulez-vous voir ?",
-    "a.demoPickD": "Choisissez un rôle pour découvrir l'application comme cette personne la verrait.",
+    "a.demoPickD": "Choisissez un rôle pour découvrir l'application comme cette personne la verrait.", "a.heroTitle": "Organisez votre équipe. Gagnez du temps chaque semaine.", "a.heroBody": "Effectif, convocations, tableau tactique et planification dès le premier jour.", "a.heroBadge": "✓ Pas de carte pour commencer", "a.clubName": "Nom du club", "a.clubNameHint": "Choisissez votre club s'il apparaît déjà dans la liste, ou saisissez son nom pour le créer. S'il a déjà un staff technique inscrit, vous ne pourrez pas le fonder — demandez à être invité.", "a.clubPlanLabel": "Le forfait de votre club", "a.clubPlanFreeTail": "Changez de forfait quand vous voulez depuis l'application.", "a.clubPlanPaidTail": "Une fois l'inscription terminée, nous vous emmenons au paiement. Les places s'activent dès que le paiement est confirmé.", "a.officialTitle": "Inscription par le club", "a.officialBody": "Pour les équipes officielles, c'est le directeur sportif ou le Master qui vous inscrit. Utilisez le même e-mail avec lequel on vous a ajouté et choisissez votre mot de passe ici. Votre équipe et votre rôle sont déjà définis.", "a.teamWillBe": "Votre équipe sera {team} — {sub}.", "pln.mensual.nombre": "Mensuel", "pln.mensual.ciclo": "par mois", "pln.mensual.nota": "Sans engagement. Annulez quand vous voulez.", "pln.temporada.nombre": "Saison", "pln.temporada.ciclo": "par an", "pln.temporada.nota": "7,90 €/mois. Vous payez en septembre et n'y pensez plus.", "pln.temporada.ahorro": "Économisez 41 €", "plc.club_s.nombre": "Club S", "plc.club_s.equipos": "Jusqu'à 5 équipes", "plc.club_s.usuarios": "20 accès", "plc.club_s.porEquipo": "50 € par équipe", "plc.club_m.nombre": "Club M", "plc.club_m.equipos": "Jusqu'à 12 équipes", "plc.club_m.usuarios": "50 accès", "plc.club_m.porEquipo": "37 € par équipe", "plc.club_l.nombre": "Club L", "plc.club_l.equipos": "Équipes illimitées", "plc.club_l.usuarios": "Accès illimités", "plc.club_l.porEquipo": "Pour les grands clubs", "plc.gratis.nombre": "Gratuit", "plc.gratis.equipos": "1 équipe", "plc.gratis.usuarios": "2 accès", "plc.gratis.detalle": "1 pour le club et 1 pour un entraîneur", "pf.squad.nombre": "Effectif", "pf.squad.free": "Effectif complet, jusqu'à {n} joueurs", "pf.squad.pro": "En plus : fiche complète et vidéo de présentation", "pf.exercises.nombre": "Exercices", "pf.exercises.free": "{n} exercices de la bibliothèque", "pf.exercises.pro": "Les 26 exercices, filtrables par catégorie", "pf.plays.nombre": "Tableau tactique", "pf.plays.free": "Tableau tactique complet : dessin, systèmes, plein écran et luminosité", "pf.plays.pro": "En plus : enregistrer les combinaisons, exporter en PNG et palette de couleurs", "pf.training.nombre": "Entraînement", "pf.training.free": "{n} séance d'entraînement enregistrée", "pf.training.pro": "Séances illimitées et votre propre bibliothèque", "pf.discipline.nombre": "Discipline", "pf.discipline.free": "Présences et incidents individuels", "pf.discipline.pro": "Mesures collectives, suivi financier et export CSV", "pf.docs.nombre": "Règlement", "pf.docs.free": "Consulter le règlement", "pf.docs.pro": "Matrice des signatures et suivi des sanctions", "pf.calls.nombre": "Convocations", "pf.calls.free": "Convocation actuelle", "pf.calls.pro": "Historique complet des convocations", "pf.calendar.nombre": "Calendrier", "pf.calendar.free": "{n} matchs dans le calendrier", "pf.calendar.pro": "Calendrier complet via CSV et ICS", "pf.cargas.nombre": "Charge physique", "pf.cargas.pro": "Feu tricolore de charge physique par joueur et % de charge, partagé avec le staff technique", "pf.stats.nombre": "Statistiques", "pf.stats.free": "Résumé basique", "pf.stats.pro": "Statistiques complètes de l'équipe", "pf.ai.nombre": "Coach AI", "pf.ai.free": "{n} questions à Coach AI par mois", "pf.ai.pro": "Coach AI illimité", "pf.video.nombre": "Vidéo joueur", "pf.video.pro": "Vidéo de présentation du joueur", "pf.users.nombre": "Utilisateurs et rôles", "pf.users.pro": "Gestion des utilisateurs et des rôles du club", "pm.myPlan": "Votre forfait", "pm.masterAccess": "★ Master · accès total", "pm.proActive": "★ PRO actif", "pm.perMonth": "/ mois", "pm.unlocked": "Vous avez débloqué toutes les fonctions du staff technique.", "pm.subNote": "Abonnement mensuel, sans engagement. Annulez quand vous voulez depuis votre compte.", "pm.cancelled": "Annulé : vous garderez PRO jusqu'au {d}.", "pm.renews": "Renouvellement le {d}.", "pm.openingPay": "Ouverture du paiement…", "pm.choose": "Choisir", "pm.manageSub": "Gérer l'abonnement", "pm.opening": "Ouverture…", "pm.clubTitle": "Vous êtes le club ? Un forfait pour toutes vos équipes", "pm.clubBody": "Tout le staff technique du club en PRO, avec une vue globale pour le directeur sportif. Prix à la saison.", "pm.clubExplain": "Équipes désigne les catégories du club (U16 B, U18 A…). Accès désigne les membres du staff technique qui peuvent se connecter : entraîneur, adjoint et délégué de chaque équipe, plus le directeur sportif.", "pm.perSeason": "par saison · ", "pm.hire": "Souscrire", "pm.compareTitle": "Ce qu'inclut chaque forfait", "pm.colFeature": "Fonction", "pm.colBasic": "Basique", "pm.errPortal": "Impossible d'ouvrir le portail d'abonnement.", "pm.errPortalDown": "La gestion de l'abonnement n'est pas disponible pour le moment. Réessayez plus tard.", "pm.errPayDown": "Les paiements ne sont pas disponibles pour le moment. Réessayez plus tard.", "pm.modalTitle": "Ceci est une fonction PRO", "pm.modalDefault": "Débloquez toutes les fonctions de CoachBase AI.", "pm.modalFreeNote": "Avec le forfait gratuit : {x}.", "pm.modalCta": "Voir PRO · {price}/mois", "pm.modalLater": "Pas maintenant",
     "as.title": "Présences du jour",
     "as.subtitle": "Qui est venu et pourquoi. Ni incidents ni sanctions ici : cela reste dans Discipline.",
     "as.today": "Aujourd'hui",
@@ -1768,7 +1768,7 @@ const DICT = {
     "navg.equipo": "Mannschaft", "navg.partido": "Spieltag", "navg.entrenamiento": "Training", "navg.delegado": "Betreuer", "navg.estadisticas": "Statistik", "navg.roles": "Rollen", "navg.coachai": "Coach AI",
     "role.entrenador": "Cheftrainer", "role.segundo": "Co-Trainer", "role.delegado": "Betreuer", "role.padre": "Elternteil / Vormund", "role.director": "Sportdirektor", "role.club": "Verein", "role.master": "Master · EBLDigital", 
     "c.exit": "Abmelden", "c.planFree": "GRATIS-PLAN", "c.upgrade": "Upgrade", "c.by": "Entwickelt von EBLDigital", "c.madeBy": "App entwickelt von EBLDigital ·", "navg.master": "Master", "nav.master": "Master-Panel", "c.pro": "PRO-Funktion. Für die Freischaltung auf ein offizielles Vereinskonto upgraden.", "c.cancel": "Abbrechen", "c.nav": "Navigation", "c.trialBadge": "TESTVERSION PRO", "c.planCurrentFree": "Aktueller Plan · Kostenlos", "c.goPro": "Zu PRO wechseln",
-    "a.tagline": "Intelligentes Management für Jugendfußballtrainer", "a.accOff": "Offizielles Vereinskonto", "a.accOffD": "Der Sportdirektor oder der Master hat dich bereits hinzugefügt. Lege dein Passwort fest und leg direkt los.", "a.accFree": "Ich trainiere auf eigene Faust", "a.accFreeD": "Gratis, mit eingeschränkten Funktionen.", "a.have": "Ich habe bereits ein Konto", "a.register": "Registrieren", "a.name": "Dein Name", "a.fullname": "Vor- und Nachname", "a.email": "E-Mail", "a.pass": "Passwort", "a.region": "Region", "a.clubMadrid": "Verein (Region Madrid)", "a.choose": "Wähle deinen Verein…", "a.otherClub": "Name deines Vereins", "a.teamOff": "Mannschaft", "a.teamFree": "Deine Mannschaft", "a.role": "Deine Rolle", "a.pending": "Bei der Registrierung als offizieller Benutzer bleibt dein Zugang ausstehend, bis der Sportdirektor oder der Master ihn freigibt. Nicht jeder Benutzer kann Trainer sein.", "a.freeInc": "Der Gratis-Plan umfasst bis zu 14 Spieler, Aufstellung, Kader, Spielmodus und Coach AI. Nicht enthalten: Vorstellungsvideos, Benutzerverwaltung und Vereinsfunktionen.", "a.startFree": "Gratis starten", "a.signin": "Anmelden", "a.create": "Konto erstellen & starten", "a.proto": "Prototyp — es werden keine Daten auf einem Server gespeichert", "a.demoHint": "Demo: Benutzer demo / Passwort demo", "a.demoBtn": "▶ Mit Demo-Konto einloggen",
+    "a.tagline": "Intelligentes Management für Jugendfußballtrainer", "a.accOff": "Offizielles Vereinskonto", "a.accOffD": "Der Sportdirektor oder der Master hat dich bereits hinzugefügt. Lege dein Passwort fest und leg direkt los.", "a.accFree": "Ich trainiere auf eigene Faust", "a.accFreeD": "Gratis, mit eingeschränkten Funktionen.", "a.have": "Ich habe bereits ein Konto", "a.register": "Registrieren", "a.name": "Dein Name", "a.fullname": "Vor- und Nachname", "a.email": "E-Mail", "a.pass": "Passwort", "a.region": "Region", "a.clubMadrid": "Verein (Region Madrid)", "a.choose": "Wähle deinen Verein…", "a.otherClub": "Name deines Vereins", "a.teamOff": "Mannschaft", "a.teamFree": "Deine Mannschaft", "a.role": "Deine Rolle", "a.pending": "Bei der Registrierung als offizieller Benutzer bleibt dein Zugang ausstehend, bis der Sportdirektor oder der Master ihn freigibt. Nicht jeder Benutzer kann Trainer sein.", "a.freeInc": "Für immer gratis: vollständiger Kader mit bis zu {n} Spielern, Aufstellung, Kader-Nominierung, Spielmodus, Taktiktafel und Coach AI.", "a.startFree": "Gratis starten", "a.signin": "Anmelden", "a.create": "Konto erstellen & starten", "a.proto": "Prototyp — es werden keine Daten auf einem Server gespeichert", "a.demoHint": "Demo: Benutzer demo / Passwort demo", "a.demoBtn": "▶ Mit Demo-Konto einloggen",
     "a.forgot": "Passwort vergessen?", "a.forgotTitle": "Passwort zurücksetzen", "a.forgotD": "Gib deine E-Mail ein und wir schicken dir einen Link für ein neues Passwort.", "a.forgotSend": "Link senden", "a.sending": "Wird gesendet…", "a.forgotSent": "Falls es zu dieser E-Mail ein Konto gibt, ist der Link unterwegs. Er läuft in einer Stunde ab und gilt nur einmal. Schau auch im Spam-Ordner.", "a.forgotNoMail": "Der E-Mail-Versand ist gerade nicht verfügbar. Sag deinem Verein Bescheid.", "a.resetTitle": "Wähle dein neues Passwort", "a.resetD": "Dieser Link läuft in einer Stunde ab und gilt nur einmal.", "a.newPass": "Neues Passwort", "a.newPass2": "Passwort wiederholen", "a.resetSave": "Passwort speichern", "a.resetOk": "Passwort aktualisiert. Du kannst dich jetzt damit anmelden.", "a.resetBad": "Dieser Link gilt nicht mehr: abgelaufen oder bereits benutzt. Fordere einen neuen an.", "a.passRule": "Mindestens 6 Zeichen, und beide müssen übereinstimmen.", "a.noBackend": "Keine Verbindung zum Server. Versuch es später noch einmal.",
     "p.account": "Mein Konto", "p.changePass": "Passwort ändern", "p.current": "Aktuelles Passwort", "p.save": "Speichern", "p.saved": "Passwort aktualisiert.", "p.badCurrent": "Das aktuelle Passwort stimmt nicht.", "p.close": "Schließen",
     "h.nextMatch": "Nächstes Spiel", "h.nextTrain": "Nächstes Training", "h.available": "Verfügbar", "h.lessMin": "Wenig Spielzeit", "h.alerts": "Warnungen", "h.quick": "Schnellzugriff", "h.family": "Infos für die Familien", "h.pending": "ausstehende Zugänge", "h.pending1": "ausstehender Zugang", "h.startMatch": "Spiel starten",
@@ -2310,7 +2310,7 @@ const DICT = {
     "a.loading": "Wird geladen…",
     "a.entering": "Anmeldung läuft…",
     "a.demoPick": "Welche Rolle möchtest du sehen?",
-    "a.demoPickD": "Wähle eine Rolle, um die App so zu sehen, wie diese Person sie sehen würde.",
+    "a.demoPickD": "Wähle eine Rolle, um die App so zu sehen, wie diese Person sie sehen würde.", "a.heroTitle": "Organisiere dein Team. Spare jede Woche Zeit.", "a.heroBody": "Kader, Kader-Nominierungen, Taktiktafel und Planung ab dem ersten Tag.", "a.heroBadge": "✓ Keine Karte zum Starten nötig", "a.clubName": "Vereinsname", "a.clubNameHint": "Wähle deinen Verein, falls er schon gelistet ist, oder gib seinen Namen ein, um ihn anzulegen. Hat er bereits ein registriertes Trainerteam, kannst du ihn nicht gründen — bitte stattdessen um eine Einladung.", "a.clubPlanLabel": "Der Tarif deines Vereins", "a.clubPlanFreeTail": "Du kannst deinen Tarif jederzeit in der App upgraden.", "a.clubPlanPaidTail": "Nach Abschluss der Registrierung geht es weiter zur Zahlung. Die Plätze werden aktiviert, sobald die Zahlung bestätigt ist.", "a.officialTitle": "Vom Verein angelegt", "a.officialBody": "Bei offiziellen Mannschaften legt dich der Sportdirektor oder der Master an. Verwende dieselbe E-Mail-Adresse, mit der du hinzugefügt wurdest, und lege hier dein Passwort fest. Deine Mannschaft und Rolle sind bereits festgelegt.", "a.teamWillBe": "Deine Mannschaft wird {team} — {sub}.", "pln.mensual.nombre": "Monatlich", "pln.mensual.ciclo": "pro Monat", "pln.mensual.nota": "Keine Mindestlaufzeit. Jederzeit kündbar.", "pln.temporada.nombre": "Saison", "pln.temporada.ciclo": "pro Jahr", "pln.temporada.nota": "7,90 €/Monat. Du zahlst im September und musst dich nicht mehr kümmern.", "pln.temporada.ahorro": "Spare 41 €", "plc.club_s.nombre": "Club S", "plc.club_s.equipos": "Bis zu 5 Mannschaften", "plc.club_s.usuarios": "20 Zugänge", "plc.club_s.porEquipo": "50 € pro Mannschaft", "plc.club_m.nombre": "Club M", "plc.club_m.equipos": "Bis zu 12 Mannschaften", "plc.club_m.usuarios": "50 Zugänge", "plc.club_m.porEquipo": "37 € pro Mannschaft", "plc.club_l.nombre": "Club L", "plc.club_l.equipos": "Unbegrenzte Mannschaften", "plc.club_l.usuarios": "Unbegrenzte Zugänge", "plc.club_l.porEquipo": "Für große Vereine", "plc.gratis.nombre": "Gratis", "plc.gratis.equipos": "1 Mannschaft", "plc.gratis.usuarios": "2 Zugänge", "plc.gratis.detalle": "1 für den Verein und 1 für einen Trainer", "pf.squad.nombre": "Kader", "pf.squad.free": "Vollständiger Kader, bis zu {n} Spieler", "pf.squad.pro": "Außerdem: erweitertes Profil und Vorstellungsvideo", "pf.exercises.nombre": "Übungen", "pf.exercises.free": "{n} Übungen aus der Bibliothek", "pf.exercises.pro": "Alle 26 Übungen, filterbar nach Kategorie", "pf.plays.nombre": "Taktiktafel", "pf.plays.free": "Vollständige Taktiktafel: Zeichnen, Systeme, Vollbild und Helligkeit", "pf.plays.pro": "Außerdem: Spielzüge speichern, als PNG exportieren und Farbpalette", "pf.training.nombre": "Training", "pf.training.free": "{n} gespeicherte Trainingseinheit", "pf.training.pro": "Unbegrenzte Einheiten und eigene Bibliothek", "pf.discipline.nombre": "Disziplin", "pf.discipline.free": "Anwesenheit und einzelne Vorfälle", "pf.discipline.pro": "Kollektivmaßnahmen, Kostenkontrolle und CSV-Export", "pf.docs.nombre": "Regelwerk", "pf.docs.free": "Regelwerk einsehen", "pf.docs.pro": "Unterschriften-Matrix und Sanktionskontrolle", "pf.calls.nombre": "Kader-Nominierungen", "pf.calls.free": "Aktuelle Kader-Nominierung", "pf.calls.pro": "Vollständiger Verlauf der Nominierungen", "pf.calendar.nombre": "Spielplan", "pf.calendar.free": "{n} Spiele im Spielplan", "pf.calendar.pro": "Vollständiger Spielplan über CSV und ICS", "pf.cargas.nombre": "Trainingsbelastung", "pf.cargas.pro": "Ampel für Trainingsbelastung pro Spieler und % Belastung, für das gesamte Trainerteam sichtbar", "pf.stats.nombre": "Statistik", "pf.stats.free": "Kurzübersicht", "pf.stats.pro": "Vollständige Mannschaftsstatistik", "pf.ai.nombre": "Coach AI", "pf.ai.free": "{n} Coach-AI-Anfragen pro Monat", "pf.ai.pro": "Coach AI ohne Limit", "pf.video.nombre": "Spielervideo", "pf.video.pro": "Spieler-Vorstellungsvideo", "pf.users.nombre": "Benutzer & Rollen", "pf.users.pro": "Benutzer- und Rollenverwaltung für den Verein", "pm.myPlan": "Dein Tarif", "pm.masterAccess": "★ Master · Vollzugriff", "pm.proActive": "★ PRO aktiv", "pm.perMonth": "/ Monat", "pm.unlocked": "Du hast alle Funktionen für das Trainerteam freigeschaltet.", "pm.subNote": "Monatliches Abo, keine Mindestlaufzeit. Jederzeit über dein Konto kündbar.", "pm.cancelled": "Gekündigt: Du behältst PRO bis zum {d}.", "pm.renews": "Verlängert sich am {d}.", "pm.openingPay": "Zahlung wird geöffnet…", "pm.choose": "Wählen", "pm.manageSub": "Abo verwalten", "pm.opening": "Wird geöffnet…", "pm.clubTitle": "Bist du der Verein? Ein Tarif für alle deine Mannschaften", "pm.clubBody": "Das gesamte Trainerteam des Vereins mit PRO, mit einer Gesamtübersicht für den Sportdirektor. Preis pro Saison.", "pm.clubExplain": "Mannschaften sind die Altersklassen des Vereins (U16 B, U18 A…). Zugänge sind die Personen aus dem Trainerteam, die sich anmelden können: Trainer, Co-Trainer und Betreuer jeder Mannschaft, plus der Sportdirektor.", "pm.perSeason": "pro Saison · ", "pm.hire": "Buchen", "pm.compareTitle": "Was in jedem Tarif enthalten ist", "pm.colFeature": "Funktion", "pm.colBasic": "Basis", "pm.errPortal": "Das Abo-Portal konnte nicht geöffnet werden.", "pm.errPortalDown": "Die Abo-Verwaltung ist gerade nicht verfügbar. Versuch es später erneut.", "pm.errPayDown": "Zahlungen sind gerade nicht verfügbar. Versuch es später erneut.", "pm.modalTitle": "Das ist eine PRO-Funktion", "pm.modalDefault": "Schalte alle Funktionen von CoachBase AI frei.", "pm.modalFreeNote": "Im Gratis-Tarif: {x}.", "pm.modalCta": "PRO ansehen · {price}/Monat", "pm.modalLater": "Nicht jetzt",
     "as.title": "Anwesenheit heute",
     "as.subtitle": "Wer da war und warum. Keine Vorfälle oder Sanktionen — das bleibt in Disziplin.",
     "as.today": "Heute",
@@ -2397,7 +2397,7 @@ const DICT = {
     "navg.equipo": "Equipa", "navg.partido": "Dia de jogo", "navg.entrenamiento": "Treino", "navg.delegado": "Delegado", "navg.estadisticas": "Estatísticas", "navg.roles": "Funções", "navg.coachai": "Coach AI",
     "role.entrenador": "Treinador principal", "role.segundo": "Treinador adjunto", "role.delegado": "Delegado", "role.padre": "Pai / Mãe / Tutor", "role.director": "Diretor desportivo", "role.club": "Clube", "role.master": "Master · EBLDigital", 
     "c.exit": "Sair", "c.planFree": "PLANO GRÁTIS", "c.upgrade": "Melhorar", "c.by": "Desenvolvido pela EBLDigital", "c.madeBy": "App criada pela EBLDigital ·", "navg.master": "Master", "nav.master": "Painel Master", "c.pro": "Função PRO. Muda para uma conta oficial do clube para a desbloquear.", "c.cancel": "Cancelar", "c.nav": "Navegação", "c.trialBadge": "TESTE PRO", "c.planCurrentFree": "Plano atual · Grátis", "c.goPro": "Ir para PRO",
-    "a.tagline": "Gestão inteligente para treinadores de futebol de formação", "a.accOff": "Conta oficial do clube", "a.accOffD": "O diretor desportivo ou o Master já te deu de alta. Define a tua palavra-passe e entra já.", "a.accFree": "Treino por minha conta", "a.accFreeD": "Grátis, com funções limitadas.", "a.have": "Já tenho conta", "a.register": "Registar", "a.name": "O teu nome", "a.fullname": "Nome completo", "a.email": "Email", "a.pass": "Palavra-passe", "a.region": "Região", "a.clubMadrid": "Clube (região de Madrid)", "a.choose": "Escolhe o teu clube…", "a.otherClub": "Nome do teu clube", "a.teamOff": "Equipa", "a.teamFree": "A tua equipa", "a.role": "A tua função", "a.pending": "Ao registares-te como utilizador oficial, o teu acesso fica pendente até o diretor desportivo ou o Master o aprovarem. Nem todos os utilizadores podem ser treinadores.", "a.freeInc": "O plano grátis inclui até 14 jogadores, escalação, convocatória, modo jogo e Coach AI. Não inclui vídeo de apresentação, gestão de utilizadores nem funções de clube.", "a.startFree": "Começar grátis", "a.signin": "Entrar", "a.create": "Criar conta e entrar", "a.proto": "Protótipo — os dados não são guardados em nenhum servidor", "a.demoHint": "Demo: utilizador demo / palavra-passe demo", "a.demoBtn": "▶ Entrar com a conta demo",
+    "a.tagline": "Gestão inteligente para treinadores de futebol de formação", "a.accOff": "Conta oficial do clube", "a.accOffD": "O diretor desportivo ou o Master já te deu de alta. Define a tua palavra-passe e entra já.", "a.accFree": "Treino por minha conta", "a.accFreeD": "Grátis, com funções limitadas.", "a.have": "Já tenho conta", "a.register": "Registar", "a.name": "O teu nome", "a.fullname": "Nome completo", "a.email": "Email", "a.pass": "Palavra-passe", "a.region": "Região", "a.clubMadrid": "Clube (região de Madrid)", "a.choose": "Escolhe o teu clube…", "a.otherClub": "Nome do teu clube", "a.teamOff": "Equipa", "a.teamFree": "A tua equipa", "a.role": "A tua função", "a.pending": "Ao registares-te como utilizador oficial, o teu acesso fica pendente até o diretor desportivo ou o Master o aprovarem. Nem todos os utilizadores podem ser treinadores.", "a.freeInc": "Grátis para sempre: plantel completo até {n} jogadores, escalação, convocatória, modo jogo, quadro tático e Coach AI.", "a.startFree": "Começar grátis", "a.signin": "Entrar", "a.create": "Criar conta e entrar", "a.proto": "Protótipo — os dados não são guardados em nenhum servidor", "a.demoHint": "Demo: utilizador demo / palavra-passe demo", "a.demoBtn": "▶ Entrar com a conta demo",
     "a.forgot": "Esqueceste-te da palavra-passe?", "a.forgotTitle": "Recuperar palavra-passe", "a.forgotD": "Escreve o teu email e enviamos-te um link para escolheres uma nova.", "a.forgotSend": "Enviar link", "a.sending": "A enviar…", "a.forgotSent": "Se esse email tiver conta, o link já seguiu. Expira dentro de uma hora e só serve uma vez. Vê também o spam.", "a.forgotNoMail": "O envio de email não está disponível agora. Avisa o teu clube.", "a.resetTitle": "Escolhe a tua nova palavra-passe", "a.resetD": "Este link expira dentro de uma hora e só serve uma vez.", "a.newPass": "Nova palavra-passe", "a.newPass2": "Repete a palavra-passe", "a.resetSave": "Guardar palavra-passe", "a.resetOk": "Palavra-passe atualizada. Já podes entrar com ela.", "a.resetBad": "Este link já não é válido: expirou ou já foi usado. Pede outro.", "a.passRule": "Mínimo 6 caracteres, e as duas têm de coincidir.", "a.noBackend": "Sem ligação ao servidor. Tenta mais tarde.",
     "p.account": "A minha conta", "p.changePass": "Alterar palavra-passe", "p.current": "Palavra-passe atual", "p.save": "Guardar", "p.saved": "Palavra-passe atualizada.", "p.badCurrent": "A palavra-passe atual não está correta.", "p.close": "Fechar",
     "h.nextMatch": "Próximo jogo", "h.nextTrain": "Próximo treino", "h.available": "Disponíveis", "h.lessMin": "Menos participação", "h.alerts": "Alertas", "h.quick": "Acessos rápidos", "h.family": "Avisos para as famílias", "h.pending": "acessos pendentes de aprovação", "h.pending1": "acesso pendente de aprovação", "h.startMatch": "Iniciar jogo",
@@ -2938,7 +2938,7 @@ const DICT = {
     "a.loading": "A carregar…",
     "a.entering": "A entrar…",
     "a.demoPick": "Que perfil queres ver?",
-    "a.demoPickD": "Escolhe um perfil para explorar a aplicação tal como essa pessoa a veria.",
+    "a.demoPickD": "Escolhe um perfil para explorar a aplicação tal como essa pessoa a veria.", "a.heroTitle": "Organiza a tua equipa. Ganha tempo todas as semanas.", "a.heroBody": "Plantel, convocatórias, quadro tático e planeamento desde o primeiro dia.", "a.heroBadge": "✓ Sem cartão para começar", "a.clubName": "Nome do clube", "a.clubNameHint": "Escolhe o teu clube se já aparecer na lista, ou escreve o nome para o criar. Se já tiver equipa técnica registada, não o podes fundar — pede para te convidarem.", "a.clubPlanLabel": "O plano do teu clube", "a.clubPlanFreeTail": "Muda de plano quando quiseres, lá de dentro.", "a.clubPlanPaidTail": "Ao terminar o registo, levamos-te para o pagamento. As vagas ativam-se assim que o pagamento for confirmado.", "a.officialTitle": "Registo pelo clube", "a.officialBody": "Nas equipas oficiais, quem te dá de alta é o diretor desportivo ou o Master. Usa o mesmo email com que te adicionaram e escolhe aqui a tua palavra-passe. A tua equipa e função já estão definidas.", "a.teamWillBe": "A tua equipa vai ser {team} — {sub}.", "pln.mensual.nombre": "Mensal", "pln.mensual.ciclo": "por mês", "pln.mensual.nota": "Sem permanência. Cancela quando quiseres.", "pln.temporada.nombre": "Temporada", "pln.temporada.ciclo": "por ano", "pln.temporada.nota": "7,90 €/mês. Pagas em setembro e esqueces o assunto.", "pln.temporada.ahorro": "Poupas 41 €", "plc.club_s.nombre": "Club S", "plc.club_s.equipos": "Até 5 equipas", "plc.club_s.usuarios": "20 acessos", "plc.club_s.porEquipo": "50 € por equipa", "plc.club_m.nombre": "Club M", "plc.club_m.equipos": "Até 12 equipas", "plc.club_m.usuarios": "50 acessos", "plc.club_m.porEquipo": "37 € por equipa", "plc.club_l.nombre": "Club L", "plc.club_l.equipos": "Equipas ilimitadas", "plc.club_l.usuarios": "Acessos ilimitados", "plc.club_l.porEquipo": "Para clubes grandes", "plc.gratis.nombre": "Grátis", "plc.gratis.equipos": "1 equipa", "plc.gratis.usuarios": "2 acessos", "plc.gratis.detalle": "1 para o clube e 1 para um treinador", "pf.squad.nombre": "Plantel", "pf.squad.free": "Plantel completo, até {n} jogadores", "pf.squad.pro": "Além disso: ficha ampliada e vídeo de apresentação", "pf.exercises.nombre": "Exercícios", "pf.exercises.free": "{n} exercícios da biblioteca", "pf.exercises.pro": "Os 26 exercícios, com filtros por categoria", "pf.plays.nombre": "Quadro tático", "pf.plays.free": "Quadro tático completo: desenhar, sistemas, ecrã inteiro e brilho", "pf.plays.pro": "Além disso: guardar jogadas, exportar PNG e paleta de cores", "pf.training.nombre": "Treino", "pf.training.free": "{n} sessão de treino guardada", "pf.training.pro": "Sessões ilimitadas e biblioteca própria", "pf.discipline.nombre": "Disciplina", "pf.discipline.free": "Chamada e incidências individuais", "pf.discipline.pro": "Medidas coletivas, controlo económico e exportação CSV", "pf.docs.nombre": "Regulamento", "pf.docs.free": "Consultar o regulamento", "pf.docs.pro": "Matriz de assinaturas e controlo de sanções", "pf.calls.nombre": "Convocatórias", "pf.calls.free": "Convocatória atual", "pf.calls.pro": "Histórico completo de convocatórias", "pf.calendar.nombre": "Calendário", "pf.calendar.free": "{n} jogos no calendário", "pf.calendar.pro": "Calendário completo por CSV e ICS", "pf.cargas.nombre": "Carga física", "pf.cargas.pro": "Semáforo de carga física por jogador e % de carga, partilhado com a equipa técnica", "pf.stats.nombre": "Estatísticas", "pf.stats.free": "Resumo básico", "pf.stats.pro": "Estatísticas completas da equipa", "pf.ai.nombre": "Coach AI", "pf.ai.free": "{n} consultas por mês ao Coach AI", "pf.ai.pro": "Coach AI sem limite", "pf.video.nombre": "Vídeo do jogador", "pf.video.pro": "Vídeo de apresentação do jogador", "pf.users.nombre": "Utilizadores e funções", "pf.users.pro": "Gestão de utilizadores e funções do clube", "pm.myPlan": "O teu plano", "pm.masterAccess": "★ Master · acesso total", "pm.proActive": "★ PRO ativo", "pm.perMonth": "/ mês", "pm.unlocked": "Tens desbloqueadas todas as funções da equipa técnica.", "pm.subNote": "Subscrição mensal, sem permanência. Cancela quando quiseres a partir da tua conta.", "pm.cancelled": "Cancelada: vais manter o PRO até {d}.", "pm.renews": "Renova a {d}.", "pm.openingPay": "A abrir pagamento…", "pm.choose": "Escolher", "pm.manageSub": "Gerir subscrição", "pm.opening": "A abrir…", "pm.clubTitle": "És o clube? Um plano para todas as tuas equipas", "pm.clubBody": "Toda a equipa técnica do clube em PRO, com vista agregada para o diretor desportivo. Preço por temporada.", "pm.clubExplain": "Equipas são os escalões do clube (Sub-16 B, Sub-18 A…). Acessos são as pessoas da equipa técnica que podem entrar: treinador, segundo e delegado de cada equipa, mais o diretor desportivo.", "pm.perSeason": "por temporada · ", "pm.hire": "Contratar", "pm.compareTitle": "O que inclui cada versão", "pm.colFeature": "Função", "pm.colBasic": "Básica", "pm.errPortal": "Não foi possível abrir o portal de subscrição.", "pm.errPortalDown": "A gestão da subscrição não está disponível agora. Tenta mais tarde.", "pm.errPayDown": "Os pagamentos não estão disponíveis agora. Tenta mais tarde.", "pm.modalTitle": "Isto é do PRO", "pm.modalDefault": "Desbloqueia todas as funções do CoachBase AI.", "pm.modalFreeNote": "No plano grátis: {x}.", "pm.modalCta": "Ver PRO · {price}/mês", "pm.modalLater": "Agora não",
     "as.title": "Presenças do dia",
     "as.subtitle": "Quem veio e porquê. Sem incidentes nem sanções: isso continua em Disciplina.",
     "as.today": "Hoje",
@@ -3406,10 +3406,19 @@ const LIMITS = {
    El portal de las familias es SIEMPRE gratuito: nadie debería pagar por saber
    si su hijo está convocado. El plan PRO afecta al cuerpo técnico y a la directiva. */
 const PRO_PRICE = "9,99 €";
-/* Planes visibles en la pantalla Premium. La clave viaja al backend, que la traduce a price_id */
-const PLANES = [
-  { k: "mensual",   nombre: "Mensual",         precio: "9,99 €",  ciclo: "al mes",        nota: "Sin permanencia. Cancela cuando quieras." },
-  { k: "temporada", nombre: "Temporada",       precio: "79 €",    ciclo: "al año",        nota: "7,90 €/mes. Pagas en septiembre y te olvidas.", destacado: true, ahorro: "Ahorras 41 €" },
+/* Planes visibles en la pantalla Premium. La clave viaja al backend, que la
+   traduce a price_id.
+   Función de `lang` y no un array fijo: vivían en español a secas —nombre,
+   ciclo, nota, todo— y la pantalla que decide si alguien paga se quedaba en
+   español así hubiera elegido inglés, francés, alemán o portugués arriba en
+   el selector de idioma. El resto de la app tiene los cinco idiomas cuidados
+   hasta el último rótulo; esta pantalla, la que de verdad vende, no tenía
+   ninguno. */
+const PLANES = (lang) => [
+  { k: "mensual",   nombre: T(lang, "pln.mensual.nombre"),   precio: "9,99 €", ciclo: T(lang, "pln.mensual.ciclo"),
+    nota: T(lang, "pln.mensual.nota") },
+  { k: "temporada", nombre: T(lang, "pln.temporada.nombre"), precio: "79 €",   ciclo: T(lang, "pln.temporada.ciclo"),
+    nota: T(lang, "pln.temporada.nota"), destacado: true, ahorro: T(lang, "pln.temporada.ahorro") },
 ];
 /* Los planes de club tienen dos topes distintos y hasta ahora solo se decía
    uno. Son cosas diferentes: los EQUIPOS son las categorías del club (Infantil
@@ -3423,22 +3432,29 @@ const PLANES = [
    más un margen para la dirección deportiva. maxUsuarios es el número que se
    escribe en "Límite usuarios" del club en Airtable, que es lo que de verdad
    frena las altas. */
-const PLANES_CLUB = [
-  { k: "club_s", nombre: "Club S", equipos: "Hasta 5 equipos", maxEquipos: 5, usuarios: "20 accesos", maxUsuarios: 20,
-    precio: "249 €", porEquipo: "50 € por equipo" },
-  { k: "club_m", nombre: "Club M", equipos: "Hasta 12 equipos", maxEquipos: 12, usuarios: "50 accesos", maxUsuarios: 50,
-    precio: "449 €", porEquipo: "37 € por equipo", destacado: true },
-  { k: "club_l", nombre: "Club L", equipos: "Equipos ilimitados", maxEquipos: null, usuarios: "Accesos ilimitados", maxUsuarios: null,
-    precio: "799 €", porEquipo: "Para clubes grandes" },
+const PLANES_CLUB = (lang) => [
+  { k: "club_s", nombre: T(lang, "plc.club_s.nombre"), equipos: T(lang, "plc.club_s.equipos"), maxEquipos: 5,
+    usuarios: T(lang, "plc.club_s.usuarios"), maxUsuarios: 20, precio: "249 €", porEquipo: T(lang, "plc.club_s.porEquipo") },
+  { k: "club_m", nombre: T(lang, "plc.club_m.nombre"), equipos: T(lang, "plc.club_m.equipos"), maxEquipos: 12,
+    usuarios: T(lang, "plc.club_m.usuarios"), maxUsuarios: 50, precio: "449 €", porEquipo: T(lang, "plc.club_m.porEquipo"), destacado: true },
+  { k: "club_l", nombre: T(lang, "plc.club_l.nombre"), equipos: T(lang, "plc.club_l.equipos"), maxEquipos: null,
+    usuarios: T(lang, "plc.club_l.usuarios"), maxUsuarios: null, precio: "799 €", porEquipo: T(lang, "plc.club_l.porEquipo") },
 ];
 /* El plan gratuito de club: un equipo y dos personas —quien lo funda y alguien
    más—, que es lo que decía la letra pequeña del registro mientras la tarjeta
    ponía "1 acceso" y se contradecían. */
-const CLUB_GRATIS = { equipos: "1 equipo", maxEquipos: 1, usuarios: "2 accesos", maxUsuarios: 2,
-  detalle: "1 para el club y 1 para un entrenador" };
+const CLUB_GRATIS = (lang) => ({
+  nombre: T(lang, "plc.gratis.nombre"), equipos: T(lang, "plc.gratis.equipos"), maxEquipos: 1,
+  usuarios: T(lang, "plc.gratis.usuarios"), maxUsuarios: 2, detalle: T(lang, "plc.gratis.detalle"),
+});
 /* Topes del plan gratuito. Criterio: NUNCA limitar el montaje del equipo
-   (limitarlo ahi expulsa el primer dia); apretar donde el valor ya se ha visto. */
-const FREE_CAPS = { players: Infinity, exercises: 8, fixtures: 5, sessions: 1, aiMsgs: 10, plays: 0 };
+   (limitarlo ahi expulsa el primer dia); apretar donde el valor ya se ha visto.
+   `players` no está: el plan gratuito SÍ tiene tope de jugadores (14, ver
+   LIMITS más arriba) y aquí ponía Infinity, sin que nada lo leyera —quien
+   escribió el texto de la pantalla de registro y de la comparativa de planes
+   copió de este número, no del real, y la promesa de "sin límite" se quedó
+   viva en el texto mucho después de que el límite existiera de verdad. */
+const FREE_CAPS = { exercises: 8, fixtures: 5, sessions: 1, aiMsgs: 10, plays: 0 };
 /* Prueba PRO local: 14 dias desde el alta. Es solo el respaldo para el
    registro libre sin backend; la prueba de verdad la fija el Master en el
    campo "Prueba hasta" de Airtable y manda sobre esta. */
@@ -3458,20 +3474,38 @@ const trialLeft = (email) => {
     return days > 0 ? days : 0;
   } catch { return 0; }
 };
-const PRO_FEATURES = [
-  { k: "squad", nombre: "Plantilla", icon: "👥", free: "Plantilla completa, sin límite de jugadores", pro: "Además: ficha ampliada y vídeo de presentación" },
-  { k: "exercises", nombre: "Ejercicios", icon: "🎯", free: `${FREE_CAPS.exercises} ejercicios de la biblioteca`, pro: "Los 26 ejercicios, con filtros por categoría" },
-  { k: "plays", nombre: "Pizarra", icon: "🖊", free: "Pizarra completa: dibujar, sistemas, pantalla completa y brillo", pro: "Además: guardar jugadas, exportar PNG y paleta de colores" },
-  { k: "training", nombre: "Entrenamiento", icon: "🏋️", free: `${FREE_CAPS.sessions} sesión de entrenamiento guardada`, pro: "Sesiones ilimitadas y biblioteca propia" },
-  { k: "discipline", nombre: "Disciplina", icon: "⚖", free: "Pasar lista e incidencias individuales", pro: "Medidas colectivas, control económico y exportación CSV" },
-  { k: "docs", nombre: "Normativa", icon: "📑", free: "Consultar la normativa", pro: "Matriz de firmas y control de sanciones" },
-  { k: "calls", nombre: "Convocatorias", icon: "📋", free: "Convocatoria actual", pro: "Histórico completo de convocatorias" },
-  { k: "calendar", nombre: "Calendario", icon: "📅", free: `${FREE_CAPS.fixtures} partidos en el calendario`, pro: "Calendario completo por CSV e ICS" },
-  { k: "cargas", nombre: "Cargas físicas", icon: "🚦", free: "—", pro: "Semáforo de cargas físicas por jugador y % de carga, compartido con el cuerpo técnico" },
-  { k: "stats", nombre: "Estadísticas", icon: "📊", free: "Resumen básico", pro: "Estadísticas completas del equipo" },
-  { k: "ai", nombre: "Coach AI", icon: "✦", free: `${FREE_CAPS.aiMsgs} consultas al mes a Coach AI`, pro: "Coach AI sin límite" },
-  { k: "video", nombre: "Vídeo de jugador", icon: "🎬", free: "—", pro: "Vídeo de presentación de jugador" },
-  { k: "users", nombre: "Usuarios y roles", icon: "🔑", free: "—", pro: "Gestión de usuarios y roles del club" },
+/* El "—" de free/pro es un signo, no una palabra: se deja igual en los cinco
+   idiomas, y es en lo que se fija el color del texto (ver renderPremium),
+   así que tiene que seguir siendo EXACTAMENTE ese carácter en cualquier
+   idioma. */
+const SIN_PRO = "—";
+const PRO_FEATURES = (lang) => [
+  { k: "squad", nombre: T(lang, "pf.squad.nombre"), icon: "👥",
+    free: T(lang, "pf.squad.free").replace("{n}", LIMITS.free.players), pro: T(lang, "pf.squad.pro") },
+  { k: "exercises", nombre: T(lang, "pf.exercises.nombre"), icon: "🎯",
+    free: T(lang, "pf.exercises.free").replace("{n}", FREE_CAPS.exercises), pro: T(lang, "pf.exercises.pro") },
+  { k: "plays", nombre: T(lang, "pf.plays.nombre"), icon: "🖊",
+    free: T(lang, "pf.plays.free"), pro: T(lang, "pf.plays.pro") },
+  { k: "training", nombre: T(lang, "pf.training.nombre"), icon: "🏋️",
+    free: T(lang, "pf.training.free").replace("{n}", FREE_CAPS.sessions), pro: T(lang, "pf.training.pro") },
+  { k: "discipline", nombre: T(lang, "pf.discipline.nombre"), icon: "⚖",
+    free: T(lang, "pf.discipline.free"), pro: T(lang, "pf.discipline.pro") },
+  { k: "docs", nombre: T(lang, "pf.docs.nombre"), icon: "📑",
+    free: T(lang, "pf.docs.free"), pro: T(lang, "pf.docs.pro") },
+  { k: "calls", nombre: T(lang, "pf.calls.nombre"), icon: "📋",
+    free: T(lang, "pf.calls.free"), pro: T(lang, "pf.calls.pro") },
+  { k: "calendar", nombre: T(lang, "pf.calendar.nombre"), icon: "📅",
+    free: T(lang, "pf.calendar.free").replace("{n}", FREE_CAPS.fixtures), pro: T(lang, "pf.calendar.pro") },
+  { k: "cargas", nombre: T(lang, "pf.cargas.nombre"), icon: "🚦",
+    free: SIN_PRO, pro: T(lang, "pf.cargas.pro") },
+  { k: "stats", nombre: T(lang, "pf.stats.nombre"), icon: "📊",
+    free: T(lang, "pf.stats.free"), pro: T(lang, "pf.stats.pro") },
+  { k: "ai", nombre: T(lang, "pf.ai.nombre"), icon: "✦",
+    free: T(lang, "pf.ai.free").replace("{n}", FREE_CAPS.aiMsgs), pro: T(lang, "pf.ai.pro") },
+  { k: "video", nombre: T(lang, "pf.video.nombre"), icon: "🎬",
+    free: SIN_PRO, pro: T(lang, "pf.video.pro") },
+  { k: "users", nombre: T(lang, "pf.users.nombre"), icon: "🔑",
+    free: SIN_PRO, pro: T(lang, "pf.users.pro") },
 ];
 
 
@@ -8272,12 +8306,21 @@ function Auth({ lang, setLang, onLogin, onRegister, tema, cambiarTema }) {
 
   if (view === "choice") return Shell(
     <>
-      <div className="grid sm:grid-cols-2 gap-3">
+      {/* La tarjeta de arriba (el porqué) tenía que ocupar todo el ancho, por
+         encima de los dos botones (el qué hacer) — pero al vivir DENTRO del
+         mismo grid de 2 columnas sin decirle que ocupara las dos, el reparto
+         automático la dejaba a media anchura compartiendo fila con "Ya soy
+         usuario", y empujaba "Registrarme" —el botón que de verdad importa
+         para captar a alguien nuevo— a una segunda fila él solo, con un
+         hueco vacío al lado: el CTA principal quedaba de peor sitio que el
+         de "ya tengo cuenta". Con sm:col-span-2 vuelve a ocupar toda la fila
+         y los dos botones quedan a la misma altura, uno junto al otro. */}
       <div className="rounded-lg border p-4 mb-3" style={{ borderColor: "rgba(54,69,79,.36)", background: "rgba(54,69,79,.06)" }}>
-        <div className="font-display text-2xl leading-none" style={{ color: ac }}>Organiza tu equipo. Gana tiempo cada semana.</div>
-        <div className="text-sm mt-2" style={{ color: C.chalk }}>Plantilla, convocatorias, pizarra y planificación desde el primer día.</div>
-        <div className="flex flex-wrap gap-x-3 gap-y-1 mt-3 text-[11px]" style={{ color: C.dim }}><span>✓ Sin tarjeta para empezar</span></div>
+        <div className="font-display text-2xl leading-none" style={{ color: ac }}>{t("a.heroTitle")}</div>
+        <div className="text-sm mt-2" style={{ color: C.chalk }}>{t("a.heroBody")}</div>
+        <div className="flex flex-wrap gap-x-3 gap-y-1 mt-3 text-[11px]" style={{ color: C.dim }}><span>{t("a.heroBadge")}</span></div>
       </div>
+      <div className="grid sm:grid-cols-2 gap-3">
         <button onClick={() => { setErr(""); setView("login"); }} className="rounded-lg border p-5 text-left" style={{ borderColor: C.line, background: C.panel2 }}>
           <div className="font-display text-xl font-semibold mb-1">{t("a.have")}</div>
           <div className="text-xs" style={{ color: C.dim }}>{t("a.email")} + {t("a.pass")}</div>
@@ -8439,25 +8482,28 @@ function Auth({ lang, setLang, onLogin, onRegister, tema, cambiarTema }) {
             {Field(t("a.email"), <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="tu@email.com" type="email" className={inputCls} style={inputSt} />)}
           </div>
           {Field(t("a.pass"), <PassInput value={pass} onChange={setPass} cls={inputCls} st={inputSt} autoComplete="new-password" />)}
-          {isClubFounder && Field("Nombre del club", (
+          {/* El paso donde se elige y se paga el club: hasta ahora el único
+              de todo el registro que se quedaba en español pasara lo que
+              pasara arriba en el selector de idioma. El texto era literal —
+              nombre del club, planes, precios— así que se trata igual que
+              cualquier otro rótulo de la app: por t(). */}
+          {isClubFounder && Field(t("a.clubName"), (
             <>
               <ClubPicker value={club} onChange={selectClub}
                 options={clubOptions} placeholder={t("a.otherClub")} C={C} AC={ac} />
-              <div className="text-[10px] mt-1" style={{ color: C.dim }}>
-                {isClubFounder ? "Elige tu club si ya aparece en la lista, o escribe su nombre para crearlo. Si ya tiene cuerpo técnico dado de alta, no podrás fundarlo — pide que te inviten." : "Sugerencias de la Comunidad de Madrid. Si tu club no está, escribe su nombre tal y como aparece en tu federación."}
-              </div>
+              <div className="text-[10px] mt-1" style={{ color: C.dim }}>{t("a.clubNameHint")}</div>
             </>
           ))}
-          {isClubFounder && Field("Plan de tu club", (
+          {isClubFounder && Field(t("a.clubPlanLabel"), (
             <div className="grid grid-cols-2 gap-2">
               <button type="button" onClick={() => setPlanClub("gratis")} className="rounded-lg border p-2.5 text-left"
                 style={{ borderColor: planClub === "gratis" ? ac : C.line, background: planClub === "gratis" ? "rgba(54,69,79,.08)" : "transparent" }}>
-                <div className="font-display text-sm font-semibold" style={{ color: planClub === "gratis" ? ac : C.chalk }}>Gratis</div>
-                <div className="text-[10px]" style={{ color: C.dim }}>{CLUB_GRATIS.equipos}</div>
-                <div className="text-[10px]" style={{ color: C.dim }}>{CLUB_GRATIS.usuarios}</div>
-                <div className="text-[10px] leading-snug" style={{ color: C.dim }}>{CLUB_GRATIS.detalle}</div>
+                <div className="font-display text-sm font-semibold" style={{ color: planClub === "gratis" ? ac : C.chalk }}>{CLUB_GRATIS(lang).nombre}</div>
+                <div className="text-[10px]" style={{ color: C.dim }}>{CLUB_GRATIS(lang).equipos}</div>
+                <div className="text-[10px]" style={{ color: C.dim }}>{CLUB_GRATIS(lang).usuarios}</div>
+                <div className="text-[10px] leading-snug" style={{ color: C.dim }}>{CLUB_GRATIS(lang).detalle}</div>
               </button>
-              {PLANES_CLUB.map((p) => (
+              {PLANES_CLUB(lang).map((p) => (
                 <button key={p.k} type="button" onClick={() => setPlanClub(p.k)} className="rounded-lg border p-2.5 text-left"
                   style={{ borderColor: planClub === p.k ? ac : C.line, background: planClub === p.k ? "rgba(54,69,79,.08)" : "transparent" }}>
                   <div className="font-display text-sm font-semibold" style={{ color: planClub === p.k ? ac : C.chalk }}>{p.nombre} · {p.precio}</div>
@@ -8466,8 +8512,8 @@ function Auth({ lang, setLang, onLogin, onRegister, tema, cambiarTema }) {
                 </button>
               ))}
               <div className="col-span-2 text-[10px]" style={{ color: C.dim }}>
-                <strong>Equipos</strong> son las categorías del club (Infantil B, Juvenil A…). <strong>Accesos</strong> son las personas del cuerpo técnico que pueden entrar: entrenador, segundo y delegado de cada equipo, más la dirección deportiva.{" "}
-                {planClub === "gratis" ? "Sube de plan cuando quieras desde dentro." : "Al terminar el registro te llevamos a pagar. Las plazas se activan en cuanto se confirma el cobro."}
+                {t("pm.clubExplain")}{" "}
+                {planClub === "gratis" ? t("a.clubPlanFreeTail") : t("a.clubPlanPaidTail")}
               </div>
             </div>
           ))}
@@ -8493,13 +8539,13 @@ function Auth({ lang, setLang, onLogin, onRegister, tema, cambiarTema }) {
                 ))}
               </div>
               <div className="flex items-center gap-2 mt-2">
-                <span className="text-[11px]" style={{ color: C.dim }}>Equipo</span>
+                <span className="text-[11px]" style={{ color: C.dim }}>{t("a.teamOff")}</span>
                 {LETRAS.map((l) => (
                   <button key={l} onClick={() => setLetra(l)} className="w-9 h-9 rounded-full border font-display" style={{ borderColor: letra === l ? ac : C.line, color: letra === l ? ac : C.dim }}>{l}</button>
                 ))}
               </div>
               <div className="text-[11px] mt-2" style={{ color: C.dim }}>
-                Tu equipo será <span style={{ color: C.chalk }}>{team.name}</span> — {team.sub}.
+                {t("a.teamWillBe").replace("{team}", team.name).replace("{sub}", team.sub)}
               </div>
             </>
           ))}
@@ -8518,11 +8564,11 @@ function Auth({ lang, setLang, onLogin, onRegister, tema, cambiarTema }) {
           ))}
           {account === "oficial" && !primeraVez && (
             <div className="mb-5 rounded-lg border p-3 text-xs" style={{ borderColor: C.line, background: C.panel2, color: C.dim }}>
-              <div className="font-display uppercase tracking-wide mb-1" style={{ color: C.chalk }}>Alta por el club</div>
-              A los equipos oficiales te da de alta el director deportivo o el Master. Usa el <strong>mismo correo</strong> con el que te añadieron y elige aquí tu contraseña. Tu equipo y tu rol ya vienen definidos.
+              <div className="font-display uppercase tracking-wide mb-1" style={{ color: C.chalk }}>{t("a.officialTitle")}</div>
+              {t("a.officialBody")}
             </div>
           )}
-          {isFree && <div className="mb-5 rounded-lg border p-3 text-xs" style={{ borderColor: C.line, background: C.panel2, color: C.dim }}>{t("a.freeInc")}</div>}
+          {isFree && <div className="mb-5 rounded-lg border p-3 text-xs" style={{ borderColor: C.line, background: C.panel2, color: C.dim }}>{t("a.freeInc").replace("{n}", LIMITS.free.players)}</div>}
           <button disabled={!regReady || busy} onClick={submitRegister} className="w-full font-display uppercase tracking-wider py-3 rounded-lg font-semibold disabled:opacity-40" style={{ background: ac, color: C.sobre }}>
             {busy ? t("a.loading") : primeraVez ? t("a.firstBtn") : isFree ? t("a.startFree") : t("a.create")}
           </button>
@@ -8715,7 +8761,9 @@ export default function App() {
      cuerpo técnico: no depende del rol de cada persona ni de si tiene
      suscripción, solo de a qué club pertenece. */
   const isPro = !!session && (session.role === "master" || !!session.pro || trialDaysLeft > 0 || esClubChamartinVergara(session.club));
-  const pro = (feature) => isPro || !PRO_FEATURES.some((f) => f.k === feature);
+  /* Solo hace falta saber si esa clave existe entre las de PRO; el texto no
+     pinta nada aquí, así que da igual en qué idioma se construya la lista. */
+  const pro = (feature) => isPro || !PRO_FEATURES("es").some((f) => f.k === feature);
   const pendingRestricted = ["viewUsers", "grantAccess", "manageDocs"];
 
   /* Sistema de permisos por rol y categoría:
@@ -10597,9 +10645,9 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
       });
       const d = await r.json();
       if (d.url) { window.location.href = d.url; return; }
-      setPayMsg(d.error || "No he podido abrir el portal de suscripción.");
+      setPayMsg(d.error || t("pm.errPortal"));
     } catch {
-      setPayMsg("La gestión de la suscripción no está disponible ahora mismo. Inténtalo más tarde.");
+      setPayMsg(t("pm.errPortalDown"));
     }
     setPayBusy(false);
   };
@@ -10615,7 +10663,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
       if (d.url) { window.location.href = d.url; return; }
       throw new Error(d.error || "sin url");
     } catch {
-      setPayMsg("Los pagos no están disponibles ahora mismo. Inténtalo más tarde.");
+      setPayMsg(t("pm.errPayDown"));
     }
     setPayBusy(false);
   };
@@ -10636,28 +10684,24 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
 
   const renderPremium = () => (
     <div className="space-y-4">
-      <Card title={isPro ? "Tu plan" : "CoachBase AI PRO"}>
+      <Card title={isPro ? t("pm.myPlan") : "CoachBase AI PRO"}>
         <div className="flex flex-wrap items-center gap-4">
           <div className="min-w-0 flex-1">
             <div className="font-display text-3xl font-semibold" style={{ color: isPro ? C.green : AC }}>
-              {isPro ? (session.role === "master" ? "★ Master · acceso total" : "★ PRO activo") : `${PRO_PRICE} / mes`}
+              {isPro ? (session.role === "master" ? t("pm.masterAccess") : t("pm.proActive")) : `${PRO_PRICE} ${t("pm.perMonth")}`}
             </div>
             <div className="text-sm mt-1" style={{ color: C.dim }}>
-              {isPro
-                ? "Tienes desbloqueadas todas las funciones del cuerpo técnico."
-                : "Suscripción mensual, sin permanencia. Se cancela cuando quieras desde tu cuenta."}
+              {isPro ? t("pm.unlocked") : t("pm.subNote")}
             </div>
             {sub?.periodoFin && (
               <div className="text-[11px] mt-1" style={{ color: sub.cancelarAlFinal ? C.warn : C.dim }}>
-                {sub.cancelarAlFinal
-                  ? `Cancelada: seguirás con PRO hasta el ${new Date(sub.periodoFin).toLocaleDateString("es-ES")}.`
-                  : `Se renueva el ${new Date(sub.periodoFin).toLocaleDateString("es-ES")}.`}
+                {(sub.cancelarAlFinal ? t("pm.cancelled") : t("pm.renews")).replace("{d}", new Date(sub.periodoFin).toLocaleDateString(lang === "es" ? "es-ES" : lang))}
               </div>
             )}
           </div>
           {!isPro && (
             <div className="w-full grid sm:grid-cols-2 gap-3 mt-2">
-              {PLANES.map((pl) => (
+              {PLANES(lang).map((pl) => (
                 <div key={pl.k} className="rounded-lg border p-4 flex flex-col"
                   style={{ borderColor: pl.destacado ? AC : C.line, background: pl.destacado ? "rgba(217,164,65,.07)" : "transparent" }}>
                   <div className="flex items-center gap-2">
@@ -10670,7 +10714,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                   <button onClick={() => goCheckout(pl.k)} disabled={payBusy}
                     className="mt-3 w-full font-display uppercase tracking-wide text-sm px-4 py-2.5 rounded-lg font-semibold disabled:opacity-50 border"
                     style={pl.destacado ? { background: AC, color: C.sobre, borderColor: AC } : { borderColor: C.line, color: C.chalk }}>
-                    {payBusy ? "Abriendo pago…" : "Elegir"}
+                    {payBusy ? t("pm.openingPay") : t("pm.choose")}
                   </button>
                 </div>
               ))}
@@ -10680,7 +10724,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
             <button onClick={goPortal} disabled={payBusy}
               className="font-display uppercase tracking-wide text-sm px-5 py-3 rounded-lg border disabled:opacity-50"
               style={{ borderColor: C.line, color: C.chalk }}>
-              {payBusy ? "Abriendo…" : "Gestionar suscripción"}
+              {payBusy ? t("pm.opening") : t("pm.manageSub")}
             </button>
           )}
         </div>
@@ -10688,21 +10732,18 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
       </Card>
 
       {!isPro && (
-        <Card title="¿Eres el club? Plan para todos tus equipos">
+        <Card title={t("pm.clubTitle")}>
           <div className="text-[12px] mb-3" style={{ color: C.dim }}>
-            Todo el cuerpo técnico del club en PRO, con vista agregada para el director deportivo. Precio por temporada.
-            <div className="mt-1.5">
-              <strong>Equipos</strong> son las categorías del club (Infantil B, Juvenil A…). <strong>Accesos</strong> son las
-              personas que pueden entrar: entrenador, segundo y delegado de cada equipo, más la dirección deportiva.
-            </div>
+            {t("pm.clubBody")}
+            <div className="mt-1.5">{t("pm.clubExplain")}</div>
           </div>
           <div className="grid sm:grid-cols-3 gap-3">
-            {PLANES_CLUB.map((pl) => (
+            {PLANES_CLUB(lang).map((pl) => (
               <div key={pl.k} className="rounded-lg border p-4 flex flex-col"
                 style={{ borderColor: pl.destacado ? AC : C.line, background: pl.destacado ? "rgba(217,164,65,.07)" : "transparent" }}>
                 <div className="font-display uppercase tracking-wide text-sm" style={{ color: C.chalk }}>{pl.nombre}</div>
                 <div className="font-display text-2xl font-semibold mt-1" style={{ color: pl.destacado ? AC : C.chalk }}>{pl.precio}</div>
-                <div className="text-[11px]" style={{ color: C.dim }}>por temporada · {pl.porEquipo}</div>
+                <div className="text-[11px]" style={{ color: C.dim }}>{t("pm.perSeason")}{pl.porEquipo}</div>
                 {/* Los dos topes, uno debajo del otro: cuántas categorías y
                     cuánta gente del cuerpo técnico. */}
                 <div className="mt-2.5 pt-2.5 border-t space-y-1 flex-1" style={{ borderColor: C.line }}>
@@ -10716,7 +10757,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                 <button onClick={() => goCheckout(pl.k)} disabled={payBusy}
                   className="mt-3 w-full font-display uppercase tracking-wide text-xs px-3 py-2 rounded-lg font-semibold disabled:opacity-50 border"
                   style={pl.destacado ? { background: AC, color: C.sobre, borderColor: AC } : { borderColor: C.line, color: C.chalk }}>
-                  Contratar
+                  {t("pm.hire")}
                 </button>
               </div>
             ))}
@@ -10724,16 +10765,16 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
         </Card>
       )}
 
-      <Card title="Qué incluye cada versión">
+      <Card title={t("pm.compareTitle")}>
         <div className="grid grid-cols-12 gap-2 text-[10px] font-display uppercase tracking-wide pb-2 border-b" style={{ borderColor: C.line, color: C.dim }}>
-          <div className="col-span-4">Función</div>
-          <div className="col-span-4">Básica</div>
+          <div className="col-span-4">{t("pm.colFeature")}</div>
+          <div className="col-span-4">{t("pm.colBasic")}</div>
           <div className="col-span-4" style={{ color: AC }}>Premium</div>
         </div>
-        {PRO_FEATURES.map((f) => (
+        {PRO_FEATURES(lang).map((f) => (
           <div key={f.k} className="grid grid-cols-12 gap-2 text-sm py-2 border-b last:border-0 items-start" style={{ borderColor: C.line }}>
             <div className="col-span-4 flex items-start gap-1.5" style={{ color: C.chalk }}><span className="shrink-0">{f.icon}</span><span className="text-[12px]">{f.nombre}</span></div>
-            <div className="col-span-4 text-[12px]" style={{ color: f.free === "—" ? C.dim : C.chalk }}>{f.free}</div>
+            <div className="col-span-4 text-[12px]" style={{ color: f.free === SIN_PRO ? C.dim : C.chalk }}>{f.free}</div>
             <div className="col-span-4 text-[12px]" style={{ color: AC }}>{f.pro}</div>
           </div>
         ))}
@@ -18229,31 +18270,39 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
         </div>
       )}
 
-      {proModal && (
+      {proModal && (() => {
+        /* Este cuadro salta desde cualquier pantalla en cuanto un plan
+           gratuito toca algo de PRO —cargas físicas, exportar disciplina,
+           vídeo de jugador…—, así que es de largo el aviso de pago que más
+           veces ve alguien en toda la app. Estaba en español fijo, daba igual
+           qué idioma llevara eligiendo desde el principio. */
+        const feat = PRO_FEATURES(lang).find((f) => f.k === proModal) || {};
+        return (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,.72)" }} onClick={() => setProModal(null)}>
           <div className="w-full max-w-sm rounded-lg border p-5" style={{ background: C.panel, borderColor: AC }} onClick={(e) => e.stopPropagation()}>
             <div className="font-display uppercase tracking-wide text-lg" style={{ color: AC }}>
-              {(PRO_FEATURES.find((f) => f.k === proModal) || {}).icon || "★"} Esto es de PRO
+              {feat.icon || "★"} {t("pm.modalTitle")}
             </div>
             <p className="text-sm mt-2" style={{ color: C.chalk }}>
-              {(PRO_FEATURES.find((f) => f.k === proModal) || {}).pro || "Desbloquea todas las funciones de CoachBase AI."}
+              {feat.pro || t("pm.modalDefault")}
             </p>
-            {(PRO_FEATURES.find((f) => f.k === proModal) || {}).free && (
+            {feat.free && feat.free !== SIN_PRO && (
               <p className="text-[12px] mt-1" style={{ color: C.dim }}>
-                Con el plan gratuito: {(PRO_FEATURES.find((f) => f.k === proModal) || {}).free}.
+                {t("pm.modalFreeNote").replace("{x}", feat.free)}
               </p>
             )}
             <div className="flex gap-2 mt-4">
               <button onClick={() => { setProModal(null); setTab("premium"); }} className="flex-1 py-2.5 rounded-lg font-display uppercase tracking-wide font-semibold" style={{ background: AC, color: C.sobre }}>
-                Ver PRO · {PRO_PRICE}/mes
+                {t("pm.modalCta").replace("{price}", PRO_PRICE)}
               </button>
               <button onClick={() => setProModal(null)} className="px-4 py-2.5 rounded-lg border font-display uppercase tracking-wide text-sm" style={{ borderColor: C.line, color: C.dim }}>
-                Ahora no
+                {t("pm.modalLater")}
               </button>
             </div>
           </div>
         </div>
-      )}
+        );
+      })()}
 
       <div className="flex">
       {menuOpen && (
