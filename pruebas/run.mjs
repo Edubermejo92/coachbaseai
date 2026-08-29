@@ -23,12 +23,14 @@ const DATOS = {
     { id:"recENT", fields:{ fldSnD1rqmHptkRlA:"Emilio Bermejo", fldJWlJ17YuZNe4Jx:"ent@a.com", fldIWSWMiwFsxJBiY:"Entrenador principal", fldEkbPe6UgCx0Lfy:"Activo", fldV2DDL6v5szs0y3:["recCLUBA"], fldW8QHQvuOZv1zX8:["recSEN"] } },
     { id:"recDIRB",fields:{ fldSnD1rqmHptkRlA:"Otro Director", fldJWlJ17YuZNe4Jx:"dir@b.com", fldIWSWMiwFsxJBiY:"Director deportivo", fldEkbPe6UgCx0Lfy:"Activo", fldV2DDL6v5szs0y3:["recCLUBB"], fldW8QHQvuOZv1zX8:["recOTRO"] } },
     { id:"recCLU", fields:{ fldSnD1rqmHptkRlA:"C.D. Chamartín Vergara", fldJWlJ17YuZNe4Jx:"club@a.com", fldIWSWMiwFsxJBiY:"Club", fldEkbPe6UgCx0Lfy:"Activo", fldV2DDL6v5szs0y3:["recCLUBA"], fldW8QHQvuOZv1zX8:["recIB"] } },
+    { id:"recMASTER", fields:{ fldSnD1rqmHptkRlA:"EBLDigital", fldJWlJ17YuZNe4Jx:"ebldigital92@gmail.com", fldIWSWMiwFsxJBiY:"Master", fldEkbPe6UgCx0Lfy:"Activo" } },
+    { id:"recFALSOMASTER", fields:{ fldSnD1rqmHptkRlA:"No es el Master", fldJWlJ17YuZNe4Jx:"impostor@a.com", fldIWSWMiwFsxJBiY:"Master", fldEkbPe6UgCx0Lfy:"Activo" } },
   ],
   [T.JUGADORES]: Array.from({length:19},(_,i)=>({ id:"recJ"+i, fields:{ Nombre:"Jugador "+(i+1), Dorsal:i+1, Equipo:["recSEN"] } })),
   [T.PARTIDOS]: [{ id:"recP1", fields:{ Fecha:"2026-09-26", Hora:"11:30", Jornada:"1", Local:"Chamartín Senior A", Visitante:"Rival", Lugar:"La Concepción", Equipo:["recSEN"] } }],
   [T.PARTES]: [{ id:"recPA1", fields:{ fldUyP4Qia9GM6lCR:"2026-08-20", fldEyuA5hqm0GjxZX:"Emilio Bermejo", fldbDBmH77g1DpW7g:12, fldy8c534xQZAbyNW:10, fldXvt940m1HPQ3uH:["recSEN"] } }],
   [T.CONVOCATORIAS]: [], [T.ENTRENAMIENTOS]: [], [T.INCIDENCIAS]: [],
-  [T.NORMATIVA]: [], [T.PROPUESTAS]: [], [T.FIRMAS]: [], [T.GALERIA]: [], [T.SUSCRIPCIONES]: [],
+  [T.NORMATIVA]: [], [T.PROPUESTAS]: [], [T.FIRMAS]: [], [T.GALERIA]: [], [T.SUSCRIPCIONES]: [], [T.CONFIG]: [],
 };
 
 const fake = crearFake(DATOS);

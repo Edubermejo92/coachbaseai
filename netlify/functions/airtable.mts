@@ -5,6 +5,7 @@
 //   ?res=escudo&id=   -> subir el escudo de un equipo (adjunto en el registro de Equipos)
 //   ?res=incidencias  -> módulo de comportamiento (Código Disciplinario)
 //   ?res=normativa | firmas | galeria
+//   ?res=config       -> qué pestañas son gratis y cuáles Premium (solo Master edita)
 //
 // Variables de entorno en Netlify:
 //   AIRTABLE_TOKEN -> Personal Access Token (data.records:read y data.records:write sobre la base)
@@ -85,7 +86,7 @@ const U = {
    no es este se le trata como director: el rol Master da acceso a todos los
    clubes y a los datos de todos los menores, así que no puede depender de
    que nadie edite una celda por error. */
-const MASTER_EMAIL = "edubermejo92@gmail.com";
+const MASTER_EMAIL = "ebldigital92@gmail.com";
 const rolReal = (rolCampo: unknown, email: unknown) => {
   const k = rolKey(rolCampo);
   if (k === "master" && norm(email) !== MASTER_EMAIL) return "director";
@@ -123,6 +124,23 @@ const SUS = {
   importe: "fldkIp45fn7xXWI60", periodoFin: "fldSJpmXi4bmtriIs", cancelarFin: "fldJVihH0K2INwMta",
   usuario: "fldqN9PDei93K4GZ7",
 };
+/* Configuración global de la app: hoy solo guarda qué pestañas son gratis y
+   cuáles Premium, decidido por el Master desde su panel en vez de venir fijo
+   en el código. Un único registro, Clave="global". */
+const T_CONFIG = "tblctORB081jr1lDO";
+const CFG = { clave: "fldK6DM4hrZsjS1DP", gratis: "fldrJOfAInJThfOZv" };
+const CLAVE_CONFIG_GLOBAL = "global";
+/* Pestañas que el Master puede marcar como gratis o Premium. "master" se
+   queda fuera a propósito: es la única cuenta que la ve y no puede depender
+   de un interruptor que ella misma gestiona. */
+const TABS_CONFIGURABLES = [
+  "inicio", "parte", "equipos", "equipo", "jugadores", "calendario", "convocatoria",
+  "alineacion", "partido", "analisis", "temporada", "entrenamiento", "ejercicios", "pizarra",
+  "asistencia", "disciplina", "normativa", "estadisticas", "usuarios", "coachai", "material", "premium",
+];
+/* "inicio" y "premium" no se pueden quitar del gratis: sin inicio no hay
+   portada, y sin premium nadie ve cómo pasarse a la versión de pago. */
+const TABS_GRATIS_FORZADAS = ["inicio", "premium"];
 const EQ = {
   nombre: "fldmjUkaMwwLbPO89", categoria: "fldgTxdcJpju1jxt2", formato: "fldSQPSejXh45fRQ8",
   sistema: "fldl20r9arDXNdZdC", club: "fldFGQJQHzeNHi50l", escudo: "fldZ8Eow86UczBCCr",
@@ -1348,6 +1366,40 @@ export default async (req: Request) => {
           maps: r.fields[CL.maps] || "",
         })),
       });
+    }
+
+    /* ================= CONFIGURACIÓN GLOBAL (gratis / Premium) ================= */
+    if (res === "config") {
+      const recs = await list(T_CONFIG);
+      const actual = recs.find((r: any) => r.fields[CFG.clave] === CLAVE_CONFIG_GLOBAL) || recs[0] || null;
+      if (req.method === "PATCH") {
+        if (!esMaster) {
+          return j({ error: "no_autorizado", reason: "Solo el Master puede cambiar qué apartados son gratis." }, 403);
+        }
+        const b = await req.json();
+        if (!Array.isArray(b.tabsGratis)) return j({ error: "tabsGratis debe ser un array" }, 400);
+        const limpio = Array.from(new Set(
+          (b.tabsGratis as unknown[]).filter((k): k is string => typeof k === "string" && TABS_CONFIGURABLES.includes(k))
+        ));
+        for (const k of TABS_GRATIS_FORZADAS) if (!limpio.includes(k)) limpio.push(k);
+        const fields = { [CFG.gratis]: JSON.stringify(limpio) };
+        if (actual) {
+          const r = await fetch(`${table(T_CONFIG)}/${actual.id}`, { method: "PATCH", headers: H, body: JSON.stringify({ fields, typecast: true }) });
+          return j({ ok: r.ok, tabsGratis: limpio }, r.ok ? 200 : 400);
+        }
+        const creado = await create(T_CONFIG, { [CFG.clave]: CLAVE_CONFIG_GLOBAL, ...fields });
+        return j({ ok: !!creado.id, tabsGratis: limpio }, creado.id ? 200 : 400);
+      }
+      /* Lectura: si falta el registro, o su JSON no se puede leer, se devuelve
+         null -no un array vacío- para que el frontend sepa distinguir "no hay
+         config todavía" de "el Master ha marcado todo como Premium", y en ese
+         caso se quede con su lista por defecto en vez de bloquear la app entera. */
+      let tabsGratis: string[] | null = null;
+      try {
+        const raw = actual ? JSON.parse(String(actual.fields[CFG.gratis] || "")) : null;
+        if (Array.isArray(raw)) tabsGratis = raw.filter((k) => typeof k === "string" && TABS_CONFIGURABLES.includes(k));
+      } catch { tabsGratis = null; }
+      return j({ tabsGratis });
     }
 
     /* ================= INCIDENCIAS ================= */
