@@ -52,5 +52,39 @@ dice("un segundo guardado sustituye la lista entera",
   JSON.stringify(r.body.tabsGratis));
 dice("y sigue habiendo un único registro", fake.db[T.CONFIG].length === 1, String(fake.db[T.CONFIG].length));
 
+/* ---- Menú por rol: qué apartados ve cada rol ---- */
+r = await call("?res=config", { method: "PATCH", token: tImpostor, body: { rolesTabs: { club: ["inicio"] } } });
+dice("un director tampoco puede tocar el menú de los roles", r.status === 403, String(r.status));
+
+r = await call("?res=config", { method: "PATCH", token: tMaster, body: { rolesTabs: "no-es-un-objeto" } });
+dice("rolesTabs tiene que ser un objeto, no cualquier cosa", r.status === 400, String(r.status));
+
+r = await call("?res=config", { method: "PATCH", token: tMaster, body: { rolesTabs: { club: ["jugadores"] } } });
+dice("hay que mandar los cinco roles, no solo uno", r.status === 400, r.body.error || String(r.status));
+
+const cincoRoles = { club: ["jugadores", "calendario"], director: ["jugadores"], entrenador: ["jugadores"], segundo: ["jugadores"], delegado: ["jugadores"] };
+r = await call("?res=config", { method: "PATCH", token: tMaster, body: { rolesTabs: cincoRoles } });
+dice("con los cinco roles sí guarda", r.body.ok === true, JSON.stringify(r.body));
+dice("añade 'inicio' a cada rol aunque no se haya pedido", ["club", "director", "entrenador", "segundo", "delegado"].every((rk) => r.body.rolesTabs[rk].includes("inicio")),
+  JSON.stringify(r.body.rolesTabs));
+dice("y descarta 'equipos' -esa pantalla es solo de Master pase lo que pase aquí-",
+  !r.body.rolesTabs.club.includes("equipos"), JSON.stringify(r.body.rolesTabs.club));
+
+r = await call("?res=config", { method: "PATCH", token: tMaster, body: { rolesTabs: { ...cincoRoles, club: ["jugadores", "equipos", "no-existe", 7] } } });
+dice("filtra claves inventadas y de Master dentro de un rol normal",
+  JSON.stringify(r.body.rolesTabs.club.slice().sort()) === JSON.stringify(["inicio", "jugadores"].sort()),
+  JSON.stringify(r.body.rolesTabs.club));
+
+r = await call("?res=config", { token: tImpostor });
+dice("la lectura de rolesTabs llega a cualquier cuenta logueada",
+  Array.isArray(r.body.rolesTabs?.delegado) && r.body.rolesTabs.delegado.includes("jugadores"),
+  JSON.stringify(r.body.rolesTabs));
+dice("y tabsGratis no se ha tocado al guardar solo rolesTabs",
+  JSON.stringify(r.body.tabsGratis.slice().sort()) === JSON.stringify(["convocatoria", "inicio", "premium"].sort()),
+  JSON.stringify(r.body.tabsGratis));
+
+r = await call("?res=config", { method: "PATCH", token: tMaster, body: {} });
+dice("un guardado sin tabsGratis ni rolesTabs no hace nada", r.status === 400, String(r.status));
+
 console.log(`\n${ok} correctas · ${mal} fallos`);
 process.exit(mal ? 1 : 0);

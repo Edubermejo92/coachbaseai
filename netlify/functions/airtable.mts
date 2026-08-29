@@ -128,7 +128,7 @@ const SUS = {
    cuáles Premium, decidido por el Master desde su panel en vez de venir fijo
    en el código. Un único registro, Clave="global". */
 const T_CONFIG = "tblctORB081jr1lDO";
-const CFG = { clave: "fldK6DM4hrZsjS1DP", gratis: "fldrJOfAInJThfOZv" };
+const CFG = { clave: "fldK6DM4hrZsjS1DP", gratis: "fldrJOfAInJThfOZv", porRol: "fld6I6dRA9myjjleR" };
 const CLAVE_CONFIG_GLOBAL = "global";
 /* Pestañas que el Master puede marcar como gratis o Premium. "master" se
    queda fuera a propósito: es la única cuenta que la ve y no puede depender
@@ -141,6 +141,16 @@ const TABS_CONFIGURABLES = [
 /* "inicio" y "premium" no se pueden quitar del gratis: sin inicio no hay
    portada, y sin premium nadie ve cómo pasarse a la versión de pago. */
 const TABS_GRATIS_FORZADAS = ["inicio", "premium"];
+/* Roles a los que el Master les puede editar el menú. Master mismo no está
+   -su menú no depende de esto- y "equipos" (alta de clubes) queda fuera de
+   lo que se les puede activar: es una pantalla exclusiva de Master pase lo
+   que pase aquí, así que dejarla marcable solo crearía una entrada de menú
+   muerta para cualquier otro rol. */
+const ROLES_TABS_EDITABLES = ["club", "director", "entrenador", "segundo", "delegado"];
+const TABS_ROL_CONFIGURABLES = TABS_CONFIGURABLES.filter((k) => k !== "equipos");
+/* "inicio" tampoco se le puede quitar a ningún rol: sin ella no hay portada
+   a la que volver dentro de la app. */
+const TABS_ROL_FORZADAS = ["inicio"];
 const EQ = {
   nombre: "fldmjUkaMwwLbPO89", categoria: "fldgTxdcJpju1jxt2", formato: "fldSQPSejXh45fRQ8",
   sistema: "fldl20r9arDXNdZdC", club: "fldFGQJQHzeNHi50l", escudo: "fldZ8Eow86UczBCCr",
@@ -1368,38 +1378,77 @@ export default async (req: Request) => {
       });
     }
 
-    /* ================= CONFIGURACIÓN GLOBAL (gratis / Premium) ================= */
+    /* ================= CONFIGURACIÓN GLOBAL (gratis / Premium, menú por rol) ================= */
     if (res === "config") {
       const recs = await list(T_CONFIG);
       const actual = recs.find((r: any) => r.fields[CFG.clave] === CLAVE_CONFIG_GLOBAL) || recs[0] || null;
       if (req.method === "PATCH") {
         if (!esMaster) {
-          return j({ error: "no_autorizado", reason: "Solo el Master puede cambiar qué apartados son gratis." }, 403);
+          return j({ error: "no_autorizado", reason: "Solo el Master puede cambiar la configuración de la app." }, 403);
         }
         const b = await req.json();
-        if (!Array.isArray(b.tabsGratis)) return j({ error: "tabsGratis debe ser un array" }, 400);
-        const limpio = Array.from(new Set(
-          (b.tabsGratis as unknown[]).filter((k): k is string => typeof k === "string" && TABS_CONFIGURABLES.includes(k))
-        ));
-        for (const k of TABS_GRATIS_FORZADAS) if (!limpio.includes(k)) limpio.push(k);
-        const fields = { [CFG.gratis]: JSON.stringify(limpio) };
+        if (b.tabsGratis === undefined && b.rolesTabs === undefined) {
+          return j({ error: "nada_que_guardar" }, 400);
+        }
+        const fields: Record<string, unknown> = {};
+        let tabsGratisOut: string[] | undefined;
+        let rolesTabsOut: Record<string, string[]> | undefined;
+        if (b.tabsGratis !== undefined) {
+          if (!Array.isArray(b.tabsGratis)) return j({ error: "tabsGratis debe ser un array" }, 400);
+          const limpio = Array.from(new Set(
+            (b.tabsGratis as unknown[]).filter((k): k is string => typeof k === "string" && TABS_CONFIGURABLES.includes(k))
+          ));
+          for (const k of TABS_GRATIS_FORZADAS) if (!limpio.includes(k)) limpio.push(k);
+          fields[CFG.gratis] = JSON.stringify(limpio);
+          tabsGratisOut = limpio;
+        }
+        if (b.rolesTabs !== undefined) {
+          if (typeof b.rolesTabs !== "object" || b.rolesTabs === null || Array.isArray(b.rolesTabs)) {
+            return j({ error: "rolesTabs debe ser un objeto" }, 400);
+          }
+          const limpio: Record<string, string[]> = {};
+          for (const rk of ROLES_TABS_EDITABLES) {
+            const lista = (b.rolesTabs as any)[rk];
+            if (!Array.isArray(lista)) return j({ error: `falta rolesTabs.${rk}` }, 400);
+            const filtrada = Array.from(new Set(
+              (lista as unknown[]).filter((k): k is string => typeof k === "string" && TABS_ROL_CONFIGURABLES.includes(k))
+            ));
+            for (const k of TABS_ROL_FORZADAS) if (!filtrada.includes(k)) filtrada.push(k);
+            limpio[rk] = filtrada;
+          }
+          fields[CFG.porRol] = JSON.stringify(limpio);
+          rolesTabsOut = limpio;
+        }
         if (actual) {
           const r = await fetch(`${table(T_CONFIG)}/${actual.id}`, { method: "PATCH", headers: H, body: JSON.stringify({ fields, typecast: true }) });
-          return j({ ok: r.ok, tabsGratis: limpio }, r.ok ? 200 : 400);
+          return j({ ok: r.ok, tabsGratis: tabsGratisOut, rolesTabs: rolesTabsOut }, r.ok ? 200 : 400);
         }
         const creado = await create(T_CONFIG, { [CFG.clave]: CLAVE_CONFIG_GLOBAL, ...fields });
-        return j({ ok: !!creado.id, tabsGratis: limpio }, creado.id ? 200 : 400);
+        return j({ ok: !!creado.id, tabsGratis: tabsGratisOut, rolesTabs: rolesTabsOut }, creado.id ? 200 : 400);
       }
       /* Lectura: si falta el registro, o su JSON no se puede leer, se devuelve
-         null -no un array vacío- para que el frontend sepa distinguir "no hay
-         config todavía" de "el Master ha marcado todo como Premium", y en ese
-         caso se quede con su lista por defecto en vez de bloquear la app entera. */
+         null -no un array ni un objeto vacío- para que el frontend sepa
+         distinguir "no hay config todavía" de "el Master lo ha dejado todo
+         en Premium" o "sin ningún apartado", y en ese caso se quede con sus
+         valores por defecto en vez de bloquear la app entera. */
       let tabsGratis: string[] | null = null;
       try {
         const raw = actual ? JSON.parse(String(actual.fields[CFG.gratis] || "")) : null;
         if (Array.isArray(raw)) tabsGratis = raw.filter((k) => typeof k === "string" && TABS_CONFIGURABLES.includes(k));
       } catch { tabsGratis = null; }
-      return j({ tabsGratis });
+      let rolesTabs: Record<string, string[]> | null = null;
+      try {
+        const raw = actual ? JSON.parse(String(actual.fields[CFG.porRol] || "")) : null;
+        if (raw && typeof raw === "object" && !Array.isArray(raw)) {
+          const limpio: Record<string, string[]> = {};
+          for (const rk of ROLES_TABS_EDITABLES) {
+            const lista = (raw as any)[rk];
+            if (Array.isArray(lista)) limpio[rk] = lista.filter((k) => typeof k === "string" && TABS_ROL_CONFIGURABLES.includes(k));
+          }
+          if (Object.keys(limpio).length === ROLES_TABS_EDITABLES.length) rolesTabs = limpio;
+        }
+      } catch { rolesTabs = null; }
+      return j({ tabsGratis, rolesTabs });
     }
 
     /* ================= INCIDENCIAS ================= */
