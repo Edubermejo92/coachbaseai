@@ -454,6 +454,7 @@ const DICT = {
     "pf.needName": "El jugador necesita un nombre.",
     "ln.openProfile": "Abrir ficha",
     "se.tabPre": "Pretemporada",
+    "se.tabCargas": "Cargas",
     "se.tabSeason": "Temporada",
     "pt.exercises": "Ejercicios recomendados esta semana",
     "pt.noDay": "Sin día",
@@ -996,6 +997,7 @@ const DICT = {
     "pf.needName": "The player needs a name.",
     "ln.openProfile": "Open player",
     "se.tabPre": "Pre-season",
+    "se.tabCargas": "Load",
     "se.tabSeason": "Season",
     "pt.exercises": "Recommended drills this week",
     "pt.noDay": "No day",
@@ -1555,6 +1557,7 @@ const DICT = {
     "pf.needName": "Le joueur a besoin d'un nom.",
     "ln.openProfile": "Ouvrir la fiche",
     "se.tabPre": "Présaison",
+    "se.tabCargas": "Charge",
     "se.tabSeason": "Saison",
     "pt.exercises": "Exercices conseillés cette semaine",
     "pt.noDay": "Sans jour",
@@ -2188,6 +2191,7 @@ const DICT = {
     "pf.needName": "Der Spieler braucht einen Namen.",
     "ln.openProfile": "Spielerprofil öffnen",
     "se.tabPre": "Vorbereitung",
+    "se.tabCargas": "Belastung",
     "se.tabSeason": "Saison",
     "pt.exercises": "Empfohlene Übungen diese Woche",
     "pt.noDay": "Ohne Tag",
@@ -2820,6 +2824,7 @@ const DICT = {
     "pf.needName": "O jogador precisa de um nome.",
     "ln.openProfile": "Abrir ficha",
     "se.tabPre": "Pré-época",
+    "se.tabCargas": "Cargas",
     "se.tabSeason": "Época",
     "pt.exercises": "Exercícios recomendados esta semana",
     "pt.noDay": "Sem dia",
@@ -10688,7 +10693,6 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
               <span className="w-3 h-3 rounded-full shrink-0" style={{ background: col }} />
               <span className="text-sm flex-1" style={{ color: C.chalk }}>
                 {t("cf.load")} <strong className="tabular-nums">{c.carga}%</strong>
-                {Number(c.rpe) > 0 && <span className="text-[11px] ml-2" style={{ color: C.dim }}>RPE {c.rpe}</span>}
               </span>
               <span className="text-[11px] shrink-0" style={{ color: AC }}>{t("sq.loadGo")} ›</span>
             </button>
@@ -15609,11 +15613,10 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
                           todo el margen. El color es el dato que se lee de un
                           vistazo; la cifra cabe a partir de tablet. El py-1
                           sube el botón a los 24 px mínimos para el dedo. */}
-                      <button onClick={() => setTab("temporada")} title={`${t("cf.load")} ${c.carga}%${Number(c.rpe) > 0 ? ` · RPE ${c.rpe}` : ""}${c.nota ? ` · ${c.nota}` : ""}`}
+                      <button onClick={() => setTab("temporada")} title={`${t("cf.load")} ${c.carga}%${c.nota ? ` · ${c.nota}` : ""}`}
                         className="flex items-center gap-2 py-1 hover:opacity-80">
                         <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: colC }} />
                         <span className="tabular-nums hidden sm:inline" style={{ color: C.chalk }}>{c.carga}%</span>
-                        {Number(c.rpe) > 0 && <span className="text-[11px] hidden md:inline" style={{ color: C.dim }}>RPE {c.rpe}</span>}
                       </button>
                     </td>
                   )}
@@ -16641,19 +16644,7 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
     { k: "amarillo", icon: "🟡", color: "#d9a441" },
     { k: "rojo", icon: "🔴", color: "#b4474a" },
   ];
-  const CARGA_DEFECTO = { estado: "verde", carga: 100, nota: "", rpe: 0, adaptada: false, dolorPost: "" };
-  /* Zonas del RPE tal y como las fija el plan: 3-4 cómodo, 5-6 moderado, 7
-     exigente y 8 o más "revisar". No son notas del jugador ni una competición
-     entre compañeros: sirven para comparar a cada uno consigo mismo y ver si
-     la sesión ha salido donde se esperaba. */
-  const rpeZona = (v) => {
-    const n = Number(v) || 0;
-    if (!n) return { color: C.dim, label: t("cf.rpeNone") };
-    if (n <= 4) return { color: "#2f6b4f", label: t("cf.rpeEasy") };
-    if (n <= 6) return { color: AC, label: t("cf.rpeMod") };
-    if (n === 7) return { color: "#d9a441", label: t("cf.rpeHard") };
-    return { color: "#b4474a", label: t("cf.rpeReview") };
-  };
+  const CARGA_DEFECTO = { estado: "verde", carga: 100, nota: "" };
   const [cargas, setCargas] = useState({});
   const [cargasMsg, setCargasMsg] = useState("");
   const [cargasBusy, setCargasBusy] = useState(false);
@@ -16696,53 +16687,38 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
     : 0;
   const porEstado = (k) => players.filter((p) => cargaDe(p.id).estado === k).length;
 
-  /* Datos de la sesión a la que se refiere el RPE. Van en la misma bolsa que
-     las cargas —bajo una clave reservada que no puede chocar con ningún id de
-     jugador— para que se guarden y se compartan de una sola vez. Los minutos
-     reales los rellena quien controla los tiempos; son los que de verdad se
-     completaron, no los que estaban escritos en el plan. */
-  const SESION_DEFECTO = { fecha: hoyISO(), min: 70 };
+  /* Qué sesión del plan es la de hoy. Va en la misma bolsa que las cargas
+     —bajo una clave reservada que no puede chocar con ningún id de
+     jugador— para que se guarde y se comparta de una sola vez. La pone
+     cargarSesionPlan() al cargar una sesión desde Pretemporada; aquí no hay
+     ningún formulario que la toque a mano. */
+  const SESION_DEFECTO = { min: 70 };
   const sesionRpe = { ...SESION_DEFECTO, ...(cargas._sesion || {}) };
-  const setSesionRpe = (campo, valor) => setCargas((c) => ({ ...c, _sesion: { ...SESION_DEFECTO, ...(c._sesion || {}), [campo]: valor } }));
-  /* Carga interna orientativa = RPE × minutos reales. El plan insiste en que
-     no hay números mágicos: es para ver tendencias del propio jugador. */
-  const cargaInterna = (id) => (Number(cargaDe(id).rpe) || 0) * (Number(sesionRpe.min) || 0);
-  const conRpe = players.filter((p) => Number(cargaDe(p.id).rpe) > 0);
-  const rpeMedio = conRpe.length
-    ? (conRpe.reduce((s, p) => s + Number(cargaDe(p.id).rpe), 0) / conRpe.length).toFixed(1)
-    : "—";
-  const internaMedia = conRpe.length
-    ? Math.round(conRpe.reduce((s, p) => s + cargaInterna(p.id), 0) / conRpe.length)
-    : 0;
-  const aRevisar = players.filter((p) => Number(cargaDe(p.id).rpe) >= 8).length;
 
   /* ---------------- Histórico de partes ----------------
      El parte del día se sobrescribía: al abrir la app al día siguiente no
-     quedaba nada de lo anterior. Pero el plan dice que el RPE sirve para
-     "comparar al jugador consigo mismo y observar tendencias", y sin días
-     guardados no hay tendencia que observar.
-
-     Cada día cerrado se archiva comprimido en la misma bolsa del equipo: fecha,
-     sesión del plan, minutos reales y, por jugador, [semáforo, carga, RPE,
-     adaptada]. Un día con 19 jugadores ocupa unos 300 caracteres, así que una
-     temporada entera cabe de sobra en el documento del equipo y no hace falta
-     una tabla nueva. Se guardan los 200 últimos por si acaso. */
+     quedaba nada de lo anterior. Cada día cerrado se archiva comprimido en
+     la misma bolsa del equipo: fecha, sesión del plan, minutos reales y,
+     por jugador, [semáforo, carga%]. Un día con 19 jugadores ocupa unos 300
+     caracteres, así que una temporada entera cabe de sobra en el documento
+     del equipo y no hace falta una tabla nueva. Se guardan los 200 últimos
+     por si acaso. */
   const HIST_MAX = 200;
   const EST_IDX = ["verde", "amarillo", "rojo"];
   const historico = Array.isArray(cargas._hist) ? cargas._hist : [];
   /* Cuentas de un día archivado. Se recalculan al leer en vez de guardarse:
-     así un día viejo sigue cuadrando aunque cambie la plantilla. */
+     así un día viejo sigue cuadrando aunque cambie la plantilla. Antes esto
+     promediaba el RPE que se preguntaba después de la sesión; ahora que ese
+     paso se ha quitado, promedia la carga% que ya se apunta antes de
+     empezar -es el mismo dato de siempre, no uno nuevo que pedir. */
   const resumenDia = (d) => {
     const filas = Object.values(d.j || {});
-    const conRpeD = filas.filter((f) => Number(f[2]) > 0);
-    const media = conRpeD.length ? conRpeD.reduce((s, f) => s + Number(f[2]), 0) / conRpeD.length : 0;
+    const cargasD = filas.map((f) => Number(f[1]) || 0);
+    const media = cargasD.length ? cargasD.reduce((s, v) => s + v, 0) / cargasD.length : 0;
     return {
-      media, interna: Math.round(media * (Number(d.m) || 0)),
-      registrados: conRpeD.length, total: filas.length,
+      media, total: filas.length,
       amarillos: filas.filter((f) => f[0] === 1).length,
       rojos: filas.filter((f) => f[0] === 2).length,
-      revisar: filas.filter((f) => Number(f[2]) >= 8).length,
-      adaptadas: filas.filter((f) => f[3] === 1).length,
     };
   };
   const cerrarDia = async () => {
@@ -16750,9 +16726,9 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
     const j = {};
     for (const p of players) {
       const c = cargaDe(p.id);
-      j[p.id] = [Math.max(0, EST_IDX.indexOf(c.estado)), Number(c.carga) || 0, Number(c.rpe) || 0, c.adaptada ? 1 : 0];
+      j[p.id] = [Math.max(0, EST_IDX.indexOf(c.estado)), Number(c.carga) || 0];
     }
-    const entrada = { f: sesionRpe.fecha || hoyISO(), p: Number(sesionRpe.plan) || 0, m: Number(sesionRpe.min) || 0, j };
+    const entrada = { f: hoyISO(), p: Number(sesionRpe.plan) || 0, m: Number(sesionRpe.min) || 0, j };
     /* Si ya hay un parte archivado de esa misma fecha se sustituye, no se
        duplica: cerrar el día dos veces por error no debe inventar sesiones. */
     const resto = historico.filter((d) => d.f !== entrada.f);
@@ -16772,18 +16748,19 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
     setTimeout(() => setCargasMsg(""), 5000);
   };
 
+  /* Mismo umbral en todo el histórico: 70% en adelante va bien, entre 40 y
+     70 es para vigilar, por debajo de 40 es la alarma. */
+  const colCarga = (media) => media === 0 ? C.line : media >= 70 ? C.green : media >= 40 ? AC : "#b4474a";
   const renderHistorico = () => {
     if (!isPro || historico.length === 0) return null;
     const dias = [...historico].slice(-20);
-    const maxInterna = Math.max(1, ...dias.map((d) => resumenDia(d).interna));
     const jugadorSel = players.find((p) => p.id === histPlayer) || null;
     return (
       <Card title={`📈 ${t("cf.histTitle")}`}>
         <div className="text-xs mb-3 leading-relaxed" style={{ color: C.dim }}>{t("cf.histHint")}</div>
 
-        {/* Tendencia del grupo. Se dibuja la carga interna, no el RPE suelto:
-            una sesión corta a RPE 8 y una larga a RPE 5 no cargan lo mismo, y
-            es la subida sostenida lo que hay que ver venir. */}
+        {/* Tendencia del grupo: la carga% media del día, la misma que se
+            anota antes de entrenar. */}
         <div className="rounded-lg border p-3 mb-3" style={{ borderColor: C.line, background: C.panel2 }}>
           <div className="text-[11px] font-display uppercase tracking-wide mb-2" style={{ color: C.dim }}>{t("cf.histTrend")}</div>
           {/* h-28 y no h-24: la barra más alta más su cifra encima y la fecha
@@ -16791,12 +16768,12 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
           <div className="flex items-end gap-1 h-28 overflow-x-auto">
             {dias.map((d) => {
               const r = resumenDia(d);
-              const col = r.media >= 8 ? "#b4474a" : r.media === 0 ? C.line : r.media >= 7 ? "#d9a441" : r.media >= 5 ? AC : "#2f6b4f";
+              const col = colCarga(r.media);
               return (
                 <div key={d.f} className="flex flex-col items-center justify-end gap-1 shrink-0" style={{ width: 26 }}
-                  title={`${d.f} · ${t("cf.rpeAvg")} ${r.media.toFixed(1)} · ${r.interna} ${t("cf.units")}`}>
-                  <span className="text-[9px] tabular-nums" style={{ color: C.dim }}>{r.media ? r.media.toFixed(1) : ""}</span>
-                  <div className="w-full rounded-t" style={{ height: `${Math.max(3, (r.interna / maxInterna) * 68)}px`, background: col }} />
+                  title={`${d.f} · ${t("cf.avg")} ${Math.round(r.media)}%`}>
+                  <span className="text-[9px] tabular-nums" style={{ color: C.dim }}>{r.media ? Math.round(r.media) : ""}</span>
+                  <div className="w-full rounded-t" style={{ height: `${Math.max(3, (r.media / 100) * 68)}px`, background: col }} />
                   <span className="text-[9px] tabular-nums" style={{ color: C.dim }}>{d.f.slice(8, 10)}/{d.f.slice(5, 7)}</span>
                 </div>
               );
@@ -16825,26 +16802,26 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
               <div className="flex flex-wrap gap-1.5">
                 {dias.map((d) => {
                   const f = (d.j || {})[jugadorSel.id];
-                  const rpe = f ? Number(f[2]) : 0;
+                  const carga = f ? Number(f[1]) : 0;
                   const est = f ? EST_IDX[f[0]] || "verde" : "verde";
-                  const col = !f ? C.line : est === "rojo" ? "#b4474a" : est === "amarillo" ? "#d9a441" : rpe >= 8 ? "#b4474a" : rpe >= 7 ? "#d9a441" : rpe > 0 ? "#2f6b4f" : C.line;
+                  const col = !f ? C.line : est === "rojo" ? "#b4474a" : est === "amarillo" ? "#d9a441" : colCarga(carga);
                   return (
                     <div key={d.f} className="rounded-lg border px-2 py-1.5 text-center shrink-0" style={{ borderColor: col, minWidth: 54 }}
-                      title={`${d.f}${f ? ` · ${t("cf.load")} ${f[1]}%${f[3] === 1 ? ` · ${t("cf.adapted")}` : ""}` : ""}`}>
+                      title={`${d.f}${f ? ` · ${t("cf.load")} ${carga}%` : ""}`}>
                       <div className="text-[9px] tabular-nums" style={{ color: C.dim }}>{d.f.slice(8, 10)}/{d.f.slice(5, 7)}</div>
-                      <div className="font-display text-sm tabular-nums" style={{ color: col }}>{rpe > 0 ? rpe : "—"}</div>
+                      <div className="font-display text-sm tabular-nums" style={{ color: col }}>{f ? `${carga}%` : "—"}</div>
                     </div>
                   );
                 })}
               </div>
               {(() => {
-                const suyos = dias.map((d) => Number(((d.j || {})[jugadorSel.id] || [])[2]) || 0).filter((x) => x > 0);
+                const suyos = dias.filter((d) => (d.j || {})[jugadorSel.id]).map((d) => Number(((d.j || {})[jugadorSel.id] || [])[1]) || 0);
                 if (!suyos.length) return <div className="text-[11px] mt-2" style={{ color: C.dim }}>{t("cf.histNoPlayerData")}</div>;
-                const media = (suyos.reduce((a, b) => a + b, 0) / suyos.length).toFixed(1);
+                const media = Math.round(suyos.reduce((a, b) => a + b, 0) / suyos.length);
                 const faltas = dias.length - suyos.length;
                 return (
                   <div className="text-[11px] mt-2" style={{ color: C.dim }}>
-                    {t("cf.rpeAvg")} <strong style={{ color: C.chalk }}>{media}</strong> · {suyos.length} {t("cf.histSessions")}
+                    {t("cf.avg")} <strong style={{ color: C.chalk }}>{media}%</strong> · {suyos.length} {t("cf.histSessions")}
                     {faltas > 0 && ` · ${faltas} ${t("cf.histMissing")}`}
                   </div>
                 );
@@ -16898,8 +16875,7 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
           {[...dias].reverse().map((d) => {
             const r = resumenDia(d);
             const s = PRETEMPORADA.flatMap((w) => w.sesiones).find((x) => x.n === d.p);
-            const desvio = !s || !r.media ? 0 : r.media > s.rpeMax ? 1 : r.media < s.rpeMin ? -1 : 0;
-            const col = desvio === 0 ? C.green : desvio > 0 ? "#b4474a" : "#d9a441";
+            const col = colCarga(r.media);
             return (
               <div key={d.f} className="rounded-lg border p-2.5 flex flex-wrap items-center gap-x-3 gap-y-1" style={{ borderColor: C.line, background: C.panel2 }}>
                 <div className="text-sm tabular-nums shrink-0" style={{ color: C.chalk }}>{d.f.slice(8, 10)}/{d.f.slice(5, 7)}</div>
@@ -16907,14 +16883,12 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
                   {s ? `S${s.n} · ${s.nombre}` : t("cf.histNoPlan")}
                 </div>
                 <div className="text-[11px] tabular-nums shrink-0" style={{ color: C.dim }}>{d.m}′</div>
-                <div className="text-[11px] tabular-nums shrink-0" style={{ color: s && r.media ? col : C.dim }}>
-                  {t("cf.rpe")} {r.media ? r.media.toFixed(1) : "—"}{s ? ` / ${s.rpe}` : ""}
+                <div className="text-[11px] tabular-nums shrink-0" style={{ color: r.media ? col : C.dim }}>
+                  {t("cf.load")} {r.media ? `${Math.round(r.media)}%` : "—"}
                 </div>
-                <div className="text-[11px] tabular-nums shrink-0" style={{ color: C.dim }}>{r.interna} {t("cf.units")}</div>
                 <div className="flex gap-1.5 shrink-0 text-[11px]">
                   {r.amarillos > 0 && <span style={{ color: "#d9a441" }}>🟡 {r.amarillos}</span>}
                   {r.rojos > 0 && <span style={{ color: "#b4474a" }}>🔴 {r.rojos}</span>}
-                  {r.adaptadas > 0 && <span style={{ color: C.dim }}>{r.adaptadas} {t("cf.adapted").toLowerCase()}</span>}
                 </div>
               </div>
             );
@@ -17049,155 +17023,6 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
         )}
       </Card>
 
-      {/* ---- Hoja de después: RPE post-sesión ----
-          Se pregunta 15-30 minutos después de terminar, y siempre en los
-          mismos términos: "del 1 al 10, ¿cuánto esfuerzo te ha supuesto la
-          sesión en conjunto?". La carga interna (RPE × minutos reales) es
-          orientativa: sirve para comparar al jugador consigo mismo, no para
-          compararlo con sus compañeros ni contra un número universal. */}
-      {isPro && (
-        <Card title={`⏱ ${t("cf.rpeTitle")}`}>
-          <div className="text-xs mb-3 leading-relaxed" style={{ color: C.dim }}>{t("cf.rpeHint")}</div>
-
-          <div className="flex flex-wrap items-end gap-3 mb-3">
-            <label className="block">
-              <span className="text-[11px] block mb-1" style={{ color: C.dim }}>{t("cf.sessionDate")}</span>
-              <input type="date" value={sesionRpe.fecha} disabled={!puede}
-                onChange={(e) => setSesionRpe("fecha", e.target.value)}
-                className="px-2.5 py-1.5 rounded-lg border bg-transparent text-sm"
-                style={{ borderColor: C.line, color: C.chalk }} />
-            </label>
-            <label className="block">
-              <span className="text-[11px] block mb-1" style={{ color: C.dim }}>{t("cf.realMin")}</span>
-              <input type="number" min={0} max={200} value={sesionRpe.min} disabled={!puede}
-                onChange={(e) => setSesionRpe("min", Math.max(0, Math.min(200, Number(e.target.value) || 0)))}
-                className="w-24 px-2.5 py-1.5 rounded-lg border bg-transparent text-sm tabular-nums"
-                style={{ borderColor: C.line, color: C.chalk }} />
-            </label>
-            <div className="text-[11px] pb-2" style={{ color: C.dim }}>{t("cf.realMinHelp")}</div>
-          </div>
-
-          {/* Lo que se esperaba frente a lo que ha salido. Es la pregunta que
-              cierra el círculo del plan: si la sesión de carga alta sale en
-              RPE 4, no ha habido estímulo; si la de descarga sale en 8, el
-              grupo llega al partido más cansado de lo previsto. */}
-          {(() => {
-            const s = PRETEMPORADA.flatMap((w) => w.sesiones).find((x) => x.n === Number(sesionRpe.plan));
-            if (!s) return null;
-            const real = Number(rpeMedio);
-            const hay = conRpe.length > 0 && !Number.isNaN(real);
-            const desvio = !hay ? 0 : real > s.rpeMax ? 1 : real < s.rpeMin ? -1 : 0;
-            const col = desvio === 0 ? C.green : desvio > 0 ? "#b4474a" : "#d9a441";
-            return (
-              <div className="rounded-lg border p-2.5 mb-3" style={{ borderColor: hay ? col : C.line, background: C.panel2 }}>
-                <div className="text-[11px] font-display uppercase tracking-wide mb-1" style={{ color: C.dim }}>
-                  {t("pt.session")} {s.n} · {s.nombre}
-                </div>
-                <div className="text-sm" style={{ color: C.chalk }}>
-                  {t("cf.target")} <strong className="tabular-nums">{s.rpe}</strong>
-                  {hay && <> · {t("cf.real")} <strong className="tabular-nums" style={{ color: col }}>{rpeMedio}</strong></>}
-                  {hay && desvio !== 0 && (
-                    <span className="text-[11px] ml-2" style={{ color: col }}>
-                      {desvio > 0 ? `↑ ${t("cf.above")}` : `↓ ${t("cf.below")}`}
-                    </span>
-                  )}
-                </div>
-                {!hay && <div className="text-[11px] mt-1" style={{ color: C.dim }}>{t("cf.noRpeYet")}</div>}
-              </div>
-            );
-          })()}
-
-          {/* La escala del plan, a la vista mientras se rellena: sin ella cada
-              cual pone el número que le parece y deja de ser comparable. */}
-          <div className="flex flex-wrap gap-1.5 mb-3">
-            {[["3-4", t("cf.rpeEasy"), "#2f6b4f"], ["5-6", t("cf.rpeMod"), AC], ["7", t("cf.rpeHard"), "#d9a441"], ["8+", t("cf.rpeReview"), "#b4474a"]].map(([n, lbl, col]) => (
-              <span key={n} className="text-[11px] px-2.5 py-1 rounded-full border" style={{ borderColor: col, color: col }}>
-                <strong className="tabular-nums">{n}</strong> · {lbl}
-              </span>
-            ))}
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-3">
-            <div className="rounded-lg border p-2.5" style={{ borderColor: C.line, background: C.panel2 }}>
-              <div className="text-[11px] font-display uppercase tracking-wide" style={{ color: C.dim }}>{t("cf.rpeAvg")}</div>
-              <div className="font-display text-2xl tabular-nums" style={{ color: C.chalk }}>{rpeMedio}</div>
-            </div>
-            <div className="rounded-lg border p-2.5" style={{ borderColor: C.line, background: C.panel2 }}>
-              <div className="text-[11px] font-display uppercase tracking-wide" style={{ color: C.dim }}>{t("cf.internalAvg")}</div>
-              <div className="font-display text-2xl tabular-nums" style={{ color: C.chalk }}>{internaMedia}</div>
-            </div>
-            <div className="rounded-lg border p-2.5" style={{ borderColor: aRevisar ? "#b4474a" : C.line, background: C.panel2 }}>
-              <div className="text-[11px] font-display uppercase tracking-wide" style={{ color: aRevisar ? "#b4474a" : C.dim }}>{t("cf.toReview")}</div>
-              <div className="font-display text-2xl tabular-nums" style={{ color: aRevisar ? C.chalk : C.dim }}>{aRevisar}</div>
-            </div>
-            <div className="rounded-lg border p-2.5" style={{ borderColor: C.line, background: C.panel2 }}>
-              <div className="text-[11px] font-display uppercase tracking-wide" style={{ color: C.dim }}>{t("cf.recorded")}</div>
-              <div className="font-display text-2xl tabular-nums" style={{ color: C.chalk }}>{conRpe.length}<span className="text-sm" style={{ color: C.dim }}> / {players.length}</span></div>
-            </div>
-          </div>
-
-          {players.length === 0 ? (
-            <div className="text-sm" style={{ color: C.dim }}>{t("cf.noPlayers")}</div>
-          ) : (
-            <div className="space-y-1.5">
-              {/* Aquí el orden es por dorsal y no por RPE: se rellena
-                  preguntando uno a uno según van saliendo, y una lista que se
-                  reordena sola bajo el dedo es imposible de ir marcando. */}
-              {[...players].sort((a, b) => (Number(a.d) || 0) - (Number(b.d) || 0)).map((p) => {
-                const c = cargaDe(p.id);
-                const z = rpeZona(c.rpe);
-                return (
-                  <div key={p.id} className="rounded-lg border p-2.5" style={{ borderColor: Number(c.rpe) >= 8 ? z.color : C.line, background: C.panel2 }}>
-                    <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-                      <div className="text-sm flex-1 min-w-[150px]" style={{ color: C.chalk }}>
-                        <span className="tabular-nums" style={{ color: C.dim }}>#{p.d}</span> {p.n}
-                      </div>
-                      <div className="flex items-center gap-2 w-full sm:w-auto">
-                        <input type="range" min={0} max={10} step={1} value={c.rpe} disabled={!puede}
-                          onChange={(e) => setCarga(p.id, "rpe", Number(e.target.value))}
-                          aria-label={`${t("cf.rpe")} ${p.n}`}
-                          className="flex-1 sm:w-28 h-6 accent-current" style={{ color: z.color }} />
-                        <input type="number" min={0} max={10} value={c.rpe} disabled={!puede}
-                          onChange={(e) => setCarga(p.id, "rpe", Math.max(0, Math.min(10, Number(e.target.value) || 0)))}
-                          className="w-14 px-2 py-1 rounded-lg border bg-transparent text-sm tabular-nums text-right"
-                          style={{ borderColor: C.line, color: C.chalk }} />
-                        <span className="text-[11px] whitespace-nowrap shrink-0" style={{ color: z.color }}>{z.label}</span>
-                      </div>
-                      <div className="flex items-center gap-3 w-full sm:w-auto">
-                        <div className="text-[11px] tabular-nums shrink-0" style={{ color: C.dim }}>
-                          {Number(c.rpe) > 0 ? `${cargaInterna(p.id)} ${t("cf.units")}` : "—"}
-                        </div>
-                        <button onClick={() => puede && setCarga(p.id, "adaptada", !c.adaptada)} disabled={!puede}
-                        aria-pressed={c.adaptada}
-                        className="text-[11px] px-2.5 py-1.5 rounded-full border font-display uppercase tracking-wide disabled:opacity-60 ml-auto sm:ml-0 shrink-0"
-                        style={{
-                          borderColor: c.adaptada ? "#d9a441" : C.line,
-                          color: c.adaptada ? "#d9a441" : C.dim,
-                          background: c.adaptada ? "rgba(217,164,65,.12)" : "transparent",
-                        }}>{c.adaptada ? t("cf.adapted") : t("cf.complete")}</button>
-                      </div>
-                    </div>
-                    {p.aviso && (
-                      <div className="mt-2 text-[11px] px-2.5 py-1.5 rounded-lg border leading-snug"
-                        style={{ borderColor: C.warn, background: `${C.warn}14`, color: C.warn }}>
-                        ⚠ {p.aviso}
-                      </div>
-                    )}
-                    {(puede || c.dolorPost) && (
-                      <input value={c.dolorPost} disabled={!puede}
-                        onChange={(e) => setCarga(p.id, "dolorPost", e.target.value)}
-                        placeholder={t("cf.painPh")} aria-label={`${t("cf.pain")} ${p.n}`}
-                        className="mt-2 w-full px-2.5 py-1.5 rounded-lg border bg-transparent text-xs"
-                        style={{ borderColor: C.line, color: C.chalk }} />
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          )}
-          {barraGuardar()}
-        </Card>
-      )}
       {renderHistorico()}
       </>
     );
@@ -19027,18 +18852,22 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
               pestaña se abre con cualquiera de los dos permisos y cada bloque
               se enseña solo a quien le toca. */}
           {tab === "temporada" && (verApartado("editTraining") || verApartado("cargas")) && (() => {
-            /* El delegado solo lleva las cargas: no ve la planificación de los
-               diez meses ni, por tanto, el conmutador —enseñarle dos pestañas
-               cuando una está vacía para él es ruido. */
-            /* Enseñar el plan y la planificación es visibilidad, no edición:
-               en la demo se ven enteros y lo que no se puede es tocarlos. */
+            /* Antes "Pretemporada" mezclaba en la misma columna dos cosas que no
+               se tocan al mismo ritmo ni las mismas personas: la propuesta de
+               sesiones (la mira el cuerpo técnico una vez por semana) y el
+               control de carga de cada jugador (lo rellena quien esté en el
+               banquillo, a diario, incluido el delegado). Iban juntas y para
+               llegar a la plantilla había que bajar media pantalla de plan.
+               Ahora son tres pestañas separadas. El delegado solo lleva las
+               cargas: no ve el plan ni la planificación de los diez meses, así
+               que ni siquiera se le enseña el conmutador. */
             const puedePlan = verApartado("editTraining");
-            const sub = puedePlan ? tempSub : "pre";
+            const sub = puedePlan ? tempSub : "cargas";
             return (
               <div className="space-y-4">
                 {puedePlan && (
                   <div className="flex gap-1 p-1 rounded-lg border w-full sm:w-auto sm:inline-flex" style={{ borderColor: C.line, background: C.panel2 }}>
-                    {[["pre", t("se.tabPre")], ["temp", t("se.tabSeason")]].map(([k, lbl]) => (
+                    {[["pre", t("se.tabPre")], ["cargas", t("se.tabCargas")], ["temp", t("se.tabSeason")]].map(([k, lbl]) => (
                       <button key={k} onClick={() => setTempSub(k)} aria-pressed={sub === k}
                         className="flex-1 sm:flex-none font-display uppercase tracking-wide text-sm px-4 py-2 rounded-md"
                         style={sub === k
@@ -19047,14 +18876,7 @@ La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${l
                     ))}
                   </div>
                 )}
-                {sub === "pre" ? (
-                  <>
-                    {/* Orden del día del entrenador: qué sesión toca, quién
-                        puede hacerla y con cuánta carga, y cómo ha salido. */}
-                    {puedePlan && renderPretemporada()}
-                    {renderCargas()}
-                  </>
-                ) : renderSeason()}
+                {sub === "pre" ? renderPretemporada() : sub === "cargas" ? renderCargas() : renderSeason()}
               </div>
             );
           })()}
