@@ -118,6 +118,10 @@ const DICT = {
     "mt.added": "Tiempo añadido por el árbitro",
     "mt.events": "Eventos del partido",
     "mt.noEvents": "Aún no hay eventos.",
+    "mt.rosterTitle": "Plantilla",
+    "mt.rosterHint": "Toca un jugador para anotar gol, tarjeta, falta o cambio.",
+    "mt.actionsTitle": "Guardar y compartir",
+    "mt.shareHint": "Comparte el acta con el resto del cuerpo técnico o las familias.",
     "mt.who": "¿Quién?",
     "mt.matchSettings": "Ajustes del partido",
     "mt.halfLenHint": "Juvenil 40′ · Cadete e Infantil 35′ · Alevín 30′. Se aplica sola según la categoría; edítala si tu competición usa otra duración.",
@@ -661,6 +665,10 @@ const DICT = {
     "mt.added": "Added time by the referee",
     "mt.events": "Match events",
     "mt.noEvents": "No events yet.",
+    "mt.rosterTitle": "Squad",
+    "mt.rosterHint": "Tap a player to log a goal, card, foul or substitution.",
+    "mt.actionsTitle": "Save and share",
+    "mt.shareHint": "Share the match report with the rest of the staff or the families.",
     "mt.who": "Who?",
     "mt.matchSettings": "Match settings",
     "mt.halfLenHint": "U19 40′ · U15/U16 35′ · U12/U13 30′. Applied automatically by age group; edit it if your competition uses a different length.",
@@ -1216,6 +1224,10 @@ const DICT = {
     "mt.added": "Temps additionnel de l'arbitre",
     "mt.events": "Événements du match",
     "mt.noEvents": "Pas encore d'événements.",
+    "mt.rosterTitle": "Effectif",
+    "mt.rosterHint": "Touchez un joueur pour noter un but, un carton, une faute ou un changement.",
+    "mt.actionsTitle": "Enregistrer et partager",
+    "mt.shareHint": "Partagez la feuille de match avec le reste du staff ou les familles.",
     "mt.who": "Qui ?",
     "mt.matchSettings": "Réglages du match",
     "mt.halfLenHint": "U19 40′ · U15/U16 35′ · U12/U13 30′. Appliqué automatiquement selon la catégorie ; modifiez si votre compétition utilise une autre durée.",
@@ -1845,6 +1857,10 @@ const DICT = {
     "mt.added": "Nachspielzeit des Schiedsrichters",
     "mt.events": "Spielereignisse",
     "mt.noEvents": "Noch keine Ereignisse.",
+    "mt.rosterTitle": "Kader",
+    "mt.rosterHint": "Tippe auf einen Spieler, um Tor, Karte, Foul oder Wechsel einzutragen.",
+    "mt.actionsTitle": "Speichern und teilen",
+    "mt.shareHint": "Teile den Spielbericht mit dem restlichen Trainerteam oder den Familien.",
     "mt.who": "Wer?",
     "mt.matchSettings": "Spieleinstellungen",
     "mt.halfLenHint": "U19 40′ · U15/U16 35′ · U12/U13 30′. Wird automatisch je nach Altersklasse angewendet; ändere es, wenn dein Wettbewerb eine andere Dauer verwendet.",
@@ -2473,6 +2489,10 @@ const DICT = {
     "mt.added": "Tempo adicionado pelo árbitro",
     "mt.events": "Eventos do jogo",
     "mt.noEvents": "Ainda não há eventos.",
+    "mt.rosterTitle": "Plantel",
+    "mt.rosterHint": "Toca num jogador para registar golo, cartão, falta ou substituição.",
+    "mt.actionsTitle": "Guardar e partilhar",
+    "mt.shareHint": "Partilha a súmula com o resto da equipa técnica ou as famílias.",
     "mt.who": "Quem?",
     "mt.matchSettings": "Definições do jogo",
     "mt.halfLenHint": "Sub-19 40′ · Sub-15/Sub-16 35′ · Sub-12/Sub-13 30′. Aplica-se automaticamente consoante o escalão; edita se a tua competição usar outra duração.",
@@ -5459,6 +5479,7 @@ const EVENTO_TXT = {
   golRival: { es: "Gol del rival", en: "Opponent goal", fr: "But adverse", de: "Gegentor", pt: "Golo do adversário" },
   cambio: { es: "Cambio", en: "Substitution", fr: "Changement", de: "Wechsel", pt: "Substituição" },
   tarjeta: { es: "Tarjeta", en: "Card", fr: "Carton", de: "Karte", pt: "Cartão" },
+  falta: { es: "Falta", en: "Foul", fr: "Faute", de: "Foul", pt: "Falta" },
   nota: { es: "Nota", en: "Note", fr: "Note", de: "Notiz", pt: "Nota" },
   periodo: { es: "Cambio de parte", en: "Period change", fr: "Changement de période", de: "Periodenwechsel", pt: "Mudança de período" },
   penalti: { es: "Penalti", en: "Penalty", fr: "Penalty", de: "Elfmeter", pt: "Penálti" },
@@ -9805,6 +9826,11 @@ ACTA:\n${evTxt}`;
   const [ajustesAbiertos, setAjustesAbiertos] = useState(false);
   /* Para no dejar dudas de si el acta se guardó: el botón se marca. */
   const [actaGuardada, setActaGuardada] = useState(false);
+  /* Id del jugador cuyo menú de acción rápida está desplegado en la
+     plantilla de la izquierda del Modo partido: gol, tarjeta, falta o
+     cambio con un solo toque, sin pasar primero por "Añadir". */
+  const [jugadorAccion, setJugadorAccion] = useState(null);
+  const [actaCopiado, setActaCopiado] = useState(false);
 
   useEffect(() => {
     if (!running) return;
@@ -15962,8 +15988,48 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
   };
 
   const renderMatch = () => (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-      <Card className="lg:col-span-2">
+    <div className="space-y-4">
+    <div className="grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-4 items-start">
+      {/* ---- Plantilla ----
+          Todo el equipo, no solo los convocados: quien no ha podido venir
+          hoy también puede necesitar una nota. Tocar un jugador despliega
+          sus acciones más urgentes -gol, tarjeta, falta, cambio- sin pasar
+          antes por "Añadir" y sin tener que buscar su dorsal en una rejilla
+          aparte cuando el partido va deprisa. */}
+      <Card title={t("mt.rosterTitle")}>
+        <div className="text-[11px] mb-2 leading-relaxed" style={{ color: C.dim }}>{t("mt.rosterHint")}</div>
+        <div className="space-y-1.5 max-h-[70vh] overflow-y-auto pr-1">
+          {[...players].sort((a, b) => a.d - b.d).map((p) => {
+            const abierto = jugadorAccion === p.id;
+            return (
+              <div key={p.id} className="rounded-lg border" style={{ borderColor: abierto ? AC : C.line, background: C.panel2 }}>
+                <button onClick={() => setJugadorAccion(abierto ? null : p.id)}
+                  className="w-full flex items-center gap-2 px-2.5 py-2 text-left min-h-11">
+                  <span className="font-display text-sm tabular-nums w-6 shrink-0" style={{ color: AC }}>{p.d}</span>
+                  <span className="flex-1 min-w-0 truncate text-sm" style={{ color: starters.has(p.id) ? C.chalk : C.dim }}>{p.n}</span>
+                  <span className="text-[10px] shrink-0" style={{ color: C.dim }}>{p.pos}</span>
+                </button>
+                {abierto && (
+                  <div className="flex flex-wrap gap-1.5 px-2.5 pb-2.5">
+                    <button onClick={() => { addEvent("gol", p); setJugadorAccion(null); }}
+                      className="text-xs px-2 py-1.5 rounded-lg border" style={{ borderColor: C.line, color: C.chalk }}>⚽ {nombreEvento("gol", lang)}</button>
+                    {CARD_TIPOS.map((c) => (
+                      <button key={c.k} onClick={() => { addEvent("tarjeta", p, { card: c.k }); setJugadorAccion(null); }}
+                        className="text-xs px-2 py-1.5 rounded-lg border" style={{ borderColor: C.line, color: C.chalk }}>{c.icon} {c.name[lang] || c.name.es}</button>
+                    ))}
+                    <button onClick={() => { addEvent("falta", p); setJugadorAccion(null); }}
+                      className="text-xs px-2 py-1.5 rounded-lg border" style={{ borderColor: C.line, color: C.chalk }}>⊹ {nombreEvento("falta", lang)}</button>
+                    <button onClick={() => { addEvent("cambio", p); setJugadorAccion(null); }}
+                      className="text-xs px-2 py-1.5 rounded-lg border" style={{ borderColor: C.line, color: C.chalk }}>⇄ {nombreEvento("cambio", lang)}</button>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </Card>
+
+      <Card>
         <div className="flex flex-wrap items-center justify-center sm:justify-between gap-x-4 gap-y-2 text-center">
           <div className="font-display text-xl sm:text-3xl font-semibold flex items-center gap-2" style={{ color: C.chalk }}>
             <Crest src={teamCrest} name={session.team.name} size={32} />{session.team.name}
@@ -16303,27 +16369,47 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
         )}
 
       </Card>
+    </div>
+
+    {/* ---- Historial del partido, y al lado guardar o compartir ----
+        El acta y las acciones viven en su propia fila, a todo lo ancho: con
+        el partido avanzado la lista de eventos crece, y antes competía por
+        sitio con el marcador de arriba. */}
+    <div className="grid grid-cols-1 lg:grid-cols-[1fr_260px] gap-4 items-start">
       <Card title={t("mt.events")}>
         {events.length === 0 && <div className="text-sm" style={{ color: C.dim }}>{t("mt.noEvents")}</div>}
         <div className="space-y-2 max-h-[420px] overflow-y-auto pr-1">
           {events.map((e, i) => (<div key={i} className="flex items-center text-sm border-b pb-2 last:border-0" style={{ borderColor: C.line, color: C.chalk }}><span className="font-display text-lg w-16 shrink-0" style={{ color: AC }}>{e.disp || e.min}'</span><span>{descEvento(e, lang)}</span></div>))}
         </div>
+      </Card>
+      <Card title={t("mt.actionsTitle")}>
+        <div className="text-[11px] mb-3 leading-relaxed" style={{ color: C.dim }}>{t("mt.shareHint")}</div>
         {/* Cerrar el acta se hacía solo desde Análisis, y el partido se acaba
             aquí. Sin esto había que acordarse de cambiar de pantalla, y lo que
             no se guarda no aparece luego en Estadísticas. */}
-        {events.length > 0 && (
-          <div className="mt-4 pt-3 border-t" style={{ borderColor: C.line }}>
-            <button onClick={() => { guardarEnHistorico(); setActaGuardada(true); }}
-              className="w-full min-h-12 rounded-lg font-display uppercase tracking-wide font-semibold"
-              style={{ background: actaGuardada ? C.panel2 : AC, color: actaGuardada ? C.dim : C.sobre, border: `1px solid ${actaGuardada ? C.line : AC}` }}>
-              {actaGuardada ? t("mt.closeActaSaved") : t("mt.closeActaBtn")}
-            </button>
-            <div className="text-[11px] mt-2 leading-relaxed" style={{ color: C.dim }}>
-              {t("mt.closeActaHint")}
-            </div>
-          </div>
-        )}
+        <button onClick={() => { guardarEnHistorico(); setActaGuardada(true); }} disabled={events.length === 0}
+          className="w-full min-h-12 rounded-lg font-display uppercase tracking-wide font-semibold disabled:opacity-40"
+          style={{ background: actaGuardada ? C.panel2 : AC, color: actaGuardada ? C.dim : C.sobre, border: `1px solid ${actaGuardada ? C.line : AC}` }}>
+          {actaGuardada ? t("mt.closeActaSaved") : t("mt.closeActaBtn")}
+        </button>
+        <div className="text-[11px] mt-2 mb-3 leading-relaxed" style={{ color: C.dim }}>
+          {t("mt.closeActaHint")}
+        </div>
+        <div className="flex gap-2 pt-3 border-t" style={{ borderColor: C.line }}>
+          <button onClick={copiarActa} disabled={events.length === 0}
+            className="flex-1 font-display uppercase tracking-wider py-2.5 rounded-lg font-semibold disabled:opacity-40"
+            style={{ background: actaCopiado ? C.green : C.panel2, color: actaCopiado ? "#141414" : C.chalk, border: `1px solid ${C.line}` }}>
+            {actaCopiado ? t("tr.copied") : t("tr.copy")}
+          </button>
+          <a href={events.length === 0 ? undefined : `https://wa.me/?text=${encodeURIComponent(resumenPartidoTexto())}`}
+            target="_blank" rel="noreferrer" aria-disabled={events.length === 0}
+            className="flex-1 text-center font-display uppercase tracking-wider py-2.5 rounded-lg font-semibold border"
+            style={{ borderColor: C.line, color: events.length === 0 ? C.dim : C.chalk, pointerEvents: events.length === 0 ? "none" : "auto", opacity: events.length === 0 ? 0.4 : 1 }}>
+            {t("tr.whatsapp")}
+          </a>
+        </div>
       </Card>
+    </div>
     </div>
   );
 
@@ -16384,6 +16470,7 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
       dobleAmarilla: cuentaTarjeta(p.id, "doble"),
       rojas: cuentaTarjeta(p.id, "roja"),
       cambios: cuenta(p.id, "cambio"),
+      faltas: cuenta(p.id, "falta"),
     }));
   };
   const guardarEnHistorico = () => {
@@ -16419,6 +16506,25 @@ PLANTILLA (disponibilidad):\n${roster}\nMARCADOR: ${score.us}-${score.them} | EV
       try { localStorage.setItem(histKey, JSON.stringify(out)); } catch { /* noop */ }
       return out;
     });
+  };
+  /* Texto del acta para copiar o mandar por WhatsApp: mismo estilo que la
+     convocatoria y el resumen de entreno -cabecera en negrita con emoji,
+     luego una línea por evento, del más reciente al primero como en la
+     pantalla-. No hace falta que el partido esté cerrado: se puede
+     compartir a media parte igual que se guarda a media parte. */
+  const resumenPartidoTexto = () => {
+    const cab = `⚽ *${session.club} ${session.team.name} ${score.us} – ${score.them} ${matchInfo.rival || "Rival"}*`;
+    const meta = `📅 ${matchInfo.fecha || hoyISO()}${matchInfo.hora ? ` · ⏰ ${matchInfo.hora}` : ""}${matchInfo.lugar ? `\n📍 ${matchInfo.lugar}` : ""}`;
+    const cuerpo = events.length
+      ? [...events].reverse().map((e) => `${e.disp || e.min}' ${descEvento(e, lang)}`).join("\n")
+      : t("mt.noEvents");
+    return `${cab}\n${meta}\n\n${cuerpo}`;
+  };
+  const copiarActa = async () => {
+    const txt = resumenPartidoTexto();
+    try { await navigator.clipboard.writeText(txt); }
+    catch { const ta = document.createElement("textarea"); ta.value = txt; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); document.body.removeChild(ta); }
+    setActaCopiado(true); setTimeout(() => setActaCopiado(false), 1800);
   };
   const [planBusy, setPlanBusy] = useState(false);
   const [planMsg, setPlanMsg] = useState("");
