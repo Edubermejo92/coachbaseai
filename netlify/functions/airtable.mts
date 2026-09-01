@@ -182,6 +182,11 @@ const EQ = {
      se puede decir que falte un parte, y el aviso de "no ha avisado ni antes
      ni después del entreno" sería adivinar. */
   dias: "flddC2z6uAHNSaGXX",
+  /* Asistencia diaria del equipo, en JSON y por el mismo motivo que las
+     cargas: un documento por equipo, no una fila por día. Antes vivía solo en
+     el móvil de quien pasaba lista; con esto lo ve el resto del cuerpo
+     técnico y, más adelante, la familia del jugador. */
+  asistencia: "fldXjBDGFcYDkEn9M",
 };
 const PA = {
   ref: "fldVKBSHxPEqCuVk2", fecha: "fldUyP4Qia9GM6lCR", equipo: "fldXvt940m1HPQ3uH",
@@ -1001,6 +1006,43 @@ export default async (req: Request) => {
       return j({ error: "Petición no soportada" }, 400);
     }
 
+    /* ============ ASISTENCIA DIARIA ============
+       GET  ?res=asistencia&team=recX -> el JSON guardado
+       POST ?res=asistencia&team=recX { asistencia }
+       Mismas reglas que las cargas físicas: un documento por equipo, lo lee
+       el cuerpo técnico y lo escribe quien pasa lista (el propio equipo,
+       delegado incluido). Antes esto solo vivía en el móvil de quien
+       marcaba: ahora es la nube quien manda, para que el resto del cuerpo
+       técnico -y la ficha del jugador que ve su familia- vean la misma
+       asistencia sin importar el dispositivo. */
+    if (res === "asistencia") {
+      const team = url.searchParams.get("team") || "";
+      if (!team) return j({ error: "falta_equipo" }, 400);
+      if (req.method === "GET") {
+        const r = await fetch(`${table(T_EQUIPOS)}/${team}?returnFieldsByFieldId=true`, { headers: H });
+        if (!r.ok) return j({ error: "no_encontrado" }, 404);
+        const d = await r.json().catch(() => ({}));
+        return j({ asistencia: d?.fields?.[EQ.asistencia] || "" });
+      }
+      if (req.method === "POST") {
+        const suyo = String(sesion?.equipo || "") === team;
+        const puede = suyo || dirigeElClub(sesion);
+        if (!puede) return j({ ok: false, reason: "no_autorizado" }, 403);
+        const b = await req.json();
+        const r = await fetch(`${table(T_EQUIPOS)}/${team}`, {
+          method: "PATCH", headers: H,
+          body: JSON.stringify({ fields: { [EQ.asistencia]: String(b.asistencia || "") }, typecast: true }),
+        });
+        if (!r.ok) {
+          const err = await r.text().catch(() => "");
+          console.error(`[asistencia] Airtable ${r.status}: ${err.slice(0, 300)}`);
+          return j({ ok: false, reason: "airtable" }, 400);
+        }
+        return j({ ok: true });
+      }
+      return j({ error: "Petición no soportada" }, 400);
+    }
+
     /* ============ PARTES DEL CLUB (vista agregada) ============
        GET ?res=partes-club&club=recX -> los partes de todas las categorías del
        club, ya con el nombre de la categoría puesto. Existe aparte del recurso
@@ -1178,7 +1220,34 @@ export default async (req: Request) => {
       if (!hijoRec) return j({ ok: true, pendiente: false, hijo: null });
       const jg = await unoPorId(T_JUGADORES, hijoRec);
       if (!jg) return j({ ok: true, pendiente: false, hijo: null });
-      return j({ ok: true, pendiente: false, hijo: { rec: hijoRec, ...jg.fields } });
+      /* Asistencia del hijo: el documento de asistencia del equipo se guarda
+         por posición en la plantilla (mismo id que usa la app en pantalla),
+         no por el id de Airtable, así que hay que recalcular esa posición
+         aquí con el mismo orden -sin ordenar- con el que la app arma la
+         plantilla, y de ahí sacar solo el dato de este jugador: nunca la
+         plantilla ni la asistencia de sus compañeros. */
+      let asistencia: { pct: number; dias: number } | null = null;
+      const equipoHijo = (jg.fields.Equipo || [])[0] || null;
+      if (equipoHijo) {
+        const roster = (await listByName(T_JUGADORES)).filter((r: any) => (r.fields?.Equipo || []).includes(equipoHijo));
+        const idx = roster.findIndex((r: any) => r.id === hijoRec);
+        if (idx >= 0) {
+          const pid = String(idx + 1);
+          const rEq = await fetch(`${table(T_EQUIPOS)}/${equipoHijo}?returnFieldsByFieldId=true`, { headers: H });
+          if (rEq.ok) {
+            const dEq = await rEq.json().catch(() => ({}));
+            try {
+              const todo = JSON.parse(dEq?.fields?.[EQ.asistencia] || "{}") || {};
+              const dias = Object.values(todo).filter((d: any) => d && Object.keys(d).length > 0);
+              if (dias.length) {
+                const presentes = dias.filter((d: any) => d[pid] === "presente").length;
+                asistencia = { pct: Math.round((presentes / dias.length) * 100), dias: dias.length };
+              }
+            } catch { /* json roto en Airtable: se ignora */ }
+          }
+        }
+      }
+      return j({ ok: true, pendiente: false, hijo: { rec: hijoRec, ...jg.fields }, asistencia });
     }
 
     if (res === "partes-club") {
