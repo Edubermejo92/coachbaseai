@@ -79,6 +79,9 @@ const U = {
      el parte, no hizo las fotos— es justo la de un día en que NO hay parte al
      que colgarla. Las escribe solo la dirección del club. */
   faltas: "fldqlZapTFUOOLaQl",
+  /* Solo para el Rol Familia: qué jugador de la plantilla es su hijo/a. Lo
+     escribe el propio registro; nadie más lo toca. */
+  hijo: "fldOlXL957BafrlfE",
 };
 
 /* El Master es UNA cuenta, la de EBLDigital, y no se reparte desde la app.
@@ -309,7 +312,7 @@ const rolKey = (v: unknown) => ROL_KEY[norm(v)] || norm(v);
 const ROL_LABEL: Record<string, string> = {
   entrenador: "Entrenador principal", segundo: "Segundo entrenador",
   delegado: "Delegado", director: "Director deportivo",
-  club: "Club", master: "Master",
+  club: "Club", master: "Master", familia: "Familia",
 };
 /* Quién dirige el club: la cuenta del propio club, el director deportivo y el
    Master. Se pregunta por aquí y no rol a rol porque son quince los sitios que
@@ -518,6 +521,14 @@ export default async (req: Request) => {
      club, POST pide dirección del club— en vez de con esta única puerta que
      tapaba las tres. */
   const dirigeClub = dirigeElClub(sesion);
+  /* Familia es de solo lectura, en todo: no hay ni un botón de escritura en
+     su pantalla, pero esto es lo que de verdad lo garantiza, no la interfaz.
+     Una sola comprobación aquí arriba, antes de que la petición llegue a
+     ningún recurso concreto, en vez de acordarse de excluir a Familia en
+     cada PATCH/POST/DELETE que se escriba de aquí en adelante. */
+  if (rolKey(sesion?.rol) === "familia" && req.method !== "GET") {
+    return j({ error: "no_autorizado", reason: "Las cuentas familiares son de solo lectura." }, 403);
+  }
   if (res === "equipos" && ["POST", "DELETE"].includes(req.method) && !dirigeClub) {
     return j({ error: "no_autorizado", reason: "Solo la dirección del club puede crear o eliminar categorías." }, 403);
   }
@@ -1146,6 +1157,28 @@ export default async (req: Request) => {
           team: eq ? teamOut(eq, clubs) : null,
         },
       });
+    }
+
+    /* ================= FAMILIA: LA FICHA DE SU HIJO/A =================
+       Un solo jugador, el que se enlazó al registrarse -no la plantilla
+       entera del equipo, que dejaría ver a un padre los datos médicos de
+       los compañeros de su hijo-. Por eso no reutiliza ?res=jugadores: ese
+       responde con el equipo completo y aquí solo puede salir uno. Mientras
+       la cuenta siga Pendiente -el nombre y el dorsal que se tecleó al
+       registrarse no prueban que sea de verdad el padre o la madre- no se
+       da ningún dato, solo que está pendiente. */
+    if (res === "hijo") {
+      if (req.method !== "GET") return j({ error: "Petición no soportada" }, 400);
+      if (rolKey(sesion?.rol) !== "familia") return j({ ok: false, reason: "no_autorizado" }, 403);
+      const recs = await list(T_USUARIOS);
+      const yo = recs.find((r: any) => r.id === sesion.id);
+      if (!yo) return j({ ok: false, reason: "no_existe" }, 404);
+      if (norm(yo.fields[U.estado]) !== "activo") return j({ ok: true, pendiente: true, hijo: null });
+      const hijoRec = (yo.fields[U.hijo] || [])[0] || null;
+      if (!hijoRec) return j({ ok: true, pendiente: false, hijo: null });
+      const jg = await unoPorId(T_JUGADORES, hijoRec);
+      if (!jg) return j({ ok: true, pendiente: false, hijo: null });
+      return j({ ok: true, pendiente: false, hijo: { rec: hijoRec, ...jg.fields } });
     }
 
     if (res === "partes-club") {
@@ -2224,6 +2257,43 @@ export default async (req: Request) => {
         const modo = norm(b.plan);
         const independent = modo === "gratis" || modo === "free";
         const fundaClub = modo === "club";
+        const esFamilia = modo === "familia";
+
+        /* --- Cuenta de familia: elige el equipo de su hijo/a de los que ya
+           existen -no crea ninguno- y dice su nombre y dorsal para
+           encontrarlo en esa plantilla. No prueba parentesco: cualquiera que
+           conozca el nombre y el dorsal de un compañero podría escribirlos.
+           Lo que de verdad protege el dato del menor es que la cuenta nace
+           Pendiente -sin ver nada todavía, ver res=hijo- hasta que alguien
+           del club la active a mano. Tampoco cuenta contra el límite de
+           plazas del club: el portal de familias es siempre gratuito. */
+        if (esFamilia) {
+          if (previo) return j({ ok: false, reason: "exists" });
+          const teamRec = String(b.teamRec || "");
+          if (!teamRec) return j({ ok: false, reason: "falta_equipo" }, 400);
+          const equipos = await list(T_EQUIPOS);
+          const equipo = equipos.find((e) => e.id === teamRec);
+          if (!equipo) return j({ ok: false, reason: "equipo_no_existe" }, 400);
+          const clubId = (equipo.fields[EQ.club] || [])[0] || null;
+          if (!clubId) return j({ ok: false, reason: "equipo_sin_club" }, 400);
+          const nombreBuscado = norm(b.hijoNombre);
+          const dorsalBuscado = Number(b.hijoDorsal) || 0;
+          if (!nombreBuscado || !dorsalBuscado) return j({ ok: false, reason: "faltan_datos_hijo" }, 400);
+          const jugadoresEquipo = (await listByName(T_JUGADORES)).filter((r) => (r.fields?.Equipo || []).includes(teamRec));
+          const candidatos = jugadoresEquipo.filter((r) =>
+            norm(r.fields?.Nombre) === nombreBuscado && Number(r.fields?.Dorsal) === dorsalBuscado);
+          if (candidatos.length !== 1) return j({ ok: false, reason: "hijo_no_encontrado" }, 404);
+          const hijoRec = candidatos[0].id;
+          const d = await create(T_USUARIOS, {
+            [U.nombre]: b.name, [U.email]: email, [U.rol]: "Familia", [U.estado]: "Pendiente",
+            [U.pass]: await hashPassword(String(b.password || "")),
+            [U.club]: [clubId], [U.equipo]: [teamRec], [U.hijo]: [hijoRec],
+          });
+          return j({
+            ok: !!d?.id, rec: d?.id, clubRec: clubId, teamRec, estado: "Pendiente", rol: "Familia", name: b.name,
+            token: d?.id ? await firmarSesion({ id: d.id, email, rol: "familia", equipo: teamRec }) : null,
+          }, d?.id ? 200 : 400);
+        }
 
         /* --- Club nuevo: autoservicio, PERO nunca sobre un club que ya tiene
            gente dentro ---
