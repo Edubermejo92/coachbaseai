@@ -135,7 +135,7 @@ const CLAVE_CONFIG_GLOBAL = "global";
    de un interruptor que ella misma gestiona. */
 const TABS_CONFIGURABLES = [
   "inicio", "parte", "equipos", "equipo", "jugadores", "calendario", "convocatoria",
-  "alineacion", "partido", "analisis", "temporada", "entrenamiento", "ejercicios", "pizarra",
+  "alineacion", "partido", "analisis", "temporada", "entrenamiento", "lesiones", "ejercicios", "pizarra",
   "asistencia", "disciplina", "normativa", "estadisticas", "usuarios", "coachai", "material", "premium",
 ];
 /* "inicio" y "premium" no se pueden quitar del gratis: sin inicio no hay
