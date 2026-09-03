@@ -317,7 +317,7 @@ const rolKey = (v: unknown) => ROL_KEY[norm(v)] || norm(v);
 const ROL_LABEL: Record<string, string> = {
   entrenador: "Entrenador principal", segundo: "Segundo entrenador",
   delegado: "Delegado", director: "Director deportivo",
-  club: "Club", master: "Master", familia: "Familia",
+  club: "Club", master: "Master", familia: "Familia", jugador: "Jugador",
 };
 /* Quién dirige el club: la cuenta del propio club, el director deportivo y el
    Master. Se pregunta por aquí y no rol a rol porque son quince los sitios que
@@ -526,13 +526,13 @@ export default async (req: Request) => {
      club, POST pide dirección del club— en vez de con esta única puerta que
      tapaba las tres. */
   const dirigeClub = dirigeElClub(sesion);
-  /* Familia es de solo lectura, en todo: no hay ni un botón de escritura en
-     su pantalla, pero esto es lo que de verdad lo garantiza, no la interfaz.
-     Una sola comprobación aquí arriba, antes de que la petición llegue a
-     ningún recurso concreto, en vez de acordarse de excluir a Familia en
-     cada PATCH/POST/DELETE que se escriba de aquí en adelante. */
-  if (rolKey(sesion?.rol) === "familia" && req.method !== "GET") {
-    return j({ error: "no_autorizado", reason: "Las cuentas familiares son de solo lectura." }, 403);
+  /* Familia y Jugador son de solo lectura, en todo: no hay ni un botón de
+     escritura en su pantalla, pero esto es lo que de verdad lo garantiza, no
+     la interfaz. Una sola comprobación aquí arriba, antes de que la petición
+     llegue a ningún recurso concreto, en vez de acordarse de excluir a estos
+     dos roles en cada PATCH/POST/DELETE que se escriba de aquí en adelante. */
+  if (["familia", "jugador"].includes(rolKey(sesion?.rol)) && req.method !== "GET") {
+    return j({ error: "no_autorizado", reason: "Esta cuenta es de solo lectura." }, 403);
   }
   if (res === "equipos" && ["POST", "DELETE"].includes(req.method) && !dirigeClub) {
     return j({ error: "no_autorizado", reason: "Solo la dirección del club puede crear o eliminar categorías." }, 403);
@@ -1201,17 +1201,19 @@ export default async (req: Request) => {
       });
     }
 
-    /* ================= FAMILIA: LA FICHA DE SU HIJO/A =================
-       Un solo jugador, el que se enlazó al registrarse -no la plantilla
-       entera del equipo, que dejaría ver a un padre los datos médicos de
-       los compañeros de su hijo-. Por eso no reutiliza ?res=jugadores: ese
-       responde con el equipo completo y aquí solo puede salir uno. Mientras
-       la cuenta siga Pendiente -el nombre y el dorsal que se tecleó al
-       registrarse no prueban que sea de verdad el padre o la madre- no se
-       da ningún dato, solo que está pendiente. */
+    /* ================= FAMILIA / JUGADOR: UNA SOLA FICHA =================
+       Un solo jugador, el que se enlazó al registrarse (Familia) o el que se
+       vinculó desde el club (Jugador) -no la plantilla entera del equipo,
+       que dejaría ver a un padre o a un compañero los datos médicos de los
+       demás-. Por eso no reutiliza ?res=jugadores: ese responde con el
+       equipo completo y aquí solo puede salir uno. Mientras la cuenta siga
+       Pendiente -el nombre y el dorsal que se tecleó al registrarse no
+       prueban que sea de verdad el padre o la madre; y para Jugador, hasta
+       que reclama la cuenta con su contraseña- no se da ningún dato, solo
+       que está pendiente. */
     if (res === "hijo") {
       if (req.method !== "GET") return j({ error: "Petición no soportada" }, 400);
-      if (rolKey(sesion?.rol) !== "familia") return j({ ok: false, reason: "no_autorizado" }, 403);
+      if (!["familia", "jugador"].includes(rolKey(sesion?.rol))) return j({ ok: false, reason: "no_autorizado" }, 403);
       const recs = await list(T_USUARIOS);
       const yo = recs.find((r: any) => r.id === sesion.id);
       if (!yo) return j({ ok: false, reason: "no_existe" }, 404);
@@ -1248,6 +1250,30 @@ export default async (req: Request) => {
         }
       }
       return j({ ok: true, pendiente: false, hijo: { rec: hijoRec, ...jg.fields }, asistencia });
+    }
+
+    /* ================= PARIENTES DE UN JUGADOR (vista del club) =================
+       Quién tiene acceso de solo lectura a la ficha de este jugador -hasta
+       2 padres/tutores y el propio jugador-, para que el club sepa qué email
+       falta por invitar o si alguno sigue Pendiente de reclamar su cuenta.
+       Nunca la contraseña, ni siquiera si está puesta. */
+    if (res === "parientes") {
+      if (req.method !== "GET") return j({ error: "Petición no soportada" }, 400);
+      const jugadorRec = url.searchParams.get("jugador") || "";
+      if (!jugadorRec) return j({ error: "falta_jugador" }, 400);
+      const teamDelJugador = await equipoDeJugador(jugadorRec);
+      if (!teamDelJugador || !(await puedeEquipo(teamDelJugador))) {
+        return j({ ok: false, reason: "no_autorizado" }, 403);
+      }
+      const recs = await list(T_USUARIOS);
+      const vinculados = recs
+        .filter((r: any) => (r.fields[U.hijo] || []).includes(jugadorRec) && ["familia", "jugador"].includes(rolKey(r.fields[U.rol])))
+        .map((r: any) => ({
+          rec: r.id, nombre: r.fields[U.nombre] || "", email: r.fields[U.email] || "",
+          rol: rolKey(r.fields[U.rol]), estado: r.fields[U.estado] || "",
+          reclamada: !!r.fields[U.pass],
+        }));
+      return j({ ok: true, vinculados });
     }
 
     if (res === "partes-club") {
@@ -2273,6 +2299,68 @@ export default async (req: Request) => {
           ...(extrasPedidos.length ? { [U.rolesExtra]: extrasPedidos.map((k: string) => ROL_LABEL[k]) } : {}),
         });
         return j({ ok: !!d?.id, rec: d?.id, activa: !!inicial }, d?.id ? 200 : 400);
+      }
+
+      /* ================= FAMILIA / JUGADOR: VINCULAR DESDE LA FICHA =================
+         El club invita directamente desde la ficha del jugador -hasta 2 emails
+         de padres/tutores y 1 del propio jugador-, sin que nadie tenga que
+         autorregistrarse ni el club tenga que confiar en que quien se
+         autorregistra dijo el nombre y el dorsal exactos. Nace Pendiente y SIN
+         contraseña, igual que cualquier alta del club: la reclama quien sea
+         con "Es mi primera vez" y ese mismo correo. No cuenta contra el
+         límite de plazas: como el autorregistro de familias, este acceso es
+         siempre gratuito. Puede darla de alta cualquiera con alcance sobre el
+         equipo del jugador -no hace falta ser director, el propio entrenador
+         que conoce a la familia también debería poder-. */
+      if (b.action === "vincularPariente") {
+        const jugadorRec = String(b.jugadorRec || "");
+        if (!jugadorRec) return j({ ok: false, reason: "falta_jugador" }, 400);
+        const teamDelJugador = await equipoDeJugador(jugadorRec);
+        if (!teamDelJugador || !(await puedeEquipo(teamDelJugador))) {
+          return j({ ok: false, reason: "no_autorizado" }, 403);
+        }
+        const pedido = rolKey(b.rol);
+        if (!["familia", "jugador"].includes(pedido)) return j({ ok: false, reason: "rol_no_permitido" }, 400);
+        const email = norm(b.email);
+        if (!email || !b.name) return j({ ok: false, reason: "faltan_datos" }, 400);
+        const recs = await allUsers();
+        if (recs.some((r) => norm(r.fields[U.email]) === email)) return j({ ok: false, reason: "exists" });
+        /* Tope: dos padres/tutores como mucho, y un único acceso del propio
+           jugador -no tiene sentido que "el jugador" sea más de una cuenta-. */
+        const yaVinculados = recs.filter((r) =>
+          (r.fields[U.hijo] || []).includes(jugadorRec) && rolKey(r.fields[U.rol]) === pedido);
+        const tope = pedido === "jugador" ? 1 : 2;
+        if (yaVinculados.length >= tope) return j({ ok: false, reason: "tope_alcanzado", tope }, 409);
+        const clubDelJugador = await clubDeEquipo(teamDelJugador);
+        const d = await create(T_USUARIOS, {
+          [U.nombre]: b.name, [U.email]: email, [U.rol]: ROL_LABEL[pedido], [U.estado]: "Pendiente",
+          ...(clubDelJugador ? { [U.club]: [clubDelJugador] } : {}),
+          [U.equipo]: [teamDelJugador], [U.hijo]: [jugadorRec],
+        });
+        return j({ ok: !!d?.id, rec: d?.id }, d?.id ? 200 : 400);
+      }
+
+      /* Quitar el acceso: solo a cuentas Familia o Jugador, y solo dentro del
+         alcance de quien lo pide -mismo criterio que darlas de alta-. Borra
+         la ficha entera, no solo el enlace: una invitación sin reclamar no
+         tiene nada más que conservar, y una ya reclamada es la cuenta de esa
+         persona, no un dato del jugador que deba sobrevivirle. */
+      if (b.action === "desvincularPariente") {
+        const usuarioRec = String(b.usuarioRec || "");
+        if (!usuarioRec) return j({ ok: false, reason: "falta_usuario" }, 400);
+        const recs = await allUsers();
+        const objetivo = recs.find((r) => r.id === usuarioRec);
+        if (!objetivo) return j({ ok: false, reason: "no_existe" }, 404);
+        if (!["familia", "jugador"].includes(rolKey(objetivo.fields[U.rol]))) {
+          return j({ ok: false, reason: "no_autorizado" }, 403);
+        }
+        const teamDelObjetivo = (objetivo.fields[U.equipo] || [])[0] || "";
+        if (!teamDelObjetivo || !(await puedeEquipo(teamDelObjetivo))) {
+          return j({ ok: false, reason: "no_autorizado" }, 403);
+        }
+        const r = await fetch(`${table(T_USUARIOS)}/${usuarioRec}`, { method: "DELETE", headers: H });
+        if (!r.ok) return j({ ok: false, reason: "airtable" }, 400);
+        return j({ ok: true });
       }
 
       /* ================= ADMINISTRACIÓN DE CLUB (solo Master) =================
