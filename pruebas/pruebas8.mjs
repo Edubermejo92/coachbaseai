@@ -83,6 +83,17 @@ dice("una vez reclamada, sigue sin poder escribir nada", r.status === 403, Strin
 r = await call("?id=recJ5", { method: "PATCH", token: tJugador5, body: { fields: { Nombre: "Hackeado" } } });
 dice("tampoco el propio jugador", r.status === 403, String(r.status));
 
+/* ---- Leen lo de SU equipo -de eso viven sus pestañas- y nada más ----
+   Familia y Jugador ven alineación, calendario, cargas, asistencia y
+   disciplina del equipo de su hijo/suyo, así que necesitan LEER esos
+   recursos. Lo que no pueden es asomarse a otra categoría del club. */
+r = await call("?res=jugadores&team=recSEN", { token: tMarta });
+dice("la familia lee la plantilla de SU equipo", r.status === 200 && (r.body.records || []).length === 19, `${r.status} ${(r.body.records || []).length}`);
+r = await call("?res=asistencia&team=recSEN", { token: tJugador5 });
+dice("y el jugador la asistencia de SU equipo", r.status === 200 && typeof r.body.asistencia === "string", JSON.stringify(r.body).slice(0, 80));
+r = await call("?res=jugadores&team=recIB", { token: tMarta });
+dice("pero no la plantilla de otra categoría del club", r.status === 403, String(r.status));
+
 /* ---- La ficha ya enseña quién ha reclamado y quién sigue Pendiente ---- */
 r = await call("?res=parientes&jugador=recJ4", { token: tEnt });
 const marta = r.body.vinculados.find((v) => v.email === "marta8@familia.com");
