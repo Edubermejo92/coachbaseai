@@ -194,6 +194,18 @@ const EQ = {
      cuerpo técnico la recuperaba entre dispositivos. */
   alineacion: "fld0ShmGEK97QIhr8",
 };
+/* Único campo de Jugadores al que se accede por ID en vez de por NOMBRE: es
+   un adjunto (uploadAttachment exige el id del campo, no su nombre) y la
+   excepción de solo lectura de familia/jugador lo escribe directamente,
+   fuera del recurso genérico "jugadores" -que sigue leyendo/escribiendo por
+   nombre, como el resto de esa tabla-. */
+const JG_FOTO = "fldVAopJcEmx4J1zw";
+/* Mismas demarcaciones que POS_OK en el frontend (src/App.jsx): la
+   excepción de "datos personales" solo deja tocar Nombre y Posición, y la
+   posición tiene que ser una de estas -es un campo de selección única en
+   Airtable, y typecast:true con un valor que no está en la lista crearía
+   una opción nueva y mal escrita en vez de rechazarlo-. */
+const POS_OK = ["POR", "LD", "LI", "DFC", "MCD", "MC", "MCO", "ED", "EI", "DC", "MB"];
 const PA = {
   ref: "fldVKBSHxPEqCuVk2", fecha: "fldUyP4Qia9GM6lCR", equipo: "fldXvt940m1HPQ3uH",
   entrenador: "fldIi957OqvZF1lCA", entrenadorNombre: "fldEyuA5hqm0GjxZX",
@@ -532,13 +544,17 @@ export default async (req: Request) => {
      club, POST pide dirección del club— en vez de con esta única puerta que
      tapaba las tres. */
   const dirigeClub = dirigeElClub(sesion);
-  /* Familia y Jugador son de solo lectura, en todo: no hay ni un botón de
-     escritura en su pantalla, pero esto es lo que de verdad lo garantiza, no
-     la interfaz. Una sola comprobación aquí arriba, antes de que la petición
-     llegue a ningún recurso concreto, en vez de acordarse de excluir a estos
-     dos roles en cada PATCH/POST/DELETE que se escriba de aquí en adelante. */
-  if (["familia", "jugador"].includes(rolKey(sesion?.rol)) && req.method !== "GET") {
-    return j({ error: "no_autorizado", reason: "Esta cuenta es de solo lectura." }, 403);
+  /* Familia y Jugador son de solo lectura, con dos excepciones: la foto y
+     los datos personales (nombre, posición) de la ÚNICA ficha a la que
+     están vinculados -nunca la de un compañero-. Esa comprobación de "es tu
+     propia ficha" vive dentro de cada uno de esos dos recursos, no aquí; lo
+     de aquí es la puerta general, para no tener que acordarse de excluir a
+     estos dos roles en cada PATCH/POST/DELETE que se escriba de aquí en
+     adelante. */
+  const esSoloLecturaSesion = ["familia", "jugador"].includes(rolKey(sesion?.rol));
+  const esExcepcionSoloLectura = req.method === "POST" && ["foto-jugador", "datos-jugador"].includes(res);
+  if (esSoloLecturaSesion && req.method !== "GET" && !esExcepcionSoloLectura) {
+    return j({ error: "no_autorizado", reason: "Esta cuenta es de solo lectura, salvo la foto y los datos personales de su propia ficha." }, 403);
   }
   if (res === "equipos" && ["POST", "DELETE"].includes(req.method) && !dirigeClub) {
     return j({ error: "no_autorizado", reason: "Solo la dirección del club puede crear o eliminar categorías." }, 403);
@@ -682,6 +698,18 @@ export default async (req: Request) => {
     if (!jugId) return null;
     const jg = await unoPorId(T_JUGADORES, jugId);
     return jg ? ((jg.fields?.Equipo || [])[0] || null) : null;
+  };
+  /* ¿Es el jugadorRec al que está vinculada ESTA sesión de familia/jugador?
+     La única comprobación que de verdad importa en las dos excepciones de
+     solo lectura (foto y datos personales): sin esto, cualquier familia con
+     sesión válida podría cambiar la foto o el nombre de CUALQUIER jugador
+     del club, no solo el suyo. */
+  const esMiHijo = async (jugId: string): Promise<boolean> => {
+    if (!jugId || !sesion?.id) return false;
+    const recs = await list(T_USUARIOS);
+    const yo = recs.find((r: any) => r.id === sesion.id);
+    const miHijo = (yo?.fields[U.hijo] || [])[0] || null;
+    return !!miHijo && miHijo === jugId;
   };
   /* Igual que puedeEquipo, pero para acciones que se piden por CLUB
      directamente (editar su ficha), no por equipo. */
@@ -1317,6 +1345,58 @@ export default async (req: Request) => {
           reclamada: !!r.fields[U.pass],
         }));
       return j({ ok: true, vinculados });
+    }
+
+    /* ============ FOTO DE JUGADOR ============
+       POST ?res=foto-jugador&id=<recJugador> con el base64.
+       Mismo mecanismo que el escudo: Airtable no acepta un data: URL en un
+       adjunto, hay que subirlo por su endpoint de contenido. La única
+       novedad es quién puede llamarlo: el cuerpo técnico de siempre, pero
+       también la familia o el propio jugador -de solo lectura en todo lo
+       demás- para SU ÚNICA ficha vinculada, nunca la de un compañero. */
+    if (res === "foto-jugador") {
+      if (req.method !== "POST" || !id) return j({ error: "Falta el id del jugador" }, 400);
+      const esFamiliaOJugador = ["familia", "jugador"].includes(rolKey(sesion?.rol));
+      const puede = esFamiliaOJugador ? await esMiHijo(id) : await puedeEquipo(await equipoDeJugador(id) || "");
+      if (!puede) return j({ error: "no_autorizado", reason: "No puedes cambiar la foto de ese jugador." }, 403);
+      const b = await req.json();
+      const r = await fetch(`https://content.airtable.com/v0/${BASE()}/${id}/${JG_FOTO}/uploadAttachment`, {
+        method: "POST", headers: H,
+        body: JSON.stringify({ contentType: b.contentType || "image/jpeg", file: b.file, filename: b.filename || "jugador.jpg" }),
+      });
+      const d = await r.json().catch(() => ({}));
+      return j({ ok: r.ok, url: d?.fields?.[JG_FOTO]?.[0]?.url || null }, r.ok ? 200 : 400);
+    }
+
+    /* ============ DATOS PERSONALES DE JUGADOR (nombre y posición) ============
+       POST ?res=datos-jugador&id=<recJugador> { nombre, posicion }
+       Mismo criterio de quién puede que la foto: el cuerpo técnico para su
+       plantilla, o la familia/el propio jugador para SU ÚNICA ficha. No es
+       el recurso genérico "jugadores" -ese PATCH acepta cualquier campo, y
+       aquí solo pueden tocarse estos dos-. Estado y aviso médico siguen
+       siendo del cuerpo técnico: son datos operativos, no personales. */
+    if (res === "datos-jugador") {
+      if (req.method !== "POST" || !id) return j({ error: "Falta el id del jugador" }, 400);
+      const esFamiliaOJugador = ["familia", "jugador"].includes(rolKey(sesion?.rol));
+      const puede = esFamiliaOJugador ? await esMiHijo(id) : await puedeEquipo(await equipoDeJugador(id) || "");
+      if (!puede) return j({ error: "no_autorizado", reason: "No puedes cambiar los datos de ese jugador." }, 403);
+      const b = await req.json();
+      const nombre = String(b.nombre || "").trim().slice(0, 60);
+      if (!nombre) return j({ ok: false, reason: "falta_nombre" }, 400);
+      const fields: Record<string, unknown> = { Nombre: nombre };
+      if (b.posicion !== undefined) {
+        if (!POS_OK.includes(b.posicion)) return j({ ok: false, reason: "posicion_no_valida" }, 400);
+        fields["Posición"] = b.posicion;
+      }
+      const r = await fetch(`${table(T_JUGADORES)}/${id}`, {
+        method: "PATCH", headers: H, body: JSON.stringify({ fields, typecast: true }),
+      });
+      if (!r.ok) {
+        const err = await r.text().catch(() => "");
+        console.error(`[datos-jugador] Airtable ${r.status}: ${err.slice(0, 300)}`);
+        return j({ ok: false, reason: "airtable" }, 400);
+      }
+      return j({ ok: true });
     }
 
     if (res === "partes-club") {
