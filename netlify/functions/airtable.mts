@@ -187,6 +187,12 @@ const EQ = {
      el móvil de quien pasaba lista; con esto lo ve el resto del cuerpo
      técnico y, más adelante, la familia del jugador. */
   asistencia: "fldXjBDGFcYDkEn9M",
+  /* Alineación oficial (titulares y su puesto), en JSON y por el mismo
+     motivo que las cargas y la asistencia: un documento por equipo. Antes no
+     se guardaba en ningún sitio -vivía solo en memoria del navegador de
+     quien la montara, y desaparecía al recargar-, así que ni el propio
+     cuerpo técnico la recuperaba entre dispositivos. */
+  alineacion: "fld0ShmGEK97QIhr8",
 };
 const PA = {
   ref: "fldVKBSHxPEqCuVk2", fecha: "fldUyP4Qia9GM6lCR", equipo: "fldXvt940m1HPQ3uH",
@@ -1036,6 +1042,43 @@ export default async (req: Request) => {
         if (!r.ok) {
           const err = await r.text().catch(() => "");
           console.error(`[asistencia] Airtable ${r.status}: ${err.slice(0, 300)}`);
+          return j({ ok: false, reason: "airtable" }, 400);
+        }
+        return j({ ok: true });
+      }
+      return j({ error: "Petición no soportada" }, 400);
+    }
+
+    /* ============ ALINEACIÓN OFICIAL ============
+       GET  ?res=alineacion&team=recX -> el JSON guardado
+       POST ?res=alineacion&team=recX { alineacion }
+       Mismas reglas que cargas y asistencia: un documento por equipo. Antes
+       la alineación no se guardaba en ningún sitio -vivía solo en memoria
+       del navegador de quien la montara, y desaparecía al recargar o al
+       mirarla desde otro dispositivo-, así que ni el propio cuerpo técnico
+       la recuperaba entre sesiones, y la familia -que solo lee- no tenía
+       nada real que enseñar. */
+    if (res === "alineacion") {
+      const team = url.searchParams.get("team") || "";
+      if (!team) return j({ error: "falta_equipo" }, 400);
+      if (req.method === "GET") {
+        const r = await fetch(`${table(T_EQUIPOS)}/${team}?returnFieldsByFieldId=true`, { headers: H });
+        if (!r.ok) return j({ error: "no_encontrado" }, 404);
+        const d = await r.json().catch(() => ({}));
+        return j({ alineacion: d?.fields?.[EQ.alineacion] || "" });
+      }
+      if (req.method === "POST") {
+        const suyo = String(sesion?.equipo || "") === team;
+        const puede = suyo || dirigeElClub(sesion);
+        if (!puede) return j({ ok: false, reason: "no_autorizado" }, 403);
+        const b = await req.json();
+        const r = await fetch(`${table(T_EQUIPOS)}/${team}`, {
+          method: "PATCH", headers: H,
+          body: JSON.stringify({ fields: { [EQ.alineacion]: String(b.alineacion || "") }, typecast: true }),
+        });
+        if (!r.ok) {
+          const err = await r.text().catch(() => "");
+          console.error(`[alineacion] Airtable ${r.status}: ${err.slice(0, 300)}`);
           return j({ ok: false, reason: "airtable" }, 400);
         }
         return j({ ok: true });

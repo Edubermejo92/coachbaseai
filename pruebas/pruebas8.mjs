@@ -93,6 +93,10 @@ r = await call("?res=asistencia&team=recSEN", { token: tJugador5 });
 dice("y el jugador la asistencia de SU equipo", r.status === 200 && typeof r.body.asistencia === "string", JSON.stringify(r.body).slice(0, 80));
 r = await call("?res=jugadores&team=recIB", { token: tMarta });
 dice("pero no la plantilla de otra categoría del club", r.status === 403, String(r.status));
+r = await call("?res=alineacion&team=recSEN", { token: tMarta });
+dice("y la familia lee la alineación de SU equipo", r.status === 200, JSON.stringify(r.body));
+r = await call("?res=alineacion&team=recSEN", { method: "POST", token: tJugador5, body: { alineacion: "{}" } });
+dice("pero ni la familia ni el jugador pueden escribirla", r.status === 403, String(r.status));
 
 /* ---- La ficha ya enseña quién ha reclamado y quién sigue Pendiente ---- */
 r = await call("?res=parientes&jugador=recJ4", { token: tEnt });
