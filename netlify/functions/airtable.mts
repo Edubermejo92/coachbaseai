@@ -139,7 +139,7 @@ const CLAVE_CONFIG_GLOBAL = "global";
 const TABS_CONFIGURABLES = [
   "inicio", "parte", "equipos", "equipo", "jugadores", "calendario", "convocatoria",
   "alineacion", "partido", "analisis", "temporada", "entrenamiento", "lesiones", "ejercicios", "pizarra",
-  "asistencia", "disciplina", "normativa", "estadisticas", "usuarios", "coachai", "material", "premium",
+  "asistencia", "disciplina", "normativa", "estadisticas", "usuarios", "material", "premium",
 ];
 /* "inicio" y "premium" no se pueden quitar del gratis: sin inicio no hay
    portada, y sin premium nadie ve cómo pasarse a la versión de pago. */
