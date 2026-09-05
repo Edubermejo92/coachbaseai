@@ -521,7 +521,7 @@ export default async (req: Request) => {
      recuerda su contraseña no puede tener sesión. Su seguridad no está en
      esta puerta sino en el enlace firmado que se manda al correo. */
   const abierto =
-    (req.method === "POST" && ["login", "register", "forgotPassword", "resetPassword", "demoToken"].includes(accion)) ||
+    (req.method === "POST" && ["login", "register", "forgotPassword", "resetPassword"].includes(accion)) ||
     (req.method === "GET" && (res === "clubes" || res === "equipos")) ||
     /* La ficha para el rival se abre sin cuenta: el delegado del otro equipo no
        tiene por qué registrarse en COACHBASE para ver a quién se enfrenta. Lo
@@ -2264,19 +2264,6 @@ export default async (req: Request) => {
           body: JSON.stringify({ fields: { [U.equipo]: [rec] }, typecast: true }),
         });
         return j({ ok: true, rec, reutilizado: !!ya, token: await firmarSesion({ id: sesion.id, email: sesion.email, rol: sesion.rol, equipo: rec, rolesExtra: sesion.rolesExtra || [] }) });
-      }
-
-      // ---- SESIÓN DE LA DEMO ----
-      /* La demo no tiene cuenta en Airtable, así que no puede firmar sesión al
-         entrar y Coach AI le respondía 401. Aquí se emite un pase firmado que
-         solo sirve para eso: dura dos horas, no lleva id ni equipo, y el propio
-         asistente lo trata como demo (respuestas más cortas). No da acceso a
-         ningún dato: todas las lecturas de Airtable exigen id o equipo. */
-      if (b.action === "demoToken") {
-        const cuerpo = b64u(new TextEncoder().encode(JSON.stringify({
-          demo: true, rol: "Demo", exp: Date.now() + 2 * 3600000,
-        })));
-        return j({ ok: true, token: `${cuerpo}.${await hmac(cuerpo)}` });
       }
 
       // ---- CREAR UN CLUB (SOLO MASTER) ----

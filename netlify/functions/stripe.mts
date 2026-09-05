@@ -20,10 +20,10 @@
    ver su Stripe customerId, y con ese id abrir su portal de facturación -
    desde donde se puede ver el método de pago o CANCELAR la suscripción de
    otro club sin ser quien paga. Aquí se exige el mismo token firmado que ya
-   usan airtable.mts y coach.mts (el propio cbFetch del frontend ya lo manda
-   en todas las llamadas a este archivo, así que no hace falta tocar nada
-   más), y el email de la cuenta sale SIEMPRE de la sesión verificada, nunca
-   de lo que mande el cliente en el cuerpo o en la URL. */
+   usa airtable.mts (el propio cbFetch del frontend ya lo manda en todas las
+   llamadas a este archivo, así que no hace falta tocar nada más), y el
+   email de la cuenta sale SIEMPRE de la sesión verificada, nunca de lo que
+   mande el cliente en el cuerpo o en la URL. */
 const AUTH_SECRET = () => Netlify.env.get("AUTH_SECRET") || Netlify.env.get("AIRTABLE_TOKEN") || "";
 const unb64u = (t: string) => {
   const p = t.replace(/-/g, "+").replace(/_/g, "/");

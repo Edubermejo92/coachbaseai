@@ -42,8 +42,7 @@ Sitio ya creado: **coachbase-ai.netlify.app** (equipo EBLDigital).
   **login real** (email + contraseña) contra Airtable. Dentro: acceso oficial vs plan gratis,
   roles y permisos, plantilla + import CSV, alineación 4-3-3 arrastrable, convocatoria WhatsApp,
   modo partido, perfiles con foto y vídeo de presentación, gestión de usuarios/accesos, pizarra
-  táctica, Coach AI y marketplace de material.
-- Función serverless `netlify/functions/coach.mts` → proxy a la API de Anthropic para **Coach AI**.
+  táctica y marketplace de material.
 - Función serverless `netlify/functions/airtable.mts` → **login, registro y gestión de usuarios**
   contra la base Airtable **COACHBASE AI**. Las contraseñas se guardan **hasheadas** (SHA-256 + pepper)
   en el servidor; nunca se devuelven al cliente.
@@ -83,7 +82,6 @@ npm install
 npm i -g netlify-cli        # si no la tienes
 netlify login
 netlify link --id 8d8defe2-ac0c-43d3-9b65-e2da6e8ba63c   # vincula al sitio coachbase-ai
-netlify env:set ANTHROPIC_API_KEY sk-ant-...             # clave de api.anthropic.com (Coach AI)
 netlify env:set AIRTABLE_TOKEN patXXXXXXXX               # PAT de Airtable (login/usuarios)
 netlify env:set AIRTABLE_BASE appDVtUWdtfzkV1sA
 netlify deploy --build --prod
@@ -97,13 +95,12 @@ con scopes `data.records:read` y `data.records:write` y acceso a la base COACHBA
 npm install && npm run build
 ```
 Arrastra la carpeta `dist/` a https://app.netlify.com/projects/coachbase-ai/deploys
-> En esta variante **no se ejecutan las funciones**: Coach AI no responde y el login/registro usa el
+> En esta variante **no se ejecutan las funciones**: el login/registro usa el
 > modo demo local (no persiste en Airtable). Para todo funcional, usa el deploy con build de arriba.
 
 ## Variables de entorno
 | Nombre | Para qué | Obligatoria |
 |---|---|---|
-| `ANTHROPIC_API_KEY` | Coach AI | para Coach AI |
 | `AIRTABLE_TOKEN` | Login / registro / usuarios | **sí** |
 | `AIRTABLE_BASE` | Base Airtable (`appDVtUWdtfzkV1sA`) | no (hay valor por defecto) |
 | `AUTH_SECRET` | Firma de las sesiones y de los enlaces de recuperación | no (deriva de `AIRTABLE_TOKEN`) |
