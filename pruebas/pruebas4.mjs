@@ -90,6 +90,21 @@ dice("y el club sí la desmarca", !F(T.JUGADORES,"recJ0")["Inscripcion pagada"],
 r=await call("?res=jugadores&team=recSEN",{token:tClub});
 dice("el club lee la plantilla de una categoría suya", (r.body.records||[]).length===19, String((r.body.records||[]).length));
 
+/* ---- Dar de baja a un jugador: la app no tenía ningún camino para esto,
+   así que una ficha de prueba o duplicada se quedaba para siempre. El
+   endpoint ya existía -lo usaba en silencio el reemplazo de plantilla por
+   CSV-, pero nunca se había probado en directo. ---- */
+const tDirB=await login("dir@b.com");
+r=await call("?res=jugadores&id=recJ0",{method:"DELETE",token:tDirB});
+dice("un director de otro club no puede borrar un jugador ajeno", r.status===403, String(r.status));
+dice("y sigue en la base", !!fake.db[T.JUGADORES].find(x=>x.id==="recJ0"));
+
+r=await call("?res=jugadores&id=recJ0",{method:"DELETE",token:tEnt});
+dice("el entrenador de su equipo sí puede borrarlo", r.body.ok===true, JSON.stringify(r.body));
+dice("y desaparece de verdad", !fake.db[T.JUGADORES].find(x=>x.id==="recJ0"));
+r=await call("?res=jugadores&team=recSEN",{token:tEnt});
+dice("la plantilla se queda con uno menos", (r.body.records||[]).length===18, String((r.body.records||[]).length));
+
 /* ---- "Quién soy": la sesión guardada en el navegador no manda ---- */
 r=await call("?res=yo",{token:tClub});
 dice("?res=yo responde con la ficha de quien pregunta", r.body.ok===true && r.body.user?.email==="club@a.com", JSON.stringify(r.body).slice(0,80));

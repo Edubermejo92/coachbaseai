@@ -90,6 +90,8 @@ const DICT = {
     "ln.tapPlayerToAdd": "Toca a un jugador y entra en el once, en el primer hueco libre ({pos}). Para elegir el sitio, toca antes un puesto del campo.",
     "ln.xiFull": "El once está completo. Toca un puesto del campo para cambiar a quien esté ahí.",
     "pf.noPos": "Sin puesto en el once",
+    "pf.deletePlayer": "🗑 Eliminar jugador",
+    "pf.deleteConfirm": "¿Eliminar a {name} de la plantilla? Se borra su ficha entera -foto, vídeo, historial de lesiones- y no se puede deshacer.",
     "st.noLineup": "Todavía no hay un once montado.",
     "ln.assignTo": "Asignar a {slot}",
     "ln.other": "Otro: 4-1-4-1",
@@ -655,6 +657,8 @@ const DICT = {
     "ln.tapPlayerToAdd": "Tap a player and they go into the XI, in the first free spot ({pos}). To choose the spot, tap a position on the pitch first.",
     "ln.xiFull": "The XI is complete. Tap a position on the pitch to swap whoever is there.",
     "pf.noPos": "Not in the XI",
+    "pf.deletePlayer": "🗑 Delete player",
+    "pf.deleteConfirm": "Delete {name} from the squad? Their whole profile -photo, video, injury history- is removed and this cannot be undone.",
     "st.noLineup": "No line-up has been set yet.",
     "ln.assignTo": "Assign to {slot}",
     "ln.other": "Other: 4-1-4-1",
@@ -1232,6 +1236,8 @@ const DICT = {
     "ln.tapPlayerToAdd": "Touche un joueur et il entre dans le onze, au premier poste libre ({pos}). Pour choisir le poste, touche d'abord une place sur le terrain.",
     "ln.xiFull": "Le onze est complet. Touche une place sur le terrain pour remplacer celui qui l'occupe.",
     "pf.noPos": "Pas dans le onze",
+    "pf.deletePlayer": "🗑 Supprimer le joueur",
+    "pf.deleteConfirm": "Supprimer {name} de l'effectif ? Toute sa fiche -photo, vidéo, historique des blessures- est effacée, irréversible.",
     "st.noLineup": "Aucune composition n'a encore été faite.",
     "ln.assignTo": "Affecter à {slot}",
     "ln.other": "Autre : 4-1-4-1",
@@ -1883,6 +1889,8 @@ const DICT = {
     "ln.tapPlayerToAdd": "Tippe einen Spieler an und er kommt in die Elf, auf den ersten freien Platz ({pos}). Um den Platz zu wählen, tippe vorher eine Position auf dem Feld an.",
     "ln.xiFull": "Die Elf ist komplett. Tippe eine Position auf dem Feld an, um den Spieler dort zu tauschen.",
     "pf.noPos": "Nicht in der Elf",
+    "pf.deletePlayer": "🗑 Spieler löschen",
+    "pf.deleteConfirm": "{name} aus dem Kader löschen? Das ganze Profil -Foto, Video, Verletzungshistorie- wird entfernt, nicht rückgängig zu machen.",
     "st.noLineup": "Es ist noch keine Aufstellung gesetzt.",
     "ln.assignTo": "Zuweisen an {slot}",
     "ln.other": "Andere: 4-1-4-1",
@@ -2533,6 +2541,8 @@ const DICT = {
     "ln.tapPlayerToAdd": "Toca num jogador e entra no onze, no primeiro lugar livre ({pos}). Para escolheres o lugar, toca primeiro numa posição do campo.",
     "ln.xiFull": "O onze está completo. Toca numa posição do campo para trocar quem lá está.",
     "pf.noPos": "Fora do onze",
+    "pf.deletePlayer": "🗑 Eliminar jogador",
+    "pf.deleteConfirm": "Eliminar {name} do plantel? A ficha inteira -foto, vídeo, histórico de lesões- é apagada e não se pode desfazer.",
     "st.noLineup": "Ainda não há um onze montado.",
     "ln.assignTo": "Atribuir a {slot}",
     "ln.other": "Outro: 4-1-4-1",
@@ -10429,6 +10439,30 @@ export default function App() {
     setFichaMsg(t("pf.saved"));
     setTimeout(() => setFichaMsg(""), 4000);
   };
+  /* Dar de baja a un jugador. No existía ningún camino para esto -ni en la
+     app ni, hasta ahora, falta que hiciera: la plantilla solo crecía-, así
+     que una ficha creada por error (una prueba, un duplicado) se quedaba
+     para siempre. Se quita también de la alineación local, para que el
+     puesto que ocupaba se vea libre sin tener que recargar la página; en la
+     nube desaparece solo con el próximo guardado, porque ya no hay ficha a
+     la que apuntar. */
+  const [borrarJugadorBusy, setBorrarJugadorBusy] = useState(false);
+  const eliminarJugador = async (p) => {
+    if (borrarJugadorBusy || !can("editSquad")) return;
+    if (!confirm(t("pf.deleteConfirm").replace("{name}", p.n || ""))) return;
+    setBorrarJugadorBusy(true);
+    if (p.rec) await airDrop("jugadores", p.rec);
+    const sinPuesto = (l) => {
+      const next = { ...l };
+      Object.keys(next).forEach((k) => { if (next[k] === p.id) delete next[k]; });
+      return next;
+    };
+    setLineup(sinPuesto);
+    setLineupDraft((d) => (d ? sinPuesto(d) : d));
+    setPlayers((ps) => ps.filter((x) => x.id !== p.id));
+    setBorrarJugadorBusy(false);
+    setProfileId(null);
+  };
 
   const cycleStatus = (id) => can("editSquad") &&
     updateSquadWithProposal((ps) => ps.map((p) => p.id === id ? { ...p, st: p.st === "disponible" ? "duda" : p.st === "duda" ? "lesionado" : "disponible" } : p));
@@ -11234,6 +11268,10 @@ export default function App() {
             <button onClick={() => setProfileId(null)} className="text-sm px-4 py-2.5 rounded-lg border font-display uppercase tracking-wide"
               style={{ borderColor: C.line, color: C.dim }}>{t("p.close")}</button>
             {fichaMsg && <span className="text-xs" style={{ color: fichaMsg === t("pf.saved") ? C.green : C.warn }}>{fichaMsg}</span>}
+            <button onClick={() => eliminarJugador(profile)} disabled={borrarJugadorBusy}
+              className="ml-auto text-xs underline disabled:opacity-50" style={{ color: C.red }}>
+              {borrarJugadorBusy ? t("a.sending") : t("pf.deletePlayer")}
+            </button>
           </div>
         )}
       </div>
