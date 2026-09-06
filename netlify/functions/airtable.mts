@@ -200,12 +200,6 @@ const EQ = {
    fuera del recurso genérico "jugadores" -que sigue leyendo/escribiendo por
    nombre, como el resto de esa tabla-. */
 const JG_FOTO = "fldVAopJcEmx4J1zw";
-/* Mismas demarcaciones que POS_OK en el frontend (src/App.jsx): la
-   excepción de "datos personales" solo deja tocar Nombre y Posición, y la
-   posición tiene que ser una de estas -es un campo de selección única en
-   Airtable, y typecast:true con un valor que no está en la lista crearía
-   una opción nueva y mal escrita en vez de rechazarlo-. */
-const POS_OK = ["POR", "LD", "LI", "DFC", "MCD", "MC", "MCO", "ED", "EI", "DC", "MB"];
 const PA = {
   ref: "fldVKBSHxPEqCuVk2", fecha: "fldUyP4Qia9GM6lCR", equipo: "fldXvt940m1HPQ3uH",
   entrenador: "fldIi957OqvZF1lCA", entrenadorNombre: "fldEyuA5hqm0GjxZX",
@@ -1368,13 +1362,16 @@ export default async (req: Request) => {
       return j({ ok: r.ok, url: d?.fields?.[JG_FOTO]?.[0]?.url || null }, r.ok ? 200 : 400);
     }
 
-    /* ============ DATOS PERSONALES DE JUGADOR (nombre y posición) ============
-       POST ?res=datos-jugador&id=<recJugador> { nombre, posicion }
+    /* ============ DATOS PERSONALES DE JUGADOR (nombre) ============
+       POST ?res=datos-jugador&id=<recJugador> { nombre }
        Mismo criterio de quién puede que la foto: el cuerpo técnico para su
        plantilla, o la familia/el propio jugador para SU ÚNICA ficha. No es
        el recurso genérico "jugadores" -ese PATCH acepta cualquier campo, y
-       aquí solo pueden tocarse estos dos-. Estado y aviso médico siguen
-       siendo del cuerpo técnico: son datos operativos, no personales. */
+       aquí solo puede tocarse el nombre-. Estado y aviso médico siguen
+       siendo del cuerpo técnico: son datos operativos, no personales.
+       La demarcación se aceptaba aquí hasta que dejó de ser un dato del
+       jugador: ahora es la del hueco que ocupa en la alineación, así que no
+       se escribe desde ninguna ficha. */
     if (res === "datos-jugador") {
       if (req.method !== "POST" || !id) return j({ error: "Falta el id del jugador" }, 400);
       const esFamiliaOJugador = ["familia", "jugador"].includes(rolKey(sesion?.rol));
@@ -1384,10 +1381,6 @@ export default async (req: Request) => {
       const nombre = String(b.nombre || "").trim().slice(0, 60);
       if (!nombre) return j({ ok: false, reason: "falta_nombre" }, 400);
       const fields: Record<string, unknown> = { Nombre: nombre };
-      if (b.posicion !== undefined) {
-        if (!POS_OK.includes(b.posicion)) return j({ ok: false, reason: "posicion_no_valida" }, 400);
-        fields["Posición"] = b.posicion;
-      }
       const r = await fetch(`${table(T_JUGADORES)}/${id}`, {
         method: "PATCH", headers: H, body: JSON.stringify({ fields, typecast: true }),
       });

@@ -45,7 +45,7 @@ const DICT = {
     "w.title": "Pizarra táctica", "w.move": "Mover", "w.arrow": "Flecha", "w.pass": "Pase", "w.free": "Dibujo", "w.cone": "Cono", "w.ball": "Balón", "w.erase": "Borrar", "w.clear": "Limpiar", "w.home": "Local", "w.away": "Rival", "w.hint": "Elige herramienta · arrastra las fichas · dibuja sobre el campo", "w.form": "Colocar", "w.f11": "Fútbol 11", "w.f7": "Fútbol 7", "w.homeSys": "Sistema local", "w.awaySys": "Sistema rival", "w.exercises": "Ejercicios recomendados", "w.exHint": "Toca un ejercicio para colocarlo en la pizarra", "w.autoSave": "El sistema elegido se guarda automáticamente en este dispositivo", "w.abpForAgainst": "¿A favor o en contra?", "w.abpAttack": "Ataque", "w.abpDefense": "Defensa", "w.abpSide": "¿Por qué lado?", "w.abpLeft": "◂ Izquierda", "w.abpRight": "Derecha ▸", "w.abpPlace": "Colocar situación", "w.abpAgainst": "en contra", "w.abpFor": "a favor", "w.abpOwnBoard": "tablero propio", "w.abpSaveAs": "Guardar la pizarra como", "w.viewFull": "Completo", "w.viewAreaR": "Área ▸", "w.viewAreaL": "◂ Área", "w.viewSideline": "Banda", "w.viewGoal": "Portería", "w.colorWhite": "Blanco", "w.colorLightGray": "Gris claro", "w.colorGray": "Gris", "w.colorSlate": "Pizarra", "w.colorCharcoal": "Carbón", "w.toScale": "a escala real", "w.dribble": "Conducción", "w.zone": "Zona", "w.circle": "Círculo", "w.text": "Texto", "w.disc": "Seta", "w.playerToken": "Jugador", "w.dorsal": "Dorsal", "w.undo": "Deshacer", "w.redo": "Rehacer", "w.grid": "Cuadrícula", "w.searchDrill": "Buscar ejercicio…", "w.plays": "Jugadas", "w.saveAsNew": "+ Guardar como nueva", "w.shareTeam": "⬆ Compartir con el equipo", "w.shareTeamHint": "Las verán tu segundo y tu delegado desde su móvil, también en Modo partido.", "w.updateChangesIn": "↻ Guardar los cambios en", "w.moveUp": "Subir", "w.moveDown": "Bajar", "w.rename": "Renombrar", "w.deleteAction": "Borrar", "w.noPlaysSaved": "Aún no hay jugadas guardadas", "w.view": "Vista", "w.board": "Tablero", "w.backToFullPitch": "‹ Volver al campo entero", "w.framing": "Encuadre", "w.zoomLabel": "Zoom", "w.fit": "Ajustar", "w.pinchHint": "Con dos dedos: pellizca para acercar y arrastra para mover.", "w.brightness": "☀ Brillo", "w.steps": "Pasos", "w.addStep": "+ Añadir paso", "w.stepOf": "Paso {a} de {b}", "w.pause": "❚❚ Pausa", "w.play": "▶ Reproducir", "w.deleteSequence": "Borrar secuencia", "w.noStepsSaved": "Guarda instantáneas para explicar la jugada paso a paso.", "w.systems": "Sistemas", "w.exportPng": "Exportar PNG", "w.recordVideo": "Grabar vídeo", "w.video": "Vídeo", "w.exit": "Salir", "w.fullscreen": "Pantalla completa", "w.zoomOut": "Alejar", "w.zoomIn": "Acercar", "w.fullscreenSuffix": "pantalla completa", "w.exitEsc": "✕ Salir (Esc)", "w.otherFormation": "Otro", "w.noVideoSupport": "Este navegador no admite grabación de vídeo. Prueba con Chrome o Firefox actualizados.", "w.playNamePrompt": "Nombre de la jugada", "w.dorsalPrompt": "Dorsal de esta ficha (vacío para quitarlo)", "w.annotationPrompt": "Texto de la anotación", "w.needClubAccount": "Entra con tu cuenta del club para poder compartirlas.", "w.sharing": "Compartiendo…", "w.sharedOk": "✓ Compartidas con tu equipo.", "w.sharedFail": "No se pudieron compartir. Revisa la conexión.", "w.squadLabel": "Plantilla",
     "ex.title": "Biblioteca de ejercicios", "ex.hint": "Filtra por categoría, mira duración y material, y úsalo en la pizarra o añádelo a un entrenamiento.", "ex.all": "Todos", "ex.cat.rondo": "Rondos y posesión", "ex.cat.finish": "Finalización", "ex.cat.press": "Presión y transición", "ex.cat.buildup": "Salida de balón", "ex.cat.setpiece": "Acciones a balón parado", "ex.cat.technique": "Técnica individual", "ex.cat.fitness": "Físico", "ex.cat.gk": "Porteros", "ex.cat.warmup": "Calentamiento", "ex.cat.defense": "Defensa", "ex.cat.cross": "Centros y remate", "ex.cat.duel": "Duelos 1v1", "ex.dur": "min", "ex.materials": "Material", "ex.useBoard": "Usar en la pizarra", "ex.addTrain": "Añadir a entrenamiento", "ex.added": "✓ Añadido", "ex.preview": "Vista previa", "ex.previewNote": "Vista previa de la pizarra · no editable", "ex.pickToPreview": "Elige un ejercicio para verlo en la pizarra", "d.title": "Módulo de comportamiento", "d.desc1a": "Registro de incidencias según el ", "d.codeName": "Código Disciplinario", "d.desc1b": " del equipo. Las consecuencias que se ofrecen son las literales del documento firmado por el club.", "d.note1": "El delegado registra; el cuerpo técnico valida. El documento establece que cada situación se valora de forma individual por el cuerpo técnico y que las medidas tienen siempre carácter educativo.", "d.newIncidentBtn": "+ Registrar incidencia", "d.collectiveMeasureBtn": "⚖ Medida colectiva", "d.viewNormBtn": "📑 Ver normativa y firmas", "d.exportCsvBtn": "⤓ Exportar CSV", "d.unsignedWarn": "⚠ {n} jugador(es) todavía no han firmado el código disciplinario. Sin firma no debe aplicarse ninguna sanción económica.", "d.newTitle": "Nueva incidencia", "d.player": "Jugador", "d.pickPlayer": "Elige jugador…", "d.date": "Fecha", "d.context": "Contexto", "d.normViolated": "Norma infringida", "d.minorFouls": "Faltas leves", "d.majorFouls": "Faltas graves", "d.cardLabel": "Tarjeta", "d.economicSanction": "Sanción económica (opcional)", "d.fault": "Falta", "d.consequenceLabel": "Consecuencia según el código:", "d.measuresApplied": "Medidas aplicadas (las 8 del documento)", "d.whatHappenedPh": "Qué ocurrió (hechos, sin juicios de valor)", "d.noEconomicWarnA": "⚠ El código disciplinario del equipo ", "d.noEconomicBold": "no contempla sanciones económicas", "d.noEconomicWarnB": ": todas sus medidas son educativas. Usa este campo solo si el club tiene aprobado y firmado un régimen económico.", "d.notSignedExtra": "Además, este jugador no ha firmado el código.", "d.saveIncidentBtn": "Guardar incidencia", "d.teamTitle": "Medida colectiva", "d.teamDesc": "Aplica la misma medida a varios jugadores de una vez. Se crea una incidencia por jugador, agrupadas en un lote que puedes anular entero después.", "d.whoApplies": "¿A quién se aplica?", "d.amountPerPlayer": "Importe por jugador (opcional)", "d.measuresApplied2": "Medidas aplicadas", "d.teamReasonPh": "Motivo de la medida colectiva (qué pasó y por qué afecta a todo el grupo)", "d.youthWarnA": "⚠ Vas a poner ", "d.youthWarnB": " en total a {n} menores. El código disciplinario del equipo no contempla sanciones económicas y una multa colectiva castiga por igual a quien no hizo nada. Úsalo solo si el club tiene un régimen económico aprobado y firmado por las familias.", "d.teamPotLine": "Bote del equipo: {amount} € en total ({n} jugadores).", "d.applyToN": "Aplicar a {n} jugador(es)", "d.noMatchCriteria": "No hay jugadores que cumplan ese criterio.", "d.quickTitle": "Pasar lista y registro rápido", "d.presentN": "presentes", "d.latesN": "retrasos", "d.absencesN": "faltas", "d.markAllPresentBtn": "✓ Marcar todos presentes", "d.clearDayBtn": "Limpiar lista del día", "d.faultsParen": "falta(s)", "d.latesParen": "retraso(s)", "d.incidentsParen": "incidencia(s)", "d.unsignedTag": "⚠ sin firmar", "d.conductBtn": "⚠ Conducta", "d.otherFull": "Otra… (formulario completo)", "d.autoNote": "Marcar Retraso o Falta crea automáticamente la incidencia correspondiente del código (L1 puntualidad, L2 comunicación de ausencias), pendiente de validar por el cuerpo técnico. Justificada no genera incidencia.", "d.seeAsistNote": "Esto es para retrasos y faltas con consecuencia. Si solo quieres saber quién ha venido hoy y por qué —estudios, enfermedad, lesión—, sin que abra ninguna incidencia, usa", "d.historyTitle": "Historial de incidencias", "d.allPlayersOpt": "Todos los jugadores", "d.noIncidentsFilter": "No hay incidencias con este filtro.", "d.pendingValidateTag": "Pendiente de validar", "d.paidTag": "pagada", "d.condonedTag": "condonada", "d.pendingTag": "pendiente", "d.markPaidBtn": "Marcar pagada", "d.condoneBtn": "Condonar", "d.famInformedYes": "✓ Familia informada", "d.famInformedNo": "Marcar familia informada", "d.batchTag": "Lote colectivo", "d.validateBtn": "Validar", "d.annulBtn": "Anular", "d.annulBatchBtn": "Anular lote entero", "d.filterAll": "Todas", "d.filterPend": "Pendientes de validar ({n})", "d.filterValidated": "Validadas", "d.filterAnnulled": "Anuladas", "d.summaryTitle": "Resumen por jugador", "d.noIncidentsReg": "Sin incidencias registradas.", "d.playerCol": "Jugador", "d.pendingCol": "Pendiente", "d.notSignedTitle": "No ha firmado el código", "d.reiterationBtn": "G5 reiteración", "d.reiterationTitle": "Reiteración de faltas leves — el código lo tipifica como falta grave G5", "d.reiterationDesc": "Reiteración: {n} faltas leves acumuladas.", "d.economicTitle": "Sanciones económicas", "d.teamPotTitle": "Bote del equipo", "d.pendingCollect": "pendiente de cobro", "d.alreadyPaid": "ya abonado", "d.youthFooter": "Recuerda que el código disciplinario de este equipo no contempla multas: sus ocho medidas son educativas. Si el club cobra importes, deben estar recogidos en una normativa firmada por las familias.", "d.autoLateDesc": "Retraso registrado al pasar lista.", "d.autoAbsentDesc": "Ausencia sin comunicar registrada al pasar lista.", "d.quickRegSuffix": " (registro rápido).", "d.attOk": "Asistió", "d.attLate": "Retraso", "d.attAbsent": "Falta", "d.attJust": "Justificada", "d.tgAll": "Toda la plantilla", "d.tgAbsent": "Han faltado ese día", "d.tgLate": "Han llegado tarde ese día", "d.tgUnsigned": "No han firmado el código", "d.tgManual": "Selección manual", "d.gLeve": "leve", "d.gGrave": "grave", "mp.title": "Panel Master", "mp.fullAccess": "acceso total", "mp.uniqueNote": "Esta cuenta es única y no se puede repartir desde la app: el servidor comprueba el correo antes de dar el rol.", "mp.statusTitle": "Estado de la instalación", "mp.club1": "club", "mp.clubN": "clubes", "mp.cat1": "categoría", "mp.catN": "categorías", "mp.noCrest": "sin escudo", "mp.reload": "↻ Recargar", "mp.manageClubs": "Gestionar clubes", "mp.clubsTitle": "Clubes", "mp.onlyAccountTitle": "Solo esta cuenta puede", "mp.perm1": "Crear y eliminar clubes. Las categorías (Juvenil A, Infantil B…) las añade cada usuario dentro del suyo.", "mp.perm2": "Subir el escudo del club y aplicarlo a todas sus categorías de una vez.", "mp.perm3": "Fijar el límite de plazas de cuerpo técnico de cada club.", "mp.perm4": "Dar de alta a un director deportivo.", "mp.tabsTitle": "Categorías gratis y Premium", "mp.tabsHint": "Elige qué apartados de la app puede usar cualquiera sin pagar. Los demás pasan a ser Premium para todo el mundo, en todos los clubes.", "mp.tabsForcedHint": "Inicio y Premium no se pueden bloquear: son la portada y la puerta para pasarse a la versión de pago.", "mp.tabsSave": "Guardar cambios", "mp.tabsSaving": "Guardando…", "mp.tabsSaved": "Guardado. Ya se aplica a toda la app.", "mp.tabsError": "No se ha podido guardar. Inténtalo de nuevo.", "mp.demoNote": "Esto es una demo: los cambios no se guardan de verdad.", "mp.freeLabel": "Gratis", "mp.premiumLabel": "Premium", "mp.clubsDashTitle": "Qué club paga y cuál no", "mp.clubsDashLoad": "Cargar estado de pago", "mp.clubsDashLoading": "Consultando cada club…", "mp.clubsDashEmpty": "Todavía no hay clubes.", "mp.matrixTitle": "Qué ve cada rol", "mp.matrixHint": "Por cada apartado, qué roles lo tienen en su menú y si hoy es Gratis o Premium. El ✓ es acceso por el rol; la versión gratis o de pago se decide arriba y se aplica igual a todos.", "mp.matrixTab": "Apartado", "mp.matrixPlan": "Plan", "mp.matrixForcedHint": "Inicio no se le puede quitar a ningún rol: es la portada de la app. Clubes (alta de clubes) es siempre exclusiva del Master, la marque quien la marque aquí.", "nav.lesiones": "Lesiones", "lz.title": "Lesiones", "lz.hint": "Marca aquí quién tiene una lesión ahora mismo. Lo puede tocar cualquiera del cuerpo técnico y se ve al momento en Inicio.", "lz.of": "de", "lz.injured": "lesionados", "lz.injuredTag": "✚ Lesionado", "lz.okTag": "Disponible", "lz.saved": "Guardado", "lz.saveFail": "No se ha podido guardar. Inténtalo de nuevo.", "lz.readOnly": "Solo puedes ver esta lista, no marcarla.", "lz.addPlayer": "+ Añadir jugador", "lz.proposalSent": "Propuesta enviada. El jugador aparecerá cuando el entrenador principal la apruebe.", "lz.tapToEdit": "Toca el nombre para abrir y editar su ficha.", "nav.mihijo": "Mi hijo/a", "nav.miperfil": "Mi ficha", "fm.title": "Mi hijo/a", "fm.pending": "Tu cuenta está pendiente de que el club la active. En cuanto lo hagan, verás aquí la ficha de tu hijo/a.", "fm.empty": "Todavía no hay ficha que enseñar.", "fm.attTitle": "Asistencia", "fm.attOf": "de {n} días pasados por lista", "fm.attNone": "Todavía no se ha pasado lista ningún día.", "jg.title": "Mi ficha", "jg.pending": "Tu cuenta está pendiente de que reclames el acceso: entra con «Es mi primera vez» y el correo con el que te ha dado de alta el club.", "jg.empty": "Todavía no hay ficha que enseñar.", "mh.lineupTitle": "Alineación del equipo", "mh.lineupEmpty": "Todavía no hay una alineación oficial guardada.", "mh.starters": "Titulares", "mh.bench": "Banquillo", "mh.discTitle": "Disciplina", "mh.discEmpty": "Sin incidencias registradas.", "mh.calTitle": "Calendario", "mh.calEmpty": "Todavía no hay partidos en el calendario.", "mh.calNext": "Próximos", "mh.calPrev": "Anteriores", "mh.trainDays": "Entrena", "mh.nextTrain": "Próximo entreno", "mh.changePhoto": "Cambiar foto", "mh.editData": "Editar", "mh.needName": "Falta el nombre.", "mh.datosOk": "✓ Datos actualizados.", "mh.datosFail": "No se pudo guardar. Inténtalo de nuevo.", "mh.fotoOk": "✓ Foto actualizada.", "mh.fotoFail": "No se pudo subir la foto. Inténtalo de nuevo.", "mh.demoNote": "Esto es la demo: se ve el control, pero no hay una cuenta real detrás a la que guardarle nada. Entra con tu cuenta real para cambiar la foto o los datos.", "lz.histTitle": "Historial de lesiones", "lz.histEmpty": "Sin lesiones registradas.", "lz.resolvedTag": "Recuperado", "lz.ctxEntreno": "en entreno", "lz.ctxPartido": "en partido", "cf.loadMonthly": "Media de físico por mes", "acc.button": "Accesibilidad", "acc.title": "Accesibilidad", "acc.zoom": "Tamaño del texto", "acc.brightness": "Brillo", "acc.reset": "Restablecer", "acc.decrease": "Reducir", "acc.increase": "Aumentar", "c.closeBtn": "Cerrar", "pm.rival": "Rival", "pm.alsoUsesApp": "también usa COACHBASE", "pm.historyTitle": "Histórico", "pm.saveResult": "+ Guardar este resultado", "pm.noHistory": "Aún no has guardado ningún resultado. Guarda este y empezarás a tener el histórico de la categoría.", "pm.win": "G", "pm.draw": "E", "pm.loss": "P", "pm.inNMatches": "en {n} partido(s)", "pm.against": "Contra {rival}:", "pm.firstSaved": "Primer partido guardado contra {rival}.", "tr.publishedTitle": "Sesiones publicadas", "tr.next": "Próxima", "tr.load": "Cargar", "tr.pendingProposal": "⏳ Tienes una propuesta de entrenamiento esperando aprobación", "tr.sendProposal": "Enviar propuesta al entrenador", "tr.savedNamed": "✓ \"{name}\" guardada.", "tr.alreadyPending": "Ya tienes una propuesta de entrenamiento esperando aprobación.", "tr.proposalSent": "✓ Propuesta de entrenamiento enviada. Esperando aprobación.", "tr.sessionSaved": "✓ Sesión de {n} min guardada.", "tr.emptyTemplate": "Esa plantilla está vacía.", "tr.loadedSession": "✓ Cargada la sesión de \"{x}\".", "tr.loadedTemplate": "✓ Cargada \"{name}\". Ajusta la fecha y la hora.", "tr.summaryHeader": "ENTRENAMIENTO", "tr.summaryTotal": "Duración total:", "tr.summaryMaterial": "Material:", "st.matchByMatch": "Partido a partido", "st.noMatchLog": "Todavía no hay partidos con acta. Registra el partido en Modo partido y guárdalo en el histórico: a partir de ahí aparecerá aquí, con lo que hizo cada jugador.", "st.tapMatch": "Toca un partido para ver la ficha de cada jugador y el acta.", "st.colPlayer": "Jugador", "st.colStarter": "Titular", "st.colGoals": "Goles", "st.colCards": "Tarjetas", "st.colSubs": "Cambios", "st.colCalled": "Convocado", "st.seasonTitle": "Temporada · {n} partido(s)", "tm.title": "Clubes y categorías", "tm.hintA": "El club es el nivel de arriba —el Chamartín Vergara—. Juvenil A o Infantil B son ", "tm.hintBold": "categorías", "tm.hintB": " suyas, no clubs aparte. Los clubs solo los creas tú; las categorías las añade cada usuario dentro del suyo.", "tm.newClub": "+ Nuevo club", "tm.namePh": "Nombre del club. Ej. Chamartín Vergara", "tm.comunidadPh": "Comunidad. Ej. Comunidad de Madrid", "tm.createClub": "Crear club", "tm.clubExists": "Ese club ya existía; se usa el que había.", "tm.clubCreated": "✓ Club creado. Ahora añádele sus categorías.", "tm.onlyMasterCreate": "Solo el Master puede crear clubs.", "tm.clubCreateFail": "No se pudo crear el club.", "tm.noClubsYet": "No hay ningún club todavía.", "tm.addCat": "+ Añadir categoría", "tm.deleteClubConfirm": "¿Eliminar el club {club}? Solo se puede porque no tiene ninguna categoría ni nadie dentro.", "tm.deleteClub": "Eliminar club", "tm.clubDeleted": "✓ Club eliminado.", "tm.notEmptyDelete": "No se puede: el club tiene {cat} categoría(s) y {per} persona(s). Vacíalo primero.", "tm.clubDeleteFail": "No se pudo eliminar el club.", "tm.crestToAll": "⬡ Escudo del club → todas sus categorías", "tm.crestOverwriteConfirm": "Algunas categorías de {club} ya tienen escudo propio. ¿Sustituirlo también en esas?", "tm.crestApplied": "✓ Aplicado a {n} categoría(s).", "tm.onlyMasterAction": "Solo el Master puede hacer esto.", "tm.uploadFail": "No se pudo subir.", "tm.manageClub": "⚙ Gestionar club", "tm.uploading": "Subiendo…", "tm.checkingSeats": "Consultando plazas y estado de pago…", "tm.checkFail": "No se pudo consultar. Vuelve a intentarlo.", "tm.seatsTitle": "Plazas de cuerpo técnico", "tm.occupiedLbl": "ocupadas", "tm.activeLbl": "activas", "tm.pendingLbl": "pendientes", "tm.ofLimit": "de {n}", "tm.noLimit": "· sin límite", "tm.saveLimit": "Guardar límite", "tm.limitPh": "Sin límite", "tm.limitHint": "Deja en blanco para no limitar (Club L).", "tm.paymentStatus": "Estado de pago", "tm.upToDate": "Al día", "tm.notActive": "Sin activar", "tm.renews": "renueva", "tm.ends": "termina", "tm.noSubscription": "Sin ninguna suscripción activa entre los emails de este club.", "tm.crestBtn": "⬡ Escudo", "tm.crestUpdated": "✓ Escudo actualizado.", "tm.crestUploadFail": "No se pudo subir el escudo.", "tm.playersBtn": "◉ Jugadores", "tm.demoSquadNote": "La plantilla de cada categoría es de sus familias y jugadores: en la demo se enseña el catálogo de clubes, no se enseñan sus datos reales.", "tm.editBtn": "Editar", "tm.demoWorkNote": "Entrar a trabajar con una categoría real es cosa de la cuenta Master de verdad; en la demo puedes mirar el catálogo, no entrar en él.", "tm.inUse": "En uso", "tm.workWithThis": "Trabajar con este", "tm.loadingSquad": "Cargando la plantilla…", "tm.squadLoadFail": "No se pudo cargar la plantilla de esta categoría.", "tm.squadEmpty": "Esta categoría todavía no tiene jugadores dados de alta.", "tm.player1": "jugador", "tm.playerN": "jugadores", "tm.editCatTitle": "Editar {name}", "tm.newCatTitle": "Nueva categoría", "tm.newCatOf": " de {club}", "tm.catNameLbl": "Nombre de la categoría", "tm.catNamePh": "Juvenil A", "tm.clubOfLbl": "Club al que pertenece", "tm.pickClub": "Elige un club…", "tm.teamWebLbl": "Web del equipo", "tm.mapsLbl": "Google Maps del campo", "tm.pickClubFirst": "Elige a qué club pertenece la categoría.", "tm.saved": "✓ Guardado.", "tm.saveFail": "No se pudo guardar. Revisa la conexión.", "tm.crestNote": "El escudo se sube desde la lista de arriba con el botón ⬡ Escudo, una vez creada la categoría.", "tm.categoryLbl": "Categoría", "tm.f11": "Fútbol 11", "tm.f7": "Fútbol 7", "tm.noClub": "Sin club", "tm.noName": "Sin nombre", "doc.title": "Normativa del club", "doc.signLabel": "Firma", "doc.confirmLabel": "Confirma", "doc.viewPdf": "Ver PDF", "doc.download": "Descargar", "doc.publishedOn": "Publicado el {date} · versión {v}", "doc.requiredSuffix": " · firma obligatoria", "doc.playersExTitle": "Ejercicios · jugadores", "doc.playersSignTitle": "Firmas · jugadores y familias", "doc.doneEx": "realizados", "doc.doneSign": "firmadas", "doc.pending": "Pendiente", "doc.staffExTitle": "Confirmación · cuerpo técnico", "doc.staffSignTitle": "Firmas · cuerpo técnico", "doc.staffDoneEx": "confirmados", "doc.staffDoneSign": "firmadas", "doc.sanctionsTitle": "Control de sanciones", "doc.allSigned": "Toda la plantilla ha firmado el código disciplinario.", "doc.someUnsigned": "{n} jugador(es) sin firmar el código disciplinario.", "doc.sanctionsNote": "Una medida disciplinaria solo es exigible si la persona conoce y ha aceptado la norma. Antes de aplicar cualquier sanción —y con más motivo si es económica— comprueba aquí que la firma está registrada.", "doc.doneExercise": "✓ Realizado", "doc.doneSigned": "✓ Firmado",
     "tr.title": "Modo entrenamiento", "tr.hint": "Planifica la sesión añadiendo bloques desde la biblioteca de ejercicios o bloques libres.", "tr.date": "Fecha", "tr.time": "Hora", "tr.objective": "Objetivo de la sesión", "tr.objectivePh": "Ej. transiciones defensivas", "tr.addFromLib": "+ Añadir desde la biblioteca", "tr.addCustom": "+ Bloque libre", "tr.customName": "Nombre del bloque", "tr.customDur": "Duración (min)", "tr.noBlocks": "Aún no has añadido ningún bloque a esta sesión.", "tr.total": "Duración total", "tr.materials": "Material necesario", "tr.remove": "Quitar", "tr.up": "▲", "tr.down": "▼", "tr.sendBoard": "Ver en pizarra", "tr.summary": "Resumen para compartir", "tr.copy": "Copiar resumen", "tr.copied": "✓ Copiado", "tr.whatsapp": "Abrir WhatsApp", "tr.min": "min", "tr.close": "Cerrar", "tr.newBlock": "Nuevo bloque",
-    "st.title": "Estadísticas del equipo", "st.availability": "Disponibilidad de la plantilla", "st.available": "Disponibles", "st.doubt": "Duda", "st.injured": "Lesionados", "st.topAtt": "Mayor asistencia a entrenamientos", "st.lowMin": "Menor participación (minutos)", "st.byPosition": "Plantilla por línea", "st.gkPos": "Porteros", "st.defPos": "Defensas", "st.midPos": "Centrocampistas", "st.fwdPos": "Delanteros", "st.players": "jugadores", "st.byRole": "Desglose por demarcación", "st.roleHint": "Reparto real de la plantilla, posición a posición, con el peso de cada una sobre el total.", "st.total": "Total plantilla", "st.player": "jugador",
+    "st.title": "Estadísticas del equipo", "st.availability": "Disponibilidad de la plantilla", "st.available": "Disponibles", "st.doubt": "Duda", "st.injured": "Lesionados", "st.topAtt": "Mayor asistencia a entrenamientos", "st.lowMin": "Menor participación (minutos)", "st.byPosition": "El once por línea", "st.gkPos": "Porteros", "st.defPos": "Defensas", "st.midPos": "Centrocampistas", "st.fwdPos": "Delanteros", "st.players": "jugadores", "st.byRole": "El once por demarcación", "st.roleHint": "Cómo queda repartido el once que tienes puesto, demarcación a demarcación.", "st.total": "Total plantilla", "st.player": "jugador",
     "m.title": "Material para el entrenador", "m.aff": "Enlace de afiliado", "m.note": "Enlaces de afiliado marcados claramente y adaptados a tu país. Una pequeña comisión ayuda a mantener la app; el precio para ti no cambia.", "m.all": "Todo", "m.training": "Entrenamiento", "m.gk": "Porteros", "m.medical": "Botiquín", "m.tech": "Tecnología", "m.apparel": "Vestuario", "m.view": "Ver oferta", "m.from": "desde",
     "u.canGrant": "Desde la dirección del club das de alta al cuerpo técnico y decides el rol de cada uno.", "u.readonly": "Vista de solo lectura: dar de alta es cosa de la dirección del club.", "u.approve": "Aprobar", "u.suspend": "Suspender", "u.note": "Solo la dirección del club puede asignar el rol de entrenador.", "u.activo": "activo", "u.pendiente": "pendiente",
 
@@ -81,17 +81,14 @@ const DICT = {
     "ln.placeAndSend": "Coloca el once y manda la propuesta cuando termines.",
     "ln.sendProposal": "Enviar propuesta",
     "ln.dragHint": "Arrastra para recolocar · toque corto para asignar",
-    "ln.tapPosPlayerSel": "Toca un puesto del campo, o elige uno de esta lista — primero el suyo",
-    "ln.slotSameLine": "Los de {pos} suben arriba, para encontrar rápido a quién meter",
     "ln.benchTitle": "Banquillo",
+    "ln.tapPlayerForSlot": "Toca al jugador que quieres poner de {pos}.",
+    "ln.tapPlayerToAdd": "Toca a un jugador y entra en el once, en el primer hueco libre ({pos}). Para elegir el sitio, toca antes un puesto del campo.",
+    "ln.xiFull": "El once está completo. Toca un puesto del campo para cambiar a quien esté ahí.",
+    "pf.noPos": "Sin puesto en el once",
+    "st.noLineup": "Todavía no hay un once montado.",
     "ln.assignTo": "Asignar a {slot}",
-    "ln.choosePosFor": "Elegir puesto para {name}",
-    "ln.hisSpot": "Su puesto",
-    "ln.occupiedBy": "Ocupado · {name}",
-    "ln.free": "Libre",
-    "ln.samePos": "Mismo puesto",
     "ln.other": "Otro: 4-1-4-1",
-    "ln.tapPos": "Toca una posición del campo y asigna un jugador, o toca un jugador de la lista para ver dónde puede jugar.",
     "cl.waMsg": "Mensaje para WhatsApp",
     "cl.waOpen": "Abrir WhatsApp",
     "cl.waLegend": "🧤 portero · dorsal en emoji · porteros primero",
@@ -609,7 +606,7 @@ const DICT = {
     "w.title": "Tactics board", "w.move": "Move", "w.arrow": "Arrow", "w.pass": "Pass", "w.free": "Draw", "w.cone": "Cone", "w.ball": "Ball", "w.erase": "Erase", "w.clear": "Clear", "w.home": "Home", "w.away": "Away", "w.hint": "Pick a tool · drag the tokens · draw on the pitch", "w.form": "Place", "w.f11": "11-a-side", "w.f7": "7-a-side", "w.homeSys": "Home system", "w.awaySys": "Away system", "w.exercises": "Recommended drills", "w.exHint": "Tap a drill to set it up on the board", "w.autoSave": "Your chosen system is saved automatically on this device", "w.abpForAgainst": "For or against?", "w.abpAttack": "Attack", "w.abpDefense": "Defence", "w.abpSide": "Which side?", "w.abpLeft": "◂ Left", "w.abpRight": "Right ▸", "w.abpPlace": "Set up the situation", "w.abpAgainst": "against", "w.abpFor": "for", "w.abpOwnBoard": "own board", "w.abpSaveAs": "Save the whiteboard as", "w.viewFull": "Full pitch", "w.viewAreaR": "Area ▸", "w.viewAreaL": "◂ Area", "w.viewSideline": "Sideline", "w.viewGoal": "Goal", "w.colorWhite": "White", "w.colorLightGray": "Light grey", "w.colorGray": "Grey", "w.colorSlate": "Slate", "w.colorCharcoal": "Charcoal", "w.toScale": "to scale", "w.dribble": "Dribble", "w.zone": "Zone", "w.circle": "Circle", "w.text": "Text", "w.disc": "Disc", "w.playerToken": "Player", "w.dorsal": "Number", "w.undo": "Undo", "w.redo": "Redo", "w.grid": "Grid", "w.searchDrill": "Search drill…", "w.plays": "Plays", "w.saveAsNew": "+ Save as new", "w.shareTeam": "⬆ Share with the team", "w.shareTeamHint": "Your assistant coach and team manager will see it on their phone too, including in Match mode.", "w.updateChangesIn": "↻ Save changes to", "w.moveUp": "Move up", "w.moveDown": "Move down", "w.rename": "Rename", "w.deleteAction": "Delete", "w.noPlaysSaved": "No plays saved yet", "w.view": "View", "w.board": "Board", "w.backToFullPitch": "‹ Back to full pitch", "w.framing": "Framing", "w.zoomLabel": "Zoom", "w.fit": "Fit", "w.pinchHint": "With two fingers: pinch to zoom and drag to move.", "w.brightness": "☀ Brightness", "w.steps": "Steps", "w.addStep": "+ Add step", "w.stepOf": "Step {a} of {b}", "w.pause": "❚❚ Pause", "w.play": "▶ Play", "w.deleteSequence": "Delete sequence", "w.noStepsSaved": "Save snapshots to explain the play step by step.", "w.systems": "Systems", "w.exportPng": "Export PNG", "w.recordVideo": "Record video", "w.video": "Video", "w.exit": "Exit", "w.fullscreen": "Full screen", "w.zoomOut": "Zoom out", "w.zoomIn": "Zoom in", "w.fullscreenSuffix": "full screen", "w.exitEsc": "✕ Exit (Esc)", "w.otherFormation": "Other", "w.noVideoSupport": "This browser doesn't support video recording. Try an up-to-date Chrome or Firefox.", "w.playNamePrompt": "Play name", "w.dorsalPrompt": "This token's number (leave empty to remove it)", "w.annotationPrompt": "Annotation text", "w.needClubAccount": "Sign in with your club account to share these.", "w.sharing": "Sharing…", "w.sharedOk": "✓ Shared with your team.", "w.sharedFail": "Couldn't share. Check your connection.", "w.squadLabel": "Squad",
     "ex.title": "Drill library", "ex.hint": "Filter by category, check duration and materials, and use it on the board or add it to a session.", "ex.all": "All", "ex.cat.rondo": "Rondos & possession", "ex.cat.finish": "Finishing", "ex.cat.press": "Pressing & transition", "ex.cat.buildup": "Build-up", "ex.cat.setpiece": "Set pieces", "ex.cat.technique": "Individual technique", "ex.cat.fitness": "Fitness", "ex.cat.gk": "Goalkeeping", "ex.cat.warmup": "Warm-up", "ex.cat.defense": "Defending", "ex.cat.cross": "Crossing & finishing", "ex.cat.duel": "1v1 duels", "ex.dur": "min", "ex.materials": "Materials", "ex.useBoard": "Use on the board", "ex.addTrain": "Add to training", "ex.added": "✓ Added", "ex.preview": "Preview", "ex.previewNote": "Whiteboard preview · not editable", "ex.pickToPreview": "Pick a drill to see it on the board", "mp.title": "Master panel", "mp.fullAccess": "full access", "mp.uniqueNote": "This account is unique and can't be shared out from the app: the server checks the email before granting the role.", "mp.statusTitle": "Installation status", "mp.club1": "club", "mp.clubN": "clubs", "mp.cat1": "age group", "mp.catN": "age groups", "mp.noCrest": "no crest", "mp.reload": "↻ Reload", "mp.manageClubs": "Manage clubs", "mp.clubsTitle": "Clubs", "mp.onlyAccountTitle": "Only this account can", "mp.perm1": "Create and delete clubs. Age groups (U16 A, U14 B…) are added by each user inside their own club.", "mp.perm2": "Upload the club crest and apply it to all its age groups at once.", "mp.perm3": "Set the coaching-staff seat limit for each club.", "mp.perm4": "Add a sporting director.", "mp.tabsTitle": "Free vs Premium sections", "mp.tabsHint": "Choose which parts of the app anyone can use without paying. Everything else becomes Premium for everyone, in every club.", "mp.tabsForcedHint": "Home and Premium can't be locked: they're the landing screen and the way to upgrade.", "mp.tabsSave": "Save changes", "mp.tabsSaving": "Saving…", "mp.tabsSaved": "Saved. It now applies across the whole app.", "mp.tabsError": "Couldn't save. Try again.", "mp.demoNote": "This is a demo: changes aren't really saved.", "mp.freeLabel": "Free", "mp.premiumLabel": "Premium", "mp.clubsDashTitle": "Which club pays and which doesn't", "mp.clubsDashLoad": "Load payment status", "mp.clubsDashLoading": "Checking each club…", "mp.clubsDashEmpty": "No clubs yet.", "mp.matrixTitle": "What each role sees", "mp.matrixHint": "For each section, which roles have it in their menu and whether it's Free or Premium today. A ✓ means access by role; the free/paid split is set above and applies the same way to everyone.", "mp.matrixTab": "Section", "mp.matrixPlan": "Plan", "mp.matrixForcedHint": "Home can't be removed from any role: it's the app's landing screen. Clubs (creating clubs) always stays Master-only, no matter what's marked here.", "nav.lesiones": "Injuries", "nav.mihijo": "My child", "nav.miperfil": "My profile", "lz.title": "Injuries", "lz.hint": "Mark here who has an injury right now. Anyone on the coaching staff can update it, and it shows up immediately on Home.", "lz.of": "of", "lz.injured": "injured", "lz.injuredTag": "✚ Injured", "lz.okTag": "Available", "lz.saved": "Saved", "lz.saveFail": "Couldn't save. Try again.", "lz.readOnly": "You can only view this list, not mark it.", "lz.addPlayer": "+ Add player", "lz.proposalSent": "Proposal sent. The player will appear once the head coach approves it.", "lz.tapToEdit": "Tap the name to open and edit their profile.", "fm.title": "My child", "fm.pending": "Your account is waiting for the club to activate it. Once they do, you'll see your child's profile here.", "fm.empty": "There's no profile to show yet.", "fm.attTitle": "Attendance", "fm.attOf": "of {n} recorded days", "fm.attNone": "No attendance has been recorded yet.", "jg.title": "My profile", "jg.pending": "Your account is waiting for you to claim it: sign in with \"It's my first time\" using the email your club added you with.", "jg.empty": "There's no profile to show yet.", "mh.lineupTitle": "Team lineup", "mh.lineupEmpty": "There's no official lineup saved yet.", "mh.starters": "Starters", "mh.bench": "Bench", "mh.discTitle": "Discipline", "mh.discEmpty": "No incidents recorded.", "mh.calTitle": "Calendar", "mh.calEmpty": "There are no matches on the calendar yet.", "mh.calNext": "Upcoming", "mh.calPrev": "Past", "mh.trainDays": "Trains", "mh.nextTrain": "Next training", "mh.changePhoto": "Change photo", "mh.editData": "Edit", "mh.needName": "Name is missing.", "mh.datosOk": "✓ Details updated.", "mh.datosFail": "Could not save. Try again.", "mh.fotoOk": "✓ Photo updated.", "mh.fotoFail": "Could not upload the photo. Try again.", "mh.demoNote": "This is the demo: you can see the control, but there is no real account behind it to save anything to. Sign in with your real account to change the photo or the details.", "lz.histTitle": "Injury history", "lz.histEmpty": "No injuries logged.", "lz.resolvedTag": "Recovered", "lz.ctxEntreno": "in training", "lz.ctxPartido": "in a match", "cf.loadMonthly": "Monthly physical average", "acc.button": "Accessibility", "acc.title": "Accessibility", "acc.zoom": "Text size", "acc.brightness": "Brightness", "acc.reset": "Reset", "acc.decrease": "Decrease", "acc.increase": "Increase", "c.closeBtn": "Close", "pm.rival": "Opponent", "pm.alsoUsesApp": "also uses COACHBASE", "pm.historyTitle": "History", "pm.saveResult": "+ Save this result", "pm.noHistory": "You haven't saved any result yet. Save this one and you'll start building the age group's history.", "pm.win": "W", "pm.draw": "D", "pm.loss": "L", "pm.inNMatches": "in {n} match(es)", "pm.against": "Against {rival}:", "pm.firstSaved": "First match saved against {rival}.", "tr.publishedTitle": "Published sessions", "tr.next": "Next", "tr.load": "Load", "tr.pendingProposal": "⏳ You have a training proposal awaiting approval", "tr.sendProposal": "Send proposal to the coach", "tr.savedNamed": "✓ \"{name}\" saved.", "tr.alreadyPending": "You already have a training proposal awaiting approval.", "tr.proposalSent": "✓ Training proposal sent. Awaiting approval.", "tr.sessionSaved": "✓ {n} min session saved.", "tr.emptyTemplate": "That template is empty.", "tr.loadedSession": "✓ Loaded the session from \"{x}\".", "tr.loadedTemplate": "✓ Loaded \"{name}\". Adjust the date and time.", "tr.summaryHeader": "TRAINING", "tr.summaryTotal": "Total duration:", "tr.summaryMaterial": "Equipment:", "st.matchByMatch": "Match by match", "st.noMatchLog": "No matches with a report yet. Record the match in Match mode and save it to the history: from there it will appear here, with what each player did.", "st.tapMatch": "Tap a match to see each player's sheet and the report.", "st.colPlayer": "Player", "st.colStarter": "Starter", "st.colGoals": "Goals", "st.colCards": "Cards", "st.colSubs": "Subs", "st.colCalled": "Called up", "st.seasonTitle": "Season · {n} match(es)", "tm.title": "Clubs and age groups", "tm.hintA": "The club is the top level —Chamartín Vergara—. U16 A or U14 B are its ", "tm.hintBold": "age groups", "tm.hintB": ", not separate clubs. Only you create clubs; each user adds age groups inside their own.", "tm.newClub": "+ New club", "tm.namePh": "Club name. E.g. Chamartín Vergara", "tm.comunidadPh": "Region. E.g. Madrid region", "tm.createClub": "Create club", "tm.clubExists": "That club already existed; using the existing one.", "tm.clubCreated": "✓ Club created. Now add its age groups.", "tm.onlyMasterCreate": "Only the Master can create clubs.", "tm.clubCreateFail": "Couldn't create the club.", "tm.noClubsYet": "No clubs yet.", "tm.addCat": "+ Add age group", "tm.deleteClubConfirm": "Delete club {club}? Only possible because it has no age groups or people in it.", "tm.deleteClub": "Delete club", "tm.clubDeleted": "✓ Club deleted.", "tm.notEmptyDelete": "Can't: the club has {cat} age group(s) and {per} person/people. Empty it first.", "tm.clubDeleteFail": "Couldn't delete the club.", "tm.crestToAll": "⬡ Club crest → all its age groups", "tm.crestOverwriteConfirm": "Some age groups of {club} already have their own crest. Replace those too?", "tm.crestApplied": "✓ Applied to {n} age group(s).", "tm.onlyMasterAction": "Only the Master can do this.", "tm.uploadFail": "Couldn't upload.", "tm.manageClub": "⚙ Manage club", "tm.uploading": "Uploading…", "tm.checkingSeats": "Checking seats and payment status…", "tm.checkFail": "Couldn't check. Try again.", "tm.seatsTitle": "Coaching-staff seats", "tm.occupiedLbl": "taken", "tm.activeLbl": "active", "tm.pendingLbl": "pending", "tm.ofLimit": "of {n}", "tm.noLimit": "· no limit", "tm.saveLimit": "Save limit", "tm.limitPh": "No limit", "tm.limitHint": "Leave blank for no limit (Club L).", "tm.paymentStatus": "Payment status", "tm.upToDate": "Up to date", "tm.notActive": "Not active", "tm.renews": "renews", "tm.ends": "ends", "tm.noSubscription": "No active subscription among this club's emails.", "tm.crestBtn": "⬡ Crest", "tm.crestUpdated": "✓ Crest updated.", "tm.crestUploadFail": "Couldn't upload the crest.", "tm.playersBtn": "◉ Players", "tm.demoSquadNote": "Each age group's squad belongs to its families and players: the demo shows the club catalogue, not their real data.", "tm.editBtn": "Edit", "tm.demoWorkNote": "Working with a real age group is for the actual Master account; in the demo you can browse the catalogue but not enter it.", "tm.inUse": "In use", "tm.workWithThis": "Work with this", "tm.loadingSquad": "Loading the squad…", "tm.squadLoadFail": "Couldn't load this age group's squad.", "tm.squadEmpty": "This age group has no players registered yet.", "tm.player1": "player", "tm.playerN": "players", "tm.editCatTitle": "Edit {name}", "tm.newCatTitle": "New age group", "tm.newCatOf": " for {club}", "tm.catNameLbl": "Age group name", "tm.catNamePh": "U16 A", "tm.clubOfLbl": "Club it belongs to", "tm.pickClub": "Choose a club…", "tm.teamWebLbl": "Team website", "tm.mapsLbl": "Google Maps for the ground", "tm.pickClubFirst": "Choose which club this age group belongs to.", "tm.saved": "✓ Saved.", "tm.saveFail": "Couldn't save. Check your connection.", "tm.crestNote": "The crest is uploaded from the list above with the ⬡ Crest button, once the age group is created.", "tm.categoryLbl": "Category", "tm.f11": "11-a-side", "tm.f7": "7-a-side", "tm.noClub": "No club", "tm.noName": "No name", "d.title": "Conduct module", "d.desc1a": "Incident log based on the team's ", "d.codeName": "Disciplinary Code", "d.desc1b": ". The consequences shown are the literal wording of the document signed by the club.", "d.note1": "The team manager logs it; the coaching staff validates it. The document states that each situation is assessed individually by the coaching staff and that measures are always educational in nature.", "d.newIncidentBtn": "+ Log incident", "d.collectiveMeasureBtn": "⚖ Collective measure", "d.viewNormBtn": "📑 View rules and signatures", "d.exportCsvBtn": "⤓ Export CSV", "d.unsignedWarn": "⚠ {n} player(s) still haven't signed the disciplinary code. No economic sanction should be applied without a signature.", "d.newTitle": "New incident", "d.player": "Player", "d.pickPlayer": "Choose a player…", "d.date": "Date", "d.context": "Context", "d.normViolated": "Rule broken", "d.minorFouls": "Minor offences", "d.majorFouls": "Serious offences", "d.cardLabel": "Card", "d.economicSanction": "Economic sanction (optional)", "d.fault": "Offence", "d.consequenceLabel": "Consequence per the code:", "d.measuresApplied": "Measures applied (all 8 from the document)", "d.whatHappenedPh": "What happened (facts, no value judgements)", "d.noEconomicWarnA": "⚠ The team's disciplinary code ", "d.noEconomicBold": "does not include economic sanctions", "d.noEconomicWarnB": ": all of its measures are educational. Use this field only if the club has an approved, signed economic policy.", "d.notSignedExtra": "Also, this player hasn't signed the code.", "d.saveIncidentBtn": "Save incident", "d.teamTitle": "Collective measure", "d.teamDesc": "Apply the same measure to several players at once. One incident is created per player, grouped into a batch you can annul entirely afterwards.", "d.whoApplies": "Who does it apply to?", "d.amountPerPlayer": "Amount per player (optional)", "d.measuresApplied2": "Measures applied", "d.teamReasonPh": "Reason for the collective measure (what happened and why it affects the whole group)", "d.youthWarnA": "⚠ You're about to charge ", "d.youthWarnB": " in total to {n} minors. The team's disciplinary code does not include economic sanctions, and a collective fine punishes equally those who did nothing wrong. Use it only if the club has an economic policy approved and signed by the families.", "d.teamPotLine": "Team pot: {amount} € in total ({n} players).", "d.applyToN": "Apply to {n} player(s)", "d.noMatchCriteria": "No players match that criterion.", "d.quickTitle": "Take attendance and quick log", "d.presentN": "present", "d.latesN": "late", "d.absencesN": "absent", "d.markAllPresentBtn": "✓ Mark everyone present", "d.clearDayBtn": "Clear today's list", "d.faultsParen": "absence(s)", "d.latesParen": "late(s)", "d.incidentsParen": "incident(s)", "d.unsignedTag": "⚠ not signed", "d.conductBtn": "⚠ Conduct", "d.otherFull": "Other… (full form)", "d.autoNote": "Marking Late or Absent automatically creates the matching incident from the code (L1 punctuality, L2 notifying absences), pending validation by the coaching staff. Excused does not create an incident.", "d.seeAsistNote": "This is for lates and absences with a consequence. If you just want to know who came today and why —school, illness, injury— without opening an incident, use", "d.historyTitle": "Incident history", "d.allPlayersOpt": "All players", "d.noIncidentsFilter": "No incidents match this filter.", "d.pendingValidateTag": "Pending validation", "d.paidTag": "paid", "d.condonedTag": "waived", "d.pendingTag": "pending", "d.markPaidBtn": "Mark as paid", "d.condoneBtn": "Waive", "d.famInformedYes": "✓ Family informed", "d.famInformedNo": "Mark family informed", "d.batchTag": "Collective batch", "d.validateBtn": "Validate", "d.annulBtn": "Annul", "d.annulBatchBtn": "Annul whole batch", "d.filterAll": "All", "d.filterPend": "Pending validation ({n})", "d.filterValidated": "Validated", "d.filterAnnulled": "Annulled", "d.summaryTitle": "Summary by player", "d.noIncidentsReg": "No incidents logged.", "d.playerCol": "Player", "d.pendingCol": "Pending", "d.notSignedTitle": "Hasn't signed the code", "d.reiterationBtn": "G5 repeat offence", "d.reiterationTitle": "Repeated minor offences — the code classifies this as a serious G5 offence", "d.reiterationDesc": "Repeat offence: {n} accumulated minor offences.", "d.economicTitle": "Economic sanctions", "d.teamPotTitle": "Team pot", "d.pendingCollect": "pending collection", "d.alreadyPaid": "already paid", "d.youthFooter": "Remember this team's disciplinary code does not include fines: its eight measures are educational. If the club charges amounts, they must be set out in rules signed by the families.", "d.autoLateDesc": "Late arrival logged when taking attendance.", "d.autoAbsentDesc": "Unreported absence logged when taking attendance.", "d.quickRegSuffix": " (quick log).", "d.attOk": "Attended", "d.attLate": "Late", "d.attAbsent": "Absent", "d.attJust": "Excused", "d.tgAll": "The whole squad", "d.tgAbsent": "Were absent that day", "d.tgLate": "Arrived late that day", "d.tgUnsigned": "Haven't signed the code", "d.tgManual": "Manual selection", "d.gLeve": "minor", "d.gGrave": "serious", "doc.title": "Club rules", "doc.signLabel": "Sign", "doc.confirmLabel": "Confirm", "doc.viewPdf": "View PDF", "doc.download": "Download", "doc.publishedOn": "Published on {date} · version {v}", "doc.requiredSuffix": " · signature required", "doc.playersExTitle": "Exercises · players", "doc.playersSignTitle": "Signatures · players and families", "doc.doneEx": "done", "doc.doneSign": "signed", "doc.pending": "Pending", "doc.staffExTitle": "Confirmation · coaching staff", "doc.staffSignTitle": "Signatures · coaching staff", "doc.staffDoneEx": "confirmed", "doc.staffDoneSign": "signed", "doc.sanctionsTitle": "Sanctions check", "doc.allSigned": "The whole squad has signed the disciplinary code.", "doc.someUnsigned": "{n} player(s) haven't signed the disciplinary code.", "doc.sanctionsNote": "A disciplinary measure is only enforceable if the person knows and has accepted the rule. Before applying any sanction —especially an economic one— check here that the signature is on record.", "doc.doneExercise": "✓ Done", "doc.doneSigned": "✓ Signed",
     "tr.title": "Training mode", "tr.hint": "Plan the session by adding blocks from the drill library or free-text blocks.", "tr.date": "Date", "tr.time": "Time", "tr.objective": "Session objective", "tr.objectivePh": "E.g. defensive transitions", "tr.addFromLib": "+ Add from library", "tr.addCustom": "+ Free block", "tr.customName": "Block name", "tr.customDur": "Duration (min)", "tr.noBlocks": "You haven't added any blocks to this session yet.", "tr.total": "Total duration", "tr.materials": "Materials needed", "tr.remove": "Remove", "tr.up": "▲", "tr.down": "▼", "tr.sendBoard": "View on board", "tr.summary": "Shareable summary", "tr.copy": "Copy summary", "tr.copied": "✓ Copied", "tr.whatsapp": "Open WhatsApp", "tr.min": "min", "tr.close": "Close", "tr.newBlock": "New block",
-    "st.title": "Team statistics", "st.availability": "Squad availability", "st.available": "Available", "st.doubt": "Doubtful", "st.injured": "Injured", "st.topAtt": "Highest training attendance", "st.lowMin": "Least game time (minutes)", "st.byPosition": "Squad by line", "st.gkPos": "Goalkeepers", "st.defPos": "Defenders", "st.midPos": "Midfielders", "st.fwdPos": "Forwards", "st.players": "players", "st.byRole": "Breakdown by position", "st.roleHint": "How the squad actually splits, position by position, with each one's share of the total.", "st.total": "Squad total", "st.player": "player",
+    "st.title": "Team statistics", "st.availability": "Squad availability", "st.available": "Available", "st.doubt": "Doubtful", "st.injured": "Injured", "st.topAtt": "Highest training attendance", "st.lowMin": "Least game time (minutes)", "st.byPosition": "The XI by line", "st.gkPos": "Goalkeepers", "st.defPos": "Defenders", "st.midPos": "Midfielders", "st.fwdPos": "Forwards", "st.players": "players", "st.byRole": "The XI by position", "st.roleHint": "How the line-up you have set breaks down, position by position.", "st.total": "Squad total", "st.player": "player",
     "m.title": "Coaching store", "m.aff": "Affiliate link", "m.note": "Affiliate links are clearly marked and adapted to your country. A small commission helps keep the app running; your price doesn't change.", "m.all": "All", "m.training": "Training", "m.gk": "Goalkeeping", "m.medical": "First aid", "m.tech": "Technology", "m.apparel": "Apparel", "m.view": "View deal", "m.from": "from",
     "u.canGrant": "From the club's management you add staff and assign each user's role.", "u.readonly": "Read-only view: only the sporting director or the Master can add people.", "u.approve": "Approve", "u.suspend": "Suspend", "u.note": "Only the sporting director or the Master can assign the coach role.", "u.activo": "active", "u.pendiente": "pending",
 
@@ -645,17 +642,14 @@ const DICT = {
     "ln.placeAndSend": "Set the XI and send the proposal when you're done.",
     "ln.sendProposal": "Send proposal",
     "ln.dragHint": "Drag to reposition · tap to assign",
-    "ln.tapPosPlayerSel": "Tap a position on the pitch, or pick one from this list — their own first",
-    "ln.slotSameLine": "Players in {pos} move to the top, so you can quickly find who to bring in",
     "ln.benchTitle": "Bench",
+    "ln.tapPlayerForSlot": "Tap the player you want at {pos}.",
+    "ln.tapPlayerToAdd": "Tap a player and they go into the XI, in the first free spot ({pos}). To choose the spot, tap a position on the pitch first.",
+    "ln.xiFull": "The XI is complete. Tap a position on the pitch to swap whoever is there.",
+    "pf.noPos": "Not in the XI",
+    "st.noLineup": "No line-up has been set yet.",
     "ln.assignTo": "Assign to {slot}",
-    "ln.choosePosFor": "Choose a position for {name}",
-    "ln.hisSpot": "Their spot",
-    "ln.occupiedBy": "Taken · {name}",
-    "ln.free": "Free",
-    "ln.samePos": "Same position",
     "ln.other": "Other: 4-1-4-1",
-    "ln.tapPos": "Tap a position on the pitch and assign a player, or tap a player from the list to see where they can play.",
     "cl.waMsg": "WhatsApp message",
     "cl.waOpen": "Open WhatsApp",
     "cl.waLegend": "🧤 goalkeeper · number as emoji · keepers first",
@@ -1221,17 +1215,14 @@ const DICT = {
     "ln.placeAndSend": "Placez le onze et envoyez la proposition une fois terminé.",
     "ln.sendProposal": "Envoyer la proposition",
     "ln.dragHint": "Glissez pour repositionner · touchez pour affecter",
-    "ln.tapPosPlayerSel": "Touchez une position sur le terrain, ou choisissez-en une dans cette liste — la sienne en premier",
-    "ln.slotSameLine": "Les joueurs de {pos} remontent en haut, pour trouver vite qui faire entrer",
     "ln.benchTitle": "Remplaçants",
+    "ln.tapPlayerForSlot": "Touche le joueur que tu veux mettre au poste de {pos}.",
+    "ln.tapPlayerToAdd": "Touche un joueur et il entre dans le onze, au premier poste libre ({pos}). Pour choisir le poste, touche d'abord une place sur le terrain.",
+    "ln.xiFull": "Le onze est complet. Touche une place sur le terrain pour remplacer celui qui l'occupe.",
+    "pf.noPos": "Pas dans le onze",
+    "st.noLineup": "Aucune composition n'a encore été faite.",
     "ln.assignTo": "Affecter à {slot}",
-    "ln.choosePosFor": "Choisir un poste pour {name}",
-    "ln.hisSpot": "Son poste",
-    "ln.occupiedBy": "Occupé · {name}",
-    "ln.free": "Libre",
-    "ln.samePos": "Même poste",
     "ln.other": "Autre : 4-1-4-1",
-    "ln.tapPos": "Touchez une position sur le terrain et affectez un joueur, ou touchez un joueur de la liste pour voir où il peut jouer.",
     "cl.waMsg": "Message pour WhatsApp",
     "cl.waOpen": "Ouvrir WhatsApp",
     "cl.waLegend": "🧤 gardien · numéro en emoji · gardiens d'abord",
@@ -1815,14 +1806,14 @@ const DICT = {
     "st.injured": "Blessés",
     "st.topAtt": "Meilleure assiduité aux entraînements",
     "st.lowMin": "Moins de temps de jeu (minutes)",
-    "st.byPosition": "Effectif par ligne",
+    "st.byPosition": "Le onze par ligne",
     "st.gkPos": "Gardiens",
     "st.defPos": "Défenseurs",
     "st.midPos": "Milieux",
     "st.fwdPos": "Attaquants",
     "st.players": "joueurs",
-    "st.byRole": "Répartition par poste",
-    "st.roleHint": "Répartition réelle de l'effectif, poste par poste, avec le poids de chacun sur le total.",
+    "st.byRole": "Le onze par poste",
+    "st.roleHint": "Comment se répartit la composition que tu as mise en place, poste par poste.",
     "st.total": "Effectif total",
     "st.player": "joueur",
   },
@@ -1871,17 +1862,14 @@ const DICT = {
     "ln.placeAndSend": "Stelle die Startelf zusammen und sende den Vorschlag, wenn du fertig bist.",
     "ln.sendProposal": "Vorschlag senden",
     "ln.dragHint": "Ziehen zum Umstellen · Antippen zum Zuweisen",
-    "ln.tapPosPlayerSel": "Tippe auf eine Position auf dem Feld, oder wähle eine aus dieser Liste — seine eigene zuerst",
-    "ln.slotSameLine": "Spieler auf {pos} rücken nach oben, damit du schnell findest, wen du einwechselst",
     "ln.benchTitle": "Bank",
+    "ln.tapPlayerForSlot": "Tippe den Spieler an, den du auf {pos} stellen willst.",
+    "ln.tapPlayerToAdd": "Tippe einen Spieler an und er kommt in die Elf, auf den ersten freien Platz ({pos}). Um den Platz zu wählen, tippe vorher eine Position auf dem Feld an.",
+    "ln.xiFull": "Die Elf ist komplett. Tippe eine Position auf dem Feld an, um den Spieler dort zu tauschen.",
+    "pf.noPos": "Nicht in der Elf",
+    "st.noLineup": "Es ist noch keine Aufstellung gesetzt.",
     "ln.assignTo": "Zuweisen an {slot}",
-    "ln.choosePosFor": "Position für {name} wählen",
-    "ln.hisSpot": "Seine Position",
-    "ln.occupiedBy": "Besetzt · {name}",
-    "ln.free": "Frei",
-    "ln.samePos": "Gleiche Position",
     "ln.other": "Andere: 4-1-4-1",
-    "ln.tapPos": "Tippe auf eine Position auf dem Platz und weise einen Spieler zu, oder tippe auf einen Spieler aus der Liste, um zu sehen, wo er spielen kann.",
     "cl.waMsg": "Nachricht für WhatsApp",
     "cl.waOpen": "WhatsApp öffnen",
     "cl.waLegend": "🧤 Torwart · Nummer als Emoji · Torhüter zuerst",
@@ -2465,14 +2453,14 @@ const DICT = {
     "st.injured": "Verletzt",
     "st.topAtt": "Höchste Trainingsbeteiligung",
     "st.lowMin": "Wenigste Einsatzzeit (Minuten)",
-    "st.byPosition": "Kader nach Linie",
+    "st.byPosition": "Die Elf nach Reihen",
     "st.gkPos": "Torhüter",
     "st.defPos": "Verteidiger",
     "st.midPos": "Mittelfeldspieler",
     "st.fwdPos": "Stürmer",
     "st.players": "Spieler",
-    "st.byRole": "Aufteilung nach Position",
-    "st.roleHint": "Tatsächliche Verteilung des Kaders, Position für Position, mit dem Anteil jeder Position am Gesamtkader.",
+    "st.byRole": "Die Elf nach Positionen",
+    "st.roleHint": "Wie sich die aufgestellte Elf verteilt, Position für Position.",
     "st.total": "Kader gesamt",
     "st.player": "Spieler",
   },
@@ -2520,17 +2508,14 @@ const DICT = {
     "ln.placeAndSend": "Monta o onze e envia a proposta quando terminares.",
     "ln.sendProposal": "Enviar proposta",
     "ln.dragHint": "Arrasta para recolocar · toque curto para atribuir",
-    "ln.tapPosPlayerSel": "Toca numa posição do campo, ou escolhe uma desta lista — primeiro a dele",
-    "ln.slotSameLine": "Os de {pos} sobem para cima, para encontrares depressa quem meter",
     "ln.benchTitle": "Banco",
+    "ln.tapPlayerForSlot": "Toca no jogador que queres pôr a {pos}.",
+    "ln.tapPlayerToAdd": "Toca num jogador e entra no onze, no primeiro lugar livre ({pos}). Para escolheres o lugar, toca primeiro numa posição do campo.",
+    "ln.xiFull": "O onze está completo. Toca numa posição do campo para trocar quem lá está.",
+    "pf.noPos": "Fora do onze",
+    "st.noLineup": "Ainda não há um onze montado.",
     "ln.assignTo": "Atribuir a {slot}",
-    "ln.choosePosFor": "Escolher posição para {name}",
-    "ln.hisSpot": "A posição dele",
-    "ln.occupiedBy": "Ocupado · {name}",
-    "ln.free": "Livre",
-    "ln.samePos": "Mesma posição",
     "ln.other": "Outro: 4-1-4-1",
-    "ln.tapPos": "Toca numa posição do campo e atribui um jogador, ou toca num jogador da lista para ver onde pode jogar.",
     "cl.waMsg": "Mensagem para WhatsApp",
     "cl.waOpen": "Abrir WhatsApp",
     "cl.waLegend": "🧤 guarda-redes · número em emoji · guarda-redes primeiro",
@@ -3114,14 +3099,14 @@ const DICT = {
     "st.injured": "Lesionados",
     "st.topAtt": "Maior assiduidade nos treinos",
     "st.lowMin": "Menor participação (minutos)",
-    "st.byPosition": "Plantel por linha",
+    "st.byPosition": "O onze por linha",
     "st.gkPos": "Guarda-redes",
     "st.defPos": "Defesas",
     "st.midPos": "Médios",
     "st.fwdPos": "Avançados",
     "st.players": "jogadores",
-    "st.byRole": "Divisão por posição",
-    "st.roleHint": "Distribuição real do plantel, posição a posição, com o peso de cada uma no total.",
+    "st.byRole": "O onze por posição",
+    "st.roleHint": "Como fica repartido o onze que tens montado, posição a posição.",
     "st.total": "Total do plantel",
     "st.player": "jogador",
     "u.canGrant": "A partir da direção do clube dás de alta à equipa técnica e decides o perfil de cada um.",
@@ -4733,10 +4718,10 @@ const airFotoJugador = async (rec, file, contentType, filename) => {
 /* Nombre y posición: los dos únicos campos "personales" que la familia o el
    propio jugador pueden cambiar de su ficha -estado y aviso médico siguen
    siendo del cuerpo técnico, son datos operativos, no de identidad-. */
-const airDatosJugador = async (rec, nombre, posicion) => {
+const airDatosJugador = async (rec, nombre) => {
   try {
     const r = await cbFetch(AIR + "?res=datos-jugador&id=" + rec, {
-      method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ nombre, posicion }),
+      method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ nombre }),
     });
     return await r.json().catch(() => null);
   } catch { return null; }
@@ -4792,15 +4777,17 @@ const airPlantillaUsar = (rec) => { try { return cbFetch(`${AIR}?res=plantillas&
 const airPlantillaEditar = (rec, body) => { try { return cbFetch(`${AIR}?res=plantillas&id=${rec}`, { method: "PATCH", headers: { "content-type": "application/json" }, body: JSON.stringify(body) }).catch(() => {}); } catch { return null; } };
 const airPlantillaBorrar = (rec) => { try { return cbFetch(`${AIR}?res=plantillas&id=${rec}`, { method: "DELETE" }).catch(() => {}); } catch { return null; } };
 /* Conversión entre el modelo de la app y las columnas de Airtable */
-const POS_OK = ["POR", "LD", "LI", "DFC", "MCD", "MC", "MCO", "ED", "EI", "DC", "MB"];
 /* Nombre largo de cada demarcación, para el desglose de Estadísticas: en la
    tabla se lee "DFC" de un vistazo, pero un reparto de plantilla se lee mejor
-   con el nombre entero, como en la ficha que pasa el club. */
+   con el nombre entero, como en la ficha que pasa el club.
+   Las claves son las mismas etiquetas que reparte buildSlots por el campo: la
+   demarcación ya no es un dato del jugador sino del hueco que ocupa hoy. */
 const POS_NOMBRE = {
   POR: "Portero", DFC: "Central", LD: "Lateral derecho", LI: "Lateral izquierdo",
   MCD: "Mediocentro defensivo", MC: "Centrocampista", MCO: "Mediapunta",
   MB: "Interior", ED: "Extremo derecho", EI: "Extremo izquierdo", DC: "Delantero",
 };
+const POS_ORDEN = ["POR", "LD", "DFC", "LI", "MCD", "MC", "MB", "MCO", "ED", "DC", "EI"];
 const jugToAir = (p, teamRec) => ({
   Nombre: p.n, Dorsal: Number(p.d) || 0,
   /* Aviso médico permanente del jugador. Va en su ficha y no en el parte
@@ -4808,14 +4795,16 @@ const jugToAir = (p, teamRec) => ({
      acabar el día, y si viviera en la hoja de cada sesión dependería de que
      alguien se acordara de reescribirlo cada mañana. */
   "Aviso medico": p.aviso || "",
-  ...(POS_OK.includes(p.pos) ? { "Posición": p.pos } : {}),
+  /* La demarcación ya no se escribe: dejó de ser una etiqueta del jugador
+     para ser la del hueco que ocupa en la alineación. La columna "Posición"
+     de Airtable se queda como está -no se borra lo ya escrito-, simplemente
+     la app no la lee ni la actualiza. */
   Estado: p.st === "lesionado" ? "Lesionado" : p.st === "duda" ? "Duda" : p.st === "sancionado" ? "Sancionado" : "Disponible",
   Minutos: Number(p.min) || 0,
   ...(teamRec ? { Equipo: [teamRec] } : {}),
 });
 const jugFromAir = (r, i) => ({
   id: i + 1, rec: r.rec, n: r.Nombre || "Sin nombre", d: Number(r.Dorsal) || i + 1,
-  pos: r["Posición"] || "MC",
   st: String(r.Estado || "").toLowerCase() === "lesionado" ? "lesionado"
     : String(r.Estado || "").toLowerCase() === "duda" ? "duda"
     : String(r.Estado || "").toLowerCase() === "sancionado" ? "sancionado" : "disponible",
@@ -7667,26 +7656,26 @@ function Whiteboard({ AC, lang, teamId, teamRec, isF7, pendingExId, onConsumePen
    ve la app de verdad. El aviso médico de ejemplo existe para que se pueda
    enseñar esa función sin usar el caso de nadie. */
 const PLANTILLA_DEMO = [
-  { id: 1, n: "Pablo Arenas", d: 1, pos: "POR", st: "disponible", att: 0, min: 0 },
-  { id: 2, n: "Nico Salvador", d: 2, pos: "POR", st: "disponible", att: 0, min: 0 },
-  { id: 3, n: "Gonzalo Prieto", d: 3, pos: "DFC", st: "disponible", att: 0, min: 0 },
-  { id: 4, n: "Óscar Ferrán", d: 4, pos: "DFC", st: "disponible", att: 0, min: 0 },
-  { id: 5, n: "Hugo Castaño", d: 5, pos: "LD", st: "disponible", att: 0, min: 0 },
-  { id: 6, n: "Bruno Salas", d: 6, pos: "LD", st: "duda", att: 0, min: 0 },
-  { id: 7, n: "Marcos Ledesma", d: 7, pos: "LI", st: "disponible", att: 0, min: 0 },
-  { id: 8, n: "Aitor Vilches", d: 8, pos: "LI", st: "disponible", att: 0, min: 0 },
-  { id: 9, n: "Diego Quintana", d: 9, pos: "MC", st: "disponible", att: 0, min: 0 },
-  { id: 10, n: "Samuel Peiró", d: 10, pos: "MC", st: "disponible", att: 0, min: 0 },
-  { id: 11, n: "Unai Cifuentes", d: 11, pos: "MC", st: "disponible", att: 0, min: 0 },
-  { id: 12, n: "Leo Bermúdez", d: 12, pos: "MC", st: "disponible", att: 0, min: 0 },
-  { id: 13, n: "Adrián Roldán", d: 13, pos: "MC", st: "disponible", att: 0, min: 0 },
-  { id: 14, n: "Teo Villanueva", d: 14, pos: "ED", st: "disponible", att: 0, min: 0 },
-  { id: 15, n: "Álvaro Sanchís", d: 15, pos: "EI", st: "disponible", att: 0, min: 0 },
-  { id: 16, n: "Iker Montalvo", d: 16, pos: "ED", st: "disponible", att: 0, min: 0,
+  { id: 1, n: "Pablo Arenas", d: 1, st: "disponible", att: 0, min: 0 },
+  { id: 2, n: "Nico Salvador", d: 2, st: "disponible", att: 0, min: 0 },
+  { id: 3, n: "Gonzalo Prieto", d: 3, st: "disponible", att: 0, min: 0 },
+  { id: 4, n: "Óscar Ferrán", d: 4, st: "disponible", att: 0, min: 0 },
+  { id: 5, n: "Hugo Castaño", d: 5, st: "disponible", att: 0, min: 0 },
+  { id: 6, n: "Bruno Salas", d: 6, st: "duda", att: 0, min: 0 },
+  { id: 7, n: "Marcos Ledesma", d: 7, st: "disponible", att: 0, min: 0 },
+  { id: 8, n: "Aitor Vilches", d: 8, st: "disponible", att: 0, min: 0 },
+  { id: 9, n: "Diego Quintana", d: 9, st: "disponible", att: 0, min: 0 },
+  { id: 10, n: "Samuel Peiró", d: 10, st: "disponible", att: 0, min: 0 },
+  { id: 11, n: "Unai Cifuentes", d: 11, st: "disponible", att: 0, min: 0 },
+  { id: 12, n: "Leo Bermúdez", d: 12, st: "disponible", att: 0, min: 0 },
+  { id: 13, n: "Adrián Roldán", d: 13, st: "disponible", att: 0, min: 0 },
+  { id: 14, n: "Teo Villanueva", d: 14, st: "disponible", att: 0, min: 0 },
+  { id: 15, n: "Álvaro Sanchís", d: 15, st: "disponible", att: 0, min: 0 },
+  { id: 16, n: "Iker Montalvo", d: 16, st: "disponible", att: 0, min: 0,
     aviso: "Ejemplo: jugador con antecedente de lesión de rodilla. Fuera de la progresión colectiva hasta que su retorno esté autorizado por quien lleve su rehabilitación." },
-  { id: 17, n: "Rubén Mateos", d: 17, pos: "EI", st: "disponible", att: 0, min: 0 },
-  { id: 18, n: "Iván Palomares", d: 18, pos: "ED", st: "disponible", att: 0, min: 0 },
-  { id: 19, n: "Enzo Carrasco", d: 19, pos: "DC", st: "disponible", att: 0, min: 0 },
+  { id: 17, n: "Rubén Mateos", d: 17, st: "disponible", att: 0, min: 0 },
+  { id: 18, n: "Iván Palomares", d: 18, st: "disponible", att: 0, min: 0 },
+  { id: 19, n: "Enzo Carrasco", d: 19, st: "disponible", att: 0, min: 0 },
 ];
 /* El "hijo/a" -o la propia ficha, si el rol elegido en la demo es Jugador-
    que ve la demo de Familia/Jugador. Reutiliza a Iker Montalvo, el mismo
@@ -8053,40 +8042,11 @@ const sumarDiasISO = (iso, delta) => {
 const keycap = (n) => String(n).split("").map((d) => d + "\uFE0F\u20E3").join("");
 const ease = (t) => 1 - Math.pow(1 - clamp(t, 0, 1), 3);
 
-/* La demarcación de un CSV viene como la escribe cada club: "Portero",
-   "portero", "POR", "Central", "Lateral izquierdo", "Delantero"… Se traduce a
-   los códigos que entiende la app (POS_OK). Sin esto se guardaba el texto tal
-   cual en mayúsculas, y todo lo que no fuera exactamente un código de los
-   nuestros acababa contado como delantero -que es a donde cae el "si no"
-   de posGroup()-, desaparecía del desglose por demarcación de Estadísticas
-   y no casaba nunca con el puesto al buscar un cambio en Alineación.
-   Lo que no se reconoce se queda en "—": mejor sin demarcación que con una
-   inventada. */
-/* El orden importa: lo más específico primero, porque se coge la primera que
-   case ("lateral derecho" antes que "lateral", "extremo izquierdo" antes que
-   "extremo"). */
-const POS_ALIAS = [
-  [/^(portero|porteria|guardameta|arquero|gk|pt)/, "POR"],
-  [/^(lateral\s*der|lateral\s*d\b|defensa\s*der|carrilero\s*der)/, "LD"],
-  [/^(lateral\s*izq|lateral\s*i\b|defensa\s*izq|carrilero\s*izq)/, "LI"],
-  [/^(central|defensa\s*central|defensa|libero|zaguero)/, "DFC"],
-  [/^(pivote|mediocentro\s*def|medio\s*def)/, "MCD"],
-  [/^(mediapunta|media\s*punta|enganche|medio\s*ofensivo)/, "MCO"],
-  [/^(interior|volante)/, "MB"],
-  [/^(mediocentro|centrocampista|medio)/, "MC"],
-  [/^(extremo\s*der|banda\s*der)/, "ED"],
-  [/^(extremo\s*izq|banda\s*izq)/, "EI"],
-  [/^(delantero|punta|ariete|goleador|extremo)/, "DC"],
-];
-const posNormalizada = (v) => {
-  const x = String(v || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim().toLowerCase();
-  if (!x || x === "-" || x === "—") return "—";
-  const directo = x.toUpperCase();
-  if (POS_OK.includes(directo)) return directo;
-  const hit = POS_ALIAS.find(([re]) => re.test(x));
-  return hit ? hit[1] : "—";
-};
-
+/* Del CSV solo se leen nombre, apellidos y dorsal. La demarcación venía en una
+   cuarta columna y se traducía de "Portero"/"Central"/"Lateral izquierdo"… a un
+   código nuestro; ya no hace falta, porque el jugador no lleva demarcación: la
+   pone el hueco que ocupe en la alineación. Un CSV antiguo con esa cuarta
+   columna se sigue importando igual, simplemente se ignora. */
 const parseCSV = (txt, startId) => {
   const rows = txt.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
   const out = [];
@@ -8099,7 +8059,7 @@ const parseCSV = (txt, startId) => {
        nube). Con el 100 de antes, quien importaba la plantilla por CSV veía a
        los recién llegados encabezando "Top asistencia" sin haber pisado un
        entrenamiento. */
-    out.push({ id: startId + out.length, n: `${c[0]} ${c[1] || ""}`.trim(), d: Number.isFinite(dorsal) ? dorsal : 0, pos: posNormalizada(c[3]), st: "disponible", att: 0, min: 0 });
+    out.push({ id: startId + out.length, n: `${c[0]} ${c[1] || ""}`.trim(), d: Number.isFinite(dorsal) ? dorsal : 0, st: "disponible", att: 0, min: 0 });
   });
   let next = 1;
   const used = new Set(out.filter((p) => p.d > 0).map((p) => p.d));
@@ -8108,7 +8068,7 @@ const parseCSV = (txt, startId) => {
 };
 
 /* ---------------- Generador de vídeo 5 s (canvas → webm) ---------------- */
-async function makePresentationVideo(player, club, teamName, accent) {
+async function makePresentationVideo(player, club, teamName, accent, pos) {
   const W = 540, H = 675, DUR = 5;
   const canvas = document.createElement("canvas");
   canvas.width = W; canvas.height = H;
@@ -8152,8 +8112,13 @@ async function makePresentationVideo(player, club, teamName, accent) {
     if (a4 > 0) {
       ctx.textAlign = "left"; ctx.font = "700 44px 'Barlow Condensed', sans-serif"; ctx.fillStyle = `rgba(54,69,79,${a4})`;
       ctx.fillText(player.n.toUpperCase(), 24, 540 - (1 - a4) * 24);
-      ctx.font = "600 24px 'Barlow Condensed', sans-serif"; ctx.fillStyle = accent; ctx.globalAlpha = a4;
-      ctx.fillText(player.pos === "POR" ? "🧤 PORTERO" : player.pos, 24, 575); ctx.globalAlpha = 1;
+      /* La demarcación viene de fuera: es la del hueco que ocupa en la
+         alineación, no un dato de su ficha. Sin puesto asignado, la tarjeta
+         se queda solo con dorsal y nombre. */
+      if (pos) {
+        ctx.font = "600 24px 'Barlow Condensed', sans-serif"; ctx.fillStyle = accent; ctx.globalAlpha = a4;
+        ctx.fillText(pos === "POR" ? "🧤 PORTERO" : pos, 24, 575); ctx.globalAlpha = 1;
+      }
     }
     const a5 = ease((t - 4.2) / 0.6);
     if (a5 > 0) {
@@ -9194,12 +9159,12 @@ export default function App() {
       setHijoAsistencia(d?.asistencia || null);
     })();
   }, [session?.role]); // eslint-disable-line
-  /* Único bloque editable de la página de Familia/Jugador: la foto y los
-     datos personales (nombre, posición) de SU ficha. Todo lo demás de esa
+  /* Único bloque editable de la página de Familia/Jugador: la foto y el
+     nombre de SU ficha. Todo lo demás de esa
      pantalla sigue siendo de solo lectura -esto no es "convertir el rol en
      editor", es la excepción puntual que ya aplica también el backend-. */
   const [editandoDatos, setEditandoDatos] = useState(false);
-  const [datosForm, setDatosForm] = useState({ nombre: "", posicion: "" });
+  const [datosForm, setDatosForm] = useState({ nombre: "" });
   const [datosBusy, setDatosBusy] = useState(false);
   const [datosMsg, setDatosMsg] = useState("");
   const [fotoBusy, setFotoBusy] = useState(false);
@@ -9213,10 +9178,10 @@ export default function App() {
        ejemplo, el cambio de contraseña en la demo. */
     if (session?.email === "demo") { setDatosMsg(t("mh.demoNote")); return; }
     setDatosBusy(true); setDatosMsg("");
-    const out = await airDatosJugador(hijo.rec, nombre, datosForm.posicion);
+    const out = await airDatosJugador(hijo.rec, nombre);
     setDatosBusy(false);
     if (out?.ok) {
-      setHijo((h) => ({ ...h, n: nombre, pos: datosForm.posicion }));
+      setHijo((h) => ({ ...h, n: nombre }));
       setEditandoDatos(false);
       setDatosMsg(t("mh.datosOk"));
       setTimeout(() => setDatosMsg(""), 4000);
@@ -9692,6 +9657,16 @@ export default function App() {
   const [sysCode, setSysCode] = useState("4-3-3");
   const [sysCustom, setSysCustom] = useState("");
   const [slotPos, setSlotPos] = useState(SLOTS_433);
+  /* La demarcación de un jugador ya no es un dato suyo: es el hueco que ocupa
+     hoy en el campo. Antes cada ficha llevaba pegada una posición fija -que
+     alguien tecleaba al darle de alta y luego nadie actualizaba- y el once se
+     montaba peleándose con ella; ahora se lee al revés, del once hacia la
+     ficha. Quien no está en la alineación no tiene demarcación, y eso es una
+     respuesta legítima: todavía no se ha decidido dónde juega. */
+  const posDe = (id) => {
+    const slot = Object.keys(lineup).find((k) => lineup[k] === id);
+    return slot ? slotPos[slot]?.label || "" : "";
+  };
   /* Alineación en la nube: se trae al entrar en un equipo real -pisa el
      valor de arranque, que es un ejemplo genérico sin relación con la
      plantilla de nadie- y cada cambio se sube solo, con el mismo patrón que
@@ -9777,15 +9752,9 @@ export default function App() {
     setSlotPos(nuevos);
     setSysCode(clean);
     setSelSlot(null);
-    setSelPlayer(null);
     return true;
   };
   const [selSlot, setSelSlot] = useState(null);
-  /* Camino inverso al de tocar un puesto en el campo: elegir primero al
-     jugador (del banquillo o de la propia alineación) y que la app enseñe
-     ahí mismo, a la derecha, en qué puestos puede entrar -el suyo primero-
-     sin tener que acertar el punto exacto del campo, más cómodo en móvil. */
-  const [selPlayer, setSelPlayer] = useState(null);
   const [profileId, setProfileId] = useState(null);
   const [genBusy, setGenBusy] = useState(false);
   const [csvOpen, setCsvOpen] = useState(false);
@@ -10317,11 +10286,7 @@ export default function App() {
   const onSlotUp = (id) => {
     const d = dragRef.current; dragRef.current = null;
     if (!d || d.moved || !can("editLineup")) return;
-    /* Con un jugador ya elegido (camino "toca al jugador primero"), tocar
-       directamente un puesto del campo lo coloca ahí sin pasos de más. */
-    if (selPlayer && id) { asignarJugadorAPuesto(id, selPlayer); return; }
     setSelSlot((s) => (s === id ? null : id));
-    setSelPlayer(null);
   };
 
   const avail = players.filter((p) => p.st === "disponible").length;
@@ -10443,7 +10408,7 @@ export default function App() {
     if (!p.photo || genBusy) return;
     setGenBusy(true);
     try {
-      const url = await makePresentationVideo(p, session.club, session.team.name, AC);
+      const url = await makePresentationVideo(p, session.club, session.team.name, AC, posDe(p.id));
       setPlayers((ps) => ps.map((x) => (x.id === p.id ? { ...x, video: url } : x)));
     } catch { alert("Tu navegador no soporta la grabación de vídeo (MediaRecorder). Prueba en Chrome/Edge."); }
     setGenBusy(false);
@@ -10497,10 +10462,13 @@ export default function App() {
     setRivalBusy(true); setRivalMsg("");
     /* Solo tres cosas por jugador. La lista de lo que sale la vuelve a filtrar
        el backend, pero tampoco se manda de más desde aquí. */
-    const jug = (p, extra = {}) => ({ d: p.d, n: p.n, p: p.pos, ...extra });
+    const jug = (p, extra = {}) => ({ d: p.d, n: p.n, p: posDe(p.id), ...extra });
+    /* La alineación guarda el ID del jugador en cada hueco, no su dorsal.
+       Buscarlo por dorsal solo funcionaba de casualidad en la demo -donde id
+       y dorsal coinciden-, así que con datos reales el once salía vacío. */
     const once = Object.entries(lineup)
-      .map(([slot, dorsal]) => {
-        const p = players.find((x) => x.d === dorsal);
+      .map(([slot, pid]) => {
+        const p = players.find((x) => x.id === pid);
         return p ? jug(p, { s: slotPos[slot]?.label || slot }) : null;
       })
       .filter(Boolean);
@@ -10532,8 +10500,12 @@ export default function App() {
   };
 
   const waText = () => {
-    const list = players.filter((p) => called.has(p.id)).sort((a, b) => (a.pos === "POR" ? -1 : b.pos === "POR" ? 1 : a.d - b.d));
-    const lines = list.map((p) => `${p.pos === "POR" ? "🧤 " : ""}${keycap(p.d)} ${p.n}`);
+    /* El portero encabeza la lista, como en cualquier acta. Quién es el
+       portero lo dice la alineación (quien esté puesto bajo palos), no una
+       etiqueta en su ficha. */
+    const esPortero = (p) => posDe(p.id) === "POR";
+    const list = players.filter((p) => called.has(p.id)).sort((a, b) => (esPortero(a) ? -1 : esPortero(b) ? 1 : a.d - b.d));
+    const lines = list.map((p) => `${esPortero(p) ? "🧤 " : ""}${keycap(p.d)} ${p.n}`);
     return `📋 *CONVOCATORIA — ${session.club} ${session.team.name}*\n⚽ vs ${matchInfo.rival}\n📅 ${matchInfo.fecha} · ⏰ ${matchInfo.hora}\n📍 ${matchInfo.lugar}\n\n${lines.join("\n")}\n\n✅ Confirmad asistencia, por favor.`;
   };
   const copyWa = async () => {
@@ -11043,13 +11015,13 @@ export default function App() {
                 onChange={(e) => editarJugador(profile.id, { d: Math.max(0, Math.min(99, Number(e.target.value) || 0)) })}
                 className="w-full px-2.5 py-1.5 rounded-lg border bg-transparent tabular-nums" style={{ borderColor: C.line, color: C.chalk }} />
             </label>
-            <label className="block">
-              <span className="text-[10px] font-display uppercase tracking-widest block mb-1" style={{ color: C.dim }}>{t("pf.pos")}</span>
-              <select value={profile.pos} onChange={(e) => editarJugador(profile.id, { pos: e.target.value })}
-                className="w-full px-2.5 py-1.5 rounded-lg border" style={{ background: C.panel2, borderColor: C.line, color: C.chalk }}>
-                {POS_OK.map((x) => <option key={x} value={x} style={{ background: C.panel }}>{x}</option>)}
-              </select>
-            </label>
+            {/* La demarcación ya no se teclea en la ficha: se decide poniendo
+                al jugador en un sitio del campo, y aquí solo se lee dónde está
+                puesto hoy. Mientras no esté en el once, no tiene ninguna. */}
+            <div className="rounded-lg border p-2.5" style={{ borderColor: C.line, background: C.panel2 }}>
+              <div className="text-[10px] font-display uppercase tracking-widest" style={{ color: C.dim }}>{t("pf.pos")}</div>
+              <div style={{ color: posDe(profile.id) ? C.chalk : C.dim }}>{posDe(profile.id) || t("pf.noPos")}</div>
+            </div>
             <label className="col-span-2 block">
               <span className="text-[10px] font-display uppercase tracking-widest block mb-1" style={{ color: C.dim }}>{t("pf.status")}</span>
               <select value={profile.st} onChange={(e) => editarJugador(profile.id, { st: e.target.value })}
@@ -11070,7 +11042,7 @@ export default function App() {
           </div>
         ) : (
           <div className="grid grid-cols-2 gap-2 text-sm">
-            {[[t("pf.pos"), profile.pos], [t("pf.status"), profile.st], [t("pf.att"), `${attPct(profile)}%`], [t("pf.min"), `${profile.min}'`]].map(([k, v]) => (
+            {[[t("pf.pos"), posDe(profile.id) || t("pf.noPos")], [t("pf.status"), profile.st], [t("pf.att"), `${attPct(profile)}%`], [t("pf.min"), `${profile.min}'`]].map(([k, v]) => (
               <div key={k} className="rounded-lg border p-2.5" style={{ borderColor: C.line, background: C.panel2 }}>
                 <div className="text-[10px] font-display uppercase tracking-widest" style={{ color: C.dim }}>{k}</div>
                 <div style={{ color: k === t("pf.status") ? stColor(profile.st) : C.chalk }}>{v}</div>
@@ -11837,7 +11809,6 @@ export default function App() {
                               <span className="w-6 h-6 rounded-full flex items-center justify-center font-display text-[11px] font-bold shrink-0"
                                 style={{ background: AC, color: C.sobre }}>{pl.d}</span>
                               <span className="text-xs flex-1 min-w-0 truncate" style={{ color: C.chalk }}>{pl.n}</span>
-                              <span className="text-[10px] shrink-0" style={{ color: C.dim }}>{pl.pos}</span>
                               <Dot st={pl.st} />
                             </div>
                           ))}
@@ -13238,7 +13209,20 @@ export default function App() {
       return next;
     });
     setSelSlot(null);
-    setSelPlayer(null);
+  };
+  /* Tocar a alguien de la lista es la única acción de esa lista: si hay un
+     puesto elegido va ahí, y si no entra en el primer hueco libre del campo.
+     Antes este toque solo lo "preseleccionaba" y hacía falta un segundo paso
+     -elegir puesto en otra lista- para que ocurriera algo. */
+  const colocarOAnadir = (playerId, huecoLibre) => {
+    /* Quien solo puede mirar la alineación tampoco la mueve desde aquí. El
+       campo ya lo comprobaba al tocar un puesto, pero por la lista se colaba:
+       los cambios no llegaban a la nube -esa puerta sí estaba cerrada-, pero
+       en su pantalla el once cambiaba y parecía que se había guardado. */
+    if (!can("editLineup")) return;
+    const destino = selSlot || huecoLibre;
+    if (!destino) return;
+    asignarJugadorAPuesto(destino, playerId);
   };
   /* El segundo entrenador manda el borrador entero de una vez, en vez de
      una propuesta por cada toque. Se limpia el borrador al mandarla: el
@@ -15753,18 +15737,25 @@ export default function App() {
      Si la sesión necesita aprobación (segundo), la ficha no llega a
      players hasta que se aprueba, así que el perfil no se puede abrir
      todavía -se avisa en vez de abrir un modal vacío-. */
-  const anadirJugadorLesiones = () => {
-    if (!can("editSquad")) return;
+  const anadirJugador = () => {
+    if (!can("editSquad")) return false;
     const nuevoId = Math.max(0, ...players.map((p) => p.id)) + 1;
-    const nuevo = { id: nuevoId, n: "", d: 0, pos: POS_OK[0], st: "disponible" };
+    const nuevo = { id: nuevoId, n: "", d: 0, st: "disponible" };
     if (canProposeChanges()) {
       updateSquadWithProposal((ps) => [...ps, nuevo]);
-      setLesionesMsg(t("lz.proposalSent"));
-      setTimeout(() => setLesionesMsg(""), 5000);
-    } else {
-      setPlayers((ps) => [...ps, nuevo]);
-      setProfileId(nuevoId);
+      return false;
     }
+    setPlayers((ps) => [...ps, nuevo]);
+    setProfileId(nuevoId);
+    return true;
+  };
+  /* En Lesiones el aviso de "va a aprobación" tiene su propio hueco en la
+     pantalla, así que se dice ahí; las demás pantallas se conforman con que
+     no se abra el perfil. */
+  const anadirJugadorLesiones = () => {
+    if (anadirJugador() || !can("editSquad")) return;
+    setLesionesMsg(t("lz.proposalSent"));
+    setTimeout(() => setLesionesMsg(""), 5000);
   };
   const renderLesiones = () => {
     const lista = players.slice().sort((a, b) => a.d - b.d);
@@ -15912,22 +15903,17 @@ export default function App() {
                   <div className="flex items-center gap-2">
                     <div className="font-display text-xl truncate" style={{ color: C.chalk }}>#{hijo.d} {hijo.n}</div>
                     {hijo.rec && (
-                      <button onClick={() => { setDatosForm({ nombre: hijo.n, posicion: hijo.pos }); setEditandoDatos(true); setDatosMsg(""); }}
+                      <button onClick={() => { setDatosForm({ nombre: hijo.n }); setEditandoDatos(true); setDatosMsg(""); }}
                         className="text-[11px] px-2 py-0.5 rounded-full border shrink-0" style={{ borderColor: C.line, color: AC }}>
                         ✎ {t("mh.editData")}
                       </button>
                     )}
                   </div>
-                  <div className="text-sm" style={{ color: C.dim }}>{hijo.pos}</div>
                 </>
               ) : (
                 <div className="space-y-1.5">
                   <input value={datosForm.nombre} onChange={(e) => setDatosForm((f) => ({ ...f, nombre: e.target.value }))}
                     placeholder={t("pf.name")} className="w-full px-2 py-1.5 rounded-lg border bg-transparent text-sm" style={{ borderColor: C.line, color: C.chalk }} />
-                  <select value={datosForm.posicion} onChange={(e) => setDatosForm((f) => ({ ...f, posicion: e.target.value }))}
-                    className="w-full px-2 py-1.5 rounded-lg border text-sm" style={{ background: C.panel2, borderColor: C.line, color: C.chalk }}>
-                    {POS_OK.map((x) => <option key={x} value={x} style={{ background: C.panel }}>{x}</option>)}
-                  </select>
                   <div className="flex items-center gap-2">
                     <button onClick={guardarDatosHijo} disabled={datosBusy}
                       className="text-xs px-3 py-1.5 rounded-lg font-display uppercase tracking-wide font-semibold disabled:opacity-50" style={{ background: AC, color: C.sobre }}>
@@ -16315,16 +16301,20 @@ export default function App() {
       )}
 
       {can("editSquad") && (
-        <Card title="Importar plantilla desde CSV">
+        <Card title="Añadir jugadores">
           {!csvOpen ? (
-            <div className="flex items-center gap-3">
+            <div className="flex flex-wrap items-center gap-3">
+              {/* Alta de uno en uno. Hasta ahora la única forma de dar de alta
+                  a alguien desde aquí era importar un CSV entero, que para el
+                  fichaje que llega en enero es pasarse de vueltas. */}
+              <button onClick={anadirJugador} className="font-display uppercase tracking-wide text-sm px-4 py-2 rounded-lg font-semibold" style={{ background: AC, color: C.sobre }}>{t("lz.addPlayer")}</button>
               <button onClick={() => setCsvOpen(true)} className="font-display uppercase tracking-wide text-sm px-4 py-2 rounded-lg border" style={{ borderColor: C.line, color: AC }}>+ Importar CSV</button>
               <span className="text-xs" style={{ color: C.dim }}>{players.length}/{lim.players === 99 ? "∞" : lim.players} jugadores</span>
             </div>
           ) : (
             <div className="space-y-2">
-              <div className="text-xs" style={{ color: C.dim }}>Una línea por jugador: <span style={{ color: C.chalk }}>nombre, apellidos, dorsal, posición</span> (dorsal y posición opcionales).</div>
-              <textarea value={csvText} onChange={(e) => setCsvText(e.target.value)} rows={4} placeholder={"Sergio, Molina, 21, DC\nLucas, Prieto\nDavid, Camacho, 22, POR"} className="w-full rounded-lg px-3 py-2 text-sm outline-none border font-mono" style={{ background: C.panel2, borderColor: C.line, color: C.chalk }} />
+              <div className="text-xs" style={{ color: C.dim }}>Una línea por jugador: <span style={{ color: C.chalk }}>nombre, apellidos, dorsal</span> (el dorsal es opcional). La demarcación no se importa: se decide colocándolo en la alineación.</div>
+              <textarea value={csvText} onChange={(e) => setCsvText(e.target.value)} rows={4} placeholder={"Sergio, Molina, 21\nLucas, Prieto\nDavid, Camacho, 22"} className="w-full rounded-lg px-3 py-2 text-sm outline-none border font-mono" style={{ background: C.panel2, borderColor: C.line, color: C.chalk }} />
               <div className="flex flex-wrap items-center gap-3">
                 <label className="text-sm px-3 py-2 rounded-lg border cursor-pointer" style={{ borderColor: C.line, color: C.chalk }}>
                   📄 Subir archivo .csv
@@ -16366,7 +16356,7 @@ export default function App() {
                 <tr key={p.id} className="border-t" style={{ borderColor: C.line }}>
                   <td className="py-2 w-10"><button onClick={() => setProfileId(p.id)}><Avatar p={p} /></button></td>
                   <td><button onClick={() => setProfileId(p.id)} className="text-left hover:opacity-80"><span className="font-display text-base mr-2" style={{ color: AC }}>{p.d}</span>{p.n}{p.video && " 🎬"}{p.aviso && <span className="ml-1.5" title={p.aviso} style={{ color: C.warn }}>⚠</span>}{starters.has(p.id) && <span className="ml-2 text-xs" style={{ color: C.dim }}>· XI</span>}</button></td>
-                  <td style={{ color: C.dim }}>{p.pos}</td>
+                  <td style={{ color: C.dim }}>{posDe(p.id) || "—"}</td>
                   <td><button onClick={() => cycleStatus(p.id)} className="flex items-center hover:opacity-80" style={{ cursor: can("editSquad") ? "pointer" : "default" }}><Dot st={p.st} />{p.st}</button></td>
                   {/* Resumen de la carga física del día: el mismo semáforo y el
                       mismo porcentaje que se rellenan en Temporada. Aquí solo se
@@ -16409,15 +16399,15 @@ export default function App() {
     const lineupView = propone ? (lineupDraft || lineup) : lineup;
     const startersView = new Set(Object.values(lineupView));
     const bench = players.filter((p) => !startersView.has(p.id));
-    const jugadorSel = selPlayer ? players.find((x) => x.id === selPlayer) : null;
-    /* Estilo "cambio de jugador" de videojuego de fútbol: al tocar un puesto
-       ocupado, en vez de una lista plana con toda la plantilla mezclada, los
-       de su misma demarcación suben arriba del todo y marcados, para
-       encontrar de un vistazo a quién meter en su lugar. */
     const puestoDelSlot = selSlot ? slotPos[selSlot]?.label : null;
-    const jugadoresParaSlot = selSlot
-      ? [...players].sort((a, b) => (a.pos === puestoDelSlot ? 0 : 1) - (b.pos === puestoDelSlot ? 0 : 1))
-      : bench;
+    /* Con un puesto elegido se enseña la plantilla entera -para poder cambiar
+       a quien esté puesto por cualquier otro-; sin puesto elegido, solo los
+       que aún no están en el once, porque tocar ahí significa meterlos. */
+    const jugadoresParaSlot = [...(selSlot ? players : bench)].sort((a, b) => a.d - b.d);
+    /* Qué demarcación ocupa cada uno EN ESTA pantalla: si es el borrador del
+       segundo entrenador, la del borrador; si no, la oficial. */
+    const puestoDe = (id) => slotPos[Object.keys(lineupView).find((k) => lineupView[k] === id)]?.label || "";
+    const primerHuecoLibre = Object.keys(slotPos).find((k) => !lineupView[k]);
     return (
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <Card title={`${propone ? t("ln.proposalTitle") : t("ln.startersTitle")} — ${sysCode}`}>
@@ -16471,10 +16461,10 @@ export default function App() {
             </svg>
             {Object.entries(slotPos).map(([id, s]) => {
               const p = players.find((x) => x.id === lineupView[id]); const sel = selSlot === id;
-              /* Con un jugador elegido desde la lista, se le marca el aro a
-                 su puesto natural en el campo mismo -no solo en la lista de
-                 la derecha- para verlo de un vistazo antes de tocar. */
-              const sugerido = !sel && jugadorSel && s.label === jugadorSel.pos;
+              /* El aro marcado señala el hueco donde entraría el siguiente que
+                 se toque de la lista: el elegido a mano si hay uno, y si no el
+                 primero que esté libre. */
+              const sugerido = !sel && !selSlot && id === primerHuecoLibre;
               return (
                 <div key={id} onPointerDown={(e) => onSlotDown(e, id)} onPointerUp={() => onSlotUp(id)} className="absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center" style={{ left: `${s.x}%`, top: `${s.y}%`, cursor: can("editLineup") ? "grab" : "default" }}>
                   {/* "background" (shorthand) y "backgroundImage"/"backgroundSize"/
@@ -16506,50 +16496,35 @@ export default function App() {
             })}
           </div>
         </Card>
-        <Card title={selSlot ? t("ln.assignTo").replace("{slot}", selSlot) : jugadorSel ? t("ln.choosePosFor").replace("{name}", jugadorSel.n.split(" ")[0]) : t("ln.benchTitle")}>
-          {!selSlot && !jugadorSel && (
-            <div className="text-xs mb-3" style={{ color: C.dim }}>{t("ln.tapPos")}</div>
-          )}
-          {jugadorSel && !selSlot && (
-            <div className="text-xs mb-3" style={{ color: C.dim }}>{t("ln.tapPosPlayerSel")}</div>
-          )}
-          {selSlot && (
-            <div className="text-xs mb-3" style={{ color: C.dim }}>{t("ln.slotSameLine").replace("{pos}", puestoDelSlot)}</div>
+        <Card title={selSlot ? t("ln.assignTo").replace("{slot}", puestoDelSlot || selSlot) : t("ln.benchTitle")}>
+          <div className="text-xs mb-3" style={{ color: C.dim }}>
+            {selSlot
+              ? t("ln.tapPlayerForSlot").replace("{pos}", puestoDelSlot)
+              : primerHuecoLibre
+                ? t("ln.tapPlayerToAdd").replace("{pos}", slotPos[primerHuecoLibre]?.label || "")
+                : t("ln.xiFull")}
+          </div>
+          {/* Dar de alta a alguien sin salir de aquí: al montar el once es
+              justo cuando se descubre que falta una ficha por crear. */}
+          {can("editSquad") && (
+            <button onClick={anadirJugador} className="text-xs px-3 py-1.5 rounded-lg border font-display uppercase tracking-wide mb-3"
+              style={{ borderColor: C.line, color: AC }}>{t("lz.addPlayer")}</button>
           )}
           <div className="space-y-1.5 max-h-[520px] overflow-y-auto pr-1">
-            {jugadorSel && !selSlot ? (
-              /* Camino "elige al jugador primero": en vez de tener que
-                 acertar el punto exacto del campo, se listan los puestos con
-                 el suyo natural arriba del todo -y quién lo ocupa, si hay
-                 alguien-, y basta con tocar uno para colocarlo ahí. */
-              Object.entries(slotPos)
-                .sort(([, a], [, b]) => (a.label === jugadorSel.pos ? 0 : 1) - (b.label === jugadorSel.pos ? 0 : 1))
-                .map(([slotId, s]) => {
-                  const ocupante = players.find((x) => x.id === lineupView[slotId]);
-                  const esSuPuesto = s.label === jugadorSel.pos;
-                  return (
-                    <button key={slotId} onClick={() => asignarJugadorAPuesto(slotId, jugadorSel.id)}
-                      className="w-full flex items-center justify-between text-sm py-2 px-3 rounded-lg border text-left hover:opacity-80"
-                      style={{ borderColor: esSuPuesto ? AC : C.line, background: C.panel2, color: C.chalk }}>
-                      <span className="flex items-center gap-2">
-                        <span className="font-display text-base" style={{ color: AC }}>{s.label}</span>
-                        {esSuPuesto && <span className="text-[10px] font-display uppercase tracking-wide px-1.5 py-0.5 rounded" style={{ background: AC, color: C.sobre }}>{t("ln.hisSpot")}</span>}
-                      </span>
-                      <span style={{ color: C.dim }}>{ocupante ? t("ln.occupiedBy").replace("{name}", ocupante.n.split(" ")[0]) : t("ln.free")}</span>
-                    </button>
-                  );
-                })
-            ) : jugadoresParaSlot.map((p) => {
-              const mismoPuesto = selSlot && p.pos === puestoDelSlot;
+            {jugadoresParaSlot.map((p) => {
+              const enElOnce = startersView.has(p.id);
               return (
-                <div key={p.id} className="w-full flex items-center gap-2 py-2 px-3 rounded-lg border" style={{ borderColor: mismoPuesto ? AC : C.line, background: C.panel2 }}>
-                  <button onClick={() => (selSlot ? asignarJugadorAPuesto(selSlot, p.id) : setSelPlayer(p.id))}
-                    className="flex items-center justify-between text-sm flex-1 min-w-0 text-left hover:opacity-80" style={{ color: C.chalk }}>
+                <div key={p.id} className="w-full flex items-center gap-2 py-2 px-3 rounded-lg border" style={{ borderColor: C.line, background: C.panel2 }}>
+                  {/* Sin sitio donde meterlo -el once lleno y ningún puesto
+                      elegido- el toque no hace nada, así que se enseña apagado
+                      en vez de fingir que responde. */}
+                  <button onClick={() => colocarOAnadir(p.id, primerHuecoLibre)}
+                    disabled={!can("editLineup") || (!selSlot && !primerHuecoLibre)}
+                    className="flex items-center justify-between text-sm flex-1 min-w-0 text-left hover:opacity-80 disabled:opacity-50 disabled:cursor-default" style={{ color: C.chalk }}>
                     <span className="flex items-center gap-2 min-w-0">
                       <Avatar p={p} size={26} /><Dot st={p.st} /><span className="font-display text-base" style={{ color: AC }}>{p.d}</span>
                       <span className="truncate">{p.n}</span>
                       {p.aviso && <span title={p.aviso} style={{ color: C.warn }}>⚠</span>}
-                      {mismoPuesto && <span className="text-[10px] font-display uppercase tracking-wide px-1.5 py-0.5 rounded shrink-0" style={{ background: AC, color: C.sobre }}>{t("ln.samePos")}</span>}
                     </span>
                     <span className="shrink-0 ml-2 flex items-center gap-2" style={{ color: C.dim }}>
                       {/* Cómo llega ese jugador hoy, aquí mismo: montar el once
@@ -16564,7 +16539,10 @@ export default function App() {
                           </span>
                         );
                       })()}
-                      <span>{p.pos}{startersView.has(p.id) ? " · XI" : ""}</span>
+                      {/* La demarcación que se enseña es la del hueco que
+                          ocupa ahora mismo; quien está en el banquillo no
+                          tiene ninguna todavía. */}
+                      <span>{enElOnce ? `${puestoDe(p.id)} · XI` : ""}</span>
                     </span>
                   </button>
                   {/* Abrir la ficha sin robarle el toque a "poner en el once":
@@ -16659,7 +16637,7 @@ export default function App() {
             {players.map((p) => (
               <button key={p.id} onClick={() => toggle(p.id)} disabled={!editable} className="w-full flex items-center justify-between text-sm py-2 px-3 rounded-lg border text-left disabled:cursor-default" style={{ borderColor: called.has(p.id) ? AC : C.line, background: called.has(p.id) ? C.panel2 : "transparent", color: C.chalk }}>
                 <span className="flex items-center"><span className="w-5 text-center mr-2" style={{ color: called.has(p.id) ? AC : C.dim }}>{called.has(p.id) ? "✓" : "○"}</span><Dot st={p.st} /><span className="font-display text-base mr-2" style={{ color: AC }}>{p.d}</span>{p.n}</span>
-                <span style={{ color: C.dim }}>{p.pos}</span>
+                <span style={{ color: C.dim }}>{posDe(p.id)}</span>
               </button>
             ))}
           </div>
@@ -16756,7 +16734,7 @@ export default function App() {
                   className="w-full flex items-center gap-2 px-2.5 py-2 text-left min-h-11">
                   <span className="font-display text-sm tabular-nums w-6 shrink-0" style={{ color: AC }}>{p.d}</span>
                   <span className="flex-1 min-w-0 truncate text-sm" style={{ color: starters.has(p.id) ? C.chalk : C.dim }}>{p.n}</span>
-                  <span className="text-[10px] shrink-0" style={{ color: C.dim }}>{p.pos}</span>
+                  <span className="text-[10px] shrink-0" style={{ color: C.dim }}>{posDe(p.id)}</span>
                 </button>
                 {abierto && (
                   <div className="flex flex-wrap gap-1.5 px-2.5 pb-2.5">
@@ -17328,7 +17306,7 @@ export default function App() {
     const cuenta = (pid, tipo) => events.filter((e) => e.pid === pid && e.type === tipo).length;
     const cuentaTarjeta = (pid, card) => events.filter((e) => e.pid === pid && e.type === "tarjeta" && e.card === card).length;
     return convocados.map((p) => ({
-      id: p.id, d: p.d, n: p.n, pos: p.pos,
+      id: p.id, d: p.d, n: p.n, pos: posDe(p.id),
       titular: starters.has(p.id),
       goles: cuenta(p.id, "gol"),
       tarjetas: cuenta(p.id, "tarjeta"),
@@ -18541,17 +18519,25 @@ export default function App() {
     const topAtt = [...players].sort((a, b) => attPct(b) - attPct(a)).slice(0, 6);
     const lowMinAll = [...players].sort((a, b) => a.min - b.min).slice(0, 6);
     const maxMin = Math.max(1, ...players.map((p) => p.min));
-    const posGroup = (pos) => (pos === "POR" ? "gk" : ["LD", "DFC", "LI"].includes(pos) ? "def" : ["MCD", "MC", "MCO"].includes(pos) ? "mid" : "fwd");
+    /* El reparto se lee del once puesto en el campo, que es donde viven ahora
+       las demarcaciones. Antes se contaba una etiqueta escrita en cada ficha,
+       que nadie volvía a tocar en toda la temporada: un equipo con quince
+       "MC" apuntados de cualquier manera salía con el centro del campo
+       desbordado aunque jugara con dos. Lo que se pinta ahora es el sistema
+       que de verdad está montado. */
+    const posGroup = (pos) => (pos === "POR" ? "gk" : ["LD", "DFC", "LI"].includes(pos) ? "def" : ["MCD", "MC", "MCO", "MB"].includes(pos) ? "mid" : "fwd");
+    const puestosDelOnce = Object.keys(lineup).map((k) => slotPos[k]?.label).filter(Boolean);
     const groups = { gk: 0, def: 0, mid: 0, fwd: 0 };
-    players.forEach((p) => { groups[posGroup(p.pos)] += 1; });
+    puestosDelOnce.forEach((pos) => { groups[posGroup(pos)] += 1; });
     const maxGroup = Math.max(1, ...Object.values(groups));
-    /* Desglose fino: por demarcación exacta, no por línea. Se recorre POS_OK
-       para que el orden sea siempre el mismo (portería → ataque) y no baile
-       según quién esté dado de alta; las demarcaciones sin nadie no se pintan. */
-    const porPos = POS_OK
-      .map((k) => ({ k, label: POS_NOMBRE[k] || k, n: players.filter((p) => p.pos === k).length }))
+    /* Desglose fino: por demarcación exacta, no por línea. Se recorre en un
+       orden fijo (portería → ataque) para que no baile según cómo se haya
+       montado el sistema; las demarcaciones sin nadie no se pintan. */
+    const porPos = POS_ORDEN
+      .map((k) => ({ k, label: POS_NOMBRE[k] || k, n: puestosDelOnce.filter((x) => x === k).length }))
       .filter((x) => x.n > 0);
     const maxPos = Math.max(1, ...porPos.map((x) => x.n));
+    const enElOnce = puestosDelOnce.length;
     const Bar = ({ pct, color }) => (
       <div className="h-2 rounded-full overflow-hidden" style={{ background: C.bg }}>
         <div className="h-full rounded-full" style={{ width: `${clamp(pct, 0, 100)}%`, background: color }} />
@@ -18582,7 +18568,7 @@ export default function App() {
         <Card title={t("st.byRole")} className="lg:col-span-2">
           <div className="text-[11px] mb-3" style={{ color: C.dim }}>{t("st.roleHint")}</div>
           {porPos.length === 0 ? (
-            <div className="text-sm" style={{ color: C.dim }}>{t("as.noPlayers")}</div>
+            <div className="text-sm" style={{ color: C.dim }}>{t("st.noLineup")}</div>
           ) : (
             <>
               <div className="space-y-2 text-sm" style={{ color: C.chalk }}>
@@ -18593,7 +18579,7 @@ export default function App() {
                         <span className="font-display mr-2" style={{ color: AC }}>{x.k}</span>{x.label}
                       </span>
                       <span className="shrink-0 tabular-nums" style={{ color: C.dim }}>
-                        {x.n} {t(x.n === 1 ? "st.player" : "st.players")} · {Math.round((x.n / total) * 100)}%
+                        {x.n} {t(x.n === 1 ? "st.player" : "st.players")} · {Math.round((x.n / enElOnce) * 100)}%
                       </span>
                     </div>
                     <Bar pct={(x.n / maxPos) * 100} color={AC} />
@@ -18603,7 +18589,7 @@ export default function App() {
               <div className="flex items-center justify-between text-sm mt-3 pt-3 border-t font-display uppercase tracking-wide"
                 style={{ borderColor: C.line, color: C.chalk }}>
                 <span>{t("st.total")}</span>
-                <span className="tabular-nums">{players.length} {t(players.length === 1 ? "st.player" : "st.players")}</span>
+                <span className="tabular-nums">{enElOnce} {t(enElOnce === 1 ? "st.player" : "st.players")}</span>
               </div>
             </>
           )}
@@ -19306,7 +19292,7 @@ export default function App() {
                 if (rows.length) {
                   setPlayers(rows.map((line, i) => {
                     const m = line.match(/^(\d{1,2})\s+(.*)$/);
-                    return { id: Date.now() + i, d: m ? Number(m[1]) : i + 1, n: (m ? m[2] : line).slice(0, 40), pos: "MC", state: "ok", min: 0, att: 0, cards: { y: 0, r: 0 } };
+                    return { id: Date.now() + i, d: m ? Number(m[1]) : i + 1, n: (m ? m[2] : line).slice(0, 40), state: "ok", min: 0, att: 0, cards: { y: 0, r: 0 } };
                   }));
                 }
                 setNeedsSquad(false); setSquadText(""); setTab("jugadores");
