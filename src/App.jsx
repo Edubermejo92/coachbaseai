@@ -19771,10 +19771,19 @@ export default function App() {
             return (
               <div className="space-y-4">
                 {puedePlan && (
-                  <div className="flex gap-1 p-1 rounded-lg border w-full sm:w-auto sm:inline-flex" style={{ borderColor: C.line, background: C.panel2 }}>
+                  /* "PRETEMPORADA" no cabe repartida a tercios en un móvil
+                     estrecho -es una palabra suelta, no puede partirse en dos
+                     líneas-, y flex-1 no encoge un botón por debajo del ancho
+                     de su propio texto: el conmutador se salía de la pantalla
+                     y, al no tener scroll propio, se llevaba por delante el
+                     resto de la página (todo el cuerpo quedaba desplazado en
+                     horizontal, cabecera incluida). Ahora cada botón mide lo
+                     que necesita su texto, y si los tres no caben, se
+                     desliza dentro de este conmutador -nunca fuera de él-. */
+                  <div className="flex gap-1 p-1 rounded-lg border overflow-x-auto" style={{ borderColor: C.line, background: C.panel2 }}>
                     {[["pre", t("se.tabPre")], ["cargas", t("se.tabCargas")], ["temp", t("se.tabSeason")]].map(([k, lbl]) => (
                       <button key={k} onClick={() => setTempSub(k)} aria-pressed={sub === k}
-                        className="flex-1 sm:flex-none font-display uppercase tracking-wide text-sm px-4 py-2 rounded-md"
+                        className="shrink-0 whitespace-nowrap font-display uppercase tracking-wide text-sm px-4 py-2 rounded-md"
                         style={sub === k
                           ? { background: AC, color: C.sobre, fontWeight: 600 }
                           : { background: "transparent", color: C.dim }}>{lbl}</button>
