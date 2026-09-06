@@ -3,9 +3,9 @@
     "relation": ["delegate_permission/common.handle_all_urls"],
     "target": {
       "namespace": "android_app",
-      "package_name": "com.ebldigital.coachbaseai",
+      "package_name": "app.netlify.coachbase_ai.twa",
       "sha256_cert_fingerprints": [
-        "F8:73:8D:B2:E4:E6:42:B4:B0:35:AF:10:E3:DA:C7:96:64:5A:90:E1:6C:77:88:C7:4F:E9:45:97:83:51:9E:38"
+        "86:AE:81:CC:1B:78:C1:A8:6B:37:7D:67:E5:79:13:C1:81:C3:E7:DD:0E:18:B9:4A:3C:F1:4D:20:71:1E:32:6A"
       ]
     }
   }
