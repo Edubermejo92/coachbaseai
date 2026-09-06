@@ -194,6 +194,7 @@ const DICT = {
     "ca.import": "Importar calendario",
     "ca.importBtn": "Importar",
     "ca.example": "Ver ejemplo",
+    "ca.downloadTemplate": "Descargar plantilla",
     "ca.clear": "Vaciar",
     "ca.remove": "Quitar",
     "ca.useMatch": "Usar en modo partido", "ca.month": "Calendario del mes", "ca.dayHint": "Toca un día para ver su detalle.", "ca.dayEmpty": "No hay partidos ni entrenamiento programado este día.", "ca.dayTraining": "Día de entrenamiento", "ca.legendMatch": "Partido (del calendario importado)", "ca.legendTrain": "Entrenamiento", "ca.trainDaysLabel": "Días de entreno:",
@@ -570,6 +571,7 @@ const DICT = {
     "ca.addOnDay": "Añadir partido este día",
     "ca.deleteMatch": "Borrar partido",
     "ca.fRound": "Jornada",
+    "ca.fResult": "Resultado final (opcional, se puede rellenar después)",
     "ca.fDate": "Fecha",
     "ca.fTime": "Hora",
     "ca.fHome": "Local",
@@ -761,6 +763,7 @@ const DICT = {
     "ca.import": "Import fixtures",
     "ca.importBtn": "Import",
     "ca.example": "See example",
+    "ca.downloadTemplate": "Download template",
     "ca.clear": "Clear",
     "ca.remove": "Remove",
     "ca.useMatch": "Use in match mode", "ca.month": "Month calendar", "ca.dayHint": "Tap a day to see its detail.", "ca.dayEmpty": "No fixtures or training scheduled this day.", "ca.dayTraining": "Training day", "ca.legendMatch": "Fixture (from the imported calendar)", "ca.legendTrain": "Training", "ca.trainDaysLabel": "Training days:",
@@ -1132,6 +1135,7 @@ const DICT = {
     "ca.addOnDay": "Add a fixture on this day",
     "ca.deleteMatch": "Delete fixture",
     "ca.fRound": "Round",
+    "ca.fResult": "Final score (optional, can be filled in later)",
     "ca.fDate": "Date",
     "ca.fTime": "Time",
     "ca.fHome": "Home",
@@ -1340,6 +1344,7 @@ const DICT = {
     "ca.import": "Importer le calendrier",
     "ca.importBtn": "Importer",
     "ca.example": "Voir un exemple",
+    "ca.downloadTemplate": "Télécharger le modèle",
     "ca.clear": "Vider",
     "ca.remove": "Retirer",
     "ca.useMatch": "Utiliser en mode match", "ca.month": "Calendrier du mois", "ca.dayHint": "Touchez un jour pour voir son détail.", "ca.dayEmpty": "Aucun match ni entraînement prévu ce jour.", "ca.dayTraining": "Jour d'entraînement", "ca.legendMatch": "Match (du calendrier importé)", "ca.legendTrain": "Entraînement", "ca.trainDaysLabel": "Jours d'entraînement :",
@@ -1711,6 +1716,7 @@ const DICT = {
     "ca.addOnDay": "Ajouter un match ce jour",
     "ca.deleteMatch": "Supprimer le match",
     "ca.fRound": "Journée",
+    "ca.fResult": "Résultat final (facultatif, peut se remplir plus tard)",
     "ca.fDate": "Date",
     "ca.fTime": "Heure",
     "ca.fHome": "Domicile",
@@ -1993,6 +1999,7 @@ const DICT = {
     "ca.import": "Spielplan importieren",
     "ca.importBtn": "Importieren",
     "ca.example": "Beispiel ansehen",
+    "ca.downloadTemplate": "Vorlage herunterladen",
     "ca.clear": "Leeren",
     "ca.remove": "Entfernen",
     "ca.useMatch": "Im Spielmodus verwenden", "ca.month": "Monatskalender", "ca.dayHint": "Tippe auf einen Tag, um Details zu sehen.", "ca.dayEmpty": "An diesem Tag sind weder Spiele noch Training geplant.", "ca.dayTraining": "Trainingstag", "ca.legendMatch": "Spiel (aus importiertem Spielplan)", "ca.legendTrain": "Training", "ca.trainDaysLabel": "Trainingstage:",
@@ -2364,6 +2371,7 @@ const DICT = {
     "ca.addOnDay": "Spiel an diesem Tag hinzufügen",
     "ca.deleteMatch": "Spiel löschen",
     "ca.fRound": "Spieltag",
+    "ca.fResult": "Endergebnis (optional, kann später eingetragen werden)",
     "ca.fDate": "Datum",
     "ca.fTime": "Uhrzeit",
     "ca.fHome": "Heim",
@@ -2645,6 +2653,7 @@ const DICT = {
     "ca.import": "Importar calendário",
     "ca.importBtn": "Importar",
     "ca.example": "Ver exemplo",
+    "ca.downloadTemplate": "Descarregar modelo",
     "ca.clear": "Esvaziar",
     "ca.remove": "Remover",
     "ca.useMatch": "Usar no modo jogo", "ca.month": "Calendário do mês", "ca.dayHint": "Toca num dia para ver o detalhe.", "ca.dayEmpty": "Não há jogos nem treino marcado para este dia.", "ca.dayTraining": "Dia de treino", "ca.legendMatch": "Jogo (do calendário importado)", "ca.legendTrain": "Treino", "ca.trainDaysLabel": "Dias de treino:",
@@ -3016,6 +3025,7 @@ const DICT = {
     "ca.addOnDay": "Adicionar jogo neste dia",
     "ca.deleteMatch": "Apagar jogo",
     "ca.fRound": "Jornada",
+    "ca.fResult": "Resultado final (opcional, pode preencher-se depois)",
     "ca.fDate": "Data",
     "ca.fTime": "Hora",
     "ca.fHome": "Casa",
@@ -4013,6 +4023,30 @@ const parseFixtures = (txt) => {
     .filter((f) => /^\d{4}-\d{2}-\d{2}$/.test(f.date));
 };
 const CAL_SAMPLE = "1;06/09/2026;10:00;C.D. Chamartín Vergara;CD Norte;Campo Municipal\n2;13/09/2026;12:30;AD Sur;C.D. Chamartín Vergara;Ciudad Deportiva Sur";
+/* Plantilla descargable: misma fila de ejemplo que CAL_SAMPLE, con una
+   cabecera delante. parseFixtures ya ignora la primera línea si empieza por
+   "jornada" -es justo el filtro que se añadió para leer estos mismos CSV de
+   federación, que siempre traen cabecera-, así que abrir esta plantilla en
+   Excel, rellenarla debajo de la cabecera y subirla tal cual funciona sin
+   tocar nada más. */
+const CAL_TEMPLATE = "Jornada;Fecha;Hora;Local;Visitante;Campo\n" + CAL_SAMPLE;
+/* Misma idea para la plantilla de jugadores: parseCSV ignora la primera fila
+   si empieza por "nombre". */
+const JUGADORES_TEMPLATE = "Nombre,Apellidos,Dorsal\nSergio,Molina,21\nLucas,Prieto,\nDavid,Camacho,22";
+/* Descarga un texto como archivo -mismo patrón que "Exportar PNG" en la
+   pizarra, pero con un Blob de texto en vez de un canvas-. El BOM inicial
+   (﻿) es para que Excel en Windows abra el UTF-8 sin destrozar los
+   acentos ("Chamartín" no se convierta en "ChamartÃ­n"); en Sheets o en un
+   editor de texto no se ve ni molesta. */
+const descargarTexto = (nombre, contenido, tipo = "text/csv;charset=utf-8;") => {
+  try {
+    const blob = new Blob(["﻿" + contenido], { type: tipo });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url; a.download = nombre; a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  } catch { /* noop */ }
+};
 
 /* Calendario real de Infantil B 26/27 (C.D. Chamartín Vergara - Alcobendas "B"):
    Primera Infantil, Grupo 6, RFFM. Las 30 jornadas de liga tal y como las
@@ -4860,15 +4894,22 @@ const jugFromAir = (r, i) => ({
     catch { return []; }
   })(),
 });
+/* Goles: número o null -nunca "", que Airtable typecast no sabe convertir a
+   número y dejaría el campo tal cual estaba-. null borra el resultado si se
+   había puesto por error; hasta que se rellenan los dos, el partido sigue
+   sin resultado. */
+const golOAir = (v) => (v === "" || v == null ? null : Number(v));
 const partToAir = (f, teamRec) => ({
   Referencia: `${f.date || ""} ${f.home || ""}-${f.away || ""}`.trim().slice(0, 60),
   Fecha: f.date || null, Hora: f.time || "", Jornada: String(f.j || ""),
   Local: f.home || "", Visitante: f.away || "", Lugar: f.place || "",
+  "Goles local": golOAir(f.hg), "Goles visitante": golOAir(f.ag),
   ...(teamRec ? { Equipo: [teamRec] } : {}),
 });
 const partFromAir = (r) => ({
   id: r.rec, rec: r.rec, date: r.Fecha || "", time: r.Hora || "", j: r.Jornada || "",
   home: r.Local || "", away: r.Visitante || "", place: r.Lugar || "",
+  hg: r["Goles local"] ?? "", ag: r["Goles visitante"] ?? "",
 });
 
 /* Respaldo local del interruptor "yo también entreno una categoría" del
@@ -12070,7 +12111,7 @@ export default function App() {
      la nube —si no, no lo vería nadie más que quien lo escribió—; sin nube se
      queda en el dispositivo, igual que el resto del calendario. */
   const puedeEditarCal = () => can("editCal");
-  const fixtureNuevo = (fecha) => ({ id: null, rec: "", j: "", date: fecha || todayISO, time: "", home: session?.club || "", away: "", place: "" });
+  const fixtureNuevo = (fecha) => ({ id: null, rec: "", j: "", date: fecha || todayISO, time: "", home: session?.club || "", away: "", place: "", hg: "", ag: "" });
   const abrirFixture = (f) => { setFixMsg(""); setFixEdit({ ...f }); };
   const cerrarFixture = () => { setFixMsg(""); setFixEdit(null); };
   const guardarFixture = async () => {
@@ -12083,9 +12124,13 @@ export default function App() {
       setFixMsg(`${t("ca.capMatchesA")} ${FREE_CAPS.fixtures} ${t("ca.capMatchesB")}`);
       return;
     }
+    /* Vacío se queda vacío -sin resultado todavía-; con algo escrito, un
+       entero entre 0 y 99. */
+    const golLimpio = (v) => (v === "" || v == null ? "" : String(Math.max(0, Math.min(99, Number(v) || 0))));
     const limpio = {
       ...f, j: String(f.j || "").trim(), time: String(f.time || "").trim(),
       home: String(f.home || "").trim(), away: String(f.away || "").trim(), place: String(f.place || "").trim(),
+      hg: golLimpio(f.hg), ag: golLimpio(f.ag),
       id: f.id || Date.now(),
     };
     setFixtures((fs) => (esNuevo ? [...fs, limpio] : fs.map((x) => (x.id === limpio.id ? { ...x, ...limpio } : x))));
@@ -12144,6 +12189,28 @@ export default function App() {
             {campo(t("ca.fAway"), "away")}
             {campo(t("ca.fPlace"), "place")}
           </div>
+          {/* Resultado final: separado del resto porque no siempre se sabe al
+              crear el partido -se rellena el mismo día o después-, y porque
+              vacío significa "todavía no jugado", no "0-0". Los dos huecos
+              vacíos a la vez no cuentan como resultado; con uno solo puesto,
+              tampoco -un marcador quiere los dos números-. */}
+          <div className="mt-3 pt-3 border-t" style={{ borderColor: C.line }}>
+            <div className="text-[11px] mb-1.5" style={{ color: C.dim }}>{t("ca.fResult")}</div>
+            <div className="flex items-center gap-2">
+              <input value={fixEdit.hg ?? ""} onChange={(e) => set("hg", e.target.value.replace(/[^0-9]/g, "").slice(0, 2))}
+                type="number" min={0} max={99} inputMode="numeric" placeholder="—"
+                aria-label={t("ca.fHome")}
+                className="w-16 px-2.5 py-1.5 rounded-lg border bg-transparent text-sm text-center tabular-nums"
+                style={{ borderColor: C.line, color: C.chalk }} />
+              <span className="text-sm" style={{ color: C.dim }}>—</span>
+              <input value={fixEdit.ag ?? ""} onChange={(e) => set("ag", e.target.value.replace(/[^0-9]/g, "").slice(0, 2))}
+                type="number" min={0} max={99} inputMode="numeric" placeholder="—"
+                aria-label={t("ca.fAway")}
+                className="w-16 px-2.5 py-1.5 rounded-lg border bg-transparent text-sm text-center tabular-nums"
+                style={{ borderColor: C.line, color: C.chalk }} />
+              <span className="text-xs truncate" style={{ color: C.dim }}>{fixEdit.home || t("ca.fHome")} — {fixEdit.away || t("ca.fAway")}</span>
+            </div>
+          </div>
           <div className="flex flex-wrap gap-2 mt-4">
             <button onClick={guardarFixture} className="font-display uppercase tracking-wide text-sm px-4 py-2 rounded-lg font-semibold" style={{ background: AC, color: C.sobre }}>{t("p.save")}</button>
             <button onClick={cerrarFixture} className="text-sm px-4 py-2 rounded-lg border" style={{ borderColor: C.line, color: C.dim }}>{t("c.cancel")}</button>
@@ -12190,7 +12257,15 @@ export default function App() {
         <div className="font-display text-sm shrink-0 max-w-[72px] overflow-hidden text-ellipsis whitespace-nowrap" title={etiquetaJornada(f)} style={{ color: AC }}>{etiquetaJornada(f)}</div>
       )}
       <div className="text-sm tabular-nums shrink-0" style={{ color: C.chalk }}>{conJornada ? `${f.date} ${f.time}` : f.time || "—"}</div>
-      <div className="text-sm flex-1 min-w-[160px]" style={{ color: C.chalk }}>{f.home} <span style={{ color: C.dim }}>vs</span> {f.away}</div>
+      <div className="text-sm flex-1 min-w-[160px]" style={{ color: C.chalk }}>
+        {f.home}{" "}
+        {/* El marcador solo cuenta como resultado con los dos goles puestos:
+            uno solo -o ninguno- sigue siendo "todavía sin jugar", no un 0. */}
+        {f.hg !== "" && f.hg != null && f.ag !== "" && f.ag != null
+          ? <strong className="tabular-nums" style={{ color: AC }}>{f.hg}–{f.ag}</strong>
+          : <span style={{ color: C.dim }}>vs</span>}{" "}
+        {f.away}
+      </div>
       {f.place && <div className="text-[11px] w-full sm:w-auto" style={{ color: C.dim }}>📍 {f.place}</div>}
       {puedeEditarCal() && (
         <div className="flex gap-2 text-xs">
@@ -12448,6 +12523,11 @@ export default function App() {
                 <input type="file" accept=".csv,.ics,.txt" className="hidden" onChange={(e) => { const f = e.target.files?.[0]; if (!f) return; const r = new FileReader(); r.onload = () => importCal(String(r.result)); r.readAsText(f); e.target.value = ""; }} />
               </label>
               <button onClick={() => setCalText(CAL_SAMPLE)} className="text-sm px-4 py-2 rounded-lg border" style={{ borderColor: C.line, color: C.dim }}>{t("ca.example")}</button>
+              {/* Plantilla de verdad -un archivo, no solo el texto de arriba-
+                  para quien prefiere rellenarla en Excel/Sheets con el
+                  calendario completo y subirla luego tal cual. */}
+              <button onClick={() => descargarTexto("plantilla-calendario.csv", CAL_TEMPLATE)}
+                className="text-sm px-4 py-2 rounded-lg border" style={{ borderColor: C.line, color: C.dim }}>⤓ {t("ca.downloadTemplate")}</button>
               {fixtures.length > 0 && <button onClick={() => { setFixtures([]); setCalMsg("Calendario vaciado."); }} className="text-sm px-4 py-2 rounded-lg border" style={{ borderColor: C.line, color: C.dim }}>{t("ca.clear")}</button>}
             </div>
             {calMsg && <div className="text-xs mt-2" style={{ color: calMsg.startsWith("✓") ? C.green : C.warn }}>{calMsg}</div>}
@@ -16417,6 +16497,10 @@ export default function App() {
                   📄 Subir archivo .csv
                   <input type="file" accept=".csv,.txt" className="hidden" onChange={(e) => { const f = e.target.files?.[0]; if (!f) return; const r = new FileReader(); r.onload = () => setCsvText(String(r.result || "")); r.readAsText(f); }} />
                 </label>
+                {/* Plantilla de verdad para rellenar en Excel/Sheets con la
+                    plantilla completa y subirla luego tal cual. */}
+                <button onClick={() => descargarTexto("plantilla-jugadores.csv", JUGADORES_TEMPLATE)}
+                  className="text-sm px-3 py-2 rounded-lg border" style={{ borderColor: C.line, color: C.dim }}>⤓ {t("ca.downloadTemplate")}</button>
                 <label className="flex items-center gap-2 text-sm cursor-pointer" style={{ color: C.chalk }}><input type="checkbox" checked={csvReplace} onChange={(e) => setCsvReplace(e.target.checked)} />Reemplazar plantilla actual</label>
                 <button onClick={importCSV} className="font-display uppercase tracking-wide text-sm px-4 py-2 rounded-lg font-semibold" style={{ background: AC, color: C.sobre }}>Importar</button>
                 <button onClick={() => { setCsvOpen(false); setCsvMsg(""); }} className="text-sm" style={{ color: C.dim }}>{t("p.close")}</button>

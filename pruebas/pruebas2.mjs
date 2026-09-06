@@ -76,5 +76,19 @@ dice("el entrenador SÍ puede subir la foto de su parte", r.status!==403, `${r.s
 r=await call("?res=parte-foto&id=recPA1&campo=salida",{method:"POST",token:tDirB,body:{file:"AAA"}});
 dice("uno de otro club no", r.status===403, String(r.status));
 
+/* ---- Resultado final del partido: dos campos nuevos en el recurso
+   genérico de partidos, sin endpoint propio -es el mismo PATCH por nombre
+   de campo que ya usa la hora o el campo-. */
+r=await call("?res=partidos&id=recP1",{method:"PATCH",token:tDirB,body:{fields:{"Goles local":2,"Goles visitante":1}}});
+dice("un director de otro club no pone el resultado de un partido ajeno", r.status===403, String(r.status));
+r=await call("?res=partidos&id=recP1",{method:"PATCH",token:tEnt,body:{fields:{"Goles local":2,"Goles visitante":1}}});
+dice("el entrenador de su equipo sí pone el resultado", r.body.ok===true, JSON.stringify(r.body));
+dice("y queda escrito", F(T.PARTIDOS,"recP1")["Goles local"]===2 && F(T.PARTIDOS,"recP1")["Goles visitante"]===1);
+r=await call("?res=partidos&team=recSEN",{token:tEnt});
+const p1=(r.body.records||[]).find((x)=>x.rec==="recP1");
+dice("y se lee de vuelta por el recurso genérico", p1?.["Goles local"]===2 && p1?.["Goles visitante"]===1, JSON.stringify(p1));
+r=await call("?res=partidos&id=recP1",{method:"PATCH",token:tEnt,body:{fields:{"Goles local":null,"Goles visitante":null}}});
+dice("y se puede borrar -partido corregido a 'todavía sin jugar'-", r.body.ok===true);
+
 console.log(`\n${ok} correctas · ${mal} fallos`);
 process.exit(mal?1:0);
