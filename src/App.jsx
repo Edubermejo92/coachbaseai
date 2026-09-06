@@ -82,6 +82,10 @@ const DICT = {
     "ln.sendProposal": "Enviar propuesta",
     "ln.dragHint": "Arrastra para recolocar · toque corto para asignar",
     "ln.benchTitle": "Banquillo",
+    "ln.shareImage": "⬆ Compartir imagen",
+    "ln.shareImageBusy": "Generando imagen…",
+    "ln.shareImageOk": "✓ Imagen lista.",
+    "ln.shareImageFail": "No se pudo generar la imagen.",
     "ln.tapPlayerForSlot": "Toca al jugador que quieres poner de {pos}.",
     "ln.tapPlayerToAdd": "Toca a un jugador y entra en el once, en el primer hueco libre ({pos}). Para elegir el sitio, toca antes un puesto del campo.",
     "ln.xiFull": "El once está completo. Toca un puesto del campo para cambiar a quien esté ahí.",
@@ -643,6 +647,10 @@ const DICT = {
     "ln.sendProposal": "Send proposal",
     "ln.dragHint": "Drag to reposition · tap to assign",
     "ln.benchTitle": "Bench",
+    "ln.shareImage": "⬆ Share image",
+    "ln.shareImageBusy": "Generating image…",
+    "ln.shareImageOk": "✓ Image ready.",
+    "ln.shareImageFail": "Couldn't generate the image.",
     "ln.tapPlayerForSlot": "Tap the player you want at {pos}.",
     "ln.tapPlayerToAdd": "Tap a player and they go into the XI, in the first free spot ({pos}). To choose the spot, tap a position on the pitch first.",
     "ln.xiFull": "The XI is complete. Tap a position on the pitch to swap whoever is there.",
@@ -1216,6 +1224,10 @@ const DICT = {
     "ln.sendProposal": "Envoyer la proposition",
     "ln.dragHint": "Glissez pour repositionner · touchez pour affecter",
     "ln.benchTitle": "Remplaçants",
+    "ln.shareImage": "⬆ Partager l'image",
+    "ln.shareImageBusy": "Génération de l'image…",
+    "ln.shareImageOk": "✓ Image prête.",
+    "ln.shareImageFail": "Impossible de générer l'image.",
     "ln.tapPlayerForSlot": "Touche le joueur que tu veux mettre au poste de {pos}.",
     "ln.tapPlayerToAdd": "Touche un joueur et il entre dans le onze, au premier poste libre ({pos}). Pour choisir le poste, touche d'abord une place sur le terrain.",
     "ln.xiFull": "Le onze est complet. Touche une place sur le terrain pour remplacer celui qui l'occupe.",
@@ -1863,6 +1875,10 @@ const DICT = {
     "ln.sendProposal": "Vorschlag senden",
     "ln.dragHint": "Ziehen zum Umstellen · Antippen zum Zuweisen",
     "ln.benchTitle": "Bank",
+    "ln.shareImage": "⬆ Bild teilen",
+    "ln.shareImageBusy": "Bild wird erstellt…",
+    "ln.shareImageOk": "✓ Bild bereit.",
+    "ln.shareImageFail": "Bild konnte nicht erstellt werden.",
     "ln.tapPlayerForSlot": "Tippe den Spieler an, den du auf {pos} stellen willst.",
     "ln.tapPlayerToAdd": "Tippe einen Spieler an und er kommt in die Elf, auf den ersten freien Platz ({pos}). Um den Platz zu wählen, tippe vorher eine Position auf dem Feld an.",
     "ln.xiFull": "Die Elf ist komplett. Tippe eine Position auf dem Feld an, um den Spieler dort zu tauschen.",
@@ -2509,6 +2525,10 @@ const DICT = {
     "ln.sendProposal": "Enviar proposta",
     "ln.dragHint": "Arrasta para recolocar · toque curto para atribuir",
     "ln.benchTitle": "Banco",
+    "ln.shareImage": "⬆ Partilhar imagem",
+    "ln.shareImageBusy": "A gerar imagem…",
+    "ln.shareImageOk": "✓ Imagem pronta.",
+    "ln.shareImageFail": "Não foi possível gerar a imagem.",
     "ln.tapPlayerForSlot": "Toca no jogador que queres pôr a {pos}.",
     "ln.tapPlayerToAdd": "Toca num jogador e entra no onze, no primeiro lugar livre ({pos}). Para escolheres o lugar, toca primeiro numa posição do campo.",
     "ln.xiFull": "O onze está completo. Toca numa posição do campo para trocar quem lá está.",
@@ -9792,6 +9812,8 @@ export default function App() {
     return true;
   };
   const [selSlot, setSelSlot] = useState(null);
+  const [lnImgBusy, setLnImgBusy] = useState(false);
+  const [lnImgMsg, setLnImgMsg] = useState("");
   const [profileId, setProfileId] = useState(null);
   const [genBusy, setGenBusy] = useState(false);
   const [csvOpen, setCsvOpen] = useState(false);
@@ -16445,6 +16467,104 @@ export default function App() {
        segundo entrenador, la del borrador; si no, la oficial. */
     const puestoDe = (id) => slotPos[Object.keys(lineupView).find((k) => lineupView[k] === id)]?.label || "";
     const primerHuecoLibre = Object.keys(slotPos).find((k) => !lineupView[k]);
+    /* Imagen para mandar por WhatsApp: se dibuja a mano sobre un <canvas>, no
+       se fotografía la pantalla -que arrastraría fotos de jugador con CORS y
+       fallaría en silencio-. El campo va a la izquierda con el once puesto, y
+       el banquillo a la derecha, en la misma imagen, para que quien la reciba
+       vea la convocatoria entera de un vistazo sin dos capturas por separado. */
+    const compartirAlineacionImagen = async () => {
+      setLnImgMsg(""); setLnImgBusy(true);
+      try {
+        try { await document.fonts?.ready; } catch { /* sin API de fonts: se dibuja con lo que haya */ }
+        const S = 2, pitchW = 300 * S, pitchH = 400 * S, benchW = 260, headerH = 76, footerH = 34;
+        const banquillo = [...bench].sort((a, b) => a.d - b.d);
+        const benchContentH = 46 + banquillo.length * 30 + 16;
+        const w = pitchW + benchW, h = headerH + Math.max(pitchH, benchContentH) + footerH;
+        const cv = document.createElement("canvas");
+        cv.width = w; cv.height = h;
+        const ctx = cv.getContext("2d");
+        ctx.fillStyle = "#0E1512"; ctx.fillRect(0, 0, w, h);
+        ctx.textAlign = "left";
+        ctx.fillStyle = "#E8EDE6"; ctx.font = "700 26px 'Barlow Condensed', sans-serif";
+        ctx.fillText(String(session.club || "").toUpperCase(), 18, 30);
+        ctx.fillStyle = AC; ctx.font = "500 17px 'Barlow Condensed', sans-serif";
+        ctx.fillText(`${session.team?.name || ""} · ${sysCode}`, 18, 54);
+        /* Campo: rayas, líneas y áreas, con las mismas proporciones que el
+           campo interactivo de arriba (en tanto por ciento del ancho/alto). */
+        const py = headerH;
+        const px = (pct) => (pct / 100) * pitchW, pyy = (pct) => py + (pct / 100) * pitchH;
+        for (let i = 0; i < 8; i++) {
+          ctx.fillStyle = i % 2 ? "#17251D" : "#152219";
+          ctx.fillRect(0, py + (i * pitchH) / 8, pitchW, pitchH / 8);
+        }
+        ctx.strokeStyle = "rgba(232,237,230,0.5)"; ctx.lineWidth = 1.5 * S;
+        ctx.strokeRect(px(2.7), pyy(2), px(94.6) - px(2.7), pyy(96) - pyy(2));
+        ctx.beginPath(); ctx.moveTo(px(2.7), pyy(50)); ctx.lineTo(px(97.3), pyy(50)); ctx.stroke();
+        ctx.beginPath(); ctx.arc(px(50), pyy(50), px(11.3) - px(0), 0, Math.PI * 2); ctx.stroke();
+        ctx.strokeRect(px(25), pyy(2), px(75) - px(25), pyy(15) - pyy(2));
+        ctx.strokeRect(px(38.3), pyy(2), px(61.7) - px(38.3), pyy(7.5) - pyy(2));
+        ctx.strokeRect(px(25), pyy(85), px(75) - px(25), pyy(98) - pyy(85));
+        ctx.strokeRect(px(38.3), pyy(92.5), px(61.7) - px(38.3), pyy(98) - pyy(92.5));
+        /* Fichas: rellena con el dorsal de quien esté puesto, hueca con la
+           demarcación cuando el puesto sigue libre -igual que en el campo de
+           arriba, para que la imagen no oculte que falta alguien. */
+        Object.entries(slotPos).forEach(([id, s]) => {
+          const p = players.find((x) => x.id === lineupView[id]);
+          const cx = px(s.x), cy = pyy(s.y), r = pitchW * 0.065;
+          ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2);
+          ctx.fillStyle = p ? AC : "rgba(232,237,230,0.08)"; ctx.fill();
+          ctx.strokeStyle = p ? AC : "rgba(232,237,230,0.4)"; ctx.lineWidth = 2; ctx.stroke();
+          /* El texto sobre la ficha rellena tiene que ser el color de
+             contraste de AC (C.sobre), no uno fijo: en tema claro AC es
+             oscuro y hace falta letra blanca, y al revés en tema oscuro -si
+             no, el dorsal se leía casi invisible sobre su propia ficha. */
+          ctx.textAlign = "center"; ctx.fillStyle = p ? C.sobre : "rgba(232,237,230,0.6)";
+          ctx.font = `700 ${Math.round(r * 0.85)}px 'Barlow Condensed', sans-serif`;
+          ctx.fillText(p ? String(p.d) : s.label, cx, cy + r * 0.3);
+          ctx.fillStyle = "#E8EDE6"; ctx.font = `500 ${Math.round(r * 0.45)}px 'Barlow Condensed', sans-serif`;
+          ctx.fillText(p ? `${p.n.split(" ")[0]} · ${s.label}` : s.label, cx, cy + r + 16);
+        });
+        /* Banquillo, en la misma imagen, a la derecha del campo. */
+        ctx.textAlign = "left";
+        ctx.strokeStyle = "rgba(232,237,230,0.14)"; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(pitchW, headerH); ctx.lineTo(pitchW, h - footerH); ctx.stroke();
+        ctx.fillStyle = AC; ctx.font = "700 16px 'Barlow Condensed', sans-serif";
+        ctx.fillText(`${t("ln.benchTitle").toUpperCase()} (${banquillo.length})`, pitchW + 18, py + 24);
+        ctx.font = "500 15px 'Barlow Condensed', sans-serif";
+        banquillo.forEach((p, i) => {
+          const ry = py + 52 + i * 30;
+          ctx.fillStyle = AC; ctx.font = "700 15px 'Barlow Condensed', sans-serif";
+          ctx.fillText(String(p.d), pitchW + 18, ry);
+          ctx.fillStyle = "#E8EDE6"; ctx.font = "500 15px 'Barlow Condensed', sans-serif";
+          ctx.fillText(p.n, pitchW + 46, ry);
+        });
+        ctx.textAlign = "center"; ctx.fillStyle = "rgba(232,237,230,0.5)"; ctx.font = "500 13px 'Barlow Condensed', sans-serif";
+        ctx.fillText(`COACHBASE Ai · ${hoyISO()}`, w / 2, h - 12);
+        cv.toBlob(async (blob) => {
+          if (!blob) { setLnImgBusy(false); setLnImgMsg(t("ln.shareImageFail")); return; }
+          const nombre = `alineacion-${(session.team?.name || "equipo").replace(/\s+/g, "-")}-${hoyISO()}.png`;
+          const file = new File([blob], nombre, { type: "image/png" });
+          try {
+            if (navigator.share && (!navigator.canShare || navigator.canShare({ files: [file] }))) {
+              await navigator.share({ files: [file], title: t("ln.startersTitle"), text: `${session.club || ""} ${session.team?.name || ""} · ${sysCode}` });
+            } else {
+              const a = document.createElement("a");
+              a.href = URL.createObjectURL(blob); a.download = nombre; a.click();
+            }
+            setLnImgMsg(t("ln.shareImageOk"));
+          } catch (e) {
+            /* Cancelar el panel de compartir del móvil no es un fallo real. */
+            if (e?.name !== "AbortError") setLnImgMsg(t("ln.shareImageFail"));
+          } finally {
+            setLnImgBusy(false);
+            setTimeout(() => setLnImgMsg(""), 4000);
+          }
+        }, "image/png");
+      } catch {
+        setLnImgBusy(false);
+        setLnImgMsg(t("ln.shareImageFail"));
+      }
+    };
     return (
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <Card title={`${propone ? t("ln.proposalTitle") : t("ln.startersTitle")} — ${sysCode}`}>
@@ -16485,6 +16605,14 @@ export default function App() {
           <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
             <div className="text-xs" style={{ color: C.dim }}>
               {t("ln.dragHint")}
+            </div>
+            <div className="flex items-center gap-2">
+              {lnImgMsg && <span className="text-[11px]" style={{ color: lnImgMsg.startsWith("✓") ? C.dim : C.warn }}>{lnImgMsg}</span>}
+              <button onClick={compartirAlineacionImagen} disabled={lnImgBusy}
+                className="text-xs px-2.5 py-1 rounded-lg border font-display uppercase tracking-wide disabled:opacity-50"
+                style={{ borderColor: AC, color: AC }}>
+                {lnImgBusy ? t("ln.shareImageBusy") : t("ln.shareImage")}
+              </button>
             </div>
           </div>
           <div ref={pitchRef} className="relative w-full touch-none select-none" style={{ aspectRatio: "3/4" }} onPointerMove={onPitchMove} onPointerUp={() => onSlotUp(null)}>
