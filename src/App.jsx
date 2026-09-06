@@ -127,6 +127,21 @@ const DICT = {
     "mt.addedHintOn": "El reloj avisa al llegar a {a}. Los eventos del descuento se registran como {b}+n.",
     "mt.addedHintOff": "Marca el descuento cuando lo señale el árbitro. Se reinicia al empezar cada parte.",
     "mt.lineupInitial": "Alineación inicial",
+    "w.aiHelp": "Ayuda IA",
+    "w.tellChange": "Dile el cambio",
+    "w.aiChangePh": "Ej. mueve al 9 al segundo palo y saca al 4 al borde del área",
+    "w.thinking": "Pensando…",
+    "w.applyToBoard": "Aplicar a la pizarra",
+    "w.aiHint": "Cambia las fichas y los trazos de lo que tengas ahora en el campo. Si no te gusta, ↶ Deshacer lo devuelve como estaba.",
+    "w.aiNotUnderstood": "No he entendido el cambio. Dilo de otra forma, por ejemplo: \"mueve al 9 al segundo palo\".",
+    "w.aiDone": "✓ Hecho. Si no te convence, deshaz con ↶.",
+    "w.aiDemoOff": "La ayuda de IA no está disponible en la demo. Crea tu cuenta para probarla.",
+    "se.genSession": "✦ Generar sesión de 1h con IA",
+    "se.generating": "Generando…",
+    "se.aiSessionTitle": "Sesión propuesta (IA)",
+    "se.sendToTraining": "Enviar a Entrenamiento",
+    "se.sentToTraining": "✓ Enviada. Ábrela en Entrenamiento.",
+    "se.aiDemoOff": "La sesión generada con IA no está disponible en la demo. Crea tu cuenta para probarla.",
     "mt.noti": "Avisos del reloj",
     "mt.notiOn": "Avisos activados",
     "mt.notiOff": "Activar avisos",
@@ -691,6 +706,21 @@ const DICT = {
     "mt.addedHintOn": "The clock warns when it reaches {a}. Added-time events are logged as {b}+n.",
     "mt.addedHintOff": "Mark the added time when the referee signals it. It resets at the start of each half.",
     "mt.lineupInitial": "Starting line-up",
+    "w.aiHelp": "AI help",
+    "w.tellChange": "Tell it the change",
+    "w.aiChangePh": "E.g. move the 9 to the far post and bring the 4 to the edge of the box",
+    "w.thinking": "Thinking…",
+    "w.applyToBoard": "Apply to the whiteboard",
+    "w.aiHint": "Changes the tokens and drawings you currently have on the pitch. If you don't like it, ↶ Undo puts it back.",
+    "w.aiNotUnderstood": "I didn't understand that change. Try saying it another way, e.g. \"move the 9 to the far post\".",
+    "w.aiDone": "✓ Done. If you don't like it, undo with ↶.",
+    "w.aiDemoOff": "AI help isn't available in the demo. Create your account to try it.",
+    "se.genSession": "✦ Generate a 1-hour session with AI",
+    "se.generating": "Generating…",
+    "se.aiSessionTitle": "Proposed session (AI)",
+    "se.sendToTraining": "Send to Training",
+    "se.sentToTraining": "✓ Sent. Open it in Training.",
+    "se.aiDemoOff": "The AI-generated session isn't available in the demo. Create your account to try it.",
     "mt.noti": "Clock alerts",
     "mt.notiOn": "Alerts on",
     "mt.notiOff": "Turn alerts on",
@@ -1267,6 +1297,21 @@ const DICT = {
     "mt.addedHintOn": "Le chrono avertit à {a}. Les événements du temps additionnel sont notés {b}+n.",
     "mt.addedHintOff": "Notez le temps additionnel quand l'arbitre le signale. Il se réinitialise au début de chaque mi-temps.",
     "mt.lineupInitial": "Composition de départ",
+    "w.aiHelp": "Aide IA",
+    "w.tellChange": "Décrivez le changement",
+    "w.aiChangePh": "Ex. déplace le 9 au deuxième poteau et amène le 4 au bord de la surface",
+    "w.thinking": "Réflexion…",
+    "w.applyToBoard": "Appliquer au tableau",
+    "w.aiHint": "Modifie les jetons et les tracés actuellement sur le terrain. Si ça ne vous plaît pas, ↶ Annuler restaure l'état précédent.",
+    "w.aiNotUnderstood": "Je n'ai pas compris ce changement. Reformulez, par exemple : \"déplace le 9 au deuxième poteau\".",
+    "w.aiDone": "✓ Fait. Si ça ne vous plaît pas, annulez avec ↶.",
+    "w.aiDemoOff": "L'aide IA n'est pas disponible dans la démo. Créez votre compte pour l'essayer.",
+    "se.genSession": "✦ Générer une séance d'1h avec l'IA",
+    "se.generating": "Génération…",
+    "se.aiSessionTitle": "Séance proposée (IA)",
+    "se.sendToTraining": "Envoyer vers Entraînement",
+    "se.sentToTraining": "✓ Envoyée. Ouvrez-la dans Entraînement.",
+    "se.aiDemoOff": "La séance générée par IA n'est pas disponible dans la démo. Créez votre compte pour l'essayer.",
     "mt.noti": "Alertes du chrono",
     "mt.notiOn": "Alertes activées",
     "mt.notiOff": "Activer les alertes",
@@ -1917,6 +1962,21 @@ const DICT = {
     "mt.addedHintOn": "Die Uhr warnt bei {a}. Ereignisse in der Nachspielzeit werden als {b}+n erfasst.",
     "mt.addedHintOff": "Trage die Nachspielzeit ein, sobald der Schiedsrichter sie anzeigt. Sie wird zu Beginn jeder Halbzeit zurückgesetzt.",
     "mt.lineupInitial": "Startaufstellung",
+    "w.aiHelp": "KI-Hilfe",
+    "w.tellChange": "Sag ihr die Änderung",
+    "w.aiChangePh": "Z. B. verschiebe die 9 zum langen Pfosten und die 4 an den Strafraumrand",
+    "w.thinking": "Denkt nach…",
+    "w.applyToBoard": "Auf die Taktiktafel anwenden",
+    "w.aiHint": "Ändert die Spielsteine und Linien, die gerade auf dem Feld sind. Gefällt es dir nicht, macht ↶ Rückgängig es wieder rückgängig.",
+    "w.aiNotUnderstood": "Ich habe die Änderung nicht verstanden. Formuliere es anders, z. B. \"verschiebe die 9 zum langen Pfosten\".",
+    "w.aiDone": "✓ Erledigt. Gefällt es dir nicht, mach es mit ↶ rückgängig.",
+    "w.aiDemoOff": "Die KI-Hilfe ist in der Demo nicht verfügbar. Leg dein Konto an, um sie auszuprobieren.",
+    "se.genSession": "✦ 1-Stunden-Einheit mit KI erstellen",
+    "se.generating": "Wird erstellt…",
+    "se.aiSessionTitle": "Vorgeschlagene Einheit (KI)",
+    "se.sendToTraining": "An Training senden",
+    "se.sentToTraining": "✓ Gesendet. Öffne sie unter Training.",
+    "se.aiDemoOff": "Die mit KI erstellte Einheit ist in der Demo nicht verfügbar. Leg dein Konto an, um sie auszuprobieren.",
     "mt.noti": "Uhr-Hinweise",
     "mt.notiOn": "Hinweise an",
     "mt.notiOff": "Hinweise einschalten",
@@ -2566,6 +2626,21 @@ const DICT = {
     "mt.addedHintOn": "O relógio avisa ao chegar aos {a}. Os eventos do desconto ficam registados como {b}+n.",
     "mt.addedHintOff": "Marca o desconto quando o árbitro o assinalar. Reinicia no início de cada parte.",
     "mt.lineupInitial": "Onze inicial",
+    "w.aiHelp": "Ajuda IA",
+    "w.tellChange": "Diz a alteração",
+    "w.aiChangePh": "Ex. move o 9 para o segundo poste e leva o 4 para a linha da área",
+    "w.thinking": "A pensar…",
+    "w.applyToBoard": "Aplicar ao quadro",
+    "w.aiHint": "Altera as peças e os traços que tens agora no campo. Se não gostares, ↶ Desfazer repõe como estava.",
+    "w.aiNotUnderstood": "Não percebi essa alteração. Diz de outra forma, por exemplo: \"move o 9 para o segundo poste\".",
+    "w.aiDone": "✓ Feito. Se não gostares, desfaz com ↶.",
+    "w.aiDemoOff": "A ajuda de IA não está disponível na demo. Cria a tua conta para a experimentar.",
+    "se.genSession": "✦ Gerar sessão de 1h com IA",
+    "se.generating": "A gerar…",
+    "se.aiSessionTitle": "Sessão proposta (IA)",
+    "se.sendToTraining": "Enviar para Treino",
+    "se.sentToTraining": "✓ Enviada. Abre-a em Treino.",
+    "se.aiDemoOff": "A sessão gerada com IA não está disponível na demo. Cria a tua conta para a experimentar.",
     "mt.noti": "Avisos do relógio",
     "mt.notiOn": "Avisos ativados",
     "mt.notiOff": "Ativar avisos",
@@ -3392,7 +3467,7 @@ const ROLES = {
   club: { label: "Club", color: "#36454F", icon: "⬢",
     desc: "La cuenta del club: nombra al cuerpo técnico, lleva el material y ve todas sus categorías.",
     tabs: ["inicio", "equipo", "jugadores", "calendario", "estadisticas", "asistencia", "disciplina", "normativa", "usuarios", "material", "premium"],
-    perms: ["editSquad", "events", "viewUsers", "grantAccess", "createUsers", "viewStats", "discipline", "editDiscipline", "validateDiscipline", "viewDocs", "manageDocs", "editCal", "cargas", "parte"] },
+    perms: ["editSquad", "events", "ai", "viewUsers", "grantAccess", "createUsers", "viewStats", "discipline", "editDiscipline", "validateDiscipline", "viewDocs", "manageDocs", "editCal", "cargas", "parte"] },
   director: { label: "Director deportivo", color: "#36454F", icon: "✚",
     desc: "Dirige el club: acceso total a todo el sistema.",
     /* "equipo" (Club) faltaba y era el único rol del cuerpo técnico sin él:
@@ -3402,15 +3477,15 @@ const ROLES = {
        sistema"— le salía el apartado en gris y con el aviso de que su rol no
        tiene acceso. */
     tabs: ["inicio", "equipo", "jugadores", "alineacion", "pizarra", "ejercicios", "entrenamiento", "lesiones", "temporada", "estadisticas", "convocatoria", "calendario", "partido", "analisis", "asistencia", "disciplina", "normativa", "usuarios", "material", "premium"],
-    perms: ["editSquad", "editLineup", "editCall", "events", "viewUsers", "grantAccess", "createUsers", "editTraining", "viewStats", "discipline", "editDiscipline", "validateDiscipline", "viewDocs", "manageDocs", "editCal", "cargas", "parte"] },
+    perms: ["editSquad", "editLineup", "editCall", "events", "ai", "viewUsers", "grantAccess", "createUsers", "editTraining", "viewStats", "discipline", "editDiscipline", "validateDiscipline", "viewDocs", "manageDocs", "editCal", "cargas", "parte"] },
   entrenador: { label: "Entrenador principal", color: "#36454F", icon: "◆",
     desc: "Control total de su equipo: edición de todo excepto gestión de usuarios.",
     tabs: ["inicio", "jugadores", "parte", "alineacion", "pizarra", "ejercicios", "entrenamiento", "lesiones", "temporada", "estadisticas", "convocatoria", "calendario", "partido", "analisis", "asistencia", "disciplina", "normativa", "usuarios", "material", "premium"],
-    perms: ["editSquad", "editLineup", "editCall", "events", "createUsers", "editTraining", "viewStats", "discipline", "editDiscipline", "viewDocs", "editCal", "cargas", "parte"] },
+    perms: ["editSquad", "editLineup", "editCall", "events", "ai", "createUsers", "editTraining", "viewStats", "discipline", "editDiscipline", "viewDocs", "editCal", "cargas", "parte"] },
   segundo: { label: "Segundo entrenador", color: "#36454F", icon: "◈",
     desc: "Asiste al entrenador: alineaciones, entrenamiento y partido.",
     tabs: ["inicio", "jugadores", "parte", "alineacion", "pizarra", "ejercicios", "entrenamiento", "lesiones", "temporada", "estadisticas", "convocatoria", "calendario", "partido", "analisis", "asistencia", "disciplina", "normativa", "material", "premium"],
-    perms: ["editSquad", "editLineup", "events", "editTraining", "viewStats", "discipline", "editDiscipline", "viewDocs", "editCal", "cargas", "parte"] },
+    perms: ["editSquad", "editLineup", "events", "ai", "editTraining", "viewStats", "discipline", "editDiscipline", "viewDocs", "editCal", "cargas", "parte"] },
   delegado: { label: "Delegado", color: "#36454F", icon: "▣",
     desc: "Logística del equipo: acta del partido, disciplina y normativa.",
     /* "temporada" está aquí solo por las cargas físicas de pretemporada: en el
@@ -3424,11 +3499,11 @@ const ROLES = {
        pestaña el botón de Alineación de Inicio no le salía y, dentro de Modo
        partido, el once y los cambios se le quedaban en gris. */
     tabs: ["inicio", "jugadores", "parte", "alineacion", "lesiones", "convocatoria", "calendario", "partido", "temporada", "asistencia", "disciplina", "normativa", "material", "premium"],
-    perms: ["editSquad", "editLineup", "events", "discipline", "editDiscipline", "viewDocs", "manageDocs", "editCal", "cargas", "parte"] },
+    perms: ["editSquad", "editLineup", "events", "ai", "discipline", "editDiscipline", "viewDocs", "manageDocs", "editCal", "cargas", "parte"] },
   master: { label: "Master · EBLDigital", color: "#36454F", icon: "★",
     desc: "Administración total: crea los equipos oficiales y da de alta a cualquiera.",
     tabs: ["inicio", "master", "equipos", "equipo", "jugadores", "alineacion", "pizarra", "ejercicios", "entrenamiento", "lesiones", "temporada", "estadisticas", "convocatoria", "calendario", "partido", "analisis", "asistencia", "disciplina", "normativa", "usuarios", "material"],
-    perms: ["editSquad", "editLineup", "editCall", "events", "viewUsers", "grantAccess", "createUsers", "editTraining", "viewStats", "discipline", "editDiscipline", "validateDiscipline", "viewDocs", "manageDocs", "editCal", "cargas", "parte", "master"] },
+    perms: ["editSquad", "editLineup", "editCall", "events", "ai", "viewUsers", "grantAccess", "createUsers", "editTraining", "viewStats", "discipline", "editDiscipline", "validateDiscipline", "viewDocs", "manageDocs", "editCal", "cargas", "parte", "master"] },
   /* Familia y Jugador: los dos únicos roles de SOLO LECTURA (ver
      ROLES_SOLO_LECTURA más abajo) y los dos únicos con una sola pestaña.
      Nada de menú: toda la información -ficha, alineación del equipo,
@@ -6540,6 +6615,16 @@ function Whiteboard({ AC, lang, teamId, teamRec, isF7, pendingExId, onConsumePen
      guardar los cambios ENCIMA de ella: retocar una y acabar con seis copias
      llamadas "Córner 1", "Córner 2"… no le sirve a nadie. */
   const [playAbierta, setPlayAbierta] = useState(null);
+  /* Ayuda de IA: se describe el cambio en una frase y el asistente devuelve
+     las fichas y los trazos ya movidos. Mover doce fichas a mano en el
+     móvil, en el vestuario, no lo hace nadie.
+     No funciona en la demo: es una llamada real y de pago a la IA, y la
+     demo es pública y anónima -no hay cuenta que la limite ni a quien
+     cobrarle si alguien la usa sin freno-, así que directamente no se
+     ofrece ahí; se avisa con un mensaje en vez de fallar en silencio. */
+  const [iaTexto, setIaTexto] = useState("");
+  const [iaBusy, setIaBusy] = useState(false);
+  const [iaMsg, setIaMsg] = useState("");
   /* La vista es el viewBox vivo: la plantilla fija el encuadre de partida y el
      zoom/desplazamiento lo mueven desde ahí. */
   const [view, setView] = useState({ x: 0, y: 0, w: 1000, h: 640 });
@@ -6889,6 +6974,69 @@ function Whiteboard({ AC, lang, teamId, teamRec, isF7, pendingExId, onConsumePen
     const v = window.prompt(t("w.playNamePrompt"), p.name);
     if (!v || !v.trim()) return;
     setPlays((ps) => ps.map((x) => (x.id === p.id ? { ...x, name: v.trim() } : x)));
+  };
+  /* Manda la pizarra actual y la instrucción, y aplica lo que vuelve. Se
+     valida todo antes de tocar nada: si el modelo devuelve algo que no cuadra
+     —coordenadas fuera del campo, herramientas que no existen— no se pinta
+     nada y se avisa, en vez de dejar la pizarra hecha un cristo. */
+  const NUM = (v, max) => (typeof v === "number" && isFinite(v) ? Math.max(0, Math.min(max, Math.round(v))) : null);
+  const TIPOS_FICHA = ["home", "away", "ball", "cone", "disc", "goal"];
+  const TRAZOS = ["arrow", "pass", "dribble", "free", "zone", "circle", "text"];
+  const limpiarIA = (d) => {
+    const tk = [];
+    for (const t of Array.isArray(d?.tokens) ? d.tokens : []) {
+      const x = NUM(t?.x, TB.w), y = NUM(t?.y, TB.h);
+      if (x === null || y === null || !TIPOS_FICHA.includes(t?.type)) continue;
+      tk.push({ id: uid.current++, type: t.type, x, y, label: String(t.label ?? "").slice(0, 3) });
+    }
+    const sh = [];
+    for (const f of Array.isArray(d?.shapes) ? d.shapes : []) {
+      if (!TRAZOS.includes(f?.tool) || !Array.isArray(f?.pts) || f.pts.length < 1) continue;
+      const pts = [];
+      for (const q of f.pts) {
+        const x = NUM(q?.x, TB.w), y = NUM(q?.y, TB.h);
+        if (x !== null && y !== null) pts.push({ x, y });
+      }
+      if (f.tool === "text" ? pts.length < 1 : pts.length < 2) continue;
+      sh.push({ id: uid.current++, tool: f.tool, pts, color: "#FFFFFF", width: 4, ...(f.tool === "text" ? { text: String(f.text || "").slice(0, 40) } : {}) });
+    }
+    return tk.length ? { tokens: tk, shapes: sh } : null;
+  };
+  const pedirIA = async () => {
+    const orden = iaTexto.trim();
+    if (!orden || iaBusy) return;
+    if (!canSavePlays) { onPro?.(); return; }
+    if (DEMO_MODE) { setIaMsg(t("w.aiDemoOff")); return; }
+    setIaBusy(true); setIaMsg("");
+    const pizarra = {
+      tokens: tokens.map((t) => ({ type: t.type, x: Math.round(t.x), y: Math.round(t.y), label: t.label || "" })),
+      shapes: shapes.map((f) => ({ tool: f.tool, pts: (f.pts || []).map((q) => ({ x: Math.round(q.x), y: Math.round(q.y) })), ...(f.text ? { text: f.text } : {}) })),
+    };
+    /* Lo primero que hay que contarle es en qué tablero está: en el de córner
+       las coordenadas no significan lo mismo que en el campo entero, y si no
+       se le dice coloca las fichas en el sitio equivocado. */
+    const donde = enCampo
+      ? `Es el campo entero: mide 1000 de ancho por 640 de alto, x=0 es la línea de gol izquierda, x=1000 la derecha, y=0 la banda de arriba, y=640 la de abajo. Las áreas van de x=12 a x=132 y de x=868 a x=988, entre y=200 e y=440.`
+      : `Es el tablero de ${TB.label.toLowerCase()}: mide ${TB.w} de ancho por ${TB.h} de alto y enseña solo la zona donde ocurre la jugada, con la PORTERÍA ARRIBA. y=${Math.round(TB.Y(0))} es la línea de gol y la y crece alejándose de ella. El área grande va de x=${Math.round(TB.X(REGLA.ancho / 2 - REGLA.area.medio))} a x=${Math.round(TB.X(REGLA.ancho / 2 + REGLA.area.medio))} y llega hasta y=${Math.round(TB.Y(REGLA.area.fondo))}. El punto de penalti está en x=${Math.round(TB.X(REGLA.ancho / 2))}, y=${Math.round(TB.Y(REGLA.punto))}. Un metro son ${TB.esc.toFixed(1)} unidades.`;
+    const system = `Eres el ayudante de una pizarra táctica de fútbol. ${donde}
+Fichas: "home" (equipo propio, con dorsal en label), "away" (rival), "ball", "cone", "disc", "goal".
+Trazos: "arrow" (desmarque), "pass", "dribble", "free", "zone", "circle" (dos puntos), "text" (un punto y el campo text).
+Devuelve SOLO un objeto JSON con las claves "tokens" y "shapes", sin explicación ni markdown, con la pizarra COMPLETA ya modificada. Mantén las fichas que no haya que tocar tal cual. Coordenadas enteras y siempre dentro del tablero.`;
+    const mensajes = [{ role: "user", content: `Pizarra actual:\n${JSON.stringify(pizarra)}\n\nCambio pedido: ${orden}` }];
+    const data = await coachRequest(system, mensajes, 2000);
+    const txt = (data?.content || []).filter((b) => b.type === "text").map((b) => b.text).join("");
+    setIaBusy(false);
+    let out = null;
+    try {
+      const a = txt.indexOf("{"), b = txt.lastIndexOf("}");
+      if (a >= 0 && b > a) out = limpiarIA(JSON.parse(txt.slice(a, b + 1)));
+    } catch { out = null; }
+    if (!out) { setIaMsg(txt.trim().slice(0, 140) || t("w.aiNotUnderstood")); return; }
+    snap();
+    setTokens(out.tokens);
+    setShapes(out.shapes);
+    setDraft(null); setTool("move");
+    setIaTexto(""); setIaMsg(t("w.aiDone"));
   };
   const moverPlay = (id, paso) => setPlays((ps) => {
     const i = ps.findIndex((x) => x.id === id);
@@ -7308,6 +7456,33 @@ function Whiteboard({ AC, lang, teamId, teamRec, isF7, pendingExId, onConsumePen
             </div>
             );
           }}
+        </WbMenu>
+
+        {/* Retocar la pizarra hablándole en cristiano. Va antes de Jugadas
+            porque se usa mientras se dibuja, no al guardar. */}
+        <WbMenu label={t("w.aiHelp")} icon="✦" AC={AC}>
+          <div className="p-2 w-[min(88vw,380px)]">
+            {DEMO_MODE ? (
+              <div className="text-[11px] leading-relaxed" style={{ color: C.dim }}>{t("w.aiDemoOff")}</div>
+            ) : (
+              <>
+                <div className="text-[10px] font-display uppercase tracking-widest mb-1" style={{ color: C.dim }}>{t("w.tellChange")}</div>
+                <textarea value={iaTexto} onChange={(e) => setIaTexto(e.target.value)} rows={3}
+                  placeholder={t("w.aiChangePh")}
+                  className="w-full text-xs px-2 py-1.5 rounded-lg border bg-transparent resize-none"
+                  style={{ borderColor: C.line, color: C.chalk }} />
+                <button onClick={pedirIA} disabled={!iaTexto.trim() || iaBusy}
+                  className="w-full mt-2 h-8 rounded-lg text-xs font-display uppercase tracking-wide font-semibold disabled:opacity-40"
+                  style={{ background: AC, color: C.sobre }}>
+                  {iaBusy ? t("w.thinking") : t("w.applyToBoard")}
+                </button>
+                {iaMsg && <div className="text-[11px] mt-2" style={{ color: iaMsg.startsWith("✓") ? C.green : C.dim }}>{iaMsg}</div>}
+                <div className="text-[10px] mt-2 leading-snug" style={{ color: C.dim }}>
+                  {t("w.aiHint")}
+                </div>
+              </>
+            )}
+          </div>
         </WbMenu>
 
         <WbMenu label={t("w.plays")} icon="💾" count={plays.length} AC={AC}>
@@ -8106,6 +8281,30 @@ const parseCSV = (txt, startId) => {
   out.forEach((p) => { if (!p.d) { while (used.has(next)) next++; p.d = next; used.add(next); } });
   return out;
 };
+
+/* ---------- IA: función Netlify, nunca directo desde el navegador ---------- */
+/* Habla SOLO con la función de Netlify: la clave de Anthropic vive allí y el
+   navegador no la ve nunca. Si la función falla, cada motivo tiene su frase
+   en vez de un "…" mudo. Nunca se llama en modo demo (ver DEMO_MODE): es una
+   llamada real y de pago, y la demo es pública y anónima. */
+async function coachRequest(system, messages, maxTokens) {
+  let r;
+  try {
+    r = await cbFetch("/.netlify/functions/coach", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ system, messages, ...(maxTokens ? { maxTokens } : {}) }),
+    });
+  } catch {
+    return { content: [{ type: "text", text: "No hay conexión con el asistente. Comprueba tu conexión y vuelve a intentarlo." }] };
+  }
+  if (r.status === 401) {
+    return { content: [{ type: "text", text: "Tu sesión ha caducado. Vuelve a entrar y podrás seguir preguntando." }] };
+  }
+  if (!r.ok) {
+    return { content: [{ type: "text", text: "El asistente no ha podido responder. Vuelve a intentarlo en un minuto." }] };
+  }
+  return await r.json().catch(() => ({ content: [{ type: "text", text: "Respuesta ilegible del asistente. Vuelve a intentarlo." }] }));
+}
 
 /* ---------------- Generador de vídeo 5 s (canvas → webm) ---------------- */
 async function makePresentationVideo(player, club, teamName, accent) {
@@ -17430,6 +17629,50 @@ export default function App() {
     return fixtures.filter((f) => (f.date || "").startsWith(prefijo)).sort((a, b) => (a.date < b.date ? -1 : 1));
   };
 
+  /* ---- Sesión de 1 hora propuesta por la IA ----
+     A partir de los pilares marcados ese mes (y el objetivo concreto, si lo
+     hay), le pide al asistente una sesión completa de 60 minutos en bloques,
+     lista para mandar a Entrenamiento -no una sugerencia suelta de un
+     ejercicio, sino la sesión entera ya montada.
+     No en la demo: llamada real y de pago, sin cuenta que la limite. */
+  const [iaSesionBusy, setIaSesionBusy] = useState(null);
+  const [iaSesiones, setIaSesiones] = useState({});
+  const [iaSesionMsg, setIaSesionMsg] = useState({});
+  const [iaSesionEnviada, setIaSesionEnviada] = useState({});
+  const generarSesionIA = async (mesKey) => {
+    const d = plan[mesKey] || { pilares: [], objetivo: "" };
+    if (!d.pilares.length || iaSesionBusy) return;
+    if (session?.email === "demo") { setIaSesionMsg((m) => ({ ...m, [mesKey]: t("se.aiDemoOff") })); return; }
+    setIaSesionBusy(mesKey);
+    setIaSesionMsg((m) => ({ ...m, [mesKey]: "" }));
+    setIaSesionEnviada((m) => ({ ...m, [mesKey]: false }));
+    const nombresPilares = d.pilares.map((k) => (PILARES.find((p) => p.k === k)?.name[lang] || k)).join(", ");
+    const partidos = partidosDelMes(mesKey);
+    const cargaPartidos = partidos.length > 0
+      ? `Ese mes hay ${partidos.length} partido(s) programado(s) (${partidos.map((f) => f.date).join(", ")}); ten en cuenta la carga de partidos al dosificar la intensidad física.`
+      : "Ese mes no hay partidos programados en el calendario.";
+    const system = `Eres el asistente de un entrenador de fútbol base (categoría: ${session?.team?.name || session?.currentCategory || "fútbol base"}). Genera UNA sesión de entrenamiento de 60 minutos EN TOTAL, dividida en bloques (empieza por calentamiento, sigue con el trabajo principal y termina con vuelta a la calma), centrada en: ${nombresPilares}.${d.objetivo ? ` Objetivo concreto del mes: "${d.objetivo}".` : ""} ${cargaPartidos}
+Devuelve SOLO un objeto JSON, sin explicación ni markdown, con esta forma exacta:
+{"blocks": [{"name": "nombre corto del bloque o ejercicio", "dur": minutos_entero, "materials": ["material1", "material2"]}]}
+La suma de todos los "dur" debe ser exactamente 60. Usa nombres de bloque en ${lang === "es" ? "español" : lang === "en" ? "inglés" : lang === "fr" ? "francés" : lang === "de" ? "alemán" : "portugués"}.`;
+    const data = await coachRequest(system, [{ role: "user", content: "Genera la sesión." }], 1200);
+    const txt = (data?.content || []).filter((b) => b.type === "text").map((b) => b.text).join("");
+    let out = null;
+    try {
+      const a = txt.indexOf("{"), b = txt.lastIndexOf("}");
+      if (a >= 0 && b > a) out = JSON.parse(txt.slice(a, b + 1));
+    } catch { out = null; }
+    setIaSesionBusy(null);
+    if (!out?.blocks?.length) { setIaSesionMsg((m) => ({ ...m, [mesKey]: t("se.sessionError") })); return; }
+    setIaSesiones((m) => ({ ...m, [mesKey]: out.blocks }));
+  };
+  const enviarSesionAEntrenamiento = (mesKey) => {
+    const blocks = iaSesiones[mesKey];
+    if (!blocks) return;
+    blocks.forEach((b) => addTrainBlock({ name: b.name, dur: Number(b.dur) || 0, materials: Array.isArray(b.materials) ? b.materials : [] }));
+    if (plan[mesKey]?.objetivo) setTrainMeta((m) => ({ ...m, objetivo: m.objetivo || plan[mesKey].objetivo }));
+    setIaSesionEnviada((m) => ({ ...m, [mesKey]: true }));
+  };
 
   /* ================= CARGAS FÍSICAS DE PRETEMPORADA =================
      El semáforo diario del plan físico, jugador a jugador. La idea del plan es
@@ -18043,6 +18286,8 @@ export default function App() {
             const d = plan[m.k] || { pilares: [], objetivo: "" };
             const nombreMes = mesLargo(anioDelMes(m.k), m.k - 1, lang);
             const partidos = partidosDelMes(m.k);
+            const sesionIA = iaSesiones[m.k];
+            const enviando = iaSesionBusy === m.k;
             return (
               <div key={m.k} className="rounded-lg border p-3" style={{ borderColor: d.pilares.length ? C.line : "rgba(54,69,79,0.07)", background: C.panel2 }}>
                 <div className="flex flex-wrap items-center gap-2 mb-1">
@@ -18110,6 +18355,49 @@ export default function App() {
                     </div>
                   );
                 })()}
+                {/* Sesión de 1h montada por la IA a partir de los pilares y el
+                    objetivo de ese mes -no ejercicios sueltos, la sesión
+                    entera lista para mandar a Entrenamiento. */}
+                {d.pilares.length > 0 && can("ai") && (
+                  <div className="mt-3 pt-3 border-t" style={{ borderColor: C.line }}>
+                    {!sesionIA ? (
+                      <button onClick={() => generarSesionIA(m.k)} disabled={enviando}
+                        className="text-xs px-3 py-2 rounded-lg border font-display uppercase tracking-wide disabled:opacity-50"
+                        style={{ borderColor: AC, color: AC }}>
+                        {enviando ? t("se.generating") : t("se.genSession")}
+                      </button>
+                    ) : (
+                      <div>
+                        <div className="text-[10px] font-display uppercase tracking-widest mb-1.5" style={{ color: AC }}>
+                          {t("se.aiSessionTitle")} · {sesionIA.reduce((s, b) => s + (Number(b.dur) || 0), 0)}′
+                        </div>
+                        <div className="space-y-1">
+                          {sesionIA.map((b, i) => (
+                            <div key={i} className="flex items-center justify-between text-xs px-2.5 py-1.5 rounded-lg border" style={{ borderColor: C.line, background: C.panel }}>
+                              <span style={{ color: C.chalk }}>{b.name}</span>
+                              <span className="tabular-nums shrink-0 ml-2" style={{ color: C.dim }}>{b.dur}′</span>
+                            </div>
+                          ))}
+                        </div>
+                        <div className="flex items-center gap-2 mt-2">
+                          <button onClick={() => generarSesionIA(m.k)} disabled={enviando}
+                            className="text-xs px-2.5 py-1.5 rounded-lg border disabled:opacity-50" style={{ borderColor: C.line, color: C.chalk }}>
+                            {enviando ? t("se.generating") : `↻ ${t("se.genSession").replace("✦ ", "")}`}
+                          </button>
+                          {!iaSesionEnviada[m.k] ? (
+                            <button onClick={() => enviarSesionAEntrenamiento(m.k)}
+                              className="text-xs px-2.5 py-1.5 rounded-lg font-semibold" style={{ background: AC, color: C.sobre }}>
+                              {t("se.sendToTraining")}
+                            </button>
+                          ) : (
+                            <span className="text-xs" style={{ color: C.green }}>{t("se.sentToTraining")}</span>
+                          )}
+                        </div>
+                      </div>
+                    )}
+                    {iaSesionMsg[m.k] && <div className="text-xs mt-1.5" style={{ color: C.red }}>{iaSesionMsg[m.k]}</div>}
+                  </div>
+                )}
               </div>
             );
           })}
