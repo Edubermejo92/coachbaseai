@@ -9689,6 +9689,9 @@ export default function App() {
     return () => { alive = false; };
   }, [session]); // eslint-disable-line
   const [lineup, setLineup] = useState(LINEUP_INIT);
+  const [sysCode, setSysCode] = useState("4-3-3");
+  const [sysCustom, setSysCustom] = useState("");
+  const [slotPos, setSlotPos] = useState(SLOTS_433);
   /* Alineación en la nube: se trae al entrar en un equipo real -pisa el
      valor de arranque, que es un ejemplo genérico sin relación con la
      plantilla de nadie- y cada cambio se sube solo, con el mismo patrón que
@@ -9707,7 +9710,24 @@ export default function App() {
       if (!vivo || !d?.alineacion) return;
       try {
         const remoto = JSON.parse(d.alineacion);
-        if (remoto && typeof remoto === "object") { alineacionCargaNubeRef.current = true; setLineup(remoto); }
+        if (!remoto || typeof remoto !== "object") return;
+        alineacionCargaNubeRef.current = true;
+        /* El sistema (forma del campo) viaja junto a la alineación desde
+           ahora: antes solo se guardaba quién iba en cada puesto, y cada
+           dispositivo enseñaba esos jugadores sobre SU propio sistema local
+           -por defecto 4-3-3-, así que si el equipo jugaba en 3-5-2 el resto
+           del cuerpo técnico veía huecos vacíos en vez del once real. Los
+           datos guardados antes de este cambio no llevan "sistema": se
+           siguen leyendo igual, sin tocar el sistema local. */
+        if (remoto.lineup && typeof remoto.lineup === "object") {
+          if (remoto.sysCode && remoto.sysCode !== sysCode) {
+            setSlotPos(buildSlots(remoto.sysCode));
+            setSysCode(remoto.sysCode);
+          }
+          setLineup(remoto.lineup);
+        } else {
+          setLineup(remoto);
+        }
       } catch { /* json roto en Airtable: se ignora */ }
     })();
     return () => { vivo = false; };
@@ -9716,9 +9736,9 @@ export default function App() {
     const rec = session?.team?.rec;
     if (!rec || session?.email === "demo" || esSoloLectura) return;
     if (alineacionCargaNubeRef.current) { alineacionCargaNubeRef.current = false; return; }
-    const idT = setTimeout(() => { airAlineacionGuardar(rec, lineup); }, 700);
+    const idT = setTimeout(() => { airAlineacionGuardar(rec, { lineup, sysCode }); }, 700);
     return () => clearTimeout(idT);
-  }, [lineup]); // eslint-disable-line
+  }, [lineup, sysCode]); // eslint-disable-line
   /* Borrador del segundo entrenador: antes cada toque llamaba a
      updateLineupWithProposal y mandaba UNA propuesta por movimiento —media
      docena de toques, media docena de propuestas idénticas esperando turno,
@@ -9738,9 +9758,6 @@ export default function App() {
       setLineup(updater);
     }
   };
-  const [sysCode, setSysCode] = useState("4-3-3");
-  const [sysCustom, setSysCustom] = useState("");
-  const [slotPos, setSlotPos] = useState(SLOTS_433);
   /* Al cambiar de sistema se regeneran las posiciones y se reasignan los
      jugadores por orden, para no perder la alineación ya montada. */
   const applySystem = (code) => {
