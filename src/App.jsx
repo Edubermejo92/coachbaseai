@@ -9674,8 +9674,50 @@ export default function App() {
      subir lo que se acaba de bajar. Así la familia -que solo lee, nunca
      escribe aquí- ve desde otro dispositivo la misma alineación que ha
      puesto el cuerpo técnico, y el cuerpo técnico deja de perderla al
-     recargar la página. */
+     recargar la página.
+     Por dentro, `lineup` guarda el ID local de cada jugador (su puesto en la
+     lista que se acaba de traer de Airtable: 1, 2, 3...), no el ID real de su
+     ficha -ese vive en `p.rec`-. Ese local sirve perfectamente DENTRO de una
+     misma sesión, pero es la posición en un array que puede no coincidir la
+     próxima vez que alguien entre -un jugador nuevo dado de alta en medio del
+     listado corre la numeración de todos los que van detrás-. Guardarlo tal
+     cual en la nube era la causa de que la alineación de otro dispositivo, o
+     de otro día, apuntara a un jugador distinto del que se había puesto, o a
+     ninguno. Lo que viaja a la nube es siempre `p.rec` -estable, no cambia
+     nunca-, y se traduce a ID local nada más bajarlo, aquí mismo. */
   const alineacionCargaNubeRef = useRef(false);
+  const playersRef = useRef(players);
+  useEffect(() => { playersRef.current = players; }, [players]);
+  const aplicarLineupDeNube = (remoto) => {
+    const crudo = remoto?.lineup && typeof remoto.lineup === "object" ? remoto.lineup : remoto;
+    if (!crudo || typeof crudo !== "object") return false;
+    const lista = playersRef.current;
+    if (!lista.length) return false;
+    const traducido = {};
+    Object.entries(crudo).forEach(([slot, val]) => {
+      /* Compatibilidad con lo guardado antes de este cambio: si el valor no
+         parece un ID de Airtable (no empieza por "rec"), era el ID local de
+         entonces y se busca por ahí en vez de por `rec`. */
+      const p = typeof val === "string" && val.startsWith("rec")
+        ? lista.find((x) => x.rec === val)
+        : lista.find((x) => x.id === val);
+      if (p) traducido[slot] = p.id;
+    });
+    alineacionCargaNubeRef.current = true;
+    /* El sistema (forma del campo) viaja junto a la alineación desde ahora:
+       antes solo se guardaba quién iba en cada puesto, y cada dispositivo
+       enseñaba esos jugadores sobre SU propio sistema local -por defecto
+       4-3-3-, así que si el equipo jugaba en 3-5-2 el resto del cuerpo
+       técnico veía huecos vacíos en vez del once real. */
+    if (remoto?.sysCode) { setSlotPos(buildSlots(remoto.sysCode)); setSysCode(remoto.sysCode); }
+    setLineup(traducido);
+    return true;
+  };
+  /* Si la alineación llega de la nube antes de que la plantilla haya
+     terminado de cargar -las dos peticiones salen a la vez, y no hay
+     garantía de en qué orden responden-, se guarda aquí y se reintenta en
+     cuanto `players` deje de estar vacío. */
+  const lineupCloudPendienteRef = useRef(null);
   useEffect(() => {
     const rec = session?.team?.rec;
     if (!rec || session?.email === "demo") return;
@@ -9686,32 +9728,27 @@ export default function App() {
       try {
         const remoto = JSON.parse(d.alineacion);
         if (!remoto || typeof remoto !== "object") return;
-        alineacionCargaNubeRef.current = true;
-        /* El sistema (forma del campo) viaja junto a la alineación desde
-           ahora: antes solo se guardaba quién iba en cada puesto, y cada
-           dispositivo enseñaba esos jugadores sobre SU propio sistema local
-           -por defecto 4-3-3-, así que si el equipo jugaba en 3-5-2 el resto
-           del cuerpo técnico veía huecos vacíos en vez del once real. Los
-           datos guardados antes de este cambio no llevan "sistema": se
-           siguen leyendo igual, sin tocar el sistema local. */
-        if (remoto.lineup && typeof remoto.lineup === "object") {
-          if (remoto.sysCode && remoto.sysCode !== sysCode) {
-            setSlotPos(buildSlots(remoto.sysCode));
-            setSysCode(remoto.sysCode);
-          }
-          setLineup(remoto.lineup);
-        } else {
-          setLineup(remoto);
-        }
+        if (!aplicarLineupDeNube(remoto)) lineupCloudPendienteRef.current = remoto;
       } catch { /* json roto en Airtable: se ignora */ }
     })();
     return () => { vivo = false; };
   }, [session?.team?.rec]); // eslint-disable-line
   useEffect(() => {
+    if (!lineupCloudPendienteRef.current) return;
+    if (aplicarLineupDeNube(lineupCloudPendienteRef.current)) lineupCloudPendienteRef.current = null;
+  }, [players]); // eslint-disable-line
+  useEffect(() => {
     const rec = session?.team?.rec;
     if (!rec || session?.email === "demo" || esSoloLectura) return;
     if (alineacionCargaNubeRef.current) { alineacionCargaNubeRef.current = false; return; }
-    const idT = setTimeout(() => { airAlineacionGuardar(rec, { lineup, sysCode }); }, 700);
+    const idT = setTimeout(() => {
+      const lineupNube = {};
+      Object.entries(lineup).forEach(([slot, id]) => {
+        const p = players.find((x) => x.id === id);
+        if (p?.rec) lineupNube[slot] = p.rec;
+      });
+      airAlineacionGuardar(rec, { lineup: lineupNube, sysCode });
+    }, 700);
     return () => clearTimeout(idT);
   }, [lineup, sysCode]); // eslint-disable-line
   /* Borrador del segundo entrenador: antes cada toque llamaba a
