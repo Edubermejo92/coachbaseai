@@ -138,7 +138,7 @@ const CLAVE_CONFIG_GLOBAL = "global";
    de un interruptor que ella misma gestiona. */
 const TABS_CONFIGURABLES = [
   "inicio", "parte", "equipos", "equipo", "jugadores", "calendario", "convocatoria",
-  "alineacion", "partido", "analisis", "temporada", "entrenamiento", "lesiones", "ejercicios", "pizarra",
+  "alineacion", "partido", "temporada", "entrenamiento", "lesiones", "ejercicios", "pizarra",
   "asistencia", "disciplina", "normativa", "estadisticas", "usuarios", "material", "premium",
 ];
 /* "inicio" y "premium" no se pueden quitar del gratis: sin inicio no hay
@@ -193,6 +193,15 @@ const EQ = {
      quien la montara, y desaparecía al recargar-, así que ni el propio
      cuerpo técnico la recuperaba entre dispositivos. */
   alineacion: "fld0ShmGEK97QIhr8",
+  /* Pase de lista de Disciplina, en JSON y por el mismo motivo que las
+     cargas, la asistencia y la alineación: un documento por equipo. Antes
+     esto solo se guardaba en el localStorage del navegador de quien pasaba
+     lista -junto con las incidencias y las firmas-, así que el delegado que
+     marcaba un retraso desde su móvil no lo veía el entrenador desde el
+     suyo. No confundir con "asistencia": aquella es un registro sin
+     consecuencias; este alimenta las incidencias automáticas por retraso o
+     falta sin avisar. */
+  paseLista: "fldugauQwyDXX4IrG",
 };
 /* Único campo de Jugadores al que se accede por ID en vez de por NOMBRE: es
    un adjunto (uploadAttachment exige el id del campo, no su nombre) y la
@@ -1064,6 +1073,41 @@ export default async (req: Request) => {
         if (!r.ok) {
           const err = await r.text().catch(() => "");
           console.error(`[asistencia] Airtable ${r.status}: ${err.slice(0, 300)}`);
+          return j({ ok: false, reason: "airtable" }, 400);
+        }
+        return j({ ok: true });
+      }
+      return j({ error: "Petición no soportada" }, 400);
+    }
+
+    /* ============ PASE DE LISTA (Disciplina) ============
+       GET  ?res=pase-lista&team=recX -> el JSON guardado
+       POST ?res=pase-lista&team=recX { paseLista }
+       Mismas reglas que cargas, asistencia y alineación: un documento por
+       equipo, lo lee el cuerpo técnico y lo escribe quien pasa lista (el
+       propio equipo, delegado incluido). Antes esto solo vivía en el
+       localStorage de quien marcaba las faltas y retrasos del día. */
+    if (res === "pase-lista") {
+      const team = url.searchParams.get("team") || "";
+      if (!team) return j({ error: "falta_equipo" }, 400);
+      if (req.method === "GET") {
+        const r = await fetch(`${table(T_EQUIPOS)}/${team}?returnFieldsByFieldId=true`, { headers: H });
+        if (!r.ok) return j({ error: "no_encontrado" }, 404);
+        const d = await r.json().catch(() => ({}));
+        return j({ paseLista: d?.fields?.[EQ.paseLista] || "" });
+      }
+      if (req.method === "POST") {
+        const suyo = String(sesion?.equipo || "") === team;
+        const puede = suyo || dirigeElClub(sesion);
+        if (!puede) return j({ ok: false, reason: "no_autorizado" }, 403);
+        const b = await req.json();
+        const r = await fetch(`${table(T_EQUIPOS)}/${team}`, {
+          method: "PATCH", headers: H,
+          body: JSON.stringify({ fields: { [EQ.paseLista]: String(b.paseLista || "") }, typecast: true }),
+        });
+        if (!r.ok) {
+          const err = await r.text().catch(() => "");
+          console.error(`[pase-lista] Airtable ${r.status}: ${err.slice(0, 300)}`);
           return j({ ok: false, reason: "airtable" }, 400);
         }
         return j({ ok: true });
