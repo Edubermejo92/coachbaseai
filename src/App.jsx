@@ -474,7 +474,6 @@ const DICT = {
     "pf.needName": "El jugador necesita un nombre.",
     "ln.openProfile": "Abrir ficha",
     "se.tabPre": "Pretemporada",
-    "se.tabCargas": "Cargas",
     "se.tabSeason": "Temporada",
     "pt.exercises": "Ejercicios recomendados esta semana",
     "pt.noDay": "Sin día",
@@ -539,7 +538,7 @@ const DICT = {
     "cf.adapted": "Adaptada",
     "cf.pain": "Molestia post",
     "cf.painPh": "Molestia post: zona (opcional)", "cf.painHistTitle": "Historial de molestias", "cf.painHistHint": "Las notas de \"Molestia post\" que ha ido dejando cada jugador al cerrar el día, de la más reciente a la más antigua.",
-    "cf.title": "Cargas físicas · Pretemporada",
+    "cf.title": "Cargas físicas",
     "cf.hint": "Semáforo antes de entrenar y carga que puede asumir cada jugador. Los verdes no hace falta reportarlos uno a uno; los amarillos y los rojos sí, antes de empezar la sesión.",
     "cf.verde": "Verde",
     "cf.amarillo": "Amarillo",
@@ -1038,7 +1037,6 @@ const DICT = {
     "pf.needName": "The player needs a name.",
     "ln.openProfile": "Open player",
     "se.tabPre": "Pre-season",
-    "se.tabCargas": "Load",
     "se.tabSeason": "Season",
     "pt.exercises": "Recommended drills this week",
     "pt.noDay": "No day",
@@ -1103,7 +1101,7 @@ const DICT = {
     "cf.adapted": "Adapted",
     "cf.pain": "Post-session pain",
     "cf.painPh": "Post-session pain: area (optional)", "cf.painHistTitle": "Pain history", "cf.painHistHint": "The \"post-session pain\" notes each player has left when closing the day, most recent first.",
-    "cf.title": "Physical load · Pre-season",
+    "cf.title": "Physical load",
     "cf.hint": "Traffic light before training and how much load each player can take. Greens need no one-by-one report; yellows and reds do, before the session starts.",
     "cf.verde": "Green",
     "cf.amarillo": "Amber",
@@ -1619,7 +1617,6 @@ const DICT = {
     "pf.needName": "Le joueur a besoin d'un nom.",
     "ln.openProfile": "Ouvrir la fiche",
     "se.tabPre": "Présaison",
-    "se.tabCargas": "Charge",
     "se.tabSeason": "Saison",
     "pt.exercises": "Exercices conseillés cette semaine",
     "pt.noDay": "Sans jour",
@@ -1684,7 +1681,7 @@ const DICT = {
     "cf.adapted": "Adaptée",
     "cf.pain": "Gêne après séance",
     "cf.painPh": "Gêne après séance : zone (facultatif)", "cf.painHistTitle": "Historique des gênes", "cf.painHistHint": "Les notes de \"gêne après séance\" laissées par chaque joueur à la clôture de la journée, de la plus récente à la plus ancienne.",
-    "cf.title": "Charges physiques · Présaison",
+    "cf.title": "Charges physiques",
     "cf.hint": "Feu tricolore avant l'entraînement et charge que chaque joueur peut assumer. Les verts n'ont pas à être signalés un par un ; les jaunes et les rouges si, avant de commencer.",
     "cf.verde": "Vert",
     "cf.amarillo": "Orange",
@@ -2274,7 +2271,6 @@ const DICT = {
     "pf.needName": "Der Spieler braucht einen Namen.",
     "ln.openProfile": "Spielerprofil öffnen",
     "se.tabPre": "Vorbereitung",
-    "se.tabCargas": "Belastung",
     "se.tabSeason": "Saison",
     "pt.exercises": "Empfohlene Übungen diese Woche",
     "pt.noDay": "Ohne Tag",
@@ -2339,7 +2335,7 @@ const DICT = {
     "cf.adapted": "Angepasst",
     "cf.pain": "Beschwerden danach",
     "cf.painPh": "Beschwerden danach: Bereich (optional)", "cf.painHistTitle": "Beschwerdenverlauf", "cf.painHistHint": "Die Notizen zu \"Beschwerden danach\", die jeder Spieler beim Abschluss des Tages hinterlassen hat, neueste zuerst.",
-    "cf.title": "Körperliche Belastung · Vorbereitung",
+    "cf.title": "Körperliche Belastung",
     "cf.hint": "Ampel vor dem Training und wie viel Belastung jeder Spieler verträgt. Grüne müssen nicht einzeln gemeldet werden, Gelbe und Rote schon – vor dem Start der Einheit.",
     "cf.verde": "Grün",
     "cf.amarillo": "Gelb",
@@ -2928,7 +2924,6 @@ const DICT = {
     "pf.needName": "O jogador precisa de um nome.",
     "ln.openProfile": "Abrir ficha",
     "se.tabPre": "Pré-época",
-    "se.tabCargas": "Cargas",
     "se.tabSeason": "Época",
     "pt.exercises": "Exercícios recomendados esta semana",
     "pt.noDay": "Sem dia",
@@ -2993,7 +2988,7 @@ const DICT = {
     "cf.adapted": "Adaptada",
     "cf.pain": "Desconforto pós",
     "cf.painPh": "Desconforto pós: zona (opcional)", "cf.painHistTitle": "Histórico de desconfortos", "cf.painHistHint": "As notas de \"desconforto pós\" que cada jogador foi deixando ao fechar o dia, da mais recente à mais antiga.",
-    "cf.title": "Cargas físicas · Pré-época",
+    "cf.title": "Cargas físicas",
     "cf.hint": "Semáforo antes de treinar e carga que cada jogador pode assumir. Os verdes não é preciso reportar um a um; os amarelos e vermelhos sim, antes de começar a sessão.",
     "cf.verde": "Verde",
     "cf.amarillo": "Amarelo",
@@ -3438,17 +3433,17 @@ const ROLES = {
     perms: ["editSquad", "editLineup", "events", "editTraining", "viewStats", "discipline", "editDiscipline", "viewDocs", "editCal", "cargas", "parte"] },
   delegado: { label: "Delegado", color: "#36454F", icon: "▣",
     desc: "Logística del equipo: acta del partido, disciplina y normativa.",
-    /* "temporada" está aquí solo por las cargas físicas de pretemporada: en el
-       plan físico el delegado es quien pasa el semáforo diario y recoge el RPE,
-       así que necesita entrar. La planificación de pilares por meses de esa
-       misma pestaña sigue siendo del cuerpo técnico y a él no se le enseña.
-       "lesiones" sí es suya de verdad: el delegado es a menudo quien primero
-       ve que alguien se ha hecho daño en el calentamiento.
+    /* "temporada" ya no hace falta: era solo por el semáforo de cargas
+       físicas, que ahora vive en "lesiones" -"lesiones" sí es suya de
+       verdad: el delegado es a menudo quien primero ve que alguien se ha
+       hecho daño en el calentamiento, y ahí pasa también el parte diario de
+       carga-. La planificación de pilares por meses de Temporada sigue
+       siendo del cuerpo técnico y a él nunca se le enseñó.
        "alineacion" también: es quien está en el banquillo con la tablet
        llevando el acta, y los cambios del partido salen de ahí. Sin esta
        pestaña el botón de Alineación de Inicio no le salía y, dentro de Modo
        partido, el once y los cambios se le quedaban en gris. */
-    tabs: ["inicio", "jugadores", "parte", "alineacion", "lesiones", "convocatoria", "calendario", "partido", "temporada", "asistencia", "disciplina", "normativa", "material", "premium"],
+    tabs: ["inicio", "jugadores", "parte", "alineacion", "lesiones", "convocatoria", "calendario", "partido", "asistencia", "disciplina", "normativa", "material", "premium"],
     perms: ["editSquad", "editLineup", "events", "discipline", "editDiscipline", "viewDocs", "manageDocs", "editCal", "cargas", "parte"] },
   master: { label: "Master · EBLDigital", color: "#36454F", icon: "★",
     desc: "Administración total: crea los equipos oficiales y da de alta a cualquiera.",
@@ -11265,13 +11260,13 @@ export default function App() {
         )}
 
         {/* Cómo llega hoy, según el parte de cargas. Solo lectura: el parte se
-            pasa en Temporada y duplicar aquí la edición sería tener dos sitios
+            pasa en Lesiones y duplicar aquí la edición sería tener dos sitios
             donde escribir lo mismo. */}
         {isPro && can("cargas") && (() => {
           const c = cargaDe(profile.id);
           const col = (SEMAFORO.find((x) => x.k === c.estado) || SEMAFORO[0]).color;
           return (
-            <button onClick={() => { setProfileId(null); setTab("temporada"); }}
+            <button onClick={() => { setProfileId(null); setTab("lesiones"); }}
               className="mt-3 w-full rounded-lg border p-2.5 flex items-center gap-3 text-left" style={{ borderColor: C.line, background: C.panel2 }}>
               <span className="w-3 h-3 rounded-full shrink-0" style={{ background: col }} />
               <span className="text-sm flex-1" style={{ color: C.chalk }}>
@@ -16029,6 +16024,7 @@ export default function App() {
     const lista = players.slice().sort((a, b) => a.d - b.d);
     const lesionados = lista.filter((p) => p.st === "lesionado").length;
     return (
+      <div className="space-y-4">
       <Card title={`${t("lz.title")}`}>
         <div className="text-xs mb-3 leading-relaxed" style={{ color: C.dim }}>{t("lz.hint")}</div>
         {can("editSquad") && (
@@ -16066,6 +16062,12 @@ export default function App() {
           </>
         )}
       </Card>
+      {/* El semáforo de carga muscular vivía en Temporada, lejos de la lista
+          de lesionados con la que en realidad se consulta a la vez: antes de
+          fichar a alguien de rojo para el once hace falta mirar las dos
+          cosas juntas. Ahora comparten pantalla -mismo dato, un solo sitio-. */}
+      {renderCargas()}
+      </div>
     );
   };
 
@@ -16631,7 +16633,7 @@ export default function App() {
                   <td style={{ color: C.dim }}>{posDe(p.id) || "—"}</td>
                   <td><button onClick={() => cycleStatus(p.id)} className="flex items-center hover:opacity-80" style={{ cursor: can("editSquad") ? "pointer" : "default" }}><Dot st={p.st} />{p.st}</button></td>
                   {/* Resumen de la carga física del día: el mismo semáforo y el
-                      mismo porcentaje que se rellenan en Temporada. Aquí solo se
+                      mismo porcentaje que se rellenan en Lesiones. Aquí solo se
                       consulta —se toca para ir a cambiarlo—, porque esta pantalla
                       es la foto de la plantilla y el parte se pasa en la suya. */}
                   {verCargas && (
@@ -16641,7 +16643,7 @@ export default function App() {
                           todo el margen. El color es el dato que se lee de un
                           vistazo; la cifra cabe a partir de tablet. El py-1
                           sube el botón a los 24 px mínimos para el dedo. */}
-                      <button onClick={() => setTab("temporada")} title={`${t("cf.load")} ${c.carga}%${c.nota ? ` · ${c.nota}` : ""}`}
+                      <button onClick={() => setTab("lesiones")} title={`${t("cf.load")} ${c.carga}%${c.nota ? ` · ${c.nota}` : ""}`}
                         className="flex items-center gap-2 py-1 hover:opacity-80">
                         <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: colC }} />
                         <span className="tabular-nums hidden sm:inline" style={{ color: C.chalk }}>{c.carga}%</span>
@@ -19897,49 +19899,25 @@ export default function App() {
           {tab === "usuarios" && (verApartado("viewUsers") || verApartado("createUsers")) && renderUsers()}
           {tab === "pizarra" && <Whiteboard AC={AC} lang={lang} squad={players} teamId={session.team?.id} teamRec={session.team?.rec} isF7={!!session.team?.f7} canSavePlays={isPro} onPro={proAlert} pendingExId={pendingExId} onConsumePending={() => setPendingExId(null)} pendingPlayId={pendingPlayId} onConsumePlay={() => setPendingPlayId(null)} />}
           {tab === "ejercicios" && verApartado("editTraining") && renderExercises()}
-          {/* Dos apartados con dueños distintos: las cargas físicas las lleva
-              quien pasa el semáforo a diario (delegado incluido) y la
-              planificación por meses el cuerpo técnico que entrena. Por eso la
-              pestaña se abre con cualquiera de los dos permisos y cada bloque
-              se enseña solo a quien le toca. */}
-          {tab === "temporada" && (verApartado("editTraining") || verApartado("cargas")) && (() => {
-            /* Antes "Pretemporada" mezclaba en la misma columna dos cosas que no
-               se tocan al mismo ritmo ni las mismas personas: la propuesta de
-               sesiones (la mira el cuerpo técnico una vez por semana) y el
-               control de carga de cada jugador (lo rellena quien esté en el
-               banquillo, a diario, incluido el delegado). Iban juntas y para
-               llegar a la plantilla había que bajar media pantalla de plan.
-               Ahora son tres pestañas separadas. El delegado solo lleva las
-               cargas: no ve el plan ni la planificación de los diez meses, así
-               que ni siquiera se le enseña el conmutador. */
-            const puedePlan = verApartado("editTraining");
-            const sub = puedePlan ? tempSub : "cargas";
-            return (
-              <div className="space-y-4">
-                {puedePlan && (
-                  /* "PRETEMPORADA" no cabe repartida a tercios en un móvil
-                     estrecho -es una palabra suelta, no puede partirse en dos
-                     líneas-, y flex-1 no encoge un botón por debajo del ancho
-                     de su propio texto: el conmutador se salía de la pantalla
-                     y, al no tener scroll propio, se llevaba por delante el
-                     resto de la página (todo el cuerpo quedaba desplazado en
-                     horizontal, cabecera incluida). Ahora cada botón mide lo
-                     que necesita su texto, y si los tres no caben, se
-                     desliza dentro de este conmutador -nunca fuera de él-. */
-                  <div className="flex gap-1 p-1 rounded-lg border overflow-x-auto" style={{ borderColor: C.line, background: C.panel2 }}>
-                    {[["pre", t("se.tabPre")], ["cargas", t("se.tabCargas")], ["temp", t("se.tabSeason")]].map(([k, lbl]) => (
-                      <button key={k} onClick={() => setTempSub(k)} aria-pressed={sub === k}
-                        className="shrink-0 whitespace-nowrap font-display uppercase tracking-wide text-sm px-4 py-2 rounded-md"
-                        style={sub === k
-                          ? { background: AC, color: C.sobre, fontWeight: 600 }
-                          : { background: "transparent", color: C.dim }}>{lbl}</button>
-                    ))}
-                  </div>
-                )}
-                {sub === "pre" ? renderPretemporada() : sub === "cargas" ? renderCargas() : renderSeason()}
+          {/* Las cargas físicas ya no viven aquí: se fueron a Lesiones, con la
+             lista de lesionados que se consulta a la vez. Esta pestaña queda
+             solo para quien planifica -la propuesta semanal de sesiones y la
+             planificación de los diez meses-, así que se abre con un único
+             permiso y ya no hace falta el conmutador de tres vías. */}
+          {tab === "temporada" && verApartado("editTraining") && (
+            <div className="space-y-4">
+              <div className="flex gap-1 p-1 rounded-lg border overflow-x-auto" style={{ borderColor: C.line, background: C.panel2 }}>
+                {[["pre", t("se.tabPre")], ["temp", t("se.tabSeason")]].map(([k, lbl]) => (
+                  <button key={k} onClick={() => setTempSub(k)} aria-pressed={tempSub === k}
+                    className="shrink-0 whitespace-nowrap font-display uppercase tracking-wide text-sm px-4 py-2 rounded-md"
+                    style={tempSub === k
+                      ? { background: AC, color: C.sobre, fontWeight: 600 }
+                      : { background: "transparent", color: C.dim }}>{lbl}</button>
+                ))}
               </div>
-            );
-          })()}
+              {tempSub === "temp" ? renderSeason() : renderPretemporada()}
+            </div>
+          )}
           {tab === "entrenamiento" && verApartado("editTraining") && renderTraining()}
           {tab === "lesiones" && renderLesiones()}
           {tab === "mihijo" && renderMihijo()}
