@@ -10146,6 +10146,14 @@ export default function App() {
   }, [clubInfo.crest, crest]); // eslint-disable-line
   const [cloudMsg, setCloudMsg] = useState("");
   const teamRec = session?.team?.rec || "";
+  /* Al cambiar de categoría (el club "trabaja con" otra, ver irACategoria)
+     teamRec cambia y este efecto se repite: trae la plantilla y el
+     calendario de la categoría nueva. Antes "if (js.length)" dejaba en
+     pantalla la plantilla de la categoría ANTERIOR cuando la nueva no
+     tenía todavía ningún jugador dado de alta -una plantilla vacía de
+     verdad se leía como "no ha llegado nada, no toco lo que había"-. Ahora
+     cualquier respuesta de la nube (incluida una lista vacía) sustituye lo
+     que hubiera, igual que ya hacía fixtures. */
   useEffect(() => {
     if (!session || !teamRec) return;
     let vivo = true;
@@ -10154,7 +10162,7 @@ export default function App() {
       if (!vivo) return;
       if (js) {
         setCloudOn(true);
-        if (js.length) setPlayers(js.map(jugFromAir));
+        setPlayers(js.map(jugFromAir));
       }
       if (ps) setFixtures(ps.map(partFromAir).sort((a, b) => (a.date < b.date ? -1 : 1)));
     })();
@@ -10208,10 +10216,20 @@ export default function App() {
     if (!session) return;
     try { const raw = localStorage.getItem(calKey); if (raw) setFixtures(JSON.parse(raw) || []); } catch { /* noop */ }
   }, [calKey]); // eslint-disable-line
+  /* Solo depende de `fixtures`, no de `calKey`: al cambiar de categoría,
+     calKey cambia en el mismo instante en que este efecto se dispara, pero
+     `fixtures` todavía es el calendario de la categoría ANTERIOR -el fetch
+     de la nueva no ha llegado-. Si `calKey` fuera dependencia, este efecto
+     escribiría ese calendario viejo bajo la clave de la categoría nueva,
+     contaminando su caché aunque nunca hubiera tenido esos partidos. Con
+     solo `fixtures` como dependencia, el guardado espera a que el
+     calendario realmente cambie -ya sea porque llegó de la nube o porque el
+     usuario lo tocó-, y en ese momento `calKey` (leído del cierre, no como
+     dependencia) ya es el de la categoría correcta. */
   useEffect(() => {
     if (!session) return;
     try { localStorage.setItem(calKey, JSON.stringify(fixtures)); } catch { /* noop */ }
-  }, [fixtures, calKey]); // eslint-disable-line
+  }, [fixtures]); // eslint-disable-line
   /* duración de cada parte + descuento señalado por el árbitro + el sistema
      con el que sale el rival (solo el dibujo: de sus jugadores no sabemos ni
      el nombre, y para el banquillo lo que importa es la forma) */
