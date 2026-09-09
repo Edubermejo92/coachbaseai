@@ -4288,10 +4288,15 @@ const airPaseListaGuardar = async (teamRec, paseLista) => {
 const airAlineacionLeer = async (teamRec) => {
   try { const r = await cbFetch(`${AIR}?res=alineacion&team=${encodeURIComponent(teamRec)}`); if (!r.ok) return null; return await r.json(); } catch { return null; }
 };
-const airAlineacionGuardar = async (teamRec, alineacion) => {
+const airAlineacionGuardar = async (teamRec, alineacion, opts = {}) => {
   try {
     const r = await cbFetch(`${AIR}?res=alineacion&team=${encodeURIComponent(teamRec)}`, {
       method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ alineacion: JSON.stringify(alineacion) }),
+      /* keepalive: para el envío de última hora al cerrar/minimizar la
+         pestaña -ver el flush de más abajo-, donde el navegador puede matar
+         una petición normal a mitad de camino en cuanto el documento
+         desaparece. */
+      keepalive: !!opts.keepalive,
     });
     return await r.json().catch(() => null);
   } catch { return null; }
@@ -10057,20 +10062,49 @@ export default function App() {
     if (!lineupCloudPendienteRef.current) return;
     if (aplicarLineupDeNube(lineupCloudPendienteRef.current)) lineupCloudPendienteRef.current = null;
   }, [players]); // eslint-disable-line
+  /* El guardado en la nube va con un pequeño retraso -para no mandar una
+     petición por cada toque mientras se monta el once-, pero eso deja una
+     ventana de 700 ms en la que, si se cierra la pestaña o se cambia de
+     app justo después del último cambio, ese cambio se pierde: el timeout
+     nunca llega a disparar. `lineupPendienteGuardarRef` guarda lo último
+     por mandar y `lineupTimeoutRef` el temporizador en curso, para que el
+     flush de aquí abajo (visibilitychange/pagehide) pueda adelantarlo y
+     mandarlo ya mismo en vez de perderlo. */
+  const lineupPendienteGuardarRef = useRef(null);
+  const lineupTimeoutRef = useRef(null);
   useEffect(() => {
     const rec = session?.team?.rec;
     if (!rec || session?.email === "demo" || esSoloLectura) return;
     if (alineacionCargaNubeRef.current) { alineacionCargaNubeRef.current = false; return; }
-    const idT = setTimeout(() => {
-      const lineupNube = {};
-      Object.entries(lineup).forEach(([slot, id]) => {
-        const p = players.find((x) => x.id === id);
-        if (p?.rec) lineupNube[slot] = p.rec;
-      });
-      airAlineacionGuardar(rec, { lineup: lineupNube, sysCode });
+    const lineupNube = {};
+    Object.entries(lineup).forEach(([slot, id]) => {
+      const p = players.find((x) => x.id === id);
+      if (p?.rec) lineupNube[slot] = p.rec;
+    });
+    const payload = { lineup: lineupNube, sysCode };
+    lineupPendienteGuardarRef.current = { rec, payload };
+    lineupTimeoutRef.current = setTimeout(() => {
+      lineupPendienteGuardarRef.current = null;
+      airAlineacionGuardar(rec, payload);
     }, 700);
-    return () => clearTimeout(idT);
+    return () => clearTimeout(lineupTimeoutRef.current);
   }, [lineup, sysCode]); // eslint-disable-line
+  useEffect(() => {
+    const flush = () => {
+      const pend = lineupPendienteGuardarRef.current;
+      if (!pend) return;
+      lineupPendienteGuardarRef.current = null;
+      clearTimeout(lineupTimeoutRef.current);
+      airAlineacionGuardar(pend.rec, pend.payload, { keepalive: true });
+    };
+    const onVis = () => { if (document.visibilityState === "hidden") flush(); };
+    document.addEventListener("visibilitychange", onVis);
+    window.addEventListener("pagehide", flush);
+    return () => {
+      document.removeEventListener("visibilitychange", onVis);
+      window.removeEventListener("pagehide", flush);
+    };
+  }, []); // eslint-disable-line
   /* Borrador del segundo entrenador: antes cada toque llamaba a
      updateLineupWithProposal y mandaba UNA propuesta por movimiento —media
      docena de toques, media docena de propuestas idénticas esperando turno,
