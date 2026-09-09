@@ -9513,21 +9513,89 @@ export default function App() {
   };
   const [wordBusy, setWordBusy] = useState(false);
   const [wordMsg, setWordMsg] = useState("");
+  /* Rasteriza el SVG de la pizarra a PNG para poder meterlo en el .docx -Word
+     no admite SVG con la compatibilidad que hace falta aquí-. viewBox pero
+     sin width/height propios: al cargarlo suelto como imagen el navegador le
+     da un tamaño por defecto que no respeta la proporción 1000x640 del
+     tablero, así que se los añade antes de dibujarlo en el canvas. */
+  const svgAPng = (svgMarkup, w, h) => new Promise((resolve, reject) => {
+    /* Sin xmlns el navegador no lo acepta como documento SVG independiente
+       -solo lo reconoce embebido dentro de una página HTML, que es donde
+       vive normalmente-, y sin width/height explícitos toma un tamaño por
+       defecto que no respeta la proporción 1000x640 real del tablero. */
+    const svgConTamano = svgMarkup.replace("<svg ", '<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="640" ');
+    const blobSvg = new Blob([svgConTamano], { type: "image/svg+xml;charset=utf-8" });
+    const url = URL.createObjectURL(blobSvg);
+    const img = new Image();
+    img.onload = () => {
+      try {
+        const canvas = document.createElement("canvas");
+        canvas.width = w; canvas.height = h;
+        canvas.getContext("2d").drawImage(img, 0, 0, w, h);
+        canvas.toBlob((blobPng) => {
+          URL.revokeObjectURL(url);
+          if (!blobPng) { reject(new Error("sin_blob")); return; }
+          blobPng.arrayBuffer().then(resolve, reject);
+        }, "image/png");
+      } catch (err) { URL.revokeObjectURL(url); reject(err); }
+    };
+    img.onerror = () => { URL.revokeObjectURL(url); reject(new Error("svg_no_cargo")); };
+    img.src = url;
+  });
   /* Documento de Word de verdad (.docx), no el truco de guardar HTML con esa
      extensión: así se abre sin avisos de "el formato no coincide" en Word
      de escritorio ni en el móvil. La librería solo se carga cuando se pulsa
-     el botón -import dinámico-, para no engordar el bundle principal con
-     algo que la mayoría de sesiones no van a usar nunca. */
+     el botón -import dinámico, junto con react-dom/server para dibujar la
+     pizarra-, para no engordar el bundle principal con algo que la mayoría
+     de sesiones no van a usar nunca. */
   const descargarTrainWord = async () => {
     if (wordBusy) return;
     setWordBusy(true); setWordMsg("");
     try {
-      const { Document, Packer, Paragraph, TextRun, HeadingLevel, Table, TableRow, TableCell, WidthType, AlignmentType } = await import("docx");
-      const celda = (texto, opts = {}) => new TableCell({
-        width: opts.width,
-        children: [new Paragraph({ children: [new TextRun({ text: texto, bold: !!opts.bold })] })],
-      });
-      const fila = (cols, opts = {}) => new TableRow({ children: cols.map((c) => celda(c, opts)) });
+      const [{ Document, Packer, Paragraph, TextRun, HeadingLevel, Table, TableRow, TableCell, WidthType, AlignmentType, ImageRun }, ReactDOMServer] =
+        await Promise.all([import("docx"), import("react-dom/server")]);
+      /* Una mini-tabla de dos columnas por ejercicio: el tablero a la
+         izquierda -el mismo dibujo que se ve en Ejercicios y en la pizarra,
+         no una versión simplificada aparte-, la explicación a la derecha.
+         Los bloques libres (sin ejercicio de la biblioteca, sin tablero que
+         dibujar) van con una sola celda a todo el ancho. */
+      const filaEjercicio = async (b, i) => {
+        const ex = b.exId ? EXERCISES.find((e) => e.id === b.exId) : null;
+        const descTexto = ex?.desc ? (ex.desc[lang] || ex.desc.es) : "";
+        const materiales = (b.materials || []).join(", ") || "—";
+        const textoDerecha = [
+          new Paragraph({ children: [new TextRun({ text: `${i + 1}. ${b.name}`, bold: true, size: 26 })] }),
+          new Paragraph({ children: [new TextRun({ text: `${b.dur} min`, color: "666666" })] }),
+          ...(descTexto ? [new Paragraph({ children: [new TextRun(descTexto)], spacing: { before: 100 } })] : []),
+          new Paragraph({ spacing: { before: 100 }, children: [new TextRun({ text: `🎒 ${t("ex.materials")}: ${materiales}`, italics: true, size: 20 })] }),
+        ];
+        if (!ex) {
+          return new Table({
+            width: { size: 100, type: WidthType.PERCENTAGE },
+            rows: [new TableRow({ children: [new TableCell({ children: textoDerecha, margins: { top: 100, bottom: 100, left: 100, right: 100 } })] })],
+          });
+        }
+        const svgMarkup = ReactDOMServer.renderToStaticMarkup(<ExerciseBoard ex={ex} />);
+        const png = await svgAPng(svgMarkup, 640, 410);
+        return new Table({
+          width: { size: 100, type: WidthType.PERCENTAGE },
+          rows: [new TableRow({ children: [
+            new TableCell({
+              width: { size: 45, type: WidthType.PERCENTAGE },
+              margins: { top: 100, bottom: 100, left: 100, right: 100 },
+              children: [new Paragraph({ children: [new ImageRun({ type: "png", data: png, transformation: { width: 260, height: 166 } })] })],
+            }),
+            new TableCell({
+              width: { size: 55, type: WidthType.PERCENTAGE },
+              margins: { top: 100, bottom: 100, left: 150, right: 100 },
+              children: textoDerecha,
+            }),
+          ] })],
+        });
+      };
+      const filas = trainBlocks.length
+        ? await Promise.all(trainBlocks.map((b, i) => filaEjercicio(b, i)))
+        : [new Paragraph({ children: [new TextRun({ text: t("tr.noBlocks"), color: "999999" })] })];
       const doc = new Document({
         sections: [{
           children: [
@@ -9537,16 +9605,7 @@ export default function App() {
             new Paragraph({ children: [new TextRun(`${t("tr.date")}: ${fechaLegible(trainMeta.fecha, lang) || "—"}    ${t("tr.time")}: ${trainMeta.hora || "—"}`)] }),
             new Paragraph({ children: [new TextRun({ text: `${t("tr.objective")}: ${trainMeta.objetivo || "—"}`, italics: true })] }),
             new Paragraph({ text: "" }),
-            new Table({
-              width: { size: 100, type: WidthType.PERCENTAGE },
-              rows: [
-                fila(["#", t("tr.wordCol.ex"), t("tr.wordCol.min"), t("tr.wordCol.mat")], { bold: true }),
-                ...(trainBlocks.length
-                  ? trainBlocks.map((b, i) => fila([String(i + 1), b.name, String(b.dur), (b.materials || []).join(", ") || "—"]))
-                  : [fila([t("tr.noBlocks"), "", "", ""])]),
-              ],
-            }),
-            new Paragraph({ text: "" }),
+            ...filas.flatMap((f) => [f, new Paragraph({ text: "" })]),
             new Paragraph({ children: [new TextRun({ text: `${t("tr.summaryTotal")} ${trainTotal} min`, bold: true })] }),
             new Paragraph({ children: [new TextRun(`${t("tr.summaryMaterial")} ${trainMaterials.join(", ") || "—"}`)] }),
             new Paragraph({ alignment: AlignmentType.RIGHT, children: [new TextRun({ text: "COACHBASE Ai", size: 16, color: "999999" })] }),
@@ -9560,7 +9619,8 @@ export default function App() {
       a.download = `entrenamiento-${trainMeta.fecha || hoyISO()}.docx`;
       a.click();
       setTimeout(() => URL.revokeObjectURL(url), 1000);
-    } catch {
+    } catch (err) {
+      console.error("[descargarTrainWord]", err);
       setWordMsg(t("tr.wordFail"));
       setTimeout(() => setWordMsg(""), 4000);
     } finally {
