@@ -9322,25 +9322,23 @@ export default function App() {
     if (!hijo?.rec || fotoBusy || !file) return;
     if (session?.email === "demo") { setDatosMsg(t("mh.demoNote")); return; }
     setFotoBusy(true); setDatosMsg("");
-    const reader = new FileReader();
-    reader.onload = async () => {
-      const dataUrl = String(reader.result || "");
-      const base64 = dataUrl.split(",")[1] || "";
-      const out = await airFotoJugador(hijo.rec, base64, file.type || "image/jpeg", file.name || "foto.jpg");
-      setFotoBusy(false);
-      if (out?.ok) {
-        /* Vista al momento con el propio archivo local, sin esperar a que
-           Airtable devuelva la URL del adjunto -normalmente la trae ya en
-           la respuesta, pero no depender de eso evita un instante de foto
-           vacía si por lo que sea no viene. */
-        setHijo((h) => ({ ...h, photo: out.url || dataUrl }));
-        setDatosMsg(t("mh.fotoOk"));
-        setTimeout(() => setDatosMsg(""), 4000);
-      } else {
-        setDatosMsg(t("mh.fotoFail"));
-      }
-    };
-    reader.readAsDataURL(file);
+    /* Reducida igual que en la ficha del cuerpo técnico: una foto de móvil
+       sin reducir supera el límite de tamaño de Airtable/la función. */
+    const foto = await fotoReducida(file);
+    if (!foto) { setFotoBusy(false); setDatosMsg(t("mh.fotoFail")); return; }
+    const out = await airFotoJugador(hijo.rec, foto.base64, foto.contentType, file.name || "foto.jpg");
+    setFotoBusy(false);
+    if (out?.ok) {
+      /* Vista al momento con el propio archivo local, sin esperar a que
+         Airtable devuelva la URL del adjunto -normalmente la trae ya en
+         la respuesta, pero no depender de eso evita un instante de foto
+         vacía si por lo que sea no viene. */
+      setHijo((h) => ({ ...h, photo: out.url || foto.dataUrl }));
+      setDatosMsg(t("mh.fotoOk"));
+      setTimeout(() => setDatosMsg(""), 4000);
+    } else {
+      setDatosMsg(t("mh.fotoFail"));
+    }
   };
   const [mkCat, setMkCat] = useState("all");
   const [menuOpen, setMenuOpen] = useState(false);
@@ -10819,39 +10817,39 @@ export default function App() {
   const subirFotoJugadorPerfil = async (p, file) => {
     if (fotoJugadorBusy || !file) return;
     setFotoJugadorBusy(true); setFotoJugadorMsg("");
-    const reader = new FileReader();
-    reader.onload = async () => {
-      const dataUrl = String(reader.result || "");
-      if (!teamRec || session?.email === "demo") {
-        /* Sin equipo en la nube -o en la demo- no hay adjunto de Airtable al
-           que subir nada: se guarda solo en este dispositivo, mejor que
-           perder la foto, aunque no la vea el resto del cuerpo técnico. */
-        setPlayers((ps) => ps.map((x) => (x.id === p.id ? { ...x, photo: dataUrl, video: null } : x)));
-        setFotoJugadorBusy(false);
-        setFotoJugadorMsg(t(session?.email === "demo" ? "mh.demoNote" : "pf.savedLocal"));
-        setTimeout(() => setFotoJugadorMsg(""), 4000);
-        return;
-      }
-      let rec = p.rec;
-      if (!rec) rec = await airNew("jugadores", jugToAir(p, teamRec));
-      if (!rec) { setFotoJugadorBusy(false); setFotoJugadorMsg(t("mh.fotoFail")); return; }
-      if (!p.rec) editarJugador(p.id, { rec });
-      const base64 = dataUrl.split(",")[1] || "";
-      const out = await airFotoJugador(rec, base64, file.type || "image/jpeg", file.name || "foto.jpg");
+    /* Una foto de móvil sin reducir son varios megas en base64 -de sobra
+       para que la suba el propio navegador, pero de sobra también para que
+       la rechace el límite de tamaño de Airtable o de la función-, así que
+       se reduce igual que ya se hace con las fotos de material. */
+    const foto = await fotoReducida(file);
+    if (!foto) { setFotoJugadorBusy(false); setFotoJugadorMsg(t("mh.fotoFail")); return; }
+    if (!teamRec || session?.email === "demo") {
+      /* Sin equipo en la nube -o en la demo- no hay adjunto de Airtable al
+         que subir nada: se guarda solo en este dispositivo, mejor que
+         perder la foto, aunque no la vea el resto del cuerpo técnico. */
+      setPlayers((ps) => ps.map((x) => (x.id === p.id ? { ...x, photo: foto.dataUrl, video: null } : x)));
       setFotoJugadorBusy(false);
-      if (out?.ok) {
-        /* Vista al momento con el propio archivo local, sin esperar a que
-           Airtable devuelva la URL del adjunto -normalmente la trae ya en
-           la respuesta, pero no depender de eso evita un instante de foto
-           vacía si por lo que sea no viene. */
-        setPlayers((ps) => ps.map((x) => (x.id === p.id ? { ...x, photo: out.url || dataUrl, video: null } : x)));
-        setFotoJugadorMsg(t("mh.fotoOk"));
-        setTimeout(() => setFotoJugadorMsg(""), 4000);
-      } else {
-        setFotoJugadorMsg(t("mh.fotoFail"));
-      }
-    };
-    reader.readAsDataURL(file);
+      setFotoJugadorMsg(t(session?.email === "demo" ? "mh.demoNote" : "pf.savedLocal"));
+      setTimeout(() => setFotoJugadorMsg(""), 4000);
+      return;
+    }
+    let rec = p.rec;
+    if (!rec) rec = await airNew("jugadores", jugToAir(p, teamRec));
+    if (!rec) { setFotoJugadorBusy(false); setFotoJugadorMsg(t("mh.fotoFail")); return; }
+    if (!p.rec) editarJugador(p.id, { rec });
+    const out = await airFotoJugador(rec, foto.base64, foto.contentType, file.name || "foto.jpg");
+    setFotoJugadorBusy(false);
+    if (out?.ok) {
+      /* Vista al momento con el propio archivo local, sin esperar a que
+         Airtable devuelva la URL del adjunto -normalmente la trae ya en
+         la respuesta, pero no depender de eso evita un instante de foto
+         vacía si por lo que sea no viene. */
+      setPlayers((ps) => ps.map((x) => (x.id === p.id ? { ...x, photo: out.url || foto.dataUrl, video: null } : x)));
+      setFotoJugadorMsg(t("mh.fotoOk"));
+      setTimeout(() => setFotoJugadorMsg(""), 4000);
+    } else {
+      setFotoJugadorMsg(t("mh.fotoFail"));
+    }
   };
 
   const genVideo = async (p) => {
