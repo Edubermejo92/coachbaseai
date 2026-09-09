@@ -8937,12 +8937,54 @@ const Bar2 = ({ a, b }) => (
     <div className="h-full rounded-full" style={{ width: `${b ? (a / b) * 100 : 0}%`, background: a === b ? C.green : C.dim }} />
   </div>
 );
-const Avatar = ({ p, size = 32 }) => (
-  <div className="rounded-full border overflow-hidden flex items-center justify-center font-display font-bold shrink-0"
-    style={{ width: size, height: size, borderColor: C.line, background: C.panel2, color: C.dim, backgroundImage: p.photo ? `url(${p.photo})` : "none", backgroundSize: "cover", backgroundPosition: "center", fontSize: size * 0.42 }}>
-    {!p.photo && p.d}
-  </div>
-);
+/* Antes la foto iba de "background-image": si la URL no cargaba -red del
+   móvil, foto borrada, enlace caducado-, el navegador simplemente no
+   pintaba nada, y como la cifra de respaldo solo se enseñaba cuando NO
+   había foto (no cuando la había fallado), el círculo se quedaba
+   completamente vacío. Con un <img> de verdad, su onError avisa cuando de
+   verdad no ha cargado, y entonces sí sale el dorsal. */
+const Avatar = ({ p, size = 32 }) => {
+  const [fallo, setFallo] = useState(false);
+  const conFoto = !!p.photo && !fallo;
+  return (
+    <div className="relative rounded-full border overflow-hidden flex items-center justify-center font-display font-bold shrink-0"
+      style={{ width: size, height: size, borderColor: C.line, background: C.panel2, color: C.dim, fontSize: size * 0.42 }}>
+      {conFoto && (
+        <img src={p.photo} alt="" onError={() => setFallo(true)} className="absolute inset-0 w-full h-full object-cover" />
+      )}
+      {!conFoto && p.d}
+    </div>
+  );
+};
+
+/* Ficha del campo interactivo (Alineación, propia y la de familia/jugador de
+   solo lectura): mismo caso que Avatar -si la foto no carga, hace falta ver
+   el dorsal, no un círculo en blanco-, pero con su propio marcado porque
+   aquí además hay un aro de selección y una demarcación (s.label) que
+   enseñar cuando el puesto está vacío. Fuera del componente principal
+   porque, definida dentro, se recrearía en cada render de la app entera y
+   perdería el estado de "ha fallado" en cada tecla que se pulsara en
+   cualquier otro sitio. */
+const PitchToken = ({ p, label, selected, accent, borderColor, textColor }) => {
+  const [fallo, setFallo] = useState(false);
+  const conFoto = !!p?.photo && !fallo && !selected;
+  return (
+    <div className="relative w-11 h-11 rounded-full flex items-center justify-center font-display text-lg font-bold border-2 overflow-hidden"
+      style={{ background: selected ? accent : C.panel2, color: selected ? "#141414" : textColor, borderColor }}>
+      {conFoto && (
+        <img src={p.photo} alt="" onError={() => setFallo(true)} className="absolute inset-0 w-full h-full object-cover" />
+      )}
+      {!conFoto && (p ? p.d : label)}
+      {/* Con foto, el dorsal desaparecía del todo detrás de la imagen: se ve
+          el jugador pero no quién es. Se pone como insignia encima, en vez
+          de sustituir la foto. */}
+      {conFoto && (
+        <span className="absolute -bottom-0.5 -right-0.5 min-w-[16px] h-4 px-1 rounded-full text-[10px] leading-4 font-display font-bold text-center border overflow-visible"
+          style={{ background: C.panel, borderColor: accent, color: accent }}>{p.d}</span>
+      )}
+    </div>
+  );
+};
 
 /* Google AdSense. IDs de placeholder hasta que se apruebe la cuenta —
    sustituir por los reales (Panel de AdSense > Anuncios > Por unidad de
@@ -16401,14 +16443,8 @@ export default function App() {
                   const esMio = !!p && p.id === miId;
                   return (
                     <div key={slot} className="absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center" style={{ left: `${s.x}%`, top: `${s.y}%` }}>
-                      <div className="relative w-11 h-11 rounded-full flex items-center justify-center font-display text-lg font-bold border-2 overflow-hidden"
-                        style={{ background: esMio ? AC : p?.photo ? `center / cover no-repeat url(${p.photo})` : C.panel2, color: esMio ? "#141414" : C.chalk, borderColor: esMio ? AC : p && p.st !== "disponible" ? stColor(p.st) : "rgba(54,69,79,0.5)" }}>
-                        {(!p?.photo || esMio) && (p ? p.d : s.label)}
-                        {p?.photo && !esMio && (
-                          <span className="absolute -bottom-0.5 -right-0.5 min-w-[16px] h-4 px-1 rounded-full text-[10px] leading-4 font-display font-bold text-center border overflow-visible"
-                            style={{ background: C.panel, borderColor: AC, color: AC }}>{p.d}</span>
-                        )}
-                      </div>
+                      <PitchToken p={p} label={s.label} selected={esMio} accent={AC} textColor={C.chalk}
+                        borderColor={esMio ? AC : p && p.st !== "disponible" ? stColor(p.st) : "rgba(54,69,79,0.5)"} />
                       <div className="mt-0.5 text-[10px] px-1 rounded" style={{ background: esMio ? AC : "rgba(14,21,18,0.8)", color: esMio ? "#141414" : C.chalk, fontWeight: esMio ? 700 : 400 }}>
                         {p ? `${p.n.split(" ")[0]} · ${s.label}` : s.label}
                       </div>
@@ -16840,45 +16876,64 @@ export default function App() {
        fallaría en silencio-. El campo va a la izquierda con el once puesto, y
        el banquillo a la derecha, en la misma imagen, para que quien la reciba
        vea la convocatoria entera de un vistazo sin dos capturas por separado. */
-    const compartirAlineacionImagen = async () => {
-      setLnImgMsg(""); setLnImgBusy(true);
-      try {
-        try { await document.fonts?.ready; } catch { /* sin API de fonts: se dibuja con lo que haya */ }
-        const S = 2, pitchW = 300 * S, pitchH = 400 * S, benchW = 260, headerH = 76, footerH = 34;
-        const banquillo = [...bench].sort((a, b) => a.d - b.d);
-        const benchContentH = 46 + banquillo.length * 30 + 16;
-        const w = pitchW + benchW, h = headerH + Math.max(pitchH, benchContentH) + footerH;
-        const cv = document.createElement("canvas");
-        cv.width = w; cv.height = h;
-        const ctx = cv.getContext("2d");
-        ctx.fillStyle = "#0E1512"; ctx.fillRect(0, 0, w, h);
-        ctx.textAlign = "left";
-        ctx.fillStyle = "#E8EDE6"; ctx.font = "700 26px 'Barlow Condensed', sans-serif";
-        ctx.fillText(String(session.club || "").toUpperCase(), 18, 30);
-        ctx.fillStyle = AC; ctx.font = "500 17px 'Barlow Condensed', sans-serif";
-        ctx.fillText(`${session.team?.name || ""} · ${sysCode}`, 18, 54);
-        /* Campo: rayas, líneas y áreas, con las mismas proporciones que el
-           campo interactivo de arriba (en tanto por ciento del ancho/alto). */
-        const py = headerH;
-        const px = (pct) => (pct / 100) * pitchW, pyy = (pct) => py + (pct / 100) * pitchH;
-        for (let i = 0; i < 8; i++) {
-          ctx.fillStyle = i % 2 ? "#17251D" : "#152219";
-          ctx.fillRect(0, py + (i * pitchH) / 8, pitchW, pitchH / 8);
-        }
-        ctx.strokeStyle = "rgba(232,237,230,0.5)"; ctx.lineWidth = 1.5 * S;
-        ctx.strokeRect(px(2.7), pyy(2), px(94.6) - px(2.7), pyy(96) - pyy(2));
-        ctx.beginPath(); ctx.moveTo(px(2.7), pyy(50)); ctx.lineTo(px(97.3), pyy(50)); ctx.stroke();
-        ctx.beginPath(); ctx.arc(px(50), pyy(50), px(11.3) - px(0), 0, Math.PI * 2); ctx.stroke();
-        ctx.strokeRect(px(25), pyy(2), px(75) - px(25), pyy(15) - pyy(2));
-        ctx.strokeRect(px(38.3), pyy(2), px(61.7) - px(38.3), pyy(7.5) - pyy(2));
-        ctx.strokeRect(px(25), pyy(85), px(75) - px(25), pyy(98) - pyy(85));
-        ctx.strokeRect(px(38.3), pyy(92.5), px(61.7) - px(38.3), pyy(98) - pyy(92.5));
-        /* Fichas: rellena con el dorsal de quien esté puesto, hueca con la
-           demarcación cuando el puesto sigue libre -igual que en el campo de
-           arriba, para que la imagen no oculte que falta alguien. */
-        Object.entries(slotPos).forEach(([id, s]) => {
-          const p = players.find((x) => x.id === lineupView[id]);
-          const cx = px(s.x), cy = pyy(s.y), r = pitchW * 0.065;
+    /* Dibuja el campo + banquillo en un canvas nuevo. `fotos` es un Map
+       jugador->HTMLImageElement ya cargada; con conFotos=false se ignora
+       aunque haya fotos, para el redibujado de emergencia. Siempre crea un
+       canvas NUEVO (no reutiliza uno ya "manchado" por una foto de otro
+       origen: ese manchado es del elemento, no se limpia redibujando
+       encima). */
+    const dibujarAlineacion = (fotos, conFotos, banquillo) => {
+      const S = 2, pitchW = 300 * S, pitchH = 400 * S, benchW = 260, headerH = 76, footerH = 34;
+      const benchContentH = 46 + banquillo.length * 30 + 16;
+      const w = pitchW + benchW, h = headerH + Math.max(pitchH, benchContentH) + footerH;
+      const cv = document.createElement("canvas");
+      cv.width = w; cv.height = h;
+      const ctx = cv.getContext("2d");
+      ctx.fillStyle = "#0E1512"; ctx.fillRect(0, 0, w, h);
+      ctx.textAlign = "left";
+      ctx.fillStyle = "#E8EDE6"; ctx.font = "700 26px 'Barlow Condensed', sans-serif";
+      ctx.fillText(String(session.club || "").toUpperCase(), 18, 30);
+      ctx.fillStyle = AC; ctx.font = "500 17px 'Barlow Condensed', sans-serif";
+      ctx.fillText(`${session.team?.name || ""} · ${sysCode}`, 18, 54);
+      /* Campo: rayas, líneas y áreas, con las mismas proporciones que el
+         campo interactivo de arriba (en tanto por ciento del ancho/alto). */
+      const py = headerH;
+      const px = (pct) => (pct / 100) * pitchW, pyy = (pct) => py + (pct / 100) * pitchH;
+      for (let i = 0; i < 8; i++) {
+        ctx.fillStyle = i % 2 ? "#17251D" : "#152219";
+        ctx.fillRect(0, py + (i * pitchH) / 8, pitchW, pitchH / 8);
+      }
+      ctx.strokeStyle = "rgba(232,237,230,0.5)"; ctx.lineWidth = 1.5 * S;
+      ctx.strokeRect(px(2.7), pyy(2), px(94.6) - px(2.7), pyy(96) - pyy(2));
+      ctx.beginPath(); ctx.moveTo(px(2.7), pyy(50)); ctx.lineTo(px(97.3), pyy(50)); ctx.stroke();
+      ctx.beginPath(); ctx.arc(px(50), pyy(50), px(11.3) - px(0), 0, Math.PI * 2); ctx.stroke();
+      ctx.strokeRect(px(25), pyy(2), px(75) - px(25), pyy(15) - pyy(2));
+      ctx.strokeRect(px(38.3), pyy(2), px(61.7) - px(38.3), pyy(7.5) - pyy(2));
+      ctx.strokeRect(px(25), pyy(85), px(75) - px(25), pyy(98) - pyy(85));
+      ctx.strokeRect(px(38.3), pyy(92.5), px(61.7) - px(38.3), pyy(98) - pyy(92.5));
+      /* Fichas: con foto si la hay y ha cargado bien, rellena con el dorsal
+         de quien esté puesto si no, hueca con la demarcación cuando el
+         puesto sigue libre -igual que en el campo de arriba, para que la
+         imagen no oculte que falta alguien. */
+      Object.entries(slotPos).forEach(([id, s]) => {
+        const p = players.find((x) => x.id === lineupView[id]);
+        const cx = px(s.x), cy = pyy(s.y), r = pitchW * 0.065;
+        const foto = conFotos && p ? fotos.get(p.id) : null;
+        if (foto) {
+          ctx.save();
+          ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.clip();
+          ctx.drawImage(foto, cx - r, cy - r, r * 2, r * 2);
+          ctx.restore();
+          ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2);
+          ctx.strokeStyle = AC; ctx.lineWidth = 2; ctx.stroke();
+          /* Dorsal en una insignia sobre la foto, igual que en pantalla. */
+          const bx = cx + r * 0.72, by = cy + r * 0.72, br = r * 0.34;
+          ctx.beginPath(); ctx.arc(bx, by, br, 0, Math.PI * 2);
+          ctx.fillStyle = "#0E1512"; ctx.fill(); ctx.strokeStyle = AC; ctx.lineWidth = 1.5; ctx.stroke();
+          ctx.textAlign = "center"; ctx.fillStyle = AC;
+          ctx.font = `700 ${Math.round(br * 1.15)}px 'Barlow Condensed', sans-serif`;
+          ctx.fillText(String(p.d), bx, by + br * 0.38);
+        } else {
           ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2);
           ctx.fillStyle = p ? AC : "rgba(232,237,230,0.08)"; ctx.fill();
           ctx.strokeStyle = p ? AC : "rgba(232,237,230,0.4)"; ctx.lineWidth = 2; ctx.stroke();
@@ -16889,45 +16944,92 @@ export default function App() {
           ctx.textAlign = "center"; ctx.fillStyle = p ? C.sobre : "rgba(232,237,230,0.6)";
           ctx.font = `700 ${Math.round(r * 0.85)}px 'Barlow Condensed', sans-serif`;
           ctx.fillText(p ? String(p.d) : s.label, cx, cy + r * 0.3);
-          ctx.fillStyle = "#E8EDE6"; ctx.font = `500 ${Math.round(r * 0.45)}px 'Barlow Condensed', sans-serif`;
-          ctx.fillText(p ? `${p.n.split(" ")[0]} · ${s.label}` : s.label, cx, cy + r + 16);
-        });
-        /* Banquillo, en la misma imagen, a la derecha del campo. */
-        ctx.textAlign = "left";
-        ctx.strokeStyle = "rgba(232,237,230,0.14)"; ctx.lineWidth = 1;
-        ctx.beginPath(); ctx.moveTo(pitchW, headerH); ctx.lineTo(pitchW, h - footerH); ctx.stroke();
-        ctx.fillStyle = AC; ctx.font = "700 16px 'Barlow Condensed', sans-serif";
-        ctx.fillText(`${t("ln.benchTitle").toUpperCase()} (${banquillo.length})`, pitchW + 18, py + 24);
-        ctx.font = "500 15px 'Barlow Condensed', sans-serif";
-        banquillo.forEach((p, i) => {
-          const ry = py + 52 + i * 30;
+        }
+        ctx.textAlign = "center"; ctx.fillStyle = "#E8EDE6"; ctx.font = `500 ${Math.round(r * 0.45)}px 'Barlow Condensed', sans-serif`;
+        ctx.fillText(p ? `${p.n.split(" ")[0]} · ${s.label}` : s.label, cx, cy + r + 16);
+      });
+      /* Banquillo, en la misma imagen, a la derecha del campo. */
+      ctx.textAlign = "left";
+      ctx.strokeStyle = "rgba(232,237,230,0.14)"; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(pitchW, headerH); ctx.lineTo(pitchW, h - footerH); ctx.stroke();
+      ctx.fillStyle = AC; ctx.font = "700 16px 'Barlow Condensed', sans-serif";
+      ctx.fillText(`${t("ln.benchTitle").toUpperCase()} (${banquillo.length})`, pitchW + 18, py + 24);
+      banquillo.forEach((p, i) => {
+        const ry = py + 52 + i * 30;
+        const foto = conFotos ? fotos.get(p.id) : null;
+        if (foto) {
+          const bx = pitchW + 18, br = 11, cy2 = ry - 5;
+          ctx.save();
+          ctx.beginPath(); ctx.arc(bx + br, cy2, br, 0, Math.PI * 2); ctx.clip();
+          ctx.drawImage(foto, bx, cy2 - br, br * 2, br * 2);
+          ctx.restore();
+          ctx.fillStyle = "#E8EDE6"; ctx.font = "500 15px 'Barlow Condensed', sans-serif";
+          ctx.fillText(`${p.d} ${p.n}`, bx + br * 2 + 10, ry);
+        } else {
           ctx.fillStyle = AC; ctx.font = "700 15px 'Barlow Condensed', sans-serif";
           ctx.fillText(String(p.d), pitchW + 18, ry);
           ctx.fillStyle = "#E8EDE6"; ctx.font = "500 15px 'Barlow Condensed', sans-serif";
           ctx.fillText(p.n, pitchW + 46, ry);
-        });
-        ctx.textAlign = "center"; ctx.fillStyle = "rgba(232,237,230,0.5)"; ctx.font = "500 13px 'Barlow Condensed', sans-serif";
-        ctx.fillText(`COACHBASE Ai · ${hoyISO()}`, w / 2, h - 12);
-        cv.toBlob(async (blob) => {
-          if (!blob) { setLnImgBusy(false); setLnImgMsg(t("ln.shareImageFail")); return; }
-          const nombre = `alineacion-${(session.team?.name || "equipo").replace(/\s+/g, "-")}-${hoyISO()}.png`;
-          const file = new File([blob], nombre, { type: "image/png" });
-          try {
-            if (navigator.share && (!navigator.canShare || navigator.canShare({ files: [file] }))) {
-              await navigator.share({ files: [file], title: t("ln.startersTitle"), text: `${session.club || ""} ${session.team?.name || ""} · ${sysCode}` });
-            } else {
-              const a = document.createElement("a");
-              a.href = URL.createObjectURL(blob); a.download = nombre; a.click();
-            }
-            setLnImgMsg(t("ln.shareImageOk"));
-          } catch (e) {
-            /* Cancelar el panel de compartir del móvil no es un fallo real. */
-            if (e?.name !== "AbortError") setLnImgMsg(t("ln.shareImageFail"));
-          } finally {
-            setLnImgBusy(false);
-            setTimeout(() => setLnImgMsg(""), 4000);
+        }
+      });
+      ctx.textAlign = "center"; ctx.fillStyle = "rgba(232,237,230,0.5)"; ctx.font = "500 13px 'Barlow Condensed', sans-serif";
+      ctx.fillText(`COACHBASE Ai · ${hoyISO()}`, w / 2, h - 12);
+      return cv;
+    };
+    /* toBlob() en un canvas "manchado" por una imagen de otro origen sin
+       las cabeceras CORS que hacen falta puede lanzar en el momento de
+       llamarlo o, según el navegador, devolver blob nulo en el callback:
+       se cubren los dos casos igual. */
+    const intentarBlob = (cv) => new Promise((resolve) => {
+      try { cv.toBlob((blob) => resolve(blob || null), "image/png"); }
+      catch { resolve(null); }
+    });
+    const compartirAlineacionImagen = async () => {
+      setLnImgMsg(""); setLnImgBusy(true);
+      try {
+        try { await document.fonts?.ready; } catch { /* sin API de fonts: se dibuja con lo que haya */ }
+        const banquillo = [...bench].sort((a, b) => a.d - b.d);
+        /* Fotos de quien vaya a aparecer en la imagen -titulares y
+           banquillo-, cargadas con crossOrigin: si el origen de la foto no
+           lo permite, esa carga en concreto falla sola (onerror) sin tocar
+           a las demás. El riesgo real está más adelante, al exportar. */
+        const idsVisibles = [...new Set([...Object.values(lineupView), ...banquillo.map((p) => p.id)])].filter(Boolean);
+        const fotos = new Map();
+        if (idsVisibles.length) {
+          const cargas = await Promise.all(idsVisibles.map((id) => new Promise((resolve) => {
+            const jugador = players.find((x) => x.id === id);
+            if (!jugador?.photo) { resolve([id, null]); return; }
+            const img = new Image();
+            img.crossOrigin = "anonymous";
+            img.onload = () => resolve([id, img]);
+            img.onerror = () => resolve([id, null]);
+            img.src = jugador.photo;
+          })));
+          cargas.forEach(([id, img]) => { if (img) fotos.set(id, img); });
+        }
+        let blob = await intentarBlob(dibujarAlineacion(fotos, true, banquillo));
+        /* Canvas contaminado (u otro fallo con las fotos): se repite el
+           dibujo entero sin ninguna, en un canvas nuevo, para que compartir
+           siga funcionando igual que antes de intentarlo. */
+        if (!blob) blob = await intentarBlob(dibujarAlineacion(fotos, false, banquillo));
+        if (!blob) { setLnImgBusy(false); setLnImgMsg(t("ln.shareImageFail")); return; }
+        const nombre = `alineacion-${(session.team?.name || "equipo").replace(/\s+/g, "-")}-${hoyISO()}.png`;
+        const file = new File([blob], nombre, { type: "image/png" });
+        try {
+          if (navigator.share && (!navigator.canShare || navigator.canShare({ files: [file] }))) {
+            await navigator.share({ files: [file], title: t("ln.startersTitle"), text: `${session.club || ""} ${session.team?.name || ""} · ${sysCode}` });
+          } else {
+            const a = document.createElement("a");
+            a.href = URL.createObjectURL(blob); a.download = nombre; a.click();
           }
-        }, "image/png");
+          setLnImgMsg(t("ln.shareImageOk"));
+        } catch (e) {
+          /* Cancelar el panel de compartir del móvil no es un fallo real. */
+          if (e?.name !== "AbortError") setLnImgMsg(t("ln.shareImageFail"));
+        } finally {
+          setLnImgBusy(false);
+          setTimeout(() => setLnImgMsg(""), 4000);
+        }
       } catch {
         setLnImgBusy(false);
         setLnImgMsg(t("ln.shareImageFail"));
@@ -17000,25 +17102,8 @@ export default function App() {
               const sugerido = !sel && !selSlot && id === primerHuecoLibre;
               return (
                 <div key={id} onPointerDown={(e) => onSlotDown(e, id)} onPointerUp={() => onSlotUp(id)} className="absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center" style={{ left: `${s.x}%`, top: `${s.y}%`, cursor: can("editLineup") ? "grab" : "default" }}>
-                  {/* "background" (shorthand) y "backgroundImage"/"backgroundSize"/
-                      "backgroundPosition" (largas) mezclados en el mismo style
-                      no funcionan juntos: la abreviada reinicia el tamaño y la
-                      posición de la imagen a sus valores iniciales, así que la
-                      foto se aplicaba pero se veía en tamaño natural desde la
-                      esquina -recortada casi entera fuera del círculo- en vez
-                      de a tamaño completo y centrada. Todo en una sola
-                      declaración "background" evita el conflicto. */}
-                  <div className="relative w-11 h-11 rounded-full flex items-center justify-center font-display text-lg font-bold border-2 overflow-hidden"
-                    style={{ background: sel ? AC : p?.photo ? `center / cover no-repeat url(${p.photo})` : C.panel2, color: sel ? "#141414" : C.chalk, borderColor: sel ? AC : sugerido ? AC : p && p.st !== "disponible" ? stColor(p.st) : "rgba(54,69,79,0.5)" }}>
-                    {(!p?.photo || sel) && (p ? p.d : s.label)}
-                    {/* Con foto, el dorsal desaparecía del todo detrás de la
-                        imagen: se ve el jugador pero no quién es. Se pone como
-                        insignia encima, en vez de sustituir la foto. */}
-                    {p?.photo && !sel && (
-                      <span className="absolute -bottom-0.5 -right-0.5 min-w-[16px] h-4 px-1 rounded-full text-[10px] leading-4 font-display font-bold text-center border overflow-visible"
-                        style={{ background: C.panel, borderColor: AC, color: AC }}>{p.d}</span>
-                    )}
-                  </div>
+                  <PitchToken p={p} label={s.label} selected={sel} accent={AC} textColor={C.chalk}
+                    borderColor={sel ? AC : sugerido ? AC : p && p.st !== "disponible" ? stColor(p.st) : "rgba(54,69,79,0.5)"} />
                   {/* La demarcación (s.label, p.ej. "DFC") se mostraba solo
                       mientras el puesto estaba vacío: en cuanto se asignaba un
                       jugador, desaparecía y solo quedaba el nombre. Se deja
