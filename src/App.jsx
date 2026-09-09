@@ -9462,21 +9462,31 @@ export default function App() {
     if (!teamRec || esDemo || !can("editCal")) return;
     await airTeamPatch(teamRec, { dias });
   };
+  /* Antes, si la categoría nueva no tenía todavía ninguna sesión guardada en
+     este dispositivo, "if (!raw) return;" dejaba en pantalla la sesión de la
+     categoría ANTERIOR -objetivo, bloques y duración incluidos-, como si
+     fuera la de la nueva. Ahora cualquier cambio de categoría limpia primero
+     a los valores por defecto y solo los sustituye si de verdad hay algo
+     guardado para ella. */
   useEffect(() => {
     if (!session) return;
     try {
       const raw = localStorage.getItem(trainKey);
-      if (!raw) return;
-      const d = JSON.parse(raw);
-      if (d.meta) setTrainMeta(d.meta);
-      if (Array.isArray(d.blocks)) setTrainBlocks(d.blocks);
-      if (Number(d.target) > 0) setTrainTarget(Number(d.target));
+      const d = raw ? JSON.parse(raw) : null;
+      setTrainMeta(d?.meta || { fecha: "", hora: "18:30", objetivo: "" });
+      setTrainBlocks(Array.isArray(d?.blocks) ? d.blocks : []);
+      setTrainTarget(Number(d?.target) > 0 ? Number(d.target) : 60);
     } catch { /* sin localStorage disponible */ }
   }, [trainKey]); // eslint-disable-line
+  /* Solo depende de los datos de la sesión, no de `trainKey` -mismo motivo
+     que en asistencia y en el calendario: al cambiar de categoría, trainKey
+     cambia antes de que el efecto de arriba termine de limpiar/rellenar, y
+     escribir con esa dependencia guardaría la sesión de la categoría ANTERIOR
+     bajo la clave de la nueva. */
   useEffect(() => {
     if (!session) return;
     try { localStorage.setItem(trainKey, JSON.stringify({ meta: trainMeta, blocks: trainBlocks, target: trainTarget })); } catch { /* noop */ }
-  }, [trainMeta, trainBlocks, trainTarget, trainKey]); // eslint-disable-line
+  }, [trainMeta, trainBlocks, trainTarget]); // eslint-disable-line
   const trainTotal = trainBlocks.reduce((s, b) => s + (Number(b.dur) || 0), 0);
   /* Cuánto queda por rellenar y cuánto se ha pasado, que en el campo importa
      tanto lo uno como lo otro: una sesión que se va de tiempo se corta sola. */
@@ -9538,9 +9548,18 @@ export default function App() {
     try { const raw = localStorage.getItem(asistKey); setAsistencia(raw ? JSON.parse(raw) || {} : {}); }
     catch { setAsistencia({}); }
   }, [asistKey]);
+  /* Solo depende de `asistencia`, no de `asistKey`: al cambiar de categoría,
+     asistKey cambia antes de que lleguen los datos de la categoría nueva
+     (de la nube o del efecto de arriba), y en ese instante `asistencia`
+     todavía es la de la categoría ANTERIOR. Si `asistKey` fuera dependencia,
+     este efecto la escribiría bajo la clave de la categoría nueva,
+     contaminando su caché local -el mismo bug que tenía el calendario-.
+     Con solo `asistencia` como dependencia, el guardado espera a que la
+     asistencia realmente cambie, momento en el que `asistKey` (leído del
+     cierre) ya es el correcto. */
   useEffect(() => {
     try { localStorage.setItem(asistKey, JSON.stringify(asistencia)); } catch { /* noop */ }
-  }, [asistencia, asistKey]);
+  }, [asistencia]); // eslint-disable-line
   const [asistFecha, setAsistFecha] = useState(() => hoyISO());
   const [asistPick, setAsistPick] = useState(null);
   /* ---- Asistencia en la nube ----
@@ -18807,12 +18826,18 @@ export default function App() {
                 {m < 60 ? `${m}′` : m % 60 === 0 ? `${m / 60} h` : `${Math.floor(m / 60)} h ${m % 60}′`}
               </button>
             ))}
-            <input type="number" min={5} max={240} step={5} value={trainTarget}
-              onChange={(e) => setTrainTarget(Math.max(5, Math.min(240, Number(e.target.value) || 5)))}
-              aria-label={t("tr.target")}
-              className="w-20 px-2 py-1.5 rounded-lg border bg-transparent text-sm text-center tabular-nums"
-              style={{ borderColor: C.line, color: C.chalk }} />
-            <span className="text-xs" style={{ color: C.dim }}>{t("tr.min")}</span>
+            {/* El input y su etiqueta "min" van en un único elemento flex
+                -antes eran dos sueltos, y en móvil el ancho libre después de
+                los cuatro chips a veces alcanzaba justo para el número pero
+                no para "min", que se iba solo a la línea siguiente-. */}
+            <span className="inline-flex items-center gap-1 shrink-0">
+              <input type="number" min={5} max={240} step={5} value={trainTarget}
+                onChange={(e) => setTrainTarget(Math.max(5, Math.min(240, Number(e.target.value) || 5)))}
+                aria-label={t("tr.target")}
+                className="w-20 px-2 py-1.5 rounded-lg border bg-transparent text-sm text-center tabular-nums"
+                style={{ borderColor: C.line, color: C.chalk }} />
+              <span className="text-xs" style={{ color: C.dim }}>{t("tr.min")}</span>
+            </span>
           </div>
 
           <div className="h-2 rounded-full overflow-hidden mb-2" style={{ background: C.panel2 }}>
