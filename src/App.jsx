@@ -10804,7 +10804,55 @@ export default function App() {
       return { ...a, [asistFecha]: dia };
     });
   };
-  const setPhoto = (id, dataUrl) => setPlayers((ps) => ps.map((p) => (p.id === id ? { ...p, photo: dataUrl, video: null } : p)));
+  /* Antes esto solo tocaba el estado local (setPlayers), como si fuera un
+     campo más de la ficha que espera a "Guardar ficha" -pero la foto no es
+     un campo normal: es un adjunto de Airtable, con su propio endpoint
+     (uploadAttachment), y "Guardar ficha" nunca la mandaba a ningún sitio-.
+     El resultado era que la foto se veía mientras durara la pestaña abierta
+     y desaparecía al recargar, sin avisar de que no se había guardado de
+     verdad. Ahora sube de verdad, con el mismo camino que ya usaba la
+     familia desde su ficha (ver subirFotoHijo), y si el jugador todavía no
+     tiene registro en Airtable -una ficha recién creada- lo crea primero
+     para poder adjuntarle algo. */
+  const [fotoJugadorBusy, setFotoJugadorBusy] = useState(false);
+  const [fotoJugadorMsg, setFotoJugadorMsg] = useState("");
+  const subirFotoJugadorPerfil = async (p, file) => {
+    if (fotoJugadorBusy || !file) return;
+    setFotoJugadorBusy(true); setFotoJugadorMsg("");
+    const reader = new FileReader();
+    reader.onload = async () => {
+      const dataUrl = String(reader.result || "");
+      if (!teamRec || session?.email === "demo") {
+        /* Sin equipo en la nube -o en la demo- no hay adjunto de Airtable al
+           que subir nada: se guarda solo en este dispositivo, mejor que
+           perder la foto, aunque no la vea el resto del cuerpo técnico. */
+        setPlayers((ps) => ps.map((x) => (x.id === p.id ? { ...x, photo: dataUrl, video: null } : x)));
+        setFotoJugadorBusy(false);
+        setFotoJugadorMsg(t(session?.email === "demo" ? "mh.demoNote" : "pf.savedLocal"));
+        setTimeout(() => setFotoJugadorMsg(""), 4000);
+        return;
+      }
+      let rec = p.rec;
+      if (!rec) rec = await airNew("jugadores", jugToAir(p, teamRec));
+      if (!rec) { setFotoJugadorBusy(false); setFotoJugadorMsg(t("mh.fotoFail")); return; }
+      if (!p.rec) editarJugador(p.id, { rec });
+      const base64 = dataUrl.split(",")[1] || "";
+      const out = await airFotoJugador(rec, base64, file.type || "image/jpeg", file.name || "foto.jpg");
+      setFotoJugadorBusy(false);
+      if (out?.ok) {
+        /* Vista al momento con el propio archivo local, sin esperar a que
+           Airtable devuelva la URL del adjunto -normalmente la trae ya en
+           la respuesta, pero no depender de eso evita un instante de foto
+           vacía si por lo que sea no viene. */
+        setPlayers((ps) => ps.map((x) => (x.id === p.id ? { ...x, photo: out.url || dataUrl, video: null } : x)));
+        setFotoJugadorMsg(t("mh.fotoOk"));
+        setTimeout(() => setFotoJugadorMsg(""), 4000);
+      } else {
+        setFotoJugadorMsg(t("mh.fotoFail"));
+      }
+    };
+    reader.readAsDataURL(file);
+  };
 
   const genVideo = async (p) => {
     if (!lim.video) return proAlert("video");
@@ -11386,17 +11434,23 @@ export default function App() {
             : <div className="h-48 flex items-center justify-center text-sm" style={{ color: C.dim }}>Sin foto todavía</div>}
         </div>
         {can("editSquad") && (
-          <div className="flex gap-2 mb-4">
-            <label className="flex-1 text-center text-sm px-3 py-2.5 rounded-lg border cursor-pointer font-display uppercase tracking-wide" style={{ borderColor: C.line, color: C.chalk }}>
-              📷 {profile.photo ? "Cambiar foto" : "Subir foto"}
-              <input type="file" accept="image/*" className="hidden" onChange={(e) => { const f = e.target.files?.[0]; if (!f) return; const r = new FileReader(); r.onload = () => setPhoto(profile.id, String(r.result)); r.readAsDataURL(f); }} />
-            </label>
-            <button onClick={() => genVideo(profile)} disabled={(lim.video && !profile.photo) || genBusy}
-              className="flex-1 text-sm px-3 py-2.5 rounded-lg font-display uppercase tracking-wide font-semibold disabled:opacity-40"
-              style={{ background: lim.video ? AC : C.panel2, color: lim.video ? "#141414" : C.dim, border: lim.video ? "none" : `1px solid ${C.line}` }}>
-              {!lim.video ? "🎬 Vídeo 5 s · PRO" : genBusy ? "Grabando 5 s…" : profile.video ? "🎬 Rehacer vídeo" : "🎬 Crear vídeo 5 s"}
-            </button>
-          </div>
+          <>
+            <div className="flex gap-2 mb-1.5">
+              <label className="flex-1 text-center text-sm px-3 py-2.5 rounded-lg border cursor-pointer font-display uppercase tracking-wide" style={{ borderColor: C.line, color: fotoJugadorBusy ? C.dim : C.chalk, opacity: fotoJugadorBusy ? 0.6 : 1 }}>
+                📷 {fotoJugadorBusy ? "Subiendo…" : profile.photo ? "Cambiar foto" : "Subir foto"}
+                <input type="file" accept="image/*" className="hidden" disabled={fotoJugadorBusy}
+                  onChange={(e) => { const f = e.target.files?.[0]; if (f) subirFotoJugadorPerfil(profile, f); e.target.value = ""; }} />
+              </label>
+              <button onClick={() => genVideo(profile)} disabled={(lim.video && !profile.photo) || genBusy}
+                className="flex-1 text-sm px-3 py-2.5 rounded-lg font-display uppercase tracking-wide font-semibold disabled:opacity-40"
+                style={{ background: lim.video ? AC : C.panel2, color: lim.video ? "#141414" : C.dim, border: lim.video ? "none" : `1px solid ${C.line}` }}>
+                {!lim.video ? "🎬 Vídeo 5 s · PRO" : genBusy ? "Grabando 5 s…" : profile.video ? "🎬 Rehacer vídeo" : "🎬 Crear vídeo 5 s"}
+              </button>
+            </div>
+            {fotoJugadorMsg && (
+              <div className="text-xs mb-3" style={{ color: fotoJugadorMsg === t("mh.fotoFail") ? C.red : C.dim }}>{fotoJugadorMsg}</div>
+            )}
+          </>
         )}
         {profile.video && lim.video && (
           <a href={profile.video} download={`presentacion-${profile.n.replace(/\s+/g, "-")}.webm`} className="block text-center text-xs mb-4 underline" style={{ color: AC }}>Descargar vídeo (.webm)</a>
