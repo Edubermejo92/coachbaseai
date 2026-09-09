@@ -17168,9 +17168,15 @@ export default function App() {
           <div className="text-xs mb-2" style={{ color: C.dim }}>{editable ? t("cl.markCalled") : t("cl.calledList")} — {called.size} {t("cl.selected")}</div>
           <div className="space-y-1 max-h-[340px] overflow-y-auto pr-1" style={{ opacity: editable ? 1 : 0.75 }}>
             {players.map((p) => (
-              <button key={p.id} onClick={() => toggle(p.id)} disabled={!editable} className="w-full flex items-center justify-between text-sm py-2 px-3 rounded-lg border text-left disabled:cursor-default" style={{ borderColor: called.has(p.id) ? AC : C.line, background: called.has(p.id) ? C.panel2 : "transparent", color: C.chalk }}>
-                <span className="flex items-center"><span className="w-5 text-center mr-2" style={{ color: called.has(p.id) ? AC : C.dim }}>{called.has(p.id) ? "✓" : "○"}</span><Dot st={p.st} /><span className="font-display text-base mr-2" style={{ color: AC }}>{p.d}</span>{p.n}</span>
-                <span style={{ color: C.dim }}>{posDe(p.id)}</span>
+              <button key={p.id} onClick={() => toggle(p.id)} disabled={!editable} className="w-full flex items-center justify-between gap-2 text-sm py-2 px-3 rounded-lg border text-left disabled:cursor-default" style={{ borderColor: called.has(p.id) ? AC : C.line, background: called.has(p.id) ? C.panel2 : "transparent", color: C.chalk }}>
+                <span className="flex items-center gap-2 min-w-0 flex-1">
+                  <span className="w-5 text-center shrink-0" style={{ color: called.has(p.id) ? AC : C.dim }}>{called.has(p.id) ? "✓" : "○"}</span>
+                  <Avatar p={p} size={26} />
+                  <Dot st={p.st} />
+                  <span className="font-display text-base shrink-0" style={{ color: AC }}>{p.d}</span>
+                  <span className="truncate">{p.n}</span>
+                </span>
+                <span className="shrink-0" style={{ color: C.dim }}>{posDe(p.id)}</span>
               </button>
             ))}
           </div>
