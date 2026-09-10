@@ -89,6 +89,14 @@ const DICT = {
     "ln.tapPlayerForSlot": "Toca al jugador que quieres poner de {pos}.",
     "ln.tapPlayerToAdd": "Toca a un jugador y entra en el once, en el primer hueco libre ({pos}). Para elegir el sitio, toca antes un puesto del campo.",
     "ln.xiFull": "El once está completo. Toca un puesto del campo para cambiar a quien esté ahí.",
+    "ln.favTitle": "Favoritas",
+    "ln.favSave": "☆ Guardar como favorita",
+    "ln.favMax": "Ya tienes 3 favoritas guardadas. Borra una para guardar otra.",
+    "ln.favNamePrompt": "Nombre para esta alineación (p. ej. «Con lesionados»)",
+    "ln.favSaveOk": "✓ Favorita guardada.",
+    "ln.favSaveFail": "No se pudo guardar la favorita.",
+    "ln.favApply": "Poner en el partido",
+    "ln.favDeleteConfirm": "¿Borrar la favorita «{name}»?",
     "pf.noPos": "Sin puesto en el once",
     "pf.deletePlayer": "🗑 Eliminar jugador",
     "pf.deleteConfirm": "¿Eliminar a {name} de la plantilla? Se borra su ficha entera -foto, vídeo, historial de lesiones- y no se puede deshacer.",
@@ -657,6 +665,14 @@ const DICT = {
     "ln.tapPlayerForSlot": "Tap the player you want at {pos}.",
     "ln.tapPlayerToAdd": "Tap a player and they go into the XI, in the first free spot ({pos}). To choose the spot, tap a position on the pitch first.",
     "ln.xiFull": "The XI is complete. Tap a position on the pitch to swap whoever is there.",
+    "ln.favTitle": "Favorites",
+    "ln.favSave": "☆ Save as favorite",
+    "ln.favMax": "You already have 3 saved favorites. Delete one to save another.",
+    "ln.favNamePrompt": "Name for this lineup (e.g. \"With injuries\")",
+    "ln.favSaveOk": "✓ Favorite saved.",
+    "ln.favSaveFail": "Couldn't save the favorite.",
+    "ln.favApply": "Use in match",
+    "ln.favDeleteConfirm": "Delete favorite \"{name}\"?",
     "pf.noPos": "Not in the XI",
     "pf.deletePlayer": "🗑 Delete player",
     "pf.deleteConfirm": "Delete {name} from the squad? Their whole profile -photo, video, injury history- is removed and this cannot be undone.",
@@ -1237,6 +1253,14 @@ const DICT = {
     "ln.tapPlayerForSlot": "Touche le joueur que tu veux mettre au poste de {pos}.",
     "ln.tapPlayerToAdd": "Touche un joueur et il entre dans le onze, au premier poste libre ({pos}). Pour choisir le poste, touche d'abord une place sur le terrain.",
     "ln.xiFull": "Le onze est complet. Touche une place sur le terrain pour remplacer celui qui l'occupe.",
+    "ln.favTitle": "Favoris",
+    "ln.favSave": "☆ Enregistrer comme favori",
+    "ln.favMax": "Vous avez déjà 3 favoris enregistrés. Supprimez-en un pour en enregistrer un autre.",
+    "ln.favNamePrompt": "Nom pour cette composition (ex. « Avec blessés »)",
+    "ln.favSaveOk": "✓ Favori enregistré.",
+    "ln.favSaveFail": "Impossible d'enregistrer le favori.",
+    "ln.favApply": "Utiliser pour le match",
+    "ln.favDeleteConfirm": "Supprimer le favori « {name} » ?",
     "pf.noPos": "Pas dans le onze",
     "pf.deletePlayer": "🗑 Supprimer le joueur",
     "pf.deleteConfirm": "Supprimer {name} de l'effectif ? Toute sa fiche -photo, vidéo, historique des blessures- est effacée, irréversible.",
@@ -1891,6 +1915,14 @@ const DICT = {
     "ln.tapPlayerForSlot": "Tippe den Spieler an, den du auf {pos} stellen willst.",
     "ln.tapPlayerToAdd": "Tippe einen Spieler an und er kommt in die Elf, auf den ersten freien Platz ({pos}). Um den Platz zu wählen, tippe vorher eine Position auf dem Feld an.",
     "ln.xiFull": "Die Elf ist komplett. Tippe eine Position auf dem Feld an, um den Spieler dort zu tauschen.",
+    "ln.favTitle": "Favoriten",
+    "ln.favSave": "☆ Als Favorit speichern",
+    "ln.favMax": "Du hast bereits 3 gespeicherte Favoriten. Lösche einen, um einen weiteren zu speichern.",
+    "ln.favNamePrompt": "Name für diese Aufstellung (z. B. „Mit Verletzten“)",
+    "ln.favSaveOk": "✓ Favorit gespeichert.",
+    "ln.favSaveFail": "Favorit konnte nicht gespeichert werden.",
+    "ln.favApply": "Im Spiel verwenden",
+    "ln.favDeleteConfirm": "Favorit „{name}“ löschen?",
     "pf.noPos": "Nicht in der Elf",
     "pf.deletePlayer": "🗑 Spieler löschen",
     "pf.deleteConfirm": "{name} aus dem Kader löschen? Das ganze Profil -Foto, Video, Verletzungshistorie- wird entfernt, nicht rückgängig zu machen.",
@@ -2544,6 +2576,14 @@ const DICT = {
     "ln.tapPlayerForSlot": "Toca no jogador que queres pôr a {pos}.",
     "ln.tapPlayerToAdd": "Toca num jogador e entra no onze, no primeiro lugar livre ({pos}). Para escolheres o lugar, toca primeiro numa posição do campo.",
     "ln.xiFull": "O onze está completo. Toca numa posição do campo para trocar quem lá está.",
+    "ln.favTitle": "Favoritas",
+    "ln.favSave": "☆ Guardar como favorita",
+    "ln.favMax": "Já tens 3 favoritas guardadas. Apaga uma para guardar outra.",
+    "ln.favNamePrompt": "Nome para esta alinhação (ex.: «Com lesionados»)",
+    "ln.favSaveOk": "✓ Favorita guardada.",
+    "ln.favSaveFail": "Não foi possível guardar a favorita.",
+    "ln.favApply": "Usar no jogo",
+    "ln.favDeleteConfirm": "Apagar a favorita «{name}»?",
     "pf.noPos": "Fora do onze",
     "pf.deletePlayer": "🗑 Eliminar jogador",
     "pf.deleteConfirm": "Eliminar {name} do plantel? A ficha inteira -foto, vídeo, histórico de lesões- é apagada e não se pode desfazer.",
@@ -4248,6 +4288,21 @@ const airCargasGuardar = async (teamRec, cargas) => {
   try {
     const r = await cbFetch(`${AIR}?res=cargas&team=${encodeURIComponent(teamRec)}`, {
       method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ cargas: JSON.stringify(cargas) }),
+    });
+    return await r.json().catch(() => null);
+  } catch { return null; }
+};
+/* Alineaciones favoritas: hasta 3 onces guardados como plantilla -"con
+   lesionados", "ida", "vuelta"...-, para elegir uno y ponerlo en el
+   partido sin rehacerlo cada vez. Documento aparte del de "alineacion":
+   guardar una favorita no toca el once que se está usando ahora mismo. */
+const airFavoritasLeer = async (teamRec) => {
+  try { const r = await cbFetch(`${AIR}?res=alineaciones-favoritas&team=${encodeURIComponent(teamRec)}`); if (!r.ok) return null; return await r.json(); } catch { return null; }
+};
+const airFavoritasGuardar = async (teamRec, favoritas) => {
+  try {
+    const r = await cbFetch(`${AIR}?res=alineaciones-favoritas&team=${encodeURIComponent(teamRec)}`, {
+      method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ favoritas: JSON.stringify(favoritas) }),
     });
     return await r.json().catch(() => null);
   } catch { return null; }
@@ -10013,21 +10068,37 @@ export default function App() {
   const alineacionCargaNubeRef = useRef(false);
   const playersRef = useRef(players);
   useEffect(() => { playersRef.current = players; }, [players]);
-  const aplicarLineupDeNube = (remoto) => {
-    const crudo = remoto?.lineup && typeof remoto.lineup === "object" ? remoto.lineup : remoto;
-    if (!crudo || typeof crudo !== "object") return false;
+  /* Traduce un mapa puesto->id guardado (con `rec` de Airtable o, por
+     compatibilidad con lo guardado antes de este cambio, un ID local de
+     entonces) a IDs locales usando la plantilla actual. La usan tanto la
+     alineación oficial como las favoritas -ver más abajo-: es la misma
+     traducción en los dos sitios, y al revés (traducirSlotsARecs) para
+     mandarlo a la nube. */
+  const traducirSlotsDeRecs = (crudo) => {
     const lista = playersRef.current;
-    if (!lista.length) return false;
     const traducido = {};
-    Object.entries(crudo).forEach(([slot, val]) => {
-      /* Compatibilidad con lo guardado antes de este cambio: si el valor no
-         parece un ID de Airtable (no empieza por "rec"), era el ID local de
-         entonces y se busca por ahí en vez de por `rec`. */
+    Object.entries(crudo || {}).forEach(([slot, val]) => {
       const p = typeof val === "string" && val.startsWith("rec")
         ? lista.find((x) => x.rec === val)
         : lista.find((x) => x.id === val);
       if (p) traducido[slot] = p.id;
     });
+    return traducido;
+  };
+  const traducirSlotsARecs = (lineupLocal) => {
+    const lista = playersRef.current;
+    const out = {};
+    Object.entries(lineupLocal || {}).forEach(([slot, id]) => {
+      const p = lista.find((x) => x.id === id);
+      if (p?.rec) out[slot] = p.rec;
+    });
+    return out;
+  };
+  const aplicarLineupDeNube = (remoto) => {
+    const crudo = remoto?.lineup && typeof remoto.lineup === "object" ? remoto.lineup : remoto;
+    if (!crudo || typeof crudo !== "object") return false;
+    if (!playersRef.current.length) return false;
+    const traducido = traducirSlotsDeRecs(crudo);
     alineacionCargaNubeRef.current = true;
     /* El sistema (forma del campo) viaja junto a la alineación desde ahora:
        antes solo se guardaba quién iba en cada puesto, y cada dispositivo
@@ -10076,12 +10147,7 @@ export default function App() {
     const rec = session?.team?.rec;
     if (!rec || session?.email === "demo" || esSoloLectura) return;
     if (alineacionCargaNubeRef.current) { alineacionCargaNubeRef.current = false; return; }
-    const lineupNube = {};
-    Object.entries(lineup).forEach(([slot, id]) => {
-      const p = players.find((x) => x.id === id);
-      if (p?.rec) lineupNube[slot] = p.rec;
-    });
-    const payload = { lineup: lineupNube, sysCode };
+    const payload = { lineup: traducirSlotsARecs(lineup), sysCode };
     lineupPendienteGuardarRef.current = { rec, payload };
     lineupTimeoutRef.current = setTimeout(() => {
       lineupPendienteGuardarRef.current = null;
@@ -10144,6 +10210,72 @@ export default function App() {
     setSysCode(clean);
     setSelSlot(null);
     return true;
+  };
+  /* Alineaciones favoritas: hasta 3 onces guardados como plantilla -"con
+     lesionados", "ida", "vuelta"...- para poder ponerlos en el partido sin
+     rehacerlos cada vez. Mismo documento-por-equipo que la alineación
+     oficial (ver EQ.alineacionesFavoritas en el backend), pero es una
+     lista aparte: guardar o aplicar una favorita no manda nada al
+     recurso "alineacion" salvo que, al aplicarla, se pase a `lineup` como
+     cualquier otro cambio -entonces sí se guarda sola, por el mismo
+     efecto de guardado automático de aquí arriba-. */
+  const [lineupFavoritas, setLineupFavoritas] = useState([]);
+  const [favBusy, setFavBusy] = useState(false);
+  const [favMsg, setFavMsg] = useState("");
+  useEffect(() => {
+    const rec = session?.team?.rec;
+    if (!rec || session?.email === "demo") { setLineupFavoritas([]); return; }
+    let vivo = true;
+    (async () => {
+      const d = await airFavoritasLeer(rec);
+      if (!vivo) return;
+      try {
+        const lista = JSON.parse(d?.favoritas || "[]");
+        if (Array.isArray(lista)) setLineupFavoritas(lista);
+      } catch { /* json roto en Airtable: se ignora */ }
+    })();
+    return () => { vivo = false; };
+  }, [session?.team?.rec]); // eslint-disable-line
+  const guardarFavoritas = async (lista) => {
+    const rec = session?.team?.rec;
+    if (!rec || session?.email === "demo") {
+      setFavMsg(t(session?.email === "demo" ? "mh.demoNote" : "pf.savedLocal"));
+      setTimeout(() => setFavMsg(""), 4000);
+      return;
+    }
+    setFavBusy(true);
+    const out = await airFavoritasGuardar(rec, lista);
+    setFavBusy(false);
+    setFavMsg(t(out?.ok ? "ln.favSaveOk" : "ln.favSaveFail"));
+    setTimeout(() => setFavMsg(""), 4000);
+  };
+  const guardarComoFavorita = () => {
+    if (favBusy || !can("editLineup")) return;
+    if (lineupFavoritas.length >= 3) { setFavMsg(t("ln.favMax")); setTimeout(() => setFavMsg(""), 4000); return; }
+    const nombre = window.prompt(t("ln.favNamePrompt"), "");
+    if (!nombre || !nombre.trim()) return;
+    const nueva = { id: `fav${Date.now()}`, nombre: nombre.trim().slice(0, 40), lineup: traducirSlotsARecs(lineup), sysCode };
+    const lista = [...lineupFavoritas, nueva];
+    setLineupFavoritas(lista);
+    guardarFavoritas(lista);
+  };
+  const borrarFavorita = (id) => {
+    if (favBusy) return;
+    const fav = lineupFavoritas.find((f) => f.id === id);
+    if (!fav || !window.confirm(t("ln.favDeleteConfirm").replace("{name}", fav.nombre))) return;
+    const lista = lineupFavoritas.filter((f) => f.id !== id);
+    setLineupFavoritas(lista);
+    guardarFavoritas(lista);
+  };
+  /* Ponerla en el partido: si quien la aplica está proponiendo cambios
+     (segundo entrenador), va a su borrador -como cualquier otro toque del
+     campo- y no a la alineación oficial hasta que se apruebe. */
+  const aplicarFavorita = (fav) => {
+    if (!fav || !can("editLineup")) return;
+    if (canProposeChanges() && miPropuestaPendiente("lineup")) return;
+    if (fav.sysCode) { setSlotPos(buildSlots(fav.sysCode)); setSysCode(fav.sysCode); }
+    setLineupSmart(() => traducirSlotsDeRecs(fav.lineup));
+    setSelSlot(null);
   };
   const [selSlot, setSelSlot] = useState(null);
   const [lnImgBusy, setLnImgBusy] = useState(false);
@@ -17158,6 +17290,24 @@ export default function App() {
                 className="text-xs px-2 py-1 rounded-lg border" style={{ borderColor: AC, color: AC }}>{t("ln.apply")}</button>
             </div>
           </div>
+          {can("editLineup") && (
+            <div className="flex flex-wrap items-center gap-1.5 mb-2 pb-2 border-b" style={{ borderColor: C.line }}>
+              <span className="text-[11px] uppercase tracking-wide" style={{ color: C.dim }}>{t("ln.favTitle")}</span>
+              {lineupFavoritas.map((fav) => (
+                <span key={fav.id} className="flex items-center gap-1 text-xs pl-2.5 pr-1 py-1 rounded-lg border" style={{ borderColor: C.line, background: C.panel2 }}>
+                  <button onClick={() => aplicarFavorita(fav)} title={t("ln.favApply")} className="hover:opacity-80" style={{ color: C.chalk }}>
+                    ☆ {fav.nombre}
+                  </button>
+                  <button onClick={() => borrarFavorita(fav.id)} disabled={favBusy} className="px-1 opacity-60 hover:opacity-100" style={{ color: C.dim }}>✕</button>
+                </span>
+              ))}
+              <button onClick={guardarComoFavorita} disabled={favBusy || lineupFavoritas.length >= 3}
+                className="text-xs px-2 py-1 rounded-lg border disabled:opacity-40" style={{ borderColor: AC, color: AC }}>
+                {t("ln.favSave")}
+              </button>
+              {favMsg && <span className="text-[11px]" style={{ color: favMsg === t("ln.favSaveFail") ? C.red : C.dim }}>{favMsg}</span>}
+            </div>
+          )}
           <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
             <div className="text-xs" style={{ color: C.dim }}>
               {t("ln.dragHint")}
