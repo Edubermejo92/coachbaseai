@@ -96,6 +96,7 @@ const DICT = {
     "ln.favSaveOk": "✓ Favorita guardada.",
     "ln.favSaveFail": "No se pudo guardar la favorita.",
     "ln.favApply": "Poner en el partido",
+    "ln.favApplied": "✓ «{name}» puesta en el campo.",
     "ln.favDeleteConfirm": "¿Borrar la favorita «{name}»?",
     "pf.noPos": "Sin puesto en el once",
     "pf.deletePlayer": "🗑 Eliminar jugador",
@@ -672,6 +673,7 @@ const DICT = {
     "ln.favSaveOk": "✓ Favorite saved.",
     "ln.favSaveFail": "Couldn't save the favorite.",
     "ln.favApply": "Use in match",
+    "ln.favApplied": "✓ \"{name}\" is on the pitch.",
     "ln.favDeleteConfirm": "Delete favorite \"{name}\"?",
     "pf.noPos": "Not in the XI",
     "pf.deletePlayer": "🗑 Delete player",
@@ -1260,6 +1262,7 @@ const DICT = {
     "ln.favSaveOk": "✓ Favori enregistré.",
     "ln.favSaveFail": "Impossible d'enregistrer le favori.",
     "ln.favApply": "Utiliser pour le match",
+    "ln.favApplied": "✓ « {name} » est sur le terrain.",
     "ln.favDeleteConfirm": "Supprimer le favori « {name} » ?",
     "pf.noPos": "Pas dans le onze",
     "pf.deletePlayer": "🗑 Supprimer le joueur",
@@ -1922,6 +1925,7 @@ const DICT = {
     "ln.favSaveOk": "✓ Favorit gespeichert.",
     "ln.favSaveFail": "Favorit konnte nicht gespeichert werden.",
     "ln.favApply": "Im Spiel verwenden",
+    "ln.favApplied": "✓ „{name}“ steht auf dem Feld.",
     "ln.favDeleteConfirm": "Favorit „{name}“ löschen?",
     "pf.noPos": "Nicht in der Elf",
     "pf.deletePlayer": "🗑 Spieler löschen",
@@ -2583,6 +2587,7 @@ const DICT = {
     "ln.favSaveOk": "✓ Favorita guardada.",
     "ln.favSaveFail": "Não foi possível guardar a favorita.",
     "ln.favApply": "Usar no jogo",
+    "ln.favApplied": "✓ «{name}» está no campo.",
     "ln.favDeleteConfirm": "Apagar a favorita «{name}»?",
     "pf.noPos": "Fora do onze",
     "pf.deletePlayer": "🗑 Eliminar jogador",
@@ -8015,6 +8020,32 @@ function buildSlots(code) {
   });
   return slots;
 }
+/* El tablero de una alineación guardada: no solo en qué sistema jugaba, sino
+   DÓNDE estaba puesta cada ficha. Si el entrenador abre a un lateral, junta a
+   los centrales o adelanta al pivote, ese dibujo ES la alineación que quiso
+   guardar: antes solo viajaba el sistema y al recuperarla se regeneraba el
+   dibujo por defecto, así que volvían los mismos jugadores pero colocados en
+   otro sitio -y parecía que no se hubiera guardado nada-.
+   Lo que llegue roto, a medias o de una versión anterior -sin tablero- cae al
+   dibujo por defecto del sistema, que es como funcionaba hasta ahora. */
+function slotsGuardados(slots, code) {
+  if (!slots || typeof slots !== "object") return buildSlots(code);
+  const out = {};
+  Object.entries(slots).forEach(([id, s]) => {
+    if (!s || !Number.isFinite(s.x) || !Number.isFinite(s.y)) return;
+    out[id] = { label: String(s.label || ""), x: s.x, y: s.y };
+  });
+  return Object.keys(out).length ? out : buildSlots(code);
+}
+/* ¿Es el mismo once -los mismos jugadores en los mismos puestos-? Sirve para
+   marcar cuál de las favoritas es la que está puesta ahora mismo en el campo,
+   comparándola en vez de recordar "la última que se pulsó": así, en cuanto se
+   cambia a alguien, la marca se apaga sola en vez de quedarse señalando una
+   alineación que ya no es la que se ve. */
+const mismoOnce = (a, b) => {
+  const ka = Object.keys(a || {}), kb = Object.keys(b || {});
+  return ka.length === kb.length && ka.every((k) => a[k] === b[k]);
+};
 /* Sistemas sugeridos; el campo admite cualquier otro escrito a mano */
 const SYS_F11 = ["4-3-3", "4-4-2", "4-2-3-1", "3-5-2", "3-4-3", "5-3-2", "4-1-4-1", "4-4-1-1", "5-4-1", "4-5-1", "3-4-2-1", "4-3-1-2"];
 const SYS_F7 = ["2-3-1", "3-2-1", "3-1-2", "1-4-1", "2-1-3", "3-3", "2-2-2"];
@@ -10105,7 +10136,7 @@ export default function App() {
        enseñaba esos jugadores sobre SU propio sistema local -por defecto
        4-3-3-, así que si el equipo jugaba en 3-5-2 el resto del cuerpo
        técnico veía huecos vacíos en vez del once real. */
-    if (remoto?.sysCode) { setSlotPos(buildSlots(remoto.sysCode)); setSysCode(remoto.sysCode); }
+    if (remoto?.sysCode) { setSlotPos(slotsGuardados(remoto.slots, remoto.sysCode)); setSysCode(remoto.sysCode); }
     setLineup(traducido);
     return true;
   };
@@ -10147,14 +10178,20 @@ export default function App() {
     const rec = session?.team?.rec;
     if (!rec || session?.email === "demo" || esSoloLectura) return;
     if (alineacionCargaNubeRef.current) { alineacionCargaNubeRef.current = false; return; }
-    const payload = { lineup: traducirSlotsARecs(lineup), sysCode };
+    /* `slotPos` viaja con el resto: mover una ficha por el campo es un cambio
+       de alineación como cualquier otro -de hecho es el que más se toca al
+       preparar un partido- y antes no se guardaba, así que el dibujo volvía
+       al de por defecto en cuanto se recargaba o se miraba desde otro móvil.
+       Arrastrar dispara este efecto muchas veces seguidas, pero el retraso de
+       abajo las junta en un solo guardado, que es justo para lo que está. */
+    const payload = { lineup: traducirSlotsARecs(lineup), sysCode, slots: slotPos };
     lineupPendienteGuardarRef.current = { rec, payload };
     lineupTimeoutRef.current = setTimeout(() => {
       lineupPendienteGuardarRef.current = null;
       airAlineacionGuardar(rec, payload);
     }, 700);
     return () => clearTimeout(lineupTimeoutRef.current);
-  }, [lineup, sysCode]); // eslint-disable-line
+  }, [lineup, sysCode, slotPos]); // eslint-disable-line
   useEffect(() => {
     const flush = () => {
       const pend = lineupPendienteGuardarRef.current;
@@ -10254,7 +10291,13 @@ export default function App() {
     if (lineupFavoritas.length >= 3) { setFavMsg(t("ln.favMax")); setTimeout(() => setFavMsg(""), 4000); return; }
     const nombre = window.prompt(t("ln.favNamePrompt"), "");
     if (!nombre || !nombre.trim()) return;
-    const nueva = { id: `fav${Date.now()}`, nombre: nombre.trim().slice(0, 40), lineup: traducirSlotsARecs(lineup), sysCode };
+    /* Se guarda el once que quien pulsa TIENE DELANTE: para el segundo
+       entrenador ese es su borrador, no la alineación oficial -guardarle la
+       oficial sería guardarle algo que no es lo que está viendo-. Y con el
+       tablero (`slots`), para que al recuperarla cada ficha vuelva a donde
+       la dejó y no al dibujo por defecto del sistema. */
+    const once = canProposeChanges() ? (lineupDraft || lineup) : lineup;
+    const nueva = { id: `fav${Date.now()}`, nombre: nombre.trim().slice(0, 40), lineup: traducirSlotsARecs(once), sysCode, slots: slotPos };
     const lista = [...lineupFavoritas, nueva];
     setLineupFavoritas(lista);
     guardarFavoritas(lista);
@@ -10269,13 +10312,19 @@ export default function App() {
   };
   /* Ponerla en el partido: si quien la aplica está proponiendo cambios
      (segundo entrenador), va a su borrador -como cualquier otro toque del
-     campo- y no a la alineación oficial hasta que se apruebe. */
+     campo- y no a la alineación oficial hasta que se apruebe. Se devuelve el
+     tablero guardado tal cual, no el de por defecto del sistema: la gracia de
+     recuperar una alineación es que vuelva EXACTAMENTE como se dejó. */
   const aplicarFavorita = (fav) => {
     if (!fav || !can("editLineup")) return;
     if (canProposeChanges() && miPropuestaPendiente("lineup")) return;
-    if (fav.sysCode) { setSlotPos(buildSlots(fav.sysCode)); setSysCode(fav.sysCode); }
+    if (fav.sysCode) { setSlotPos(slotsGuardados(fav.slots, fav.sysCode)); setSysCode(fav.sysCode); }
     setLineupSmart(() => traducirSlotsDeRecs(fav.lineup));
     setSelSlot(null);
+    /* Un aviso corto al aplicarla: si la que se pulsa se parece a lo que ya
+       había, sin esto el toque no parece haber hecho nada. */
+    setFavMsg(t("ln.favApplied").replace("{name}", fav.nombre));
+    setTimeout(() => setFavMsg(""), 4000);
   };
   const [selSlot, setSelSlot] = useState(null);
   const [lnImgBusy, setLnImgBusy] = useState(false);
@@ -17293,14 +17342,22 @@ export default function App() {
           {can("editLineup") && (
             <div className="flex flex-wrap items-center gap-1.5 mb-2 pb-2 border-b" style={{ borderColor: C.line }}>
               <span className="text-[11px] uppercase tracking-wide" style={{ color: C.dim }}>{t("ln.favTitle")}</span>
-              {lineupFavoritas.map((fav) => (
-                <span key={fav.id} className="flex items-center gap-1 text-xs pl-2.5 pr-1 py-1 rounded-lg border" style={{ borderColor: C.line, background: C.panel2 }}>
-                  <button onClick={() => aplicarFavorita(fav)} title={t("ln.favApply")} className="hover:opacity-80" style={{ color: C.chalk }}>
-                    ☆ {fav.nombre}
-                  </button>
-                  <button onClick={() => borrarFavorita(fav.id)} disabled={favBusy} className="px-1 opacity-60 hover:opacity-100" style={{ color: C.dim }}>✕</button>
-                </span>
-              ))}
+              {lineupFavoritas.map((fav) => {
+                /* La que coincide con lo que hay en el campo va marcada, como
+                   los botones de sistema de aquí arriba: sin esto no había
+                   forma de saber cuál de las tres se está usando. */
+                const puesta = fav.sysCode === sysCode && mismoOnce(traducirSlotsDeRecs(fav.lineup), lineupView);
+                return (
+                  <span key={fav.id} className="flex items-center gap-1 text-xs pl-2.5 pr-1 py-1 rounded-lg border"
+                    style={{ borderColor: puesta ? AC : C.line, background: puesta ? `${AC}1A` : C.panel2 }}>
+                    <button onClick={() => aplicarFavorita(fav)} title={t("ln.favApply")} className="hover:opacity-80 font-display"
+                      style={{ color: puesta ? AC : C.chalk }}>
+                      {puesta ? "★" : "☆"} {fav.nombre}
+                    </button>
+                    <button onClick={() => borrarFavorita(fav.id)} disabled={favBusy} className="px-1 opacity-60 hover:opacity-100" style={{ color: C.dim }}>✕</button>
+                  </span>
+                );
+              })}
               <button onClick={guardarComoFavorita} disabled={favBusy || lineupFavoritas.length >= 3}
                 className="text-xs px-2 py-1 rounded-lg border disabled:opacity-40" style={{ borderColor: AC, color: AC }}>
                 {t("ln.favSave")}

@@ -25,6 +25,22 @@ dice("el entrenador del equipo guarda sus favoritas", r.body.ok === true, JSON.s
 r = await call("?res=alineaciones-favoritas&team=recSEN", { token: tEnt });
 dice("se relee lo guardado", JSON.parse(r.body.favoritas)[0].nombre === "Titular", r.body.favoritas);
 
+/* Lo que se guarda no es solo QUIÉN juega, sino DÓNDE está puesta cada ficha:
+   si el entrenador abre a un lateral o adelanta al pivote, eso es parte de la
+   alineación que quiso guardar y tiene que volver igual al recuperarla. */
+const conTablero = [{
+  id: "f3", nombre: "Con el lateral abierto", sysCode: "4-3-3",
+  lineup: { GK: "recJ0", L0_0: "recJ1" },
+  slots: { GK: { label: "POR", x: 50, y: 84 }, L0_0: { label: "LI", x: 7, y: 76 } },
+}];
+r = await call("?res=alineaciones-favoritas&team=recSEN", { method: "POST", token: tEnt, body: { favoritas: JSON.stringify(conTablero) } });
+dice("se guarda una favorita con el tablero colocado a mano", r.body.ok === true, JSON.stringify(r.body));
+
+r = await call("?res=alineaciones-favoritas&team=recSEN", { token: tEnt });
+const vuelta = JSON.parse(r.body.favoritas)[0];
+dice("vuelve el tablero, no solo el sistema", vuelta.slots?.L0_0?.x === 7 && vuelta.slots?.GK?.y === 84, JSON.stringify(vuelta.slots));
+dice("y con sus demarcaciones", vuelta.slots?.L0_0?.label === "LI", JSON.stringify(vuelta.slots?.L0_0));
+
 r = await call("?res=alineaciones-favoritas&team=recIB", { method: "POST", token: tEnt, body: { favoritas: "[]" } });
 dice("un entrenador no puede tocar las favoritas de un equipo que no es el suyo", r.status === 403 && r.body.reason === "no_autorizado", JSON.stringify(r.body));
 
