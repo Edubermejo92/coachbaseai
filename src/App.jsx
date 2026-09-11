@@ -82,7 +82,7 @@ const DICT = {
     "ln.sendProposal": "Enviar propuesta",
     "ln.dragHint": "Arrastra para recolocar · toque corto para asignar",
     "ln.benchTitle": "Banquillo",
-    "ln.shareWhatsapp": "⬆ Enviar por WhatsApp", "ln.downloadLineup": "⤓ Descargar alineación", "ln.downloadOk": "✓ Descargada.",
+    "ln.video": "🎬 Vídeo del once", "ln.videoPro": "🎬 Vídeo del once · PRO", "ln.videoRec": "Grabando…", "ln.videoOk": "✓ Vídeo listo.", "ln.videoFail": "No se pudo generar el vídeo.", "ln.videoNoXI": "Pon el once antes de generar el vídeo.", "ln.videoDownload": "⤓ Descargar vídeo", "ln.shareWhatsapp": "⬆ Enviar por WhatsApp", "ln.downloadLineup": "⤓ Descargar alineación", "ln.downloadOk": "✓ Descargada.",
     "ln.shareImageBusy": "Generando imagen…",
     "ln.shareImageOk": "✓ Imagen lista.",
     "ln.shareImageFail": "No se pudo generar la imagen.",
@@ -98,7 +98,7 @@ const DICT = {
     "ln.favApply": "Poner en el partido",
     "ln.favApplied": "✓ «{name}» puesta en el campo.",
     "ln.favDeleteConfirm": "¿Borrar la favorita «{name}»?",
-    "pf.noPos": "Sin puesto en el once",
+    "pf.absTitle": "Faltas", "pf.absEmpty": "No ha faltado ningún día.", "pf.noPos": "Sin puesto en el once",
     "pf.deletePlayer": "🗑 Eliminar jugador",
     "pf.deleteConfirm": "¿Eliminar a {name} de la plantilla? Se borra su ficha entera -foto, vídeo, historial de lesiones- y no se puede deshacer.",
     "st.noLineup": "Todavía no hay un once montado.",
@@ -659,7 +659,7 @@ const DICT = {
     "ln.sendProposal": "Send proposal",
     "ln.dragHint": "Drag to reposition · tap to assign",
     "ln.benchTitle": "Bench",
-    "ln.shareWhatsapp": "⬆ Send on WhatsApp", "ln.downloadLineup": "⤓ Download line-up", "ln.downloadOk": "✓ Downloaded.",
+    "ln.video": "🎬 Line-up video", "ln.videoPro": "🎬 Line-up video · PRO", "ln.videoRec": "Recording…", "ln.videoOk": "✓ Video ready.", "ln.videoFail": "Could not generate the video.", "ln.videoNoXI": "Pick the XI before making the video.", "ln.videoDownload": "⤓ Download video", "ln.shareWhatsapp": "⬆ Send on WhatsApp", "ln.downloadLineup": "⤓ Download line-up", "ln.downloadOk": "✓ Downloaded.",
     "ln.shareImageBusy": "Generating image…",
     "ln.shareImageOk": "✓ Image ready.",
     "ln.shareImageFail": "Couldn't generate the image.",
@@ -675,7 +675,7 @@ const DICT = {
     "ln.favApply": "Use in match",
     "ln.favApplied": "✓ \"{name}\" is on the pitch.",
     "ln.favDeleteConfirm": "Delete favorite \"{name}\"?",
-    "pf.noPos": "Not in the XI",
+    "pf.absTitle": "Absences", "pf.absEmpty": "Has not missed a single day.", "pf.noPos": "Not in the XI",
     "pf.deletePlayer": "🗑 Delete player",
     "pf.deleteConfirm": "Delete {name} from the squad? Their whole profile -photo, video, injury history- is removed and this cannot be undone.",
     "st.noLineup": "No line-up has been set yet.",
@@ -1248,7 +1248,7 @@ const DICT = {
     "ln.sendProposal": "Envoyer la proposition",
     "ln.dragHint": "Glissez pour repositionner · touchez pour affecter",
     "ln.benchTitle": "Remplaçants",
-    "ln.shareWhatsapp": "⬆ Envoyer par WhatsApp", "ln.downloadLineup": "⤓ Télécharger la compo", "ln.downloadOk": "✓ Téléchargée.",
+    "ln.video": "🎬 Vidéo du onze", "ln.videoPro": "🎬 Vidéo du onze · PRO", "ln.videoRec": "Enregistrement…", "ln.videoOk": "✓ Vidéo prête.", "ln.videoFail": "Impossible de générer la vidéo.", "ln.videoNoXI": "Composez le onze avant de faire la vidéo.", "ln.videoDownload": "⤓ Télécharger la vidéo", "ln.shareWhatsapp": "⬆ Envoyer par WhatsApp", "ln.downloadLineup": "⤓ Télécharger la compo", "ln.downloadOk": "✓ Téléchargée.",
     "ln.shareImageBusy": "Génération de l'image…",
     "ln.shareImageOk": "✓ Image prête.",
     "ln.shareImageFail": "Impossible de générer l'image.",
@@ -1264,7 +1264,7 @@ const DICT = {
     "ln.favApply": "Utiliser pour le match",
     "ln.favApplied": "✓ « {name} » est sur le terrain.",
     "ln.favDeleteConfirm": "Supprimer le favori « {name} » ?",
-    "pf.noPos": "Pas dans le onze",
+    "pf.absTitle": "Absences", "pf.absEmpty": "N'a manqué aucun jour.", "pf.noPos": "Pas dans le onze",
     "pf.deletePlayer": "🗑 Supprimer le joueur",
     "pf.deleteConfirm": "Supprimer {name} de l'effectif ? Toute sa fiche -photo, vidéo, historique des blessures- est effacée, irréversible.",
     "st.noLineup": "Aucune composition n'a encore été faite.",
@@ -1917,7 +1917,7 @@ const DICT = {
     "ln.sendProposal": "Vorschlag senden",
     "ln.dragHint": "Ziehen zum Umstellen · Antippen zum Zuweisen",
     "ln.benchTitle": "Bank",
-    "ln.shareWhatsapp": "⬆ Per WhatsApp senden", "ln.downloadLineup": "⤓ Aufstellung laden", "ln.downloadOk": "✓ Heruntergeladen.",
+    "ln.video": "🎬 Video der Elf", "ln.videoPro": "🎬 Video der Elf · PRO", "ln.videoRec": "Aufnahme…", "ln.videoOk": "✓ Video fertig.", "ln.videoFail": "Video konnte nicht erstellt werden.", "ln.videoNoXI": "Stelle erst die Elf auf.", "ln.videoDownload": "⤓ Video herunterladen", "ln.shareWhatsapp": "⬆ Per WhatsApp senden", "ln.downloadLineup": "⤓ Aufstellung laden", "ln.downloadOk": "✓ Heruntergeladen.",
     "ln.shareImageBusy": "Bild wird erstellt…",
     "ln.shareImageOk": "✓ Bild bereit.",
     "ln.shareImageFail": "Bild konnte nicht erstellt werden.",
@@ -1933,7 +1933,7 @@ const DICT = {
     "ln.favApply": "Im Spiel verwenden",
     "ln.favApplied": "✓ „{name}“ steht auf dem Feld.",
     "ln.favDeleteConfirm": "Favorit „{name}“ löschen?",
-    "pf.noPos": "Nicht in der Elf",
+    "pf.absTitle": "Fehltage", "pf.absEmpty": "Hat keinen Tag gefehlt.", "pf.noPos": "Nicht in der Elf",
     "pf.deletePlayer": "🗑 Spieler löschen",
     "pf.deleteConfirm": "{name} aus dem Kader löschen? Das ganze Profil -Foto, Video, Verletzungshistorie- wird entfernt, nicht rückgängig zu machen.",
     "st.noLineup": "Es ist noch keine Aufstellung gesetzt.",
@@ -2585,7 +2585,7 @@ const DICT = {
     "ln.sendProposal": "Enviar proposta",
     "ln.dragHint": "Arrasta para recolocar · toque curto para atribuir",
     "ln.benchTitle": "Banco",
-    "ln.shareWhatsapp": "⬆ Enviar por WhatsApp", "ln.downloadLineup": "⤓ Descarregar onze", "ln.downloadOk": "✓ Descarregado.",
+    "ln.video": "🎬 Vídeo do onze", "ln.videoPro": "🎬 Vídeo do onze · PRO", "ln.videoRec": "A gravar…", "ln.videoOk": "✓ Vídeo pronto.", "ln.videoFail": "Não foi possível gerar o vídeo.", "ln.videoNoXI": "Escolhe o onze antes de fazer o vídeo.", "ln.videoDownload": "⤓ Descarregar vídeo", "ln.shareWhatsapp": "⬆ Enviar por WhatsApp", "ln.downloadLineup": "⤓ Descarregar onze", "ln.downloadOk": "✓ Descarregado.",
     "ln.shareImageBusy": "A gerar imagem…",
     "ln.shareImageOk": "✓ Imagem pronta.",
     "ln.shareImageFail": "Não foi possível gerar a imagem.",
@@ -2601,7 +2601,7 @@ const DICT = {
     "ln.favApply": "Usar no jogo",
     "ln.favApplied": "✓ «{name}» está no campo.",
     "ln.favDeleteConfirm": "Apagar a favorita «{name}»?",
-    "pf.noPos": "Fora do onze",
+    "pf.absTitle": "Faltas", "pf.absEmpty": "Não faltou nenhum dia.", "pf.noPos": "Fora do onze",
     "pf.deletePlayer": "🗑 Eliminar jogador",
     "pf.deleteConfirm": "Eliminar {name} do plantel? A ficha inteira -foto, vídeo, histórico de lesões- é apagada e não se pode desfazer.",
     "st.noLineup": "Ainda não há um onze montado.",
@@ -8346,6 +8346,146 @@ async function makePresentationVideo(player, club, teamName, accent, pos) {
   return done;
 }
 
+/* --------- Vídeo de presentación del ONCE (canvas → webm) ---------
+   Para ponerlo en el vestuario o mandarlo la víspera: una tarjeta por titular
+   -foto, dorsal, nombre y puesto- encadenadas, con su portada y su cierre.
+   Reutiliza el mismo canvas + MediaRecorder que el vídeo individual, porque
+   graba igual: dibujando fotograma a fotograma en tiempo real.
+   Las fotos se cargan con crossOrigin porque viven en Airtable (otro origen):
+   sin eso el canvas queda "manchado" y captureStream falla ENTERO, no solo esa
+   foto. La que aun así no cargue no rompe el vídeo -esa ficha sale con el
+   dorsal a lo grande, como en el campo cuando falta la foto-. */
+async function makeLineupVideo({ titulares, club, teamName, accent, sysCode, capitanes = [], onPaso }) {
+  const W = 540, H = 675, PORTADA = 2.2, POR_JUGADOR = 2.2, CIERRE = 1.8;
+  const DUR = PORTADA + titulares.length * POR_JUGADOR + CIERRE;
+  const canvas = document.createElement("canvas");
+  canvas.width = W; canvas.height = H;
+  const ctx = canvas.getContext("2d");
+  /* El fondo del vídeo es oscuro SIEMPRE -no sigue el tema de la app-, así que
+     los textos van en claro y no con el color del tema: en tema claro ese color
+     es casi negro y el nombre del jugador se quedaba invisible sobre el fondo.
+     Con el acento pasa lo mismo -hay clubes de negro o azul marino-, así que si
+     no tiene brillo para leerse sobre oscuro, se cae al claro. */
+  const CLARO = "#E8EDE6", TENUE = "rgba(232,237,230,0.65)";
+  const brilloDe = (col) => {
+    const m = /^#?([0-9a-f]{3}|[0-9a-f]{6})$/i.exec(String(col).trim());
+    if (!m) return 1;
+    const h = m[1].length === 3 ? m[1].split("").map((c) => c + c).join("") : m[1];
+    const [r, g, b] = [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16) / 255);
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+  };
+  const acento = brilloDe(accent) > 0.4 ? accent : CLARO;
+  /* El texto se encoge hasta caber en el ancho dado: un nombre largo -"C.D.
+     Chamartín Vergara 1995", o un jugador con dos apellidos- se salía del
+     cuadro por los dos lados al ir con un tamaño fijo. */
+  const fuenteQueQuepa = (texto, base, maxAncho, peso = "700") => {
+    let px = base;
+    ctx.font = `${peso} ${px}px 'Barlow Condensed', sans-serif`;
+    while (ctx.measureText(texto).width > maxAncho && px > 16) {
+      px -= 2;
+      ctx.font = `${peso} ${px}px 'Barlow Condensed', sans-serif`;
+    }
+  };
+  const fotos = await Promise.all(titulares.map(({ p }) => new Promise((res) => {
+    if (!p.photo) { res(null); return; }
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onload = () => res(img);
+    img.onerror = () => res(null);
+    img.src = p.photo;
+  })));
+  const stream = canvas.captureStream(30);
+  const mime = MediaRecorder.isTypeSupported("video/webm;codecs=vp9") ? "video/webm;codecs=vp9" : "video/webm";
+  const rec = new MediaRecorder(stream, { mimeType: mime, videoBitsPerSecond: 4_000_000 });
+  const chunks = [];
+  rec.ondataavailable = (e) => e.data.size && chunks.push(e.data);
+  const done = new Promise((res) => { rec.onstop = () => res(URL.createObjectURL(new Blob(chunks, { type: "video/webm" }))); });
+  const drawCover = (image, x, y, w, h) => {
+    const s = Math.max(w / image.width, h / image.height);
+    const iw = image.width * s, ih = image.height * s;
+    ctx.drawImage(image, x + (w - iw) / 2, y + (h - ih) / 2, iw, ih);
+  };
+  const fondo = () => {
+    for (let i = 0; i < 10; i++) { ctx.fillStyle = i % 2 ? "#17251D" : "#141F17"; ctx.fillRect(0, i * (H / 10), W, H / 10); }
+    ctx.strokeStyle = "rgba(54,69,79,0.18)"; ctx.lineWidth = 3; ctx.strokeRect(16, 16, W - 32, H - 32);
+  };
+  const frame = (t) => {
+    fondo();
+    if (t < PORTADA) {
+      const a = ease(t / 0.8);
+      ctx.textAlign = "center";
+      ctx.fillStyle = acento; ctx.fillRect(W / 2 - (W / 2) * a, H / 2 - 92, W * a, 6);
+      fuenteQueQuepa(club.toUpperCase(), 46, W - 48); ctx.fillStyle = CLARO; ctx.globalAlpha = a;
+      ctx.fillText(club.toUpperCase(), W / 2, H / 2 - 24); ctx.globalAlpha = 1;
+      ctx.font = "500 26px 'Barlow Condensed', sans-serif"; ctx.fillStyle = TENUE; ctx.globalAlpha = a;
+      ctx.fillText(teamName.toUpperCase(), W / 2, H / 2 + 14); ctx.globalAlpha = 1;
+      const a2 = ease((t - 0.9) / 0.8);
+      if (a2 > 0) {
+        ctx.font = "700 72px 'Barlow Condensed', sans-serif"; ctx.fillStyle = acento; ctx.globalAlpha = a2;
+        ctx.fillText(sysCode, W / 2, H / 2 + 100); ctx.globalAlpha = 1;
+      }
+      return;
+    }
+    const tras = t - PORTADA;
+    const i = Math.floor(tras / POR_JUGADOR);
+    if (i >= titulares.length) {
+      const a = ease((t - (DUR - CIERRE)) / 0.8);
+      ctx.textAlign = "center";
+      fuenteQueQuepa(teamName.toUpperCase(), 40, W - 48); ctx.fillStyle = CLARO; ctx.globalAlpha = a;
+      ctx.fillText(teamName.toUpperCase(), W / 2, H / 2); ctx.globalAlpha = 1;
+      ctx.fillStyle = acento; ctx.fillRect(0, H - 52, W * a, 52);
+      ctx.font = "600 22px 'Barlow Condensed', sans-serif"; ctx.fillStyle = acento === CLARO ? "rgba(20,20,20,1)" : CLARO; ctx.globalAlpha = a;
+      ctx.fillText("COACHBASE AI", W / 2, H - 18);
+      return;
+    }
+    /* Cada ficha entra y sale con su propio fundido, para que el corte entre
+       jugador y jugador no sea seco. */
+    const local = tras - i * POR_JUGADOR;
+    const entra = ease(local / 0.45);
+    const sale = 1 - ease((local - (POR_JUGADOR - 0.35)) / 0.35);
+    const a = Math.max(0, Math.min(entra, sale));
+    const { p, pos } = titulares[i];
+    const foto = fotos[i];
+    ctx.textAlign = "left";
+    ctx.font = "500 20px 'Barlow Condensed', sans-serif"; ctx.fillStyle = TENUE; ctx.globalAlpha = a;
+    ctx.fillText(`${teamName.toUpperCase()} · ${sysCode}`, 24, 60); ctx.globalAlpha = 1;
+    const R = 148, cx = W / 2, cy = 286;
+    ctx.globalAlpha = a;
+    if (foto) {
+      ctx.save(); ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.clip();
+      drawCover(foto, cx - R, cy - R, R * 2, R * 2); ctx.restore();
+    } else {
+      ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.fillStyle = "rgba(54,69,79,0.25)"; ctx.fill();
+      ctx.textAlign = "center"; ctx.font = "700 150px 'Barlow Condensed', sans-serif"; ctx.fillStyle = acento;
+      ctx.fillText(String(p.d), cx, cy + 52); ctx.textAlign = "left";
+    }
+    ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.lineWidth = 5; ctx.strokeStyle = acento; ctx.stroke();
+    ctx.globalAlpha = 1;
+    ctx.font = "700 150px 'Barlow Condensed', sans-serif"; ctx.textAlign = "right";
+    ctx.fillStyle = acento; ctx.globalAlpha = a;
+    ctx.fillText(String(p.d), W - 24, 560);
+    ctx.textAlign = "left"; fuenteQueQuepa(p.n.toUpperCase(), 42, W - 190); ctx.fillStyle = CLARO;
+    ctx.fillText(p.n.toUpperCase(), 24, 540);
+    ctx.font = "600 24px 'Barlow Condensed', sans-serif"; ctx.fillStyle = acento;
+    ctx.fillText(`${pos === "POR" ? "🧤 PORTERO" : pos}${capitanes.includes(p.id) ? " · CAPITÁN" : ""}`, 24, 575);
+    ctx.globalAlpha = 1;
+  };
+  rec.start();
+  const t0 = performance.now();
+  let ultimo = -1;
+  await new Promise((res) => {
+    const loop = (now) => {
+      const t = (now - t0) / 1000;
+      frame(Math.min(t, DUR));
+      const paso = Math.max(0, Math.floor((t - PORTADA) / POR_JUGADOR));
+      if (onPaso && paso !== ultimo) { ultimo = paso; onPaso(Math.min(paso, titulares.length), titulares.length); }
+      if (t < DUR) requestAnimationFrame(loop); else { rec.stop(); res(); }
+    };
+    requestAnimationFrame(loop);
+  });
+  return done;
+}
+
 /* ---------------- Acceso ---------------- */
 /* ================= FICHA PARA EL EQUIPO RIVAL =================
    La única pantalla de COACHBASE que se ve sin cuenta. Se abre con el enlace
@@ -10437,6 +10577,12 @@ export default function App() {
   };
   const [selSlot, setSelSlot] = useState(null);
   const [lnImgBusy, setLnImgBusy] = useState(false);
+  /* Vídeo del once para antes del partido. Se graba en tiempo real -es lo que
+     hace MediaRecorder sobre un canvas-, así que tarda lo que dura el vídeo:
+     por eso el botón dice por dónde va en vez de quedarse pensando. */
+  const [lnVidBusy, setLnVidBusy] = useState(false);
+  const [lnVidMsg, setLnVidMsg] = useState("");
+  const [lnVidUrl, setLnVidUrl] = useState(null);
   const [lnImgMsg, setLnImgMsg] = useState("");
   const [profileId, setProfileId] = useState(null);
   const [genBusy, setGenBusy] = useState(false);
@@ -11890,6 +12036,38 @@ export default function App() {
             <div className="text-xs" style={{ color: C.dim }}>{t("lz.histEmpty")}</div>
           )}
         </div>
+        {/* Los días que ha faltado y por qué. Se saca del pase de asistencia
+            -no se escribe aquí-, así que corregir una fecha mal marcada se
+            hace en Asistencia y esta lista lo refleja sola. Es la pregunta que
+            se acaba haciendo en la ficha ("¿este cuántas ha fallado y por
+            qué?") y hasta ahora obligaba a recorrer el calendario día a día. */}
+        {can("editSquad") && (() => {
+          const faltas = Object.entries(asistencia)
+            .map(([f, dia]) => ({ f, estado: dia?.[profile.id] }))
+            .filter((x) => x.estado && x.estado !== "presente")
+            .sort((a, b) => (a.f < b.f ? 1 : -1));
+          return (
+            <div className="mt-3 rounded-lg border p-2.5" style={{ borderColor: C.line, background: C.panel2 }}>
+              <div className="text-[10px] font-display uppercase tracking-widest mb-1.5 flex items-center justify-between gap-2" style={{ color: C.dim }}>
+                <span><Icono n="asistencia" s={12} /> {t("pf.absTitle")}</span>
+                {faltas.length > 0 && <span className="tabular-nums" style={{ color: C.chalk }}>{faltas.length}</span>}
+              </div>
+              {faltas.length > 0 ? (
+                <div className="space-y-1 max-h-40 overflow-y-auto">
+                  {faltas.map((x) => (
+                    <div key={x.f} className="flex items-center gap-2 text-xs">
+                      <span className="tabular-nums shrink-0" style={{ color: C.dim }}>{fechaCorta(x.f, lang)}</span>
+                      <span className="shrink-0 w-1.5 h-1.5 rounded-full" style={{ background: asistColor(x.estado) }} />
+                      <span style={{ color: asistColor(x.estado) }}>{asistLabel(x.estado, t)}</span>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-xs" style={{ color: C.dim }}>{t("pf.absEmpty")}</div>
+              )}
+            </div>
+          );
+        })()}
         {/* Padres/tutores y acceso del propio jugador: hasta 2 emails de
             familia y 1 del propio jugador, vinculados aquí mismo -sin que
             nadie tenga que autorregistrarse-. Nacen Pendientes y sin
@@ -17459,6 +17637,31 @@ export default function App() {
        no admite archivos (escritorio, navegadores antiguos) se hace lo que sí
        se puede: abrir WhatsApp con el texto y descargar la imagen para
        adjuntarla a mano, en vez de quedarse sin una de las dos. */
+    const generarVideoOnce = async () => {
+      if (!lim.video) return proAlert("video");
+      if (lnVidBusy) return;
+      const titulares = Object.entries(slotPos)
+        .map(([id, sl]) => ({ p: players.find((x) => x.id === lineupView[id]), pos: sl.label }))
+        .filter((x) => x.p);
+      if (!titulares.length) { setLnVidMsg(t("ln.videoNoXI")); setTimeout(() => setLnVidMsg(""), 4000); return; }
+      if (lnVidUrl) { URL.revokeObjectURL(lnVidUrl); setLnVidUrl(null); }
+      setLnVidBusy(true); setLnVidMsg("");
+      try {
+        try { await document.fonts?.ready; } catch { /* sin API de fonts: se graba con lo que haya */ }
+        const url = await makeLineupVideo({
+          titulares, club: session.club || "", teamName: session.team?.name || "", accent: AC,
+          sysCode, capitanes,
+          onPaso: (a, b) => setLnVidMsg(`${t("ln.videoRec")} ${a}/${b}`),
+        });
+        setLnVidUrl(url);
+        setLnVidMsg(t("ln.videoOk"));
+      } catch {
+        setLnVidMsg(t("ln.videoFail"));
+        setTimeout(() => setLnVidMsg(""), 5000);
+      } finally {
+        setLnVidBusy(false);
+      }
+    };
     const compartirAlineacion = async ({ paraWhatsapp = false } = {}) => {
       setLnImgMsg(""); setLnImgBusy(true);
       try {
@@ -17605,6 +17808,21 @@ export default function App() {
                 style={{ borderColor: C.line, color: C.chalk }}>
                 {lnImgBusy ? t("ln.shareImageBusy") : t("ln.shareWhatsapp")}
               </button>
+              {/* Vídeo del once para la víspera o el vestuario. Se graba en
+                  tiempo real, así que avisa por dónde va. */}
+              <button onClick={generarVideoOnce} disabled={lnVidBusy}
+                className="text-xs px-2.5 py-1 rounded-lg border font-display uppercase tracking-wide disabled:opacity-50"
+                style={{ borderColor: lim.video ? C.line : C.line, color: lim.video ? C.chalk : C.dim }}>
+                {lnVidBusy ? (lnVidMsg || t("ln.videoRec")) : lim.video ? t("ln.video") : t("ln.videoPro")}
+              </button>
+              {!lnVidBusy && lnVidMsg && <span className="text-[11px] text-right" style={{ color: lnVidMsg === t("ln.videoFail") ? C.warn : C.dim }}>{lnVidMsg}</span>}
+              {lnVidUrl && !lnVidBusy && (
+                <a href={lnVidUrl} download={`once-${(session.team?.name || "equipo").replace(/\s+/g, "-")}-${hoyISO()}.webm`}
+                  className="text-xs px-2.5 py-1 rounded-lg font-display uppercase tracking-wide text-center font-semibold"
+                  style={{ background: AC, color: C.sobre }}>
+                  {t("ln.videoDownload")}
+                </a>
+              )}
             </div>
           </div>
           <div ref={pitchRef} className="relative w-full touch-none select-none" style={{ aspectRatio: "3/4" }} onPointerMove={onPitchMove} onPointerUp={() => onSlotUp(null)}>
