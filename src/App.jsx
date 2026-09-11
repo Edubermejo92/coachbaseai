@@ -82,7 +82,7 @@ const DICT = {
     "ln.sendProposal": "Enviar propuesta",
     "ln.dragHint": "Arrastra para recolocar · toque corto para asignar",
     "ln.benchTitle": "Banquillo",
-    "ln.shareWhatsapp": "⬆ Enviar por WhatsApp", "ln.shareImage": "⬆ Compartir imagen",
+    "ln.shareWhatsapp": "⬆ Enviar por WhatsApp", "ln.downloadLineup": "⤓ Descargar alineación", "ln.downloadOk": "✓ Descargada.",
     "ln.shareImageBusy": "Generando imagen…",
     "ln.shareImageOk": "✓ Imagen lista.",
     "ln.shareImageFail": "No se pudo generar la imagen.",
@@ -659,7 +659,7 @@ const DICT = {
     "ln.sendProposal": "Send proposal",
     "ln.dragHint": "Drag to reposition · tap to assign",
     "ln.benchTitle": "Bench",
-    "ln.shareWhatsapp": "⬆ Send on WhatsApp", "ln.shareImage": "⬆ Share image",
+    "ln.shareWhatsapp": "⬆ Send on WhatsApp", "ln.downloadLineup": "⤓ Download line-up", "ln.downloadOk": "✓ Downloaded.",
     "ln.shareImageBusy": "Generating image…",
     "ln.shareImageOk": "✓ Image ready.",
     "ln.shareImageFail": "Couldn't generate the image.",
@@ -1248,7 +1248,7 @@ const DICT = {
     "ln.sendProposal": "Envoyer la proposition",
     "ln.dragHint": "Glissez pour repositionner · touchez pour affecter",
     "ln.benchTitle": "Remplaçants",
-    "ln.shareWhatsapp": "⬆ Envoyer par WhatsApp", "ln.shareImage": "⬆ Partager l'image",
+    "ln.shareWhatsapp": "⬆ Envoyer par WhatsApp", "ln.downloadLineup": "⤓ Télécharger la compo", "ln.downloadOk": "✓ Téléchargée.",
     "ln.shareImageBusy": "Génération de l'image…",
     "ln.shareImageOk": "✓ Image prête.",
     "ln.shareImageFail": "Impossible de générer l'image.",
@@ -1917,7 +1917,7 @@ const DICT = {
     "ln.sendProposal": "Vorschlag senden",
     "ln.dragHint": "Ziehen zum Umstellen · Antippen zum Zuweisen",
     "ln.benchTitle": "Bank",
-    "ln.shareWhatsapp": "⬆ Per WhatsApp senden", "ln.shareImage": "⬆ Bild teilen",
+    "ln.shareWhatsapp": "⬆ Per WhatsApp senden", "ln.downloadLineup": "⤓ Aufstellung laden", "ln.downloadOk": "✓ Heruntergeladen.",
     "ln.shareImageBusy": "Bild wird erstellt…",
     "ln.shareImageOk": "✓ Bild bereit.",
     "ln.shareImageFail": "Bild konnte nicht erstellt werden.",
@@ -2585,7 +2585,7 @@ const DICT = {
     "ln.sendProposal": "Enviar proposta",
     "ln.dragHint": "Arrasta para recolocar · toque curto para atribuir",
     "ln.benchTitle": "Banco",
-    "ln.shareWhatsapp": "⬆ Enviar por WhatsApp", "ln.shareImage": "⬆ Partilhar imagem",
+    "ln.shareWhatsapp": "⬆ Enviar por WhatsApp", "ln.downloadLineup": "⤓ Descarregar onze", "ln.downloadOk": "✓ Descarregado.",
     "ln.shareImageBusy": "A gerar imagem…",
     "ln.shareImageOk": "✓ Imagem pronta.",
     "ln.shareImageFail": "Não foi possível gerar a imagem.",
@@ -17490,18 +17490,27 @@ export default function App() {
         if (!blob) { setLnImgBusy(false); setLnImgMsg(t("ln.shareImageFail")); return; }
         const nombre = `alineacion-${(session.team?.name || "equipo").replace(/\s+/g, "-")}-${hoyISO()}.png`;
         const file = new File([blob], nombre, { type: "image/png" });
-        const pie = paraWhatsapp ? alineacionTexto() : `${session.club || ""} ${session.team?.name || ""} · ${sysCode}`;
+        const descargar = () => {
+          const a = document.createElement("a");
+          const url = URL.createObjectURL(blob);
+          a.href = url; a.download = nombre; a.click();
+          setTimeout(() => URL.revokeObjectURL(url), 10000);
+        };
         try {
-          if (navigator.share && (!navigator.canShare || navigator.canShare({ files: [file] }))) {
-            await navigator.share({ files: [file], title: t("ln.startersTitle"), text: pie });
+          if (!paraWhatsapp) {
+            /* Descargar es descargar: el archivo al carrete o a la carpeta de
+               descargas, sin pasar por el panel de compartir. Para mandarlo a
+               alguien está el botón de al lado. */
+            descargar();
+          } else if (navigator.share && (!navigator.canShare || navigator.canShare({ files: [file] }))) {
+            await navigator.share({ files: [file], title: t("ln.startersTitle"), text: alineacionTexto() });
           } else {
-            const a = document.createElement("a");
-            a.href = URL.createObjectURL(blob); a.download = nombre; a.click();
             /* Sin panel con archivos: al menos que el texto llegue a WhatsApp
                y la imagen quede descargada para adjuntarla. */
-            if (paraWhatsapp) window.open(`https://wa.me/?text=${encodeURIComponent(pie)}`, "_blank", "noopener");
+            descargar();
+            window.open(`https://wa.me/?text=${encodeURIComponent(alineacionTexto())}`, "_blank", "noopener");
           }
-          setLnImgMsg(t("ln.shareImageOk"));
+          setLnImgMsg(t(paraWhatsapp ? "ln.shareImageOk" : "ln.downloadOk"));
         } catch (e) {
           /* Cancelar el panel de compartir del móvil no es un fallo real. */
           if (e?.name !== "AbortError") setLnImgMsg(t("ln.shareImageFail"));
@@ -17586,7 +17595,7 @@ export default function App() {
               <button onClick={() => compartirAlineacion()} disabled={lnImgBusy}
                 className="text-xs px-2.5 py-1 rounded-lg border font-display uppercase tracking-wide disabled:opacity-50"
                 style={{ borderColor: AC, color: AC }}>
-                {lnImgBusy ? t("ln.shareImageBusy") : t("ln.shareImage")}
+                {lnImgBusy ? t("ln.shareImageBusy") : t("ln.downloadLineup")}
               </button>
               {/* A WhatsApp van las dos cosas: la imagen del campo y, de pie,
                   el once en texto -que se copia al acta y se busca luego en la
