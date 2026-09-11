@@ -82,7 +82,7 @@ const DICT = {
     "ln.sendProposal": "Enviar propuesta",
     "ln.dragHint": "Arrastra para recolocar · toque corto para asignar",
     "ln.benchTitle": "Banquillo",
-    "ln.shareImage": "⬆ Compartir imagen",
+    "ln.shareWhatsapp": "⬆ Enviar por WhatsApp", "ln.shareImage": "⬆ Compartir imagen",
     "ln.shareImageBusy": "Generando imagen…",
     "ln.shareImageOk": "✓ Imagen lista.",
     "ln.shareImageFail": "No se pudo generar la imagen.",
@@ -659,7 +659,7 @@ const DICT = {
     "ln.sendProposal": "Send proposal",
     "ln.dragHint": "Drag to reposition · tap to assign",
     "ln.benchTitle": "Bench",
-    "ln.shareImage": "⬆ Share image",
+    "ln.shareWhatsapp": "⬆ Send on WhatsApp", "ln.shareImage": "⬆ Share image",
     "ln.shareImageBusy": "Generating image…",
     "ln.shareImageOk": "✓ Image ready.",
     "ln.shareImageFail": "Couldn't generate the image.",
@@ -1248,7 +1248,7 @@ const DICT = {
     "ln.sendProposal": "Envoyer la proposition",
     "ln.dragHint": "Glissez pour repositionner · touchez pour affecter",
     "ln.benchTitle": "Remplaçants",
-    "ln.shareImage": "⬆ Partager l'image",
+    "ln.shareWhatsapp": "⬆ Envoyer par WhatsApp", "ln.shareImage": "⬆ Partager l'image",
     "ln.shareImageBusy": "Génération de l'image…",
     "ln.shareImageOk": "✓ Image prête.",
     "ln.shareImageFail": "Impossible de générer l'image.",
@@ -1917,7 +1917,7 @@ const DICT = {
     "ln.sendProposal": "Vorschlag senden",
     "ln.dragHint": "Ziehen zum Umstellen · Antippen zum Zuweisen",
     "ln.benchTitle": "Bank",
-    "ln.shareImage": "⬆ Bild teilen",
+    "ln.shareWhatsapp": "⬆ Per WhatsApp senden", "ln.shareImage": "⬆ Bild teilen",
     "ln.shareImageBusy": "Bild wird erstellt…",
     "ln.shareImageOk": "✓ Bild bereit.",
     "ln.shareImageFail": "Bild konnte nicht erstellt werden.",
@@ -2585,7 +2585,7 @@ const DICT = {
     "ln.sendProposal": "Enviar proposta",
     "ln.dragHint": "Arrasta para recolocar · toque curto para atribuir",
     "ln.benchTitle": "Banco",
-    "ln.shareImage": "⬆ Partilhar imagem",
+    "ln.shareWhatsapp": "⬆ Enviar por WhatsApp", "ln.shareImage": "⬆ Partilhar imagem",
     "ln.shareImageBusy": "A gerar imagem…",
     "ln.shareImageOk": "✓ Imagem pronta.",
     "ln.shareImageFail": "Não foi possível gerar a imagem.",
@@ -17427,6 +17427,29 @@ export default function App() {
       try { cv.toBlob((blob) => resolve(blob || null), "image/png"); }
       catch { resolve(null); }
     });
+    /* La misma alineación en texto, para mandarla por WhatsApp. No sustituye a
+       la imagen: el texto se lee en cualquier móvil, se copia al acta y se
+       busca luego en la conversación, y llega igual donde la imagen se queda
+       comprimida o sin abrir. Sale lo que se está viendo -el borrador del
+       segundo entrenador si es quien mira-, en el orden del campo: portero
+       primero, como en cualquier acta. */
+    const alineacionTexto = () => {
+      const titulares = Object.entries(slotPos)
+        .map(([id, sl]) => ({ sl, p: players.find((x) => x.id === lineupView[id]) }))
+        .filter((x) => x.p)
+        .map(({ sl, p }) => `${sl.label} ${keycap(p.d)} ${p.n}${capitanes.includes(p.id) ? ` (${t("ln.captainShort")})` : ""}`);
+      const suplentes = bench.slice().sort((a, b) => a.d - b.d)
+        .map((p) => `${keycap(p.d)} ${p.n}${capitanes.includes(p.id) ? ` (${t("ln.captainShort")})` : ""}`);
+      const staff = staffTecnico.filter((m) => (m.n || "").trim()).map((m) => (m.rol ? `${m.n} · ${m.rol}` : m.n));
+      return [
+        `⬡ *${t("nav.alineacion").toUpperCase()} — ${session.club || ""} ${session.team?.name || ""}*`,
+        `📐 ${sysCode}`,
+        "",
+        ...titulares,
+        ...(suplentes.length ? ["", `*${t("ln.benchTitle").toUpperCase()}*`, ...suplentes] : []),
+        ...(staff.length ? ["", `*${t("ln.staffTitle").toUpperCase()}*`, ...staff] : []),
+      ].join("\n");
+    };
     const compartirAlineacionImagen = async () => {
       setLnImgMsg(""); setLnImgBusy(true);
       try {
@@ -17545,13 +17568,20 @@ export default function App() {
             <div className="text-xs" style={{ color: C.dim }}>
               {t("ln.dragHint")}
             </div>
-            <div className="flex items-center gap-2">
-              {lnImgMsg && <span className="text-[11px]" style={{ color: lnImgMsg.startsWith("✓") ? C.dim : C.warn }}>{lnImgMsg}</span>}
+            <div className="flex flex-col items-stretch gap-1.5">
+              {lnImgMsg && <span className="text-[11px] text-right" style={{ color: lnImgMsg.startsWith("✓") ? C.dim : C.warn }}>{lnImgMsg}</span>}
               <button onClick={compartirAlineacionImagen} disabled={lnImgBusy}
                 className="text-xs px-2.5 py-1 rounded-lg border font-display uppercase tracking-wide disabled:opacity-50"
                 style={{ borderColor: AC, color: AC }}>
                 {lnImgBusy ? t("ln.shareImageBusy") : t("ln.shareImage")}
               </button>
+              {/* El once en texto. Va debajo de la imagen y no en su lugar: son
+                  dos cosas distintas -una se mira, la otra se copia al acta-. */}
+              <a href={`https://wa.me/?text=${encodeURIComponent(alineacionTexto())}`} target="_blank" rel="noreferrer"
+                className="text-xs px-2.5 py-1 rounded-lg border font-display uppercase tracking-wide text-center"
+                style={{ borderColor: C.line, color: C.chalk }}>
+                {t("ln.shareWhatsapp")}
+              </a>
             </div>
           </div>
           <div ref={pitchRef} className="relative w-full touch-none select-none" style={{ aspectRatio: "3/4" }} onPointerMove={onPitchMove} onPointerUp={() => onSlotUp(null)}>
