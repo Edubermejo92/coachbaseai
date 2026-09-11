@@ -17450,7 +17450,16 @@ export default function App() {
         ...(staff.length ? ["", `*${t("ln.staffTitle").toUpperCase()}*`, ...staff] : []),
       ].join("\n");
     };
-    const compartirAlineacionImagen = async () => {
+    /* Compartir la alineación. `paraWhatsapp` decide qué acompaña a la imagen:
+       el pie corto de siempre, o el once entero en texto para que WhatsApp lo
+       mande como descripción de la foto.
+       Un enlace wa.me NO puede llevar imagen -su esquema solo admite texto-,
+       así que la única forma de que la foto llegue a WhatsApp desde la web es
+       el panel de compartir del móvil, eligiendo WhatsApp ahí. Donde ese panel
+       no admite archivos (escritorio, navegadores antiguos) se hace lo que sí
+       se puede: abrir WhatsApp con el texto y descargar la imagen para
+       adjuntarla a mano, en vez de quedarse sin una de las dos. */
+    const compartirAlineacion = async ({ paraWhatsapp = false } = {}) => {
       setLnImgMsg(""); setLnImgBusy(true);
       try {
         try { await document.fonts?.ready; } catch { /* sin API de fonts: se dibuja con lo que haya */ }
@@ -17481,12 +17490,16 @@ export default function App() {
         if (!blob) { setLnImgBusy(false); setLnImgMsg(t("ln.shareImageFail")); return; }
         const nombre = `alineacion-${(session.team?.name || "equipo").replace(/\s+/g, "-")}-${hoyISO()}.png`;
         const file = new File([blob], nombre, { type: "image/png" });
+        const pie = paraWhatsapp ? alineacionTexto() : `${session.club || ""} ${session.team?.name || ""} · ${sysCode}`;
         try {
           if (navigator.share && (!navigator.canShare || navigator.canShare({ files: [file] }))) {
-            await navigator.share({ files: [file], title: t("ln.startersTitle"), text: `${session.club || ""} ${session.team?.name || ""} · ${sysCode}` });
+            await navigator.share({ files: [file], title: t("ln.startersTitle"), text: pie });
           } else {
             const a = document.createElement("a");
             a.href = URL.createObjectURL(blob); a.download = nombre; a.click();
+            /* Sin panel con archivos: al menos que el texto llegue a WhatsApp
+               y la imagen quede descargada para adjuntarla. */
+            if (paraWhatsapp) window.open(`https://wa.me/?text=${encodeURIComponent(pie)}`, "_blank", "noopener");
           }
           setLnImgMsg(t("ln.shareImageOk"));
         } catch (e) {
@@ -17570,18 +17583,19 @@ export default function App() {
             </div>
             <div className="flex flex-col items-stretch gap-1.5">
               {lnImgMsg && <span className="text-[11px] text-right" style={{ color: lnImgMsg.startsWith("✓") ? C.dim : C.warn }}>{lnImgMsg}</span>}
-              <button onClick={compartirAlineacionImagen} disabled={lnImgBusy}
+              <button onClick={() => compartirAlineacion()} disabled={lnImgBusy}
                 className="text-xs px-2.5 py-1 rounded-lg border font-display uppercase tracking-wide disabled:opacity-50"
                 style={{ borderColor: AC, color: AC }}>
                 {lnImgBusy ? t("ln.shareImageBusy") : t("ln.shareImage")}
               </button>
-              {/* El once en texto. Va debajo de la imagen y no en su lugar: son
-                  dos cosas distintas -una se mira, la otra se copia al acta-. */}
-              <a href={`https://wa.me/?text=${encodeURIComponent(alineacionTexto())}`} target="_blank" rel="noreferrer"
-                className="text-xs px-2.5 py-1 rounded-lg border font-display uppercase tracking-wide text-center"
+              {/* A WhatsApp van las dos cosas: la imagen del campo y, de pie,
+                  el once en texto -que se copia al acta y se busca luego en la
+                  conversación, cosa que una foto no permite-. */}
+              <button onClick={() => compartirAlineacion({ paraWhatsapp: true })} disabled={lnImgBusy}
+                className="text-xs px-2.5 py-1 rounded-lg border font-display uppercase tracking-wide disabled:opacity-50"
                 style={{ borderColor: C.line, color: C.chalk }}>
-                {t("ln.shareWhatsapp")}
-              </a>
+                {lnImgBusy ? t("ln.shareImageBusy") : t("ln.shareWhatsapp")}
+              </button>
             </div>
           </div>
           <div ref={pitchRef} className="relative w-full touch-none select-none" style={{ aspectRatio: "3/4" }} onPointerMove={onPitchMove} onPointerUp={() => onSlotUp(null)}>
