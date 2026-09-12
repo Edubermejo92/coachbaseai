@@ -8166,7 +8166,12 @@ const LINEUP_INIT = { GK: 1, RB: 2, RCB: 3, LCB: 4, LB: 5, DM: 6, RCM: 7, LCM: 8
 const posLabel = (lineIdx, totalLines, k, count) => {
   const izq = k === 0, der = k === count - 1;
   if (lineIdx === 0) return count >= 4 ? (izq ? "LI" : der ? "LD" : "DFC") : "DFC";
-  if (lineIdx === totalLines - 1) return count === 1 ? "DC" : izq ? "EI" : der ? "ED" : "DC";
+  /* Dos puntas son DOS DELANTEROS, no dos extremos. En un 5-3-2 -o un 4-4-2,
+     o un 3-5-2- la pareja de arriba juega por dentro y la banda la doblan los
+     carrileros; marcarlos como EI y ED describía un ataque que no es el que
+     se está montando. Los extremos aparecen cuando la línea de arriba es de
+     tres o más, que es cuando de verdad hay alguien abierto a cada lado. */
+  if (lineIdx === totalLines - 1) return count <= 2 ? "DC" : izq ? "EI" : der ? "ED" : "DC";
   if (lineIdx === 1 && totalLines >= 4) return count === 1 ? "MCD" : "MC";
   return count === 1 ? "MCO" : izq || der ? "MB" : "MC";
 };
@@ -18117,12 +18122,23 @@ export default function App() {
                   {/* Sin sitio donde meterlo -el once lleno y ningún puesto
                       elegido- el toque no hace nada, así que se enseña apagado
                       en vez de fingir que responde. */}
+                  {/* Con el once completo y ningún puesto elegido, tocar aquí
+                      no hace nada. Antes toda la fila se apagaba al 50% para
+                      decirlo, y eso deja ilegible justo lo que hay que leer:
+                      quién está en el banquillo. Lo de "no se puede" ya lo
+                      dice la línea de arriba con todas sus letras, así que la
+                      fila se queda a plena luz y solo deja de responder. */}
                   <button onClick={() => colocarOAnadir(p.id, primerHuecoLibre)}
                     disabled={!can("editLineup") || (!selSlot && !primerHuecoLibre)}
-                    className="flex items-center justify-between text-sm flex-1 min-w-0 text-left hover:opacity-80 disabled:opacity-50 disabled:cursor-default" style={{ color: C.chalk }}>
+                    className="flex items-center justify-between text-sm flex-1 min-w-0 text-left hover:opacity-80 disabled:cursor-default" style={{ color: C.chalk }}>
                     <span className="flex items-center gap-2 min-w-0">
-                      <Avatar p={p} size={26} /><Dot st={p.st} /><span className="font-display text-base" style={{ color: AC }}>{p.d}</span>
-                      <span className="truncate">{p.n}</span>
+                      {/* La foto, del tamaño en el que se reconoce una cara: a
+                          26px era un botón gris. Y el dorsal en texto solo
+                          cuando hay foto — sin ella el avatar YA enseña el
+                          dorsal, y salía dos veces: "11 11 Unai Cifuentes". */}
+                      <Avatar p={p} size={40} /><Dot st={p.st} />
+                      {p.photo && <span className="font-display text-base tabular-nums shrink-0" style={{ color: AC }}>{p.d}</span>}
+                      <span className="truncate font-medium">{p.n}</span>
                       {p.aviso && <span title={p.aviso} style={{ color: C.warn }}>⚠</span>}
                     </span>
                     <span className="shrink-0 ml-2 flex items-center gap-2" style={{ color: C.dim }}>
