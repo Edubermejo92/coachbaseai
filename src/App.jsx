@@ -18131,14 +18131,20 @@ export default function App() {
                   <button onClick={() => colocarOAnadir(p.id, primerHuecoLibre)}
                     disabled={!can("editLineup") || (!selSlot && !primerHuecoLibre)}
                     className="flex items-center justify-between text-sm flex-1 min-w-0 text-left hover:opacity-80 disabled:cursor-default" style={{ color: C.chalk }}>
-                    <span className="flex items-center gap-2 min-w-0">
+                    <span className="flex items-center gap-2 min-w-0 flex-1">
                       {/* La foto, del tamaño en el que se reconoce una cara: a
                           26px era un botón gris. Y el dorsal en texto solo
                           cuando hay foto — sin ella el avatar YA enseña el
                           dorsal, y salía dos veces: "11 11 Unai Cifuentes". */}
                       <Avatar p={p} size={40} /><Dot st={p.st} />
                       {p.photo && <span className="font-display text-base tabular-nums shrink-0" style={{ color: AC }}>{p.d}</span>}
-                      <span className="truncate font-medium">{p.n}</span>
+                      {/* El nombre entero, aunque ocupe dos renglones. Antes se
+                          cortaba con puntos suspensivos, y en un banquillo con
+                          dos hermanos o dos nombres que empiezan igual, "Álvaro
+                          Fernández…" y "Álvaro Fernán…" son el mismo jugador
+                          para quien lo lee con prisa desde el campo. La fila
+                          crece solo cuando el nombre lo pide. */}
+                      <span className="font-medium leading-tight break-words min-w-0">{p.n}</span>
                       {p.aviso && <span title={p.aviso} style={{ color: C.warn }}>⚠</span>}
                     </span>
                     <span className="shrink-0 ml-2 flex items-center gap-2" style={{ color: C.dim }}>
