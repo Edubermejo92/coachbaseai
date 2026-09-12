@@ -153,9 +153,13 @@ const DICT = {
     "mt.rival": "Rival",
     "mt.localTag": "Local",
     "mt.awayTag": "Visitante",
-    "mt.weHome": "Jugamos en casa",
-    "mt.weAway": "Jugamos fuera",
-    "mt.sideHint": "El local va a la izquierda y el visitante a la derecha, como en el acta. Al elegir un rival del calendario se coloca solo; los goles siguen siendo los tuyos y los del rival, cambie quien cambie de lado.",
+    "mt.sideHint": "Toca el nombre de cada equipo para cambiarlo. El que ya está en un lado no se puede repetir en el otro, y los goles siguen siendo los tuyos y los del rival aunque cambien de sitio.",
+    "mt.searchTeam": "Buscar equipo…",
+    "mt.yourTeam": "tu equipo",
+    "mt.alreadyOther": "ya está al otro lado",
+    "mt.noTeamFound": "Ningún equipo con ese nombre.",
+    "mt.friendlyPh": "Amistoso: otro equipo",
+    "mt.friendlyAdd": "Poner",
     "mt.subFor": "Sale {n} · ¿quién entra?",
     "mt.subEmptySlot": "Puesto libre ({p}) · ¿quién entra?",
     "mt.benchEmpty": "No queda nadie en el banquillo.",
@@ -735,9 +739,13 @@ const DICT = {
     "mt.rival": "Opponent",
     "mt.localTag": "Home",
     "mt.awayTag": "Away",
-    "mt.weHome": "We're at home",
-    "mt.weAway": "We're away",
-    "mt.sideHint": "Home goes on the left and away on the right, just like the match sheet. Picking an opponent from the calendar sets it for you; the goals stay yours and theirs, whichever side each team is on.",
+    "mt.sideHint": "Tap a team's name to change it. Whoever is on one side can't be repeated on the other, and the goals stay yours and theirs even when the teams swap sides.",
+    "mt.searchTeam": "Search team…",
+    "mt.yourTeam": "your team",
+    "mt.alreadyOther": "already on the other side",
+    "mt.noTeamFound": "No team by that name.",
+    "mt.friendlyPh": "Friendly: another team",
+    "mt.friendlyAdd": "Set",
     "mt.subFor": "{n} comes off · who comes on?",
     "mt.subEmptySlot": "Empty spot ({p}) · who comes on?",
     "mt.benchEmpty": "Nobody left on the bench.",
@@ -1329,9 +1337,13 @@ const DICT = {
     "mt.rival": "Adversaire",
     "mt.localTag": "Domicile",
     "mt.awayTag": "Extérieur",
-    "mt.weHome": "Nous jouons à domicile",
-    "mt.weAway": "Nous jouons à l'extérieur",
-    "mt.sideHint": "L'équipe à domicile va à gauche et l'équipe à l'extérieur à droite, comme sur la feuille de match. En choisissant un adversaire du calendrier, cela se place tout seul ; les buts restent les vôtres et les siens, quel que soit le côté.",
+    "mt.sideHint": "Touchez le nom d'une équipe pour la changer. Celle qui est d'un côté ne peut pas être reprise de l'autre, et les buts restent les vôtres et les siens même en changeant de côté.",
+    "mt.searchTeam": "Rechercher une équipe…",
+    "mt.yourTeam": "votre équipe",
+    "mt.alreadyOther": "déjà de l'autre côté",
+    "mt.noTeamFound": "Aucune équipe de ce nom.",
+    "mt.friendlyPh": "Amical : autre équipe",
+    "mt.friendlyAdd": "Placer",
     "mt.subFor": "{n} sort · qui entre ?",
     "mt.subEmptySlot": "Poste libre ({p}) · qui entre ?",
     "mt.benchEmpty": "Plus personne sur le banc.",
@@ -2003,9 +2015,13 @@ const DICT = {
     "mt.rival": "Gegner",
     "mt.localTag": "Heim",
     "mt.awayTag": "Auswärts",
-    "mt.weHome": "Wir spielen zu Hause",
-    "mt.weAway": "Wir spielen auswärts",
-    "mt.sideHint": "Die Heimmannschaft steht links, die Gastmannschaft rechts – wie im Spielbericht. Wählst du einen Gegner aus dem Spielplan, stellt sich das von selbst ein; die Tore bleiben eure und seine, egal auf welcher Seite wer steht.",
+    "mt.sideHint": "Tippe auf den Namen einer Mannschaft, um sie zu ändern. Wer auf einer Seite steht, kann auf der anderen nicht noch einmal stehen; die Tore bleiben eure und seine, auch beim Seitenwechsel.",
+    "mt.searchTeam": "Mannschaft suchen…",
+    "mt.yourTeam": "deine Mannschaft",
+    "mt.alreadyOther": "steht schon auf der anderen Seite",
+    "mt.noTeamFound": "Keine Mannschaft mit diesem Namen.",
+    "mt.friendlyPh": "Testspiel: andere Mannschaft",
+    "mt.friendlyAdd": "Setzen",
     "mt.subFor": "{n} geht raus · wer kommt rein?",
     "mt.subEmptySlot": "Freie Position ({p}) · wer kommt rein?",
     "mt.benchEmpty": "Niemand mehr auf der Bank.",
@@ -2676,9 +2692,13 @@ const DICT = {
     "mt.rival": "Adversário",
     "mt.localTag": "Casa",
     "mt.awayTag": "Visitante",
-    "mt.weHome": "Jogamos em casa",
-    "mt.weAway": "Jogamos fora",
-    "mt.sideHint": "A equipa da casa fica à esquerda e a visitante à direita, tal como na ficha de jogo. Ao escolher um adversário do calendário, coloca-se sozinho; os golos continuam a ser os teus e os dele, esteja cada equipa do lado que estiver.",
+    "mt.sideHint": "Toca no nome de uma equipa para a mudares. A que está de um lado não se pode repetir do outro, e os golos continuam a ser os teus e os dele mesmo que troquem de lado.",
+    "mt.searchTeam": "Procurar equipa…",
+    "mt.yourTeam": "a tua equipa",
+    "mt.alreadyOther": "já está do outro lado",
+    "mt.noTeamFound": "Nenhuma equipa com esse nome.",
+    "mt.friendlyPh": "Amigável: outra equipa",
+    "mt.friendlyAdd": "Colocar",
     "mt.subFor": "Sai {n} · quem entra?",
     "mt.subEmptySlot": "Posto livre ({p}) · quem entra?",
     "mt.benchEmpty": "Não sobra ninguém no banco.",
@@ -3384,6 +3404,83 @@ function LangPicker({ lang, setLang }) {
               {lang === l.code && <span className="text-[11px]">✓</span>}
             </button>
           ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ---- Selector de equipo del marcador ----
+   El local y el visitante se eligen cada uno de su lista, y en la lista está
+   todo el calendario de la liga: en una liga normal son 16 clubes, así que la
+   lista va con su propia barra de scroll en vez de estirar la pantalla hasta
+   dejar el marcador fuera de la vista. Arriba hay un buscador -con quince
+   nombres de club parecidos, bajar rodando no es forma de encontrar el tuyo- y
+   abajo un hueco para escribir un equipo que no está en el calendario: los
+   amistosos de un martes y los partidos de copa.
+   El equipo que ya está puesto en un lado sale bloqueado en el otro: un equipo
+   no juega contra sí mismo, y tenerlo en los dos lados dejaría un acta que no
+   se puede leer. */
+function PickerEquipo({ etiqueta, valor, opciones, ocupado, alElegir, invertido, escudo, claseTexto, C, AC, t }) {
+  const [open, setOpen] = useState(false);
+  const [busca, setBusca] = useState("");
+  const [otro, setOtro] = useState("");
+  const box = useRef(null);
+  useEffect(() => {
+    if (!open) return;
+    const fuera = (e) => { if (box.current && !box.current.contains(e.target)) setOpen(false); };
+    const esc = (e) => { if (e.key === "Escape") setOpen(false); };
+    document.addEventListener("mousedown", fuera);
+    document.addEventListener("keydown", esc);
+    return () => { document.removeEventListener("mousedown", fuera); document.removeEventListener("keydown", esc); };
+  }, [open]);
+  const limpia = (x) => String(x || "").toLowerCase();
+  const vistas = opciones.filter((o) => !busca.trim() || limpia(o.n).includes(limpia(busca)));
+  const elegir = (o) => { setOpen(false); setBusca(""); setOtro(""); alElegir(o); };
+  return (
+    <div className={`relative flex-1 min-w-0 flex flex-col gap-0.5 ${invertido ? "items-end" : "items-start"}`} ref={box}>
+      <button onClick={() => setOpen((v) => !v)} aria-haspopup="listbox" aria-expanded={open}
+        aria-label={`${etiqueta}: ${valor}`}
+        className={`font-display font-semibold flex items-center gap-2 min-w-0 max-w-full min-h-9 ${claseTexto} ${invertido ? "flex-row-reverse" : ""}`}
+        style={{ color: C.chalk }}>
+        {escudo}
+        <span className="truncate">{valor}</span>
+        <span className="text-[10px] shrink-0" style={{ color: C.dim }}>{open ? "▲" : "▼"}</span>
+      </button>
+      <div className="text-[10px] font-display uppercase tracking-widest" style={{ color: C.dim }}>{etiqueta}</div>
+      {open && (
+        <div role="listbox" className={`absolute top-full ${invertido ? "right-0" : "left-0"} mt-1 z-30 w-64 max-w-[80vw] rounded-lg border overflow-hidden text-left`}
+          style={{ background: C.panel, borderColor: C.line, boxShadow: "0 10px 28px rgba(0,0,0,.35)" }}>
+          <input value={busca} onChange={(e) => setBusca(e.target.value)} placeholder={t("mt.searchTeam")}
+            className="w-full px-2.5 py-2 text-sm outline-none border-b"
+            style={{ background: C.panel2, borderColor: C.line, color: C.chalk }} />
+          <div className="max-h-56 overflow-y-auto">
+            {vistas.map((o) => {
+              const enElOtroLado = o.k === ocupado;
+              const elegido = o.n === valor && !enElOtroLado;
+              return (
+                <button key={o.k} role="option" aria-selected={elegido} disabled={enElOtroLado}
+                  onClick={() => elegir(o)}
+                  className="w-full text-left text-sm px-2.5 py-2.5 flex items-center gap-2 border-b last:border-b-0 disabled:opacity-35"
+                  style={{ borderColor: C.line, background: elegido ? C.panel2 : "transparent", color: C.chalk }}>
+                  <span className="flex-1 min-w-0 truncate">{o.n}</span>
+                  {o.nuestro && <span className="text-[10px] shrink-0" style={{ color: AC }}>{t("mt.yourTeam")}</span>}
+                  {enElOtroLado && <span className="text-[10px] shrink-0" style={{ color: C.dim }}>{t("mt.alreadyOther")}</span>}
+                  {elegido && <span className="text-[11px] shrink-0" style={{ color: AC }}>✓</span>}
+                </button>
+              );
+            })}
+            {!vistas.length && <div className="px-2.5 py-3 text-[12px]" style={{ color: C.dim }}>{t("mt.noTeamFound")}</div>}
+          </div>
+          <div className="border-t p-2 flex gap-1.5" style={{ borderColor: C.line }}>
+            <input value={otro} onChange={(e) => setOtro(e.target.value)} placeholder={t("mt.friendlyPh")}
+              onKeyDown={(e) => { if (e.key === "Enter" && otro.trim()) elegir({ k: otro.trim(), n: otro.trim() }); }}
+              className="flex-1 min-w-0 rounded-lg px-2.5 py-2 text-sm outline-none border"
+              style={{ background: C.panel2, borderColor: C.line, color: C.chalk }} />
+            <button onClick={() => { const v = otro.trim(); if (v) elegir({ k: v, n: v }); }}
+              className="px-3 py-2 rounded-lg font-display text-xs uppercase tracking-wide shrink-0"
+              style={{ background: AC, color: C.sobre }}>{t("mt.friendlyAdd")}</button>
+          </div>
         </div>
       )}
     </div>
@@ -11003,6 +11100,11 @@ export default function App() {
   const ladoIzq = somosLocal ? "us" : "them";
   const ladoDer = somosLocal ? "them" : "us";
   const nombreDeLado = (lado) => (lado === "us" ? (session?.team?.name || "") : (matchInfo.rival || t("mt.rival")));
+  /* La clave "__nuestro__" es la que identifica a nuestro propio equipo en las
+     dos listas; el resto de equipos se identifican por su nombre, que es lo
+     único que trae el calendario. */
+  const CLAVE_NUESTRO = "__nuestro__";
+  const claveDeLado = (lado) => (lado === "us" ? CLAVE_NUESTRO : matchInfo.rival);
   const [events, setEvents] = useState([]);
   const [evPick, setEvPick] = useState(null);
   /* Color de la tarjeta que se está a punto de poner, y resultado del
@@ -13015,6 +13117,28 @@ export default function App() {
   const rivalesDelCalendario = session ? [...new Set(
     sortedFix.filter((f) => /^\d+$/.test(String(f.j))).map(rivalDeFixture).filter(Boolean)
   )] : [];
+  /* ---- Los equipos que se pueden poner en el marcador ----
+     El nuestro y todos los de la liga. Si el rival de hoy es un amistoso que
+     no está en el calendario, se añade al final para que se vea marcado como
+     elegido en su lado en vez de desaparecer de la lista. */
+  const equiposPosibles = session ? [
+    { k: CLAVE_NUESTRO, n: session.team?.name || "", nuestro: true },
+    ...rivalesDelCalendario.map((r) => ({ k: r, n: r })),
+    ...(matchInfo.rival && !rivalesDelCalendario.includes(matchInfo.rival) ? [{ k: matchInfo.rival, n: matchInfo.rival }] : []),
+  ] : [];
+  /* Poner un equipo en un lado del marcador. Solo hay un partido y es el
+     nuestro, así que colocar a un rival en un lado nos manda a nosotros al
+     otro: de ahí sale si jugamos en casa o fuera, sin preguntarlo aparte.
+     Si además ese rival está en el calendario, vienen con él la fecha, la
+     hora, el campo y la jornada de ese partido. */
+  const ponerEquipoEnLado = (lado, o) => {
+    if (o.k === CLAVE_NUESTRO) { setMatchInfo((m) => ({ ...m, casa: lado === "izq" })); return; }
+    const f = sortedFix.find((x) => /^\d+$/.test(String(x.j)) && rivalDeFixture(x) === o.k);
+    setMatchInfo((m) => ({
+      ...m, rival: o.k, casa: lado !== "izq",
+      ...(f ? { fecha: f.date, hora: f.time || m.hora, lugar: f.place || m.lugar, j: f.j || "" } : {}),
+    }));
+  };
 
   /* ---------------- Edición de un partido suelto ----------------
      Cualquiera del cuerpo técnico (los cinco roles llevan "editCal") puede
@@ -18237,15 +18361,24 @@ export default function App() {
                club entero en media pantalla de móvil en vez de quedarse en
                "S.A.D. FUN…", que no dice qué equipo es. */
             const nom = nombreDeLado(lado);
-            const largo = nom.length > 16;
-            return (
+            const clase = `${nom.length > 16 ? "text-sm sm:text-2xl" : "text-lg sm:text-3xl"}`;
+            const etiqueta = i ? t("mt.awayTag") : t("mt.localTag");
+            const escudo = lado === "us" ? <Crest src={teamCrest} name={session.team.name} size={32} /> : null;
+            /* Sin permiso para tocar el acta -familias, jugadores, la demo- el
+               nombre se lee, no se cambia. */
+            if (!can("events")) return (
               <div key={lado} className={`flex-1 min-w-0 flex flex-col gap-0.5 ${i ? "items-end" : "items-start"}`}>
-                <div className={`font-display font-semibold flex items-center gap-2 min-w-0 max-w-full ${largo ? "text-sm sm:text-2xl" : "text-lg sm:text-3xl"} ${i ? "flex-row-reverse" : ""}`} style={{ color: C.chalk }}>
-                  {lado === "us" && <Crest src={teamCrest} name={session.team.name} size={32} />}
-                  <span className="truncate">{nom}</span>
+                <div className={`font-display font-semibold flex items-center gap-2 min-w-0 max-w-full min-h-9 ${clase} ${i ? "flex-row-reverse" : ""}`} style={{ color: C.chalk }}>
+                  {escudo}<span className="truncate">{nom}</span>
                 </div>
-                <div className="text-[10px] font-display uppercase tracking-widest" style={{ color: C.dim }}>{i ? t("mt.awayTag") : t("mt.localTag")}</div>
+                <div className="text-[10px] font-display uppercase tracking-widest" style={{ color: C.dim }}>{etiqueta}</div>
               </div>
+            );
+            return (
+              <PickerEquipo key={lado} etiqueta={etiqueta} valor={nom} opciones={equiposPosibles}
+                ocupado={claveDeLado(lado === "us" ? "them" : "us")}
+                alElegir={(o) => ponerEquipoEnLado(i ? "der" : "izq", o)}
+                invertido={!!i} escudo={escudo} claseTexto={clase} C={C} AC={AC} t={t} />
             );
           })}
         </div>
@@ -18340,53 +18473,11 @@ export default function App() {
           </div>
         )}
 
-        {/* ---- Quién juega y dónde ----
-             El cruce se monta aquí mismo, sin salir del Modo partido: hasta
-             ahora el rival solo se podía elegir en Convocatoria, y un amistoso
-             de un martes se quedaba sin nombre en el marcador.
-             El rival sale del calendario de la liga -así no acaba habiendo un
-             "CD Norte" y un "C.D. Norte" en el histórico, que luego no cuadran
-             al mirar las estadísticas por rival-, y "Otro rival" queda para los
-             amistosos y los partidos de copa que no están en el calendario.
-             Elegir un rival del calendario trae también si ese partido se juega
-             en casa o fuera, que es lo que coloca a cada equipo en su lado del
-             marcador; el interruptor está para corregirlo a mano cuando el
-             campo cambia a última hora o cuando el amistoso se juega fuera. */}
+        {/* El cruce se monta desde los propios nombres del marcador: cada uno
+             abre su lista. Antes el rival solo se podía elegir en Convocatoria
+             y un amistoso de un martes se quedaba sin nombre en el marcador. */}
         {can("events") && (
-          <div className="mt-4 pt-3 border-t" style={{ borderColor: C.line }}>
-            <div className="flex flex-wrap items-center justify-center gap-2">
-              <div className="flex rounded-lg border overflow-hidden" style={{ borderColor: C.line }}>
-                {[[true, t("mt.weHome")], [false, t("mt.weAway")]].map(([v, lbl]) => (
-                  <button key={String(v)} onClick={() => setMatchInfo((m) => ({ ...m, casa: v }))}
-                    className="text-xs font-display uppercase tracking-wide px-3 py-2 min-h-11"
-                    style={{ background: somosLocal === v ? AC : "transparent", color: somosLocal === v ? C.sobre : C.chalk }}>
-                    {lbl}
-                  </button>
-                ))}
-              </div>
-              <select value={rivalesDelCalendario.includes(matchInfo.rival) ? matchInfo.rival : "__otro__"}
-                onChange={(e) => {
-                  const v = e.target.value;
-                  if (v === "__otro__") { setMatchInfo((m) => ({ ...m, rival: "" })); return; }
-                  const f = sortedFix.find((x) => /^\d+$/.test(String(x.j)) && rivalDeFixture(x) === v);
-                  setMatchInfo((m) => f
-                    ? { ...m, rival: v, fecha: f.date, hora: f.time || m.hora, lugar: f.place || m.lugar, j: f.j || "", casa: jugamosEnCasa(f) }
-                    : { ...m, rival: v });
-                }}
-                className="rounded-lg px-3 py-2 text-sm outline-none border max-w-[15rem]"
-                style={{ background: C.panel2, borderColor: C.line, color: C.chalk }}>
-                {rivalesDelCalendario.map((r) => <option key={r} value={r}>{r}</option>)}
-                <option value="__otro__">{t("cl.otherRival")}</option>
-              </select>
-              {!rivalesDelCalendario.includes(matchInfo.rival) && (
-                <input value={matchInfo.rival} onChange={(e) => setMatchInfo((m) => ({ ...m, rival: e.target.value }))}
-                  placeholder={t("cl.rivalNamePh")}
-                  className="rounded-lg px-3 py-2 text-sm outline-none border w-full sm:w-56"
-                  style={{ background: C.panel2, borderColor: C.line, color: C.chalk }} />
-              )}
-            </div>
-            <div className="mt-2 text-center text-[11px] leading-relaxed" style={{ color: C.dim }}>{t("mt.sideHint")}</div>
-          </div>
+          <div className="mt-4 pt-3 border-t text-center text-[11px] leading-relaxed" style={{ borderColor: C.line, color: C.dim }}>{t("mt.sideHint")}</div>
         )}
 
       </Card>
