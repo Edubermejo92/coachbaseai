@@ -18128,42 +18128,52 @@ export default function App() {
                       quién está en el banquillo. Lo de "no se puede" ya lo
                       dice la línea de arriba con todas sus letras, así que la
                       fila se queda a plena luz y solo deja de responder. */}
+                  {/* ---- Cómo se reparte la fila ----
+                       El nombre se lleva un renglón entero para él solo. Antes
+                       compartía línea con el dorsal, el semáforo de carga y la
+                       demarcación, y entre todos le dejaban unos cien píxeles:
+                       con eso "Mateo Martínez" se partía en "Matte / o / Martín
+                       / ez". El resto -cómo llega hoy y dónde juega- es
+                       información de apoyo y baja a un segundo renglón en
+                       pequeño, que además es donde se lee mejor. */}
                   <button onClick={() => colocarOAnadir(p.id, primerHuecoLibre)}
                     disabled={!can("editLineup") || (!selSlot && !primerHuecoLibre)}
-                    className="flex items-center justify-between text-sm flex-1 min-w-0 text-left hover:opacity-80 disabled:cursor-default" style={{ color: C.chalk }}>
-                    <span className="flex items-center gap-2 min-w-0 flex-1">
-                      {/* La foto, del tamaño en el que se reconoce una cara: a
-                          26px era un botón gris. Y el dorsal en texto solo
-                          cuando hay foto — sin ella el avatar YA enseña el
-                          dorsal, y salía dos veces: "11 11 Unai Cifuentes". */}
-                      <Avatar p={p} size={40} /><Dot st={p.st} />
-                      {p.photo && <span className="font-display text-base tabular-nums shrink-0" style={{ color: AC }}>{p.d}</span>}
-                      {/* El nombre entero, aunque ocupe dos renglones. Antes se
-                          cortaba con puntos suspensivos, y en un banquillo con
-                          dos hermanos o dos nombres que empiezan igual, "Álvaro
-                          Fernández…" y "Álvaro Fernán…" son el mismo jugador
-                          para quien lo lee con prisa desde el campo. La fila
-                          crece solo cuando el nombre lo pide. */}
-                      <span className="font-medium leading-tight break-words min-w-0">{p.n}</span>
-                      {p.aviso && <span title={p.aviso} style={{ color: C.warn }}>⚠</span>}
-                    </span>
-                    <span className="shrink-0 ml-2 flex items-center gap-2" style={{ color: C.dim }}>
-                      {/* Cómo llega ese jugador hoy, aquí mismo: montar el once
-                          sin saber quién viene en amarillo es justo el error
-                          que el semáforo existe para evitar. */}
-                      {verCargasLn && (() => {
-                        const c = cargaDe(p.id);
-                        const col = (SEMAFORO.find((x) => x.k === c.estado) || SEMAFORO[0]).color;
-                        return (
-                          <span className="flex items-center gap-1 text-[11px] tabular-nums" title={c.nota || `${t("cf.load")} ${c.carga}%`}>
-                            <span className="w-2 h-2 rounded-full inline-block" style={{ background: col }} />{c.carga}%
-                          </span>
-                        );
-                      })()}
-                      {/* La demarcación que se enseña es la del hueco que
-                          ocupa ahora mismo; quien está en el banquillo no
-                          tiene ninguna todavía. */}
-                      <span>{enElOnce ? `${puestoDe(p.id)} · XI` : ""}</span>
+                    className="flex items-center gap-2 text-sm flex-1 min-w-0 text-left hover:opacity-80 disabled:cursor-default" style={{ color: C.chalk }}>
+                    {/* La foto, del tamaño en el que se reconoce una cara: a
+                        26px era un botón gris. Y el dorsal en texto solo
+                        cuando hay foto — sin ella el avatar YA enseña el
+                        dorsal, y salía dos veces: "11 11 Unai Cifuentes". */}
+                    <Avatar p={p} size={40} />
+                    <span className="min-w-0 flex-1 flex flex-col gap-0.5">
+                      <span className="flex items-baseline gap-1.5 min-w-0">
+                        {p.photo && <span className="font-display text-base tabular-nums shrink-0" style={{ color: AC }}>{p.d}</span>}
+                        {/* El nombre entero, aunque ocupe dos renglones. Antes se
+                            cortaba con puntos suspensivos, y en un banquillo con
+                            dos hermanos o dos nombres que empiezan igual, "Álvaro
+                            Fernández…" y "Álvaro Fernán…" son el mismo jugador
+                            para quien lo lee con prisa desde el campo. */}
+                        <span className="font-medium leading-tight min-w-0">{p.n}</span>
+                      </span>
+                      <span className="flex items-center gap-2 text-[11px] leading-none flex-wrap" style={{ color: C.dim }}>
+                        <Dot st={p.st} />
+                        {/* Cómo llega ese jugador hoy, aquí mismo: montar el once
+                            sin saber quién viene en amarillo es justo el error
+                            que el semáforo existe para evitar. */}
+                        {verCargasLn && (() => {
+                          const c = cargaDe(p.id);
+                          const col = (SEMAFORO.find((x) => x.k === c.estado) || SEMAFORO[0]).color;
+                          return (
+                            <span className="flex items-center gap-1 tabular-nums" title={c.nota || `${t("cf.load")} ${c.carga}%`}>
+                              <span className="w-2 h-2 rounded-full inline-block" style={{ background: col }} />{c.carga}%
+                            </span>
+                          );
+                        })()}
+                        {p.aviso && <span title={p.aviso} style={{ color: C.warn }}>⚠</span>}
+                        {/* La demarcación que se enseña es la del hueco que
+                            ocupa ahora mismo; quien está en el banquillo no
+                            tiene ninguna todavía. */}
+                        {enElOnce && <span>{puestoDe(p.id)} · XI</span>}
+                      </span>
                     </span>
                   </button>
                   {/* Brazalete. Hasta tres -el primero y sus dos suplentes, que
