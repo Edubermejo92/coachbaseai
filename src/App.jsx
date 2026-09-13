@@ -5230,6 +5230,10 @@ const ICONOS = {
   "cat-juvenil": <><path d="M12 3.6 20.4 9.7l-3.2 9.9H6.8L3.6 9.7z" fill="currentColor" /></>,
   "cat-senior": <><rect x="4.6" y="4.6" width="14.8" height="14.8" rx="1.6" fill="currentColor" /></>,
   "cat-otra": <><circle cx="12" cy="12" r="7.4" strokeDasharray="3 3" /></>,
+  /* WhatsApp: la burbuja con la cola abajo a la izquierda y el auricular
+     dentro. Dibujado con los mismos trazos que el resto de iconos para que no
+     desentone -es el único de la casa que además lleva su color de marca-. */
+  whatsapp: <><path d="M20.4 11.7a8.4 8.4 0 0 1-12.5 7.3l-4.3 1.4 1.4-4.2A8.4 8.4 0 1 1 20.4 11.7z" /><path d="M9.2 8.5c.35-.1.7.05.87.37l.72 1.3c.14.25.11.56-.07.78l-.45.55c-.12.15-.14.36-.05.53a6.3 6.3 0 0 0 2.3 2.3c.17.09.38.07.53-.05l.55-.45c.22-.18.53-.21.78-.07l1.3.72c.32.17.47.52.37.87-.28.95-1.2 1.57-2.19 1.47a7.5 7.5 0 0 1-6.6-6.6c-.1-.99.52-1.91 1.47-2.19z" fill="currentColor" stroke="none" /></>,
 };
 /* La pestaña de lesiones usa la misma cruz sanitaria que ya se dibuja en los
    avisos de la portada (ICONOS.lesion): mismo símbolo, un solo trazo que
@@ -11634,6 +11638,24 @@ export default function App() {
     const list = players.filter((p) => called.has(p.id)).sort((a, b) => (esPortero(a) ? -1 : esPortero(b) ? 1 : a.d - b.d));
     const lines = list.map((p) => `${esPortero(p) ? "🧤 " : ""}${keycap(p.d)} ${p.n}`);
     return `📋 *CONVOCATORIA — ${session.club} ${session.team.name}*\n⚽ vs ${matchInfo.rival}\n📅 ${matchInfo.fecha} · ⏰ ${matchInfo.hora}\n📍 ${matchInfo.lugar}\n\n${lines.join("\n")}\n\n✅ Confirmad asistencia, por favor.`;
+  };
+  /* ---- Atajo de WhatsApp en la navegación ----
+     La convocatoria siempre termina igual: mandándola al grupo. Tenerlo al
+     lado del propio apartado ahorra el camino de cada viernes -entrar, bajar
+     hasta el final y buscar el botón-. Sale solo cuando ya hay gente
+     convocada: sin nadie marcado el mensaje iría con la lista vacía, y eso no
+     es un atajo, es un mensaje que hay que borrar. */
+  const atajoWaConvocatoria = (alPulsar) => {
+    if (!called.size) return null;
+    return (
+      <a href={`https://wa.me/?text=${encodeURIComponent(waText())}`} target="_blank" rel="noreferrer"
+        onClick={(e) => { e.stopPropagation(); alPulsar?.(); }}
+        title={t("cl.waOpen")} aria-label={`${t("cl.waOpen")} — ${navLabel("convocatoria")}`}
+        className="shrink-0 w-10 h-10 rounded-lg border flex items-center justify-center"
+        style={{ borderColor: C.line, color: "#25D366" }}>
+        <Icono n="whatsapp" s={18} />
+      </a>
+    );
   };
   const copyWa = async () => {
     const txt = waText();
@@ -21275,16 +21297,22 @@ export default function App() {
                     <span className="text-[11px] shrink-0">·</span>
                   </div>
                 );
-                return (
-                <button key={k} onClick={() => { setTab(bloq ? "premium" : k); setMenuOpen(false); }} aria-current={tab === k ? "page" : undefined}
+                /* La convocatoria lleva al lado su atajo de WhatsApp. Van en
+                   una fila porque un botón no puede meterse dentro de otro. */
+                const atajo = k === "convocatoria" && !bloq ? atajoWaConvocatoria(() => setMenuOpen(false)) : null;
+                const fila = (
+                <button onClick={() => { setTab(bloq ? "premium" : k); setMenuOpen(false); }} aria-current={tab === k ? "page" : undefined}
                   title={bloq ? t("c.proTab") : undefined}
-                  className="nav-item w-full min-h-12 flex items-center gap-3 px-3 py-2.5 rounded-lg text-left font-display uppercase tracking-wide text-sm"
+                  className={`nav-item min-h-12 flex items-center gap-3 px-3 py-2.5 rounded-lg text-left font-display uppercase tracking-wide text-sm ${atajo ? "flex-1 min-w-0" : "w-full"}`}
                   style={{ background: tab === k ? "rgba(54,69,79,.06)" : "transparent", color: tab === k ? MC : bloq ? C.dim : C.chalk, borderLeft: tab === k ? `3px solid ${MC}` : "3px solid transparent" }}>
                   <span className="w-4 shrink-0 flex justify-center" style={{ color: tab === k ? MC : C.dim }}><Icono n={k} s={16} /></span>
                   <span className="flex-1 min-w-0 truncate" title={navLabel(k)}>{navLabel(k)}</span>
                   {bloq && <span className="text-[11px] shrink-0" style={{ color: AC }}>★</span>}
                 </button>
                 );
+                return atajo
+                  ? <div key={k} className="flex items-center gap-1.5">{fila}{atajo}</div>
+                  : <div key={k}>{fila}</div>;
               };
               const Titulo = (label) => (
                 <div className="flex items-center gap-2 px-3 pt-3 pb-1">
@@ -21392,16 +21420,22 @@ export default function App() {
                   <span className="text-[11px] shrink-0">·</span>
                 </div>
               );
-              return (
-              <button key={k} onClick={() => (bloq ? setTab("premium") : setTab(k))} aria-current={tab === k ? "page" : undefined}
+              /* Igual que en el menú del móvil: el atajo de WhatsApp al lado
+                 de la convocatoria, en su propia fila. */
+              const atajo = k === "convocatoria" && !bloq ? atajoWaConvocatoria() : null;
+              const fila = (
+              <button onClick={() => (bloq ? setTab("premium") : setTab(k))} aria-current={tab === k ? "page" : undefined}
                 title={bloq ? t("c.proTab") : undefined}
-                className="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-left font-display uppercase text-sm"
+                className={`nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-left font-display uppercase text-sm ${atajo ? "flex-1 min-w-0" : ""}`}
                 style={{ background: tab === k ? "rgba(54,69,79,.06)" : "transparent", color: tab === k ? MC : bloq ? C.dim : C.chalk, borderLeft: tab === k ? `3px solid ${MC}` : "3px solid transparent" }}>
                 <span className="w-4 shrink-0 flex justify-center" style={{ color: tab === k ? MC : C.dim }}><Icono n={k} s={16} /></span>
                 <span className="flex-1 min-w-0 truncate" title={navLabel(k)}>{navLabel(k)}</span>
                 {bloq && <span className="text-[11px] shrink-0" style={{ color: AC }} aria-label={t("c.proTab")}>★</span>}
               </button>
               );
+              return atajo
+                ? <div key={k} className="flex items-center gap-1.5">{fila}{atajo}</div>
+                : <div key={k}>{fila}</div>;
             };
             /* Cabecera de apartado: la etiqueta y, a continuación, un filete que
                corre hasta el borde — una línea de cal saliéndose de la pizarra.
