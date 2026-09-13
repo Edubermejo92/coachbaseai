@@ -9569,17 +9569,28 @@ const PitchToken = ({ p, label, selected, accent, borderColor, textColor }) => {
   );
 };
 
-/* Google AdSense. IDs de placeholder hasta que se apruebe la cuenta —
-   sustituir por los reales (Panel de AdSense > Anuncios > Por unidad de
-   anuncio) y el banner empieza a servir anuncios automáticamente. Solo se
-   muestra a cuentas del plan gratuito (ver uso en App: {!isPro && <AdBanner/>}). */
+/* ================= GOOGLE ADSENSE =================
+   Para encenderlo hay que rellenar TRES sitios con el mismo identificador de
+   editor (el "ca-pub-…" que da el panel de AdSense):
+     1. ADSENSE_CLIENT_ID, aquí abajo.
+     2. La etiqueta <meta name="google-adsense-account"> de index.html, que es
+        con la que Google verifica que el sitio es tuyo.
+     3. public/ads.txt, que es con lo que Google comprueba quién tiene derecho
+        a vender este inventario. Sin él, AdSense acaba dejando de servir.
+   Los tres tienen que coincidir: si se rellena uno y se olvida otro, el
+   banner no sirve anuncios y el motivo no aparece por ningún lado. Por eso
+   hay una prueba que los compara (pruebas/pruebas14.mjs).
+   El hueco del anuncio solo se pinta a las cuentas del plan gratuito (ver uso
+   en App: {!isPro && <AdBanner/>}) y, mientras los IDs sigan en XXXX, no se
+   pinta nada: ni hueco vacío ni petición a Google. */
 const ADSENSE_CLIENT_ID = "ca-pub-XXXXXXXXXXXXXXXX";
 const ADSENSE_SLOT_ID = "XXXXXXXXXX";
+const ADSENSE_LISTO = !ADSENSE_CLIENT_ID.includes("XXXX") && !ADSENSE_SLOT_ID.includes("XXXX");
 const AdBanner = () => {
-  const ref = useRef(null);
+  const insRef = useRef(null);
   useEffect(() => {
-    if (ADSENSE_CLIENT_ID.includes("XXXX")) return;
-    if (!document.querySelector('script[data-adsbygoogle]')) {
+    if (!ADSENSE_LISTO) return;
+    if (!document.querySelector("script[data-adsbygoogle]")) {
       const s = document.createElement("script");
       s.async = true;
       s.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT_ID}`;
@@ -9587,12 +9598,22 @@ const AdBanner = () => {
       s.dataset.adsbygoogle = "1";
       document.head.appendChild(s);
     }
+    /* Un <ins> que YA tiene anuncio no se vuelve a pedir: AdSense marca los
+       que ha rellenado con data-adsbygoogle-status, y pedirlo dos veces
+       lanza "All ins elements in the DOM with class=adsbygoogle already have
+       ads in them" -que en desarrollo pasa siempre, porque React monta dos
+       veces a propósito para destapar justo este tipo de efecto-. */
+    const ins = insRef.current;
+    if (!ins || ins.dataset.adsbygoogleStatus) return;
     try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch { /* AdSense aún no cargado */ }
   }, []);
-  if (ADSENSE_CLIENT_ID.includes("XXXX")) return null;
+  if (!ADSENSE_LISTO) return null;
   return (
-    <div className="my-3 flex justify-center" ref={ref}>
-      <ins className="adsbygoogle" style={{ display: "block", width: "100%" }}
+    /* El alto mínimo reserva el sitio del banner antes de que llegue: sin él,
+       la pantalla pega un salto cuando el anuncio entra y el dedo acaba
+       pulsando lo que no era. */
+    <div className="my-3 flex justify-center" style={{ minHeight: 100 }}>
+      <ins ref={insRef} className="adsbygoogle" style={{ display: "block", width: "100%" }}
         data-ad-client={ADSENSE_CLIENT_ID} data-ad-slot={ADSENSE_SLOT_ID}
         data-ad-format="auto" data-full-width-responsive="true" />
     </div>
