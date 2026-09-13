@@ -9581,15 +9581,30 @@ const PitchToken = ({ p, label, selected, accent, borderColor, textColor }) => {
    banner no sirve anuncios y el motivo no aparece por ningún lado. Por eso
    hay una prueba que los compara (pruebas/pruebas14.mjs).
    El hueco del anuncio se pinta a las cuentas que no pagan y que no sean de
-   un jugador (ver `verPublicidad` en App) y, mientras los IDs sigan en XXXX,
-   no se pinta nada: ni hueco vacío ni petición a Google. */
+   un jugador (ver `verPublicidad` en App), nunca dentro de un WebView (ver
+   EN_WEBVIEW aquí abajo) y, mientras los IDs sigan en XXXX, no se pinta
+   nada: ni hueco vacío ni petición a Google. */
 const ADSENSE_CLIENT_ID = "ca-pub-XXXXXXXXXXXXXXXX";
 const ADSENSE_SLOT_ID = "XXXXXXXXXX";
 const ADSENSE_LISTO = !ADSENSE_CLIENT_ID.includes("XXXX") && !ADSENSE_SLOT_ID.includes("XXXX");
+/* ---- Dentro de un WebView, no ----
+   La app de Android (co.median.android.coachbaseai) carga esta misma web en
+   un WebView, y AdSense PROHÍBE servir anuncios dentro de un WebView: lo que
+   se arriesga no es el banner, es la cuenta entera. Así que ahí no se pinta
+   nada y no se pide nada a Google.
+   Se reconoce por el "wv" que Android mete en el User-Agent de todo WebView.
+   Chrome no lo lleva, tampoco el Chrome que hay detrás de una TWA, así que
+   una TWA sigue viendo publicidad con normalidad -que es donde SÍ está
+   permitida-. De paso, el mismo criterio tapa los navegadores dentro de otras
+   apps (Instagram, Facebook), que son WebView igual y están igual de
+   prohibidos. */
+const EN_WEBVIEW = (() => {
+  try { return /;\s*wv\b/.test(navigator.userAgent || ""); } catch { return false; }
+})();
 const AdBanner = () => {
   const insRef = useRef(null);
   useEffect(() => {
-    if (!ADSENSE_LISTO) return;
+    if (!ADSENSE_LISTO || EN_WEBVIEW) return;
     if (!document.querySelector("script[data-adsbygoogle]")) {
       const s = document.createElement("script");
       s.async = true;
@@ -9607,7 +9622,7 @@ const AdBanner = () => {
     if (!ins || ins.dataset.adsbygoogleStatus) return;
     try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch { /* AdSense aún no cargado */ }
   }, []);
-  if (!ADSENSE_LISTO) return null;
+  if (!ADSENSE_LISTO || EN_WEBVIEW) return null;
   return (
     /* El alto mínimo reserva el sitio del banner antes de que llegue: sin él,
        la pantalla pega un salto cuando el anuncio entra y el dedo acaba
