@@ -8311,22 +8311,22 @@ function buildSlots(code) {
    táctica cerrada. En los dos casos la portería está arriba: la que se ataca
    en ataque, la que se defiende en defensa. */
 const CORNER_ATAQUE = [
-  [50, 92],                     /* portero: atrás del todo, si se pierde el balón el córner es del rival */
-  [25, 78], [75, 78],           /* dos que se quedan para la contra */
-  [5, 15],                      /* el que saca, en el banderín */
-  [34, 20], [66, 20],           /* primer y segundo palo */
-  [50, 36],                     /* punto de penalti */
-  [50, 62],                     /* frontal, para el rechace */
-  [26, 55], [80, 48],           /* segunda jugada y llegada desde atrás */
-  [16, 34],                     /* saque en corto */
+  [50, 94],                     /* portero: atrás del todo, si se pierde el balón el córner es del rival */
+  [25, 75], [75, 75],           /* dos que se quedan para la contra */
+  [8, 13],                      /* el que saca, en el banderín */
+  [34, 18], [66, 18],           /* primer y segundo palo */
+  [50, 34],                     /* punto de penalti */
+  [50, 56],                     /* frontal, para el rechace */
+  [26, 55], [80, 42],           /* segunda jugada y llegada desde atrás */
+  [17, 35],                     /* saque en corto */
 ];
 const CORNER_DEFENSA = [
-  [50, 9],                      /* portero, en la línea */
-  [30, 16], [70, 16],           /* los dos palos */
+  [50, 8],                      /* portero, en la línea */
+  [30, 14], [70, 14],           /* los dos palos */
   [24, 34], [41, 34], [59, 34], [76, 34],   /* la zona, delante del área pequeña */
-  [14, 52], [86, 52],           /* al hombre */
-  [50, 52],                     /* el frontal, para el rechace */
-  [50, 78],                     /* el que se queda arriba */
+  [14, 56], [86, 56],           /* al hombre */
+  [50, 56],                     /* el frontal, para el rechace */
+  [50, 82],                     /* el que se queda arriba */
 ];
 /* Nota sobre estas dos tablas: en un córner de verdad los dos de los palos
    están pegados a la zona, y el portero a un metro de ellos. Dibujado a
@@ -11606,9 +11606,10 @@ export default function App() {
   const onSlotUp = (id) => {
     const d = dragRef.current; dragRef.current = null;
     if (!d || d.moved || !can("editLineup")) return;
-    /* En un córner el toque corto no elige puesto: los jugadores son los del
-       once y lo único que se hace aquí es moverlos. */
-    if (abpSit) return;
+    /* El toque corto elige puesto, también preparando un córner: arrastrar
+       coloca, tocar cambia al jugador. Son los mismos once, así que cambiar
+       aquí a uno cambia el once de verdad -que es lo que se quiere: si para
+       este córner entra el central alto, entra en el equipo-. */
     setSelSlot((s) => (s === id ? null : id));
   };
 
@@ -18133,7 +18134,7 @@ export default function App() {
     const dibujarAbp = (fotos, conFotos) => {
       /* Apaisado, igual que el campo de la pantalla: la imagen que se manda
          tiene que ser lo que el entrenador acaba de colocar, no otra cosa. */
-      const S = 2, pitchW = 400 * S, pitchH = 300 * S, headerH = 76, footerH = 34;
+      const S = 2, pitchW = 400 * S, pitchH = 340 * S, headerH = 76, footerH = 56;
       const w = pitchW, h = headerH + pitchH + footerH;
       const cv = document.createElement("canvas");
       cv.width = w; cv.height = h;
@@ -18153,16 +18154,16 @@ export default function App() {
       /* Las mismas líneas que el campo de la pantalla, en tanto por ciento
          para que la imagen sea lo que el entrenador tiene delante. */
       ctx.strokeStyle = "rgba(232,237,230,0.5)"; ctx.lineWidth = 1.6 * S;
-      ctx.strokeRect(px(2), pyy(7.3), px(98) - px(2), pyy(97.3) - pyy(7.3));
-      ctx.strokeRect(px(42.5), pyy(3.3), px(57.5) - px(42.5), pyy(7.3) - pyy(3.3));
-      ctx.strokeRect(px(11.5), pyy(7.3), px(88.5) - px(11.5), pyy(56.7) - pyy(7.3));
-      ctx.strokeRect(px(32.5), pyy(7.3), px(67.5) - px(32.5), pyy(24) - pyy(7.3));
-      ctx.beginPath(); ctx.arc(px(50), pyy(40.3), 3 * S, 0, Math.PI * 2); ctx.fillStyle = "rgba(232,237,230,0.5)"; ctx.fill();
+      ctx.strokeRect(px(2), pyy(7.6), px(98) - px(2), pyy(97.6) - pyy(7.6));
+      ctx.strokeRect(px(42.5), pyy(3.5), px(57.5) - px(42.5), pyy(7.6) - pyy(3.5));
+      ctx.strokeRect(px(11.5), pyy(7.6), px(88.5) - px(11.5), pyy(51.2) - pyy(7.6));
+      ctx.strokeRect(px(32.5), pyy(7.6), px(67.5) - px(32.5), pyy(22.4) - pyy(7.6));
+      ctx.beginPath(); ctx.arc(px(50), pyy(36.8), 3 * S, 0, Math.PI * 2); ctx.fillStyle = "rgba(232,237,230,0.5)"; ctx.fill();
       /* El arco del área: centro en el punto de penalti y las puntas apoyadas
          en el borde del área, igual que en pantalla. */
-      ctx.beginPath(); ctx.arc(px(50), pyy(40.3), pitchW * 0.205, 0.17 * Math.PI, 0.83 * Math.PI); ctx.stroke();
-      ctx.beginPath(); ctx.arc(px(2), pyy(7.3), px(4.5), 0, 0.5 * Math.PI); ctx.stroke();
-      ctx.beginPath(); ctx.arc(px(98), pyy(7.3), px(4.5), 0.5 * Math.PI, Math.PI); ctx.stroke();
+      ctx.beginPath(); ctx.arc(px(50), pyy(36.8), pitchW * 0.2125, 0.197 * Math.PI, 0.803 * Math.PI); ctx.stroke();
+      ctx.beginPath(); ctx.arc(px(2), pyy(7.6), px(4.5), 0, 0.5 * Math.PI); ctx.stroke();
+      ctx.beginPath(); ctx.arc(px(98), pyy(7.6), px(4.5), 0.5 * Math.PI, Math.PI); ctx.stroke();
       Object.entries(posDeAbp(abpSit)).forEach(([id, sl]) => {
         const p = players.find((x) => x.id === lineupView[id]);
         const cx = px(sl.x), cy = pyy(sl.y), r = pitchW * 0.049;
@@ -18506,11 +18507,11 @@ export default function App() {
               tablero de 324px eso es un 10% más de sitio para separar fichas.
               De tableta para arriba no hace falta y queda mejor con su
               margen, como el resto de la pantalla. */}
-          <div ref={pitchRef} className={`relative touch-none select-none ${abpSit ? "-mx-4 sm:mx-0" : "w-full"}`} style={{ aspectRatio: abpSit ? "4/3" : "3/4" }} onPointerMove={onPitchMove} onPointerUp={() => onSlotUp(null)}>
-            <svg viewBox={abpSit ? "0 0 400 300" : "0 0 300 400"} className="absolute inset-0 w-full h-full pointer-events-none">
+          <div ref={pitchRef} className={`relative touch-none select-none ${abpSit ? "-mx-4 sm:mx-0" : "w-full"}`} style={{ aspectRatio: abpSit ? "400/340" : "3/4" }} onPointerMove={onPitchMove} onPointerUp={() => onSlotUp(null)}>
+            <svg viewBox={abpSit ? "0 0 400 340" : "0 0 300 400"} className="absolute inset-0 w-full h-full pointer-events-none">
               {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
                 abpSit
-                  ? <rect key={i} x="0" y={i * 37.5} width="400" height="37.5" fill={i % 2 ? "#17251D" : "#152219"} />
+                  ? <rect key={i} x="0" y={i * 42.5} width="400" height="42.5" fill={i % 2 ? "#17251D" : "#152219"} />
                   : <rect key={i} x="0" y={i * 50} width="300" height="50" fill={i % 2 ? "#17251D" : "#152219"} />
               ))}
               {abpSit ? (
@@ -18525,15 +18526,15 @@ export default function App() {
                    ancho lo que hace falta. De pie, once fichas en veinte
                    metros de área salían unas encima de otras. */
                 <g stroke={C.chalk} strokeOpacity="0.5" strokeWidth="1.6" fill="none">
-                  <rect x="8" y="22" width="384" height="270" />
-                  <line x1="8" y1="22" x2="392" y2="22" />
-                  <rect x="170" y="10" width="60" height="12" strokeOpacity="0.85" />
-                  <rect x="46" y="22" width="308" height="148" />
-                  <rect x="130" y="22" width="140" height="50" />
-                  <circle cx="200" cy="121" r="3" fill={C.chalk} fillOpacity="0.5" stroke="none" />
-                  <path d="M 131 170 A 82 82 0 0 0 269 170" />
-                  <path d="M 8 40 A 18 18 0 0 0 26 22" />
-                  <path d="M 392 40 A 18 18 0 0 1 374 22" />
+                  <rect x="8" y="26" width="384" height="306" />
+                  <line x1="8" y1="26" x2="392" y2="26" />
+                  <rect x="170" y="12" width="60" height="14" strokeOpacity="0.85" />
+                  <rect x="46" y="26" width="308" height="148" />
+                  <rect x="130" y="26" width="140" height="50" />
+                  <circle cx="200" cy="125" r="3" fill={C.chalk} fillOpacity="0.5" stroke="none" />
+                  <path d="M 131 174 A 85 85 0 0 0 269 174" />
+                  <path d="M 8 44 A 18 18 0 0 0 26 26" />
+                  <path d="M 392 44 A 18 18 0 0 1 374 26" />
                 </g>
               ) : (
                 <g stroke={C.chalk} strokeOpacity="0.5" strokeWidth="1.5" fill="none">
@@ -18557,18 +18558,15 @@ export default function App() {
                       mientras el puesto estaba vacío: en cuanto se asignaba un
                       jugador, desaparecía y solo quedaba el nombre. Se deja
                       siempre visible junto al nombre. */}
-                  {/* El cartel de debajo. En el campo entero cabe el nombre y
-                      la demarcación; en un córner las fichas están a medio
-                      palmo unas de otras y el cartel de una acaba debajo del
-                      círculo de la siguiente -y un nombre tapado no se lee-.
-                      En el móvil se quita: quién es cada uno lo dicen la cara
-                      y el dorsal, que es como se lee un córner desde la
-                      banda. En cuanto hay ancho -tableta, ordenador- vuelve,
-                      con el nombre de pila recortado al ancho de la ficha. Y
-                      en la imagen que se descarga o se manda salen siempre
-                      los nombres enteros: ahí sobra sitio. */}
-                  <div className={`mt-0.5 text-[10px] px-1 rounded ${abpSit ? "hidden sm:block max-w-11 truncate text-[9px]" : ""}`} style={{ background: "rgba(14,21,18,0.8)", color: C.chalk }}>
-                    {p ? (abpSit ? p.n.split(" ")[0] : `${p.n.split(" ")[0]} · ${s.label}`) : s.label}
+                  {/* El cartel de debajo. En un córner lleva el dorsal DELANTE
+                      del nombre: una foto de carné a 44px no siempre deja
+                      reconocer al jugador, y el número sí. Va en una sola
+                      línea, recortado, y el campo se ha hecho más alto para
+                      que el cartel de una ficha no acabe debajo del círculo
+                      de la siguiente. En el campo entero no hace falta: ahí
+                      sobra sitio y cabe también la demarcación. */}
+                  <div className={`mt-0.5 px-1 rounded whitespace-nowrap ${abpSit ? "text-[9px] max-w-[70px] truncate" : "text-[10px]"}`} style={{ background: "rgba(14,21,18,0.85)", color: C.chalk }}>
+                    {p ? (abpSit ? `${p.d} ${p.n.split(" ")[0]}` : `${p.n.split(" ")[0]} · ${s.label}`) : s.label}
                     {!abpSit && p && capitanes.includes(p.id) && <span className="ml-1 font-display font-semibold" style={{ color: AC }}>{t("ln.captainShort")}</span>}
                   </div>
                 </div>
