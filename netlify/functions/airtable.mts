@@ -208,6 +208,11 @@ const EQ = {
      ahora mismo; esto es una lista aparte de onces guardados para reutilizar
      -"con lesionados", "ida", "vuelta"...- sin tener que rehacerlos cada vez. */
   alineacionesFavoritas: "fldnPen6cwkg0Ngz9",
+  /* Colocaciones de córner, en JSON y por el mismo motivo que el plan: un
+     documento por equipo. Van aparte de las alineaciones favoritas porque no
+     son un once -son los mismos once puestos de otra manera para un córner-,
+     y porque se guardan por situación: las de atacar no valen para defender. */
+  abpCorners: "fldf8u5XdjQrEiIgD",
 };
 /* Único campo de Jugadores al que se accede por ID en vez de por NOMBRE: es
    un adjunto (uploadAttachment exige el id del campo, no su nombre) y la
@@ -1194,6 +1199,53 @@ export default async (req: Request) => {
         if (!r.ok) {
           const err = await r.text().catch(() => "");
           console.error(`[alineaciones-favoritas] Airtable ${r.status}: ${err.slice(0, 300)}`);
+          return j({ ok: false, reason: "airtable" }, 400);
+        }
+        return j({ ok: true });
+      }
+      return j({ error: "Petición no soportada" }, 400);
+    }
+
+    /* ============ ABP · CÓRNERS ============
+       GET  ?res=abp-corners&team=recX
+       POST ?res=abp-corners&team=recX { abp }
+       Cómo se coloca el equipo en un córner, a favor y en contra. Hasta 5
+       colocaciones de cada: no es una lista de alineaciones -los jugadores
+       son los mismos del once- sino dónde se pone cada uno dentro del área.
+       Mismas reglas y mismo documento-por-equipo que "alineacion": lo que
+       prepara el entrenador el martes tiene que verlo su segundo y su
+       delegado desde el banquillo el domingo. */
+    if (res === "abp-corners") {
+      const team = url.searchParams.get("team") || "";
+      if (!team) return j({ error: "falta_equipo" }, 400);
+      if (req.method === "GET") {
+        const r = await fetch(`${table(T_EQUIPOS)}/${team}?returnFieldsByFieldId=true`, { headers: H });
+        if (!r.ok) return j({ error: "no_encontrado" }, 404);
+        const d = await r.json().catch(() => ({}));
+        return j({ abp: d?.fields?.[EQ.abpCorners] || "" });
+      }
+      if (req.method === "POST") {
+        const suyo = String(sesion?.equipo || "") === team;
+        const puede = suyo || dirigeElClub(sesion);
+        if (!puede) return j({ ok: false, reason: "no_autorizado" }, 403);
+        const b = await req.json();
+        let doc: any;
+        try { doc = JSON.parse(String(b.abp || "{}")); } catch { doc = null; }
+        /* Las dos situaciones son obligatorias y cada una es una lista de
+           como mucho 5: si llega otra cosa, es un documento de otra versión
+           o un error, y machacar lo que hay sería perder el trabajo del
+           cuerpo técnico. */
+        const lista = (x: unknown) => Array.isArray(x) && x.length <= 5;
+        if (!doc || typeof doc !== "object" || Array.isArray(doc) || !lista(doc.ataque) || !lista(doc.defensa)) {
+          return j({ ok: false, reason: "formato_invalido" }, 400);
+        }
+        const r = await fetch(`${table(T_EQUIPOS)}/${team}`, {
+          method: "PATCH", headers: H,
+          body: JSON.stringify({ fields: { [EQ.abpCorners]: String(b.abp || "") }, typecast: true }),
+        });
+        if (!r.ok) {
+          const err = await r.text().catch(() => "");
+          console.error(`[abp-corners] Airtable ${r.status}: ${err.slice(0, 300)}`);
           return j({ ok: false, reason: "airtable" }, 400);
         }
         return j({ ok: true });

@@ -90,6 +90,24 @@ const DICT = {
     "ln.tapPlayerToAdd": "Toca a un jugador y entra en el once, en el primer hueco libre ({pos}). Para elegir el sitio, toca antes un puesto del campo.",
     "ln.captain": "Capitán", "ln.captainShort": "C", "ln.captainMax": "Como mucho 3 capitanes.", "ln.staffTitle": "Cuerpo técnico", "ln.staffHint": "Quién se sienta en el banquillo. Sale en la alineación compartida, como en el acta.", "ln.staffName": "Nombre", "ln.staffRole": "Cargo. Ej. Segundo entrenador", "ln.staffAdd": "+ Añadir", "ln.staffEmpty": "Todavía no has puesto a nadie.", "ln.xiFull": "El once está completo. Toca un puesto del campo para cambiar a quien esté ahí.",
     "ln.favTitle": "Favoritas",
+    "ln.tabXI": "El once",
+    "ln.abpTitle": "ABP · Córner",
+    "ln.abpAtaque": "Córner a favor",
+    "ln.abpDefensa": "Córner en contra",
+    "ln.abpHint": "El mismo once, colocado para un córner. Arrastra las fichas por el área; el dibujo del once no se toca.",
+    "ln.abpDragHint": "Arrastra cada ficha a su sitio en el área",
+    "ln.abpSaved": "Guardadas",
+    "ln.abpSave": "+ Guardar colocación",
+    "ln.abpFull": "Ya tienes 5",
+    "ln.abpMax": "Ya tienes 5 colocaciones guardadas en esta situación. Borra una para guardar otra.",
+    "ln.abpNamePrompt": "Nombre de la colocación. Ej. Primer palo",
+    "ln.abpApply": "Poner esta colocación",
+    "ln.abpApplied": "✓ Puesta \"{name}\".",
+    "ln.abpDeleteConfirm": "¿Borrar la colocación \"{name}\"?",
+    "ln.abpReset": "↺ Colocación de salida",
+    "ln.abpSaveOk": "✓ Guardada para todo el cuerpo técnico.",
+    "ln.abpSaveFail": "No se ha podido guardar. Revisa la conexión.",
+    "ln.abpDownload": "⤓ Descargar córner",
     "ln.favSave": "☆ Guardar como favorita",
     "ln.favMax": "Ya tienes 3 favoritas guardadas. Borra una para guardar otra.",
     "ln.favNamePrompt": "Nombre para esta alineación (p. ej. «Con lesionados»)",
@@ -676,6 +694,24 @@ const DICT = {
     "ln.tapPlayerToAdd": "Tap a player and they go into the XI, in the first free spot ({pos}). To choose the spot, tap a position on the pitch first.",
     "ln.captain": "Captain", "ln.captainShort": "C", "ln.captainMax": "Three captains at most.", "ln.staffTitle": "Coaching staff", "ln.staffHint": "Who is on the bench. Shows on the shared line-up, like on the team sheet.", "ln.staffName": "Name", "ln.staffRole": "Role. E.g. Assistant coach", "ln.staffAdd": "+ Add", "ln.staffEmpty": "Nobody added yet.", "ln.xiFull": "The XI is complete. Tap a position on the pitch to swap whoever is there.",
     "ln.favTitle": "Favorites",
+    "ln.tabXI": "The XI",
+    "ln.abpTitle": "Set piece · Corner",
+    "ln.abpAtaque": "Corner for",
+    "ln.abpDefensa": "Corner against",
+    "ln.abpHint": "The same XI, set up for a corner. Drag the tokens around the box; your line-up shape is left untouched.",
+    "ln.abpDragHint": "Drag each token to its spot in the box",
+    "ln.abpSaved": "Saved",
+    "ln.abpSave": "+ Save set-up",
+    "ln.abpFull": "5 already saved",
+    "ln.abpMax": "You already have 5 set-ups saved for this situation. Delete one to save another.",
+    "ln.abpNamePrompt": "Name for this set-up. E.g. Near post",
+    "ln.abpApply": "Use this set-up",
+    "ln.abpApplied": "✓ \"{name}\" set up.",
+    "ln.abpDeleteConfirm": "Delete the set-up \"{name}\"?",
+    "ln.abpReset": "↺ Starting set-up",
+    "ln.abpSaveOk": "✓ Saved for the whole coaching staff.",
+    "ln.abpSaveFail": "Couldn't save. Check your connection.",
+    "ln.abpDownload": "⤓ Download corner",
     "ln.favSave": "☆ Save as favorite",
     "ln.favMax": "You already have 3 saved favorites. Delete one to save another.",
     "ln.favNamePrompt": "Name for this lineup (e.g. \"With injuries\")",
@@ -1274,6 +1310,24 @@ const DICT = {
     "ln.tapPlayerToAdd": "Touche un joueur et il entre dans le onze, au premier poste libre ({pos}). Pour choisir le poste, touche d'abord une place sur le terrain.",
     "ln.captain": "Capitaine", "ln.captainShort": "C", "ln.captainMax": "Trois capitaines au maximum.", "ln.staffTitle": "Staff technique", "ln.staffHint": "Qui est sur le banc. Apparaît sur la composition partagée.", "ln.staffName": "Nom", "ln.staffRole": "Fonction. Ex. Adjoint", "ln.staffAdd": "+ Ajouter", "ln.staffEmpty": "Personne pour l'instant.", "ln.xiFull": "Le onze est complet. Touche une place sur le terrain pour remplacer celui qui l'occupe.",
     "ln.favTitle": "Favoris",
+    "ln.tabXI": "Le onze",
+    "ln.abpTitle": "CPA · Corner",
+    "ln.abpAtaque": "Corner offensif",
+    "ln.abpDefensa": "Corner défensif",
+    "ln.abpHint": "Le même onze, placé pour un corner. Faites glisser les jetons dans la surface ; la compo n'est pas modifiée.",
+    "ln.abpDragHint": "Placez chaque jeton dans la surface",
+    "ln.abpSaved": "Enregistrés",
+    "ln.abpSave": "+ Enregistrer le placement",
+    "ln.abpFull": "Déjà 5",
+    "ln.abpMax": "Vous avez déjà 5 placements enregistrés pour cette situation. Supprimez-en un pour en enregistrer un autre.",
+    "ln.abpNamePrompt": "Nom du placement. Ex. Premier poteau",
+    "ln.abpApply": "Utiliser ce placement",
+    "ln.abpApplied": "✓ \"{name}\" en place.",
+    "ln.abpDeleteConfirm": "Supprimer le placement \"{name}\" ?",
+    "ln.abpReset": "↺ Placement de départ",
+    "ln.abpSaveOk": "✓ Enregistré pour tout le staff.",
+    "ln.abpSaveFail": "Impossible d'enregistrer. Vérifiez la connexion.",
+    "ln.abpDownload": "⤓ Télécharger le corner",
     "ln.favSave": "☆ Enregistrer comme favori",
     "ln.favMax": "Vous avez déjà 3 favoris enregistrés. Supprimez-en un pour en enregistrer un autre.",
     "ln.favNamePrompt": "Nom pour cette composition (ex. « Avec blessés »)",
@@ -1952,6 +2006,24 @@ const DICT = {
     "ln.tapPlayerToAdd": "Tippe einen Spieler an und er kommt in die Elf, auf den ersten freien Platz ({pos}). Um den Platz zu wählen, tippe vorher eine Position auf dem Feld an.",
     "ln.captain": "Kapitän", "ln.captainShort": "C", "ln.captainMax": "Höchstens drei Kapitäne.", "ln.staffTitle": "Trainerteam", "ln.staffHint": "Wer auf der Bank sitzt. Erscheint in der geteilten Aufstellung.", "ln.staffName": "Name", "ln.staffRole": "Funktion, z. B. Co-Trainer", "ln.staffAdd": "+ Hinzufügen", "ln.staffEmpty": "Noch niemand eingetragen.", "ln.xiFull": "Die Elf ist komplett. Tippe eine Position auf dem Feld an, um den Spieler dort zu tauschen.",
     "ln.favTitle": "Favoriten",
+    "ln.tabXI": "Die Elf",
+    "ln.abpTitle": "Standard · Ecke",
+    "ln.abpAtaque": "Ecke für uns",
+    "ln.abpDefensa": "Ecke gegen uns",
+    "ln.abpHint": "Dieselbe Elf, für eine Ecke aufgestellt. Zieh die Spielsteine im Strafraum; die Aufstellung bleibt unangetastet.",
+    "ln.abpDragHint": "Zieh jeden Spielstein an seinen Platz im Strafraum",
+    "ln.abpSaved": "Gespeichert",
+    "ln.abpSave": "+ Aufstellung speichern",
+    "ln.abpFull": "Schon 5",
+    "ln.abpMax": "Für diese Situation sind bereits 5 Aufstellungen gespeichert. Lösche eine, um eine neue zu speichern.",
+    "ln.abpNamePrompt": "Name der Aufstellung. Z. B. Kurzer Pfosten",
+    "ln.abpApply": "Diese Aufstellung nehmen",
+    "ln.abpApplied": "✓ \"{name}\" aufgestellt.",
+    "ln.abpDeleteConfirm": "Aufstellung \"{name}\" löschen?",
+    "ln.abpReset": "↺ Ausgangsaufstellung",
+    "ln.abpSaveOk": "✓ Für das ganze Trainerteam gespeichert.",
+    "ln.abpSaveFail": "Speichern nicht möglich. Prüfe die Verbindung.",
+    "ln.abpDownload": "⤓ Ecke herunterladen",
     "ln.favSave": "☆ Als Favorit speichern",
     "ln.favMax": "Du hast bereits 3 gespeicherte Favoriten. Lösche einen, um einen weiteren zu speichern.",
     "ln.favNamePrompt": "Name für diese Aufstellung (z. B. „Mit Verletzten“)",
@@ -2629,6 +2701,24 @@ const DICT = {
     "ln.tapPlayerToAdd": "Toca num jogador e entra no onze, no primeiro lugar livre ({pos}). Para escolheres o lugar, toca primeiro numa posição do campo.",
     "ln.captain": "Capitão", "ln.captainShort": "C", "ln.captainMax": "No máximo 3 capitães.", "ln.staffTitle": "Equipa técnica", "ln.staffHint": "Quem fica no banco. Aparece no onze partilhado.", "ln.staffName": "Nome", "ln.staffRole": "Cargo. Ex.: Treinador adjunto", "ln.staffAdd": "+ Adicionar", "ln.staffEmpty": "Ainda não puseste ninguém.", "ln.xiFull": "O onze está completo. Toca numa posição do campo para trocar quem lá está.",
     "ln.favTitle": "Favoritas",
+    "ln.tabXI": "O onze",
+    "ln.abpTitle": "Bola parada · Canto",
+    "ln.abpAtaque": "Canto a favor",
+    "ln.abpDefensa": "Canto contra",
+    "ln.abpHint": "O mesmo onze, colocado para um canto. Arrasta as peças pela área; o desenho do onze não se toca.",
+    "ln.abpDragHint": "Arrasta cada peça para o seu lugar na área",
+    "ln.abpSaved": "Guardadas",
+    "ln.abpSave": "+ Guardar colocação",
+    "ln.abpFull": "Já tens 5",
+    "ln.abpMax": "Já tens 5 colocações guardadas nesta situação. Apaga uma para guardar outra.",
+    "ln.abpNamePrompt": "Nome da colocação. Ex. Primeiro poste",
+    "ln.abpApply": "Pôr esta colocação",
+    "ln.abpApplied": "✓ \"{name}\" colocada.",
+    "ln.abpDeleteConfirm": "Apagar a colocação \"{name}\"?",
+    "ln.abpReset": "↺ Colocação inicial",
+    "ln.abpSaveOk": "✓ Guardada para toda a equipa técnica.",
+    "ln.abpSaveFail": "Não foi possível guardar. Verifica a ligação.",
+    "ln.abpDownload": "⤓ Descarregar canto",
     "ln.favSave": "☆ Guardar como favorita",
     "ln.favMax": "Já tens 3 favoritas guardadas. Apaga uma para guardar outra.",
     "ln.favNamePrompt": "Nome para esta alinhação (ex.: «Com lesionados»)",
@@ -4456,6 +4546,19 @@ const airCargasGuardar = async (teamRec, cargas) => {
    lesionados", "ida", "vuelta"...-, para elegir uno y ponerlo en el
    partido sin rehacerlo cada vez. Documento aparte del de "alineacion":
    guardar una favorita no toca el once que se está usando ahora mismo. */
+/* ABP · córners: cómo se coloca el equipo en un córner a favor y en contra,
+   hasta 5 de cada. Mismo documento-por-equipo que la alineación. */
+const airAbpLeer = async (teamRec) => {
+  try { const r = await cbFetch(`${AIR}?res=abp-corners&team=${encodeURIComponent(teamRec)}`); if (!r.ok) return null; return await r.json(); } catch { return null; }
+};
+const airAbpGuardar = async (teamRec, doc) => {
+  try {
+    const r = await cbFetch(`${AIR}?res=abp-corners&team=${encodeURIComponent(teamRec)}`, {
+      method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ abp: JSON.stringify(doc) }),
+    });
+    return r.ok;
+  } catch { return false; }
+};
 const airFavoritasLeer = async (teamRec) => {
   try { const r = await cbFetch(`${AIR}?res=alineaciones-favoritas&team=${encodeURIComponent(teamRec)}`); if (!r.ok) return null; return await r.json(); } catch { return null; }
 };
@@ -8196,6 +8299,72 @@ function buildSlots(code) {
   });
   return slots;
 }
+/* ================= ABP · CÓRNERS =================
+   El mismo once, colocado de otra manera. Un córner no se defiende ni se
+   ataca con el dibujo del sistema: los centrales suben al área, el portero
+   se pega al palo y alguien se queda arriba para la contra. Por eso las
+   posiciones de ABP viven aparte de `slotPos` y no lo tocan -volver al once
+   después de preparar un córner tiene que devolver el equipo tal y como
+   estaba.
+   Las dos listas son el punto de partida que se ofrece al entrar: una
+   colocación razonable que el entrenador mueve a su gusto, no una propuesta
+   táctica cerrada. En los dos casos la portería está arriba: la que se ataca
+   en ataque, la que se defiende en defensa. */
+const CORNER_ATAQUE = [
+  [50, 90],  /* portero: atrás del todo, el córner es del rival si se pierde */
+  [30, 72], [70, 72],           /* dos que se quedan para la contra */
+  [7, 16],                      /* el que saca, en el banderín */
+  [38, 27], [64, 27],           /* primer y segundo palo */
+  [50, 36],                     /* punto de penalti */
+  [50, 52],                     /* frontal, para el rechace */
+  [30, 50], [72, 43],           /* segunda jugada y llegada al área */
+  [19, 27],                     /* saque en corto */
+];
+const CORNER_DEFENSA = [
+  [50, 15],                     /* portero, en la línea */
+  [40, 20], [60, 20],           /* los dos palos */
+  [36, 31], [46, 31], [56, 31], [66, 31],   /* la zona, delante del área pequeña */
+  [30, 42], [70, 42],           /* al hombre */
+  [50, 50],                     /* el frontal, para el rechace */
+  [50, 76],                     /* el que se queda arriba */
+];
+/* Reparte esas coordenadas entre los puestos del sistema que se esté usando,
+   en el orden en el que están dibujados en el campo (portero primero). Si el
+   sistema tuviera más puestos que coordenadas -no ocurre en 11 ni en 7- los
+   que sobren se quedan en el frontal, que es donde menos estorban. */
+const abpPorDefecto = (sit, slots) => {
+  const tabla = sit === "defensa" ? CORNER_DEFENSA : CORNER_ATAQUE;
+  const out = {};
+  Object.entries(slots).forEach(([id, s], i) => {
+    const [x, y] = tabla[i] || [50, 55];
+    out[id] = { label: s.label, x, y };
+  });
+  return out;
+};
+/* Lo que llega de la nube trae solo el sitio de cada ficha: la demarcación
+   sale del sistema que se esté usando ahora, que es el que manda. Un puesto
+   guardado que ya no exista -se ha cambiado de sistema- se descarta, y uno
+   nuevo cae en su posición por defecto. */
+const abpConSlots = (guardado, slots, sit) => {
+  const base = abpPorDefecto(sit, slots);
+  if (!guardado || typeof guardado !== "object") return base;
+  const out = {};
+  Object.keys(base).forEach((id) => {
+    const g = guardado[id];
+    out[id] = Number.isFinite(g?.x) && Number.isFinite(g?.y)
+      ? { label: base[id].label, x: g.x, y: g.y }
+      : base[id];
+  });
+  return out;
+};
+/* Al revés: a la nube solo viaja el sitio. La demarcación no se guarda porque
+   no es del córner, es del sistema. */
+const abpSoloPos = (pos) => {
+  const out = {};
+  Object.entries(pos || {}).forEach(([id, s]) => { out[id] = { x: s.x, y: s.y }; });
+  return out;
+};
+
 /* El tablero de una alineación guardada: no solo en qué sistema jugaba, sino
    DÓNDE estaba puesta cada ficha. Si el entrenador abre a un lateral, junta a
    los centrales o adelanta al pivote, ese dibujo ES la alineación que quiso
@@ -10726,6 +10895,86 @@ export default function App() {
     setFavMsg(t("ln.favApplied").replace("{name}", fav.nombre));
     setTimeout(() => setFavMsg(""), 4000);
   };
+  /* ---------------- ABP · CÓRNERS ----------------
+     El mismo once, colocado de otra manera. `abpSit` es null cuando se está
+     mirando el once de siempre, y "ataque" o "defensa" cuando se está
+     preparando un córner: de ahí sale qué tablero se pinta y de dónde salen
+     las posiciones de las fichas. `abpPos` no toca `slotPos` -volver al once
+     después de preparar un córner devuelve el equipo tal y como estaba-. */
+  const [abpSit, setAbpSit] = useState(null);
+  const [abpPos, setAbpPos] = useState({ ataque: {}, defensa: {} });
+  const [abpGuardadas, setAbpGuardadas] = useState({ ataque: [], defensa: [] });
+  const [abpMsg, setAbpMsg] = useState("");
+  const [abpBusy, setAbpBusy] = useState(false);
+  const abpListo = useRef(false);
+  /* Al entrar en una situación por primera vez -o al cambiar de sistema- se
+     ofrece la colocación por defecto de esa situación; a partir de ahí manda
+     lo que el entrenador haya movido. */
+  const posDeAbp = (sit) => (Object.keys(abpPos[sit] || {}).length ? abpPos[sit] : abpPorDefecto(sit, slotPos));
+  const abrirAbp = (sit) => {
+    setAbpSit(sit);
+    setSelSlot(null);
+    setAbpPos((p) => (Object.keys(p[sit] || {}).length ? p : { ...p, [sit]: abpPorDefecto(sit, slotPos) }));
+  };
+  /* Lo guardado en la nube llega al abrir el equipo, igual que la alineación.
+     Es un documento del equipo: lo que prepara el entrenador el martes lo ve
+     su segundo y su delegado el domingo. */
+  useEffect(() => {
+    const rec = session?.team?.rec;
+    abpListo.current = false;
+    if (!rec || session?.email === "demo") { setAbpGuardadas({ ataque: [], defensa: [] }); return; }
+    let vivo = true;
+    (async () => {
+      const d = await airAbpLeer(rec);
+      if (!vivo) return;
+      try {
+        const doc = JSON.parse(d?.abp || "{}");
+        setAbpGuardadas({
+          ataque: Array.isArray(doc.ataque) ? doc.ataque : [],
+          defensa: Array.isArray(doc.defensa) ? doc.defensa : [],
+        });
+      } catch { /* json roto en Airtable: se ignora */ }
+      abpListo.current = true;
+    })();
+    return () => { vivo = false; };
+  }, [session?.team?.rec]); // eslint-disable-line
+  const guardarAbpEnLaNube = async (doc) => {
+    const rec = session?.team?.rec;
+    if (!rec || session?.email === "demo") {
+      setAbpMsg(t(session?.email === "demo" ? "mh.demoNote" : "pf.savedLocal"));
+      setTimeout(() => setAbpMsg(""), 4000);
+      return;
+    }
+    setAbpBusy(true);
+    const ok = await airAbpGuardar(rec, doc);
+    setAbpBusy(false);
+    setAbpMsg(t(ok ? "ln.abpSaveOk" : "ln.abpSaveFail"));
+    setTimeout(() => setAbpMsg(""), 4000);
+  };
+  const guardarAbp = () => {
+    if (abpBusy || !abpSit || !can("editLineup")) return;
+    if ((abpGuardadas[abpSit] || []).length >= 5) { setAbpMsg(t("ln.abpMax")); setTimeout(() => setAbpMsg(""), 4000); return; }
+    const nombre = window.prompt(t("ln.abpNamePrompt"), "");
+    if (!nombre || !nombre.trim()) return;
+    const nueva = { id: `abp${Date.now()}`, nombre: nombre.trim().slice(0, 40), pos: abpSoloPos(posDeAbp(abpSit)) };
+    const doc = { ...abpGuardadas, [abpSit]: [...(abpGuardadas[abpSit] || []), nueva] };
+    setAbpGuardadas(doc);
+    guardarAbpEnLaNube(doc);
+  };
+  const aplicarAbp = (guardada) => {
+    if (!abpSit || !guardada) return;
+    setAbpPos((p) => ({ ...p, [abpSit]: abpConSlots(guardada.pos, slotPos, abpSit) }));
+    setAbpMsg(t("ln.abpApplied").replace("{name}", guardada.nombre));
+    setTimeout(() => setAbpMsg(""), 4000);
+  };
+  const borrarAbp = (id) => {
+    if (abpBusy || !abpSit) return;
+    const g = (abpGuardadas[abpSit] || []).find((x) => x.id === id);
+    if (!g || !window.confirm(t("ln.abpDeleteConfirm").replace("{name}", g.nombre))) return;
+    const doc = { ...abpGuardadas, [abpSit]: (abpGuardadas[abpSit] || []).filter((x) => x.id !== id) };
+    setAbpGuardadas(doc);
+    guardarAbpEnLaNube(doc);
+  };
   const [selSlot, setSelSlot] = useState(null);
   const [lnImgBusy, setLnImgBusy] = useState(false);
   /* Vídeo del once para antes del partido. Se graba en tiempo real -es lo que
@@ -11340,11 +11589,19 @@ export default function App() {
     if (Math.hypot(e.clientX - d.sx, e.clientY - d.sy) > 6) d.moved = true;
     if (!d.moved) return;
     const r = pitchRef.current.getBoundingClientRect();
-    setSlotPos((p) => ({ ...p, [d.id]: { ...p[d.id], x: clamp(((e.clientX - r.left) / r.width) * 100, 7, 93), y: clamp(((e.clientY - r.top) / r.height) * 100, 6, 94) } }));
+    const x = clamp(((e.clientX - r.left) / r.width) * 100, 7, 93);
+    const y = clamp(((e.clientY - r.top) / r.height) * 100, 6, 94);
+    /* Preparando un córner se mueve la colocación de ESA situación; el dibujo
+       del once no se toca, para que volver a él lo devuelva como estaba. */
+    if (abpSit) setAbpPos((p) => ({ ...p, [abpSit]: { ...posDeAbp(abpSit), [d.id]: { ...posDeAbp(abpSit)[d.id], x, y } } }));
+    else setSlotPos((p) => ({ ...p, [d.id]: { ...p[d.id], x, y } }));
   };
   const onSlotUp = (id) => {
     const d = dragRef.current; dragRef.current = null;
     if (!d || d.moved || !can("editLineup")) return;
+    /* En un córner el toque corto no elige puesto: los jugadores son los del
+       once y lo único que se hace aquí es moverlos. */
+    if (abpSit) return;
     setSelSlot((s) => (s === id ? null : id));
   };
 
@@ -17861,6 +18118,92 @@ export default function App() {
       ctx.fillText(`COACHBASE Ai · ${hoyISO()}`, w / 2, h - 12);
       return cv;
     };
+    /* ---- La imagen del córner ----
+       Mismo lienzo y mismas fichas que la alineación -las caras se mantienen,
+       que es de lo que se trata-, pero con el campo del córner y sin
+       banquillo: en un balón parado lo que importa es quién está dentro del
+       área y dónde, no la lista de suplentes. */
+    const dibujarAbp = (fotos, conFotos) => {
+      const S = 2, pitchW = 300 * S, pitchH = 400 * S, headerH = 76, footerH = 34;
+      const w = pitchW, h = headerH + pitchH + footerH;
+      const cv = document.createElement("canvas");
+      cv.width = w; cv.height = h;
+      const ctx = cv.getContext("2d");
+      ctx.fillStyle = "#0E1512"; ctx.fillRect(0, 0, w, h);
+      ctx.textAlign = "left";
+      ctx.fillStyle = "#E8EDE6"; ctx.font = "700 26px 'Barlow Condensed', sans-serif";
+      ctx.fillText(String(session.club || "").toUpperCase(), 18, 30);
+      ctx.fillStyle = AC; ctx.font = "500 17px 'Barlow Condensed', sans-serif";
+      ctx.fillText(`${session.team?.name || ""} · ${t(abpSit === "defensa" ? "ln.abpDefensa" : "ln.abpAtaque")}`, 18, 54);
+      const py = headerH;
+      const px = (pct) => (pct / 100) * pitchW, pyy = (pct) => py + (pct / 100) * pitchH;
+      for (let i = 0; i < 8; i++) {
+        ctx.fillStyle = i % 2 ? "#17251D" : "#152219";
+        ctx.fillRect(0, py + (i * pitchH) / 8, pitchW, pitchH / 8);
+      }
+      /* Las mismas líneas que el campo de la pantalla, en tanto por ciento
+         para que la imagen sea lo que el entrenador tiene delante. */
+      ctx.strokeStyle = "rgba(232,237,230,0.5)"; ctx.lineWidth = 1.5 * S;
+      ctx.strokeRect(px(2.7), pyy(7.5), px(97.3) - px(2.7), pyy(98) - pyy(7.5));
+      ctx.strokeRect(px(36.7), pyy(3.5), px(63.3) - px(36.7), pyy(7.5) - pyy(3.5));
+      ctx.strokeRect(px(13.3), pyy(7.5), px(86.7) - px(13.3), pyy(42.5) - pyy(7.5));
+      ctx.strokeRect(px(33.3), pyy(7.5), px(66.7) - px(33.3), pyy(20) - pyy(7.5));
+      ctx.beginPath(); ctx.arc(px(50), pyy(33), 3 * S, 0, Math.PI * 2); ctx.fillStyle = "rgba(232,237,230,0.5)"; ctx.fill();
+      /* El arco del área, con el mismo trazo que en pantalla: centro en el
+         punto de penalti y las puntas apoyadas en el borde del área. Con un
+         radio menor quedaba flotando dentro del área, tapando fichas. */
+      ctx.beginPath(); ctx.arc(px(50), pyy(33), pitchW * 0.199, 0.22 * Math.PI, 0.78 * Math.PI); ctx.stroke();
+      ctx.beginPath(); ctx.arc(px(2.7), pyy(7.5), px(6), 0, 0.5 * Math.PI); ctx.stroke();
+      ctx.beginPath(); ctx.arc(px(97.3), pyy(7.5), px(6), 0.5 * Math.PI, Math.PI); ctx.stroke();
+      Object.entries(posDeAbp(abpSit)).forEach(([id, sl]) => {
+        const p = players.find((x) => x.id === lineupView[id]);
+        const cx = px(sl.x), cy = pyy(sl.y), r = pitchW * 0.065;
+        const foto = conFotos && p ? fotos.get(p.id) : null;
+        if (foto) {
+          ctx.save();
+          ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.clip();
+          ctx.drawImage(foto, cx - r, cy - r, r * 2, r * 2);
+          ctx.restore();
+          ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2);
+          ctx.strokeStyle = AC; ctx.lineWidth = 2; ctx.stroke();
+          ctx.beginPath(); ctx.arc(cx + r * 0.62, cy + r * 0.62, r * 0.46, 0, Math.PI * 2);
+          ctx.fillStyle = "#0E1512"; ctx.fill();
+          ctx.fillStyle = AC; ctx.font = `700 ${Math.round(r * 0.62)}px 'Barlow Condensed', sans-serif`;
+          ctx.textAlign = "center"; ctx.textBaseline = "middle";
+          ctx.fillText(String(p.d), cx + r * 0.62, cy + r * 0.66);
+        } else {
+          ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2);
+          ctx.fillStyle = p ? "#E8EDE6" : "rgba(14,21,18,0.75)"; ctx.fill();
+          ctx.strokeStyle = p ? AC : "rgba(232,237,230,0.5)"; ctx.lineWidth = 2; ctx.stroke();
+          ctx.fillStyle = p ? "#0E1512" : "rgba(232,237,230,0.75)";
+          ctx.font = `700 ${Math.round(r * 0.95)}px 'Barlow Condensed', sans-serif`;
+          ctx.textAlign = "center"; ctx.textBaseline = "middle";
+          ctx.fillText(p ? String(p.d) : sl.label, cx, cy + 1);
+        }
+        ctx.textBaseline = "alphabetic";
+        if (p) {
+          ctx.fillStyle = "#E8EDE6"; ctx.font = "500 14px 'Barlow Condensed', sans-serif";
+          ctx.textAlign = "center";
+          ctx.fillText(`${p.n.split(" ")[0]} · ${sl.label}`, cx, cy + r + 18);
+        }
+      });
+      ctx.textAlign = "center"; ctx.fillStyle = "rgba(232,237,230,0.5)"; ctx.font = "500 13px 'Barlow Condensed', sans-serif";
+      ctx.fillText(`COACHBASE Ai · ${hoyISO()}`, w / 2, h - 12);
+      return cv;
+    };
+    /* El mismo córner en texto, para que llegue algo legible aunque la imagen
+       se quede comprimida o sin abrir. */
+    const abpTexto = () => {
+      const lineas = Object.entries(posDeAbp(abpSit))
+        .map(([id, sl]) => ({ sl, p: players.find((x) => x.id === lineupView[id]) }))
+        .filter((x) => x.p)
+        .map(({ sl, p }) => `${sl.label} ${keycap(p.d)} ${p.n}`);
+      return [
+        `⬡ *${t("ln.abpTitle").toUpperCase()} · ${t(abpSit === "defensa" ? "ln.abpDefensa" : "ln.abpAtaque").toUpperCase()} — ${session.club || ""} ${session.team?.name || ""}*`,
+        "",
+        ...lineas,
+      ].join("\n");
+    };
     /* toBlob() en un canvas "manchado" por una imagen de otro origen sin
        las cabeceras CORS que hacen falta puede lanzar en el momento de
        llamarlo o, según el navegador, devolver blob nulo en el callback:
@@ -17949,13 +18292,16 @@ export default function App() {
           })));
           cargas.forEach(([id, img]) => { if (img) fotos.set(id, img); });
         }
-        let blob = await intentarBlob(dibujarAlineacion(fotos, true, banquillo));
+        let blob = await intentarBlob(abpSit ? dibujarAbp(fotos, true) : dibujarAlineacion(fotos, true, banquillo));
         /* Canvas contaminado (u otro fallo con las fotos): se repite el
            dibujo entero sin ninguna, en un canvas nuevo, para que compartir
            siga funcionando igual que antes de intentarlo. */
-        if (!blob) blob = await intentarBlob(dibujarAlineacion(fotos, false, banquillo));
+        if (!blob) blob = await intentarBlob(abpSit ? dibujarAbp(fotos, false) : dibujarAlineacion(fotos, false, banquillo));
         if (!blob) { setLnImgBusy(false); setLnImgMsg(t("ln.shareImageFail")); return; }
-        const nombre = `alineacion-${(session.team?.name || "equipo").replace(/\s+/g, "-")}-${hoyISO()}.png`;
+        const equipoEnElNombre = (session.team?.name || "equipo").replace(/\s+/g, "-");
+        const nombre = abpSit
+          ? `corner-${abpSit}-${equipoEnElNombre}-${hoyISO()}.png`
+          : `alineacion-${equipoEnElNombre}-${hoyISO()}.png`;
         const file = new File([blob], nombre, { type: "image/png" });
         const descargar = () => {
           const a = document.createElement("a");
@@ -17970,12 +18316,12 @@ export default function App() {
                alguien está el botón de al lado. */
             descargar();
           } else if (navigator.share && (!navigator.canShare || navigator.canShare({ files: [file] }))) {
-            await navigator.share({ files: [file], title: t("ln.startersTitle"), text: alineacionTexto() });
+            await navigator.share({ files: [file], title: t(abpSit ? "ln.abpTitle" : "ln.startersTitle"), text: abpSit ? abpTexto() : alineacionTexto() });
           } else {
             /* Sin panel con archivos: al menos que el texto llegue a WhatsApp
                y la imagen quede descargada para adjuntarla. */
             descargar();
-            window.open(`https://wa.me/?text=${encodeURIComponent(alineacionTexto())}`, "_blank", "noopener");
+            window.open(`https://wa.me/?text=${encodeURIComponent(abpSit ? abpTexto() : alineacionTexto())}`, "_blank", "noopener");
           }
           setLnImgMsg(t(paraWhatsapp ? "ln.shareImageOk" : "ln.downloadOk"));
         } catch (e) {
@@ -17992,7 +18338,9 @@ export default function App() {
     };
     return (
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <Card title={`${propone ? t("ln.proposalTitle") : t("ln.startersTitle")} — ${sysCode}`}>
+        <Card title={abpSit
+          ? `${t("ln.abpTitle")} — ${t(abpSit === "defensa" ? "ln.abpDefensa" : "ln.abpAtaque")}`
+          : `${propone ? t("ln.proposalTitle") : t("ln.startersTitle")} — ${sysCode}`}>
           {propone && (
             miPropuestaPendiente("lineup") ? (
               <div className="mb-3 rounded-lg border px-3 py-2.5 text-sm" style={{ borderColor: C.warn, background: `${C.warn}10`, color: C.warn }}>
@@ -18011,6 +18359,24 @@ export default function App() {
               </div>
             )
           )}
+          {/* ---- Once o balón parado ----
+               Son dos maneras distintas de mirar al mismo equipo: el dibujo
+               con el que se sale a jugar, y dónde se pone cada uno cuando hay
+               un córner. Cambiar de una a otra no toca la otra: se puede
+               preparar el córner y volver al once tal y como estaba. */}
+          <div className="flex items-center gap-1.5 mb-3">
+            {[[null, t("ln.tabXI")], ["ataque", t("ln.abpAtaque")], ["defensa", t("ln.abpDefensa")]].map(([k, lbl]) => (
+              <button key={String(k)} onClick={() => (k ? abrirAbp(k) : setAbpSit(null))}
+                className="text-xs px-3 py-2 rounded-lg border font-display uppercase tracking-wide"
+                style={{ borderColor: abpSit === k ? AC : C.line, background: abpSit === k ? AC : "transparent", color: abpSit === k ? C.sobre : C.chalk }}>
+                {lbl}
+              </button>
+            ))}
+          </div>
+          {abpSit && (
+            <div className="text-[11px] mb-2 leading-relaxed" style={{ color: C.dim }}>{t("ln.abpHint")}</div>
+          )}
+          {!abpSit && (
           <div className="flex flex-wrap items-center gap-1.5 mb-2">
             {(session.team?.f7 ? SYS_F7 : SYS_F11).map((c) => (
               <button key={c} onClick={() => applySystem(c)} className="text-xs px-2 py-1 rounded-lg border font-display"
@@ -18027,7 +18393,39 @@ export default function App() {
                 className="text-xs px-2 py-1 rounded-lg border" style={{ borderColor: AC, color: AC }}>{t("ln.apply")}</button>
             </div>
           </div>
-          {can("editLineup") && (
+          )}
+          {/* ---- Córners guardados ----
+             Hasta cinco de cada situación: el córner al primer palo, el de la
+             jugada ensayada, el de cuando falta el central alto... Atacar y
+             defender se guardan por separado porque no se parecen en nada. */}
+          {abpSit && (
+            <div className="flex flex-wrap items-center gap-1.5 mb-2 pb-2 border-b" style={{ borderColor: C.line }}>
+              <span className="text-[11px] uppercase tracking-wide" style={{ color: C.dim }}>{t("ln.abpSaved")}</span>
+              {(abpGuardadas[abpSit] || []).map((g) => (
+                <span key={g.id} className="flex items-center gap-1 text-xs pl-2.5 pr-1 py-1 rounded-lg border"
+                  style={{ borderColor: C.line, background: C.panel2 }}>
+                  <button onClick={() => aplicarAbp(g)} title={t("ln.abpApply")} className="hover:opacity-80 font-display" style={{ color: C.chalk }}>
+                    ⬡ {g.nombre}
+                  </button>
+                  {can("editLineup") && (
+                    <button onClick={() => borrarAbp(g.id)} disabled={abpBusy} className="px-1 opacity-60 hover:opacity-100" style={{ color: C.dim }}>✕</button>
+                  )}
+                </span>
+              ))}
+              {can("editLineup") && (
+                <button onClick={guardarAbp} disabled={abpBusy}
+                  className="text-xs px-2.5 py-1 rounded-lg border font-display uppercase tracking-wide disabled:opacity-50"
+                  style={{ borderColor: AC, color: AC }}>
+                  {(abpGuardadas[abpSit] || []).length >= 5 ? t("ln.abpFull") : t("ln.abpSave")}
+                </button>
+              )}
+              <button onClick={() => setAbpPos((p) => ({ ...p, [abpSit]: abpPorDefecto(abpSit, slotPos) }))}
+                className="text-xs px-2.5 py-1 rounded-lg border font-display uppercase tracking-wide"
+                style={{ borderColor: C.line, color: C.dim }}>{t("ln.abpReset")}</button>
+              {abpMsg && <span className="text-[11px] w-full" style={{ color: C.green }}>{abpMsg}</span>}
+            </div>
+          )}
+          {!abpSit && can("editLineup") && (
             <div className="flex flex-wrap items-center gap-1.5 mb-2 pb-2 border-b" style={{ borderColor: C.line }}>
               <span className="text-[11px] uppercase tracking-wide" style={{ color: C.dim }}>{t("ln.favTitle")}</span>
               {lineupFavoritas.map((fav) => {
@@ -18055,14 +18453,14 @@ export default function App() {
           )}
           <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
             <div className="text-xs" style={{ color: C.dim }}>
-              {t("ln.dragHint")}
+              {abpSit ? t("ln.abpDragHint") : t("ln.dragHint")}
             </div>
             <div className="flex flex-col items-stretch gap-1.5">
               {lnImgMsg && <span className="text-[11px] text-right" style={{ color: lnImgMsg.startsWith("✓") ? C.dim : C.warn }}>{lnImgMsg}</span>}
               <button onClick={() => compartirAlineacion()} disabled={lnImgBusy}
                 className="text-xs px-2.5 py-1 rounded-lg border font-display uppercase tracking-wide disabled:opacity-50"
                 style={{ borderColor: AC, color: AC }}>
-                {lnImgBusy ? t("ln.shareImageBusy") : t("ln.downloadLineup")}
+                {lnImgBusy ? t("ln.shareImageBusy") : t(abpSit ? "ln.abpDownload" : "ln.downloadLineup")}
               </button>
               {/* A WhatsApp van las dos cosas: la imagen del campo y, de pie,
                   el once en texto -que se copia al acta y se busca luego en la
@@ -18073,7 +18471,9 @@ export default function App() {
                 {lnImgBusy ? t("ln.shareImageBusy") : t("ln.shareWhatsapp")}
               </button>
               {/* Vídeo del once para la víspera o el vestuario. Se graba en
-                  tiempo real, así que avisa por dónde va. */}
+                  tiempo real, así que avisa por dónde va. En un córner no
+                  pinta nada: el vídeo presenta a los titulares. */}
+              {!abpSit && (<>
               <button onClick={generarVideoOnce} disabled={lnVidBusy}
                 className="text-xs px-2.5 py-1 rounded-lg border font-display uppercase tracking-wide disabled:opacity-50"
                 style={{ borderColor: lim.video ? C.line : C.line, color: lim.video ? C.chalk : C.dim }}>
@@ -18087,18 +18487,39 @@ export default function App() {
                   {t("ln.videoDownload")}
                 </a>
               )}
+              </>)}
             </div>
           </div>
           <div ref={pitchRef} className="relative w-full touch-none select-none" style={{ aspectRatio: "3/4" }} onPointerMove={onPitchMove} onPointerUp={() => onSlotUp(null)}>
             <svg viewBox="0 0 300 400" className="absolute inset-0 w-full h-full pointer-events-none">
               {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => (<rect key={i} x="0" y={i * 50} width="300" height="50" fill={i % 2 ? "#17251D" : "#152219"} />))}
-              <g stroke={C.chalk} strokeOpacity="0.5" strokeWidth="1.5" fill="none">
-                <rect x="8" y="8" width="284" height="384" /><line x1="8" y1="200" x2="292" y2="200" /><circle cx="150" cy="200" r="34" />
-                <rect x="75" y="8" width="150" height="52" /><rect x="115" y="8" width="70" height="22" /><rect x="75" y="340" width="150" height="52" /><rect x="115" y="370" width="70" height="22" />
-                <path d="M 116 60 A 34 34 0 0 0 184 60" /><path d="M 116 340 A 34 34 0 0 1 184 340" />
-              </g>
+              {abpSit ? (
+                /* ---- El campo de un córner ----
+                   El campo entero no sirve para esto: once fichas apretadas
+                   en el 15% de arriba no se pueden colocar con el dedo. Se
+                   dibuja el área ampliada, con la portería arriba -la que se
+                   ataca, o la que se defiende- y los dos banderines de
+                   córner a la vista, que es el marco real de la jugada. */
+                <g stroke={C.chalk} strokeOpacity="0.5" strokeWidth="1.5" fill="none">
+                  <rect x="8" y="30" width="284" height="362" />
+                  <line x1="8" y1="30" x2="292" y2="30" />
+                  <rect x="110" y="14" width="80" height="16" strokeOpacity="0.85" />
+                  <rect x="40" y="30" width="220" height="140" />
+                  <rect x="100" y="30" width="100" height="50" />
+                  <circle cx="150" cy="132" r="2.5" fill={C.chalk} fillOpacity="0.5" stroke="none" />
+                  <path d="M 104 170 A 44 44 0 0 0 196 170" />
+                  <path d="M 8 48 A 18 18 0 0 0 26 30" />
+                  <path d="M 292 48 A 18 18 0 0 1 274 30" />
+                </g>
+              ) : (
+                <g stroke={C.chalk} strokeOpacity="0.5" strokeWidth="1.5" fill="none">
+                  <rect x="8" y="8" width="284" height="384" /><line x1="8" y1="200" x2="292" y2="200" /><circle cx="150" cy="200" r="34" />
+                  <rect x="75" y="8" width="150" height="52" /><rect x="115" y="8" width="70" height="22" /><rect x="75" y="340" width="150" height="52" /><rect x="115" y="370" width="70" height="22" />
+                  <path d="M 116 60 A 34 34 0 0 0 184 60" /><path d="M 116 340 A 34 34 0 0 1 184 340" />
+                </g>
+              )}
             </svg>
-            {Object.entries(slotPos).map(([id, s]) => {
+            {Object.entries(abpSit ? posDeAbp(abpSit) : slotPos).map(([id, s]) => {
               const p = players.find((x) => x.id === lineupView[id]); const sel = selSlot === id;
               /* El aro marcado señala el hueco donde entraría el siguiente que
                  se toque de la lista: el elegido a mano si hay uno, y si no el
