@@ -9580,9 +9580,9 @@ const PitchToken = ({ p, label, selected, accent, borderColor, textColor }) => {
    Los tres tienen que coincidir: si se rellena uno y se olvida otro, el
    banner no sirve anuncios y el motivo no aparece por ningún lado. Por eso
    hay una prueba que los compara (pruebas/pruebas14.mjs).
-   El hueco del anuncio solo se pinta a las cuentas del plan gratuito (ver uso
-   en App: {!isPro && <AdBanner/>}) y, mientras los IDs sigan en XXXX, no se
-   pinta nada: ni hueco vacío ni petición a Google. */
+   El hueco del anuncio se pinta a las cuentas que no pagan y que no sean de
+   un jugador (ver `verPublicidad` en App) y, mientras los IDs sigan en XXXX,
+   no se pinta nada: ni hueco vacío ni petición a Google. */
 const ADSENSE_CLIENT_ID = "ca-pub-XXXXXXXXXXXXXXXX";
 const ADSENSE_SLOT_ID = "XXXXXXXXXX";
 const ADSENSE_LISTO = !ADSENSE_CLIENT_ID.includes("XXXX") && !ADSENSE_SLOT_ID.includes("XXXX");
@@ -9754,6 +9754,17 @@ export default function App() {
      excepciones en vez de sembrar "salvo que sea familia" por cada sitio
      que mira isPro o esTabPro. */
   const isPro = !!session && (session.role === "master" || session.role === "familia" || session.role === "jugador" || !!session.pro || trialDaysLeft > 0 || esClubChamartinVergara(session.club));
+  /* ---- A quién se le enseña publicidad ----
+     A todo el que no paga, MENOS a los jugadores: son los únicos usuarios
+     que pueden tener cuenta propia siendo menores, y la política de Familias
+     de Google no admite publicidad personalizada a menores. Las familias sí
+     la ven: esa cuenta es de un adulto.
+     No se puede resolver con `isPro`: ahí dentro están familia y jugador
+     para que tengan su ficha completa sin pagar, y eso no es lo mismo que
+     haber pagado. Así que la condición de publicidad mira aparte quién paga
+     de verdad y quién es jugador. */
+  const pagaDeVerdad = !!session && (session.role === "master" || !!session.pro || trialDaysLeft > 0 || esClubChamartinVergara(session.club));
+  const verPublicidad = !!session && !pagaDeVerdad && session.role !== "jugador";
   /* Solo hace falta saber si esa clave existe entre las de PRO; el texto no
      pinta nada aquí, así que da igual en qué idioma se construya la lista. */
   const pro = (feature) => isPro || !PRO_FEATURES("es").some((f) => f.k === feature);
@@ -22004,7 +22015,7 @@ export default function App() {
           {tab === "asistencia" && verApartado("editSquad") && renderAsistencia()}
           {tab === "normativa" && can("viewDocs") && renderDocs()}
           {tab === "material" && renderMaterial()}
-          {!isPro && <AdBanner />}
+          {verPublicidad && <AdBanner />}
         </main>
       </div>
 
