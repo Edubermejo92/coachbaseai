@@ -14961,6 +14961,31 @@ export default function App() {
        que el respaldo no pierde nada por el camino. */
     .map((e) => ({ rec: e.rec, nombre: e.name || "", encargado: e.encargado || "", dias: e.dias || "" }))
     .sort((a, b) => a.nombre.localeCompare(b.nombre));
+  /* Próximo partido de CUALQUIERA de sus categorías, para la portada del
+     club: el club no juega, pero es lo primero que quiere saber de un
+     vistazo -qué equipo tiene partido antes-. Se pide el calendario de
+     cada categoría en paralelo (son pocas) y se queda con el más próximo;
+     igual que el resto de esta pantalla, no corre en la demo porque las
+     categorías de la demo no tienen calendario propio que pedir. */
+  const [proximoClub, setProximoClub] = useState(null);
+  const catsClubRecs = catsClub.map((c) => c.rec).join(",");
+  useEffect(() => {
+    if (!esCuentaClub || esDemo || !catsClubRecs) { setProximoClub(null); return; }
+    let vivo = true;
+    (async () => {
+      const porCat = await Promise.all(catsClub.map(async (c) => {
+        const ps = await airList("partidos", c.rec);
+        const fix = (ps || []).map(partFromAir)
+          .filter((f) => f.date && f.date >= todayISO)
+          .sort((a, b) => (a.date + a.time < b.date + b.time ? -1 : 1))[0];
+        return fix ? { cat: c, fix } : null;
+      }));
+      if (!vivo) return;
+      const mejor = porCat.filter(Boolean).sort((a, b) => (a.fix.date + a.fix.time < b.fix.date + b.fix.time ? -1 : 1))[0] || null;
+      setProximoClub(mejor);
+    })();
+    return () => { vivo = false; };
+  }, [esCuentaClub, esDemo, catsClubRecs]); // eslint-disable-line
   const [encMsg, setEncMsg] = useState("");
   /* Aviso que el club manda a un entrenador con lo que lleva acumulado en la
      temporada. El club no rellena partes ni sube fotos: lo suyo es revisar y,
@@ -16371,6 +16396,25 @@ export default function App() {
       totalAMedias > 0 && { c: C.warn, txt: `${totalAMedias} ${t("mt2.homeHalf")}` },
       pendientes > 0 && { c: AC, txt: `${pendientes} ${t(pendientes === 1 ? "h.pending1" : "h.pending")}` },
     ].filter(Boolean);
+    /* Mismo cálculo que el cartel de partido de una categoría (más abajo,
+       en renderHomeEquipo): el equipo/rival en grande, la fecha en
+       pequeño. Aquí "el equipo" es la categoría que juega, no el club. */
+    const rivalClub = proximoClub
+      ? (proximoClub.fix.home.toLowerCase().includes(proximoClub.cat.nombre.toLowerCase().slice(0, 6)) ? proximoClub.fix.away : proximoClub.fix.home)
+      : "";
+    const diasClub = (() => {
+      if (!proximoClub) return null;
+      const [y, m, d] = proximoClub.fix.date.split("-").map(Number);
+      const destino = new Date(y, m - 1, d, 12, 0, 0);
+      const hoy = new Date(); hoy.setHours(12, 0, 0, 0);
+      return Math.max(0, Math.round((destino - hoy) / 86400000));
+    })();
+    const fechaClub = proximoClub
+      ? (() => {
+        const [y, m, d] = proximoClub.fix.date.split("-").map(Number);
+        return new Date(y, m - 1, d).toLocaleDateString(lang === "es" ? "es-ES" : lang, { weekday: "long", day: "numeric", month: "long" });
+      })()
+      : "";
     return (
       <div className="space-y-4">
         {/* Cabecera: escudo y nombre del club —no una categoría suelta— y los
@@ -16411,6 +16455,52 @@ export default function App() {
           </div>
           <div className="px-4 pb-3 text-xs leading-relaxed" style={{ color: C.dim }}>{t("cl.homeHint")}</div>
         </div>
+
+        {/* Próximo partido de cualquiera de sus categorías. Mismo formato que
+            el cartel de partido de una categoría: el rival en grande, la
+            cuenta atrás en grande, la fecha exacta en pequeño debajo. */}
+        {proximoClub && (
+          <div className="rounded-lg border overflow-hidden" style={{ borderColor: C.line, background: C.panel }}>
+            <div className="flex items-center gap-2.5 px-4 pt-3.5">
+              <span className="font-display text-[11px] uppercase tracking-[0.18em] shrink-0" style={{ color: AC }}>
+                {t("h.nextMatch")}{proximoClub.fix.j ? ` · ${t("h.round")} ${proximoClub.fix.j}` : ""} · {proximoClub.cat.nombre}
+              </span>
+              <span className="h-px flex-1" style={{ background: C.line }} />
+            </div>
+            <div className="px-4 pb-4 pt-2 flex flex-col sm:flex-row sm:items-center sm:flex-wrap gap-x-6 gap-y-4">
+              <div className="flex items-center gap-3 min-w-0 flex-1">
+                <Crest src={clubInfo.crest || crest || escudoDe(session.club)} name={session.club} size={56} />
+                <div className="min-w-0">
+                  <div className="font-display text-2xl sm:text-4xl font-semibold leading-none truncate" style={{ color: C.chalk }}>
+                    {proximoClub.cat.nombre}
+                  </div>
+                  <div className="font-display text-lg sm:text-2xl leading-tight truncate" style={{ color: AC }}>
+                    <span className="text-sm" style={{ color: C.dim }}>vs </span>{rivalClub}
+                  </div>
+                  <div className="text-[12px] mt-1" style={{ color: C.dim }}>
+                    {fechaClub}{proximoClub.fix.time && ` · ${proximoClub.fix.time}`}{proximoClub.fix.place && ` · ${proximoClub.fix.place}`}
+                  </div>
+                </div>
+              </div>
+              <div className="text-center shrink-0">
+                <div className="font-display text-5xl sm:text-6xl font-bold leading-none tabular-nums" style={{ color: diasClub === 0 ? C.green : C.chalk }}>
+                  {diasClub === 0 ? "▶" : diasClub}
+                </div>
+                <div className="font-display text-[10px] uppercase tracking-[0.18em] mt-1" style={{ color: diasClub === 0 ? C.green : C.dim }}>
+                  {diasClub === 0 ? t("h.today") : diasClub === 1 ? t("h.day") : t("h.days")}
+                </div>
+              </div>
+            </div>
+            {!esDemo && (
+              <div className="flex flex-wrap gap-2 px-4 pb-4">
+                <button onClick={() => irACategoria(proximoClub.cat)} disabled={catCambiando === proximoClub.cat.rec}
+                  className="font-display uppercase tracking-wide text-sm px-4 py-2.5 rounded-lg font-semibold disabled:opacity-50" style={{ background: AC, color: C.sobre }}>
+                  {catCambiando === proximoClub.cat.rec ? t("a.sending") : t("cat.work")}
+                </button>
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Los avisos van antes que los números: los números cuentan lo que sí
             ha llegado, y lo que el club quiere saber nada más entrar es lo que
