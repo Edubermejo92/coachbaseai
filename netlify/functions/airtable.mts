@@ -2161,7 +2161,29 @@ export default async (req: Request) => {
       // ---- LOGIN ----
       if (b.action === "login") {
         const email = norm(b.email);
-        const recs = await allUsers();
+        /* list()/allUsers() no distinguen "no hay ningún usuario con ese
+           correo" de "Airtable no ha contestado" (límite de plan agotado,
+           caída...): en los dos casos el array sale vacío -list() no mira
+           r.ok- y el login decía "email o contraseña incorrectos" aunque la
+           contraseña fuera perfecta, para cualquier cuenta. Aquí sí se mira
+           la respuesta antes de decidir que la contraseña está mal. */
+        let recs: any[];
+        try {
+          const usuariosOut: any[] = [];
+          let offset = "";
+          for (let i = 0; i < 20; i++) {
+            const u = `${table(T_USUARIOS)}?pageSize=100&returnFieldsByFieldId=true${offset ? `&offset=${encodeURIComponent(offset)}` : ""}`;
+            const r = await fetch(u, { headers: H });
+            if (!r.ok) throw new Error(`airtable_${r.status}`);
+            const d = await r.json();
+            usuariosOut.push(...((d.records || []) as any[]));
+            offset = d.offset || "";
+            if (!offset) break;
+          }
+          recs = usuariosOut;
+        } catch {
+          return j({ ok: false, reason: "service_unavailable" });
+        }
         /* Antes esto era un find() a secas. Con la lectura rota se colaron
            cuentas duplicadas con el mismo email (el control de "ya existe"
            nunca saltaba), y con varias coincidencias el login caía en una u
