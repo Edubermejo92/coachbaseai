@@ -1569,6 +1569,31 @@ export default async (req: Request) => {
       });
     }
 
+    /* ============ PARTIDOS DE TODAS LAS CATEGORÍAS DE UN CLUB ============
+       La portada de la cuenta de club (el "próximo partido" de cualquiera
+       de sus categorías) pedía antes el calendario categoría por categoría
+       (?res=partidos&team=<rec>, uno por cada una): esa ruta genérica no
+       filtra en Airtable, trae la tabla Partidos ENTERA y filtra aquí
+       después, así que un club con N categorías escaneaba la tabla entera
+       N veces solo para pintar una tarjeta en Inicio. Mismo patrón que
+       partes-club, pero para partidos: un único escaneo para el club
+       entero. */
+    if (res === "partidos-club") {
+      const club = url.searchParams.get("club") || "";
+      if (!club) return j({ error: "falta_club" }, 400);
+      if (req.method !== "GET") return j({ error: "Petición no soportada" }, 400);
+      if (!(await puedeClub(club)) || !dirigeElClub(sesion)) {
+        return j({ error: "no_autorizado", reason: "Solo la dirección del club ve el calendario de todas sus categorías." }, 403);
+      }
+      const equipos = (await list(T_EQUIPOS)).filter((e: any) => (e.fields[EQ.club] || []).includes(club));
+      const misEquipos = new Set(equipos.map((e: any) => e.id));
+      const recs = await listByName(T_PARTIDOS);
+      const out = recs
+        .filter((r: any) => (r.fields?.Equipo || []).some((id: string) => misEquipos.has(id)))
+        .map((r: any) => ({ rec: r.id, ...r.fields }));
+      return j({ records: out });
+    }
+
     /* ============ FOTOS DE UN PARTE ============
        POST ?res=parte-foto&id=<recParte>&campo=salida|entrada con el base64.
        Mismo mecanismo que el escudo: Airtable no acepta un data: URL en un

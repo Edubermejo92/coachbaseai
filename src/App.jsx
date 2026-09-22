@@ -4681,6 +4681,17 @@ const airPartesClub = async (clubRec) => {
     return { partes: (d.records || []).map(parteFromAir), categorias: d.categorias || [] };
   } catch { return null; }
 };
+/* El calendario de TODAS las categorías del club en una sola llamada, en
+   vez de una por categoría (ver el efecto que puebla proximoClub en
+   renderHomeClub): misma idea que airPartesClub. */
+const airPartidosClub = async (clubRec) => {
+  try {
+    const r = await cbFetch(`${AIR}?res=partidos-club&club=${encodeURIComponent(clubRec)}`);
+    if (!r.ok) return null;
+    const d = await r.json();
+    return d.records || null;
+  } catch { return null; }
+};
 /* La foto va aparte del registro: Airtable no acepta un data: URL dentro de un
    adjunto, hay que pasarla por su endpoint de contenido. Se manda ya reducida
    —una foto de móvil son varios megas y aquí solo hace falta poder contar los
@@ -14963,29 +14974,35 @@ export default function App() {
     .sort((a, b) => a.nombre.localeCompare(b.nombre));
   /* Próximo partido de CUALQUIERA de sus categorías, para la portada del
      club: el club no juega, pero es lo primero que quiere saber de un
-     vistazo -qué equipo tiene partido antes-. Se pide el calendario de
-     cada categoría en paralelo (son pocas) y se queda con el más próximo;
-     igual que el resto de esta pantalla, no corre en la demo porque las
-     categorías de la demo no tienen calendario propio que pedir. */
+     vistazo -qué equipo tiene partido antes-. Un solo ?res=partidos-club
+     trae el calendario de TODAS sus categorías de una vez: antes esto pedía
+     el calendario categoría por categoría (?res=partidos&team=<rec>, una
+     llamada por cada una), y esa ruta genérica escanea la tabla Partidos
+     entera sin filtrar en Airtable -así que un club con varias categorías
+     multiplicaba ese escaneo completo tantas veces como categorías tuviera,
+     solo para esta tarjeta-. No corre en la demo porque las categorías de
+     la demo no tienen calendario propio que pedir. */
   const [proximoClub, setProximoClub] = useState(null);
   const catsClubRecs = catsClub.map((c) => c.rec).join(",");
   useEffect(() => {
-    if (!esCuentaClub || esDemo || !catsClubRecs) { setProximoClub(null); return; }
+    if (!esCuentaClub || esDemo || !catsClubRecs || !clubInfo.rec) { setProximoClub(null); return; }
     let vivo = true;
     (async () => {
-      const porCat = await Promise.all(catsClub.map(async (c) => {
-        const ps = await airList("partidos", c.rec);
-        const fix = (ps || []).map(partFromAir)
+      const rows = (await airPartidosClub(clubInfo.rec)) || [];
+      if (!vivo) return;
+      const porCat = catsClub.map((c) => {
+        const fix = rows
+          .filter((r) => (r.Equipo || []).includes(c.rec))
+          .map(partFromAir)
           .filter((f) => f.date && f.date >= todayISO)
           .sort((a, b) => (a.date + a.time < b.date + b.time ? -1 : 1))[0];
         return fix ? { cat: c, fix } : null;
-      }));
-      if (!vivo) return;
+      });
       const mejor = porCat.filter(Boolean).sort((a, b) => (a.fix.date + a.fix.time < b.fix.date + b.fix.time ? -1 : 1))[0] || null;
       setProximoClub(mejor);
     })();
     return () => { vivo = false; };
-  }, [esCuentaClub, esDemo, catsClubRecs]); // eslint-disable-line
+  }, [esCuentaClub, esDemo, catsClubRecs, clubInfo.rec]); // eslint-disable-line
   const [encMsg, setEncMsg] = useState("");
   /* Aviso que el club manda a un entrenador con lo que lleva acumulado en la
      temporada. El club no rellena partes ni sube fotos: lo suyo es revisar y,
