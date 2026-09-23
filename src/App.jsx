@@ -8499,6 +8499,14 @@ const isoLocal = (d) => {
   return `${x.getFullYear()}-${String(x.getMonth() + 1).padStart(2, "0")}-${String(x.getDate()).padStart(2, "0")}`;
 };
 const hoyISO = () => isoLocal(new Date());
+/* Aviso temporal mientras Airtable está sin cuota. Se apaga solo a partir
+   del 2 de octubre; si el acceso no volviera ese día, cambiar la fecha. */
+const AVISO_CORTE_HASTA = "2026-10-02";
+const AvisoCorte = () => (hoyISO() < AVISO_CORTE_HASTA ? (
+  <div role="status" className="px-4 py-2.5 text-center text-sm font-semibold leading-snug" style={{ background: "#F5C542", color: "#1B1B1B" }}>
+    El acceso a la web se restablecerá el 1 de octubre, estamos haciendo pruebas. Disculpa las molestias.
+  </div>
+) : null);
 
 /* ---- Partes de material que faltan o están a medias ----
    El club pidió enterarse cuando un entrenador no avisa ni antes ni después
@@ -21585,6 +21593,7 @@ export default function App() {
 
   if (!session) return (
     <>
+      <AvisoCorte />
       <Auth lang={lang} setLang={setLang} onLogin={doLogin} onRegister={doRegister} tema={tema} cambiarTema={cambiarTema} />
       {AccesFAB}
     </>
@@ -21657,6 +21666,7 @@ export default function App() {
   return (
     <div className="font-body min-h-screen" style={{ background: C.bg, color: C.chalk }}>
       <style>{FONTS}</style>
+      {!esDemo && <AvisoCorte />}
       {/* Tres zonas: marca a la izquierda, equipo en el centro, rol a la
           derecha. En pantalla ancha es una rejilla de tres columnas para que
           el centro quede centrado de verdad y no dependa de lo largos que
