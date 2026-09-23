@@ -21593,7 +21593,7 @@ export default function App() {
 
   if (!session) return (
     <>
-      <AvisoCorte />
+      <div className="sticky top-0 z-50"><AvisoCorte /></div>
       <Auth lang={lang} setLang={setLang} onLogin={doLogin} onRegister={doRegister} tema={tema} cambiarTema={cambiarTema} />
       {AccesFAB}
     </>
@@ -21666,13 +21666,17 @@ export default function App() {
   return (
     <div className="font-body min-h-screen" style={{ background: C.bg, color: C.chalk }}>
       <style>{FONTS}</style>
+      {/* El aviso y la cabecera van pegados arriba juntos, en un solo bloque:
+          así el aviso no tapa la cabecera al hacer scroll, y --cb-header mide
+          los dos, de modo que el menú lateral queda debajo de ambos. */}
+      <div ref={headerRef} className="sticky top-0 z-10">
       {!esDemo && <AvisoCorte />}
       {/* Tres zonas: marca a la izquierda, equipo en el centro, rol a la
           derecha. En pantalla ancha es una rejilla de tres columnas para que
           el centro quede centrado de verdad y no dependa de lo largos que
           sean el nombre del club o del rol. Por debajo de lg se apila: marca
           y utilidades arriba, equipo debajo ocupando el ancho. */}
-      <header ref={headerRef} className="flex flex-wrap items-center justify-between gap-x-2 sm:gap-x-4 gap-y-2 px-3 sm:px-5 py-2 sm:py-3 border-b sticky top-0 z-10
+      <header className="flex flex-wrap items-center justify-between gap-x-2 sm:gap-x-4 gap-y-2 px-3 sm:px-5 py-2 sm:py-3 border-b
                          lg:grid lg:grid-cols-[1fr_auto_1fr] lg:gap-x-6"
         style={{ borderColor: C.line, background: C.bg, borderTop: `3px solid ${AC}` }}>
         {/* IZQUIERDA · la marca, siempre igual */}
@@ -21794,6 +21798,7 @@ export default function App() {
           </button>
         </div>
       </header>
+      </div>
 
       {authMsg && (
         <div className="px-3 sm:px-5 py-2 text-[12px] flex items-center gap-2"
