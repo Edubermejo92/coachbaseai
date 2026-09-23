@@ -103,9 +103,7 @@ async function actualizarLimiteClub(email: string, priceId: string | undefined, 
   const clubId = (u?.fields[U_CLUB] || [])[0];
   if (!clubId) return;
   const plazas = activo ? PLAZAS_CLUB[tierKey] : PLAZAS_SIN_PAGO;
-  await fetch(`${atUrl(T_CLUBES)}/${clubId}`, {
-    method: "PATCH", headers: atHeaders(), body: JSON.stringify({ fields: { [CL_LIMITE]: plazas }, typecast: true }),
-  });
+  await atWrite(`${atUrl(T_CLUBES)}/${clubId}`, "PATCH", { [CL_LIMITE]: plazas });
 }
 
 const ESTADOS: Record<string, string> = {
@@ -134,10 +132,28 @@ async function stripe(path: string, body?: Record<string, string>, method = "POS
 const atHeaders = () => ({ Authorization: `Bearer ${AT_TOKEN()}`, "content-type": "application/json" });
 const atUrl = (t: string) => `https://api.airtable.com/v0/${BASE()}/${t}`;
 
+/* Pagina (Airtable da 100 filas como mucho por página) y pide los campos por
+   id, que es como se leen en todo este archivo (S.email, U_EMAIL…): sin
+   returnFieldsByFieldId llegan por nombre y cada r.fields[S.x] vale undefined.
+   Si Airtable no contesta, lanza en vez de devolver una lista vacía: vacía se
+   leía como "no existe" y acababa creando filas duplicadas o dando por
+   procesado un webhook que no se había guardado. */
 async function atList(t: string) {
-  const r = await fetch(`${atUrl(t)}?pageSize=100`, { headers: atHeaders() });
-  const d = await r.json().catch(() => ({}));
-  return (d.records || []) as any[];
+  const out: any[] = [];
+  let offset = "";
+  for (let i = 0; i < 20; i++) {
+    const r = await fetch(`${atUrl(t)}?pageSize=100&returnFieldsByFieldId=true${offset ? `&offset=${encodeURIComponent(offset)}` : ""}`, { headers: atHeaders() });
+    if (!r.ok) throw new Error(`Airtable ${r.status}`);
+    const d = await r.json();
+    out.push(...((d.records || []) as any[]));
+    offset = d.offset || "";
+    if (!offset) break;
+  }
+  return out;
+}
+async function atWrite(url: string, method: string, fields: Record<string, unknown>) {
+  const r = await fetch(url, { method, headers: atHeaders(), body: JSON.stringify({ fields, typecast: true }) });
+  if (!r.ok) throw new Error(`Airtable ${r.status}`);
 }
 
 async function buscarSuscripcion(email: string) {
@@ -152,18 +168,14 @@ async function guardarSuscripcion(email: string, campos: Record<string, unknown>
   };
   const existente = await buscarSuscripcion(email);
   if (existente) {
-    await fetch(`${atUrl(T_SUBS)}/${existente.id}`, {
-      method: "PATCH", headers: atHeaders(), body: JSON.stringify({ fields, typecast: true }),
-    });
+    await atWrite(`${atUrl(T_SUBS)}/${existente.id}`, "PATCH", fields);
     return;
   }
   // enlaza con el usuario si ya está registrado
   const usuarios = await atList(T_USUARIOS);
   const u = usuarios.find((r) => norm(r.fields[U_EMAIL]) === norm(email));
   if (u) fields[S.usuario] = [u.id];
-  await fetch(atUrl(T_SUBS), {
-    method: "POST", headers: atHeaders(), body: JSON.stringify({ fields, typecast: true }),
-  });
+  await atWrite(atUrl(T_SUBS), "POST", fields);
 }
 
 /* Verificación de la firma del webhook (HMAC-SHA256, sin SDK) */
@@ -194,7 +206,8 @@ export default async (req: Request) => {
        se conseguía su Stripe customerId. */
     const email = String(sesion.email);
     if (!AT_TOKEN() || !email) return j({ pro: false });
-    const rec = await buscarSuscripcion(email);
+    let rec: any;
+    try { rec = await buscarSuscripcion(email); } catch { return j({ pro: false, error: "airtable" }); }
     const estado = rec?.fields?.[S.estado] || "Ninguna";
     const fin = rec?.fields?.[S.fin] || null;
     const vigente = CON_PRO.includes(estado) && (!fin || new Date(fin) > new Date());
@@ -263,7 +276,11 @@ export default async (req: Request) => {
         await actualizarLimiteClub(cust.email, priceId, false);
       }
     } catch (e) {
-      return j({ received: true, warn: String(e) });
+      /* 500 y no 200: con un 200 Stripe da el aviso por entregado y no lo
+         repite nunca, así que un pago que llegaba con Airtable caída se
+         perdía para siempre. Con un 500 Stripe lo reintenta durante días. */
+      console.error(`[stripe webhook] ${ev.type}: ${String(e)}`);
+      return j({ received: false, error: String(e) }, 500);
     }
     return j({ received: true });
   }
@@ -281,7 +298,8 @@ export default async (req: Request) => {
 
   /* ---------- PORTAL DE CLIENTE ---------- */
   if (action === "portal") {
-    const rec = await buscarSuscripcion(miEmail);
+    let rec: any;
+    try { rec = await buscarSuscripcion(miEmail); } catch { return j({ error: "El servidor no puede consultar tu suscripción ahora mismo. Vuelve a intentarlo en unos minutos." }, 503); }
     const customer = rec?.fields?.[S.customer];
     if (!customer) return j({ error: "No encuentro tu suscripción" }, 400);
     const p = await stripe("billing_portal/sessions", { customer, return_url: `${APP()}/?portal=ok` });
