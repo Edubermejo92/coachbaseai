@@ -22025,7 +22025,7 @@ export default function App() {
           el centro quede centrado de verdad y no dependa de lo largos que
           sean el nombre del club o del rol. Por debajo de lg se apila: marca
           y utilidades arriba, equipo debajo ocupando el ancho. */}
-      <header className="flex flex-wrap items-center justify-between gap-x-2 sm:gap-x-4 gap-y-2 px-3 sm:px-5 py-2 sm:py-3 border-b
+      <header className="flex flex-wrap items-center justify-between gap-x-2 sm:gap-x-4 gap-y-2 px-3 sm:px-5 py-2 border-b
                          lg:grid lg:grid-cols-[1fr_auto_1fr] lg:gap-x-6"
         style={{ borderColor: C.line, background: C.bg, borderTop: `3px solid ${AC}` }}>
         {/* IZQUIERDA · la marca, siempre igual */}
@@ -22038,7 +22038,7 @@ export default function App() {
         <button type="button" onClick={() => setTab("inicio")} aria-label="COACHBASE Ai · ir a Inicio"
           className="flex items-center min-w-0 order-1 shrink-0">
           <span className="sm:hidden"><AppWordmark height={34} /></span>
-          <span className="hidden sm:block"><AppWordmark height={58} /></span>
+          <span className="hidden sm:block"><AppWordmark height={44} /></span>
         </button>
 
         {/* CENTRO · el equipo con el que estás trabajando. Es lo que cambia y
@@ -22047,7 +22047,7 @@ export default function App() {
         <div className="flex items-center gap-3 min-w-0 order-3 lg:order-2 lg:justify-self-center">
           <span className="rounded-lg sm:rounded-lg p-0.5 sm:p-1 shrink-0" style={{ boxShadow: `0 0 0 1px ${AC}` }}>
             <span className="sm:hidden"><Crest src={teamCrest} name={esCuentaClub ? session.club : session.team.name} size={30} /></span>
-            <span className="hidden sm:block"><Crest src={teamCrest} name={esCuentaClub ? session.club : session.team.name} size={46} /></span>
+            <span className="hidden sm:block"><Crest src={teamCrest} name={esCuentaClub ? session.club : session.team.name} size={40} /></span>
           </span>
           {/* La cuenta del CLUB no es de una categoría: lo que la identifica es
               su club. Poniéndole "Infantil B" arriba parecía la cuenta del
@@ -22056,7 +22056,7 @@ export default function App() {
               trabajando ahora mismo, que sí puede cambiar. Para el resto de
               roles no cambia nada: su equipo es su sitio. */}
           <div className="min-w-0 leading-tight">
-            <div className="font-display text-base sm:text-2xl font-semibold truncate" style={{ color: C.chalk }}>
+            <div className="font-display text-base sm:text-xl font-semibold truncate" style={{ color: C.chalk }}>
               {esCuentaClub ? session.club : session.team.name}
             </div>
             {/* La categoría, siempre arriba y siempre a la vista. En la cuenta
@@ -22098,12 +22098,12 @@ export default function App() {
         </div>
 
         {/* DERECHA · quién eres y con qué permisos, más las utilidades */}
-        <div className="flex items-center flex-wrap justify-end gap-1.5 sm:gap-3 order-2 lg:order-3">
+        <div className="flex items-center flex-wrap lg:flex-nowrap justify-end gap-1.5 sm:gap-3 order-2 lg:order-3">
           {/* Quién eres, para entrar en Mi cuenta. El rol ya no se repite aquí:
               desde que va pegado al equipo salía dos veces en la misma barra, y
               el nombre —que es el dato de esta esquina— quedaba de segundo y en
               letra pequeña. */}
-          <button onClick={() => setAccountOpen(true)} title={session.name} className="text-right hidden md:block rounded-lg px-2 py-1 leading-tight">
+          <button onClick={() => setAccountOpen(true)} title={session.name} className="text-right hidden md:block rounded-lg px-2 py-1 leading-tight min-w-0">
             {/* El nombre entero, no cortado. Iba con truncate y un tope de
                 14 caracteres, así que "Graciela Presidenta" —diecinueve— salía
                 como "GRACIELA PRE…". El tope estaba para que un nombre largo
@@ -22111,9 +22111,16 @@ export default function App() {
                 una segunda línea, que es lo que un nombre necesita. La
                 cabecera ya mide su propio alto sola (ver --cb-header), así que
                 dos líneas no descuadran nada de lo de abajo. */}
-            <div className="font-display text-base lg:text-lg font-semibold uppercase tracking-wide flex items-start justify-end gap-2" style={{ color: AC }}>
+            {/* Sin mayúsculas y a tamaño de texto normal: en mayúsculas grandes
+                el nombre ocupaba dos líneas ("DEMO · ENTRENADOR / PRINCIPAL")
+                y empujaba idioma y Salir a una segunda fila, así que la
+                cabecera de escritorio medía casi el doble de lo necesario. */}
+            <div className="font-display text-sm lg:text-base font-semibold flex items-start justify-end gap-2" style={{ color: AC }}>
               <span className="shrink-0">{role.icon}</span>
-              <span className="max-w-[20ch] break-words text-right">{session.name}</span>
+              {/* Una línea; si un nombre no cabe se corta con "…" y entero
+                  sigue en el título y en Mi cuenta. Antes, al pasar a varias
+                  líneas, la columna se estrechaba y salía en tres. */}
+              <span className="max-w-[16rem] truncate text-right">{session.name}</span>
             </div>
             <div className="text-[12px] truncate" style={{ color: C.dim }}>{t("p.account")}</div>
           </button>
@@ -22135,12 +22142,12 @@ export default function App() {
           {/* Claro / oscuro. Un solo botón: el icono dice a qué se va a cambiar. */}
           <button onClick={cambiarTema} title={tema === "oscuro" ? "Modo claro" : "Modo oscuro"}
             aria-label={tema === "oscuro" ? "Modo claro" : "Modo oscuro"}
-            className="text-sm w-8 h-8 rounded-lg border flex items-center justify-center"
+            className="text-sm w-8 h-8 shrink-0 rounded-lg border flex items-center justify-center"
             style={{ borderColor: C.line, color: C.chalk }}>
             {tema === "oscuro" ? "☀" : "☾"}
           </button>
           <LangPicker lang={lang} setLang={setLang} />
-          <button onClick={() => { setDemoMode(false); setAuthToken(null); setSession(null); }} className="text-xs px-3 py-1.5 rounded-lg border" style={{ borderColor: C.line, color: C.dim }}>{t("c.exit")}</button>
+          <button onClick={() => { setDemoMode(false); setAuthToken(null); setSession(null); }} className="text-xs px-3 py-1.5 rounded-lg border shrink-0" style={{ borderColor: C.line, color: C.dim }}>{t("c.exit")}</button>
           <button onClick={() => setMenuOpen((v) => !v)} aria-expanded={menuOpen} className="relative lg:hidden text-xs px-3 py-2 rounded-lg border font-display uppercase tracking-wide" style={{ borderColor: menuOpen ? MC : C.line, color: menuOpen ? MC : C.chalk }}>
             ☰<span className="hidden sm:inline"> Menú</span>
             {hayAvisosNav && <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full" style={{ background: C.red, boxShadow: `0 0 0 2px ${C.bg}` }} />}
