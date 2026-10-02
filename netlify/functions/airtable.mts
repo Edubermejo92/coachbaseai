@@ -2199,20 +2199,37 @@ const atender = async (req: Request) => {
            r.ok- y el login decía "email o contraseña incorrectos" aunque la
            contraseña fuera perfecta, para cualquier cuenta. Aquí sí se mira
            la respuesta antes de decidir que la contraseña está mal. */
-        let recs: any[];
-        try {
-          const usuariosOut: any[] = [];
+        /* Solo las filas de ESE email (filterByFormula), no la tabla entera:
+           antes cada intento de login gastaba una llamada por cada 100
+           usuarios de toda la app; ahora gasta una. LOWER(TRIM()) es lo mismo
+           que hace norm() con el email que llega. Si Airtable rechaza la
+           fórmula (422, p. ej. porque alguien renombró el campo "Email"), se
+           vuelve a leer la tabla entera: más caro, pero el login no se rompe. */
+        const leerUsuarios = async (formula?: string) => {
+          const out: any[] = [];
           let offset = "";
           for (let i = 0; i < 20; i++) {
-            const u = `${table(T_USUARIOS)}?pageSize=100&returnFieldsByFieldId=true${offset ? `&offset=${encodeURIComponent(offset)}` : ""}`;
+            const u = `${table(T_USUARIOS)}?pageSize=100&returnFieldsByFieldId=true`
+              + (formula ? `&filterByFormula=${encodeURIComponent(formula)}` : "")
+              + (offset ? `&offset=${encodeURIComponent(offset)}` : "");
             const r = await fetch(u, { headers: H });
-            if (!r.ok) throw new Error(`airtable_${r.status}`);
+            if (!r.ok) throw Object.assign(new Error(`airtable_${r.status}`), { status: r.status });
             const d = await r.json();
-            usuariosOut.push(...((d.records || []) as any[]));
+            out.push(...((d.records || []) as any[]));
             offset = d.offset || "";
             if (!offset) break;
           }
-          recs = usuariosOut;
+          return out;
+        };
+        const emailFormula = email.replace(/\\/g, "\\\\").replace(/'/g, "\\'");
+        let recs: any[];
+        try {
+          try {
+            recs = await leerUsuarios(`LOWER(TRIM({Email}))='${emailFormula}'`);
+          } catch (e: any) {
+            if (e?.status !== 422) throw e;
+            recs = await leerUsuarios();
+          }
         } catch {
           return j({ ok: false, reason: "service_unavailable" });
         }
@@ -2244,11 +2261,20 @@ const atender = async (req: Request) => {
           await fetch(`${table(T_USUARIOS)}/${rec.id}`, { method: "PATCH", headers: H, body: JSON.stringify({ fields: { [U.pass]: nuevo }, typecast: true }) });
         }
 
-        const [eqs, clubs] = await Promise.all([list(T_EQUIPOS), list(T_CLUBES)]);
+        /* Su equipo y su club, pidiendo solo esos dos registros por su id en
+           vez de las tablas Equipos y Clubes enteras. Si el equipo es de otro
+           club que el de su ficha (raro), se pide también ese, que es el que
+           teamOut necesita para el nombre del club del equipo. */
         const eqRec = (rec.fields[U.equipo] || [])[0];
         const clRec = (rec.fields[U.club] || [])[0];
-        const eq = eqs.find((e) => e.id === eqRec);
-        const cl = clubs.find((c) => c.id === clRec);
+        const uno = async (t: string, recId?: string) => {
+          if (!recId) return null;
+          const r = await fetch(`${table(t)}/${recId}?returnFieldsByFieldId=true`, { headers: H });
+          return r.ok ? await r.json() : null;
+        };
+        const [eq, cl] = await Promise.all([uno(T_EQUIPOS, eqRec), uno(T_CLUBES, clRec)]);
+        const clubDelEq = (eq?.fields?.[EQ.club] || [])[0];
+        const clubs = !clubDelEq ? [] : clubDelEq === cl?.id ? [cl] : [await uno(T_CLUBES, clubDelEq)].filter(Boolean);
         /* El rol de la sesión pasa por rolReal: traduce la etiqueta de
            Airtable a la clave interna y, sobre todo, impide que nadie sea
            Master salvo la cuenta de EBLDigital. */
