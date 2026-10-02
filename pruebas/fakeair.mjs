@@ -10,6 +10,15 @@ export const T = {
 };
 /* id de campo -> nombre, para las tablas que tocamos */
 export const NOMBRE = {"fldSnD1rqmHptkRlA": "Nombre", "fldJWlJ17YuZNe4Jx": "Email", "fldIWSWMiwFsxJBiY": "Rol", "fldEkbPe6UgCx0Lfy": "Estado", "fldATfWgaJOvmd6ep": "Plan", "fldV2DDL6v5szs0y3": "Club", "fldW8QHQvuOZv1zX8": "Equipo", "fldVX372lPNj7Bab8": "Contraseña", "fldevbPLxMunBH9NR": "Prueba", "fldJRASqTraLecDMa": "RolesExtra", "fld4okYQmHxbEQ6C8": "ParteMat", "fldmjUkaMwwLbPO89": "Nombre", "fldgTxdcJpju1jxt2": "Categoria", "fldSQPSejXh45fRQ8": "Formato", "fldl20r9arDXNdZdC": "Sistema", "fldFGQJQHzeNHi50l": "Club", "fldZ8Eow86UczBCCr": "Escudo", "fldnk9J5mmwx4ac36": "Web", "fldmCTjJcpercjAVl": "Maps", "fld23b31P4y079j77": "Encargado", "fldflPuhPqSecZ3rp": "Plan", "fldAMfVva4jTk0PCH": "Jugadas", "fld57z5y3QWsk1DnF": "Cargas", "flddC2z6uAHNSaGXX": "Dias", "fldlUNDFkJyehw8x0": "Nombre", "fld0BUV86fvUDWOcU": "Comunidad", "fldX3CMkCrO54gUrV": "Escudo", "fldVH4NDAN2Odlzwe": "Campo", "fld6XKOF4q9Kf5bKa": "Direccion", "fld2KQW6HDKsW3wCZ": "Maps", "fldiIev3Pd9eWhulJ": "Limite", "fldVKBSHxPEqCuVk2": "Ref", "fldUyP4Qia9GM6lCR": "Fecha", "fldXvt940m1HPQ3uH": "Equipo", "fldIi957OqvZF1lCA": "Entrenador", "fldEyuA5hqm0GjxZX": "EntrenadorNombre", "fldbDBmH77g1DpW7g": "Salida", "fldy8c534xQZAbyNW": "Entrada", "fldc8hWR8DntfHlSi": "Perdidos", "fldYt0QLeWUmsyWBm": "FotoSalida", "fldc0syR36oJ1iRPW": "FotoEntrada", "fld9cfPju0jijEqRu": "Desperfectos", "fldPr3SR2b6PUIQUh": "Tarde", "fldoEoWloaBFd2VOT": "MinutosTarde", "fldeoeOvw3mPJivEv": "Telefono", "fldrcKIaP9UgyjmFP": "Penalizaciones", "fld7GphfCy25HceMW": "JugTarde", "fldL3yZEsiTDkhs9s": "JugMolestias", "fldL8rT0LpKV1E9mt": "Notas", "fldv5Gtrpw2e6xopC": "Ref", "fldxhO3y8YcOA5XBI": "Fecha", "fldRG05YcO16bs8Mu": "Ctx", "fld5AgFwLmneooEvl": "Grav", "fldOUESP4lLZ5f3kr": "Norma", "fld7sPzGhay95hWgZ": "Tarjeta", "fldUJuIQH32pCVkwS": "Desc", "fldMJW0knN3LXLVmk": "Medida", "fldtnmGoPm5rji3Iv": "Importe", "fldHgEScNF2H3m1ai": "Pago", "fld7gsbHHhts3FegF": "Estado", "fld4CxW7BS48diYpQ": "Jugador", "fldCy8PlOikqwymWt": "Fam", "fldq8MwUXVY0LjPOp": "Equipo", "fldmOwGOnzTLj0YwB": "Ref", "fldcg1NtOgnd1dPgm": "Tipo", "fldTp6KiLsX1Ct0zq": "Estado", "fldLyjvNJYFl9L44F": "Datos", "fldNDgGcg66K5KLGT": "Equipo", "fldtb0FrZmgtdhOoI": "PropuestoPor", "fldeJt8lKbxm0TCdA": "AprobadoPor", "fldrRDvRP5IBIcbwG": "FechaProp", "fldEZxwoA1k4HLWji": "FechaRes", "fldNre3sjgcXmLIig": "Motivo", "fldegGMXJRVzKb3FX": "Ref", "fldmm7Wu8dsiYXp5v": "Fecha", "fldyjODX19T63snIp": "Hora", "flddMRTxwDf4HNE0J": "Objetivo", "fldDitygMo9IAlx5P": "Duracion", "fldqKH4tfgYpFBKto": "Bloques", "fldVpgy3PMoFg1Wef": "Equipo", "fld1Jb0vPATGxESTF": "Plantilla", "fldz3tCDJkRuqrgXr": "Compartida", "fldokrqbCdfZBKMeY": "Club", "fldtpmWpEyHfhx5Ud": "Usos", "fldTCEB7wCHsidFMN": "Ficha rival", "fld6Q79obeJa46rOf": "Token rival", "fldVmYVSgZoa9A8I3": "Jugador", "fldcNQ8FQFYAv4NTk": "Jugador", "fldOGmAE882lecjEE": "Equipo", "fldK6DM4hrZsjS1DP": "Clave", "fldrJOfAInJThfOZv": "Apartados gratis", "fld6I6dRA9myjjleR": "Apartados por rol", "fldXjBDGFcYDkEn9M": "Asistencia", "fld0ShmGEK97QIhr8": "Alineacion"};
+/* [tabla hija, su enlace Equipo (id de campo), campo inverso en Equipos (id), su nombre] */
+const INVERSOS = [
+  [T.JUGADORES, "fldD7Dy6zT5uO6ivF", "fldMYcnPB43koZxlA", "Jugadores"],
+  [T.PARTIDOS, "fld8zIw50aAfD7k5G", "fldvQewYiQaYpOQEA", "Partidos"],
+  [T.CONVOCATORIAS, "fldsuIeTAvJzFkzgN", "fldXSlXGkWFQJjyeo", "Convocatorias"],
+  [T.ENTRENAMIENTOS, "fldVpgy3PMoFg1Wef", "fldly58OdNfl8PLXJ", "Entrenamientos"],
+  [T.PARTES, "fldXvt940m1HPQ3uH", "fldLIb8GBxvSizIYT", "Partes de entreno"],
+];
+for (const [, , inverso, nombre] of INVERSOS) NOMBRE[inverso] = nombre;
 export function crearFake(datos) {
   const db = JSON.parse(JSON.stringify(datos));
   const porNombre = (tabla, f) => {
@@ -28,8 +37,35 @@ export function crearFake(datos) {
       const tabla = partes[2], rec = partes[3];
       db[tabla] = db[tabla] || [];
       const porId = u.searchParams.get("returnFieldsByFieldId") === "true";
-      const salida = (r) => ({ id: r.id, fields: porId ? r.fields : porNombre(tabla, r.fields) });
+      /* Airtable mantiene solo el lado inverso de cada enlace: un equipo
+         lista sus jugadores, partidos… sin que nadie los escriba ahí. La
+         función los usa para pedir solo las filas del equipo, así que aquí
+         se calculan igual. Vacío = el campo no viene, como en Airtable. */
+      const conInversos = (r) => {
+        if (tabla !== T.EQUIPOS) return r.fields;
+        const f = { ...r.fields };
+        for (const [hija, enlace, inverso, nombre] of INVERSOS) {
+          const ids = (db[hija] || []).filter((x) => (x.fields.Equipo || x.fields[enlace] || []).includes(r.id)).map((x) => x.id);
+          if (ids.length) f[inverso] = ids;
+        }
+        return f;
+      };
+      const salida = (r) => ({ id: r.id, fields: porId ? conInversos(r) : porNombre(tabla, conInversos(r)) });
       const J = (o, s = 200) => new Response(JSON.stringify(o), { status: s, headers: { "content-type": "application/json" } });
+      /* Lectura con fórmula por POST (la que usa la función para las filas
+         de un equipo): solo entiende el FIND por id que manda ella. */
+      if (m === "POST" && rec === "listRecords") {
+        const b = JSON.parse(init.body || "{}");
+        const f = String(b.filterByFormula || "");
+        let filas = db[tabla];
+        if (f) {
+          const mm = f.match(/^FIND\("," & RECORD_ID\(\) & ",", "(,.*,)"\)$/);
+          if (!mm) return J({ error: { type: "INVALID_FILTER_BY_FORMULA", message: f } }, 422);
+          filas = filas.filter((x) => mm[1].includes(`,${x.id},`));
+        }
+        const pid = b.returnFieldsByFieldId === true;
+        return J({ records: filas.map((r) => ({ id: r.id, fields: pid ? conInversos(r) : porNombre(tabla, conInversos(r)) })) });
+      }
       if (m === "GET" && rec) { const r = db[tabla].find((x) => x.id === rec); return r ? J(salida(r)) : J({ error: "NOT_FOUND" }, 404); }
       if (m === "GET") return J({ records: db[tabla].map(salida) });
       if (m === "POST") { const b = JSON.parse(init.body); const id = "rec" + Math.random().toString(36).slice(2, 16);

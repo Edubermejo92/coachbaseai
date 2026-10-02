@@ -597,13 +597,19 @@ const atender = async (req: Request) => {
      no por ID. La v44 puso returnFieldsByFieldId=true en list() para arreglar el
      login, y de paso rompió esto: el filtro por Equipo dejaba de encontrar nada
      y los campos llegaban con clave fldXXX. Esta variante devuelve nombres, que
-     es el contrato que el frontend ya tenía. */
+     es el contrato que el frontend ya tenía.
+     Las dos lanzan el error si Airtable falla (sin cuota, caído…). Antes
+     devolvían una lista vacía, y quien llamaba la tomaba por "no hay nada":
+     la app vaciaba la plantilla en pantalla, el alta no veía que el email
+     ya existía… Ahora la petición falla entera y la app conserva lo que ya
+     tenía. */
   const listByName = async (t: string) => {
     const out: any[] = [];
     let offset = "";
     for (let i = 0; i < 20; i++) {
       const u = `${table(t)}?pageSize=100${offset ? `&offset=${encodeURIComponent(offset)}` : ""}`;
       const r = await fetch(u, { headers: H });
+      if (!r.ok) throw { status: r.status };
       const d = await r.json();
       out.push(...((d.records || []) as any[]));
       offset = d.offset || "";
@@ -618,6 +624,7 @@ const atender = async (req: Request) => {
     for (let i = 0; i < 20; i++) {
       const u = `${table(t)}?pageSize=100&returnFieldsByFieldId=true${offset ? `&offset=${encodeURIComponent(offset)}` : ""}`;
       const r = await fetch(u, { headers: H });
+      if (!r.ok) throw { status: r.status };
       const d = await r.json();
       out.push(...((d.records || []) as any[]));
       offset = d.offset || "";
@@ -656,14 +663,41 @@ const atender = async (req: Request) => {
      datos de CUALQUIER equipo con solo mandar su id en la URL. Este bloque es
      el único sitio donde se decide el alcance, para no repetir (y
      desincronizar) el mismo criterio en cada recurso. */
+  /* Un id de registro: solo letras y números. El id del equipo llega en la
+     URL, y va a parar a otra URL y a una fórmula: nada de barras ni comillas. */
+  const ES_REC = /^rec[A-Za-z0-9]+$/;
   let _equiposCache: any[] | null = null;
   const equiposTodos = async () => {
     if (!_equiposCache) _equiposCache = await list(T_EQUIPOS);
     return _equiposCache;
   };
+  /* Una sola fila por id (campos por ID), en vez de la tabla entera: para
+     saber de qué club es un equipo, o de qué club es quien pregunta, basta
+     con esa fila. Antes cada comprobación de permisos leía Equipos (y a veces
+     Usuarios) completas, y eso se pagaba en cada petición de cada categoría.
+     null = esa fila no existe. Si Airtable falla, se lanza el error: un fallo
+     no puede leerse como "no existe" ni como "no tienes permiso". */
+  const filaPorId = async (t: string, recId: string): Promise<any | null> => {
+    if (!ES_REC.test(recId)) return null;
+    const r = await fetch(`${table(t)}/${recId}?returnFieldsByFieldId=true`, { headers: H });
+    if (r.status === 404) return null;
+    if (!r.ok) throw { status: r.status };
+    return await r.json();
+  };
+  const _equipoPorId = new Map<string, Promise<any | null>>();
+  const equipoPorId = (teamId: string): Promise<any | null> => {
+    if (_equiposCache) return Promise.resolve(_equiposCache.find((e) => e.id === teamId) || null);
+    if (!_equipoPorId.has(teamId)) {
+      const p = filaPorId(T_EQUIPOS, teamId);
+      /* Un fallo no se queda guardado: el siguiente que pregunte lo reintenta. */
+      p.catch(() => _equipoPorId.delete(teamId));
+      _equipoPorId.set(teamId, p);
+    }
+    return _equipoPorId.get(teamId)!;
+  };
   const clubDeEquipo = async (teamId: string): Promise<string | null> => {
     if (!teamId) return null;
-    const eq = (await equiposTodos()).find((e) => e.id === teamId);
+    const eq = await equipoPorId(teamId);
     return eq ? ((eq.fields[EQ.club] || [])[0] || null) : null;
   };
   /* El club de la propia sesión no viaja en el token (se firmó antes de que
@@ -682,9 +716,9 @@ const atender = async (req: Request) => {
       if (_miClubCache) return _miClubCache;
     }
     if (sesion?.id) {
-      /* list() —y no el allUsers() de más abajo, que vive en otro bloque—:
-         devuelve los campos por ID, que es como se leen aquí. */
-      const yo = (await list(T_USUARIOS)).find((r: any) => r.id === sesion.id);
+      /* Solo la fila de la sesión, con los campos por ID, que es como se
+         leen aquí (antes: la tabla Usuarios entera). */
+      const yo = await filaPorId(T_USUARIOS, String(sesion.id));
       _miClubCache = ((yo?.fields[U.club] || [])[0] as string) || null;
     } else {
       _miClubCache = null;
@@ -727,8 +761,7 @@ const atender = async (req: Request) => {
      del club, no solo el suyo. */
   const esMiHijo = async (jugId: string): Promise<boolean> => {
     if (!jugId || !sesion?.id) return false;
-    const recs = await list(T_USUARIOS);
-    const yo = recs.find((r: any) => r.id === sesion.id);
+    const yo = await filaPorId(T_USUARIOS, String(sesion.id));
     const miHijo = (yo?.fields[U.hijo] || [])[0] || null;
     return !!miHijo && miHijo === jugId;
   };
@@ -739,6 +772,81 @@ const atender = async (req: Request) => {
     if (esMaster) return true;
     return (await miClub()) === clubId;
   };
+
+  /* ================= FILAS DE UN EQUIPO =================
+     Jugadores, partidos, convocatorias, entrenamientos y partes se leían
+     trayendo la tabla ENTERA -todas las de todos los clubes, de 100 en 100- y
+     filtrando aquí. Era lo que más llamadas a Airtable gastaba, y crecía
+     solo: cada partido o parte nuevo de cualquier club encarecía la lectura
+     de todos los demás.
+     Cada equipo ya tiene enlazadas sus filas (el campo inverso del enlace
+     Equipo, que Airtable mantiene solo), así que basta con leer el equipo y
+     pedir esas filas por su id. Va por POST a /listRecords porque la fórmula
+     con muchos ids no cabe en una URL. Una sola consulta filtrada devuelve
+     las filas en el mismo orden que la tabla entera, y ese orden importa: la
+     app numera la plantilla por posición y la asistencia se guarda con ese
+     número. */
+  const INVERSO: Record<string, string> = {
+    jugadores: "fldMYcnPB43koZxlA",
+    partes: "fldLIb8GBxvSizIYT",
+    partidos: "fldvQewYiQaYpOQEA",
+    convocatorias: "fldXSlXGkWFQJjyeo",
+    entrenamientos: "fldly58OdNfl8PLXJ",
+  };
+  const TABLA_DE: Record<string, string> = {
+    jugadores: T_JUGADORES,
+    partes: T_PARTES,
+    partidos: T_PARTIDOS,
+    convocatorias: T_CONVOCATORIAS,
+    entrenamientos: T_ENTRENAMIENTOS,
+  };
+  /* Como listByName (campos por NOMBRE y error si Airtable falla), pero con
+     fórmula opcional. Que falle importa aquí más que en ningún sitio: la app
+     toma una lista vacía como "este equipo no tiene nada", vaciaba la
+     plantilla en pantalla y, al guardar el calendario, volvía a crear
+     partidos que ya existían. */
+  const leerPorNombre = async (t: string, formula = "") => {
+    const out: any[] = [];
+    let offset = "";
+    for (let i = 0; i < 20; i++) {
+      const body: Record<string, unknown> = { pageSize: 100 };
+      if (formula) body.filterByFormula = formula;
+      if (offset) body.offset = offset;
+      const r = await fetch(`${table(t)}/listRecords`, { method: "POST", headers: H, body: JSON.stringify(body) });
+      if (!r.ok) throw { status: r.status };
+      const d = await r.json();
+      out.push(...((d.records || []) as any[]));
+      offset = d.offset || "";
+      if (!offset) break;
+    }
+    return out;
+  };
+  /* Solo esas filas: ¿está ",<id>," dentro de ",id1,id2,…,"? Con las comas a
+     los dos lados, un id nunca coincide con un trozo de otro. */
+  const filasPorIds = (t: string, ids: string[]) =>
+    leerPorNombre(t, `FIND("," & RECORD_ID() & ",", ",${ids.filter((x) => ES_REC.test(x)).join(",")},")`);
+  /* Las filas de `recurso` de uno o varios equipos (campos por nombre). Si la
+     lectura por ids falla por otra cosa que el límite de Airtable, se vuelve a
+     la lectura completa de antes: nunca se queda sin datos por esto. Con el
+     límite agotado (429) no se insiste: leer la tabla entera fallaría igual y
+     gastaría más. El filtro final por Equipo es el de siempre, y se mantiene
+     también en el camino rápido. */
+  const filasDeEquipos = async (recurso: string, teamIds: string[], equipos?: any[]): Promise<any[]> => {
+    const t = TABLA_DE[recurso];
+    const mios = new Set(teamIds);
+    const deMisEquipos = (recs: any[]) => recs.filter((r: any) => (r.fields?.Equipo || []).some((x: string) => mios.has(x)));
+    try {
+      const eqs = equipos || (await Promise.all(teamIds.map((x) => equipoPorId(x)))).filter(Boolean);
+      const ids = [...new Set(eqs.flatMap((e: any) => e.fields?.[INVERSO[recurso]] || []))] as string[];
+      if (!ids.length) return [];
+      return deMisEquipos(await filasPorIds(t, ids));
+    } catch (e: any) {
+      if (e?.status === 429) throw e;
+      console.error(`[filas ${recurso}] lectura por ids fallida (${e?.status || e}); se lee la tabla entera`);
+    }
+    return deMisEquipos(await leerPorNombre(t));
+  };
+  const filasDeEquipo = (recurso: string, teamId: string) => filasDeEquipos(recurso, [teamId]);
 
   try {
     /* ================= EQUIPOS (gestión del Master) ================= */
@@ -1431,8 +1539,8 @@ const atender = async (req: Request) => {
     if (res === "hijo") {
       if (req.method !== "GET") return j({ error: "Petición no soportada" }, 400);
       if (!["familia", "jugador"].includes(rolKey(sesion?.rol))) return j({ ok: false, reason: "no_autorizado" }, 403);
-      const recs = await list(T_USUARIOS);
-      const yo = recs.find((r: any) => r.id === sesion.id);
+      /* Solo la fila de esta sesión, no la tabla Usuarios entera. */
+      const yo = await filaPorId(T_USUARIOS, String(sesion.id || ""));
       if (!yo) return j({ ok: false, reason: "no_existe" }, 404);
       if (norm(yo.fields[U.estado]) !== "activo") return j({ ok: true, pendiente: true, hijo: null });
       const hijoRec = (yo.fields[U.hijo] || [])[0] || null;
@@ -1448,13 +1556,15 @@ const atender = async (req: Request) => {
       let asistencia: { pct: number; dias: number } | null = null;
       const equipoHijo = (jg.fields.Equipo || [])[0] || null;
       if (equipoHijo) {
-        const roster = (await listByName(T_JUGADORES)).filter((r: any) => (r.fields?.Equipo || []).includes(equipoHijo));
+        /* La misma lectura que ?res=jugadores, para que la posición salga
+           igual que en la app. Lee además el equipo, que es justo el que
+           guarda la asistencia: se reutiliza en vez de pedirlo otra vez. */
+        const roster = await filasDeEquipo("jugadores", equipoHijo);
         const idx = roster.findIndex((r: any) => r.id === hijoRec);
         if (idx >= 0) {
           const pid = String(idx + 1);
-          const rEq = await fetch(`${table(T_EQUIPOS)}/${equipoHijo}?returnFieldsByFieldId=true`, { headers: H });
-          if (rEq.ok) {
-            const dEq = await rEq.json().catch(() => ({}));
+          const dEq = await equipoPorId(equipoHijo).catch(() => null);
+          if (dEq) {
             try {
               const todo = JSON.parse(dEq?.fields?.[EQ.asistencia] || "{}") || {};
               const dias = Object.values(todo).filter((d: any) => d && Object.keys(d).length > 0);
@@ -1551,12 +1661,12 @@ const atender = async (req: Request) => {
       if (!(await puedeClub(club)) || !dirigeElClub(sesion)) {
         return j({ error: "no_autorizado", reason: "Solo la dirección del club ve el control de material." }, 403);
       }
-      const equipos = (await list(T_EQUIPOS)).filter((e: any) => (e.fields[EQ.club] || []).includes(club));
+      const equipos = (await equiposTodos()).filter((e: any) => (e.fields[EQ.club] || []).includes(club));
       const nombrePorEq = new Map(equipos.map((e: any) => [e.id, e.fields[EQ.nombre] || "Sin nombre"]));
       const encargadoPorEq = new Map(equipos.map((e: any) => [e.id, e.fields[EQ.encargado] || ""]));
-      const recs = await listByName(T_PARTES);
+      /* Solo los partes de las categorías del club, no la tabla entera. */
+      const recs = await filasDeEquipos("partes", equipos.map((e: any) => e.id), equipos);
       const out = recs
-        .filter((r: any) => (r.fields?.Equipo || []).some((id: string) => nombrePorEq.has(id)))
         .map((r: any) => ({
           rec: r.id,
           ...r.fields,
@@ -1592,12 +1702,10 @@ const atender = async (req: Request) => {
       if (!(await puedeClub(club)) || !dirigeElClub(sesion)) {
         return j({ error: "no_autorizado", reason: "Solo la dirección del club ve el calendario de todas sus categorías." }, 403);
       }
-      const equipos = (await list(T_EQUIPOS)).filter((e: any) => (e.fields[EQ.club] || []).includes(club));
-      const misEquipos = new Set(equipos.map((e: any) => e.id));
-      const recs = await listByName(T_PARTIDOS);
-      const out = recs
-        .filter((r: any) => (r.fields?.Equipo || []).some((id: string) => misEquipos.has(id)))
-        .map((r: any) => ({ rec: r.id, ...r.fields }));
+      const equipos = (await equiposTodos()).filter((e: any) => (e.fields[EQ.club] || []).includes(club));
+      /* Solo los partidos de las categorías del club, no la tabla entera. */
+      const recs = await filasDeEquipos("partidos", equipos.map((e: any) => e.id), equipos);
+      const out = recs.map((r: any) => ({ rec: r.id, ...r.fields }));
       return j({ records: out });
     }
 
@@ -1974,10 +2082,8 @@ const atender = async (req: Request) => {
         if (!(await puedeEquipo(team))) {
           return j({ error: "no_autorizado", reason: "No tienes acceso a los datos de ese equipo." }, 403);
         }
-        const recs = await listByName(t);
-        const out = recs
-          .filter((r: any) => (r.fields?.Equipo || []).includes(team))
-          .map((r: any) => ({ rec: r.id, ...r.fields }));
+        /* Solo las filas del equipo, no la tabla entera (ver filasDeEquipos). */
+        const out = (await filasDeEquipo(res, team)).map((r: any) => ({ rec: r.id, ...r.fields }));
         return j({ records: out });
       }
       if (req.method === "POST") {
@@ -2571,7 +2677,7 @@ const atender = async (req: Request) => {
         /* Y si además se le asigna una categoría, que sea una categoría de
            ESE club, no de cualquier otro. */
         if (b.teamRec) {
-          const eqDestino = (await equiposTodos()).find((e) => e.id === b.teamRec);
+          const eqDestino = await equipoPorId(String(b.teamRec));
           const clubDelEquipo = (eqDestino?.fields[EQ.club] || [])[0] || null;
           if (!eqDestino || (b.clubRec && clubDelEquipo !== b.clubRec)) {
             return j({ ok: false, reason: "equipo_no_valido" }, 400);
@@ -2756,15 +2862,14 @@ const atender = async (req: Request) => {
           if (previo) return j({ ok: false, reason: "exists" });
           const teamRec = String(b.teamRec || "");
           if (!teamRec) return j({ ok: false, reason: "falta_equipo" }, 400);
-          const equipos = await list(T_EQUIPOS);
-          const equipo = equipos.find((e) => e.id === teamRec);
+          const equipo = await equipoPorId(teamRec);
           if (!equipo) return j({ ok: false, reason: "equipo_no_existe" }, 400);
           const clubId = (equipo.fields[EQ.club] || [])[0] || null;
           if (!clubId) return j({ ok: false, reason: "equipo_sin_club" }, 400);
           const nombreBuscado = norm(b.hijoNombre);
           const dorsalBuscado = Number(b.hijoDorsal) || 0;
           if (!nombreBuscado || !dorsalBuscado) return j({ ok: false, reason: "faltan_datos_hijo" }, 400);
-          const jugadoresEquipo = (await listByName(T_JUGADORES)).filter((r) => (r.fields?.Equipo || []).includes(teamRec));
+          const jugadoresEquipo = await filasDeEquipo("jugadores", teamRec);
           const candidatos = jugadoresEquipo.filter((r) =>
             norm(r.fields?.Nombre) === nombreBuscado && Number(r.fields?.Dorsal) === dorsalBuscado);
           if (candidatos.length !== 1) return j({ ok: false, reason: "hijo_no_encontrado" }, 404);
@@ -3022,8 +3127,10 @@ const atender = async (req: Request) => {
     }
 
     return j({ error: "Petición no soportada" }, 400);
-  } catch (e) {
-    return j({ error: String(e) }, 500);
+  } catch (e: any) {
+    /* Los fallos de Airtable llegan como { status }: "[object Object]" no
+       le dice nada a nadie. */
+    return j({ error: e?.status ? `airtable_${e.status}` : String(e) }, 500);
   }
 };
 

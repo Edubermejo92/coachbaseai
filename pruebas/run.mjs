@@ -6,7 +6,9 @@ const FN = process.env.FN || new URL("../netlify/functions/airtable.mts", import
 /* La función es TypeScript: se transpila con esbuild a un módulo que podamos
    importar, y se le dan los globales que espera (Netlify.env). */
 const OUT = new URL("fn.mjs", import.meta.url).pathname;
-execSync(`npx esbuild ${FN} --format=esm --platform=node --target=node20 --outfile=${OUT}`, { stdio: "pipe" });
+/* --bundle: la función importa netlify/lib/uso-airtable.mts por ruta
+   relativa, que desde pruebas/ no existe. */
+execSync(`npx esbuild ${FN} --bundle --format=esm --platform=node --target=node20 --outfile=${OUT}`, { stdio: "pipe" });
 
 const DATOS = {
   [T.CLUBES]: [
