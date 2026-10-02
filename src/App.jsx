@@ -14034,7 +14034,7 @@ export default function App() {
                      repetido doce veces seguidas, no. */
                   const ses = sesionDelDia(fecha);
                   return (
-                    <div className="mt-0.5 text-[8px] leading-tight px-1 rounded truncate"
+                    <div className="mt-0.5 text-[8px] leading-tight px-1 rounded truncate hidden sm:block"
                       title={ses ? `S${ses.n} · ${ses.nombre}` : t("ca.legendTrain")}
                       style={{ background: "rgba(47,107,79,.16)", color: C.green }}>
                       {ses ? `S${ses.n} ${ses.nombre}` : planEse ? trainMeta.hora || t("ca.legendTrain") : t("ca.legendTrain")}
@@ -14044,21 +14044,36 @@ export default function App() {
                 {partidos.map((f) => (
                   <div key={f.id}
                     title={esAviso(f) ? textoAviso(f) : `${f.home} vs ${f.away} · ${f.time || ""} · ${f.place || ""}`}
-                    className="mt-0.5 text-[8px] leading-tight px-1 rounded truncate"
+                    className="mt-0.5 text-[8px] leading-tight px-1 rounded truncate hidden sm:block"
                     style={esAviso(f)
                       ? { border: `1px dashed ${C.dim}`, color: C.dim }
                       : { background: AC, color: C.sobre }}>
                     {esAviso(f) ? textoAviso(f) : `${f.time || ""} ${f.away || f.home}`}
                   </div>
                 ))}
+                {/* En el móvil cada celda mide unos 45 px: ahí las etiquetas
+                    salían cortadas ("Entr…", "C.D…") y no se leía nada. Se
+                    cambian por puntos del mismo color que la leyenda; el
+                    detalle sale al tocar el día. */}
+                {(esEntreno || planEse || partidos.length > 0) && (
+                  <div className="flex flex-wrap gap-1 mt-auto pt-1 sm:hidden" aria-hidden="true">
+                    {(esEntreno || planEse) && <span className="w-2 h-2 rounded-full" style={{ background: C.green }} />}
+                    {partidos.map((f) => (
+                      <span key={f.id} className="w-2 h-2 rounded-full"
+                        style={esAviso(f) ? { border: `1px dashed ${C.dim}` } : { background: AC }} />
+                    ))}
+                  </div>
+                )}
               </button>
             );
           })}
         </div>
         <div className="flex flex-wrap items-center gap-3 mt-3 text-[11px]" style={{ color: C.dim }}>
-          <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-sm inline-block" style={{ background: AC }} />{t("ca.legendMatch")}</span>
-          <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-sm inline-block" style={{ background: "rgba(47,107,79,.5)" }} />{t("ca.legendTrain")}</span>
-          <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-sm inline-block" style={{ border: `1px dashed ${C.dim}` }} />{t("ca.note")}</span>
+          {/* Redonda en el móvil, como los puntos de la cuadrícula; cuadrada
+              a partir de tablet, como las etiquetas. */}
+          <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full sm:rounded-sm inline-block" style={{ background: AC }} />{t("ca.legendMatch")}</span>
+          <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full sm:rounded-sm inline-block" style={{ background: C.green }} />{t("ca.legendTrain")}</span>
+          <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full sm:rounded-sm inline-block" style={{ border: `1px dashed ${C.dim}` }} />{t("ca.note")}</span>
         </div>
         {can("editTraining") && (
           <div className="flex flex-wrap items-center gap-1.5 mt-2">
