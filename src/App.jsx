@@ -8146,6 +8146,175 @@ const USUARIOS_DEMO = [
   { id: 5, name: "Sara Bonilla", email: "pendiente@example.org", role: "segundo", club: DEMO_CLUB, categories: ["Infantil B"], status: "pendiente" },
 ];
 
+/* ================= LA DEMO, CON LA TEMPORADA EMPEZADA =================
+   Con solo la plantilla y el calendario, la demo enseñaba Estadísticas a
+   cero (0 % de asistencia, 0′ jugados, ningún partido), Entrenamiento sin una
+   sesión y sin plantillas, e Inicio sin nada planificado: justo las
+   pantallas que mejor enseñan la app parecían vacías.
+   Esto es una temporada ya en marcha. Los partidos jugados son tres
+   amistosos contra rivales inventados: los de la liga son clubes reales, y a
+   un club real no se le inventa un resultado. La asistencia y las sesiones se
+   fechan contando desde hoy, para que la demo esté igual de viva el día que
+   se abra. Nada de esto sale del dispositivo: la demo no escribe en la nube. */
+const NUESTRO_DEMO = "C.D. Chamartín Vergara - Alcobendas \"B\"";
+/* Jugadores por su id, que en la plantilla de ejemplo es también su dorsal.
+   cambios: [minuto, entra, sale] · goles y amarillas: [minuto, jugador] ·
+   golesRival: [minuto]. Infantil: dos partes de 35′. */
+const AMISTOSOS_DEMO = [
+  { id: 8101, fecha: "2026-09-05", hora: "11:00", rival: "C.D. Ejemplo Norte", casa: true, us: 3, them: 1,
+    titulares: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15], sinJugar: [17],
+    cambios: [[45, 12, 6], [45, 11, 15], [55, 13, 8], [60, 14, 2]],
+    goles: [[18, 10], [33, 9], [52, 10]], golesRival: [[61]], amarillas: [[40, 4]] },
+  { id: 8102, fecha: "2026-09-12", hora: "10:30", rival: "A.D. Ejemplo Sur", casa: false, us: 1, them: 1,
+    titulares: [1, 14, 3, 4, 5, 6, 7, 8, 9, 11, 12], sinJugar: [19],
+    cambios: [[40, 10, 12], [50, 2, 14], [55, 13, 8], [60, 18, 5]],
+    goles: [[27, 11]], golesRival: [[49]], amarillas: [[58, 6]] },
+  { id: 8103, fecha: "2026-09-19", hora: "11:00", rival: "U.D. Ejemplo Este", casa: true, us: 2, them: 0,
+    titulares: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15], sinJugar: [],
+    cambios: [[45, 11, 15], [45, 12, 6], [55, 17, 9], [60, 19, 10], [60, 18, 2]],
+    goles: [[22, 9], [64, 7]], golesRival: [], amarillas: [] },
+];
+const TEXTOS_DEMO = {
+  es: { s1: "Conservación y cambio de orientación", s2: "Presión tras pérdida", s3: "Salida de balón ante presión alta", g1: "Rondos + finalización", g2: "Salida de balón", molestia: "Sobrecarga en el isquiotibial derecho", pinchado: "1 balón pinchado" },
+  en: { s1: "Keeping the ball and switching play", s2: "Pressing straight after losing the ball", s3: "Building out against a high press", g1: "Rondos + finishing", g2: "Building out from the back", molestia: "Tight right hamstring", pinchado: "1 punctured ball" },
+  fr: { s1: "Conservation et changement d'orientation", s2: "Pressing après la perte", s3: "Relance face à un pressing haut", g1: "Rondos + finition", g2: "Relance depuis l'arrière", molestia: "Surcharge à l'ischio-jambier droit", pinchado: "1 ballon crevé" },
+  de: { s1: "Ballbesitz und Spielverlagerung", s2: "Gegenpressing nach Ballverlust", s3: "Spielaufbau gegen hohes Pressing", g1: "Rondos + Abschluss", g2: "Spielaufbau von hinten", molestia: "Überlastung im rechten hinteren Oberschenkel", pinchado: "1 Ball ohne Luft" },
+  pt: { s1: "Posse e variação do centro de jogo", s2: "Pressão após a perda", s3: "Construção contra pressão alta", g1: "Rondos + finalização", g2: "Construção desde trás", molestia: "Sobrecarga no isquiotibial direito", pinchado: "1 bola furada" },
+};
+/* "Foto" del material para los partes de ejemplo: balones y conos sobre
+   césped, dibujados aquí mismo para no depender de ninguna imagen real. */
+const FOTO_MATERIAL_DEMO = `data:image/svg+xml;utf8,${encodeURIComponent(
+  "<svg xmlns='http://www.w3.org/2000/svg' width='320' height='200' viewBox='0 0 320 200'>"
+  + "<rect width='320' height='200' fill='#2F6B4F'/>"
+  + [60, 110, 160, 210, 260].map((x) => `<circle cx='${x}' cy='120' r='18' fill='#F4F4F0' stroke='#1B1B1B' stroke-width='2'/>`).join("")
+  + [80, 150, 220].map((x) => `<polygon points='${x},60 ${x - 14},88 ${x + 14},88' fill='#F28C28'/>`).join("")
+  + "</svg>",
+)}`;
+const demoTemporada = (hoy, lang = "es", entrenador = "") => {
+  const tx = TEXTOS_DEMO[lang] || TEXTOS_DEMO.es;
+  const jug = (id) => PLANTILLA_DEMO.find((p) => p.id === id);
+  const puestoDe = (id) => { const slot = Object.keys(LINEUP_INIT).find((k) => LINEUP_INIT[k] === id); return slot ? SLOTS_433[slot].label : ""; };
+
+  /* Partidos jugados: acta (lo más reciente primero, como la guarda Modo
+     partido), ficha por jugador y minutos de cada uno. */
+  const minutos = {};
+  const historial = AMISTOSOS_DEMO.map((m) => {
+    const enCampo = new Map(m.titulares.map((id) => [id, { desde: 0, hasta: 70 }]));
+    for (const [min, entra, sale] of m.cambios) {
+      enCampo.get(sale).hasta = min;
+      enCampo.set(entra, { desde: min, hasta: 70 });
+    }
+    for (const [id, t] of enCampo) minutos[id] = (minutos[id] || 0) + (t.hasta - t.desde);
+    const convocados = [...enCampo.keys(), ...m.sinJugar];
+    const cuenta = (lista, id) => lista.filter(([, x]) => x === id).length;
+    const jugadores = convocados.map((id) => {
+      const p = jug(id);
+      const amarillas = cuenta(m.amarillas, id);
+      return {
+        id, d: p.d, n: p.n, pos: m.titulares.includes(id) ? puestoDe(id) : "",
+        titular: m.titulares.includes(id), goles: cuenta(m.goles, id), tarjetas: amarillas,
+        amarillas, dobleAmarilla: 0, rojas: 0, cambios: m.cambios.filter((c) => c[1] === id).length, faltas: 0,
+      };
+    });
+    const acta = [
+      ...m.goles.map(([min, id]) => ({ min, disp: String(min), type: "gol", player: jug(id).n, dorsal: jug(id).d })),
+      ...m.golesRival.map(([min]) => ({ min, disp: String(min), type: "golRival", player: null, dorsal: null })),
+      ...m.amarillas.map(([min, id]) => ({ min, disp: String(min), type: "tarjeta", card: "amarilla", player: jug(id).n, dorsal: jug(id).d })),
+      ...m.cambios.map(([min, entra, sale]) => ({ min, disp: String(min), type: "cambio", player: jug(entra).n, dorsal: jug(entra).d, sale: jug(sale).n })),
+    ].sort((a, b) => b.min - a.min).map(({ min, ...e }) => ({ card: null, periodoNombre: null, resultado: null, lado: null, ...e }));
+    return {
+      id: m.id, fecha: m.fecha, rival: m.rival, j: "AM", us: m.us, them: m.them, casa: m.casa,
+      penUs: null, penThem: null, eventos: acta.length, jugadores, acta, lugar: "", arbitro: "", arbComentario: "",
+    };
+  }).reverse();
+
+  /* Los mismos amistosos en el calendario, con su resultado. */
+  const amistosos = AMISTOSOS_DEMO.map((m) => ({
+    id: m.id, j: "AM", date: m.fecha, time: m.hora, place: "",
+    home: m.casa ? NUESTRO_DEMO : m.rival, away: m.casa ? m.rival : NUESTRO_DEMO,
+    hg: m.casa ? m.us : m.them, ag: m.casa ? m.them : m.us,
+  }));
+  const fixtures = [...CAL_DEMO, ...amistosos].sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0));
+
+  /* Días de entreno (martes y jueves) de las últimas cinco semanas, hoy
+     incluido si toca, y los de alrededor de hoy para las sesiones. */
+  const esEntreno = (iso) => [2, 4].includes(new Date(`${iso}T12:00:00`).getDay());
+  const pasados = [];
+  for (let i = 35; i >= 0; i--) { const d = sumarDiasISO(hoy, -i); if (esEntreno(d)) pasados.push(d); }
+  let proximo = hoy;
+  while (!esEntreno(proximo)) proximo = sumarDiasISO(proximo, 1);
+  const anteriores = pasados.filter((d) => d < hoy);
+
+  /* Asistencia: casi todos, casi siempre, con las ausencias normales de una
+     plantilla de verdad. Rubén Mateos se lesionó hace tres entrenos y desde
+     entonces falta por lesión: es el lesionado que sale en Lesiones. */
+  const lesionRuben = anteriores[anteriores.length - 3] || anteriores[0] || hoy;
+  const asistencia = {};
+  pasados.forEach((d, k) => {
+    const dia = {};
+    for (const p of PLANTILLA_DEMO) dia[p.id] = "presente";
+    if (k % 5 === 1) dia[13] = "estudios";
+    if (k % 6 === 2) dia[12] = "estudios";
+    if (k % 7 === 3) dia[8] = "enfermedad";
+    if (k === 4) dia[19] = "injustificada";
+    if (d > lesionRuben) dia[17] = "lesion";
+    asistencia[d] = dia;
+  });
+
+  const players = PLANTILLA_DEMO.map((p) => ({
+    ...p, min: minutos[p.id] || 0,
+    ...(p.id === 17 ? { st: "lesionado", molestia: tx.molestia, histLesiones: [{ f: lesionRuben, e: "lesionado", c: "entreno" }] } : {}),
+  }));
+
+  /* Sesiones: las dos últimas ya dadas, la próxima publicada y la misma
+     abierta en Modo entrenamiento; y dos guiones reutilizables del club. */
+  const bloque = (exId) => {
+    const ex = EXERCISES.find((e) => e.id === exId);
+    return { name: ex.name[lang] || ex.name.es, dur: ex.dur, materials: (ex.materials && (ex.materials[lang] || ex.materials.es)) || [], exId };
+  };
+  const sesion = (rec, nombre, objetivo, ids, extra) => {
+    const bloques = ids.map(bloque);
+    return { rec, nombre, objetivo, duracion: bloques.reduce((n, b) => n + b.dur, 0), bloques: JSON.stringify(bloques), compartida: false, usos: 0, propia: true, ...extra };
+  };
+  const S3 = ["coord", "passctrl", "buildup", "sup32", "posgame"];
+  const plantillas = [
+    sesion("demo-g1", tx.g1, tx.g1, ["warmball", "rondo", "finish", "finish1v1"], { plantilla: true, compartida: true, usos: 7, fecha: "", hora: "" }),
+    sesion("demo-g2", tx.g2, tx.g2, ["coord", "buildup", "sup32", "posgame"], { plantilla: true, usos: 4, fecha: "", hora: "" }),
+    ...(anteriores.length >= 2 ? [sesion("demo-s1", anteriores[anteriores.length - 2], tx.s1, ["coord", "rondo42", "possession", "posgame", "fitness"], { plantilla: false, fecha: anteriores[anteriores.length - 2], hora: "18:30" })] : []),
+    ...(anteriores.length >= 1 ? [sesion("demo-s2", anteriores[anteriores.length - 1], tx.s2, ["warmball", "rondo", "press", "transition", "counter3"], { plantilla: false, fecha: anteriores[anteriores.length - 1], hora: "18:30" })] : []),
+    sesion("demo-s3", proximo, tx.s3, S3, { plantilla: false, fecha: proximo, hora: "18:30" }),
+  ];
+  const train = {
+    meta: { fecha: proximo, hora: "18:30", objetivo: tx.s3 },
+    blocks: S3.map((id, i) => ({ ...bloque(id), id: i + 1 })),
+    target: 75,
+  };
+
+  /* Partes de material de cada entreno ya dado, con sus dos fotos: sin
+     ellos, Inicio abría la demo avisando de ocho entrenos sin parte. Uno
+     trae un balón perdido y un desperfecto, que es lo que el club revisa. */
+  const partes = anteriores.map((fecha, i) => {
+    const conIncidencia = i === anteriores.length - 2;
+    return {
+      id: `demo-parte-${fecha}`, rec: "", fecha, entrenadorNombre: entrenador,
+      salida: 12, entrada: conIncidencia ? 11 : 12, perdidos: conIncidencia ? 1 : 0,
+      fotoSalida: FOTO_MATERIAL_DEMO, fotoEntrada: FOTO_MATERIAL_DEMO,
+      desperfectos: conIncidencia ? tx.pinchado : "", tarde: false, minutosTarde: 0, telefono: false,
+      penalizaciones: "", jugTarde: 0, jugMolestias: fecha === lesionRuben ? 1 : 0, notas: "",
+    };
+  }).reverse();
+
+  /* Cargas físicas que cuadran con lo demás: el lesionado en rojo, el que
+     está en duda y el del aviso médico en amarillo, el resto en verde. */
+  const cargas = {
+    17: { estado: "rojo", carga: 0, nota: tx.molestia },
+    6: { estado: "amarillo", carga: 70, nota: "" },
+    16: { estado: "amarillo", carga: 60, nota: "" },
+  };
+
+  return { players, fixtures, historial, asistencia, plantillas, train, partes, cargas };
+};
+
 /* VACÍO a propósito, como USERS_INIT. Aquí estaban escritos a mano los
    diecinueve jugadores del Infantil B, y eran el punto de partida de CUALQUIER
    cuenta: quien abría la app —el entrenador de otro club, una categoría recién
@@ -11104,11 +11273,17 @@ export default function App() {
   const [plNombre, setPlNombre] = useState("");
   const [plCompartir, setPlCompartir] = useState(false);
   const cargarPlantillas = async () => {
-    if (!session?.team?.rec) return;
+    if (!session?.team?.rec) {
+      /* Sin equipo en la nube no hay plantillas que leer. Y si se viene de
+         la demo, las suyas son de ejemplo: no pueden quedarse en la cuenta
+         de verdad que entre después. */
+      if (session?.email !== "demo") setPlantillas([]);
+      return;
+    }
     const rows = await airPlantillas(session.team.rec, clubInfo.rec);
     if (rows) setPlantillas(rows);
   };
-  useEffect(() => { cargarPlantillas(); }, [session?.team?.rec, clubInfo.rec]); // eslint-disable-line
+  useEffect(() => { cargarPlantillas(); }, [session?.team?.rec, clubInfo.rec, session?.email]); // eslint-disable-line
   /* `plantillas` trae de Airtable tanto los guiones reutilizables (plantilla:
      true) como las sesiones concretas ya publicadas -guardadas a mano o, ahora,
      aprobadas de una propuesta del segundo- (plantilla:false). Antes el
@@ -19974,6 +20149,9 @@ export default function App() {
       acta: events.map((e) => ({
         disp: e.disp || String(e.min), type: e.type, player: e.player, dorsal: e.dorsal,
         card: e.card || null, periodoNombre: e.periodoNombre || null, resultado: e.resultado || null, lado: e.lado || null,
+        /* Quién sale en un cambio: sin esto el acta guardada decía solo
+           "Cambio — Fulano" y había que adivinar por quién. */
+        sale: e.sale || null,
       })),
       lugar: matchInfo.lugar || "",
       /* Árbitro: nombre y comentario del cuerpo técnico, para tenerlo a mano
@@ -21488,14 +21666,34 @@ export default function App() {
       /* Datos de ejemplo: la demo es pública y no puede enseñar ni la plantilla
          real —menores con nombre y apellido, y un antecedente médico— ni los
          correos del cuerpo técnico. */
-      setPlayers(PLANTILLA_DEMO);
-      setFixtures(CAL_DEMO);
-      setUsers(USUARIOS_DEMO);
       const demoTeam = makeTeam("infantil", "B");
+      /* La temporada de ejemplo (ver demoTemporada). Lo que cada pantalla
+         lee de este dispositivo se deja escrito bajo la clave del equipo de
+         la demo, que ninguna cuenta real usa: así cada entrada en la demo
+         empieza igual, aunque la anterior se tocara algo. */
+      const demoNombre = `Demo · ${rLabel(lang, r)}`;
+      const demo = demoTemporada(hoyISO(), lang, demoNombre);
+      try {
+        localStorage.setItem(`cb_partes_${demoTeam.id}`, JSON.stringify(demo.partes));
+        localStorage.setItem(`cb_cargas_${demoTeam.id}`, JSON.stringify(demo.cargas));
+        localStorage.setItem(`cb_hist_${demoTeam.id}`, JSON.stringify(demo.historial));
+        localStorage.setItem(`cb_asist_${demoTeam.id}`, JSON.stringify(demo.asistencia));
+        localStorage.setItem(`cb_cal_${demoTeam.id}`, JSON.stringify(demo.fixtures));
+        localStorage.setItem(`cb_train_${demoTeam.id}`, JSON.stringify(demo.train));
+        localStorage.setItem(`cb_traindays_${demoTeam.id}`, JSON.stringify([2, 4]));
+      } catch { /* sin almacenamiento: se queda lo que se pone aquí abajo */ }
+      setPlayers(demo.players);
+      setFixtures(demo.fixtures);
+      setHistorial(demo.historial);
+      setAsistencia(demo.asistencia);
+      setPlantillas(demo.plantillas);
+      setPartes(demo.partes);
+      setCargas(demo.cargas);
+      setUsers(USUARIOS_DEMO);
       const demoCategories = getCategoriesForUser(1, r, DEMO_CLUB);
       const demoCat = getDefaultCategory(1, r, DEMO_CLUB);
       setSession({
-        name: `Demo · ${rLabel(lang, r)}`,
+        name: demoNombre,
         role: r, plan: "oficial", pro: true, club: DEMO_CLUB, comunidad: "Comunidad de Madrid", email: "demo",
         team: demoTeam,
         categories: demoCategories.map((c) => c.name),
