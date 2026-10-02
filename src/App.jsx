@@ -18374,29 +18374,6 @@ export default function App() {
     const verCargas = isPro && can("cargas");
     return (
     <div className="space-y-4">
-      {/* Subir la plantilla y el calendario vive aquí desde que la pestaña de
-          Club es solo de la dirección: el entrenador tiene que poder guardar
-          SU plantilla, y este es el sitio donde la tiene delante. */}
-      {verApartado("editSquad") && (
-        <Card title={t("sq.cloud")}>
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="text-[11px] px-2 py-1 rounded font-display uppercase tracking-wide"
-              style={{ border: `1px solid ${cloudOn ? C.green : C.line}`, color: cloudOn ? C.green : C.dim }}>
-              {cloudOn ? t("sq.cloudOn") : t("sq.cloudOff")}
-            </span>
-            <button onClick={subirPlantilla} disabled={!can("editSquad")} className="text-sm px-3 py-1.5 rounded-lg border font-display uppercase tracking-wide disabled:opacity-40 disabled:cursor-not-allowed"
-              style={{ borderColor: AC, color: AC }}>{t("sq.saveSquad")}</button>
-            <button onClick={subirCalendario} disabled={!can("editSquad")} className="text-sm px-3 py-1.5 rounded-lg border font-display uppercase tracking-wide disabled:opacity-40 disabled:cursor-not-allowed"
-              style={{ borderColor: C.line, color: C.chalk }}>{t("sq.saveCal")}</button>
-            {cloudMsg && <span className="text-[12px]" style={{ color: cloudMsg.startsWith("✓") ? C.green : C.dim }}>{cloudMsg}</span>}
-          </div>
-          <div className="text-[11px] mt-2" style={{ color: C.dim }}>
-            {t("sq.cloudNote")}
-          </div>
-
-        </Card>
-      )}
-
       {can("editSquad") && (
         <Card title="Añadir jugadores">
           {!csvOpen ? (
@@ -18445,7 +18422,7 @@ export default function App() {
         <div className="overflow-x-auto" hidden={players.length === 0}>
           <table className="w-full text-sm" style={{ color: C.chalk }}>
             <thead><tr className="font-display uppercase tracking-widest text-xs" style={{ color: C.dim }}>
-              <th className="text-left py-2" colSpan={2}>Jugador</th><th className="text-left">Pos</th><th className="text-left">Estado</th>
+              <th className="text-left py-2" colSpan={2}>Jugador</th><th className="text-left hidden sm:table-cell">Pos</th><th className="text-left">Estado</th>
               {verCargas && <th className="text-left">{t("sq.load")}</th>}
               <th className="text-right">Asist.</th><th className="text-right">Min.</th>
             </tr></thead>
@@ -18456,9 +18433,18 @@ export default function App() {
                 return (
                 <tr key={p.id} className="border-t" style={{ borderColor: C.line }}>
                   <td className="py-2 w-10"><button onClick={() => setProfileId(p.id)}><Avatar p={p} /></button></td>
-                  <td><button onClick={() => setProfileId(p.id)} className="text-left hover:opacity-80"><span className="font-display text-base mr-2" style={{ color: AC }}>{p.d}</span>{p.n}{p.video && " 🎬"}{p.aviso && <span className="ml-1.5" title={p.aviso} style={{ color: C.warn }}>⚠</span>}{starters.has(p.id) && <span className="ml-2 text-xs" style={{ color: C.dim }}>· XI</span>}</button></td>
-                  <td style={{ color: C.dim }}>{posDe(p.id) || "—"}</td>
-                  <td><button onClick={() => cycleStatus(p.id)} className="flex items-center hover:opacity-80" style={{ cursor: can("editSquad") ? "pointer" : "default" }}><Dot st={p.st} />{p.st}</button></td>
+                  {/* El dorsal ya va en el círculo de la izquierda; aquí solo
+                      se repite cuando el círculo enseña la foto. En móvil la
+                      demarcación y el "XI" van debajo del nombre, en vez de en
+                      una columna más que apretaba la tabla. */}
+                  <td className="pr-2"><button onClick={() => setProfileId(p.id)} className="text-left hover:opacity-80">
+                    <div className="leading-snug">{p.photo && <span className="font-display text-base mr-2" style={{ color: AC }}>{p.d}</span>}{p.n}{p.video && " 🎬"}{p.aviso && <span className="ml-1.5" title={p.aviso} style={{ color: C.warn }}>⚠</span>}{starters.has(p.id) && <span className="ml-2 text-xs hidden sm:inline" style={{ color: C.dim }}>· XI</span>}</div>
+                    {(posDe(p.id) || starters.has(p.id)) && (
+                      <div className="text-[11px] sm:hidden" style={{ color: C.dim }}>{[posDe(p.id), starters.has(p.id) ? "XI" : ""].filter(Boolean).join(" · ")}</div>
+                    )}
+                  </button></td>
+                  <td className="hidden sm:table-cell" style={{ color: C.dim }}>{posDe(p.id) || "—"}</td>
+                  <td><button onClick={() => cycleStatus(p.id)} className="flex items-center hover:opacity-80 whitespace-nowrap" style={{ cursor: can("editSquad") ? "pointer" : "default" }}><Dot st={p.st} />{p.st}</button></td>
                   {/* Resumen de la carga física del día: el mismo semáforo y el
                       mismo porcentaje que se rellenan en Lesiones. Aquí solo se
                       consulta —se toca para ir a cambiarlo—, porque esta pantalla
@@ -18485,6 +18471,32 @@ export default function App() {
           </table>
         </div>
       </Card>
+      {/* Subir la plantilla y el calendario vive aquí desde que la pestaña de
+          Club es solo de la dirección: el entrenador tiene que poder guardar
+          SU plantilla, y este es el sitio donde la tiene delante. */}
+      {/* Abajo y no arriba: era lo primero que se veía al entrar en
+          Jugadores, y es una tarjeta técnica (dónde se guardan los datos),
+          no la plantilla. En la demo no se enseña: allí no se guarda nada. */}
+      {verApartado("editSquad") && !esDemo && (
+        <Card title={t("sq.cloud")}>
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-[11px] px-2 py-1 rounded font-display uppercase tracking-wide"
+              style={{ border: `1px solid ${cloudOn ? C.green : C.line}`, color: cloudOn ? C.green : C.dim }}>
+              {cloudOn ? t("sq.cloudOn") : t("sq.cloudOff")}
+            </span>
+            <button onClick={subirPlantilla} disabled={!can("editSquad")} className="text-sm px-3 py-1.5 rounded-lg border font-display uppercase tracking-wide disabled:opacity-40 disabled:cursor-not-allowed"
+              style={{ borderColor: AC, color: AC }}>{t("sq.saveSquad")}</button>
+            <button onClick={subirCalendario} disabled={!can("editSquad")} className="text-sm px-3 py-1.5 rounded-lg border font-display uppercase tracking-wide disabled:opacity-40 disabled:cursor-not-allowed"
+              style={{ borderColor: C.line, color: C.chalk }}>{t("sq.saveCal")}</button>
+            {cloudMsg && <span className="text-[12px]" style={{ color: cloudMsg.startsWith("✓") ? C.green : C.dim }}>{cloudMsg}</span>}
+          </div>
+          <div className="text-[11px] mt-2" style={{ color: C.dim }}>
+            {t("sq.cloudNote")}
+          </div>
+
+        </Card>
+      )}
+
     </div>
     );
   };
