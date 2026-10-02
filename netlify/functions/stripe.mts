@@ -1,3 +1,4 @@
+import { contarLlamadas } from "../lib/uso-airtable.mts";
 // Suscripción CoachBase AI PRO (9,99 €/mes) con Stripe Checkout.
 // Todo el estado vive en Airtable: tabla Suscripciones (tblb6s8eKcLK9LCw9).
 //
@@ -193,7 +194,7 @@ async function firmaValida(payload: string, header: string, secret: string) {
   return diff === 0;
 }
 
-export default async (req: Request) => {
+const atender = async (req: Request) => {
   const url = new URL(req.url);
   const action = url.searchParams.get("action") || "checkout";
 
@@ -335,3 +336,6 @@ export default async (req: Request) => {
     return j({ error: String(e) }, 500);
   }
 };
+
+/* Cuenta las llamadas a Airtable de cada petición (ver netlify/lib/uso-airtable.mts). */
+export default contarLlamadas("stripe", atender);

@@ -1,3 +1,4 @@
+import { contarLlamadas, leerUso } from "../lib/uso-airtable.mts";
 // Proxy serverless entre la app y Airtable.
 //   ?res=(vacío)      -> Usuarios: login, registro real (crea club y equipo), alta/baja, roles
 //   ?res=equipos      -> Equipos: listar, crear y editar (rol Master)
@@ -519,7 +520,7 @@ const correoReset = (nombre: string, enlace: string) => `
   </div>
 </div>`;
 
-export default async (req: Request) => {
+const atender = async (req: Request) => {
   const token = TOKEN();
   if (!token) return j({ error: "AIRTABLE_TOKEN no configurado en Netlify" }, 500);
 
@@ -572,6 +573,12 @@ export default async (req: Request) => {
   }
   if (res === "equipos" && ["POST", "DELETE"].includes(req.method) && !dirigeClub) {
     return j({ error: "no_autorizado", reason: "Solo la dirección del club puede crear o eliminar categorías." }, 403);
+  }
+  /* Consumo de la API de Airtable por día (ver netlify/lib/uso-airtable.mts).
+     Solo el Master: es un dato de la instalación entera, no de un club. */
+  if (res === "uso-airtable") {
+    if (!esMaster) return j({ error: "no_autorizado" }, 403);
+    return j(await leerUso(31));
   }
   /* borrar usuarios queda reservado al Master */
   if (req.method === "DELETE" && res === "usuarios" && !esMaster) {
@@ -2993,3 +3000,6 @@ export default async (req: Request) => {
     return j({ error: String(e) }, 500);
   }
 };
+
+/* Cuenta las llamadas a Airtable de cada petición (ver netlify/lib/uso-airtable.mts). */
+export default contarLlamadas("airtable", atender);
