@@ -17297,10 +17297,9 @@ export default function App() {
         )}
       </Card>
 
-      <Card title={t("h.available")}>
-        <div className="flex items-baseline gap-3"><span className="font-display text-6xl font-bold" style={{ color: C.chalk }}>{avail}</span><span style={{ color: C.dim }}>/ {players.length}</span></div>
-        <div className="mt-3 space-y-1">{out.map((p) => (<div key={p.id} className="text-sm flex items-center" style={{ color: C.chalk }}><Dot st={p.st} /> #{p.d} {p.n} · <span className="ml-1" style={{ color: C.dim }}>{p.st}</span></div>))}</div>
-      </Card>
+      {/* Aquí había una tarjeta "Disponibles" con el mismo número grande que
+          ya enseña la cabecera, y la lista de dudas y lesionados que repite
+          Alertas justo debajo: tres veces el mismo dato en una pantalla. */}
       <Card title={t("h.lessMin")}>
         {lowMin.map((p) => (<div key={p.id} className="flex justify-between text-sm py-1.5 border-b last:border-0" style={{ borderColor: C.line, color: C.chalk }}><span>#{p.d} {p.n}</span><span style={{ color: AC }}>{p.min} min</span></div>))}
       </Card>
@@ -17346,9 +17345,19 @@ export default function App() {
       </Card>
 
 
+      {/* Accesos rápidos: antes eran TODAS las pestañas del rol (veinte
+          botones), es decir, el menú otra vez. Ahora, como mucho seis de las
+          que más se usan entre semana, sin repetir las que ya tienen botón
+          en la cabecera (convocatoria, alineación, entrenamiento, partido). */}
       <Card title={t("h.quick")}>
-        <div className="grid grid-cols-2 gap-2">
-          {getAvailableTabs(session?.club, role.tabs).filter((k) => k !== "inicio" && (k !== "usuarios" || lim.users)).map((k) => (
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+          {(() => {
+            const disponibles = getAvailableTabs(session?.club, role.tabs).filter((k) => k !== "inicio" && (k !== "usuarios" || lim.users));
+            const enCabecera = ["convocatoria", "alineacion", "entrenamiento", "partido"];
+            const preferidas = ["asistencia", "jugadores", "calendario", "lesiones", "estadisticas", "parte", "ejercicios", "pizarra", "disciplina", "usuarios", "temporada", "material"];
+            const elegidas = [...preferidas, ...disponibles].filter((k, i, a) => a.indexOf(k) === i && disponibles.includes(k) && !enCabecera.includes(k));
+            return elegidas.slice(0, 6);
+          })().map((k) => (
             <button key={k} onClick={() => setTab(k)} className="font-display uppercase tracking-wide text-sm px-2 py-2.5 rounded-lg border hover:opacity-80 leading-tight break-words min-w-0" style={{ borderColor: C.line, color: C.chalk, background: C.panel2 }}>{navLabel(k)}</button>
           ))}
         </div>
