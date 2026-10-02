@@ -84,14 +84,16 @@ const U_CLUB = "fldV2DDL6v5szs0y3";
 const CL_LIMITE = "fldiIev3Pd9eWhulJ";
 
 /* Plazas de cuerpo técnico que desbloquea cada plan de club. 0 = sin límite.
-   Reutiliza los mismos tramos que el tope de equipos de cada plan (5/12/∞),
-   a falta de una cifra de "perfiles" propia y distinta en el catálogo de
-   precios — si se quiere un número distinto de plazas por plan, cambiar aquí. */
-const PLAZAS_CLUB: Record<string, number> = { club_s: 5, club_m: 12, club_l: 0 };
-/* Al perder el pago (cancelación), el club vuelve al techo gratuito de 1
-   plaza — no se borra a nadie, pero no se pueden dar más altas hasta pagar
-   de nuevo o hasta que el Master lo autorice a mano. */
-const PLAZAS_SIN_PAGO = 1;
+   Tienen que ser las MISMAS que promete la pantalla de precios (PLANES_CLUB
+   en App.jsx: 20, 50 e ilimitadas). Aquí ponía 5 y 12 -el tope de EQUIPOS,
+   no de personas-, así que un club que pagaba 249 € por "20 accesos" se
+   quedaba con 5 y no podía dar de alta ni a su cuerpo técnico. */
+const PLAZAS_CLUB: Record<string, number> = { club_s: 20, club_m: 50, club_l: 0 };
+/* Al perder el pago (cancelación), el club vuelve al plan gratuito: 2
+   accesos, los mismos que anuncia ("1 para el club y 1 para un entrenador").
+   No se borra a nadie, pero no se pueden dar más altas hasta pagar de nuevo
+   o hasta que el Master lo autorice a mano. */
+const PLAZAS_SIN_PAGO = 2;
 
 /* Si el precio de la suscripción es uno de club_s/m/l, actualiza el límite
    de plazas del club al que pertenece quien paga (localizado por su email en
