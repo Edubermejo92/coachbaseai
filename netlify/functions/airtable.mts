@@ -2965,8 +2965,12 @@ const atender = async (req: Request) => {
              se tocan: esto solo afecta a los clubes que se registren a partir
              de ahora. */
           const d = await create(T_USUARIOS, {
+            /* Sin "Prueba hasta": el club prueba su plan 30 días a través de
+               Stripe, con la tarjeta puesta (trial_period_days en el checkout).
+               Antes además se le regalaban 30 días de PRO sin tarjeta, y quien
+               no terminaba el pago tenía igualmente un mes entero gratis. */
             [U.nombre]: b.name, [U.email]: email, [U.rol]: "Club", [U.estado]: "Activo",
-            [U.plan]: "Oficial", [U.pass]: await hashPassword(String(b.password || "")), [U.prueba]: fechaTrial30(),
+            [U.plan]: "Oficial", [U.pass]: await hashPassword(String(b.password || "")),
             [U.club]: [clubId], ...(eqId ? { [U.equipo]: [eqId] } : {}),
           });
           const [eqsF, clubsF] = await Promise.all([list(T_EQUIPOS), list(T_CLUBES)]);
