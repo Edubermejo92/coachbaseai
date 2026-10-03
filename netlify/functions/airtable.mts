@@ -48,6 +48,9 @@ const PR = {
   motivo: "fldNre3sjgcXmLIig",
 };
 const T_ENTRENAMIENTOS = "tblinm3lV3FTUcL62";
+/* Partidos jugados, uno por fila (resultado, acta y ficha de cada convocado
+   en JSON). Antes vivían solo en el móvil de quien registraba el partido. */
+const T_ACTAS = "tblpZuEDOM6ypjDKQ";
 /* Plantillas de entrenamiento reutilizables. Viven en la misma tabla que las
    sesiones (Entrenamientos): una sesión con Plantilla=true no tiene fecha, es
    un guion que se puede volver a cargar. Compartida=true la abre a todos los
@@ -792,6 +795,7 @@ const atender = async (req: Request) => {
     partidos: "fldvQewYiQaYpOQEA",
     convocatorias: "fldXSlXGkWFQJjyeo",
     entrenamientos: "fldly58OdNfl8PLXJ",
+    actas: "fld2oH8jIKwosGdEB",
   };
   const TABLA_DE: Record<string, string> = {
     jugadores: T_JUGADORES,
@@ -799,6 +803,7 @@ const atender = async (req: Request) => {
     partidos: T_PARTIDOS,
     convocatorias: T_CONVOCATORIAS,
     entrenamientos: T_ENTRENAMIENTOS,
+    actas: T_ACTAS,
   };
   /* Como listByName (campos por NOMBRE y error si Airtable falla), pero con
      fórmula opcional. Que falle importa aquí más que en ningún sitio: la app
@@ -1554,6 +1559,7 @@ const atender = async (req: Request) => {
          plantilla, y de ahí sacar solo el dato de este jugador: nunca la
          plantilla ni la asistencia de sus compañeros. */
       let asistencia: { pct: number; dias: number } | null = null;
+      let pidHijo = "";
       const equipoHijo = (jg.fields.Equipo || [])[0] || null;
       if (equipoHijo) {
         /* La misma lectura que ?res=jugadores, para que la posición salga
@@ -1563,6 +1569,7 @@ const atender = async (req: Request) => {
         const idx = roster.findIndex((r: any) => r.id === hijoRec);
         if (idx >= 0) {
           const pid = String(idx + 1);
+          pidHijo = pid;
           const dEq = await equipoPorId(equipoHijo).catch(() => null);
           if (dEq) {
             try {
@@ -1576,7 +1583,28 @@ const atender = async (req: Request) => {
           }
         }
       }
-      return j({ ok: true, pendiente: false, hijo: { rec: hijoRec, ...jg.fields }, asistencia });
+      /* Sus partidos: de cada acta del equipo, solo la línea de su hijo
+         -minutos, titular, goles, tarjetas-, nunca la de sus compañeros. Se
+         le encuentra por el id de su ficha; en actas antiguas sin ese id, por
+         su puesto en la plantilla (el mismo que usa la asistencia). */
+      let partidos: any[] = [];
+      if (equipoHijo) {
+        const actas = await filasDeEquipo("actas", equipoHijo).catch(() => [] as any[]);
+        partidos = actas.map((r: any) => {
+          let m: any = null;
+          try { m = JSON.parse(r.fields?.Datos || "null"); } catch { m = null; }
+          if (!m || !Array.isArray(m.jugadores)) return null;
+          const yo = m.jugadores.find((x: any) => x.rec === hijoRec)
+            || m.jugadores.find((x: any) => !x.rec && pidHijo && String(x.id) === pidHijo);
+          return {
+            fecha: m.fecha || r.fields?.Fecha || "", rival: m.rival || r.fields?.Rival || "",
+            casa: !!m.casa, us: Number(m.us) || 0, them: Number(m.them) || 0,
+            convocado: !!yo, titular: !!yo?.titular, minutos: Number(yo?.minutos) || 0,
+            goles: Number(yo?.goles) || 0, tarjetas: Number(yo?.tarjetas) || 0,
+          };
+        }).filter(Boolean).sort((a: any, b: any) => String(b.fecha).localeCompare(String(a.fecha)));
+      }
+      return j({ ok: true, pendiente: false, hijo: { rec: hijoRec, ...jg.fields }, asistencia, partidos });
     }
 
     /* ================= PARIENTES DE UN JUGADOR (vista del club) =================
@@ -2066,6 +2094,7 @@ const atender = async (req: Request) => {
       partidos: T_PARTIDOS,
       convocatorias: T_CONVOCATORIAS,
       entrenamientos: T_ENTRENAMIENTOS,
+      actas: T_ACTAS,
     };
     if (GENERICOS[res]) {
       /* Jugadores, partidos, convocatorias y entrenamientos son datos de UN
@@ -2079,6 +2108,11 @@ const atender = async (req: Request) => {
       const team = url.searchParams.get("team") || "";
       if (req.method === "GET") {
         if (!team) return j({ error: "falta_equipo" }, 400);
+        /* Las actas llevan los minutos, goles y tarjetas de TODOS los
+           convocados: una familia solo ve los de su hijo, por ?res=hijo. */
+        if (res === "actas" && esSoloLecturaSesion) {
+          return j({ error: "no_autorizado", reason: "Las familias ven los partidos de su hijo en su ficha." }, 403);
+        }
         if (!(await puedeEquipo(team))) {
           return j({ error: "no_autorizado", reason: "No tienes acceso a los datos de ese equipo." }, 403);
         }
