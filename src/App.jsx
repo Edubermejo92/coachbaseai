@@ -81,7 +81,7 @@ const DICT = {
     "ln.placeAndSend": "Coloca el once y manda la propuesta cuando termines.",
     "ln.sendProposal": "Enviar propuesta",
     "ln.dragHint": "Arrastra para recolocar · toque corto para asignar",
-    "ln.benchTitle": "Banquillo",
+    "ln.benchTitle": "Banquillo", "ln.calledSubs": "Suplentes convocados", "ln.notCalled": "No convocados", "ln.notCalledTag": "No convocado", "ln.noCallYet": "Todavía no hay convocatoria, así que aquí salen todos. Haz la convocatoria y verás quién va y quién se queda fuera.", "ln.goCall": "Ir a Convocatoria", "ln.xiNotCalled": "En el once hay {n} sin convocar: {names}.", "ln.sumCalled": "Convocados", "ln.sumXI": "En el once", "ln.sumSubs": "Suplentes", "ln.sumOut": "Fuera", "ln.callIn": "Convocar", "ln.callOut": "Quitar de la convocatoria", "ln.noneHere": "Nadie.",
     "ln.video": "🎬 Vídeo del once", "ln.videoPro": "🎬 Vídeo del once · PRO", "ln.videoRec": "Grabando…", "ln.videoOk": "✓ Vídeo listo.", "ln.videoFail": "No se pudo generar el vídeo.", "ln.videoNoXI": "Pon el once antes de generar el vídeo.", "ln.videoDownload": "⤓ Descargar vídeo", "ln.shareWhatsapp": "⬆ Enviar por WhatsApp", "ln.downloadLineup": "⤓ Descargar alineación", "ln.downloadOk": "✓ Descargada.",
     "ln.shareImageBusy": "Generando imagen…",
     "ln.shareImageOk": "✓ Imagen lista.",
@@ -685,7 +685,7 @@ const DICT = {
     "ln.placeAndSend": "Set the XI and send the proposal when you're done.",
     "ln.sendProposal": "Send proposal",
     "ln.dragHint": "Drag to reposition · tap to assign",
-    "ln.benchTitle": "Bench",
+    "ln.benchTitle": "Bench", "ln.calledSubs": "Called-up substitutes", "ln.notCalled": "Not called up", "ln.notCalledTag": "Not called up", "ln.noCallYet": "There is no squad list yet, so everyone shows here. Make the squad list to see who is in and who is left out.", "ln.goCall": "Go to Squad list", "ln.xiNotCalled": "The line-up has {n} not called up: {names}.", "ln.sumCalled": "Called up", "ln.sumXI": "In the XI", "ln.sumSubs": "Subs", "ln.sumOut": "Left out", "ln.callIn": "Call up", "ln.callOut": "Remove from squad list", "ln.noneHere": "Nobody.",
     "ln.video": "🎬 Line-up video", "ln.videoPro": "🎬 Line-up video · PRO", "ln.videoRec": "Recording…", "ln.videoOk": "✓ Video ready.", "ln.videoFail": "Could not generate the video.", "ln.videoNoXI": "Pick the XI before making the video.", "ln.videoDownload": "⤓ Download video", "ln.shareWhatsapp": "⬆ Send on WhatsApp", "ln.downloadLineup": "⤓ Download line-up", "ln.downloadOk": "✓ Downloaded.",
     "ln.shareImageBusy": "Generating image…",
     "ln.shareImageOk": "✓ Image ready.",
@@ -1301,7 +1301,7 @@ const DICT = {
     "ln.placeAndSend": "Placez le onze et envoyez la proposition une fois terminé.",
     "ln.sendProposal": "Envoyer la proposition",
     "ln.dragHint": "Glissez pour repositionner · touchez pour affecter",
-    "ln.benchTitle": "Remplaçants",
+    "ln.benchTitle": "Remplaçants", "ln.calledSubs": "Remplaçants convoqués", "ln.notCalled": "Non convoqués", "ln.notCalledTag": "Non convoqué", "ln.noCallYet": "Pas encore de convocation : tout le monde apparaît ici. Faites la convocation pour voir qui vient et qui reste dehors.", "ln.goCall": "Aller à Convocation", "ln.xiNotCalled": "La composition compte {n} non convoqué(s) : {names}.", "ln.sumCalled": "Convoqués", "ln.sumXI": "Dans le XI", "ln.sumSubs": "Remplaçants", "ln.sumOut": "Dehors", "ln.callIn": "Convoquer", "ln.callOut": "Retirer de la convocation", "ln.noneHere": "Personne.",
     "ln.video": "🎬 Vidéo du onze", "ln.videoPro": "🎬 Vidéo du onze · PRO", "ln.videoRec": "Enregistrement…", "ln.videoOk": "✓ Vidéo prête.", "ln.videoFail": "Impossible de générer la vidéo.", "ln.videoNoXI": "Composez le onze avant de faire la vidéo.", "ln.videoDownload": "⤓ Télécharger la vidéo", "ln.shareWhatsapp": "⬆ Envoyer par WhatsApp", "ln.downloadLineup": "⤓ Télécharger la compo", "ln.downloadOk": "✓ Téléchargée.",
     "ln.shareImageBusy": "Génération de l'image…",
     "ln.shareImageOk": "✓ Image prête.",
@@ -1997,7 +1997,7 @@ const DICT = {
     "ln.placeAndSend": "Stelle die Startelf zusammen und sende den Vorschlag, wenn du fertig bist.",
     "ln.sendProposal": "Vorschlag senden",
     "ln.dragHint": "Ziehen zum Umstellen · Antippen zum Zuweisen",
-    "ln.benchTitle": "Bank",
+    "ln.benchTitle": "Bank", "ln.calledSubs": "Nominierte Ersatzspieler", "ln.notCalled": "Nicht nominiert", "ln.notCalledTag": "Nicht nominiert", "ln.noCallYet": "Noch kein Kader, daher stehen hier alle. Stell den Kader zusammen, dann siehst du, wer dabei ist und wer nicht.", "ln.goCall": "Zum Kader", "ln.xiNotCalled": "In der Startelf stehen {n} nicht Nominierte: {names}.", "ln.sumCalled": "Nominiert", "ln.sumXI": "Startelf", "ln.sumSubs": "Ersatz", "ln.sumOut": "Draußen", "ln.callIn": "Nominieren", "ln.callOut": "Aus dem Kader nehmen", "ln.noneHere": "Niemand.",
     "ln.video": "🎬 Video der Elf", "ln.videoPro": "🎬 Video der Elf · PRO", "ln.videoRec": "Aufnahme…", "ln.videoOk": "✓ Video fertig.", "ln.videoFail": "Video konnte nicht erstellt werden.", "ln.videoNoXI": "Stelle erst die Elf auf.", "ln.videoDownload": "⤓ Video herunterladen", "ln.shareWhatsapp": "⬆ Per WhatsApp senden", "ln.downloadLineup": "⤓ Aufstellung laden", "ln.downloadOk": "✓ Heruntergeladen.",
     "ln.shareImageBusy": "Bild wird erstellt…",
     "ln.shareImageOk": "✓ Bild bereit.",
@@ -2692,7 +2692,7 @@ const DICT = {
     "ln.placeAndSend": "Monta o onze e envia a proposta quando terminares.",
     "ln.sendProposal": "Enviar proposta",
     "ln.dragHint": "Arrasta para recolocar · toque curto para atribuir",
-    "ln.benchTitle": "Banco",
+    "ln.benchTitle": "Banco", "ln.calledSubs": "Suplentes convocados", "ln.notCalled": "Não convocados", "ln.notCalledTag": "Não convocado", "ln.noCallYet": "Ainda não há convocatória, por isso aparecem todos. Faz a convocatória e vês quem vai e quem fica de fora.", "ln.goCall": "Ir à Convocatória", "ln.xiNotCalled": "No onze há {n} sem convocar: {names}.", "ln.sumCalled": "Convocados", "ln.sumXI": "No onze", "ln.sumSubs": "Suplentes", "ln.sumOut": "De fora", "ln.callIn": "Convocar", "ln.callOut": "Tirar da convocatória", "ln.noneHere": "Ninguém.",
     "ln.video": "🎬 Vídeo do onze", "ln.videoPro": "🎬 Vídeo do onze · PRO", "ln.videoRec": "A gravar…", "ln.videoOk": "✓ Vídeo pronto.", "ln.videoFail": "Não foi possível gerar o vídeo.", "ln.videoNoXI": "Escolhe o onze antes de fazer o vídeo.", "ln.videoDownload": "⤓ Descarregar vídeo", "ln.shareWhatsapp": "⬆ Enviar por WhatsApp", "ln.downloadLineup": "⤓ Descarregar onze", "ln.downloadOk": "✓ Descarregado.",
     "ln.shareImageBusy": "A gerar imagem…",
     "ln.shareImageOk": "✓ Imagem pronta.",
@@ -18567,6 +18567,19 @@ export default function App() {
     const lineupView = propone ? (lineupDraft || lineup) : lineup;
     const startersView = new Set(Object.values(lineupView));
     const bench = players.filter((p) => !startersView.has(p.id));
+    /* La convocatoria, cruzada con el once. Antes el banquillo era "todos
+       los que no están en el campo", convocados o no, y montar el once no
+       decía quién viajaba con el equipo: se podía alinear a alguien que ni
+       estaba convocado. Sin convocatoria hecha todavía, todos cuentan como
+       convocables y se avisa. */
+    const hayConvocatoria = called.size > 0;
+    const suplentesConv = hayConvocatoria ? bench.filter((p) => called.has(p.id)) : bench;
+    const noConvocados = hayConvocatoria ? bench.filter((p) => !called.has(p.id)) : [];
+    const titularesFuera = hayConvocatoria
+      ? [...startersView].map((id) => players.find((p) => p.id === id)).filter((p) => p && !called.has(p.id))
+      : [];
+    const puedeConvocar = can("editCall");
+    const alternarConvocado = (id) => puedeConvocar && setCalled((s) => { const n = new Set(s); n.has(id) ? n.delete(id) : n.add(id); return n; });
     const puestoDelSlot = selSlot ? slotPos[selSlot]?.label : null;
     /* Con un puesto elegido se enseña la plantilla entera -para poder cambiar
        a quien esté puesto por cualquier otro-; sin puesto elegido, solo los
@@ -18804,8 +18817,9 @@ export default function App() {
         .map(([id, sl]) => ({ sl, p: players.find((x) => x.id === lineupView[id]) }))
         .filter((x) => x.p)
         .map(({ sl, p }) => `${sl.label} ${keycap(p.d)} ${p.n}${capitanes.includes(p.id) ? ` (${t("ln.captainShort")})` : ""}`);
-      const suplentes = bench.slice().sort((a, b) => a.d - b.d)
+      const suplentes = suplentesConv.slice().sort((a, b) => a.d - b.d)
         .map((p) => `${keycap(p.d)} ${p.n}${capitanes.includes(p.id) ? ` (${t("ln.captainShort")})` : ""}`);
+      const fuera = noConvocados.slice().sort((a, b) => a.d - b.d).map((p) => `${keycap(p.d)} ${p.n}`);
       const staff = staffTecnico.filter((m) => (m.n || "").trim()).map((m) => (m.rol ? `${m.n} · ${m.rol}` : m.n));
       return [
         `⬡ *${t("nav.alineacion").toUpperCase()} — ${session.club || ""} ${session.team?.name || ""}*`,
@@ -18813,6 +18827,7 @@ export default function App() {
         "",
         ...titulares,
         ...(suplentes.length ? ["", `*${t("ln.benchTitle").toUpperCase()}*`, ...suplentes] : []),
+        ...(fuera.length ? ["", `*${t("ln.notCalled").toUpperCase()}*`, ...fuera] : []),
         ...(staff.length ? ["", `*${t("ln.staffTitle").toUpperCase()}*`, ...staff] : []),
       ].join("\n");
     };
@@ -18854,7 +18869,7 @@ export default function App() {
       setLnImgMsg(""); setLnImgBusy(true);
       try {
         try { await document.fonts?.ready; } catch { /* sin API de fonts: se dibuja con lo que haya */ }
-        const banquillo = [...bench].sort((a, b) => a.d - b.d);
+        const banquillo = [...suplentesConv].sort((a, b) => a.d - b.d);
         /* Fotos de quien vaya a aparecer en la imagen -titulares y
            banquillo-, cargadas con crossOrigin: si el origen de la foto no
            lo permite, esa carga en concreto falla sola (onerror) sin tocar
@@ -19125,7 +19140,7 @@ export default function App() {
               return (
                 <div key={id} onPointerDown={(e) => onSlotDown(e, id)} onPointerUp={() => onSlotUp(id)} className="absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center" style={{ left: `${s.x}%`, top: `${s.y}%`, cursor: can("editLineup") ? "grab" : "default" }}>
                   <PitchToken p={p} label={s.label} selected={sel} accent={AC} textColor={C.chalk}
-                    borderColor={sel ? AC : sugerido ? AC : p && p.st !== "disponible" ? stColor(p.st) : "rgba(54,69,79,0.5)"} />
+                    borderColor={sel ? AC : sugerido ? AC : p && hayConvocatoria && !called.has(p.id) ? C.warn : p && p.st !== "disponible" ? stColor(p.st) : "rgba(54,69,79,0.5)"} />
                   {/* La demarcación (s.label, p.ej. "DFC") se mostraba solo
                       mientras el puesto estaba vacío: en cuanto se asignaba un
                       jugador, desaparecía y solo quedaba el nombre. Se deja
@@ -19161,11 +19176,48 @@ export default function App() {
             <button onClick={anadirJugador} className="text-xs px-3 py-1.5 rounded-lg border font-display uppercase tracking-wide mb-3"
               style={{ borderColor: C.line, color: AC }}>{t("lz.addPlayer")}</button>
           )}
+          {/* Quién va y quién no, de un vistazo: convocados, en el once,
+              suplentes y fuera. */}
+          {hayConvocatoria ? (
+            <div className="grid grid-cols-4 gap-1.5 mb-3">
+              {[["ln.sumCalled", called.size, C.chalk], ["ln.sumXI", startersView.size - titularesFuera.length, C.chalk], ["ln.sumSubs", suplentesConv.length, C.chalk], ["ln.sumOut", noConvocados.length, C.dim]].map(([k, n, col]) => (
+                <div key={k} className="rounded-lg border px-1.5 py-2 text-center" style={{ borderColor: C.line, background: C.panel2 }}>
+                  <div className="font-display text-xl tabular-nums leading-none" style={{ color: col }}>{n}</div>
+                  <div className="text-[9px] sm:text-[10px] font-display uppercase mt-1 leading-tight break-words" style={{ color: C.dim }}>{t(k)}</div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="rounded-lg border p-2.5 mb-3 text-xs flex flex-wrap items-center gap-2" style={{ borderColor: C.line, background: C.panel2, color: C.dim }}>
+              <span className="flex-1 min-w-[180px]">{t("ln.noCallYet")}</span>
+              {visibleTabs.includes("convocatoria") && (
+                <button onClick={() => setTab("convocatoria")} className="text-xs px-2.5 py-1.5 rounded-lg border font-display uppercase tracking-wide" style={{ borderColor: AC, color: AC }}>{t("ln.goCall")}</button>
+              )}
+            </div>
+          )}
+          {titularesFuera.length > 0 && (
+            <div className="rounded-lg border p-2.5 mb-3 text-xs" style={{ borderColor: C.warn, color: C.chalk }}>
+              ⚠ {t("ln.xiNotCalled").replace("{n}", titularesFuera.length).replace("{names}", titularesFuera.map((p) => `${p.d} ${p.n.split(" ")[0]}`).join(", "))}
+            </div>
+          )}
           <div className="space-y-1.5 max-h-[520px] overflow-y-auto pr-1">
-            {jugadoresParaSlot.map((p) => {
+            {(selSlot || !hayConvocatoria
+              ? [...jugadoresParaSlot].sort((a, b) => Number(called.has(b.id) || !hayConvocatoria) - Number(called.has(a.id) || !hayConvocatoria))
+              : [{ cabecera: `${t("ln.calledSubs")} (${suplentesConv.length})`, vacio: !suplentesConv.length }, ...[...suplentesConv].sort((a, b) => a.d - b.d),
+                { cabecera: `${t("ln.notCalled")} (${noConvocados.length})`, vacio: !noConvocados.length }, ...[...noConvocados].sort((a, b) => a.d - b.d)]
+            ).map((p) => {
+              if (p.cabecera) {
+                return (
+                  <div key={p.cabecera} className="pt-2">
+                    <div className="text-[11px] font-display uppercase tracking-widest" style={{ color: C.dim }}>{p.cabecera}</div>
+                    {p.vacio && <div className="text-xs mt-1" style={{ color: C.dim }}>{t("ln.noneHere")}</div>}
+                  </div>
+                );
+              }
               const enElOnce = startersView.has(p.id);
+              const fueraConv = hayConvocatoria && !called.has(p.id);
               return (
-                <div key={p.id} className="w-full flex items-center gap-2 py-2 px-3 rounded-lg border" style={{ borderColor: C.line, background: C.panel2 }}>
+                <div key={p.id} className="w-full flex items-center gap-2 py-2 px-3 rounded-lg border" style={{ borderColor: fueraConv && enElOnce ? C.warn : C.line, background: fueraConv ? "transparent" : C.panel2 }}>
                   {/* Sin sitio donde meterlo -el once lleno y ningún puesto
                       elegido- el toque no hace nada, así que se enseña apagado
                       en vez de fingir que responde. */}
@@ -19220,9 +19272,20 @@ export default function App() {
                             ocupa ahora mismo; quien está en el banquillo no
                             tiene ninguna todavía. */}
                         {enElOnce && <span>{puestoDe(p.id)} · XI</span>}
+                        {fueraConv && <span style={{ color: enElOnce ? C.warn : C.dim }}>{t("ln.notCalledTag")}</span>}
                       </span>
                     </span>
                   </button>
+                  {/* Convocar o quitar sin ir a Convocatoria: se decide a la
+                      vez que se monta el once. */}
+                  {hayConvocatoria && puedeConvocar && (
+                    <button onClick={() => alternarConvocado(p.id)}
+                      title={fueraConv ? t("ln.callIn") : t("ln.callOut")} aria-label={`${fueraConv ? t("ln.callIn") : t("ln.callOut")} — ${p.n}`}
+                      className="shrink-0 text-base w-8 h-8 rounded-lg border font-display flex items-center justify-center"
+                      style={{ borderColor: fueraConv ? AC : C.line, color: fueraConv ? AC : C.dim }}>
+                      {fueraConv ? "+" : "−"}
+                    </button>
+                  )}
                   {/* Brazalete. Hasta tres -el primero y sus dos suplentes, que
                       es como se entrega en el acta-; al cuarto no se marca y
                       se avisa, en vez de quitar a otro por su cuenta. */}
