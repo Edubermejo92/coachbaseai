@@ -81,7 +81,7 @@ const DICT = {
     "ln.placeAndSend": "Coloca el once y manda la propuesta cuando termines.",
     "ln.sendProposal": "Enviar propuesta",
     "ln.dragHint": "Arrastra para recolocar · toque corto para asignar",
-    "ln.benchTitle": "Banquillo", "ln.calledSubs": "Suplentes convocados", "ln.notCalled": "No convocados", "ln.notCalledTag": "No convocado", "ln.noCallYet": "Todavía no hay convocatoria, así que aquí salen todos. Haz la convocatoria y verás quién va y quién se queda fuera.", "ln.goCall": "Ir a Convocatoria", "ln.xiNotCalled": "En el once hay {n} sin convocar: {names}.", "ln.sumCalled": "Convocados", "ln.sumXI": "En el once", "ln.sumSubs": "Suplentes", "ln.sumOut": "Fuera", "ln.callIn": "Convocar", "ln.callOut": "Quitar de la convocatoria", "ln.noneHere": "Nadie.",
+    "ln.benchTitle": "Banquillo", "ln.calledSubs": "Suplentes convocados", "ln.notCalled": "No convocados", "ln.notCalledTag": "No convocado", "ln.noCallYet": "Todavía no hay convocatoria, así que aquí salen todos. Haz la convocatoria y verás quién va y quién se queda fuera.", "ln.goCall": "Ir a Convocatoria", "ln.xiNotCalled": "En el once hay {n} sin convocar: {names}.", "ln.sumCalled": "Convocados", "ln.sumXI": "En el once", "ln.sumSubs": "Suplentes", "ln.sumOut": "Fuera", "ln.callIn": "Convocar", "ln.callOut": "Quitar de la convocatoria", "ln.noneHere": "Nadie.", "conv.label": "Convocatoria", "conv.conv": "Convocado", "conv.tecnica": "Descartado · decisión técnica", "conv.lesion": "Descartado · lesión", "conv.sancion": "Descartado · sanción", "conv.no": "No convocado (sin motivo)", "lin.POR": "Porteros", "lin.DEF": "Defensas", "lin.MED": "Centrocampistas", "lin.DEL": "Delanteros", "lin.none": "Sin demarcación habitual", "lin1.POR": "Portero", "lin1.DEF": "Defensa", "lin1.MED": "Centrocampista", "lin1.DEL": "Delantero", "lin.same": "misma posición", "pf.lineTitle": "Demarcación habitual", "pf.lineHint": "Sirve para proponerte cambios de su misma posición. Si no la pones, se deduce de dónde ha jugado.", "pf.lineAuto": "Deducida: {l}", "pf.lineNone": "Sin poner", "mt.whoOut": "¿Quién sale?", "mt.inFor": "Entra {n}: ¿por quién?", "mt.starterFor": "Titular en {p}: {n}. Cambiar por:", "mt.starterSwapHint": "Antes del saque: cambias el titular sin apuntar nada en el acta.", "mt.onPitchGroup": "En el campo", "mt.benchGroup": "Banquillo", "mt.notCalledGroup": "No convocados", "mt.alreadyOut": "Ya jugaron · pueden volver", "mt.reentry": "Reingresos", "mt.reentryOn": "Quien sale puede volver a entrar", "mt.reentryOff": "Quien sale ya no vuelve", "mt.reentryHint": "En fútbol 7 suele estar permitido; en fútbol 11 depende de la competición.", "mt.newMatch": "Nuevo partido", "mt.newMatchHint": "Pone el marcador, el reloj y el acta a cero y devuelve el once inicial.", "mt.newMatchConfirm": "El acta de este partido no está guardada en el histórico. ¿Empezar otro partido igualmente?", "mt.liveBar": "Partido en curso", "mt.backToMatch": "Volver al partido", "mt.bgHint": "El reloj sigue contando aunque cierres la app o bloquees el móvil, y el acta y el marcador se guardan en este dispositivo. Mientras corre, la pantalla no se apaga.",
     "ln.video": "🎬 Vídeo del once", "ln.videoPro": "🎬 Vídeo del once · PRO", "ln.videoRec": "Grabando…", "ln.videoOk": "✓ Vídeo listo.", "ln.videoFail": "No se pudo generar el vídeo.", "ln.videoNoXI": "Pon el once antes de generar el vídeo.", "ln.videoDownload": "⤓ Descargar vídeo", "ln.shareWhatsapp": "⬆ Enviar por WhatsApp", "ln.downloadLineup": "⤓ Descargar alineación", "ln.downloadOk": "✓ Descargada.",
     "ln.shareImageBusy": "Generando imagen…",
     "ln.shareImageOk": "✓ Imagen lista.",
@@ -685,7 +685,7 @@ const DICT = {
     "ln.placeAndSend": "Set the XI and send the proposal when you're done.",
     "ln.sendProposal": "Send proposal",
     "ln.dragHint": "Drag to reposition · tap to assign",
-    "ln.benchTitle": "Bench", "ln.calledSubs": "Called-up substitutes", "ln.notCalled": "Not called up", "ln.notCalledTag": "Not called up", "ln.noCallYet": "There is no squad list yet, so everyone shows here. Make the squad list to see who is in and who is left out.", "ln.goCall": "Go to Squad list", "ln.xiNotCalled": "The line-up has {n} not called up: {names}.", "ln.sumCalled": "Called up", "ln.sumXI": "In the XI", "ln.sumSubs": "Subs", "ln.sumOut": "Left out", "ln.callIn": "Call up", "ln.callOut": "Remove from squad list", "ln.noneHere": "Nobody.",
+    "ln.benchTitle": "Bench", "ln.calledSubs": "Called-up substitutes", "ln.notCalled": "Not called up", "ln.notCalledTag": "Not called up", "ln.noCallYet": "There is no squad list yet, so everyone shows here. Make the squad list to see who is in and who is left out.", "ln.goCall": "Go to Squad list", "ln.xiNotCalled": "The line-up has {n} not called up: {names}.", "ln.sumCalled": "Called up", "ln.sumXI": "In the XI", "ln.sumSubs": "Subs", "ln.sumOut": "Left out", "ln.callIn": "Call up", "ln.callOut": "Remove from squad list", "ln.noneHere": "Nobody.", "conv.label": "Squad list", "conv.conv": "Called up", "conv.tecnica": "Left out · coach's decision", "conv.lesion": "Left out · injury", "conv.sancion": "Left out · suspension", "conv.no": "Not called up (no reason)", "lin.POR": "Goalkeepers", "lin.DEF": "Defenders", "lin.MED": "Midfielders", "lin.DEL": "Forwards", "lin.none": "No usual position", "lin1.POR": "Goalkeeper", "lin1.DEF": "Defender", "lin1.MED": "Midfielder", "lin1.DEL": "Forward", "lin.same": "same position", "pf.lineTitle": "Usual position", "pf.lineHint": "Used to suggest substitutes for the same position. If you leave it empty, it is worked out from where they have played.", "pf.lineAuto": "Worked out: {l}", "pf.lineNone": "Not set", "mt.whoOut": "Who comes off?", "mt.inFor": "{n} comes on: for whom?", "mt.starterFor": "Starting at {p}: {n}. Replace with:", "mt.starterSwapHint": "Before kick-off: you change the starter without logging a substitution.", "mt.onPitchGroup": "On the pitch", "mt.benchGroup": "Bench", "mt.notCalledGroup": "Not called up", "mt.alreadyOut": "Already played · can come back", "mt.reentry": "Re-entry", "mt.reentryOn": "Players who come off can come back on", "mt.reentryOff": "Players who come off cannot return", "mt.reentryHint": "Usually allowed in 7-a-side; in 11-a-side it depends on the competition.", "mt.newMatch": "New match", "mt.newMatchHint": "Resets the score, clock and log and restores the starting line-up.", "mt.newMatchConfirm": "This match log isn't saved to the history. Start a new match anyway?", "mt.liveBar": "Match in progress", "mt.backToMatch": "Back to the match", "mt.bgHint": "The clock keeps running even if you close the app or lock your phone, and the log and score are kept on this device. While it runs, the screen stays on.",
     "ln.video": "🎬 Line-up video", "ln.videoPro": "🎬 Line-up video · PRO", "ln.videoRec": "Recording…", "ln.videoOk": "✓ Video ready.", "ln.videoFail": "Could not generate the video.", "ln.videoNoXI": "Pick the XI before making the video.", "ln.videoDownload": "⤓ Download video", "ln.shareWhatsapp": "⬆ Send on WhatsApp", "ln.downloadLineup": "⤓ Download line-up", "ln.downloadOk": "✓ Downloaded.",
     "ln.shareImageBusy": "Generating image…",
     "ln.shareImageOk": "✓ Image ready.",
@@ -1301,7 +1301,7 @@ const DICT = {
     "ln.placeAndSend": "Placez le onze et envoyez la proposition une fois terminé.",
     "ln.sendProposal": "Envoyer la proposition",
     "ln.dragHint": "Glissez pour repositionner · touchez pour affecter",
-    "ln.benchTitle": "Remplaçants", "ln.calledSubs": "Remplaçants convoqués", "ln.notCalled": "Non convoqués", "ln.notCalledTag": "Non convoqué", "ln.noCallYet": "Pas encore de convocation : tout le monde apparaît ici. Faites la convocation pour voir qui vient et qui reste dehors.", "ln.goCall": "Aller à Convocation", "ln.xiNotCalled": "La composition compte {n} non convoqué(s) : {names}.", "ln.sumCalled": "Convoqués", "ln.sumXI": "Dans le XI", "ln.sumSubs": "Remplaçants", "ln.sumOut": "Dehors", "ln.callIn": "Convoquer", "ln.callOut": "Retirer de la convocation", "ln.noneHere": "Personne.",
+    "ln.benchTitle": "Remplaçants", "ln.calledSubs": "Remplaçants convoqués", "ln.notCalled": "Non convoqués", "ln.notCalledTag": "Non convoqué", "ln.noCallYet": "Pas encore de convocation : tout le monde apparaît ici. Faites la convocation pour voir qui vient et qui reste dehors.", "ln.goCall": "Aller à Convocation", "ln.xiNotCalled": "La composition compte {n} non convoqué(s) : {names}.", "ln.sumCalled": "Convoqués", "ln.sumXI": "Dans le XI", "ln.sumSubs": "Remplaçants", "ln.sumOut": "Dehors", "ln.callIn": "Convoquer", "ln.callOut": "Retirer de la convocation", "ln.noneHere": "Personne.", "conv.label": "Convocation", "conv.conv": "Convoqué", "conv.tecnica": "Écarté · choix technique", "conv.lesion": "Écarté · blessure", "conv.sancion": "Écarté · suspension", "conv.no": "Non convoqué (sans motif)", "lin.POR": "Gardiens", "lin.DEF": "Défenseurs", "lin.MED": "Milieux", "lin.DEL": "Attaquants", "lin.none": "Sans poste habituel", "lin1.POR": "Gardien", "lin1.DEF": "Défenseur", "lin1.MED": "Milieu", "lin1.DEL": "Attaquant", "lin.same": "même poste", "pf.lineTitle": "Poste habituel", "pf.lineHint": "Sert à proposer des remplacements au même poste. Si vous ne l'indiquez pas, il est déduit des matchs joués.", "pf.lineAuto": "Déduit : {l}", "pf.lineNone": "Non défini", "mt.whoOut": "Qui sort ?", "mt.inFor": "{n} entre : à la place de qui ?", "mt.starterFor": "Titulaire au poste {p} : {n}. Remplacer par :", "mt.starterSwapHint": "Avant le coup d'envoi : vous changez le titulaire sans rien noter sur la feuille.", "mt.onPitchGroup": "Sur le terrain", "mt.benchGroup": "Banc", "mt.notCalledGroup": "Non convoqués", "mt.alreadyOut": "Déjà joué · peuvent revenir", "mt.reentry": "Retours en jeu", "mt.reentryOn": "Un joueur remplacé peut revenir", "mt.reentryOff": "Un joueur remplacé ne revient pas", "mt.reentryHint": "Souvent autorisé à 7 ; à 11, cela dépend de la compétition.", "mt.newMatch": "Nouveau match", "mt.newMatchHint": "Remet le score, le chrono et la feuille à zéro et rétablit le onze de départ.", "mt.newMatchConfirm": "La feuille de ce match n'est pas enregistrée dans l'historique. Commencer un autre match quand même ?", "mt.liveBar": "Match en cours", "mt.backToMatch": "Retour au match", "mt.bgHint": "Le chrono continue même si vous fermez l'app ou verrouillez le téléphone, et la feuille et le score restent sur cet appareil. Tant qu'il tourne, l'écran reste allumé.",
     "ln.video": "🎬 Vidéo du onze", "ln.videoPro": "🎬 Vidéo du onze · PRO", "ln.videoRec": "Enregistrement…", "ln.videoOk": "✓ Vidéo prête.", "ln.videoFail": "Impossible de générer la vidéo.", "ln.videoNoXI": "Composez le onze avant de faire la vidéo.", "ln.videoDownload": "⤓ Télécharger la vidéo", "ln.shareWhatsapp": "⬆ Envoyer par WhatsApp", "ln.downloadLineup": "⤓ Télécharger la compo", "ln.downloadOk": "✓ Téléchargée.",
     "ln.shareImageBusy": "Génération de l'image…",
     "ln.shareImageOk": "✓ Image prête.",
@@ -1997,7 +1997,7 @@ const DICT = {
     "ln.placeAndSend": "Stelle die Startelf zusammen und sende den Vorschlag, wenn du fertig bist.",
     "ln.sendProposal": "Vorschlag senden",
     "ln.dragHint": "Ziehen zum Umstellen · Antippen zum Zuweisen",
-    "ln.benchTitle": "Bank", "ln.calledSubs": "Nominierte Ersatzspieler", "ln.notCalled": "Nicht nominiert", "ln.notCalledTag": "Nicht nominiert", "ln.noCallYet": "Noch kein Kader, daher stehen hier alle. Stell den Kader zusammen, dann siehst du, wer dabei ist und wer nicht.", "ln.goCall": "Zum Kader", "ln.xiNotCalled": "In der Startelf stehen {n} nicht Nominierte: {names}.", "ln.sumCalled": "Nominiert", "ln.sumXI": "Startelf", "ln.sumSubs": "Ersatz", "ln.sumOut": "Draußen", "ln.callIn": "Nominieren", "ln.callOut": "Aus dem Kader nehmen", "ln.noneHere": "Niemand.",
+    "ln.benchTitle": "Bank", "ln.calledSubs": "Nominierte Ersatzspieler", "ln.notCalled": "Nicht nominiert", "ln.notCalledTag": "Nicht nominiert", "ln.noCallYet": "Noch kein Kader, daher stehen hier alle. Stell den Kader zusammen, dann siehst du, wer dabei ist und wer nicht.", "ln.goCall": "Zum Kader", "ln.xiNotCalled": "In der Startelf stehen {n} nicht Nominierte: {names}.", "ln.sumCalled": "Nominiert", "ln.sumXI": "Startelf", "ln.sumSubs": "Ersatz", "ln.sumOut": "Draußen", "ln.callIn": "Nominieren", "ln.callOut": "Aus dem Kader nehmen", "ln.noneHere": "Niemand.", "conv.label": "Kader", "conv.conv": "Nominiert", "conv.tecnica": "Nicht nominiert · Trainerentscheidung", "conv.lesion": "Nicht nominiert · Verletzung", "conv.sancion": "Nicht nominiert · Sperre", "conv.no": "Nicht nominiert (ohne Grund)", "lin.POR": "Torhüter", "lin.DEF": "Verteidiger", "lin.MED": "Mittelfeldspieler", "lin.DEL": "Stürmer", "lin.none": "Ohne Stammposition", "lin1.POR": "Torhüter", "lin1.DEF": "Verteidiger", "lin1.MED": "Mittelfeld", "lin1.DEL": "Stürmer", "lin.same": "gleiche Position", "pf.lineTitle": "Stammposition", "pf.lineHint": "Damit werden Wechsel auf derselben Position vorgeschlagen. Ohne Angabe wird sie aus den bisherigen Einsätzen abgeleitet.", "pf.lineAuto": "Abgeleitet: {l}", "pf.lineNone": "Nicht gesetzt", "mt.whoOut": "Wer geht raus?", "mt.inFor": "{n} kommt rein: für wen?", "mt.starterFor": "Startelf auf {p}: {n}. Ersetzen durch:", "mt.starterSwapHint": "Vor dem Anpfiff: Du tauschst die Startelf, ohne einen Wechsel einzutragen.", "mt.onPitchGroup": "Auf dem Platz", "mt.benchGroup": "Bank", "mt.notCalledGroup": "Nicht nominiert", "mt.alreadyOut": "Schon gespielt · dürfen zurück", "mt.reentry": "Wiedereinwechslung", "mt.reentryOn": "Ausgewechselte dürfen wieder rein", "mt.reentryOff": "Ausgewechselte dürfen nicht zurück", "mt.reentryHint": "Im 7er-Fußball meist erlaubt; im 11er hängt es vom Wettbewerb ab.", "mt.newMatch": "Neues Spiel", "mt.newMatchHint": "Setzt Spielstand, Uhr und Bericht zurück und stellt die Startelf wieder her.", "mt.newMatchConfirm": "Der Spielbericht ist nicht im Verlauf gespeichert. Trotzdem ein neues Spiel beginnen?", "mt.liveBar": "Spiel läuft", "mt.backToMatch": "Zurück zum Spiel", "mt.bgHint": "Die Uhr läuft weiter, auch wenn du die App schließt oder das Handy sperrst, und Bericht und Spielstand bleiben auf diesem Gerät. Solange sie läuft, bleibt der Bildschirm an.",
     "ln.video": "🎬 Video der Elf", "ln.videoPro": "🎬 Video der Elf · PRO", "ln.videoRec": "Aufnahme…", "ln.videoOk": "✓ Video fertig.", "ln.videoFail": "Video konnte nicht erstellt werden.", "ln.videoNoXI": "Stelle erst die Elf auf.", "ln.videoDownload": "⤓ Video herunterladen", "ln.shareWhatsapp": "⬆ Per WhatsApp senden", "ln.downloadLineup": "⤓ Aufstellung laden", "ln.downloadOk": "✓ Heruntergeladen.",
     "ln.shareImageBusy": "Bild wird erstellt…",
     "ln.shareImageOk": "✓ Bild bereit.",
@@ -2692,7 +2692,7 @@ const DICT = {
     "ln.placeAndSend": "Monta o onze e envia a proposta quando terminares.",
     "ln.sendProposal": "Enviar proposta",
     "ln.dragHint": "Arrasta para recolocar · toque curto para atribuir",
-    "ln.benchTitle": "Banco", "ln.calledSubs": "Suplentes convocados", "ln.notCalled": "Não convocados", "ln.notCalledTag": "Não convocado", "ln.noCallYet": "Ainda não há convocatória, por isso aparecem todos. Faz a convocatória e vês quem vai e quem fica de fora.", "ln.goCall": "Ir à Convocatória", "ln.xiNotCalled": "No onze há {n} sem convocar: {names}.", "ln.sumCalled": "Convocados", "ln.sumXI": "No onze", "ln.sumSubs": "Suplentes", "ln.sumOut": "De fora", "ln.callIn": "Convocar", "ln.callOut": "Tirar da convocatória", "ln.noneHere": "Ninguém.",
+    "ln.benchTitle": "Banco", "ln.calledSubs": "Suplentes convocados", "ln.notCalled": "Não convocados", "ln.notCalledTag": "Não convocado", "ln.noCallYet": "Ainda não há convocatória, por isso aparecem todos. Faz a convocatória e vês quem vai e quem fica de fora.", "ln.goCall": "Ir à Convocatória", "ln.xiNotCalled": "No onze há {n} sem convocar: {names}.", "ln.sumCalled": "Convocados", "ln.sumXI": "No onze", "ln.sumSubs": "Suplentes", "ln.sumOut": "De fora", "ln.callIn": "Convocar", "ln.callOut": "Tirar da convocatória", "ln.noneHere": "Ninguém.", "conv.label": "Convocatória", "conv.conv": "Convocado", "conv.tecnica": "Fora · opção técnica", "conv.lesion": "Fora · lesão", "conv.sancion": "Fora · castigo", "conv.no": "Não convocado (sem motivo)", "lin.POR": "Guarda-redes", "lin.DEF": "Defesas", "lin.MED": "Médios", "lin.DEL": "Avançados", "lin.none": "Sem posição habitual", "lin1.POR": "Guarda-redes", "lin1.DEF": "Defesa", "lin1.MED": "Médio", "lin1.DEL": "Avançado", "lin.same": "mesma posição", "pf.lineTitle": "Posição habitual", "pf.lineHint": "Serve para sugerir substituições na mesma posição. Se não a puseres, deduz-se de onde jogou.", "pf.lineAuto": "Deduzida: {l}", "pf.lineNone": "Por definir", "mt.whoOut": "Quem sai?", "mt.inFor": "Entra {n}: por quem?", "mt.starterFor": "Titular em {p}: {n}. Trocar por:", "mt.starterSwapHint": "Antes do apito inicial: trocas o titular sem registar nada na ficha.", "mt.onPitchGroup": "Em campo", "mt.benchGroup": "Banco", "mt.notCalledGroup": "Não convocados", "mt.alreadyOut": "Já jogaram · podem voltar", "mt.reentry": "Reentradas", "mt.reentryOn": "Quem sai pode voltar a entrar", "mt.reentryOff": "Quem sai já não volta", "mt.reentryHint": "No futebol de 7 costuma ser permitido; no de 11 depende da competição.", "mt.newMatch": "Novo jogo", "mt.newMatchHint": "Põe o marcador, o relógio e a ficha a zero e repõe o onze inicial.", "mt.newMatchConfirm": "A ficha deste jogo não está guardada no histórico. Começar outro jogo na mesma?", "mt.liveBar": "Jogo em curso", "mt.backToMatch": "Voltar ao jogo", "mt.bgHint": "O relógio continua a contar mesmo que feches a app ou bloqueies o telemóvel, e a ficha e o marcador ficam guardados neste dispositivo. Enquanto corre, o ecrã não se apaga.",
     "ln.video": "🎬 Vídeo do onze", "ln.videoPro": "🎬 Vídeo do onze · PRO", "ln.videoRec": "A gravar…", "ln.videoOk": "✓ Vídeo pronto.", "ln.videoFail": "Não foi possível gerar o vídeo.", "ln.videoNoXI": "Escolhe o onze antes de fazer o vídeo.", "ln.videoDownload": "⤓ Descarregar vídeo", "ln.shareWhatsapp": "⬆ Enviar por WhatsApp", "ln.downloadLineup": "⤓ Descarregar onze", "ln.downloadOk": "✓ Descarregado.",
     "ln.shareImageBusy": "A gerar imagem…",
     "ln.shareImageOk": "✓ Imagem pronta.",
@@ -5189,6 +5189,14 @@ const POS_NOMBRE = {
   MB: "Interior", ED: "Extremo derecho", EI: "Extremo izquierdo", DC: "Delantero",
 };
 const POS_ORDEN = ["POR", "LD", "DFC", "LI", "MCD", "MC", "MB", "MCO", "ED", "DC", "EI"];
+/* La línea de cada demarcación del campo. Sirve para proponer cambios de la
+   misma posición: si sale un DC, primero se ofrecen los delanteros. */
+const LINEAS = ["POR", "DEF", "MED", "DEL"];
+const LINEA_DE_POS = {
+  POR: "POR", LD: "DEF", DFC: "DEF", LI: "DEF", DEF: "DEF",
+  MCD: "MED", MC: "MED", MB: "MED", MCO: "MED", MED: "MED",
+  ED: "DEL", EI: "DEL", DC: "DEL", DEL: "DEL",
+};
 const jugToAir = (p, teamRec) => ({
   Nombre: p.n, Dorsal: Number(p.d) || 0,
   /* Aviso médico permanente del jugador. Va en su ficha y no en el parte
@@ -5206,6 +5214,11 @@ const jugToAir = (p, teamRec) => ({
      de Airtable se queda como está -no se borra lo ya escrito-, simplemente
      la app no la lee ni la actualiza. */
   Estado: p.st === "lesionado" ? "Lesionado" : p.st === "duda" ? "Duda" : p.st === "sancionado" ? "Sancionado" : "Disponible",
+  /* Demarcación habitual, solo la línea (POR/DEF/MED/DEL): no es dónde
+     juega hoy -eso lo dice la alineación- sino de qué juega normalmente,
+     para proponer cambios de su misma posición. Solo se manda si se ha
+     puesto: sin ella no se borra lo que hubiera en Airtable. */
+  ...(p.linea ? { "Posición": p.linea } : {}),
   Minutos: Number(p.min) || 0,
   ...(teamRec ? { Equipo: [teamRec] } : {}),
 });
@@ -5215,6 +5228,7 @@ const jugFromAir = (r, i) => ({
     : String(r.Estado || "").toLowerCase() === "duda" ? "duda"
     : String(r.Estado || "").toLowerCase() === "sancionado" ? "sancionado" : "disponible",
   min: Number(r.Minutos) || 0, att: 0,
+  linea: LINEA_DE_POS[String(r["Posición"] || "").toUpperCase()] || null,
   aviso: r["Aviso medico"] || "",
   molestia: r.Molestia || "",
   /* Foto real, subida por el cuerpo técnico o -única excepción a que sean
@@ -8255,8 +8269,12 @@ const demoTemporada = (hoy, lang = "es", entrenador = "") => {
     asistencia[d] = dia;
   });
 
+  /* De qué juega cada uno, para que al tocar a un titular salgan primero
+     los de su posición: Adrián (13), Unai (11) e Iván (18) son delanteros. */
+  const LINEA_DEMO = { 1: "POR", 19: "POR", 2: "DEF", 3: "DEF", 4: "DEF", 5: "DEF", 14: "DEF", 17: "DEF",
+    6: "MED", 7: "MED", 8: "MED", 12: "MED", 16: "MED", 9: "DEL", 10: "DEL", 11: "DEL", 13: "DEL", 15: "DEL", 18: "DEL" };
   const players = PLANTILLA_DEMO.map((p) => ({
-    ...p, min: minutos[p.id] || 0,
+    ...p, min: minutos[p.id] || 0, linea: LINEA_DEMO[p.id] || null,
     ...(p.id === 17 ? { st: "lesionado", molestia: tx.molestia, histLesiones: [{ f: lesionRuben, e: "lesionado", c: "entreno" }] } : {}),
   }));
 
@@ -10870,6 +10888,54 @@ export default function App() {
      montaba peleándose con ella; ahora se lee al revés, del once hacia la
      ficha. Quien no está en la alineación no tiene demarcación, y eso es una
      respuesta legítima: todavía no se ha decidido dónde juega. */
+  /* ---- De qué juega cada uno ----
+     La línea habitual de un jugador (POR/DEF/MED/DEL): la que tenga puesta en
+     su ficha y, si no, la que más se repite donde ha sido titular en los
+     partidos guardados y donde está colocado hoy. Sirve para ofrecer primero
+     a los de la misma posición al tocar un titular o al hacer un cambio. */
+  const lineaHabitual = (p) => {
+    if (!p) return null;
+    if (p.linea && LINEAS.includes(p.linea)) return p.linea;
+    const cuenta = {};
+    const suma = (pos, peso = 1) => { const l = LINEA_DE_POS[pos]; if (l) cuenta[l] = (cuenta[l] || 0) + peso; };
+    for (const m of historial || []) {
+      for (const j of m.jugadores || []) {
+        const esEl = p.rec ? j.rec === p.rec : !j.rec && j.id === p.id && j.n === p.n;
+        if (esEl && j.titular && j.pos) suma(j.pos);
+      }
+    }
+    const slot = Object.keys(lineup).find((k) => lineup[k] === p.id);
+    if (slot) suma(slotPos[slot]?.label, 2);
+    const mejor = Object.entries(cuenta).sort((a, b) => b[1] - a[1])[0];
+    return mejor ? mejor[0] : null;
+  };
+  /* Agrupa una lista por línea, con la del puesto que se está cubriendo la
+     primera ("Delanteros · misma posición") y los que no tienen ninguna al
+     final. */
+  const gruposPorLinea = (lista, objetivo) => {
+    const orden = objetivo ? [objetivo, ...LINEAS.filter((l) => l !== objetivo)] : LINEAS;
+    const out = [];
+    for (const l of [...orden, null]) {
+      const js = lista.filter((p) => (lineaHabitual(p) || null) === l).sort((a, b) => a.d - b.d);
+      if (!js.length) continue;
+      out.push({
+        linea: l, jugadores: js,
+        titulo: l ? `${t(`lin.${l}`)}${l === objetivo ? ` · ${t("lin.same")}` : ""} (${js.length})` : `${t("lin.none")} (${js.length})`,
+      });
+    }
+    return out;
+  };
+  /* El once con el que empezó el partido, deshaciendo los cambios del acta
+     desde el último: donde está hoy quien entró, vuelve a ponerse quien salió. */
+  const revertirCambios = (once, evs) => {
+    const L = { ...once };
+    for (const e of evs) {
+      if (e.type !== "cambio" || e.pid == null || e.salePid == null) continue;
+      const slot = Object.keys(L).find((k) => L[k] === e.pid);
+      if (slot) L[slot] = e.salePid;
+    }
+    return L;
+  };
   const posDe = (id) => {
     const slot = Object.keys(lineup).find((k) => lineup[k] === id);
     return slot ? slotPos[slot]?.label || "" : "";
@@ -11559,10 +11625,10 @@ export default function App() {
         /* tandas con valor por defecto: las configuraciones guardadas antes de
            que existieran las tandas no traen el campo, y sin esto el contador
            salía "NaN / undefined" en cuanto se recuperaba una del navegador. */
-        if (d && Number(d.halfMin)) { setMatchCfg({ halfMin: Number(d.halfMin), added: Number(d.added) || 0, tandas: Number(d.tandas) || 5, sysRival: d.sysRival || "4-4-2" }); return; }
+        if (d && Number(d.halfMin)) { setMatchCfg({ halfMin: Number(d.halfMin), added: Number(d.added) || 0, tandas: Number(d.tandas) || 5, sysRival: d.sysRival || "4-4-2", reentrada: typeof d.reentrada === "boolean" ? d.reentrada : !!session.team?.f7 }); return; }
       }
     } catch { /* sin localStorage */ }
-    setMatchCfg({ halfMin: defaultHalf(session.team), added: 0, tandas: 5, sysRival: "4-4-2" });
+    setMatchCfg({ halfMin: defaultHalf(session.team), added: 0, tandas: 5, sysRival: "4-4-2", reentrada: !!session.team?.f7 });
   }, [matchKey]); // eslint-disable-line
   useEffect(() => {
     if (!session) return;
@@ -11572,6 +11638,10 @@ export default function App() {
      perdían los jugadores elegidos y los datos del partido. Ahora persiste por
      equipo, igual que el resto de módulos. */
   const [called, setCalled] = useState(new Set());
+  /* Por qué se queda fuera cada no convocado: decisión técnica, lesión o
+     sanción. Viaja con el borrador de la convocatoria, en este dispositivo:
+     es información del cuerpo técnico y no se manda a las familias. */
+  const [descartes, setDescartes] = useState({});
   const callDraftKey = `cb_calldraft_${session?.team?.id || "demo"}`;
   const callDraftListo = useRef(false);
   useEffect(() => {
@@ -11581,19 +11651,42 @@ export default function App() {
     if (d && Array.isArray(d.ids)) {
       setCalled(new Set(d.ids));
       setMatchInfo({ ...MATCHINFO_VACIO, ...(d.info || {}) });
+      setDescartes(d.descartes && typeof d.descartes === "object" ? d.descartes : {});
     } else if (session?.email === "demo") {
       setCalled(new Set([...Object.values(LINEUP_INIT), 12, 13, 16]));
       setMatchInfo(MATCHINFO_DEMO);
+      setDescartes({ 11: "tecnica", 14: "tecnica", 17: "lesion" });
     } else {
       setCalled(new Set());
       setMatchInfo(MATCHINFO_VACIO);
+      setDescartes({});
     }
     callDraftListo.current = true;
   }, [callDraftKey]); // eslint-disable-line
   useEffect(() => {
     if (!callDraftListo.current) return;   /* no pisar lo guardado en el primer render */
-    try { localStorage.setItem(callDraftKey, JSON.stringify({ ids: [...called], info: matchInfo })); } catch { /* noop */ }
-  }, [called, matchInfo, callDraftKey]);
+    try { localStorage.setItem(callDraftKey, JSON.stringify({ ids: [...called], info: matchInfo, descartes })); } catch { /* noop */ }
+  }, [called, matchInfo, descartes, callDraftKey]);
+  /* Estado de cada jugador para el partido: convocado, o fuera y por qué.
+     Sin convocatoria hecha todavía, todos cuentan como convocables. Un
+     lesionado o sancionado sin motivo puesto a mano sale con el suyo. */
+  const MOTIVOS_DESCARTE = ["tecnica", "lesion", "sancion"];
+  const motivoDescarte = (p) => descartes[p.id] || (p.st === "lesionado" ? "lesion" : p.st === "sancionado" ? "sancion" : "");
+  const estadoConvocatoria = (p) => (called.size === 0 || called.has(p.id) ? "conv" : motivoDescarte(p) || "no");
+  const ponerEstadoConvocatoria = (p, estado) => {
+    if (!can("editCall")) return;
+    setCalled((s) => {
+      const n = new Set(s.size ? s : players.map((x) => x.id));
+      if (estado === "conv") n.add(p.id); else n.delete(p.id);
+      return n;
+    });
+    setDescartes((d) => {
+      const n = { ...d };
+      if (MOTIVOS_DESCARTE.includes(estado)) n[p.id] = estado; else delete n[p.id];
+      return n;
+    });
+  };
+  const colorConvocatoria = (e) => (e === "conv" ? C.green : e === "lesion" ? C.red : e === "sancion" ? C.warn : C.dim);
   const [copied, setCopied] = useState(false);
 
   const [running, setRunning] = useState(false);
@@ -11674,6 +11767,12 @@ export default function App() {
   /* Puesto del campo que se ha tocado para hacer un cambio: mientras hay uno
      elegido, debajo sale el banquillo para decir quién entra. */
   const [cambioSlot, setCambioSlot] = useState(null);
+  /* Cambio que se empieza por el que entra (desde la plantilla): falta
+     decir por quién. */
+  const [entraPendiente, setEntraPendiente] = useState(null);
+  /* Jugador cuyo selector de convocatoria (convocado / descartado y por qué)
+     está abierto en Alineación. */
+  const [convMenu, setConvMenu] = useState(null);
   /* Interruptor de los avisos del sistema. Se guarda en el móvil, no en la
      cuenta: el permiso de notificaciones es de este navegador. */
   const [notisOk, setNotisOk] = useState(() => notisOn());
@@ -11713,6 +11812,9 @@ export default function App() {
         setSecs(calcSecs());
         if (Number(d.half)) setHalf(Number(d.half));
         if (d.periodo) setPeriodo(d.periodo);
+        /* Si el reloj seguía corriendo al cerrar la app, se vuelve directo
+           al partido: es lo que se estaba haciendo. */
+        if (d.desde && can("events")) setTab((x) => (x === "inicio" ? "partido" : x));
       }
     } catch { /* sin localStorage */ }
     relojListo.current = true;
@@ -11783,6 +11885,71 @@ export default function App() {
     setEnDescanso(true);
     setEvents((e) => [{ min: minute || 1, disp: dispAbs, type: "descanso", player: null, pid: null, dorsal: null, half }, ...e]);
   };
+  /* ---- El partido en vivo, a salvo si se cierra la app ----
+     El reloj ya sobrevivía (se guarda su ancla), pero el acta, el marcador
+     y las tandas vivían solo en memoria: cerrar la app a media parte -o que
+     el sistema la matara por falta de memoria- los borraba y el reloj
+     seguía contando un partido vacío. Se guardan en el dispositivo a cada
+     cambio y se recuperan al volver, dentro de 12 horas.
+     `onceInicial` es el once que empezó, guardado al arrancar el partido:
+     los cambios escriben en la alineación, y sin esta foto no se podía
+     saber quién fue titular ni volver al once al empezar otro partido. */
+  const [onceInicial, setOnceInicial] = useState(null);
+  const envivoKey = `cb_envivo_${session?.team?.id || "demo"}`;
+  const envivoListo = useRef(false);
+  useEffect(() => {
+    envivoListo.current = false;
+    let d = null;
+    try { d = JSON.parse(localStorage.getItem(envivoKey) || "null"); } catch { /* noop */ }
+    const vale = d && Date.now() - Number(d.guardado || 0) < 12 * 3600000;
+    setEvents(vale && Array.isArray(d.events) ? d.events : []);
+    setScore(vale && d.score ? { us: Number(d.score.us) || 0, them: Number(d.score.them) || 0 } : { us: 0, them: 0 });
+    setTandasUsadas(vale ? Number(d.tandasUsadas) || 0 : 0);
+    setEnDescanso(vale ? !!d.enDescanso : false);
+    setOnceInicial(vale && d.onceInicial ? d.onceInicial : null);
+    setActaGuardada(vale ? !!d.actaGuardada : false);
+    envivoListo.current = true;
+  }, [envivoKey]); // eslint-disable-line
+  useEffect(() => {
+    if (!envivoListo.current) return;
+    try {
+      localStorage.setItem(envivoKey, JSON.stringify({ events, score, tandasUsadas, enDescanso, onceInicial, actaGuardada, guardado: Date.now() }));
+    } catch { /* noop */ }
+  }, [events, score, tandasUsadas, enDescanso, onceInicial, actaGuardada]); // eslint-disable-line
+  useEffect(() => {
+    if (enJuego && !onceInicial && Object.values(lineup).some(Boolean)) setOnceInicial(revertirCambios(lineup, events));
+  }, [enJuego]); // eslint-disable-line
+  /* Empezar otro partido: marcador, reloj, acta y tandas a cero, y el once
+     inicial de vuelta -los cambios lo habían ido modificando-. Si el acta no
+     se guardó en el histórico, se pregunta antes de tirarla. */
+  const nuevoPartido = () => {
+    if (events.length && !actaGuardada && !window.confirm(t("mt.newMatchConfirm"))) return;
+    if (onceInicial) setLineup(onceInicial);
+    setEvents([]); setScore({ us: 0, them: 0 }); setTandasUsadas(0); setEnDescanso(false);
+    setOnceInicial(null); setActaGuardada(false);
+    ponerReloj(0, false); setHalf(1); setPeriodo("p1");
+    setMatchCfg((c) => ({ ...c, added: 0 }));
+    avisadoRef.current = "";
+    setCambioSlot(null); setEntraPendiente(null); setEvPick(null);
+  };
+  /* Pantalla encendida mientras corre el reloj en Modo partido: con el móvil
+     en la mano en la banda, que se apague cada 30 segundos es lo que hace
+     perder el minuto de un gol. Se vuelve a pedir al volver a la app, que es
+     cuando el navegador la suelta. */
+  useEffect(() => {
+    if (!running || tab !== "partido" || typeof navigator === "undefined" || !("wakeLock" in navigator)) return;
+    let lock = null;
+    let vivo = true;
+    const pedir = async () => { try { lock = await navigator.wakeLock.request("screen"); } catch { /* sin permiso o sin soporte */ } };
+    pedir();
+    const alVolver = () => { if (vivo && document.visibilityState === "visible") pedir(); };
+    document.addEventListener("visibilitychange", alVolver);
+    return () => {
+      vivo = false;
+      document.removeEventListener("visibilitychange", alVolver);
+      try { lock && lock.release(); } catch { /* noop */ }
+    };
+  }, [running, tab]);
   /* Penaltis marcados/fallados, propios y del rival: se cuentan a partir de
      los eventos "penalti" en vez de en un contador aparte, así el acta y el
      marcador de la tanda nunca se pueden desincronizar entre sí. */
@@ -11840,7 +12007,22 @@ export default function App() {
     setLineup((l) => ({ ...l, [slot]: entra.id }));
     addEvent("cambio", entra, sale ? { sale: sale.n, saleDorsal: sale.d, salePid: sale.id } : {});
     setCambioSlot(null);
+    setEntraPendiente(null);
   };
+  /* Antes del saque no hay cambios: se cambia el titular. Mismo gesto -tocar
+     al jugador y elegir quién va-, pero sin apuntar nada en el acta, que si
+     no empezaba el partido con un "cambio" en el minuto 0. */
+  const cambiarTitular = (slot, entra) => {
+    setLineup((l) => ({ ...l, [slot]: entra.id }));
+    setCambioSlot(null);
+    setEntraPendiente(null);
+  };
+  /* El panel de "quién entra / por quién" va junto a los botones del acta;
+     si se abre desde el campo o la plantilla, se lleva la pantalla hasta él. */
+  const irAlCambio = () => setTimeout(() => {
+    const el = document.getElementById("cb-cambio");
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+  }, 60);
 
   /* `loading` lo comparten las funciones de IA que quedan: el análisis
      post-partido y la sesión generada desde Temporada. */
@@ -12704,6 +12886,27 @@ export default function App() {
             <div className="rounded-lg border p-2.5" style={{ borderColor: C.line, background: C.panel2 }}>
               <div className="text-[10px] font-display uppercase tracking-widest" style={{ color: C.dim }}>{t("pf.pos")}</div>
               <div style={{ color: posDe(profile.id) ? C.chalk : C.dim }}>{posDe(profile.id) || t("pf.noPos")}</div>
+            </div>
+            {/* De qué juega normalmente: no es el puesto de hoy, es lo que usa
+                la app para proponer cambios de la misma posición. Opcional:
+                sin ponerla, se deduce de dónde ha jugado. */}
+            <div className="col-span-2">
+              <span className="text-[10px] font-display uppercase tracking-widest block mb-1" style={{ color: C.dim }}>{t("pf.lineTitle")}</span>
+              <div className="flex flex-wrap gap-1.5">
+                {[...LINEAS, ""].map((l) => {
+                  const sel = (profile.linea || "") === l;
+                  return (
+                    <button key={l || "ninguna"} type="button" onClick={() => editarJugador(profile.id, { linea: l || null })} aria-pressed={sel}
+                      className="text-xs px-2.5 py-1.5 rounded-lg border"
+                      style={{ borderColor: sel ? AC : C.line, background: sel ? C.panel : "transparent", color: sel ? AC : C.chalk }}>
+                      {l ? t(`lin1.${l}`) : t("pf.lineNone")}
+                    </button>
+                  );
+                })}
+              </div>
+              <div className="text-[11px] mt-1 leading-snug" style={{ color: C.dim }}>
+                {!profile.linea && lineaHabitual(profile) ? `${t("pf.lineAuto").replace("{l}", t(`lin1.${lineaHabitual(profile)}`))} · ` : ""}{t("pf.lineHint")}
+              </div>
             </div>
             <label className="col-span-2 block">
               <span className="text-[10px] font-display uppercase tracking-widest block mb-1" style={{ color: C.dim }}>{t("pf.status")}</span>
@@ -18579,7 +18782,6 @@ export default function App() {
       ? [...startersView].map((id) => players.find((p) => p.id === id)).filter((p) => p && !called.has(p.id))
       : [];
     const puedeConvocar = can("editCall");
-    const alternarConvocado = (id) => puedeConvocar && setCalled((s) => { const n = new Set(s); n.has(id) ? n.delete(id) : n.add(id); return n; });
     const puestoDelSlot = selSlot ? slotPos[selSlot]?.label : null;
     /* Con un puesto elegido se enseña la plantilla entera -para poder cambiar
        a quien esté puesto por cualquier otro-; sin puesto elegido, solo los
@@ -18819,7 +19021,10 @@ export default function App() {
         .map(({ sl, p }) => `${sl.label} ${keycap(p.d)} ${p.n}${capitanes.includes(p.id) ? ` (${t("ln.captainShort")})` : ""}`);
       const suplentes = suplentesConv.slice().sort((a, b) => a.d - b.d)
         .map((p) => `${keycap(p.d)} ${p.n}${capitanes.includes(p.id) ? ` (${t("ln.captainShort")})` : ""}`);
-      const fuera = noConvocados.slice().sort((a, b) => a.d - b.d).map((p) => `${keycap(p.d)} ${p.n}`);
+      const fuera = noConvocados.slice().sort((a, b) => a.d - b.d).map((p) => {
+        const m = motivoDescarte(p);
+        return `${keycap(p.d)} ${p.n}${m ? ` (${t(`conv.${m}`).split("·").pop().trim()})` : ""}`;
+      });
       const staff = staffTecnico.filter((m) => (m.n || "").trim()).map((m) => (m.rol ? `${m.n} · ${m.rol}` : m.n));
       return [
         `⬡ *${t("nav.alineacion").toUpperCase()} — ${session.club || ""} ${session.team?.name || ""}*`,
@@ -19179,11 +19384,11 @@ export default function App() {
           {/* Quién va y quién no, de un vistazo: convocados, en el once,
               suplentes y fuera. */}
           {hayConvocatoria ? (
-            <div className="grid grid-cols-4 gap-1.5 mb-3">
+            <div className="grid grid-cols-4 gap-1 sm:gap-1.5 mb-3">
               {[["ln.sumCalled", called.size, C.chalk], ["ln.sumXI", startersView.size - titularesFuera.length, C.chalk], ["ln.sumSubs", suplentesConv.length, C.chalk], ["ln.sumOut", noConvocados.length, C.dim]].map(([k, n, col]) => (
-                <div key={k} className="rounded-lg border px-1.5 py-2 text-center" style={{ borderColor: C.line, background: C.panel2 }}>
+                <div key={k} className="rounded-lg border px-0.5 py-2 text-center min-w-0" style={{ borderColor: C.line, background: C.panel2 }}>
                   <div className="font-display text-xl tabular-nums leading-none" style={{ color: col }}>{n}</div>
-                  <div className="text-[9px] sm:text-[10px] font-display uppercase mt-1 leading-tight break-words" style={{ color: C.dim }}>{t(k)}</div>
+                  <div className="text-[8px] min-[400px]:text-[9px] sm:text-[10px] font-display uppercase mt-1 leading-tight tracking-tight break-words" style={{ color: C.dim }}>{t(k)}</div>
                 </div>
               ))}
             </div>
@@ -19201,23 +19406,40 @@ export default function App() {
             </div>
           )}
           <div className="space-y-1.5 max-h-[520px] overflow-y-auto pr-1">
-            {(selSlot || !hayConvocatoria
-              ? [...jugadoresParaSlot].sort((a, b) => Number(called.has(b.id) || !hayConvocatoria) - Number(called.has(a.id) || !hayConvocatoria))
+            {/* Con un puesto elegido -al tocar a Adrián, el DC-, primero los de
+                su misma línea ("Delanteros · misma posición"), luego el resto
+                por líneas, y al final los que no están convocados. Sin puesto
+                elegido, el banquillo partido en convocados y no convocados. */}
+            {(selSlot
+              ? (() => {
+                  const obj = LINEA_DE_POS[puestoDelSlot] || null;
+                  const disp = jugadoresParaSlot.filter((p) => estadoConvocatoria(p) === "conv");
+                  const fuera = jugadoresParaSlot.filter((p) => estadoConvocatoria(p) !== "conv");
+                  return [
+                    ...gruposPorLinea(disp, obj).flatMap((g) => [{ cabecera: g.titulo, mismaLinea: g.linea === obj && !!obj }, ...g.jugadores]),
+                    ...(fuera.length ? [{ cabecera: `${t("ln.notCalled")} (${fuera.length})` }, ...fuera] : []),
+                  ];
+                })()
+              : !hayConvocatoria
+              ? jugadoresParaSlot
               : [{ cabecera: `${t("ln.calledSubs")} (${suplentesConv.length})`, vacio: !suplentesConv.length }, ...[...suplentesConv].sort((a, b) => a.d - b.d),
                 { cabecera: `${t("ln.notCalled")} (${noConvocados.length})`, vacio: !noConvocados.length }, ...[...noConvocados].sort((a, b) => a.d - b.d)]
             ).map((p) => {
               if (p.cabecera) {
                 return (
                   <div key={p.cabecera} className="pt-2">
-                    <div className="text-[11px] font-display uppercase tracking-widest" style={{ color: C.dim }}>{p.cabecera}</div>
+                    <div className="text-[11px] font-display uppercase tracking-widest" style={{ color: p.mismaLinea ? AC : C.dim }}>{p.cabecera}</div>
                     {p.vacio && <div className="text-xs mt-1" style={{ color: C.dim }}>{t("ln.noneHere")}</div>}
                   </div>
                 );
               }
               const enElOnce = startersView.has(p.id);
-              const fueraConv = hayConvocatoria && !called.has(p.id);
+              const estConv = estadoConvocatoria(p);
+              const fueraConv = estConv !== "conv";
+              const linea = lineaHabitual(p);
               return (
-                <div key={p.id} className="w-full flex items-center gap-2 py-2 px-3 rounded-lg border" style={{ borderColor: fueraConv && enElOnce ? C.warn : C.line, background: fueraConv ? "transparent" : C.panel2 }}>
+                <div key={p.id} className="rounded-lg border" style={{ borderColor: fueraConv && enElOnce ? C.warn : C.line, background: fueraConv ? "transparent" : C.panel2 }}>
+                <div className="w-full flex items-center gap-2 py-2 px-3">
                   {/* Sin sitio donde meterlo -el once lleno y ningún puesto
                       elegido- el toque no hace nada, así que se enseña apagado
                       en vez de fingir que responde. */}
@@ -19272,18 +19494,21 @@ export default function App() {
                             ocupa ahora mismo; quien está en el banquillo no
                             tiene ninguna todavía. */}
                         {enElOnce && <span>{puestoDe(p.id)} · XI</span>}
-                        {fueraConv && <span style={{ color: enElOnce ? C.warn : C.dim }}>{t("ln.notCalledTag")}</span>}
+                        {!enElOnce && linea && <span>{t(`lin1.${linea}`)}</span>}
+                        {fueraConv && <span style={{ color: enElOnce ? C.warn : colorConvocatoria(estConv) }}>{estConv === "no" ? t("ln.notCalledTag") : t(`conv.${estConv}`)}</span>}
                       </span>
                     </span>
                   </button>
-                  {/* Convocar o quitar sin ir a Convocatoria: se decide a la
-                      vez que se monta el once. */}
-                  {hayConvocatoria && puedeConvocar && (
-                    <button onClick={() => alternarConvocado(p.id)}
-                      title={fueraConv ? t("ln.callIn") : t("ln.callOut")} aria-label={`${fueraConv ? t("ln.callIn") : t("ln.callOut")} — ${p.n}`}
-                      className="shrink-0 text-base w-8 h-8 rounded-lg border font-display flex items-center justify-center"
-                      style={{ borderColor: fueraConv ? AC : C.line, color: fueraConv ? AC : C.dim }}>
-                      {fueraConv ? "+" : "−"}
+                  {/* Convocado o descartado -y por qué- sin ir a Convocatoria:
+                      se decide a la vez que se monta el once. El botón enseña
+                      cómo está; al tocarlo se abren las opciones debajo. */}
+                  {puedeConvocar && (
+                    <button onClick={() => setConvMenu(convMenu === p.id ? null : p.id)}
+                      title={t("conv.label")} aria-label={`${t("conv.label")} — ${p.n}: ${estConv === "no" ? t("conv.no") : t(`conv.${estConv}`)}`}
+                      aria-expanded={convMenu === p.id}
+                      className="shrink-0 text-sm w-8 h-8 rounded-lg border font-display flex items-center justify-center"
+                      style={{ borderColor: colorConvocatoria(estConv), color: colorConvocatoria(estConv) }}>
+                      {estConv === "conv" ? "✓" : estConv === "lesion" ? "✚" : estConv === "sancion" ? "S" : estConv === "tecnica" ? "T" : "✕"}
                     </button>
                   )}
                   {/* Brazalete. Hasta tres -el primero y sus dos suplentes, que
@@ -19301,6 +19526,19 @@ export default function App() {
                       en esta pantalla tocar al jugador significa alinearlo. */}
                   <button onClick={() => setProfileId(p.id)} title={t("ln.openProfile")} aria-label={`${t("ln.openProfile")} — ${p.n}`}
                     className="shrink-0 text-xs w-8 h-8 rounded-lg border flex items-center justify-center" style={{ borderColor: C.line, color: C.dim }}>☰</button>
+                </div>
+                {convMenu === p.id && puedeConvocar && (
+                  <div className="flex flex-wrap gap-1.5 px-3 pb-2.5">
+                    {["conv", ...MOTIVOS_DESCARTE].map((k) => (
+                      <button key={k} onClick={() => { ponerEstadoConvocatoria(p, k); setConvMenu(null); }}
+                        aria-pressed={estConv === k}
+                        className="text-xs px-2.5 py-1.5 rounded-lg border"
+                        style={{ borderColor: estConv === k ? colorConvocatoria(k) : C.line, background: estConv === k ? C.panel : "transparent", color: estConv === k ? colorConvocatoria(k) : C.chalk }}>
+                        {t(`conv.${k}`)}
+                      </button>
+                    ))}
+                  </div>
+                )}
                 </div>
               );
             })}
@@ -19363,7 +19601,11 @@ export default function App() {
 
   const renderCall = () => {
     const editable = can("editCall");
-    const toggle = (id) => editable && setCalled((s) => { const n = new Set(s); n.has(id) ? n.delete(id) : n.add(id); return n; });
+    const toggle = (id) => {
+      if (!editable) return;
+      setCalled((s) => { const n = new Set(s); n.has(id) ? n.delete(id) : n.add(id); return n; });
+      if (!called.has(id)) setDescartes((d) => { const n = { ...d }; delete n[id]; return n; });
+    };
     return (
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <Card title={`${t("cl.title")}${matchInfo.j ? ` — J${matchInfo.j}` : ""} ${editable ? "" : t("cl.readonly")}`}>
@@ -19430,7 +19672,11 @@ export default function App() {
                   <span className="font-display text-base shrink-0" style={{ color: AC }}>{p.d}</span>
                   <span className="truncate">{p.n}</span>
                 </span>
-                <span className="shrink-0" style={{ color: C.dim }}>{posDe(p.id)}</span>
+                {/* Por qué no va -se pone en Alineación-. Solo lo ve el cuerpo
+                    técnico: el mensaje a las familias no lo lleva. */}
+                {called.size > 0 && !called.has(p.id) && motivoDescarte(p)
+                  ? <span className="shrink-0 text-[11px]" style={{ color: colorConvocatoria(motivoDescarte(p)) }}>{t(`conv.${motivoDescarte(p)}`).split("·").pop().trim()}</span>
+                  : <span className="shrink-0" style={{ color: C.dim }}>{posDe(p.id)}</span>}
               </button>
             ))}
           </div>
@@ -19507,6 +19753,80 @@ export default function App() {
     );
   };
 
+  /* ---- Panel de cambio ----
+     Dos formas de empezarlo: tocando al que sale (en el campo, en la
+     plantilla o con "Cambio") o al que entra (en el banquillo). Los
+     candidatos salen ordenados por posición: si sale un delantero, primero
+     los delanteros del banquillo. Solo los convocados; los que ya salieron,
+     solo si la competición permite reingresos. */
+  const panelCambio = () => {
+    const empezado = enJuego;
+    const yaSalieron = new Set(events.filter((e) => e.type === "cambio" && e.salePid != null).map((e) => e.salePid));
+    const enCampoIds = new Set(Object.values(lineup).filter(Boolean));
+    const reentra = typeof matchCfg.reentrada === "boolean" ? matchCfg.reentrada : !!session.team?.f7;
+    const cerrar = () => { setCambioSlot(null); setEntraPendiente(null); };
+    const hacer = (slot, entra) => (empezado ? hacerCambio(slot, entra) : cambiarTitular(slot, entra));
+    const cabeceraGrupo = (titulo, destacado) => (
+      <div key={`h-${titulo}`} className="col-span-full text-[10px] font-display uppercase tracking-widest pt-1" style={{ color: destacado ? AC : C.dim }}>{titulo}</div>
+    );
+    const tarjeta = (key, p, sub, onClick) => (
+      <button key={key} onClick={onClick}
+        className="min-h-14 rounded-lg border flex items-center gap-2 px-2 py-1.5 text-left"
+        style={{ borderColor: p.st === "disponible" ? C.line : stColor(p.st), color: C.chalk, background: C.panel }}>
+        <Avatar p={p} size={34} />
+        <span className="min-w-0 flex-1">
+          {p.photo && <span className="block font-display text-base tabular-nums leading-none" style={{ color: AC }}>{p.d}</span>}
+          <span className="block text-[11px] truncate" style={{ color: C.chalk }}>{p.n}</span>
+          {sub && <span className="block text-[10px] truncate" style={{ color: p.st === "disponible" ? C.dim : stColor(p.st) }}>{sub}</span>}
+        </span>
+      </button>
+    );
+    let titulo = "";
+    let cuerpo = null;
+    if (entraPendiente != null) {
+      const entra = players.find((x) => x.id === entraPendiente);
+      if (!entra) return null;
+      const obj = lineaHabitual(entra);
+      titulo = t("mt.inFor").replace("{n}", `${entra.d} ${entra.n}`);
+      const enCampo = Object.keys(slotPos).filter((k) => lineup[k]).map((k) => ({ k, p: players.find((x) => x.id === lineup[k]) })).filter((x) => x.p);
+      const orden = obj ? [obj, ...LINEAS.filter((l) => l !== obj)] : LINEAS;
+      cuerpo = orden.flatMap((l) => {
+        const items = enCampo.filter((x) => (LINEA_DE_POS[slotPos[x.k]?.label] || null) === l);
+        if (!items.length) return [];
+        return [cabeceraGrupo(`${t(`lin.${l}`)}${l === obj ? ` · ${t("lin.same")}` : ""}`, l === obj),
+          ...items.map((x) => tarjeta(x.k, x.p, slotPos[x.k]?.label, () => hacer(x.k, entra)))];
+      });
+    } else {
+      const sale = players.find((x) => x.id === lineup[cambioSlot]);
+      const posLbl = slotPos[cambioSlot]?.label || cambioSlot;
+      const obj = LINEA_DE_POS[posLbl] || null;
+      titulo = !sale
+        ? t("mt.subEmptySlot").replace("{p}", posLbl)
+        : empezado
+          ? t("mt.subFor").replace("{n}", `${sale.d} ${sale.n} (${posLbl})`)
+          : t("mt.starterFor").replace("{p}", posLbl).replace("{n}", `${sale.d} ${sale.n}`);
+      const base = players.filter((x) => !enCampoIds.has(x.id) && estadoConvocatoria(x) === "conv");
+      const frescos = base.filter((x) => !yaSalieron.has(x.id));
+      const vuelven = reentra ? base.filter((x) => yaSalieron.has(x.id)) : [];
+      const subDe = (x) => [lineaHabitual(x) ? t(`lin1.${lineaHabitual(x)}`) : "", x.st !== "disponible" ? x.st : ""].filter(Boolean).join(" · ");
+      cuerpo = [
+        ...gruposPorLinea(frescos, obj).flatMap((g) => [cabeceraGrupo(g.titulo, g.linea === obj && !!obj),
+          ...g.jugadores.map((x) => tarjeta(x.id, x, subDe(x), () => hacer(cambioSlot, x)))]),
+        ...(vuelven.length ? [cabeceraGrupo(t("mt.alreadyOut"), false), ...vuelven.map((x) => tarjeta(`v${x.id}`, x, subDe(x), () => hacer(cambioSlot, x)))] : []),
+      ];
+      if (!frescos.length && !vuelven.length) cuerpo = [<div key="vacio" className="col-span-full text-[11px]" style={{ color: C.dim }}>{t("mt.benchEmpty")}</div>];
+    }
+    return (
+      <div id="cb-cambio" className="mt-3 p-3 rounded-lg border" style={{ borderColor: AC, background: C.panel2 }}>
+        <div className="flex items-start justify-between gap-2 mb-1">
+          <span className="text-xs leading-snug" style={{ color: AC }}>{titulo}</span>
+          <button onClick={cerrar} className="text-xs px-2 py-1 shrink-0" style={{ color: C.dim }}>✕ {t("c.cancel")}</button>
+        </div>
+        {!empezado && <div className="text-[11px] mb-2" style={{ color: C.dim }}>{t("mt.starterSwapHint")}</div>}
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5 mt-2">{cuerpo}</div>
+      </div>
+    );
+  };
   const renderMatch = () => (
     <div className="space-y-4">
       {/* ---- Marcador, reloj y parte ----
@@ -19638,6 +19958,9 @@ export default function App() {
           </div>
         )}
 
+        {can("events") && periodo !== "pen" && (
+          <div className="mt-3 text-center text-[11px] leading-relaxed" style={{ color: C.dim }}>{t("mt.bgHint")}</div>
+        )}
         {/* El cruce se monta desde los propios nombres del marcador: cada uno
              abre su lista. Antes el rival solo se podía elegir en Convocatoria
              y un amistoso de un martes se quedaba sin nombre en el marcador. */}
@@ -19657,15 +19980,34 @@ export default function App() {
       <Card title={t("mt.rosterTitle")}>
         <div className="text-[11px] mb-2 leading-relaxed" style={{ color: C.dim }}>{t("mt.rosterHint")}</div>
         <div className="space-y-1.5 max-h-[70vh] overflow-y-auto pr-1">
-          {[...players].sort((a, b) => a.d - b.d).map((p) => {
+          {/* En tres grupos: quién está en el campo (con su puesto), quién
+              puede entrar y quién no está convocado -y por qué-. Antes era
+              una sola lista por dorsal y había que fijarse en el color del
+              nombre para saber quién jugaba. */}
+          {(() => {
+            const enCampoIds = new Set(Object.values(lineup).filter(Boolean));
+            const campo = Object.keys(slotPos).map((k) => players.find((x) => x.id === lineup[k])).filter(Boolean);
+            const banco = players.filter((x) => !enCampoIds.has(x.id) && estadoConvocatoria(x) === "conv").sort((a, b) => a.d - b.d);
+            const fuera = players.filter((x) => !enCampoIds.has(x.id) && estadoConvocatoria(x) !== "conv").sort((a, b) => a.d - b.d);
+            return [["campo", t("mt.onPitchGroup"), campo], ["banco", t("mt.benchGroup"), banco], ["fuera", t("mt.notCalledGroup"), fuera]]
+              .filter(([, , l]) => l.length)
+              .map(([grupo, titulo, lista]) => (
+            <div key={grupo} className="space-y-1.5">
+              <div className="text-[10px] font-display uppercase tracking-widest pt-1" style={{ color: grupo === "campo" ? AC : C.dim }}>{titulo} ({lista.length})</div>
+          {lista.map((p) => {
             const abierto = jugadorAccion === p.id;
+            const slotP = Object.keys(lineup).find((k) => lineup[k] === p.id);
+            const estC = estadoConvocatoria(p);
+            const lin = lineaHabitual(p);
             return (
-              <div key={p.id} className="rounded-lg border" style={{ borderColor: abierto ? AC : C.line, background: C.panel2 }}>
+              <div key={p.id} className="rounded-lg border" style={{ borderColor: abierto ? AC : C.line, background: grupo === "fuera" ? "transparent" : C.panel2 }}>
                 <button onClick={() => setJugadorAccion(abierto ? null : p.id)}
                   className="w-full flex items-center gap-2 px-2.5 py-2 text-left min-h-11">
                   <span className="font-display text-sm tabular-nums w-6 shrink-0" style={{ color: AC }}>{p.d}</span>
-                  <span className="flex-1 min-w-0 truncate text-sm" style={{ color: starters.has(p.id) ? C.chalk : C.dim }}>{p.n}</span>
-                  <span className="text-[10px] shrink-0" style={{ color: C.dim }}>{posDe(p.id)}</span>
+                  <span className="flex-1 min-w-0 truncate text-sm" style={{ color: grupo === "fuera" ? C.dim : C.chalk }}>{p.n}</span>
+                  <span className="text-[10px] shrink-0 text-right" style={{ color: grupo === "fuera" ? colorConvocatoria(estC) : C.dim }}>
+                    {grupo === "campo" ? slotPos[slotP]?.label : grupo === "banco" ? (lin ? t(`lin1.${lin}`) : "") : (estC === "no" ? t("ln.notCalledTag") : t(`conv.${estC}`).split("·").pop().trim())}
+                  </span>
                 </button>
                 {abierto && (
                   <div className="flex flex-wrap gap-1.5 px-2.5 pb-2.5">
@@ -19677,13 +20019,24 @@ export default function App() {
                     ))}
                     <button onClick={() => { addEvent("falta", p); setJugadorAccion(null); }}
                       className="text-xs px-2 py-1.5 rounded-lg border" style={{ borderColor: C.line, color: C.chalk }}>⊹ {nombreEvento("falta", lang)}</button>
-                    <button onClick={() => { addEvent("cambio", p); setJugadorAccion(null); }}
-                      className="text-xs px-2 py-1.5 rounded-lg border" style={{ borderColor: C.line, color: C.chalk }}>⇄ {nombreEvento("cambio", lang)}</button>
+                    {/* Cambio desde aquí: si está en el campo, sale él y se
+                        elige quién entra; si está en el banquillo, entra él y
+                        se elige por quién. */}
+                    {grupo !== "fuera" && can("editLineup") && (
+                      <button onClick={() => {
+                        if (slotP) { setEntraPendiente(null); setCambioSlot(slotP); } else { setCambioSlot(null); setEntraPendiente(p.id); }
+                        setJugadorAccion(null); setEvPick(null); irAlCambio();
+                      }}
+                        className="text-xs px-2 py-1.5 rounded-lg border" style={{ borderColor: C.line, color: C.chalk }}>⇄ {nombreEvento("cambio", lang)}</button>
+                    )}
                   </div>
                 )}
               </div>
             );
           })}
+            </div>
+              ));
+          })()}
         </div>
         {/* ---- Tarjetas al banquillo ----
              Al cuerpo técnico también lo amonestan, y hasta ahora no había
@@ -19796,8 +20149,27 @@ export default function App() {
               <span className="text-xs" style={{ color: AC }}>{t("mt.who")}</span>
               <button onClick={() => setEvPick(null)} className="text-xs px-2 py-1" style={{ color: C.dim }}>✕ {t("c.cancel")}</button>
             </div>
+            {evPick === "cambio" ? (
+              <>
+                <div className="text-[11px] mb-2" style={{ color: C.dim }}>{t("mt.whoOut")}</div>
+                <div className="grid grid-cols-4 sm:grid-cols-6 gap-1.5">
+                  {Object.keys(slotPos).filter((k) => lineup[k]).map((k) => {
+                    const p = players.find((x) => x.id === lineup[k]);
+                    if (!p) return null;
+                    return (
+                      <button key={k} onClick={() => { setEntraPendiente(null); setCambioSlot(k); setEvPick(null); irAlCambio(); }}
+                        className="min-h-14 rounded-lg border flex flex-col items-center justify-center leading-tight"
+                        style={{ borderColor: AC, color: C.chalk, background: C.panel }}>
+                        <span className="font-display text-lg tabular-nums" style={{ color: AC }}>{p.d}</span>
+                        <span className="text-[10px] truncate max-w-full px-1" style={{ color: C.dim }}>{p.n.split(" ")[0]} · {slotPos[k]?.label}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </>
+            ) : (
             <div className="grid grid-cols-4 sm:grid-cols-6 gap-1.5">
-              {players.filter((p) => starters.has(p.id) || evPick === "cambio").map((p) => (
+              {players.filter((p) => starters.has(p.id)).map((p) => (
                 <button key={p.id} onClick={() => (
                   evPick === "tarjeta" ? addEvent("tarjeta", p, { card: cardColor }) :
                   evPick === "penPropio" ? addEvent("penalti", p, { resultado: penResultado, lado: "us" }) :
@@ -19810,8 +20182,10 @@ export default function App() {
                 </button>
               ))}
             </div>
+            )}
           </div>
         )}
+        {(cambioSlot || entraPendiente != null) && can("editLineup") && panelCambio()}
 
         {/* ---- Ajustes del partido ----
              Duración, descuento y tandas se ponen una vez antes del saque. En
@@ -19880,6 +20254,23 @@ export default function App() {
                 ))}
                 <span className="text-[11px] ml-1" style={{ color: C.dim }}>{t("mt.subsTotal")}</span>
               </div>
+              </div>
+              {/* Reingresos: en fútbol 7 quien sale puede volver; en fútbol 11
+                  depende de la competición. Decide si en el panel de cambio
+                  se ofrecen también los que ya jugaron. */}
+              <div className="mt-4">
+                <div className="font-display text-xs uppercase tracking-widest mb-2" style={{ color: C.dim }}>{t("mt.reentry")}</div>
+                {(() => {
+                  const on = typeof matchCfg.reentrada === "boolean" ? matchCfg.reentrada : !!session.team?.f7;
+                  return (
+                    <button onClick={() => setMatchCfg((c) => ({ ...c, reentrada: !on }))} aria-pressed={on}
+                      className="text-xs font-display px-3 py-1.5 rounded-full border"
+                      style={{ borderColor: on ? AC : C.line, color: on ? AC : C.dim }}>
+                      {on ? "↺ " : "→ "}{on ? t("mt.reentryOn") : t("mt.reentryOff")}
+                    </button>
+                  );
+                })()}
+                <div className="text-[11px] mt-2 leading-relaxed" style={{ color: C.dim }}>{t("mt.reentryHint")}</div>
               </div>
 
               {/* ---- Avisos del reloj ----
@@ -20001,7 +20392,7 @@ export default function App() {
                         const sel = cambioSlot === slot;
                         return (
                           <button key={slot} disabled={!can("editLineup")}
-                            onClick={() => setCambioSlot(sel ? null : slot)}
+                            onClick={() => { setEntraPendiente(null); setCambioSlot(sel ? null : slot); if (!sel) irAlCambio(); }}
                             className="absolute -translate-x-1/2 -translate-y-1/2 rounded-full flex items-center justify-center font-display text-sm font-bold border-2"
                             style={{
                               left: `${s.x}%`, top: `${s.y}%`, width: 30, height: 30,
@@ -20055,50 +20446,6 @@ export default function App() {
                   </div>
                 </div>
 
-                {/* --- Quién entra: solo aparece al tocar un puesto --- */}
-                {cambioSlot && can("editLineup") && (
-                  <div className="mt-3 p-3 rounded-lg border" style={{ borderColor: AC, background: C.panel2 }}>
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-xs" style={{ color: AC }}>
-                        {(() => {
-                          const sale = players.find((p) => p.id === lineup[cambioSlot]);
-                          return sale ? t("mt.subFor").replace("{n}", `${sale.d} ${sale.n}`) : t("mt.subEmptySlot").replace("{p}", slotPos[cambioSlot]?.label || cambioSlot);
-                        })()}
-                      </span>
-                      <button onClick={() => setCambioSlot(null)} className="text-xs px-2 py-1" style={{ color: C.dim }}>✕ {t("c.cancel")}</button>
-                    </div>
-                    {/* Quien ya ha salido no vuelve a aparecer: no puede
-                        volver a entrar, y en un partido ofrecerlo solo lleva a
-                        meterlo por error. Si el cambio se apuntó mal, se quita
-                        del acta y el jugador vuelve a estar disponible aquí. */}
-                    {(() => {
-                      const yaSalieron = new Set(events.filter((e) => e.type === "cambio" && e.salePid != null).map((e) => e.salePid));
-                      const disponibles = players.filter((p) => !starters.has(p.id) && !yaSalieron.has(p.id));
-                      if (!disponibles.length) return <div className="text-[11px]" style={{ color: C.dim }}>{t("mt.benchEmpty")}</div>;
-                      return (
-                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
-                          {disponibles.map((p) => (
-                            <button key={p.id} onClick={() => hacerCambio(cambioSlot, p)}
-                              className="min-h-14 rounded-lg border flex items-center gap-2 px-2 py-1.5 text-left"
-                              style={{ borderColor: p.st === "disponible" ? C.line : stColor(p.st), color: C.chalk, background: C.panel }}>
-                              {/* Con la cara: en el banquillo se busca por quién
-                                  es, no por el número que lleva. */}
-                              <Avatar p={p} size={34} />
-                              <span className="min-w-0 flex-1">
-                                {/* El dorsal, en texto, solo si la foto ocupa el
-                                    círculo: sin foto el avatar YA enseña el
-                                    dorsal, y ponerlo dos veces se leía "11 11
-                                    Unai Cifuentes". */}
-                                {p.photo && <span className="block font-display text-base tabular-nums leading-none" style={{ color: AC }}>{p.d}</span>}
-                                <span className="block text-[11px] truncate" style={{ color: C.chalk }}>{p.n}</span>
-                              </span>
-                            </button>
-                          ))}
-                        </div>
-                      );
-                    })()}
-                  </div>
-                )}
                 <div className="text-[11px] mt-2" style={{ color: C.dim }}>
                   {t("mt.onPitch").replace("{n}", Object.values(lineup).filter(Boolean).length)}
                   {can("editLineup") ? ` · ${t("mt.subHint")}` : ""}
@@ -20190,6 +20537,14 @@ export default function App() {
         <div className="text-[11px] mt-2 mb-3 leading-relaxed" style={{ color: C.dim }}>
           {t("mt.closeActaHint")}
         </div>
+        {can("events") && (
+          <div className="mb-3">
+            <button onClick={nuevoPartido} disabled={!enJuego}
+              className="w-full min-h-11 rounded-lg border font-display uppercase tracking-wide disabled:opacity-40"
+              style={{ borderColor: C.line, color: C.chalk }}>↺ {t("mt.newMatch")}</button>
+            <div className="text-[11px] mt-1.5 leading-relaxed" style={{ color: C.dim }}>{t("mt.newMatchHint")}</div>
+          </div>
+        )}
         <div className="flex gap-2 pt-3 border-t" style={{ borderColor: C.line }}>
           <button onClick={copiarActa} disabled={events.length === 0}
             className="flex-1 font-display uppercase tracking-wider py-2.5 rounded-lg font-semibold disabled:opacity-40"
@@ -20292,31 +20647,33 @@ export default function App() {
      tenía ese día: si el año que viene cambia de dorsal, el partido de octubre
      tiene que seguir contando lo que pasó en octubre. */
   const fichasDelPartido = () => {
-    const convocados = players.filter((p) => called.has(p.id));
+    const jugaron = new Set([...Object.values(onceInicial || revertirCambios(lineup, events)), ...events.filter((e) => e.type === "cambio").map((e) => e.pid)].filter((x) => x != null));
+    const convocados = players.filter((p) => (called.size ? called.has(p.id) : jugaron.has(p.id)));
     const cuenta = (pid, tipo) => events.filter((e) => e.pid === pid && e.type === tipo).length;
     const cuentaTarjeta = (pid, card) => events.filter((e) => e.pid === pid && e.type === "tarjeta" && e.card === card).length;
-    /* El once que EMPEZÓ. `starters` es el once de ahora, con los cambios ya
-       hechos, así que quien entraba en la segunda parte salía como titular.
-       Se reconstruye: los de ahora más los que salieron, menos los que
-       entraron. */
-    const cambios = events.filter((e) => e.type === "cambio");
-    const primero = (lista) => (lista.length ? Math.min(...lista) : Infinity);
-    const titulares = new Set([...starters, ...cambios.map((e) => e.salePid)].filter((id) => {
-      if (id == null) return false;
-      const entra = primero(cambios.filter((e) => e.pid === id).map((e) => Number(e.min) || 0));
-      const sale = primero(cambios.filter((e) => e.salePid === id).map((e) => Number(e.min) || 0));
-      /* Titular = nunca entró, o salió antes de (re)entrar. */
-      return entra === Infinity || sale <= entra;
-    }));
-    /* Minutos de cada uno: desde que empieza (0 si es titular, o el minuto en
-       que entró) hasta que sale o acaba el partido. */
-    const fin = Math.max(half > 2 ? 2 * matchCfg.halfMin + 2 * ET_HALF_MIN : 2 * matchCfg.halfMin, ...events.map((e) => Number(e.min) || 0));
-    const minutosDe = (id) => {
-      const entra = titulares.has(id) ? 0 : Math.min(...cambios.filter((e) => e.pid === id).map((e) => Number(e.min) || 0));
-      if (!Number.isFinite(entra)) return 0;
-      const salidas = cambios.filter((e) => e.salePid === id && (Number(e.min) || 0) >= entra).map((e) => Number(e.min) || 0);
-      return Math.max(0, (salidas.length ? Math.min(...salidas) : fin) - entra);
-    };
+    /* El once que EMPEZÓ: la foto guardada al arrancar el partido o, si no
+       la hay, la alineación de ahora con los cambios del acta deshechos. */
+    const titulares = new Set(Object.values(onceInicial || revertirCambios(lineup, events)).filter((x) => x != null));
+    /* Minutos por tramos: cada jugador suma desde que entra hasta que sale,
+       las veces que haga falta -con reingresos se puede entrar dos veces-.
+       El final es el del reloj (con un margen para el descuento) o, si no se
+       usó el reloj, la duración reglamentaria. */
+    const finTeorico = half > 2 ? 2 * matchCfg.halfMin + 2 * ET_HALF_MIN : 2 * matchCfg.halfMin;
+    const finReloj = minute > 0 ? Math.min(minute, finTeorico + (Number(matchCfg.added) || 0) + 5) : finTeorico;
+    const fin = Math.max(finReloj, ...events.map((e) => Number(e.min) || 0));
+    const minutos = {};
+    const dentro = new Map([...titulares].map((id) => [id, 0]));
+    for (const e of [...events].reverse()) {
+      if (e.type !== "cambio") continue;
+      const m = Number(e.min) || 0;
+      if (e.salePid != null && dentro.has(e.salePid)) {
+        minutos[e.salePid] = (minutos[e.salePid] || 0) + Math.max(0, m - dentro.get(e.salePid));
+        dentro.delete(e.salePid);
+      }
+      if (e.pid != null && !dentro.has(e.pid)) dentro.set(e.pid, m);
+    }
+    for (const [id, desde] of dentro) minutos[id] = (minutos[id] || 0) + Math.max(0, fin - desde);
+    const minutosDe = (id) => minutos[id] || 0;
     return convocados.map((p) => ({
       /* rec: el id de su ficha en Airtable. El `id` es su puesto en la lista
          de este dispositivo y puede cambiar; con el rec la familia encuentra
@@ -22692,6 +23049,24 @@ export default function App() {
         </nav>
 
         <main className={`flex-1 w-full p-4 sm:p-5 ${session?.categories?.length > 1 ? "pb-32" : "pb-24"} lg:pb-5 max-w-6xl`}>
+          {/* Partido en curso: desde cualquier otra pestaña se ve el reloj y
+              el marcador, y se vuelve al partido de un toque. */}
+          {tab !== "partido" && visibleTabs.includes("partido") && verApartado("events") && enJuego && !actaGuardada && (
+            <button onClick={() => setTab("partido")}
+              className="w-full mb-4 rounded-lg border px-3 py-2 text-left"
+              style={{ borderColor: AC, background: C.panel2, color: C.chalk }}>
+              <span className="flex items-center gap-2 text-[11px] uppercase tracking-wide" style={{ color: C.dim }}>
+                <span className="w-2 h-2 rounded-full shrink-0" style={{ background: running ? C.red : C.dim }} />
+                <span className="truncate">{t("mt.liveBar")} · {periodoActual.name[lang] || periodoActual.name.es}</span>
+              </span>
+              <span className="flex items-center gap-3 mt-0.5">
+                <span className="font-display tabular-nums text-lg" style={{ color: AC }}>{fmtClock(secs)}</span>
+                <span className="font-display tabular-nums text-lg">{score[ladoIzq]}–{score[ladoDer]}</span>
+                <span className="flex-1" />
+                <span className="text-xs font-display uppercase tracking-wide shrink-0" style={{ color: AC }}>{t("mt.backToMatch")} ›</span>
+              </span>
+            </button>
+          )}
           {tab === "inicio" && renderHome()}
           {tab === "equipo" && verApartado("editSquad") && renderTeamSettings()}
           {tab === "jugadores" && renderSquad()}
