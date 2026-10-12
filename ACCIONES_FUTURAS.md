@@ -1,7 +1,15 @@
 # Acciones futuras
 
 ## Migración Airtable → Supabase (CoachBase AI)
-Estado: **esperando a Edu: elegir proyecto Supabase destino** (org en plan Free = máx. 2 activos).
+Estado: Edu eligió opción A (2026-10-12): pausar Cat Health Tracker y reactivar `vjsowjjdeufpeiwmtnmr`
+para CoachBase. **Pendiente: Edu pausa Cat Health y reactiva el proyecto desde el panel de Supabase**
+(desde la sesión de Claude el sistema de permisos bloqueó la pausa).
+
+Enfoque técnico elegido: capa adaptadora `netlify/lib/` que imita la API de Airtable que ya usa
+`airtable.mts` (list, get por id, create con typecast, PATCH simple/lote, DELETE simple/lote,
+POST listRecords con FIND por ids, filtro por email, uploadAttachment, campos inversos de Equipos)
+pero guarda en Supabase (tablas con columnas reales + Storage). Así no se reescriben ~3.000 líneas
+de lógica de permisos y el frontend no cambia. `pruebas/fakeair.mjs` documenta exactamente esa superficie.
 
 Decidido (2026-10-12): solo CoachBase AI (PadelPulse ya está en Supabase); se mantiene la auth propia
 (hashes SHA-256+pepper copiados tal cual); no hay usuarios reales → cambio directo, sin modo paralelo.
