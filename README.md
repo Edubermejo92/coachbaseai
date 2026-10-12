@@ -44,8 +44,32 @@ Sitio ya creado: **coachbase-ai.netlify.app** (equipo EBLDigital).
   modo partido, perfiles con foto y vídeo de presentación, gestión de usuarios/accesos, pizarra
   táctica y marketplace de material.
 - Función serverless `netlify/functions/airtable.mts` → **login, registro y gestión de usuarios**
-  contra la base Airtable **COACHBASE AI**. Las contraseñas se guardan **hasheadas** (SHA-256 + pepper)
-  en el servidor; nunca se devuelven al cliente.
+  y todos los datos de la app. Las contraseñas se guardan **hasheadas** (PBKDF2) en el servidor;
+  nunca se devuelven al cliente.
+
+## Dónde viven los datos: Supabase
+Los datos están en **Supabase** (proyecto `vjsowjjdeufpeiwmtnmr`, Fráncfort): una tabla por cada
+tabla de la antigua base Airtable **COACHBASE AI**, con los mismos ids (`rec…`).
+
+- `netlify/lib/esquema-coachbase.mts` — la estructura: tablas, campos, tipos y enlaces.
+- `supabase/migrations/` — el SQL, **generado** a partir del esquema con `npm run sql`.
+- `netlify/lib/supabase-airtable.mts` — el backend sigue hablando la API de Airtable y este
+  módulo la contesta desde Supabase. Se activa con `SUPABASE_URL` y `SUPABASE_SERVICE_ROLE_KEY`;
+  **sin ellas todo vuelve a ir a Airtable** (es la vuelta atrás si algo fallara).
+- Adjuntos en el bucket privado `coachbase`, servidos con enlaces firmados de 7 días.
+- Nadie entra con la clave pública: RLS activado y sin políticas; solo las funciones de Netlify.
+- `netlify/functions/migrar.mts` — copia única Airtable → Supabase (ver más abajo).
+
+Para añadir un campo: añádelo en `esquema-coachbase.mts`, crea la columna en Supabase con una
+migración nueva (`alter table … add column …`) y regenera el SQL de referencia con `npm run sql`.
+
+### Copiar los datos de Airtable a Supabase (una sola vez)
+1. En Netlify, pon `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` y una `MIGRAR_CLAVE` inventada
+   (larga). Deja `AIRTABLE_TOKEN` puesto. Despliega.
+2. Abre `https://coachbase-ai.netlify.app/.netlify/functions/migrar?clave=<MIGRAR_CLAVE>` y deja
+   la página abierta: avanza sola tabla a tabla, sube los archivos y termina con una tabla que
+   compara los recuentos de Airtable y de Supabase.
+3. Borra `MIGRAR_CLAVE` de Netlify. Si Supabase ya tiene datos, la función se niega a empezar.
 
 ## Login y credenciales demo
 **Acceso rápido**: usuario **`demo`** / contraseña **`demo`** (botón "Entrar con usuario demo" en la
@@ -71,8 +95,8 @@ También puedes probar cada rol con los usuarios sembrados en Airtable; su contr
   con estas mismas credenciales gracias a un modo demo local. El **login/registro real contra Airtable**
   (persistente) sólo funciona con deploy **con build** y `AIRTABLE_TOKEN` configurado.
 
-> ⚠️ Guardar contraseñas en Airtable, aunque sea hasheadas, **no es un sistema de auth de producción**.
-> Para producción real, migrar a Netlify Identity, Supabase Auth o Auth0.
+> ⚠️ El login es propio (PBKDF2 + sesiones firmadas), no Supabase Auth. Pasar a Supabase Auth
+> obligaría a que todo el mundo restableciera su contraseña: los hashes no son compatibles.
 
 ## Desplegar (recomendado — todo funcional)
 Requiere Node 18+ y la CLI de Netlify.
@@ -82,13 +106,13 @@ npm install
 npm i -g netlify-cli        # si no la tienes
 netlify login
 netlify link --id 8d8defe2-ac0c-43d3-9b65-e2da6e8ba63c   # vincula al sitio coachbase-ai
-netlify env:set AIRTABLE_TOKEN patXXXXXXXX               # PAT de Airtable (login/usuarios)
-netlify env:set AIRTABLE_BASE appDVtUWdtfzkV1sA
+netlify env:set SUPABASE_URL https://vjsowjjdeufpeiwmtnmr.supabase.co
+netlify env:set SUPABASE_SERVICE_ROLE_KEY xxxxxxxx        # Supabase → Project Settings → API Keys
 netlify deploy --build --prod
 ```
 
-El **Personal Access Token** de Airtable se crea en Airtable → Builder hub → Personal access tokens,
-con scopes `data.records:read` y `data.records:write` y acceso a la base COACHBASE AI.
+La clave es la **service_role** (o una *secret key* `sb_secret_…`): da acceso total a la base, así
+que solo va en Netlify, nunca en el código ni en el navegador.
 
 ## Deploy rápido de prueba (drag & drop — SIN funciones)
 ```bash
@@ -101,9 +125,12 @@ Arrastra la carpeta `dist/` a https://app.netlify.com/projects/coachbase-ai/depl
 ## Variables de entorno
 | Nombre | Para qué | Obligatoria |
 |---|---|---|
-| `AIRTABLE_TOKEN` | Login / registro / usuarios | **sí** |
+| `SUPABASE_URL` | Base de datos (Supabase) | **sí** |
+| `SUPABASE_SERVICE_ROLE_KEY` | Clave secreta de Supabase (solo servidor) | **sí** |
+| `AIRTABLE_TOKEN` | Solo sin Supabase, y para la migración. Sin `AUTH_SECRET`, firma las sesiones: quitarlo cierra la sesión de todo el mundo | mientras no haya `AUTH_SECRET` |
 | `AIRTABLE_BASE` | Base Airtable (`appDVtUWdtfzkV1sA`) | no (hay valor por defecto) |
-| `AUTH_SECRET` | Firma de las sesiones y de los enlaces de recuperación | no (deriva de `AIRTABLE_TOKEN`) |
+| `MIGRAR_CLAVE` | Activa la copia única Airtable → Supabase; bórrala al terminar | no |
+| `AUTH_SECRET` | Firma de las sesiones y de los enlaces de recuperación | no (deriva de `AIRTABLE_TOKEN` o de la clave de Supabase) |
 | `RESEND_API_KEY` | Enviar el correo de "he olvidado mi contraseña" | **sí, para recuperar contraseña** |
 | `MAIL_FROM` | Remitente, p. ej. `COACHBASE AI <acceso@tudominio.es>` | no (usa el remitente de pruebas) |
 | `APP_URL` | Dominio al que apunta el enlace del correo | **sí, si no es coachbase-ai.netlify.app** |
@@ -122,7 +149,7 @@ Cómo está montado, por si hay que tocarlo:
 
 - El enlace va firmado con HMAC usando una clave que incluye el **hash actual de
   la contraseña**. Al usarlo, la contraseña cambia, el hash cambia y la firma
-  deja de validar: es **de un solo uso sin guardar ningún token** en Airtable.
+  deja de validar: es **de un solo uso sin guardar ningún token** en la base.
   Caduca además a los 60 minutos.
 - El token se borra de la URL nada más abrir la página, para que no quede en el
   historial del navegador ni en una captura de pantalla.

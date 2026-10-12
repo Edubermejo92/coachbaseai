@@ -24,9 +24,9 @@
    supabase/migrations). */
 import { tablaPorAirtable, tablaPorNombre, tablaDeCampo, type Tabla, type Campo } from "./esquema-coachbase.mts";
 
-const SB_URL = () => (Netlify.env.get("SUPABASE_URL") || "").replace(/\/+$/, "");
+export const SB_URL = () => (Netlify.env.get("SUPABASE_URL") || "").replace(/\/+$/, "");
 const SB_KEY = () => Netlify.env.get("SUPABASE_SERVICE_ROLE_KEY") || "";
-const BUCKET = "coachbase";
+export const BUCKET = "coachbase";
 /* Los enlaces de los adjuntos caducan, como los de Airtable. Una semana da
    margen a lo que la app guarde en caché (el escudo, por ejemplo). */
 const FIRMA_SEGUNDOS = 7 * 24 * 3600;
@@ -35,6 +35,9 @@ const ES_REC = /^rec[A-Za-z0-9]+$/;
 export const supabaseActivo = () => !!(SB_URL() && SB_KEY());
 
 let fetchReal: typeof fetch | null = null;
+/* El fetch de verdad: el que había antes del desvío, o el global si el
+   desvío no está puesto (la función de migración no lo instala). */
+const red = () => fetchReal || globalThis.fetch;
 /* Desvía a Supabase las llamadas a Airtable de esta función. Se llama al
    empezar cada petición; solo instala el desvío una vez. */
 export function instalarSupabase() {
@@ -56,7 +59,7 @@ const J = (o: unknown, status = 200) =>
   new Response(JSON.stringify(o), { status, headers: { "content-type": "application/json" } });
 
 /* ---------- PostgREST ---------- */
-function cabeceras(extra: Record<string, string> = {}) {
+export function cabeceras(extra: Record<string, string> = {}) {
   /* La clave va en las dos cabeceras. Con la secreta nueva (sb_secret_…) el
      gateway de Supabase cambia ese "Bearer sb_…" por su JWT interno de
      service_role; con la antigua (JWT "eyJ…") la deja pasar tal cual. Storage
@@ -64,10 +67,10 @@ function cabeceras(extra: Record<string, string> = {}) {
      autorizada. */
   return { apikey: SB_KEY(), Authorization: `Bearer ${SB_KEY()}`, ...extra };
 }
-async function rest(ruta: string, opt: { method?: string; body?: unknown; prefer?: string } = {}): Promise<any> {
+export async function rest(ruta: string, opt: { method?: string; body?: unknown; prefer?: string } = {}): Promise<any> {
   let r: Response;
   try {
-    r = await fetchReal!(`${SB_URL()}/rest/v1/${ruta}`, {
+    r = await red()(`${SB_URL()}/rest/v1/${ruta}`, {
       method: opt.method || "GET",
       headers: cabeceras({
         "content-type": "application/json",
@@ -139,7 +142,7 @@ async function filtrar(t: Tabla, formula: string): Promise<any[]> {
 const nuevoIdAdjunto = () => "att" + crypto.randomUUID().replace(/-/g, "").slice(0, 14);
 const RUTA_FIRMADA = new RegExp(`/storage/v1/object/sign/${BUCKET}/([^?]+)`);
 
-function convertir(c: Campo, v: unknown): unknown {
+export function convertir(c: Campo, v: unknown): unknown {
   const vacio = v === null || v === undefined || v === "";
   switch (c.tipo) {
     case "texto":
@@ -226,7 +229,7 @@ async function firmar(rutas: string[]): Promise<Map<string, string>> {
   const unicas = [...new Set(rutas)];
   if (!unicas.length) return m;
   try {
-    const r = await fetchReal!(`${SB_URL()}/storage/v1/object/sign/${BUCKET}`, {
+    const r = await red()(`${SB_URL()}/storage/v1/object/sign/${BUCKET}`, {
       method: "POST",
       headers: cabeceras({ "content-type": "application/json" }),
       body: JSON.stringify({ expiresIn: FIRMA_SEGUNDOS, paths: unicas }),
@@ -308,7 +311,7 @@ async function subirAdjunto(rec: string, fieldId: string, b: any): Promise<Respo
   const tipo = String(b?.contentType || "application/octet-stream");
   const nombre = String(b?.filename || "archivo").replace(/[^\w.\-]+/g, "_").slice(-80) || "archivo";
   const ruta = `${t.nombre}/${rec}/${fieldId}/${Date.now()}-${crypto.randomUUID().slice(0, 8)}-${nombre}`;
-  const r = await fetchReal!(`${SB_URL()}/storage/v1/object/${BUCKET}/${ruta.split("/").map(encodeURIComponent).join("/")}`, {
+  const r = await red()(`${SB_URL()}/storage/v1/object/${BUCKET}/${ruta.split("/").map(encodeURIComponent).join("/")}`, {
     method: "POST",
     headers: cabeceras({ "content-type": tipo, "x-upsert": "false" }),
     body: bytes,

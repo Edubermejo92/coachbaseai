@@ -21,3 +21,20 @@ podían ver los fallos que estaban dentro de él. Estas sí. Encontraron tres:
 campos por NOMBRE salvo que se pida `returnFieldsByFieldId=true`. Esa
 distinción es justo la que provocaba los tres fallos, así que la doble tiene
 que respetarla o las pruebas no valdrían para nada.
+
+## Los dos modos: Airtable y Supabase
+
+    npm test               # los dos
+    npm run test:airtable  # la función contra el Airtable de mentira
+    npm run test:supabase  # la misma función, con los datos en Postgres de verdad
+
+En modo Supabase (`PRUEBAS_SUPABASE=1`) las mismas pruebas corren contra
+**Postgres de verdad** (PGlite, con la migración real y sus triggers) a través
+del adaptador `netlify/lib/supabase-airtable.mts`. `fakesupabase.mjs` imita lo
+poco que se usa de la API de Supabase (PostgREST y Storage) y mantiene
+`fake.db` como espejo con la forma de fakeair, para que las pruebas no cambien.
+
+- `pruebas16.mjs`: lo propio del adaptador (adjuntos, tipos, errores, fórmulas,
+  Supabase caído).
+- `pruebas17.mjs`: la migración Airtable → Supabase de punta a punta, comparando
+  cada campo de cada registro.

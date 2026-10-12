@@ -67,7 +67,7 @@ export async function crearFakeSupabase(datos) {
     const conds = [], params = [];
     let limit = null, offset = 0;
     for (const [k, v] of url.searchParams) {
-      if (k === "select" || k === "order") continue;
+      if (k === "select" || k === "order" || k === "on_conflict") continue;
       if (k === "limit") { limit = Number(v); continue; }
       if (k === "offset") { offset = Number(v); continue; }
       const [op, ...resto] = v.split(".");
@@ -87,18 +87,25 @@ export async function crearFakeSupabase(datos) {
         const out = [];
         for (const fila of Array.isArray(cuerpo) ? cuerpo : [cuerpo]) {
           const cols = Object.keys(fila).map(ident).join(", ");
+          /* on_conflict=id + Prefer resolution=merge-duplicates: upsert. */
+          const upsert = url.searchParams.get("on_conflict") && /merge-duplicates/.test(init.headers?.Prefer || "")
+            ? ` on conflict (${ident(url.searchParams.get("on_conflict"))}) do update set ${Object.keys(fila).map((k) => `${ident(k)} = excluded.${ident(k)}`).join(", ")}`
+            : "";
           const [r] = await jsonDe(
             Object.keys(fila).length
-              ? `insert into ${T} (${cols}) select ${cols} from json_populate_record(null::${T}, $1::json) returning *`
+              ? `insert into ${T} (${cols}) select ${cols} from json_populate_record(null::${T}, $1::json)${upsert} returning *`
               : `insert into ${T} default values returning *`, Object.keys(fila).length ? [JSON.stringify(fila)] : []);
           out.push(r);
         }
+        if (/return=minimal/.test(init.headers?.Prefer || "")) return new Response(null, { status: 201 });
         return J(out, 201);
       }
       if (m === "PATCH") {
         const sets = Object.keys(cuerpo).map((k) => `${ident(k)} = r.${ident(k)}`).join(", ");
         const desplazado = where.replace(/\$(\d+)/g, (_, n) => `$${Number(n) + 1}`);
-        return J(await jsonDe(`update ${T} set ${sets} from json_populate_record(null::${T}, $1::json) r ${desplazado} returning ${T}.*`, [JSON.stringify(cuerpo), ...params]));
+        const filasAct = await jsonDe(`update ${T} set ${sets} from json_populate_record(null::${T}, $1::json) r ${desplazado} returning ${T}.*`, [JSON.stringify(cuerpo), ...params]);
+        if (/return=minimal/.test(init.headers?.Prefer || "")) return new Response(null, { status: 204 });
+        return J(filasAct);
       }
       if (m === "DELETE") return J(await jsonDe(`delete from ${T} ${where} returning *`, params));
     } catch (e) {
