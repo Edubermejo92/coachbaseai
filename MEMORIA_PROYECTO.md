@@ -53,6 +53,32 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   guarda lo pendiente. Las altas sin clave local (actas ya tenían su reintento, partes con foto)
   siguen sin cola.
 
+## Superwall (paywalls y tests A/B en la web, v2.70.0)
+- SDK web `@superwall/paywalls-js` 0.3.2 (fijado). Todo en `src/superwall.js`; App.jsx solo llama
+  a sus funciones. **Sin `VITE_SUPERWALL_WEB_KEY` no se carga nada** (ni el código del SDK, que va
+  con import() dinámico) y la app funciona como antes. La clave es la pk_ de una app **Web** del
+  panel de Superwall: las de iOS (pk_uhuICu…) y Android (pk_xLJx1…) no valen para la web.
+  Es de compilación (Vite): tras ponerla en Netlify hace falta un deploy nuevo.
+- Decidido con Edu: **Stripe sigue cobrando y decidiendo quién es PRO**. PurchaseController propio;
+  el botón de compra del paywall no cobra en Superwall: el SDK emite `transaction_start` y se abre
+  nuestro checkout (`goCheckout`). Los productos del paywall deben llamarse `mensual`, `temporada`,
+  `club_s|m|l` (o el price_id de Stripe) y NO usar el checkout de Stripe de Superwall.
+  Estado: `setSubscriptionStatus` con `isPro` (entitlement `pro`). "Restaurar" = releer la suscripción.
+- Solo cuerpo técnico con cuenta real: ni familias, ni jugadores, ni máster, ni demo.
+  identify = `session.userId` (id rec… de la cuenta); reset al cerrar sesión.
+- Placements: `funcion_pro` (param `funcion`: video, discipline, cargas, general o la clave del
+  apartado bloqueado) y `fin_prueba` (param `dias`). Si no hay campaña, falla o no hay clave,
+  se hace lo de siempre (aviso PRO / pantalla Premium).
+- Atributos: rol, plan (pro/gratis), enPrueba, diasPrueba, enClub, categoria, futbol7, jugadores,
+  idioma, comunidad. `sw.page(tab)` en cada cambio de apartado.
+- Vista previa: abrir la app con `?sw_test=1` (modo prueba, compras simuladas) y `?sw_test=0` lo quita.
+- Enlaces desde el paywall: `?tab=alineacion` o `coachbase://alineacion` abren ese apartado.
+- WASM del motor de reglas: vite.config.js (`superscriptSoloUrl`) obliga a cargarlo por URL desde
+  /assets (1,2 MB, solo si Superwall está activo); la carga por defecto rompe el build de Vite.
+- Desde el contenedor de Claude no hay red a superwall.com (proxy 403): no se pudo leer la
+  documentación ni ver un paywall real; probado que sin clave no cambia nada y que con clave
+  (sin red) vuelve a lo de siempre sin errores.
+
 ## Netlify (lecciones)
 - El conector MCP de Netlify (manage-env-vars) dice "upserted" pero NO guarda nada si se le pasan
   scopes parciales (p. ej. ["functions","runtime"]) o is_secret=true con scopes "all". Solo funciona

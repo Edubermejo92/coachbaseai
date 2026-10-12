@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { crearSincro } from "./sincro.js";
+import { iniciarSuperwall, identificarSuperwall, resetSuperwall, estadoSuscripcionSuperwall, atributosSuperwall, paginaSuperwall, mostrarPaywall } from "./superwall.js";
 
 /* ============================================================
    COACHBASE AI by EBLDigital — Prototipo v9
@@ -10798,10 +10799,12 @@ export default function App() {
       if (localStorage.getItem(k)) return;
       localStorage.setItem(k, "1");
     } catch { /* sin localStorage */ }
-    setTrialWarn(true);
+    mostrarPaywall("fin_prueba", { dias: trialDaysLeft }, () => setTrialWarn(true));
   }, [trialDaysLeft, session?.email]); // eslint-disable-line
   const [squadText, setSquadText] = useState("");
-  const proAlert = (feature) => setProModal(feature || true);
+  /* Si hay campaña en Superwall para esta función, sale su paywall; si no
+     (o sin Superwall), el aviso de siempre. */
+  const proAlert = (feature) => mostrarPaywall("funcion_pro", { funcion: feature || "general" }, () => setProModal(feature || true));
   const [players, setPlayers] = useState(PLAYERS_INIT);
   const [users, setUsers] = useState(USERS_INIT);
   /* --- disciplina, normativa y galería familiar --- */
@@ -13520,6 +13523,70 @@ export default function App() {
     }
     setPayBusy(false);
   };
+
+  /* ================= SUPERWALL (paywalls y tests A/B) =================
+     Ver src/superwall.js. Solo para el cuerpo técnico con cuenta real: ni
+     familias ni jugadores (datos de menores), ni el máster, ni la demo. Sin
+     la clave web (VITE_SUPERWALL_WEB_KEY) nada de esto hace nada.
+     Stripe sigue cobrando y decidiendo quién es PRO: a Superwall se le dice. */
+  const swActivo = !!session && !esDemo && !!session.userId && !["familia", "jugador", "master"].includes(session.role);
+  const swAcciones = useRef({});
+  swAcciones.current = {
+    checkout: (plan) => goCheckout(plan),
+    /* "Restaurar compras" del paywall = volver a leer la suscripción. */
+    restaurar: async () => {
+      if (!session?.email) return null;
+      const d = await airSub(session.email);
+      if (!d) return null;
+      setSub(d);
+      if (d.pro) setSession((sx) => (sx.pro ? sx : { ...sx, pro: true }));
+      return !!d.pro;
+    },
+    abrirApartado: (k) => {
+      const permitidas = getAvailableTabs(session?.club, roleTabs).filter((x) => x !== "usuarios" || lim.users);
+      if (k === "premium" || permitidas.includes(k)) setTab(k);
+    },
+  };
+  const swIdRef = useRef(null);
+  useEffect(() => {
+    if (!swActivo) {
+      /* Cerrar sesión (o pasar a la demo): se olvida al usuario. */
+      if (swIdRef.current) { swIdRef.current = null; resetSuperwall(); }
+      return;
+    }
+    iniciarSuperwall({
+      checkout: (plan) => swAcciones.current.checkout(plan),
+      restaurar: () => swAcciones.current.restaurar(),
+      abrirApartado: (k) => swAcciones.current.abrirApartado(k),
+    });
+    const anterior = swIdRef.current;
+    swIdRef.current = String(session.userId);
+    (async () => {
+      if (anterior && anterior !== swIdRef.current) await resetSuperwall();
+      await identificarSuperwall(session.userId);
+    })();
+  }, [swActivo, session?.userId]); // eslint-disable-line
+  useEffect(() => {
+    if (swActivo) estadoSuscripcionSuperwall(isPro);
+  }, [swActivo, isPro]);
+  useEffect(() => {
+    if (!swActivo) return;
+    atributosSuperwall({
+      rol: session.role,
+      plan: isPro ? "pro" : "gratis",
+      enPrueba: !session.pro && trialDaysLeft > 0,
+      diasPrueba: Math.max(0, Number(trialDaysLeft) || 0),
+      enClub: !!session.clubRec,
+      categoria: session.team?.cat || "",
+      futbol7: !!session.team?.f7,
+      jugadores: players.length,
+      idioma: lang,
+      comunidad: session.comunidad || "",
+    });
+  }, [swActivo, isPro, session?.role, session?.pro, session?.clubRec, session?.team?.cat, session?.team?.f7, session?.comunidad, trialDaysLeft, players.length, lang]); // eslint-disable-line
+  useEffect(() => {
+    if (swActivo) paginaSuperwall(tab);
+  }, [swActivo, tab]);
 
   /* Si acabas de fundar un club eligiendo un plan de pago, en cuanto entras te
      llevamos a Stripe una sola vez. Si cierras el checkout sin pagar, el club
@@ -23457,7 +23524,7 @@ export default function App() {
                    una fila porque un botón no puede meterse dentro de otro. */
                 const atajo = k === "convocatoria" && !bloq ? atajoWaConvocatoria(() => setMenuOpen(false)) : null;
                 const fila = (
-                <button onClick={() => { setTab(bloq ? "premium" : k); setMenuOpen(false); }} aria-current={tab === k ? "page" : undefined}
+                <button onClick={() => { if (bloq) mostrarPaywall("funcion_pro", { funcion: k }, () => setTab("premium")); else setTab(k); setMenuOpen(false); }} aria-current={tab === k ? "page" : undefined}
                   title={bloq ? t("c.proTab") : undefined}
                   className={`nav-item min-h-12 flex items-center gap-3 px-3 py-2.5 rounded-lg text-left font-display uppercase tracking-wide text-sm ${atajo ? "flex-1 min-w-0" : "w-full"}`}
                   style={{ background: tab === k ? "rgba(54,69,79,.06)" : "transparent", color: tab === k ? MC : bloq ? C.dim : C.chalk, borderLeft: tab === k ? `3px solid ${MC}` : "3px solid transparent" }}>
@@ -23580,7 +23647,7 @@ export default function App() {
                  de la convocatoria, en su propia fila. */
               const atajo = k === "convocatoria" && !bloq ? atajoWaConvocatoria() : null;
               const fila = (
-              <button onClick={() => (bloq ? setTab("premium") : setTab(k))} aria-current={tab === k ? "page" : undefined}
+              <button onClick={() => (bloq ? mostrarPaywall("funcion_pro", { funcion: k }, () => setTab("premium")) : setTab(k))} aria-current={tab === k ? "page" : undefined}
                 title={bloq ? t("c.proTab") : undefined}
                 className={`nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-left font-display uppercase text-sm ${atajo ? "flex-1 min-w-0" : ""}`}
                 style={{ background: tab === k ? "rgba(54,69,79,.06)" : "transparent", color: tab === k ? MC : bloq ? C.dim : C.chalk, borderLeft: tab === k ? `3px solid ${MC}` : "3px solid transparent" }}>
