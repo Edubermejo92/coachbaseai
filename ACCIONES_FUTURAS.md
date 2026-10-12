@@ -34,7 +34,9 @@ edubermejo92 es Developer en esa org (no cuenta para el límite Free) → Claude
 - [x] Vault: vapid_public_key, vapid_private_key, cron_secret (mismos valores que el viejo).
 - [x] Edge Function send-reminder-pushes (verify_jwt=false), código idéntico; probada: 200 OK.
 - [x] Usuario copiado con el mismo id y contraseña + perfil, 3 gatos, 2 registros, 6 recordatorios, suscripción push.
-- [ ] Edu/Claude: cambiar en la app (repo Edubermejo92/Cat-Health-Tracker-Repo) URL de Supabase y clave pública al proyecto nuevo y desplegar.
+- [x] App apuntando al proyecto nuevo (commit 4c0dfe3 en main de Cat-Health-Tracker-Repo). Historial de migraciones
+      del proyecto alineado con el repo (+ migración vacía 20261012123739_registro_historial_temporal).
+- [ ] Edu: en el móvil, cerrar sesión y volver a entrar (el token antiguo no vale en el proyecto nuevo).
 - [ ] Edu: Auth → URL Configuration del proyecto nuevo: Site URL y Redirect URLs = las de la app (como en el viejo).
 - [ ] Edu: probar login + ver a Bambam; luego borrar "Cat Health Tracker" (`vwdnipvfjqeeezuhjstk`) en edubermejo92.
 - [ ] Claude: reactivar `vjsowjjdeufpeiwmtnmr` y seguir con la migración de CoachBase.
