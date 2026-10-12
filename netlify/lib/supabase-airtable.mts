@@ -67,7 +67,7 @@ export function cabeceras(extra: Record<string, string> = {}) {
      autorizada. */
   return { apikey: SB_KEY(), Authorization: `Bearer ${SB_KEY()}`, ...extra };
 }
-export async function rest(ruta: string, opt: { method?: string; body?: unknown; prefer?: string } = {}): Promise<any> {
+export async function rest(ruta: string, opt: { method?: string; body?: unknown; prefer?: string } = {}, intento = 0): Promise<any> {
   let r: Response;
   try {
     r = await red()(`${SB_URL()}/rest/v1/${ruta}`, {
@@ -82,6 +82,13 @@ export async function rest(ruta: string, opt: { method?: string; body?: unknown;
     throw fallo(503, "SERVICE_UNAVAILABLE", String(e));
   }
   const txt = await r.text();
+  /* "JWT issued at future" (PGRST303): el gateway de Supabase firma su token
+     interno con un reloj unos segundos adelantado respecto a PostgREST. Pasa
+     a ratos y se arregla solo: se reintenta una vez tras un segundo. */
+  if (r.status === 401 && txt.includes("PGRST303") && intento === 0) {
+    await new Promise((ok) => setTimeout(ok, 1000));
+    return rest(ruta, opt, 1);
+  }
   if (!r.ok) {
     console.error(`[supabase] ${opt.method || "GET"} ${ruta.split("?")[0]} → ${r.status}: ${txt.slice(0, 300)}`);
     /* Un dato que Postgres no acepta (fecha inválida…) es lo que en Airtable
