@@ -7,7 +7,10 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "node pruebas/pruebas.mjs && node pruebas/pruebas2.mjs && node pruebas/pruebas3.mjs && node pruebas/pruebas4.mjs && node pruebas/pruebas5.mjs && node pruebas/pruebas6.mjs && node pruebas/pruebas7.mjs && node pruebas/pruebas8.mjs && node pruebas/pruebas9.mjs && node pruebas/pruebas10.mjs && node pruebas/pruebas11.mjs && node pruebas/pruebas12.mjs && node pruebas/pruebas13.mjs && node pruebas/pruebas14.mjs && node pruebas/pruebas15.mjs"
+    "test": "node pruebas/todas.mjs",
+    "test:airtable": "node pruebas/todas.mjs airtable",
+    "test:supabase": "node pruebas/todas.mjs supabase",
+    "sql": "node supabase/generar-sql.mjs"
   },
   "dependencies": {
     "@netlify/blobs": "^8.2.0",
@@ -16,6 +19,7 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "^0.3.15",
     "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49",

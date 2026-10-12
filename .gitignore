@@ -2,3 +2,4 @@ node_modules
 dist
 .netlify
 pruebas/fn.mjs
+pruebas/esquema.tmp.mjs

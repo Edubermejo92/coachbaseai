@@ -1,4 +1,8 @@
 import { crearFake, T } from "./fakeair.mjs";
+import { crearFakeSupabase, SB } from "./fakesupabase.mjs";
+/* PRUEBAS_SUPABASE=1: las mismas pruebas, pero con los datos en Postgres
+   (netlify/lib/supabase-airtable.mts contesta en lugar de Airtable). */
+const SUPA = process.env.PRUEBAS_SUPABASE === "1";
 import fs from "node:fs";
 import { execSync } from "node:child_process";
 const FN = process.env.FN || new URL("../netlify/functions/airtable.mts", import.meta.url).pathname;
@@ -35,11 +39,16 @@ const DATOS = {
   [T.NORMATIVA]: [], [T.PROPUESTAS]: [], [T.FIRMAS]: [], [T.GALERIA]: [], [T.SUSCRIPCIONES]: [], [T.CONFIG]: [],
 };
 
-const fake = crearFake(DATOS);
-globalThis.Netlify = { env: { get: (k) => (k === "AIRTABLE_TOKEN" ? "fake" : k === "AIRTABLE_BASE" ? "appDVtUWdtfzkV1sA" : k === "CB_SESSION_SECRET" ? "secreto-de-pruebas" : undefined) } };
+const fake = SUPA ? await crearFakeSupabase(DATOS) : crearFake(DATOS);
+const ENV = {
+  AIRTABLE_TOKEN: "fake", AIRTABLE_BASE: "appDVtUWdtfzkV1sA", CB_SESSION_SECRET: "secreto-de-pruebas",
+  ...(SUPA ? { SUPABASE_URL: SB, SUPABASE_SERVICE_ROLE_KEY: "sb_secret_pruebas" } : {}),
+};
+globalThis.Netlify = { env: { get: (k) => ENV[k] } };
 const realFetch = globalThis.fetch;
 globalThis.fetch = (u, i) => {
   const url = String(u);
+  if (SUPA && url.startsWith(SB)) return fake.fetchSupabase(u, i);
   if (url.includes("api.airtable.com")) return fake.fetch(u, i);
   /* Las fotos van al endpoint de contenido de Airtable, otro host. */
   if (url.includes("content.airtable.com")) return Promise.resolve(new Response(JSON.stringify({ fields: {} }), { status: 200, headers: { "content-type":"application/json" } }));
@@ -57,15 +66,23 @@ const hashDe = async (pw) => {
 };
 const pw = await hashDe("coach1234");
 for (const u of fake.db[T.USUARIOS]) u.fields["fldVX372lPNj7Bab8"] = pw;
+if (fake.guardar) await fake.guardar();
 
+/* Con Supabase, lo que una prueba haya cambiado a mano en fake.db se lleva a
+   Postgres antes de cada llamada, y el espejo se refresca después. */
 const login = async (email, password = "coach1234") => {
+  if (fake.guardar) await fake.guardar();
   const r = await handler(new Request("https://x/api", { method:"POST", headers:{"content-type":"application/json"}, body: JSON.stringify({ action:"login", email, password }) }));
   const d = await r.json();
+  if (fake.refrescar) await fake.refrescar();
   return d.token;
 };
 const call = async (qs, { method="GET", token="", body } = {}) => {
   const h = {}; if (token) h["x-cb-token"] = token; if (body) h["content-type"]="application/json";
+  if (fake.guardar) await fake.guardar();
   const r = await handler(new Request("https://x/api"+qs, { method, headers:h, ...(body?{body:JSON.stringify(body)}:{}) }));
-  return { status:r.status, body: await r.json().catch(()=>({})) };
+  const out = { status:r.status, body: await r.json().catch(()=>({})) };
+  if (fake.refrescar) await fake.refrescar();
+  return out;
 };
 export { handler, fake, login, call, T };

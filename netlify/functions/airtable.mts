@@ -1,4 +1,5 @@
 import { contarLlamadas, leerUso } from "../lib/uso-airtable.mts";
+import { instalarSupabase, supabaseActivo } from "../lib/supabase-airtable.mts";
 // Proxy serverless entre la app y Airtable.
 //   ?res=(vacío)      -> Usuarios: login, registro real (crea club y equipo), alta/baja, roles
 //   ?res=equipos      -> Equipos: listar, crear y editar (rol Master)
@@ -9,7 +10,11 @@ import { contarLlamadas, leerUso } from "../lib/uso-airtable.mts";
 //   ?res=config       -> qué pestañas son gratis y cuáles Premium (solo Master edita)
 //
 // Variables de entorno en Netlify:
-//   AIRTABLE_TOKEN -> Personal Access Token (data.records:read y data.records:write sobre la base)
+//   SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY -> los datos viven en Supabase.
+//     Todo este archivo sigue hablando la API de Airtable y
+//     netlify/lib/supabase-airtable.mts la contesta desde Supabase.
+//   AIRTABLE_TOKEN -> sin las dos de arriba, los datos van a Airtable con este
+//     Personal Access Token (data.records:read y data.records:write)
 //   AIRTABLE_BASE  -> (opcional) id de la base; por defecto la base COACHBASE AI
 const BASE = () => Netlify.env.get("AIRTABLE_BASE") || "appDVtUWdtfzkV1sA";
 const TOKEN = () => Netlify.env.get("AIRTABLE_TOKEN");
@@ -399,8 +404,10 @@ const tieneRol = (sesion: any, clave: string): boolean =>
    datos personales).
    El secreto sale de AUTH_SECRET; si no está puesto se deriva del propio
    AIRTABLE_TOKEN, para no depender de otra variable en Netlify. Rotar el
-   token de Airtable invalida las sesiones abiertas: es lo deseable. */
-const AUTH_SECRET = () => Netlify.env.get("AUTH_SECRET") || TOKEN() || "";
+   token de Airtable invalida las sesiones abiertas: es lo deseable.
+   Con los datos en Supabase y sin AIRTABLE_TOKEN, se deriva de la clave de
+   Supabase: nunca puede quedar vacío, o cualquiera firmaría sesiones. */
+const AUTH_SECRET = () => Netlify.env.get("AUTH_SECRET") || TOKEN() || Netlify.env.get("SUPABASE_SERVICE_ROLE_KEY") || "";
 /* Antes 30 días: con eso, un cuerpo técnico que abre la app una vez por
    semana veía "sesión caducada" a mitad de temporada, en plena convocatoria,
    sin ningún aviso de que el cambio no se había guardado hasta que aparecía
@@ -524,8 +531,11 @@ const correoReset = (nombre: string, enlace: string) => `
 </div>`;
 
 const atender = async (req: Request) => {
-  const token = TOKEN();
-  if (!token) return j({ error: "AIRTABLE_TOKEN no configurado en Netlify" }, 500);
+  instalarSupabase();
+  /* Con Supabase el token de Airtable ya no hace falta: las llamadas que
+     llevan esta cabecera no salen de la función. */
+  const token = TOKEN() || (supabaseActivo() ? "supabase" : "");
+  if (!token) return j({ error: "Faltan en Netlify SUPABASE_URL y SUPABASE_SERVICE_ROLE_KEY (o AIRTABLE_TOKEN)" }, 500);
 
   const url = new URL(req.url);
   const id = url.searchParams.get("id");

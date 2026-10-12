@@ -1,6 +1,10 @@
 import { contarLlamadas } from "../lib/uso-airtable.mts";
+import { instalarSupabase, supabaseActivo } from "../lib/supabase-airtable.mts";
 // Suscripción CoachBase AI PRO (9,99 €/mes) con Stripe Checkout.
-// Todo el estado vive en Airtable: tabla Suscripciones (tblb6s8eKcLK9LCw9).
+// Todo el estado vive en la tabla Suscripciones (tblb6s8eKcLK9LCw9): en
+// Supabase si están SUPABASE_URL y SUPABASE_SERVICE_ROLE_KEY (este archivo
+// sigue hablando la API de Airtable y netlify/lib/supabase-airtable.mts la
+// contesta desde Supabase), y si no, en Airtable.
 //
 //   POST ?action=checkout  -> crea la sesión de pago y devuelve { url }
 //   POST ?action=portal    -> portal de cliente para gestionar o cancelar
@@ -11,7 +15,8 @@ import { contarLlamadas } from "../lib/uso-airtable.mts";
 //   STRIPE_SECRET_KEY      -> sk_live_… o sk_test_…
 //   STRIPE_PRICE_ID        -> price_1TxatlHuBVT1cFkv7MVZ5Zjv
 //   STRIPE_WEBHOOK_SECRET  -> whsec_… del endpoint del webhook
-//   AIRTABLE_TOKEN         -> el mismo PAT que usa airtable.mts
+//   SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY -> las mismas que usa airtable.mts
+//   AIRTABLE_TOKEN         -> el mismo PAT que usa airtable.mts (sin Supabase)
 //   AIRTABLE_BASE          -> (opcional) appDVtUWdtfzkV1sA
 //   APP_URL                -> https://coachbase-ai.netlify.app
 
@@ -25,7 +30,8 @@ import { contarLlamadas } from "../lib/uso-airtable.mts";
    llamadas a este archivo, así que no hace falta tocar nada más), y el
    email de la cuenta sale SIEMPRE de la sesión verificada, nunca de lo que
    mande el cliente en el cuerpo o en la URL. */
-const AUTH_SECRET = () => Netlify.env.get("AUTH_SECRET") || Netlify.env.get("AIRTABLE_TOKEN") || "";
+const AUTH_SECRET = () =>
+  Netlify.env.get("AUTH_SECRET") || Netlify.env.get("AIRTABLE_TOKEN") || Netlify.env.get("SUPABASE_SERVICE_ROLE_KEY") || "";
 const unb64u = (t: string) => {
   const p = t.replace(/-/g, "+").replace(/_/g, "/");
   return Uint8Array.from(atob(p + "=".repeat((4 - (p.length % 4)) % 4)), (c) => c.charCodeAt(0));
@@ -69,6 +75,8 @@ const precioDe = (plan?: string) => (plan ? PLANES[plan] : PLANES.mensual) || PR
 const APP = () => Netlify.env.get("APP_URL") || "https://coachbase-ai.netlify.app";
 const BASE = () => Netlify.env.get("AIRTABLE_BASE") || "appDVtUWdtfzkV1sA";
 const AT_TOKEN = () => Netlify.env.get("AIRTABLE_TOKEN");
+/* ¿Hay dónde guardar? En Supabase, o en Airtable con su token. */
+const hayDatos = () => supabaseActivo() || !!AT_TOKEN();
 
 const T_SUBS = "tblb6s8eKcLK9LCw9";
 const T_USUARIOS = "tblZf4dFeq4FCjHGJ";
@@ -165,7 +173,7 @@ async function buscarSuscripcion(email: string) {
 }
 
 async function guardarSuscripcion(email: string, campos: Record<string, unknown>) {
-  if (!AT_TOKEN() || !email) return;
+  if (!hayDatos() || !email) return;
   const fields: Record<string, unknown> = {
     [S.email]: email, [S.actualizado]: new Date().toISOString(), ...campos,
   };
@@ -197,6 +205,7 @@ async function firmaValida(payload: string, header: string, secret: string) {
 }
 
 const atender = async (req: Request) => {
+  instalarSupabase();
   const url = new URL(req.url);
   const action = url.searchParams.get("action") || "checkout";
 
@@ -208,7 +217,7 @@ const atender = async (req: Request) => {
        la URL: antes se podía consultar si CUALQUIER email pagaba, y de paso
        se conseguía su Stripe customerId. */
     const email = String(sesion.email);
-    if (!AT_TOKEN() || !email) return j({ pro: false });
+    if (!hayDatos() || !email) return j({ pro: false });
     let rec: any;
     try { rec = await buscarSuscripcion(email); } catch { return j({ pro: false, error: "airtable" }); }
     const estado = rec?.fields?.[S.estado] || "Ninguna";
