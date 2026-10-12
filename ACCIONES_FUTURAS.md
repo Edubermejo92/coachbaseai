@@ -28,11 +28,15 @@ Plan propuesto:
 10. [ ] Mantener Airtable en solo-lectura 2–4 semanas como respaldo antes de borrar nada.
 
 ## Cat Health → cuenta edubon007 (para liberar plaza en edubermejo92)
-Decidido: copia manual (la transferencia la bloquea Supabase; la conexión de Claude solo ve edubermejo92).
-- [x] Claude: paquete de copia entregado (LEEME.md, 1_esquema.sql con las 8 migraciones, 2_datos.sql,
-      send-reminder-pushes.ts). Datos: 1 perfil, 3 gatos, 2 registros, 6 recordatorios, sin fotos.
-- [ ] Edu: seguir LEEME.md en edubon007 (esquema → claves Vault → Edge Function sin JWT → URL/clave en la app → datos).
-- [ ] Edu: cuando funcione, borrar "Cat Health Tracker" (`vwdnipvfjqeeezuhjstk`) en edubermejo92.
+Proyecto nuevo: `drlqsrqgvdurrvllyvim` "Cat-Health-Tracker app" (org edubon007, eu-west-1).
+edubermejo92 es Developer en esa org (no cuenta para el límite Free) → Claude tiene acceso por MCP.
+- [x] Esquema (8 migraciones), bucket cat-photos, cron cada 5 min.
+- [x] Vault: vapid_public_key, vapid_private_key, cron_secret (mismos valores que el viejo).
+- [x] Edge Function send-reminder-pushes (verify_jwt=false), código idéntico; probada: 200 OK.
+- [x] Usuario copiado con el mismo id y contraseña + perfil, 3 gatos, 2 registros, 6 recordatorios, suscripción push.
+- [ ] Edu/Claude: cambiar en la app (repo Edubermejo92/Cat-Health-Tracker-Repo) URL de Supabase y clave pública al proyecto nuevo y desplegar.
+- [ ] Edu: Auth → URL Configuration del proyecto nuevo: Site URL y Redirect URLs = las de la app (como en el viejo).
+- [ ] Edu: probar login + ver a Bambam; luego borrar "Cat Health Tracker" (`vwdnipvfjqeeezuhjstk`) en edubermejo92.
 - [ ] Claude: reactivar `vjsowjjdeufpeiwmtnmr` y seguir con la migración de CoachBase.
 
 ## Otros
