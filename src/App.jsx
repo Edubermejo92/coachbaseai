@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
+import { crearSincro } from "./sincro.js";
 
 /* ============================================================
    COACHBASE AI by EBLDigital — Prototipo v9
@@ -52,6 +53,7 @@ const DICT = {
     /* v49 — cadenas que antes estaban en español a fuego */
     "sq.cloud": "Guardado en la nube",
     "sq.cloudOn": "● Guardado en la nube",
+    "sy.queued": "☁️ Guardado en este móvil · se subirá solo al volver la red", "sy.title": "Sincronización", "sy.now": "Sincronizar ahora", "sy.syncing": "Sincronizando…", "sy.ok": "Todo guardado en la nube", "sy.pending": "{n} cambios pendientes de subir", "sy.pending1": "1 cambio pendiente de subir", "sy.offline": "Sin conexión. Lo que guardes se queda en este móvil y se sube solo cuando vuelva la red.", "sy.last": "Última sincronización: {when}", "sy.never": "Sin sincronizar todavía", "sy.justNow": "ahora mismo", "sy.minAgo": "hace {n} min", "sy.hAgo": "hace {n} h", "sy.errSession": "Tu sesión ha caducado: vuelve a entrar para subir los cambios pendientes.", "sy.errRejected": "El servidor ha rechazado un cambio: {msg}", "sy.errNet": "No se ha podido conectar con el servidor. Se reintentará solo.", "sy.hint": "Los cambios se suben solos al volver la conexión o al volver a la app, y se descarga lo que haya cambiado otro miembro del cuerpo técnico.",
     "sq.cloudOff": "○ Solo en este dispositivo",
     "sq.saveSquad": "↑ Guardar plantilla",
     "sq.saveCal": "↑ Guardar calendario",
@@ -661,6 +663,7 @@ const DICT = {
     /* v49 — cadenas que antes estaban en español a fuego */
     "sq.cloud": "Saved to the cloud",
     "sq.cloudOn": "● Saved to the cloud",
+    "sy.queued": "☁️ Saved on this phone · it will upload by itself when you are back online", "sy.title": "Sync", "sy.now": "Sync now", "sy.syncing": "Syncing…", "sy.ok": "Everything saved to the cloud", "sy.pending": "{n} changes waiting to upload", "sy.pending1": "1 change waiting to upload", "sy.offline": "Offline. What you save stays on this phone and uploads by itself when you are back online.", "sy.last": "Last sync: {when}", "sy.never": "Not synced yet", "sy.justNow": "just now", "sy.minAgo": "{n} min ago", "sy.hAgo": "{n} h ago", "sy.errSession": "Your session has expired: sign in again to upload pending changes.", "sy.errRejected": "The server rejected a change: {msg}", "sy.errNet": "Could not reach the server. It will retry by itself.", "sy.hint": "Changes upload by themselves when you are back online or return to the app, and anything another staff member changed is downloaded.",
     "sq.cloudOff": "○ This device only",
     "sq.saveSquad": "↑ Save squad",
     "sq.saveCal": "↑ Save fixtures",
@@ -1282,6 +1285,7 @@ const DICT = {
     /* v49 — cadenas que antes estaban en español a fuego */
     "sq.cloud": "Sauvegardé dans le cloud",
     "sq.cloudOn": "● Enregistré dans le cloud",
+    "sy.queued": "☁️ Enregistré sur ce téléphone · envoi automatique au retour du réseau", "sy.title": "Synchronisation", "sy.now": "Synchroniser", "sy.syncing": "Synchronisation…", "sy.ok": "Tout est enregistré dans le cloud", "sy.pending": "{n} modifications en attente d'envoi", "sy.pending1": "1 modification en attente d'envoi", "sy.offline": "Hors ligne. Ce que vous enregistrez reste sur ce téléphone et sera envoyé dès le retour du réseau.", "sy.last": "Dernière synchronisation : {when}", "sy.never": "Pas encore synchronisé", "sy.justNow": "à l'instant", "sy.minAgo": "il y a {n} min", "sy.hAgo": "il y a {n} h", "sy.errSession": "Votre session a expiré : reconnectez-vous pour envoyer les modifications en attente.", "sy.errRejected": "Le serveur a refusé une modification : {msg}", "sy.errNet": "Impossible de joindre le serveur. Nouvel essai automatique.", "sy.hint": "Les modifications sont envoyées automatiquement au retour du réseau ou en revenant dans l'app, et ce qu'un autre membre du staff a modifié est téléchargé.",
     "sq.cloudOff": "○ Cet appareil uniquement",
     "sq.saveSquad": "↑ Enregistrer l'effectif",
     "sq.saveCal": "↑ Enregistrer le calendrier",
@@ -1983,6 +1987,7 @@ const DICT = {
     /* v49 — cadenas que antes estaban en español a fuego */
     "sq.cloud": "In der Cloud gespeichert",
     "sq.cloudOn": "● In der Cloud gespeichert",
+    "sy.queued": "☁️ Auf diesem Handy gespeichert · wird automatisch hochgeladen, sobald wieder Netz da ist", "sy.title": "Synchronisierung", "sy.now": "Jetzt synchronisieren", "sy.syncing": "Synchronisiere…", "sy.ok": "Alles in der Cloud gespeichert", "sy.pending": "{n} Änderungen warten auf Upload", "sy.pending1": "1 Änderung wartet auf Upload", "sy.offline": "Offline. Was du speicherst, bleibt auf diesem Handy und wird automatisch hochgeladen, sobald wieder Netz da ist.", "sy.last": "Letzte Synchronisierung: {when}", "sy.never": "Noch nicht synchronisiert", "sy.justNow": "gerade eben", "sy.minAgo": "vor {n} Min.", "sy.hAgo": "vor {n} Std.", "sy.errSession": "Deine Sitzung ist abgelaufen: melde dich erneut an, um ausstehende Änderungen hochzuladen.", "sy.errRejected": "Der Server hat eine Änderung abgelehnt: {msg}", "sy.errNet": "Server nicht erreichbar. Es wird automatisch erneut versucht.", "sy.hint": "Änderungen werden automatisch hochgeladen, wenn wieder Netz da ist oder du zur App zurückkehrst, und Änderungen anderer Trainer werden heruntergeladen.",
     "sq.cloudOff": "○ Nur auf diesem Gerät",
     "sq.saveSquad": "↑ Kader speichern",
     "sq.saveCal": "↑ Spielplan speichern",
@@ -2683,6 +2688,7 @@ const DICT = {
     /* v49 — cadenas que antes estaban en español a fuego */
     "sq.cloud": "Guardado na nuvem",
     "sq.cloudOn": "● Guardado na nuvem",
+    "sy.queued": "☁️ Guardado neste telemóvel · será enviado sozinho quando voltar a rede", "sy.title": "Sincronização", "sy.now": "Sincronizar agora", "sy.syncing": "A sincronizar…", "sy.ok": "Tudo guardado na nuvem", "sy.pending": "{n} alterações por enviar", "sy.pending1": "1 alteração por enviar", "sy.offline": "Sem ligação. O que guardares fica neste telemóvel e é enviado sozinho quando voltar a rede.", "sy.last": "Última sincronização: {when}", "sy.never": "Ainda não sincronizado", "sy.justNow": "agora mesmo", "sy.minAgo": "há {n} min", "sy.hAgo": "há {n} h", "sy.errSession": "A tua sessão expirou: volta a entrar para enviar as alterações pendentes.", "sy.errRejected": "O servidor recusou uma alteração: {msg}", "sy.errNet": "Não foi possível ligar ao servidor. Vai tentar de novo sozinho.", "sy.hint": "As alterações são enviadas sozinhas quando voltar a rede ou ao regressar à app, e descarrega-se o que outro membro da equipa técnica tiver mudado.",
     "sq.cloudOff": "○ Apenas neste dispositivo",
     "sq.saveSquad": "↑ Guardar plantel",
     "sq.saveCal": "↑ Guardar calendário",
@@ -4448,12 +4454,70 @@ const cbFetch = async (url, init = {}) => {
       status: 403, headers: { "content-type": "application/json" },
     });
   }
-  const { allowInDemo, ...opts } = init;
+  const { allowInDemo, cola, ...opts } = init;
   const headers = { ...(opts.headers || {}) };
+  /* ¿Puede esperar si no hay red? (ver src/sincro.js). Si ya hay cosas en
+     la cola, lo nuevo va detrás aunque haya red: así un guardado viejo que
+     sale después nunca pisa a uno más reciente. */
+  const clas = DEMO_MODE ? null : SINCRO.clasificar(url, metodo, opts.body, cola);
+  const aLaCola = () => {
+    SINCRO.encolar({ url, metodo, cuerpo: typeof opts.body === "string" ? opts.body : null, cabeceras: opts.headers || {} }, clas);
+    setTimeout(() => { SINCRO.vaciar(); }, 0);
+    return respuestaEnCola();
+  };
+  if (clas && (SINCRO.hayPendientes() || !hayRed())) return aLaCola();
   if (AUTH_TOKEN) headers["x-cb-token"] = AUTH_TOKEN;
-  const r = await fetch(url, { ...opts, headers });
+  let r;
+  try { r = await fetch(url, { ...opts, headers }); }
+  catch (e) { if (clas) return aLaCola(); throw e; }
+  if (clas && [502, 503, 504].includes(r.status)) return aLaCola();
   if (r.status === 401) { setAuthToken(null); onAuthExpired(); }
   return r;
+};
+/* ---- Cola de sincronización ----
+   Lo que contesta cbFetch cuando una escritura se queda en la cola: un 202
+   con ok:true, porque para quien guarda está guardado (en este móvil) y se
+   subirá solo. Las altas no traen `rec`, igual que cuando fallaba la red. */
+const respuestaEnCola = () => new Response(JSON.stringify({ ok: true, queued: true }), { status: 202, headers: { "content-type": "application/json" } });
+const hayRed = () => (typeof navigator === "undefined" || navigator.onLine !== false);
+const SINCRO = crearSincro({
+  almacen: (() => { try { return window.localStorage; } catch { return { getItem: () => null, setItem: () => {} }; } })(),
+  enLinea: hayRed,
+  enviar: (it) => {
+    const headers = { ...(it.cabeceras || {}) };
+    if (AUTH_TOKEN) headers["x-cb-token"] = AUTH_TOKEN;
+    return fetch(it.url, { method: it.metodo, headers, ...(it.cuerpo != null ? { body: it.cuerpo } : {}) });
+  },
+});
+/* Pide a las pantallas que vuelvan a leer de la nube lo que tengan abierto.
+   Cada efecto de carga que debe refrescarse lee `useRefresco()` como
+   dependencia. */
+let refrescoN = 0;
+const pedirRefresco = () => {
+  refrescoN++;
+  try { window.dispatchEvent(new CustomEvent("cb:refresco", { detail: refrescoN })); } catch { /* sin window */ }
+};
+const useRefresco = () => {
+  const [n, setN] = useState(refrescoN);
+  useEffect(() => {
+    const f = (e) => setN(e.detail);
+    window.addEventListener("cb:refresco", f);
+    return () => window.removeEventListener("cb:refresco", f);
+  }, []);
+  return n;
+};
+const useSincro = () => {
+  const [e, setE] = useState(SINCRO.estado());
+  useEffect(() => SINCRO.suscribir(setE), []);
+  return e;
+};
+/* Sube lo pendiente y, si no queda nada, vuelve a leer de la nube lo que
+   otros hayan cambiado. Es lo que hacen el botón, la vuelta de la red y la
+   vuelta a la app. */
+const sincronizarAhora = async () => {
+  if (DEMO_MODE || !AUTH_TOKEN) return;
+  await SINCRO.vaciar();
+  if (!SINCRO.hayPendientes() && hayRed()) { pedirRefresco(); SINCRO.marcarSincronizado(); }
 };
 const ROL2LABEL = { entrenador: "Entrenador principal", segundo: "Segundo entrenador", delegado: "Delegado", director: "Director deportivo", club: "Club", master: "Master" };
 const LABEL2ROL = { "Entrenador principal": "entrenador", "Segundo entrenador": "segundo", "Delegado": "delegado", "Director deportivo": "director", "Club": "club", "Master": "master" };
@@ -5167,9 +5231,12 @@ const airList = async (res, teamRec = "") => {
     return d.records || null;
   } catch { return null; }
 };
-const airNew = async (res, fields) => {
+/* `alta` es el id local del jugador/partido: con él, si no hay red el alta
+   espera en la cola (y una segunda con el mismo id la sustituye en vez de
+   duplicarla). Sin él, como siempre: sin red devuelve null. */
+const airNew = async (res, fields, alta) => {
   try {
-    const r = await cbFetch(`${AIR}?res=${res}`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ fields }) });
+    const r = await cbFetch(`${AIR}?res=${res}`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ fields }), ...(alta != null ? { cola: { alta } } : {}) });
     if (!r.ok) return null;
     const d = await r.json();
     return d.rec || null;
@@ -7225,7 +7292,7 @@ function Whiteboard({ AC, lang, teamId, teamRec, isF7, pendingExId, onConsumePen
     if (!teamRec) { setNubeMsg(t("w.needClubAccount")); return; }
     setNubeMsg(t("w.sharing"));
     const out = await airJugadasGuardar(teamRec, plays);
-    setNubeMsg(out?.ok ? t("w.sharedOk") : t("w.sharedFail"));
+    setNubeMsg(out?.queued ? t("sy.queued") : out?.ok ? t("w.sharedOk") : t("w.sharedFail"));
   };
   useEffect(() => {
     try {
@@ -9997,6 +10064,45 @@ export default function App() {
       else localStorage.removeItem("cb_session_v1");
     } catch { /* sesión local no disponible */ }
   }, [session, booting]);
+  /* ---- Sincronización (ver src/sincro.js) ----
+     La cola es de la persona que ha entrado; la demo no escribe nada. */
+  const sincro = useSincro();
+  const refresco = useRefresco();
+  const [sincroOpen, setSincroOpen] = useState(false);
+  const sincroActiva = !!session && session.email !== "demo";
+  useEffect(() => {
+    SINCRO.fijarUsuario(sincroActiva ? session.email : null);
+    if (sincroActiva) SINCRO.vaciar();
+  }, [sincroActiva, session?.email]); // eslint-disable-line
+  /* Cuándo se sincroniza solo: al volver la red, al volver a la app tras
+     un rato fuera (otro del cuerpo técnico puede haber cambiado algo) y,
+     mientras quede algo pendiente, cada 30 s por si la red volvió sin que
+     el navegador lo avisara. */
+  useEffect(() => {
+    if (!sincroActiva) return;
+    let ocultoDesde = 0;
+    const alVolverRed = () => { sincronizarAhora(); };
+    const alCambiarVista = () => {
+      if (document.hidden) { ocultoDesde = Date.now(); return; }
+      if (SINCRO.hayPendientes() || (ocultoDesde && Date.now() - ocultoDesde > 30000)) sincronizarAhora();
+      ocultoDesde = 0;
+    };
+    const id = setInterval(() => { if (SINCRO.hayPendientes() && hayRed()) sincronizarAhora(); }, 30000);
+    window.addEventListener("online", alVolverRed);
+    document.addEventListener("visibilitychange", alCambiarVista);
+    return () => {
+      clearInterval(id);
+      window.removeEventListener("online", alVolverRed);
+      document.removeEventListener("visibilitychange", alCambiarVista);
+    };
+  }, [sincroActiva]);
+  /* Cuando sube un alta que esperaba en la cola, el jugador o el partido
+     recibe su `rec`: si no, la siguiente edición lo volvería a crear. */
+  useEffect(() => SINCRO.alCrear(({ res, local, rec }) => {
+    const poner = (xs) => xs.map((x) => (String(x.id) === local && !x.rec ? { ...x, rec } : x));
+    if (res === "jugadores") setPlayers(poner);
+    if (res === "partidos") setFixtures(poner);
+  }), []); // eslint-disable-line
   /* Bug real: el idioma nunca se guardaba. Cada recarga de página (cerrar y
      abrir la pestaña, volver a entrar tras el 401 de sesión caducada, etc.)
      reiniciaba a español aunque el usuario hubiera elegido inglés — así que
@@ -10692,9 +10798,19 @@ export default function App() {
      consecuencias, para saber quién ha venido y el motivo del que no. */
   const asistKey = `cb_asist_${session?.team?.id || "demo"}`;
   const [asistencia, setAsistencia] = useState({});
+  /* Lo último que se leyó (de este móvil o de la nube) o se subió. Solo se
+     sube lo que sea distinto: abrir la app no es cambiar la asistencia. */
+  const asistBaseRef = useRef("{}");
   useEffect(() => {
-    try { const raw = localStorage.getItem(asistKey); setAsistencia(raw ? JSON.parse(raw) || {} : {}); }
-    catch { setAsistencia({}); }
+    /* Leer la copia de este móvil no es un cambio: no se sube (ver
+       asistBaseRef). Antes, al
+       abrir la app se mandaba esta copia a la nube sin esperar a leer la de
+       allí, y pisaba la asistencia que otro del cuerpo técnico hubiera
+       pasado desde su móvil (y, sin red, ahora se quedaría en la cola). */
+    let leida = {};
+    try { const raw = localStorage.getItem(asistKey); leida = raw ? JSON.parse(raw) || {} : {}; } catch { leida = {}; }
+    asistBaseRef.current = JSON.stringify(leida);
+    setAsistencia(leida);
   }, [asistKey]);
   /* Solo depende de `asistencia`, no de `asistKey`: al cambiar de categoría,
      asistKey cambia antes de que lleguen los datos de la categoría nueva
@@ -10728,18 +10844,21 @@ export default function App() {
       if (!vivo || !d?.asistencia) return;
       try {
         const remoto = JSON.parse(d.asistencia);
-        if (remoto && typeof remoto === "object") { asistCargaNubeRef.current = true; setAsistencia(remoto); }
+        if (remoto && typeof remoto === "object") { asistCargaNubeRef.current = true; asistBaseRef.current = JSON.stringify(remoto); setAsistencia(remoto); }
       } catch { /* json roto en Airtable: se ignora */ }
     })();
     return () => { vivo = false; };
-  }, [session?.team?.rec]); // eslint-disable-line
+  }, [session?.team?.rec, refresco]); // eslint-disable-line
   useEffect(() => {
     const rec = session?.team?.rec;
     if (!rec || session?.email === "demo") return;
     if (asistCargaNubeRef.current) { asistCargaNubeRef.current = false; return; }
+    const json = JSON.stringify(asistencia);
+    if (json === asistBaseRef.current) return;
     const idT = setTimeout(async () => {
+      asistBaseRef.current = json;
       const out = await airAsistenciaGuardar(rec, asistencia);
-      setAsistCloudMsg(out?.ok ? t("as.cloudSynced") : t("as.cloudFail"));
+      setAsistCloudMsg(out?.queued ? t("sy.queued") : out?.ok ? t("as.cloudSynced") : t("as.cloudFail"));
       setTimeout(() => setAsistCloudMsg(""), 3000);
     }, 700);
     return () => clearTimeout(idT);
@@ -10914,7 +11033,8 @@ export default function App() {
       const d = JSON.parse(raw);
       if (Array.isArray(d.incidents)) setIncidents(d.incidents);
       if (d.signs) setSigns(d.signs);
-      if (d.attend) setAttend(d.attend);
+      /* Igual que la asistencia: la copia local no se sube al abrir. */
+      if (d.attend) { attBaseRef.current = JSON.stringify(d.attend); setAttend(d.attend); }
     } catch { /* sin localStorage */ }
   }, [discKey]); // eslint-disable-line
   useEffect(() => {
@@ -10929,6 +11049,8 @@ export default function App() {
      pasó lista. */
   const [attCloudMsg, setAttCloudMsg] = useState("");
   const attCargaNubeRef = useRef(false);
+  /* Como asistBaseRef: solo se sube el pase de lista si ha cambiado. */
+  const attBaseRef = useRef(null);
   useEffect(() => {
     const rec = session?.team?.rec;
     if (!rec || session?.email === "demo") return;
@@ -10938,18 +11060,21 @@ export default function App() {
       if (!vivo || !d?.paseLista) return;
       try {
         const remoto = JSON.parse(d.paseLista);
-        if (remoto && typeof remoto === "object") { attCargaNubeRef.current = true; setAttend(remoto); }
+        if (remoto && typeof remoto === "object") { attCargaNubeRef.current = true; attBaseRef.current = JSON.stringify(remoto); setAttend(remoto); }
       } catch { /* json roto en Airtable: se ignora */ }
     })();
     return () => { vivo = false; };
-  }, [session?.team?.rec]); // eslint-disable-line
+  }, [session?.team?.rec, refresco]); // eslint-disable-line
   useEffect(() => {
     const rec = session?.team?.rec;
     if (!rec || session?.email === "demo") return;
     if (attCargaNubeRef.current) { attCargaNubeRef.current = false; return; }
+    const json = JSON.stringify(attend);
+    if (json === attBaseRef.current) return;
     const idT = setTimeout(async () => {
+      attBaseRef.current = json;
       const out = await airPaseListaGuardar(rec, attend);
-      setAttCloudMsg(out?.ok ? t("d.attCloudSynced") : t("d.attCloudFail"));
+      setAttCloudMsg(out?.queued ? t("sy.queued") : out?.ok ? t("d.attCloudSynced") : t("d.attCloudFail"));
       setTimeout(() => setAttCloudMsg(""), 3000);
     }, 700);
     return () => clearTimeout(idT);
@@ -10968,7 +11093,7 @@ export default function App() {
       if (mapped.length) setIncidents(mapped);
     })();
     return () => { alive = false; };
-  }, [session]); // eslint-disable-line
+  }, [session, refresco]); // eslint-disable-line
   const [lineup, setLineup] = useState(LINEUP_INIT);
   const [sysCode, setSysCode] = useState("4-3-3");
   const [sysCustom, setSysCustom] = useState("");
@@ -11145,7 +11270,7 @@ export default function App() {
       } catch { /* json roto en Airtable: se ignora */ }
     })();
     return () => { vivo = false; };
-  }, [session?.team?.rec]); // eslint-disable-line
+  }, [session?.team?.rec, refresco]); // eslint-disable-line
   useEffect(() => {
     if (!lineupCloudPendienteRef.current) return;
     if (aplicarLineupDeNube(lineupCloudPendienteRef.current)) lineupCloudPendienteRef.current = null;
@@ -11262,7 +11387,7 @@ export default function App() {
       } catch { /* json roto en Airtable: se ignora */ }
     })();
     return () => { vivo = false; };
-  }, [session?.team?.rec]); // eslint-disable-line
+  }, [session?.team?.rec, refresco]); // eslint-disable-line
   const guardarFavoritas = async (lista) => {
     const rec = session?.team?.rec;
     if (!rec || session?.email === "demo") {
@@ -11273,7 +11398,7 @@ export default function App() {
     setFavBusy(true);
     const out = await airFavoritasGuardar(rec, lista);
     setFavBusy(false);
-    setFavMsg(t(out?.ok ? "ln.favSaveOk" : "ln.favSaveFail"));
+    setFavMsg(t(out?.queued ? "sy.queued" : out?.ok ? "ln.favSaveOk" : "ln.favSaveFail"));
     setTimeout(() => setFavMsg(""), 4000);
   };
   const guardarComoFavorita = () => {
@@ -11358,7 +11483,7 @@ export default function App() {
       abpListo.current = true;
     })();
     return () => { vivo = false; };
-  }, [session?.team?.rec]); // eslint-disable-line
+  }, [session?.team?.rec, refresco]); // eslint-disable-line
   const guardarAbpEnLaNube = async (doc) => {
     const rec = session?.team?.rec;
     if (!rec || session?.email === "demo") {
@@ -11634,13 +11759,26 @@ export default function App() {
       if (!vivo) return;
       if (js) {
         setCloudOn(true);
-        setPlayers(js.map(jugFromAir));
+        let lista = js.map(jugFromAir);
+        /* En un refresco del mismo equipo (ver useRefresco) cada jugador
+           conserva su id local: el id sale de la posición en la lista, y si
+           otro entrenador ha borrado a alguien mientras tanto, los de detrás
+           cambiarían de id y la alineación o la convocatoria abiertas
+           apuntarían a otro jugador. Al cambiar de equipo, ids nuevos. */
+        if (plantillaDeRef.current === teamRec) {
+          const porRec = new Map(playersRef.current.filter((p) => p.rec).map((p) => [p.rec, p.id]));
+          let max = Math.max(0, ...playersRef.current.map((p) => Number(p.id) || 0));
+          lista = lista.map((p) => ({ ...p, id: porRec.has(p.rec) ? porRec.get(p.rec) : ++max }));
+        }
+        plantillaDeRef.current = teamRec;
+        setPlayers(lista);
       }
       if (ps) setFixtures(ps.map(partFromAir).sort((a, b) => (a.date < b.date ? -1 : 1)));
     })();
     return () => { vivo = false; };
-  }, [teamRec]); // eslint-disable-line
+  }, [teamRec, refresco]); // eslint-disable-line
 
+  const plantillaDeRef = useRef("");
   /* Guarda la plantilla completa en Airtable (crea, actualiza y borra lo que sobre) */
   const subirPlantilla = async () => {
     if (!teamRec) { setCloudMsg("Este equipo todavía no está en la nube."); return; }
@@ -11659,7 +11797,7 @@ export default function App() {
     const porRec = new Map(remotos.map((r) => [r.rec, r]));
     for (const p of players) {
       if (p.rec && porRec.has(p.rec)) { await airEdit("jugadores", p.rec, jugToAir(p, teamRec)); porRec.delete(p.rec); }
-      else { const rec = await airNew("jugadores", jugToAir(p, teamRec)); if (rec) p.rec = rec; }
+      else { const rec = await airNew("jugadores", jugToAir(p, teamRec), p.id); if (rec) p.rec = rec; }
     }
     for (const sobra of porRec.keys()) await airDrop("jugadores", sobra);
     setCloudOn(true);
@@ -11674,7 +11812,7 @@ export default function App() {
     const porRec = new Map(remotos.map((r) => [r.rec, r]));
     for (const f of fixtures) {
       if (f.rec && porRec.has(f.rec)) { await airEdit("partidos", f.rec, partToAir(f, teamRec)); porRec.delete(f.rec); }
-      else { const rec = await airNew("partidos", partToAir(f, teamRec)); if (rec) f.rec = rec; }
+      else { const rec = await airNew("partidos", partToAir(f, teamRec), f.id); if (rec) f.rec = rec; }
     }
     for (const sobra of porRec.keys()) await airDrop("partidos", sobra);
     setCloudOn(true);
@@ -12283,7 +12421,7 @@ export default function App() {
        importada que para una que lleva meses en la nube. */
     if (p.rec) await airEdit("jugadores", p.rec, jugToAir(p, teamRec));
     else {
-      const rec = await airNew("jugadores", jugToAir(p, teamRec));
+      const rec = await airNew("jugadores", jugToAir(p, teamRec), p.id);
       if (rec) editarJugador(p.id, { rec });
     }
     setFichaBusy(false);
@@ -12303,6 +12441,7 @@ export default function App() {
     if (!confirm(t("pf.deleteConfirm").replace("{name}", p.n || ""))) return;
     setBorrarJugadorBusy(true);
     if (p.rec) await airDrop("jugadores", p.rec);
+    else SINCRO.cancelarAlta("jugadores", p.id);
     const sinPuesto = (l) => {
       const next = { ...l };
       Object.keys(next).forEach((k) => { if (next[k] === p.id) delete next[k]; });
@@ -12613,7 +12752,7 @@ export default function App() {
       })));
     })();
     return () => { alive = false; };
-  }, [session, clubInfo.rec]);
+  }, [session, clubInfo.rec, refresco]);
 
   /* Card, Dot y Avatar viven fuera de este componente (justo encima de
      App). Ver el comentario de allí: definirlos aquí dentro rompía la
@@ -14229,7 +14368,7 @@ export default function App() {
          pisar lo que otro haya cambiado mientras tanto. */
       if (limpio.rec) await airEdit("partidos", limpio.rec, partToAir(limpio, teamRec));
       else {
-        const rec = await airNew("partidos", partToAir(limpio, teamRec));
+        const rec = await airNew("partidos", partToAir(limpio, teamRec), limpio.id);
         if (rec) setFixtures((fs) => fs.map((x) => (x.id === limpio.id ? { ...x, rec } : x)));
       }
     }
@@ -14239,6 +14378,7 @@ export default function App() {
     if (fixEdit && fixEdit.id === f.id) setFixEdit(null);
     setCalMsg(t("ca.matchDeleted"));
     if (teamRec && f.rec) await airDrop("partidos", f.rec);
+    else SINCRO.cancelarAlta("partidos", f.id);
   };
 
   /* Formulario de un partido. Mismo bloque para alta y edición: los campos son
@@ -15373,7 +15513,7 @@ export default function App() {
   useEffect(() => {
     if (esSesionRealConEquipo) refreshProposals();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [session?.team?.rec]);
+  }, [session?.team?.rec, refresco]);
 
   const proposeChange = async (type, data) => {
     if (!canProposeChanges()) return;
@@ -15871,7 +16011,7 @@ export default function App() {
       if (vivo && ps) setPartes(ps.map(parteFromAir).sort((a, b) => (a.fecha < b.fecha ? 1 : -1)));
     })();
     return () => { vivo = false; };
-  }, [teamRec]); // eslint-disable-line
+  }, [teamRec, refresco]); // eslint-disable-line
   /* La dirección del club carga de una vez los partes de todas sus categorías:
      comparar entrenadores es justo el motivo de que este módulo exista. */
   useEffect(() => {
@@ -20821,7 +20961,7 @@ export default function App() {
       guardarHistLocal(out);
     })();
     return () => { vivo = false; };
-  }, [teamRec]); // eslint-disable-line
+  }, [teamRec, refresco]); // eslint-disable-line
   /* Ficha de cada jugador en ESTE partido: quién fue titular, quién entró, y
      lo que hizo. Se congela al cerrar el acta, con el nombre y el dorsal que
      tenía ese día: si el año que viene cambia de dorsal, el partido de octubre
@@ -20957,14 +21097,14 @@ export default function App() {
       } catch { /* JSON corrupto en Airtable: se queda la local */ }
     })();
     return () => { vivo = false; };
-  }, [session?.team?.rec]); // eslint-disable-line
+  }, [session?.team?.rec, refresco]); // eslint-disable-line
   const guardarPlan = async () => {
     if (planBusy) return;
     if (!session?.team?.rec) { setPlanMsg(t("se.planNotCloud")); return; }
     setPlanBusy(true); setPlanMsg("");
     const out = await airPlanGuardar(session.team.rec, plan);
     setPlanBusy(false);
-    setPlanMsg(out?.ok ? t("se.saved") : out?.reason === "no_autorizado"
+    setPlanMsg(out?.queued ? t("sy.queued") : out?.ok ? t("se.saved") : out?.reason === "no_autorizado"
       ? t("se.planNoRole")
       : t("se.planSaveFail"));
     if (out?.ok) setTimeout(() => setPlanMsg(""), 4000);
@@ -21038,7 +21178,7 @@ export default function App() {
       try { const remoto = JSON.parse(d.cargas); if (remoto && typeof remoto === "object") setCargas(remoto); } catch { /* json roto en Airtable: se ignora */ }
     })();
     return () => { vivo = false; };
-  }, [session?.team?.rec]); // eslint-disable-line
+  }, [session?.team?.rec, refresco]); // eslint-disable-line
   const cargaDe = (id) => ({ ...CARGA_DEFECTO, ...(cargas[id] || {}) });
   const setCarga = (id, campo, valor) => setCargas((c) => ({ ...c, [id]: { ...CARGA_DEFECTO, ...(c[id] || {}), [campo]: valor } }));
   const guardarCargas = async () => {
@@ -21047,7 +21187,7 @@ export default function App() {
     setCargasBusy(true); setCargasMsg("");
     const out = await airCargasGuardar(session.team.rec, cargas);
     setCargasBusy(false);
-    setCargasMsg(out?.ok ? t("cf.saved") : out?.reason === "no_autorizado" ? t("cf.noRole") : t("cf.saveFail"));
+    setCargasMsg(out?.queued ? t("sy.queued") : out?.ok ? t("cf.saved") : out?.reason === "no_autorizado" ? t("cf.noRole") : t("cf.saveFail"));
     if (out?.ok) setTimeout(() => setCargasMsg(""), 4000);
   };
   /* Media de carga del grupo: la referencia rápida de si hoy se entrena el plan
@@ -21118,7 +21258,7 @@ export default function App() {
     setCargasBusy(true); setCargasMsg("");
     if (session?.team?.rec) {
       const out = await airCargasGuardar(session.team.rec, siguiente);
-      setCargasMsg(out?.ok ? t("cf.dayClosed") : out?.reason === "no_autorizado" ? t("cf.noRole") : t("cf.saveFail"));
+      setCargasMsg(out?.queued ? t("sy.queued") : out?.ok ? t("cf.dayClosed") : out?.reason === "no_autorizado" ? t("cf.noRole") : t("cf.saveFail"));
     } else {
       setCargasMsg(t("cf.dayClosedLocal"));
     }
@@ -22856,6 +22996,25 @@ export default function App() {
             className="md:hidden text-base px-2.5 py-2 rounded-lg border leading-none" style={{ borderColor: C.line, color: C.chalk }}>
             <Icono n="usuarios" s={18} />
           </button>
+          {/* Sincronización, como en Cat Health: la nube dice de un vistazo si
+              todo está subido (punto verde), si hay cambios esperando (naranja,
+              con cuántos), si falta red (gris) o si algo falló (rojo). */}
+          {sincroActiva && (() => {
+            const color = sincro.error && sincro.error.tipo !== "red" ? C.red
+              : !sincro.enLinea ? C.dim
+              : sincro.pendientes ? "#f59e0b" : C.green;
+            return (
+              <button onClick={() => setSincroOpen(true)} title={t("sy.title")} aria-label={t("sy.title")}
+                className="relative text-sm w-8 h-8 shrink-0 rounded-lg border flex items-center justify-center"
+                style={{ borderColor: C.line, color: C.chalk, opacity: sincro.enLinea ? 1 : 0.7 }}>
+                <span className={sincro.enviando ? "animate-spin" : ""}>{sincro.enviando ? "🔄" : "☁️"}</span>
+                <span className="absolute -top-1 -right-1 min-w-[14px] h-[14px] px-0.5 rounded-full text-[9px] leading-[14px] font-bold text-center"
+                  style={{ background: color, color: "#fff", boxShadow: `0 0 0 2px ${C.bg}` }}>
+                  {sincro.pendientes ? (sincro.pendientes > 99 ? "99+" : sincro.pendientes) : ""}
+                </span>
+              </button>
+            );
+          })()}
           {/* Claro / oscuro. Un solo botón: el icono dice a qué se va a cambiar. */}
           <button onClick={cambiarTema} title={tema === "oscuro" ? "Modo claro" : "Modo oscuro"}
             aria-label={tema === "oscuro" ? "Modo claro" : "Modo oscuro"}
@@ -22872,6 +23031,55 @@ export default function App() {
         </div>
       </header>
       </div>
+
+      {sincroOpen && sincroActiva && (() => {
+        const hace = (ms) => {
+          if (!ms) return t("sy.never");
+          const min = Math.floor((Date.now() - ms) / 60000);
+          const cuando = min < 1 ? t("sy.justNow") : min < 60 ? t("sy.minAgo").replace("{n}", min) : min < 1440 ? t("sy.hAgo").replace("{n}", Math.floor(min / 60))
+            : new Date(ms).toLocaleString(lang, { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
+          return t("sy.last").replace("{when}", cuando);
+        };
+        const err = sincro.error;
+        return (
+          <div className="fixed inset-0 z-[80] flex items-start sm:items-center justify-center p-4" style={{ background: "rgba(0,0,0,.55)" }}
+            onClick={() => setSincroOpen(false)}>
+            <div role="dialog" aria-label={t("sy.title")} onClick={(e) => e.stopPropagation()}
+              className="w-full max-w-sm rounded-xl border p-5 mt-16 sm:mt-0" style={{ background: C.panel, borderColor: C.line, color: C.chalk }}>
+              <div className="flex items-center justify-between mb-3">
+                <div className="font-display text-lg font-semibold">☁️ {t("sy.title")}</div>
+                <button onClick={() => setSincroOpen(false)} aria-label="Cerrar" className="text-lg px-2" style={{ color: C.dim }}>✕</button>
+              </div>
+              <div className="text-sm font-semibold mb-1" style={{ color: !sincro.enLinea ? C.dim : sincro.pendientes ? "#f59e0b" : C.green }}>
+                {!sincro.enLinea ? t("sy.offline")
+                  : sincro.enviando ? t("sy.syncing")
+                  : sincro.pendientes ? (sincro.pendientes === 1 ? t("sy.pending1") : t("sy.pending").replace("{n}", sincro.pendientes))
+                  : t("sy.ok")}
+              </div>
+              {!sincro.enLinea && sincro.pendientes > 0 && (
+                <div className="text-sm mb-1" style={{ color: "#f59e0b" }}>
+                  {sincro.pendientes === 1 ? t("sy.pending1") : t("sy.pending").replace("{n}", sincro.pendientes)}
+                </div>
+              )}
+              <div className="text-[12px] mb-3" style={{ color: C.dim }}>{hace(sincro.ultima)}</div>
+              {err && err.tipo !== "red" && (
+                <div className="text-[12px] rounded-lg p-2 mb-3" style={{ background: "rgba(229,72,77,.12)", color: "#f0a3a5" }}>
+                  {err.tipo === "sesion" ? t("sy.errSession") : t("sy.errRejected").replace("{msg}", err.texto || "")}
+                </div>
+              )}
+              {err && err.tipo === "red" && sincro.enLinea && sincro.pendientes > 0 && (
+                <div className="text-[12px] mb-3" style={{ color: C.dim }}>{t("sy.errNet")}</div>
+              )}
+              <button onClick={() => sincronizarAhora()} disabled={sincro.enviando || !sincro.enLinea}
+                className="w-full py-2.5 rounded-lg font-display uppercase tracking-wide text-sm font-semibold disabled:opacity-50"
+                style={{ background: AC, color: C.sobre }}>
+                {sincro.enviando ? t("sy.syncing") : t("sy.now")}
+              </button>
+              <p className="text-[11px] mt-3 leading-snug" style={{ color: C.dim }}>{t("sy.hint")}</p>
+            </div>
+          </div>
+        );
+      })()}
 
       {authMsg && (
         <div className="px-3 sm:px-5 py-2 text-[12px] flex items-center gap-2"

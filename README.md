@@ -92,6 +92,29 @@ Necesitan los datos en Supabase. Cada persona los activa en **Mi cuenta → Avis
    compara los recuentos de Airtable y de Supabase.
 3. Borra `MIGRAR_CLAVE` de Netlify. Si Supabase ya tiene datos, la función se niega a empezar.
 
+## Sincronización sin conexión (v2.68.0)
+
+Como en Cat Health Tracker: lo que se guarda sin red no se pierde.
+
+- **Cola de cambios** (`src/sincro.js`, guardada en `localStorage` como `cb_cola_v1`). Si no
+  hay red, o el servidor da 502/503/504, las escrituras que se pueden repetir sin riesgo
+  esperan en la cola: documentos de equipo (asistencia, pase de lista, alineación, favoritas,
+  ABP, plan, cargas, jugadas), cambios y bajas de registros, altas de jugador/partido (con su
+  id local, para no duplicarlas) e incidencias. Login, altas de cuenta, escudos y fotos no:
+  necesitan la respuesta en el momento.
+- **Orden**: mientras haya algo en la cola, lo nuevo entra detrás, para que un guardado viejo
+  nunca pise a uno nuevo. Dos guardados del mismo documento se quedan en uno; dos cambios del
+  mismo registro se fusionan.
+- **Cuándo se envía**: al volver la red, al volver a la app tras 30 s fuera, cada 30 s si queda
+  algo pendiente y con el botón **Sincronizar ahora**.
+- **Refresco**: después de subir lo pendiente, las pantallas vuelven a leer de la nube lo que
+  haya cambiado otro miembro del cuerpo técnico (`useRefresco()` en los efectos de carga).
+- **Icono ☁️ en la cabecera**: punto verde (todo subido), naranja con el número de cambios
+  pendientes, gris sin red, rojo si el servidor rechazó algo o la sesión caducó. Al pulsarlo:
+  estado, última sincronización y el botón.
+- La cola es de quien la escribió: si entra otra persona en el mismo móvil, se descarta.
+- Pruebas: `pruebas/pruebas19.mjs`.
+
 ## Login y credenciales demo
 **Acceso rápido**: usuario **`demo`** / contraseña **`demo`** (botón "Entrar con usuario demo" en la
 pantalla de acceso) — elige con qué rol entrar (entrenador, segundo, delegado, director, presidente

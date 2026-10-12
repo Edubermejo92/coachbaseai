@@ -39,6 +39,20 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
 - Pestaña de la app: `src/App.jsx` lee `?tab=` al entrar (solo si el rol tiene ese apartado).
 - Decidido con Edu: avisos de convocatoria/partido solo al cuerpo técnico (no a familias).
 
+## Sincronización sin conexión (2026-10-12, v2.68.0)
+- Pedida por Edu "como Cat Health Tracker". Elegido: cola sin conexión + icono/botón + refresco
+  entre dispositivos. NO elegido: subir a la nube lo que hoy vive solo en el móvil (jugadas de
+  pizarra, borrador de entreno, historial de llamadas).
+- `src/sincro.js` (sin React, probado en Node) + `cbFetch` en App.jsx decide qué va a la cola.
+  Respuesta en cola = 202 `{ok:true, queued:true}`; los mensajes de guardado dicen "Guardado
+  en este móvil · se subirá solo" en vez de "Sincronizado".
+- Arreglado de paso: al abrir la app se subía la copia local de la asistencia y del pase de
+  lista sin leer antes la de la nube (podía pisar lo de otro entrenador). Ahora solo se sube si
+  el contenido cambió respecto a lo último leído (asistBaseRef / attBaseRef).
+- Diferencia con Cat Health: allí todo vive en el móvil y se sube; aquí la nube manda y el móvil
+  guarda lo pendiente. Las altas sin clave local (actas ya tenían su reintento, partes con foto)
+  siguen sin cola.
+
 ## Netlify (lecciones)
 - El conector MCP de Netlify (manage-env-vars) dice "upserted" pero NO guarda nada si se le pasan
   scopes parciales (p. ej. ["functions","runtime"]) o is_secret=true con scopes "all". Solo funciona

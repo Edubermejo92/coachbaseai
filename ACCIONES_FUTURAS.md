@@ -45,6 +45,16 @@ Mejoras opcionales detectadas (no se han tocado para no cambiar el comportamient
 - [ ] Opcional: textos del servidor en el idioma de cada persona (hoy en español).
 - [ ] Opcional: avisos a familias (decidido de momento que no).
 
+## Sincronización sin conexión (v2.68.0)
+- [x] Cola sin conexión, icono ☁️ con estado y "Sincronizar ahora", refresco al volver a la app.
+      Probado: 37 comprobaciones (pruebas19) + prueba en navegador sin red → con red.
+- [ ] Edu: probarlo de verdad: modo avión, marcar asistencia o cambiar una lesión, ver el ☁️
+      con el número, quitar el modo avión y comprobar en otro móvil que llega.
+- [ ] Opcional: subir a la nube lo que hoy solo vive en un móvil (jugadas de pizarra, borrador
+      del entreno, historial de llamadas). No se eligió esta vez.
+- [ ] Opcional: partes de material con foto sin red (necesitan el rec para adjuntar la foto).
+- [ ] Opcional: tiempo real (que el cambio de otro entrenador aparezca sin salir y volver).
+
 ## Cat Health → cuenta edubon007
 - [x] Hecho y comprobado (ver MEMORIA_PROYECTO.md). Proyecto viejo borrado por Edu.
 - [ ] Edu: en el proyecto nuevo, Auth → URL Configuration: Site URL y Redirect URLs = las de la app.
