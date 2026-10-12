@@ -9896,6 +9896,27 @@ const Avatar = ({ p, size = 32 }) => {
   );
 };
 
+/* Cara para pasar lista: grande, para reconocer al jugador de un vistazo
+   y no tener que traducir dorsales a nombres con el grupo delante. Con foto,
+   el dorsal va de insignia; sin foto (o si no carga), el dorsal ocupa el
+   círculo. El aro lleva el color de lo que se ha marcado. */
+const CaraLista = ({ p, size = 56, ring }) => {
+  const [fallo, setFallo] = useState(false);
+  const conFoto = !!p.photo && !fallo;
+  return (
+    <div className="relative shrink-0" style={{ width: size, height: size }}>
+      <div className="w-full h-full rounded-full border-2 overflow-hidden flex items-center justify-center font-display font-bold tabular-nums"
+        style={{ borderColor: ring || C.line, background: C.panel2, color: ring || C.dim, fontSize: size * 0.4 }}>
+        {conFoto ? <img src={p.photo} alt="" loading="lazy" onError={() => setFallo(true)} className="w-full h-full object-cover" /> : p.d}
+      </div>
+      {conFoto && size >= 48 && (
+        <span className="absolute -bottom-0.5 -right-1 min-w-[20px] h-5 px-1 rounded-full border text-[11px] leading-[18px] font-display font-bold text-center tabular-nums"
+          style={{ background: C.panel, borderColor: ring || C.line, color: ring || C.chalk }}>{p.d}</span>
+      )}
+    </div>
+  );
+};
+
 /* Ficha del campo interactivo (Alineación, propia y la de familia/jugador de
    solo lectura): mismo caso que Avatar -si la foto no carga, hace falta ver
    el dorsal, no un círculo en blanco-, pero con su propio marcado porque
@@ -15204,8 +15225,8 @@ export default function App() {
               return (
                 <div key={p.id} className="rounded-lg border p-2.5" style={{ borderColor: C.line, background: C.panel2 }}>
                   <div className="flex flex-wrap items-center gap-2">
-                    <div className="flex items-center gap-2 min-w-[150px] flex-1">
-                      <Avatar p={p} size={28} />
+                    <div className="flex items-center gap-2.5 min-w-[150px] flex-1">
+                      <Avatar p={p} size={40} />
                       <div className="min-w-0">
                         <div className="text-sm truncate" style={{ color: C.chalk }}>#{p.d} {p.n}</div>
                         <div className="text-[10px]" style={{ color: C.dim }}>
@@ -15427,20 +15448,22 @@ export default function App() {
                      "Enfermedad" salían a 10 px y cortados, que es justo lo que
                      hay que leer para marcarlo bien. Cerrada vuelve a su sitio
                      en la cuadrícula. */
-                  <div key={p.id} className={`rounded-lg border overflow-hidden ${eligiendo ? "col-span-full" : ""}`} style={{ borderColor: color }}>
+                  <div key={p.id} className={`rounded-lg border overflow-hidden flex flex-col ${eligiendo ? "col-span-full" : ""}`} style={{ borderColor: color }}>
                     {/* Un solo toque marca presente (o quita la marca si ya lo estaba). Es
                         el camino rápido para el día normal, en el que casi todos vienen. */}
-                    <button onClick={() => tocarAsistencia(p.id)} disabled={!can("editSquad")}
-                      className="w-full min-h-16 flex flex-col items-center justify-center py-2 disabled:opacity-70">
-                      <span className="font-display text-lg tabular-nums" style={{ color: estado ? color : C.dim }}>{p.d}</span>
-                      <span className="text-[10px] truncate max-w-full px-1" style={{ color: C.chalk }}>{p.n.split(" ")[0]}</span>
+                    {/* Cara y nombre completo: al pasar lista se reconoce
+                        al jugador por la cara, no por el dorsal. */}
+                    <button onClick={() => tocarAsistencia(p.id)} disabled={!can("editSquad")} aria-label={`${p.d} ${p.n}`}
+                      className="w-full flex-1 flex flex-col items-center justify-start gap-1.5 pt-3 pb-2 px-1.5 disabled:opacity-70">
+                      <CaraLista p={p} size={56} ring={estado ? color : null} />
+                      <span className="w-full text-xs leading-tight text-center line-clamp-2 break-words" style={{ color: C.chalk }}>{p.n}</span>
                     </button>
                     {can("editSquad") && (
                       /* El motivo, con su punto de color y sin recortar: antes
                          iba con truncate y se quedaba en "Sin explicac…". */
                       <button onClick={() => setAsistPick(eligiendo ? null : p.id)}
                         className="w-full text-[11px] py-1.5 border-t px-1.5 leading-tight flex items-center justify-center gap-1.5"
-                        style={{ borderColor: C.line, color, background: C.panel2 }}>
+                        style={{ borderColor: C.line, color: estado ? color : C.dim, background: C.panel2 }}>
                         <span className="shrink-0 w-1.5 h-1.5 rounded-full" style={{ background: estado ? color : "transparent", border: estado ? "none" : `1px solid ${C.dim}` }} />
                         <span>{asistLabel(estado, t)}</span>
                       </button>
@@ -17770,9 +17793,8 @@ export default function App() {
                   <div className="space-y-1.5">
                     {ausentes.map((p) => (
                       <div key={p.id} className="text-sm flex items-center gap-2" style={{ color: C.chalk }}>
-                        <span className="shrink-0 w-2 h-2 rounded-full" style={{ background: asistColor(diaData[p.id]) }} />
-                        <span>#{p.d} {p.n.split(" ")[0]}</span>
-                        <span style={{ color: C.dim }}>· {asistLabel(diaData[p.id], t)}</span>
+                        <CaraLista p={p} size={32} ring={asistColor(diaData[p.id])} />
+                        <span className="min-w-0">{p.n} <span style={{ color: C.dim }}>· #{p.d} · {asistLabel(diaData[p.id], t)}</span></span>
                       </div>
                     ))}
                   </div>
