@@ -28,11 +28,11 @@ Plan propuesto:
 10. [ ] Mantener Airtable en solo-lectura 2–4 semanas como respaldo antes de borrar nada.
 
 ## Cat Health → cuenta edubon007 (para liberar plaza en edubermejo92)
-- [x] Archivo SQL con los datos (1 perfil, 3 gatos, 2 registros, 6 recordatorios) entregado a Edu.
-- [ ] Edu: crear cuenta edubon007, proyecto nuevo, desplegar esquema desde GitHub, registrarse en la app y ejecutar el SQL.
-- [ ] Edu: en el proyecto nuevo, crear la Edge Function de avisos push, sus secretos (VAPID) y el cron
-      `send-reminder-pushes` (*/5 * * * *) si no vienen en el repo. Reactivar las notificaciones en el móvil.
-- [ ] Edu: comprobar que todo funciona y luego pausar/borrar "Cat Health Tracker" en edubermejo92.
+Decidido: copia manual (la transferencia la bloquea Supabase; la conexión de Claude solo ve edubermejo92).
+- [x] Claude: paquete de copia entregado (LEEME.md, 1_esquema.sql con las 8 migraciones, 2_datos.sql,
+      send-reminder-pushes.ts). Datos: 1 perfil, 3 gatos, 2 registros, 6 recordatorios, sin fotos.
+- [ ] Edu: seguir LEEME.md en edubon007 (esquema → claves Vault → Edge Function sin JWT → URL/clave en la app → datos).
+- [ ] Edu: cuando funcione, borrar "Cat Health Tracker" (`vwdnipvfjqeeezuhjstk`) en edubermejo92.
 - [ ] Claude: reactivar `vjsowjjdeufpeiwmtnmr` y seguir con la migración de CoachBase.
 
 ## Otros
