@@ -38,6 +38,14 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
 - Pestaña de la app: `src/App.jsx` lee `?tab=` al entrar (solo si el rol tiene ese apartado).
 - Decidido con Edu: avisos de convocatoria/partido solo al cuerpo técnico (no a familias).
 
+## Netlify (lecciones)
+- El conector MCP de Netlify (manage-env-vars) dice "upserted" pero NO guarda nada si se le pasan
+  scopes parciales (p. ej. ["functions","runtime"]) o is_secret=true con scopes "all". Solo funciona
+  con scopes ["all"], y nunca marca la variable como secreta: eso hay que hacerlo desde el panel.
+  Comprobar siempre con getAllEnvVars después.
+- Las variables solo llegan a las funciones tras un deploy nuevo (push a la rama de producción
+  `claude/coachbase-chamartín-documento-hy5fa3`).
+
 ## Pruebas
 - `npm test` = `pruebas/todas.mjs`: todas las pruebas en modo Airtable (fakeair) y en modo Supabase
   (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-10-12: 263 ✓ / 326 ✓, 0 fallos.
