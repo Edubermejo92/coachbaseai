@@ -21,6 +21,8 @@ const { TABLAS } = await import(tmp);
 fs.rmSync(tmp);
 
 export const SB = "https://sb.test";
+/* Tablas que no vienen de Airtable (supabase/migrations/…_avisos.sql). */
+const EXTRA = ["push_suscripciones", "push_programados", "push_enviados"];
 const J = (o, s = 200) => new Response(JSON.stringify(o), { status: s, headers: { "content-type": "application/json" } });
 const ident = (s) => {
   if (!/^[a-z_][a-z0-9_]*$/.test(s)) throw new Error(`identificador raro: ${s}`);
@@ -54,7 +56,9 @@ export async function crearFakeSupabase(datos) {
     return r.rows;
   };
   const jsonDe = async (sql, params) => {
-    const [r] = await filas(`with x as (${sql}) select coalesce(json_agg(x order by x._orden), '[]'::json)::text as j from x`, params);
+    /* Las tablas de avisos no tienen _orden: se respeta el orden de la consulta. */
+    const orden = /public\."push_\w+"/.test(sql) ? "" : " order by x._orden";
+    const [r] = await filas(`with x as (${sql}) select coalesce(json_agg(x${orden}), '[]'::json)::text as j from x`, params);
     return JSON.parse(r.j);
   };
 
@@ -62,7 +66,14 @@ export async function crearFakeSupabase(datos) {
   async function rest(url, init) {
     const m = (init.method || "GET").toUpperCase();
     const tabla = url.pathname.split("/")[3];
-    if (!TABLAS.some((t) => t.nombre === tabla)) return J({ message: `tabla ${tabla}` }, 404);
+    /* RPC: solo la de leer secretos de Vault. */
+    if (tabla === "rpc") {
+      const fn = url.pathname.split("/")[4];
+      if (fn !== "_secreto") return J({ message: `rpc ${fn}` }, 404);
+      const [r] = await filas(`select public._secreto($1) as v`, [JSON.parse(init.body).nombre]);
+      return J(r.v);
+    }
+    if (!TABLAS.some((t) => t.nombre === tabla) && !EXTRA.includes(tabla)) return J({ message: `tabla ${tabla}` }, 404);
     const T = `public.${ident(tabla)}`;
     const conds = [], params = [];
     let limit = null, offset = 0;
@@ -72,15 +83,18 @@ export async function crearFakeSupabase(datos) {
       if (k === "offset") { offset = Number(v); continue; }
       const [op, ...resto] = v.split(".");
       const arg = resto.join(".");
-      if (op === "eq") { params.push(arg); conds.push(`${T}.${ident(k)} = $${params.length}`); }
-      else if (op === "in") { params.push(arg.replace(/^\(|\)$/g, "").split(",").filter(Boolean)); conds.push(`${T}.${ident(k)} = any($${params.length}::text[])`); }
+      if (op === "eq") { params.push(arg); conds.push(`${T}.${ident(k)}::text = $${params.length}`); }
+      else if (op === "in") { params.push(arg.replace(/^\(|\)$/g, "").split(",").filter(Boolean)); conds.push(`${T}.${ident(k)}::text = any($${params.length}::text[])`); }
       else if (op === "ilike") { params.push(arg.replace(/\*/g, "%")); conds.push(`${T}.${ident(k)} ilike $${params.length}`); }
+      else if (op === "cs") { params.push(arg.replace(/^\{|\}$/g, "").split(",").filter(Boolean)); conds.push(`${T}.${ident(k)} @> $${params.length}::text[]`); }
+      else if (["lt", "lte", "gt", "gte"].includes(op)) { params.push(arg); conds.push(`${T}.${ident(k)} ${{ lt: "<", lte: "<=", gt: ">", gte: ">=" }[op]} $${params.length}`); }
       else return J({ message: `operador ${op}` }, 400);
     }
     const where = conds.length ? `where ${conds.join(" and ")}` : "";
     try {
       if (m === "GET") {
-        return J(await jsonDe(`select * from ${T} ${where} order by _orden ${limit != null ? `limit ${limit}` : ""} offset ${offset}`, params));
+        const ord = EXTRA.includes(tabla) ? (url.searchParams.get("order") === "enviar_en.asc" ? "enviar_en" : "id") : "_orden";
+        return J(await jsonDe(`select * from ${T} ${where} order by ${ord} ${limit != null ? `limit ${limit}` : ""} offset ${offset}`, params));
       }
       const cuerpo = init.body ? JSON.parse(init.body) : null;
       if (m === "POST") {
@@ -88,14 +102,15 @@ export async function crearFakeSupabase(datos) {
         for (const fila of Array.isArray(cuerpo) ? cuerpo : [cuerpo]) {
           const cols = Object.keys(fila).map(ident).join(", ");
           /* on_conflict=id + Prefer resolution=merge-duplicates: upsert. */
-          const upsert = url.searchParams.get("on_conflict") && /merge-duplicates/.test(init.headers?.Prefer || "")
-            ? ` on conflict (${ident(url.searchParams.get("on_conflict"))}) do update set ${Object.keys(fila).map((k) => `${ident(k)} = excluded.${ident(k)}`).join(", ")}`
-            : "";
+          const conflicto = url.searchParams.get("on_conflict");
+          const upsert = conflicto && /merge-duplicates/.test(init.headers?.Prefer || "")
+            ? ` on conflict (${ident(conflicto)}) do update set ${Object.keys(fila).map((k) => `${ident(k)} = excluded.${ident(k)}`).join(", ")}`
+            : conflicto && /ignore-duplicates/.test(init.headers?.Prefer || "") ? ` on conflict (${ident(conflicto)}) do nothing` : "";
           const [r] = await jsonDe(
             Object.keys(fila).length
               ? `insert into ${T} (${cols}) select ${cols} from json_populate_record(null::${T}, $1::json)${upsert} returning *`
               : `insert into ${T} default values returning *`, Object.keys(fila).length ? [JSON.stringify(fila)] : []);
-          out.push(r);
+          if (r) out.push(r);
         }
         if (/return=minimal/.test(init.headers?.Prefer || "")) return new Response(null, { status: 201 });
         return J(out, 201);

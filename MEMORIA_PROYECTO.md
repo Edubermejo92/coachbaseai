@@ -27,9 +27,20 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
 - Auth: propia (PBKDF2 + sesiones HMAC). AUTH_SECRET → si no existe, AIRTABLE_TOKEN → si no,
   SUPABASE_SERVICE_ROLE_KEY. Quitar AIRTABLE_TOKEN sin AUTH_SECRET cierra todas las sesiones.
 
+## Avisos push (2026-10-12, v2.67.0)
+- Web Push propio (`netlify/lib/webpush.mts`, sin la librería web-push: es CommonJS y rompe al
+  empaquetar en Netlify). Verificado en pruebas con http_ece + firma VAPID.
+- Tablas Supabase `push_suscripciones`, `push_programados`, `push_enviados`; `_secreto()` lee Vault.
+  Claves VAPID en Vault de `vjsowjjdeufpeiwmtnmr` (`vapid_publica`, `vapid_privada`).
+- Reglas en `netlify/lib/avisos.mts`; funciones programadas avisos-reglas (*/5) y avisos-reloj (cada min).
+- La convocatoria se marca como enviada al pulsar WhatsApp/Copiar (`?res=convocatoria-enviada`
+  → tabla Convocatorias, una por equipo y día).
+- Pestaña de la app: `src/App.jsx` lee `?tab=` al entrar (solo si el rol tiene ese apartado).
+- Decidido con Edu: avisos de convocatoria/partido solo al cuerpo técnico (no a familias).
+
 ## Pruebas
 - `npm test` = `pruebas/todas.mjs`: todas las pruebas en modo Airtable (fakeair) y en modo Supabase
-  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-10-12: 263 ✓ / 286 ✓, 0 fallos.
+  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-10-12: 263 ✓ / 326 ✓, 0 fallos.
 - Desde la sesión de Claude NO hay red hacia airtable.com ni supabase.co (proxy 403): la prueba
   real contra Supabase la hace la propia app en Netlify.
 

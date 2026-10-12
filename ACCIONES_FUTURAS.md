@@ -35,6 +35,14 @@ Mejoras opcionales detectadas (no se han tocado para no cambiar el comportamient
 - [ ] Borrar un registro no borra sus archivos del bucket (Airtable sí). Limpieza periódica.
 - [ ] Plan Free de Supabase pausa el proyecto tras 1 semana sin uso: pasar a Pro antes de tener clubes reales.
 
+## Avisos push (v2.67.0)
+- [x] Hecho y probado (servidor, app, service worker, 40 comprobaciones propias). Publicado.
+- [ ] Solo funcionan cuando los datos estén en Supabase (pasos 2–4 de arriba).
+- [ ] Edu: en el móvil, Mi cuenta → Avisos en este móvil → activar. Probar con un partido el finde.
+- [ ] Claude: tras la primera semana, mirar en Netlify los logs de avisos-reglas / avisos-reloj.
+- [ ] Opcional: textos del servidor en el idioma de cada persona (hoy en español).
+- [ ] Opcional: avisos a familias (decidido de momento que no).
+
 ## Cat Health → cuenta edubon007
 - [x] Hecho y comprobado (ver MEMORIA_PROYECTO.md). Proyecto viejo borrado por Edu.
 - [ ] Edu: en el proyecto nuevo, Auth → URL Configuration: Site URL y Redirect URLs = las de la app.

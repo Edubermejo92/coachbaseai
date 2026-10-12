@@ -160,7 +160,12 @@ const DICT = {
     "mt.noti": "Avisos del reloj",
     "mt.notiOn": "Avisos activados",
     "mt.notiOff": "Activar avisos",
-    "mt.notiHint": "Suenan aunque tengas el móvil bloqueado o estés en otra app: final de cada parte y comienzo del descuento. Con la app cerrada del todo no llegan.",
+    "mt.notiHint": "Suenan aunque tengas el móvil bloqueado, estés en otra app o se haya cerrado: final de cada parte y comienzo del descuento. Con la app cerrada pueden llegar con un minuto de retraso.",
+    "mt.pushNoSupport": "Con la app cerrada no llegarán: este navegador no lo permite (en iPhone, añade la app a la pantalla de inicio y actívalos desde ahí).",
+    "mt.pushNoServer": "Ahora mismo solo suenan con la app abierta o en segundo plano: el servidor de avisos no está disponible.",
+    "p.noti": "Avisos en este móvil",
+    "p.notiHint": "Al cuerpo técnico: convocatoria sin mandar (jueves y viernes), el día de partido, parte de material olvidado y propuestas por aprobar. En Modo partido, además, el final de cada parte. Llegan aunque la app esté cerrada.",
+    "p.notiTestBody": "Te avisaremos de la convocatoria, el día de partido, el material y las propuestas.",
     "mt.notiBlocked": "Has bloqueado las notificaciones para este sitio. Actívalas en los ajustes del navegador y vuelve aquí.",
     "mt.notiTestTitle": "Avisos activados",
     "mt.notiTestBody": "Te avisaremos al final de cada parte y al empezar el descuento.",
@@ -764,7 +769,12 @@ const DICT = {
     "mt.noti": "Clock alerts",
     "mt.notiOn": "Alerts on",
     "mt.notiOff": "Turn alerts on",
-    "mt.notiHint": "They go off even with the phone locked or another app open: end of each half and start of added time. They don't arrive with the app fully closed.",
+    "mt.notiHint": "They go off even with the phone locked, another app open or the app closed: end of each half and start of added time. With the app closed they may arrive up to a minute late.",
+    "mt.pushNoSupport": "They won't arrive with the app closed: this browser doesn't allow it (on iPhone, add the app to your home screen and turn them on from there).",
+    "mt.pushNoServer": "For now they only go off with the app open or in the background: the alerts server isn't available.",
+    "p.noti": "Alerts on this phone",
+    "p.notiHint": "For the coaching staff: squad call not sent (Thursday and Friday), match day, missing kit report and proposals to approve. In Match mode, also the end of each half. They arrive even with the app closed.",
+    "p.notiTestBody": "We'll let you know about the squad call, match day, kit and proposals.",
     "mt.notiBlocked": "You've blocked notifications for this site. Turn them on in your browser settings and come back.",
     "mt.notiTestTitle": "Alerts on",
     "mt.notiTestBody": "We'll alert you at the end of each half and when added time starts.",
@@ -1380,7 +1390,12 @@ const DICT = {
     "mt.noti": "Alertes du chrono",
     "mt.notiOn": "Alertes activées",
     "mt.notiOff": "Activer les alertes",
-    "mt.notiHint": "Elles sonnent même téléphone verrouillé ou sur une autre appli : fin de chaque période et début du temps additionnel. Application complètement fermée, elles n'arrivent pas.",
+    "mt.notiHint": "Elles sonnent même téléphone verrouillé, sur une autre appli ou application fermée : fin de chaque période et début du temps additionnel. Application fermée, elles peuvent arriver avec une minute de retard.",
+    "mt.pushNoSupport": "Application fermée, elles n'arriveront pas : ce navigateur ne le permet pas (sur iPhone, ajoutez l'appli à l'écran d'accueil et activez-les depuis là).",
+    "mt.pushNoServer": "Pour l'instant elles ne sonnent qu'avec l'appli ouverte ou en arrière-plan : le serveur d'alertes n'est pas disponible.",
+    "p.noti": "Alertes sur ce téléphone",
+    "p.notiHint": "Pour le staff : convocation non envoyée (jeudi et vendredi), jour de match, rapport de matériel oublié et propositions à valider. En mode match, aussi la fin de chaque période. Elles arrivent même application fermée.",
+    "p.notiTestBody": "Nous vous préviendrons pour la convocation, le jour de match, le matériel et les propositions.",
     "mt.notiBlocked": "Vous avez bloqué les notifications pour ce site. Activez-les dans les réglages du navigateur et revenez.",
     "mt.notiTestTitle": "Alertes activées",
     "mt.notiTestBody": "Nous vous préviendrons à la fin de chaque période et au début du temps additionnel.",
@@ -2076,7 +2091,12 @@ const DICT = {
     "mt.noti": "Uhr-Hinweise",
     "mt.notiOn": "Hinweise an",
     "mt.notiOff": "Hinweise einschalten",
-    "mt.notiHint": "Sie kommen auch bei gesperrtem Handy oder in einer anderen App: Ende jeder Halbzeit und Beginn der Nachspielzeit. Bei ganz geschlossener App kommen sie nicht an.",
+    "mt.notiHint": "Sie kommen auch bei gesperrtem Handy, in einer anderen App oder bei geschlossener App: Ende jeder Halbzeit und Beginn der Nachspielzeit. Bei geschlossener App können sie bis zu einer Minute später ankommen.",
+    "mt.pushNoSupport": "Bei geschlossener App kommen sie nicht an: Dieser Browser erlaubt es nicht (auf dem iPhone die App zum Home-Bildschirm hinzufügen und dort aktivieren).",
+    "mt.pushNoServer": "Im Moment kommen sie nur bei offener App oder im Hintergrund: Der Benachrichtigungsserver ist nicht verfügbar.",
+    "p.noti": "Benachrichtigungen auf diesem Handy",
+    "p.notiHint": "Für das Trainerteam: Nominierung nicht verschickt (Donnerstag und Freitag), Spieltag, fehlender Materialbericht und offene Vorschläge. Im Spielmodus außerdem das Ende jeder Halbzeit. Sie kommen auch bei geschlossener App an.",
+    "p.notiTestBody": "Wir benachrichtigen dich zu Nominierung, Spieltag, Material und Vorschlägen.",
     "mt.notiBlocked": "Du hast Benachrichtigungen für diese Seite blockiert. Schalte sie in den Browser-Einstellungen ein und komm zurück.",
     "mt.notiTestTitle": "Hinweise an",
     "mt.notiTestBody": "Wir melden uns am Ende jeder Halbzeit und zu Beginn der Nachspielzeit.",
@@ -2771,7 +2791,12 @@ const DICT = {
     "mt.noti": "Avisos do relógio",
     "mt.notiOn": "Avisos ativados",
     "mt.notiOff": "Ativar avisos",
-    "mt.notiHint": "Tocam mesmo com o telemóvel bloqueado ou noutra app: fim de cada parte e início dos descontos. Com a app fechada de todo não chegam.",
+    "mt.notiHint": "Tocam mesmo com o telemóvel bloqueado, noutra app ou com a app fechada: fim de cada parte e início dos descontos. Com a app fechada podem chegar com um minuto de atraso.",
+    "mt.pushNoSupport": "Com a app fechada não vão chegar: este navegador não permite (no iPhone, adicione a app ao ecrã principal e ative-os a partir daí).",
+    "mt.pushNoServer": "Por agora só tocam com a app aberta ou em segundo plano: o servidor de avisos não está disponível.",
+    "p.noti": "Avisos neste telemóvel",
+    "p.notiHint": "Para a equipa técnica: convocatória por enviar (quinta e sexta), dia de jogo, relatório de material esquecido e propostas por aprovar. No Modo jogo, também o fim de cada parte. Chegam mesmo com a app fechada.",
+    "p.notiTestBody": "Vamos avisar-te da convocatória, do dia de jogo, do material e das propostas.",
     "mt.notiBlocked": "Bloqueaste as notificações para este site. Ativa-as nas definições do navegador e volta aqui.",
     "mt.notiTestTitle": "Avisos ativados",
     "mt.notiTestBody": "Vamos avisar-te no fim de cada parte e no início dos descontos.",
@@ -8625,14 +8650,67 @@ const pedirNotis = async () => {
 const apagarNotis = () => { try { localStorage.setItem(NOTIS_KEY, "0"); } catch { /* noop */ } };
 /* `tag` hace que un aviso sustituya al anterior del mismo tipo en vez de
    apilar cinco iguales en la barra de notificaciones. */
-const avisar = async (titulo, cuerpo, tag = "cb") => {
+const avisar = async (titulo, cuerpo, tag = "cb", clave = "") => {
   if (!notisOn()) return;
-  const opciones = { body: cuerpo, icon: "/icon-192.png", badge: "/icon-192.png", tag, renotify: true, data: { url: "/" } };
+  /* `clave` identifica el aviso: si el mismo llega luego por push desde el
+     servidor (con la app cerrada no hay otra forma), el service worker ve
+     que ya está en pantalla y lo cambia en silencio en vez de sonar dos
+     veces. */
+  const opciones = { body: cuerpo, icon: "/icon-192.png", badge: "/icon-192.png", tag, renotify: true, data: { url: "/", clave } };
   try {
     const reg = await navigator.serviceWorker?.ready;
     if (reg) { await reg.showNotification(titulo, opciones); return; }
   } catch { /* sin service worker: se intenta el camino corto */ }
   try { new Notification(titulo, opciones); } catch { /* noop */ }
+};
+
+/* ---- Avisos con la app cerrada (Web Push) ----
+   Lo de arriba solo suena mientras la app sigue viva en segundo plano. Para
+   cuando el sistema la cierra -o nunca se abrió-, el móvil se apunta en el
+   servidor (?res=push) y es el servidor quien manda: convocatoria pendiente,
+   día de partido, partes de material, propuestas y el reloj del Modo partido
+   (ver netlify/lib/avisos.mts). Necesita los datos en Supabase; si no, el
+   servidor contesta 503 y se queda en avisos locales, como hasta ahora.
+   En iPhone solo funciona con la app añadida a la pantalla de inicio. */
+const hayPush = () => typeof window !== "undefined" && "serviceWorker" in navigator && "PushManager" in window;
+const b64uABytes = (s) => {
+  const p = String(s || "").replace(/-/g, "+").replace(/_/g, "/");
+  return Uint8Array.from(atob(p + "=".repeat((4 - (p.length % 4)) % 4)), (c) => c.charCodeAt(0));
+};
+/* "ok" si el servidor ya puede avisar a este móvil; si no, el motivo. */
+const activarPush = async () => {
+  if (!hayPush() || DEMO_MODE) return "sin-soporte";
+  try {
+    const r = await cbFetch(`${AIR}?res=push`);
+    if (!r.ok) return "sin-servidor";
+    const { clave } = await r.json();
+    if (!clave) return "sin-servidor";
+    const reg = await navigator.serviceWorker.ready;
+    const claveBytes = b64uABytes(clave);
+    let sub = await reg.pushManager.getSubscription();
+    /* Una suscripción hecha con otra clave del servidor ya no sirve. */
+    const suya = sub?.options?.applicationServerKey ? new Uint8Array(sub.options.applicationServerKey) : null;
+    if (sub && suya && (suya.length !== claveBytes.length || suya.some((b, i) => b !== claveBytes[i]))) {
+      await sub.unsubscribe().catch(() => {});
+      sub = null;
+    }
+    if (!sub) sub = await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: claveBytes });
+    const g = await cbFetch(`${AIR}?res=push`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ sub: sub.toJSON() }) });
+    return g.ok ? "ok" : "error";
+  } catch { return "error"; }
+};
+const desactivarPush = async () => {
+  try {
+    const reg = await navigator.serviceWorker?.ready;
+    const sub = await reg?.pushManager?.getSubscription();
+    if (!sub) return;
+    await cbFetch(`${AIR}?res=push`, { method: "DELETE", headers: { "content-type": "application/json" }, body: JSON.stringify({ endpoint: sub.endpoint }) }).catch(() => {});
+    await sub.unsubscribe().catch(() => {});
+  } catch { /* noop */ }
+};
+const endpointPush = async () => {
+  try { return (await (await navigator.serviceWorker?.ready)?.pushManager?.getSubscription())?.endpoint || ""; }
+  catch { return ""; }
 };
 
 const fmtClock = (s) => `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
@@ -10099,6 +10177,19 @@ export default function App() {
   const [accOpen, setAccOpen] = useState(false);
 
   const [tab, setTab] = useState("inicio");
+  /* Abrir la app desde un aviso: ?tab=convocatoria, partido, parte… Solo si
+     es un apartado de esta persona; si no, se queda en Inicio. Y se quita de
+     la dirección para que recargar no vuelva a saltar ahí. */
+  useEffect(() => {
+    if (!session) return;
+    const pedida = new URLSearchParams(window.location.search).get("tab");
+    if (!pedida) return;
+    const permitidas = getAvailableTabs(session?.club, roleTabs).filter((k) => k !== "usuarios" || lim.users);
+    if (permitidas.includes(pedida)) setTab(pedida);
+    const u = new URL(window.location.href);
+    u.searchParams.delete("tab");
+    window.history.replaceState({}, "", u.pathname + u.search);
+  }, [session?.email]); // eslint-disable-line
   /* Cualquier camino a un apartado de pago sin PRO acaba en Premium. El menú
      ya lo evita, pero se llega también desde los accesos rápidos de Inicio y
      desde el botón de pizarra del modo partido: poner el corte aquí cubre
@@ -11706,6 +11797,13 @@ export default function App() {
     const r = relojRef.current;
     return r.desde == null ? r.base : r.base + Math.max(0, Math.round((Date.now() - r.desde) / 1000));
   };
+  /* Segundo (de reloj real) en que esta parte marcaba 0:00. Identifica la
+     parte en los avisos: si se ajusta el minuto, cambia, y el aviso nuevo no
+     se confunde con el viejo. */
+  const inicioRelojSeg = () => {
+    const r = relojRef.current;
+    return Math.round(((r.desde ?? Date.now()) - r.base * 1000) / 1000);
+  };
   const ponerReloj = (n, enMarcha) => {
     relojRef.current = { base: n, desde: enMarcha ? Date.now() : null };
     setRunning(!!enMarcha);
@@ -11776,6 +11874,28 @@ export default function App() {
   /* Interruptor de los avisos del sistema. Se guarda en el móvil, no en la
      cuenta: el permiso de notificaciones es de este navegador. */
   const [notisOk, setNotisOk] = useState(() => notisOn());
+  /* Si además el servidor puede avisar con la app cerrada: "ok", o el
+     motivo por el que no ("sin-soporte", "sin-servidor", "error"). */
+  const [pushEstado, setPushEstado] = useState("");
+  /* Un solo interruptor para todos los avisos, en Mi cuenta y en Modo
+     partido: el permiso es del navegador, no de cada pantalla. */
+  const alternarAvisos = async (tituloPrueba, cuerpoPrueba) => {
+    if (notisOk) { apagarNotis(); setNotisOk(false); setPushEstado(""); desactivarPush(); return; }
+    const ok = await pedirNotis();
+    setNotisOk(ok);
+    if (!ok) return;
+    avisar(tituloPrueba, cuerpoPrueba, "cb-prueba");
+    setPushEstado(await activarPush());
+  };
+  /* Quien ya tenía los avisos activados se vuelve a apuntar en el servidor al
+     entrar (sin preguntar: el permiso ya está dado). Así le llegan también
+     los nuevos, y si cambió de cuenta en este móvil, pasan a la cuenta nueva. */
+  useEffect(() => {
+    if (!session?.email || !notisOk || DEMO_MODE) return;
+    let vivo = true;
+    activarPush().then((r) => { if (vivo) setPushEstado(r); });
+    return () => { vivo = false; };
+  }, [session?.email]); // eslint-disable-line
 
   /* El tick solo repinta: el valor sale siempre de la hora real (calcSecs).
      Además se recalcula al volver a la app -visibilitychange, focus,
@@ -11860,9 +11980,40 @@ export default function App() {
     else if (overMin > 0) hito = `${periodo}-desc`;
     if (!hito || hito === avisadoRef.current) return;
     avisadoRef.current = hito;
-    if (hito.endsWith("-fin")) avisar(t("mt.notiEnd").replace("{p}", parte), t("mt.notiEndBody").replace("{s}", marcador), "cb-reloj");
-    else avisar(t("mt.notiAdded").replace("{p}", parte), t("mt.notiAddedBody"), "cb-reloj");
+    const clave = `${hito}-${inicioRelojSeg()}`;
+    if (hito.endsWith("-fin")) avisar(t("mt.notiEnd").replace("{p}", parte), t("mt.notiEndBody").replace("{s}", marcador), "cb-reloj", clave);
+    else avisar(t("mt.notiAdded").replace("{p}", parte), t("mt.notiAddedBody"), "cb-reloj", clave);
   }, [running, periodo, leftSecs, overMin]); // eslint-disable-line
+  /* ---- Los mismos avisos, programados en el servidor ----
+     Lo de arriba depende de que la app siga viva. Si el sistema la cierra a
+     media parte, quien avisa es el servidor (ver activarPush): aquí se le
+     dice a qué hora acaba la parte y empieza el descuento. Se reprograma en
+     cada cambio de verdad -arrancar, parar, ajustar el minuto, cambiar de
+     parte, el descuento o el marcador-, no en cada segundo, y al parar el
+     reloj se cancelan. La clave es la misma que la del aviso local: si los
+     dos llegan, suena una sola vez. */
+  const firmaReloj = [running, relojRef.current.base, relojRef.current.desde, half, periodo, endSecs, periodLen, score.us, score.them, notisOk].join("|");
+  useEffect(() => {
+    if (!notisOk || DEMO_MODE || !String(session?.team?.id || "").startsWith("rec")) return;
+    let vivo = true;
+    const id = setTimeout(async () => {
+      const endpoint = await endpointPush();
+      if (!endpoint || !vivo) return;
+      const avisos = [];
+      if (running && periodo !== "pen") {
+        const cero = inicioRelojSeg() * 1000;
+        const parte = periodoActual.name[lang] || periodoActual.name.es;
+        const nos = session.team?.name || "";
+        const riv = matchInfo.rival || t("mt.rival");
+        const marcador = (somosLocal ? `${nos} ${score.us}-${score.them} ${riv}` : `${riv} ${score.them}-${score.us} ${nos}`).trim();
+        const fin = cero + endSecs * 1000, desc = cero + (periodLen + 1) * 60000;
+        if (fin > Date.now()) avisos.push({ en: new Date(fin).toISOString(), titulo: t("mt.notiEnd").replace("{p}", parte), cuerpo: t("mt.notiEndBody").replace("{s}", marcador), clave: `${periodo}-fin-${inicioRelojSeg()}` });
+        if (desc > Date.now()) avisos.push({ en: new Date(desc).toISOString(), titulo: t("mt.notiAdded").replace("{p}", parte), cuerpo: t("mt.notiAddedBody"), clave: `${periodo}-desc-${inicioRelojSeg()}` });
+      }
+      cbFetch(`${AIR}?res=push-reloj`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ endpoint, avisos }) }).catch(() => {});
+    }, 800);
+    return () => { vivo = false; clearTimeout(id); };
+  }, [firmaReloj]); // eslint-disable-line
   /* Cambia de parte: reinicia el reloj y el descuento salvo al entrar en
      penaltis, que no se cronometra. Deja constancia en el acta de qué parte
      empieza, con su nombre ya traducido. */
@@ -12349,6 +12500,19 @@ export default function App() {
     const lines = list.map((p) => `${esPortero(p) ? "🧤 " : ""}${keycap(p.d)} ${p.n}`);
     return `📋 *CONVOCATORIA — ${session.club} ${session.team.name}*\n⚽ vs ${matchInfo.rival}\n📅 ${matchInfo.fecha} · ⏰ ${matchInfo.hora}\n📍 ${matchInfo.lugar}\n\n${lines.join("\n")}\n\n✅ Confirmad asistencia, por favor.`;
   };
+  /* Mandar la convocatoria (WhatsApp o copiar el texto) no deja rastro en
+     ningún sitio: se apunta en el servidor, una por equipo y día, para que
+     el aviso de "convocatoria pendiente" del jueves/viernes sepa que ya está
+     hecha. Sin fecha real del partido no hay qué apuntar. */
+  const marcarConvocatoriaEnviada = () => {
+    const team = String(session?.team?.id || "");
+    if (DEMO_MODE || !team.startsWith("rec") || !/^\d{4}-\d{2}-\d{2}$/.test(String(matchInfo.fecha || ""))) return;
+    const convocados = players.filter((p) => called.has(p.id)).map((p) => p.rec).filter(Boolean);
+    cbFetch(`${AIR}?res=convocatoria-enviada`, {
+      method: "POST", headers: { "content-type": "application/json" },
+      body: JSON.stringify({ team, fecha: matchInfo.fecha, hora: matchInfo.hora, rival: matchInfo.rival, lugar: matchInfo.lugar, convocados }),
+    }).catch(() => {});
+  };
   /* ---- Atajo de WhatsApp en la navegación ----
      La convocatoria siempre termina igual: mandándola al grupo. Tenerlo al
      lado del propio apartado ahorra el camino de cada viernes -entrar, bajar
@@ -12359,7 +12523,7 @@ export default function App() {
     if (!called.size) return null;
     return (
       <a href={`https://wa.me/?text=${encodeURIComponent(waText())}`} target="_blank" rel="noreferrer"
-        onClick={(e) => { e.stopPropagation(); alPulsar?.(); }}
+        onClick={(e) => { e.stopPropagation(); marcarConvocatoriaEnviada(); alPulsar?.(); }}
         title={t("cl.waOpen")} aria-label={`${t("cl.waOpen")} — ${navLabel("convocatoria")}`}
         className="shrink-0 w-10 h-10 rounded-lg border flex items-center justify-center"
         style={{ borderColor: C.line, color: "#25D366" }}>
@@ -12372,6 +12536,7 @@ export default function App() {
     try { await navigator.clipboard.writeText(txt); }
     catch { const ta = document.createElement("textarea"); ta.value = txt; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); document.body.removeChild(ta); }
     setCopied(true); setTimeout(() => setCopied(false), 1800);
+    marcarConvocatoriaEnviada();
   };
 
   /* Gestión de usuarios */
@@ -12732,6 +12897,25 @@ export default function App() {
             </label>
           </div>
         </div>
+
+        {/* ---- Avisos en este móvil ----
+             El mismo interruptor que en Modo partido (permiso del navegador +
+             apuntarse en el servidor), aquí porque los avisos de convocatoria,
+             partido y material no tienen nada que ver con estar en un partido. */}
+        {hayNotis() && !esDemo && (
+          <div className="pt-4 mt-4 border-t" style={{ borderColor: C.line }}>
+            <div className="font-display text-sm uppercase tracking-widest mb-3" style={{ color: C.dim }}>{t("p.noti")}</div>
+            <button onClick={() => alternarAvisos(t("mt.notiTestTitle"), t("p.notiTestBody"))}
+              className="flex items-center gap-2 text-xs font-display px-3 py-1.5 rounded-full border"
+              style={{ borderColor: notisOk ? AC : C.line, color: notisOk ? AC : C.dim }}>
+              <span>{notisOk ? "🔔" : "🔕"}</span>{notisOk ? t("mt.notiOn") : t("mt.notiOff")}
+            </button>
+            <div className="text-[11px] mt-2 leading-relaxed" style={{ color: C.dim }}>
+              {Notification.permission === "denied" ? t("mt.notiBlocked")
+                : `${t("p.notiHint")}${notisOk && pushEstado && pushEstado !== "ok" ? ` ${t(pushEstado === "sin-soporte" ? "mt.pushNoSupport" : "mt.pushNoServer")}` : ""}`}
+            </div>
+          </div>
+        )}
 
         <div className="pt-4 mt-4 border-t" style={{ borderColor: C.line }}>
           <div className="font-display text-sm uppercase tracking-widest mb-3" style={{ color: C.dim }}>{t("p.changePass")}</div>
@@ -19685,7 +19869,7 @@ export default function App() {
           <pre className="whitespace-pre-wrap text-sm rounded-lg p-4 border font-body leading-relaxed" style={{ background: C.panel2, borderColor: C.line, color: C.chalk }}>{waText()}</pre>
           <div className="mt-3 flex gap-2">
             <button onClick={copyWa} className="flex-1 font-display uppercase tracking-wide px-2 py-2.5 rounded-lg font-semibold leading-tight" style={{ background: copied ? C.green : AC, color: C.sobre }}>{copied ? t("cl.copied") : t("cl.copyMsg")}</button>
-            <a href={`https://wa.me/?text=${encodeURIComponent(waText())}`} target="_blank" rel="noreferrer" className="flex-1 text-center font-display uppercase tracking-wider py-2.5 rounded-lg font-semibold border" style={{ borderColor: C.line, color: C.chalk }}>{t("cl.waOpen")}</a>
+            <a href={`https://wa.me/?text=${encodeURIComponent(waText())}`} target="_blank" rel="noreferrer" onClick={marcarConvocatoriaEnviada} className="flex-1 text-center font-display uppercase tracking-wider py-2.5 rounded-lg font-semibold border" style={{ borderColor: C.line, color: C.chalk }}>{t("cl.waOpen")}</a>
           </div>
           <div className="text-[11px] mt-2" style={{ color: C.dim }}>{t("cl.waLegend")}</div>
           {editable && (
@@ -20282,18 +20466,14 @@ export default function App() {
                 <div className="mt-4">
                   <div className="font-display text-xs uppercase tracking-widest mb-2" style={{ color: C.dim }}>{t("mt.noti")}</div>
                   <button
-                    onClick={async () => {
-                      if (notisOk) { apagarNotis(); setNotisOk(false); return; }
-                      const ok = await pedirNotis();
-                      setNotisOk(ok);
-                      if (ok) avisar(t("mt.notiTestTitle"), t("mt.notiTestBody"), "cb-prueba");
-                    }}
+                    onClick={() => alternarAvisos(t("mt.notiTestTitle"), t("mt.notiTestBody"))}
                     className="flex items-center gap-2 text-xs font-display px-3 py-1.5 rounded-full border"
                     style={{ borderColor: notisOk ? AC : C.line, color: notisOk ? AC : C.dim }}>
                     <span>{notisOk ? "🔔" : "🔕"}</span>{notisOk ? t("mt.notiOn") : t("mt.notiOff")}
                   </button>
                   <div className="text-[11px] mt-2 leading-relaxed" style={{ color: C.dim }}>
-                    {Notification.permission === "denied" ? t("mt.notiBlocked") : t("mt.notiHint")}
+                    {Notification.permission === "denied" ? t("mt.notiBlocked")
+                      : `${t("mt.notiHint")}${notisOk && pushEstado && pushEstado !== "ok" ? ` ${t(pushEstado === "sin-soporte" ? "mt.pushNoSupport" : "mt.pushNoServer")}` : ""}`}
                   </div>
                 </div>
               )}

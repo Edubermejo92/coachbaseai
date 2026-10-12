@@ -3,7 +3,7 @@
    llamadas a la API (Airtable, Coach AI, Stripe -todo bajo /.netlify/-)
    NUNCA se cachean: son datos en vivo, y servir una respuesta vieja de la
    plantilla o de una propuesta sería peor que no responder. */
-const CACHE = "cb-shell-v2";
+const CACHE = "cb-shell-v3";
 
 self.addEventListener("install", (e) => {
   self.skipWaiting();
@@ -46,11 +46,10 @@ self.addEventListener("fetch", (e) => {
 });
 
 /* ---- Avisos del sistema ----
-   Las notificaciones las lanza la app (registration.showNotification), no un
-   servidor: sirven para que el aviso llegue con el móvil bloqueado o con la
-   app en segundo plano, que es cuando el entrenador tiene el teléfono en el
-   bolsillo. Aquí solo hace falta decidir qué pasa al tocarlas: si la app ya
-   está abierta en alguna pestaña se trae al frente, y si no, se abre. */
+   Unos los lanza la app (registration.showNotification) mientras sigue viva
+   en segundo plano; otros llegan por push desde el servidor (más abajo).
+   Al tocarlos: si la app ya está abierta en alguna pestaña se trae al frente
+   y se lleva al apartado del aviso (?tab=…); si no, se abre ahí. */
 self.addEventListener("notificationclick", (e) => {
   e.notification.close();
   const destino = e.notification.data?.url || "/";
@@ -64,13 +63,27 @@ self.addEventListener("notificationclick", (e) => {
   );
 });
 
-/* Push de verdad (con la app cerrada del todo) exigiría claves VAPID y un
-   servidor que las envíe; todavía no lo hay. Se deja el enganche puesto para
-   que el día que exista no haya que tocar el service worker. */
+/* Push de verdad: lo manda el servidor (netlify/lib/avisos.mts) y llega
+   aunque la app esté cerrada del todo: convocatoria pendiente, día de
+   partido, parte de material, propuestas y el reloj del Modo partido.
+   Si el mismo aviso ya está en pantalla -la app, viva en segundo plano, lo
+   lanzó a su hora y el servidor llega un poco después- se cambia en silencio
+   en vez de volver a sonar: los dos llevan la misma `clave`. */
 self.addEventListener("push", (e) => {
   let d = { title: "COACHBASE", body: "" };
   try { d = { ...d, ...(e.data ? e.data.json() : {}) }; } catch { d.body = e.data ? e.data.text() : ""; }
-  e.waitUntil(self.registration.showNotification(d.title, {
-    body: d.body, icon: "/icon-192.png", badge: "/icon-192.png", data: { url: d.url || "/" },
-  }));
+  const tag = d.tag || "cb";
+  e.waitUntil(
+    self.registration.getNotifications({ tag }).then((previas) => {
+      const repetida = !!d.clave && previas.some((n) => n.data && n.data.clave === d.clave);
+      return self.registration.showNotification(d.title, {
+        body: d.body, icon: "/icon-192.png", badge: "/icon-192.png", tag,
+        renotify: !repetida, silent: repetida,
+        data: { url: d.url || "/", clave: d.clave || "" },
+      });
+    })
+  );
 });
+
+/* El navegador puede renovar la suscripción por su cuenta. La app se vuelve
+   a apuntar sola en cuanto se abre (ver activarPush en App.jsx). */

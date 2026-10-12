@@ -63,6 +63,27 @@ tabla de la antigua base Airtable **COACHBASE AI**, con los mismos ids (`rec…`
 Para añadir un campo: añádelo en `esquema-coachbase.mts`, crea la columna en Supabase con una
 migración nueva (`alter table … add column …`) y regenera el SQL de referencia con `npm run sql`.
 
+### Avisos con la app cerrada (Web Push)
+Necesitan los datos en Supabase. Cada persona los activa en **Mi cuenta → Avisos en este móvil**
+(o en Modo partido). En iPhone, solo con la app añadida a la pantalla de inicio.
+
+| Aviso | Cuándo | A quién |
+|---|---|---|
+| Convocatoria pendiente | Jueves desde 18:00 y viernes desde 12:00, si hay partido el fin de semana y no se ha mandado | Cuerpo técnico del equipo |
+| Día de partido | 3 h antes (a las 9:00 si no hay hora) | Cuerpo técnico |
+| Parte de material | 21:30 de un día de entreno sin parte | Cuerpo técnico |
+| Partes sin mandar (resumen) | 9:00, las categorías que ayer no mandaron parte | Cuenta del club y director |
+| Propuesta pendiente | Al momento | Entrenador principal (o director) |
+| Final de parte / descuento | A su hora, aunque el sistema haya cerrado la app | Quien lleva el Modo partido |
+
+- `netlify/lib/avisos.mts` — reglas, envío y que nada llegue dos veces (`push_enviados`).
+- `netlify/lib/webpush.mts` — Web Push sin dependencias (VAPID + cifrado aes128gcm con WebCrypto).
+- `netlify/functions/avisos-reglas.mts` (cada 5 min) y `avisos-reloj.mts` (cada minuto). Solo corren
+  en la versión publicada.
+- Claves VAPID en **Supabase Vault** (`vapid_publica`, `vapid_privada`); nada en Netlify ni en el código.
+- La convocatoria cuenta como mandada cuando se pulsa WhatsApp o Copiar: queda en la tabla Convocatorias.
+- Horas de Madrid. Los textos del servidor van en español.
+
 ### Copiar los datos de Airtable a Supabase (una sola vez)
 1. En Netlify, pon `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` y una `MIGRAR_CLAVE` inventada
    (larga). Deja `AIRTABLE_TOKEN` puesto. Despliega.

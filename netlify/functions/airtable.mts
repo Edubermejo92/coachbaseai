@@ -1,5 +1,6 @@
 import { contarLlamadas, leerUso } from "../lib/uso-airtable.mts";
 import { instalarSupabase, supabaseActivo } from "../lib/supabase-airtable.mts";
+import { clavePublica, suscribir, desuscribir, programarReloj, avisarPropuesta } from "../lib/avisos.mts";
 // Proxy serverless entre la app y Airtable.
 //   ?res=(vacío)      -> Usuarios: login, registro real (crea club y equipo), alta/baja, roles
 //   ?res=equipos      -> Equipos: listar, crear y editar (rol Master)
@@ -1541,6 +1542,59 @@ const atender = async (req: Request) => {
       });
     }
 
+    /* ================= AVISOS CON LA APP CERRADA =================
+       Ver netlify/lib/avisos.mts. Solo con los datos en Supabase: es donde
+       se guarda qué móviles han aceptado avisos.
+       ?res=push          GET la clave pública · POST {sub} apuntarse · DELETE {endpoint}
+       ?res=push-reloj    POST {endpoint, avisos:[{en, titulo, cuerpo, clave}]}
+                          (sustituye los del reloj de ese móvil; [] los cancela) */
+    if (res === "push" || res === "push-reloj") {
+      if (!supabaseActivo()) return j({ ok: false, reason: "sin_supabase" }, 503);
+      if (!sesion?.id || !ES_REC.test(String(sesion.id))) return j({ ok: false, reason: "no_autorizado" }, 401);
+      const b = req.method === "GET" ? {} : await req.json().catch(() => ({}));
+      if (res === "push") {
+        if (req.method === "GET") return j({ ok: true, clave: await clavePublica() });
+        if (req.method === "POST") return j(await suscribir(String(sesion.id), b.sub, req.headers.get("user-agent") || ""));
+        if (req.method === "DELETE") return j(await desuscribir(String(sesion.id), String(b.endpoint || "")));
+      }
+      if (res === "push-reloj" && req.method === "POST") {
+        return j(await programarReloj(String(sesion.id), String(b.endpoint || ""), b.avisos));
+      }
+      return j({ error: "Petición no soportada" }, 400);
+    }
+
+    /* ================= CONVOCATORIA ENVIADA =================
+       La convocatoria se manda por WhatsApp (o copiando el texto), y eso no
+       deja rastro en ningún sitio. Al pulsarlo, la app avisa aquí y se
+       apunta en Convocatorias (una por equipo y día): así el aviso de
+       "convocatoria pendiente" sabe que ya está hecha, y queda en el
+       histórico. Se escribe por la API de siempre: vale con Airtable y con
+       Supabase. */
+    if (res === "convocatoria-enviada") {
+      if (req.method !== "POST") return j({ error: "Petición no soportada" }, 400);
+      const b = await req.json().catch(() => ({}));
+      const team = String(b.team || "");
+      if (!ES_REC.test(team) || !(await puedeEquipo(team))) return j({ ok: false, reason: "no_autorizado" }, 403);
+      const fecha = String(b.fecha || "");
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(fecha)) return j({ ok: false, reason: "fecha_no_valida" }, 400);
+      const fields: Record<string, unknown> = {
+        Referencia: `${fecha} vs ${String(b.rival || "").trim()}`.slice(0, 80),
+        Fecha: fecha,
+        Hora: String(b.hora || "").slice(0, 20),
+        Rival: String(b.rival || "").slice(0, 120),
+        Lugar: String(b.lugar || "").slice(0, 200),
+        Convocados: (Array.isArray(b.convocados) ? b.convocados : []).map(String).filter((x: string) => ES_REC.test(x)).slice(0, 60),
+        Equipo: [team],
+      };
+      const previas = (await filasDeEquipo("convocatorias", team)).filter((r: any) => r.fields?.Fecha === fecha);
+      if (previas.length) {
+        const r = await fetch(`${table(T_CONVOCATORIAS)}/${previas[0].id}`, { method: "PATCH", headers: H, body: JSON.stringify({ fields, typecast: true }) });
+        return j({ ok: r.ok, rec: previas[0].id }, r.ok ? 200 : 400);
+      }
+      const d = await create(T_CONVOCATORIAS, fields);
+      return j({ ok: !!d?.id, rec: d?.id || null }, d?.id ? 200 : 400);
+    }
+
     /* ================= FAMILIA / JUGADOR: UNA SOLA FICHA =================
        Un solo jugador, el que se enlazó al registrarse (Familia) o el que se
        vinculó desde el club (Jugador) -no la plantilla entera del equipo,
@@ -2289,6 +2343,14 @@ const atender = async (req: Request) => {
           [PR.propuestoPor]: sesion?.id ? [sesion.id] : [],
           [PR.fechaProp]: new Date().toISOString(),
         });
+        /* Avisa a quien tiene que aprobarla, aunque no tenga la app abierta.
+           Nunca bloquea ni hace fallar la propuesta: como mucho 4 s. */
+        if (d?.id && supabaseActivo()) {
+          await Promise.race([
+            avisarPropuesta(d.id, team, tipoLabel).catch((e) => console.error(`[avisos] propuesta: ${e?.message || JSON.stringify(e)}`)),
+            new Promise((ok) => setTimeout(ok, 4000)),
+          ]);
+        }
         return j({ ok: !!d?.id, rec: d?.id }, d?.id ? 200 : 400);
       }
       if (req.method === "PATCH" && id) {
