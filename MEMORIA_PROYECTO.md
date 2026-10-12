@@ -15,7 +15,8 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
 - Un intento anterior (26-jul, sin datos) se apartó al esquema `coachbase_julio` (no se borró: el
   sistema de permisos de la sesión bloquea los DROP). Su trigger `on_auth_user_created` en
   auth.users sigue puesto apuntando a ese esquema (no tengo permiso sobre auth.users).
-- **Airtable** (base `appDVtUWdtfzkV1sA`, 16 tablas) sigue intacta como respaldo.
+- **2026-10-12: la app ya funciona sobre Supabase** (copia completa y verificada; ver ACCIONES_FUTURAS).
+- **Airtable** (base `appDVtUWdtfzkV1sA`, 16 tablas) sigue intacta como respaldo (ya no se escribe en ella).
 - Arquitectura elegida: **adaptador**. `airtable.mts`/`stripe.mts` siguen llamando a la API REST de
   Airtable; `netlify/lib/supabase-airtable.mts` intercepta esas llamadas y contesta desde Supabase
   (PostgREST + Storage). Se activa solo con `SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY`; quitarlas

@@ -16,11 +16,14 @@ Pendiente (en este orden):
        `SUPABASE_SERVICE_ROLE_KEY` = Supabase → Project Settings → API Keys → service_role (o secret key)
        `MIGRAR_CLAVE` = una frase larga inventada. NO quitar `AIRTABLE_TOKEN`.
        Y volver a desplegar (Deploys → Trigger deploy).
-3. [ ] Edu: abrir `https://coachbase-ai.netlify.app/.netlify/functions/migrar?clave=<MIGRAR_CLAVE>`
-       y dejarla hasta "Copia terminada ✓" (compara recuentos tabla a tabla).
-4. [ ] Edu: borrar `MIGRAR_CLAVE` en Netlify. Entrar en la app y revisar: login, plantilla, partidos,
-       escudos/fotos, alineación, guardar algo y recargar.
-5. [ ] Claude: comprobar en Supabase recuentos, enlaces y adjuntos pendientes (`pendiente`/`error`).
+3. [x] Copia hecha por Claude (2026-10-12) desde Supabase con pg_net: "Copia terminada ✓", las 16 tablas
+       cuadran (105 registros), 23 archivos en el bucket, 198 enlaces sin rotos ni asimétricos.
+4. [x] `MIGRAR_CLAVE` borrada de Netlify.
+   [ ] Edu: entrar en la app y revisar: login, plantilla, partidos, escudos/fotos, alineación,
+       guardar algo y recargar.
+5. [ ] Edu: en Netlify marcar `SUPABASE_SERVICE_ROLE_KEY` como secreta (el conector no puede) y,
+       mejor aún, rotarla: Supabase → Settings → API Keys → nueva secret key → pegarla en Netlify
+       (marcando "Contains secret values") → redeploy → borrar la vieja en Supabase.
 6. [ ] Poner `AUTH_SECRET` en Netlify algún día (si se quita AIRTABLE_TOKEN sin él, todos tienen que
        volver a entrar; con usuarios de prueba no importa).
 7. [ ] Tras 2–4 semanas sin incidencias: quitar `AIRTABLE_TOKEN`, borrar la base Airtable
@@ -36,7 +39,7 @@ Mejoras opcionales detectadas (no se han tocado para no cambiar el comportamient
 
 ## Avisos push (v2.67.0)
 - [x] Hecho y probado (servidor, app, service worker, 40 comprobaciones propias). Publicado.
-- [ ] Solo funcionan cuando los datos estén en Supabase (pasos 2–4 de arriba).
+- [x] Datos ya en Supabase: los avisos funcionan.
 - [ ] Edu: en el móvil, Mi cuenta → Avisos en este móvil → activar. Probar con un partido el finde.
 - [ ] Claude: tras la primera semana, mirar en Netlify los logs de avisos-reglas / avisos-reloj.
 - [ ] Opcional: textos del servidor en el idioma de cada persona (hoy en español).
