@@ -27,6 +27,14 @@ Plan propuesto:
 9. [ ] Desplegar en preview, probar login/registro/Stripe, y solo entonces producción.
 10. [ ] Mantener Airtable en solo-lectura 2–4 semanas como respaldo antes de borrar nada.
 
+## Cat Health → cuenta edubon007 (para liberar plaza en edubermejo92)
+- [x] Archivo SQL con los datos (1 perfil, 3 gatos, 2 registros, 6 recordatorios) entregado a Edu.
+- [ ] Edu: crear cuenta edubon007, proyecto nuevo, desplegar esquema desde GitHub, registrarse en la app y ejecutar el SQL.
+- [ ] Edu: en el proyecto nuevo, crear la Edge Function de avisos push, sus secretos (VAPID) y el cron
+      `send-reminder-pushes` (*/5 * * * *) si no vienen en el repo. Reactivar las notificaciones en el móvil.
+- [ ] Edu: comprobar que todo funciona y luego pausar/borrar "Cat Health Tracker" en edubermejo92.
+- [ ] Claude: reactivar `vjsowjjdeufpeiwmtnmr` y seguir con la migración de CoachBase.
+
 ## Otros
 - [ ] Decidir si las bases Airtable de EBLDigital (CRM Chatbot, Social Images, WhatsApp) también se migran
       (están fuera de este repo; probablemente las usan escenarios de Make).
