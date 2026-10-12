@@ -10,9 +10,8 @@ Hecho por Claude (2026-10-12, rama `ccr-70f0cfbb-b7o161`):
 - [x] Política de privacidad y README actualizados.
 
 Pendiente (en este orden):
-1. [ ] Llevar la rama a `main` para que Netlify la despliegue (sin las variables nuevas no cambia nada:
-       todo sigue yendo a Airtable).
-2. [ ] Edu: en Netlify → Environment variables:
+1. [x] Rama desplegada en producción (Netlify publica `claude/coachbase-chamartín-documento-hy5fa3`).
+2. [x] Claude (con la clave que pasó Edu): en Netlify → Environment variables:
        `SUPABASE_URL` = https://vjsowjjdeufpeiwmtnmr.supabase.co
        `SUPABASE_SERVICE_ROLE_KEY` = Supabase → Project Settings → API Keys → service_role (o secret key)
        `MIGRAR_CLAVE` = una frase larga inventada. NO quitar `AIRTABLE_TOKEN`.
