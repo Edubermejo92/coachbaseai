@@ -3507,20 +3507,20 @@ function LangPicker({ lang, setLang }) {
   return (
     <div className="relative" ref={box}>
       <button onClick={() => setOpen((v) => !v)} aria-haspopup="listbox" aria-expanded={open}
-        className="text-[12px] px-2.5 py-1.5 rounded-lg font-display font-semibold flex items-center gap-1.5 leading-none"
-        style={{ background: "transparent", color: "#708090", border: "1px solid rgba(54,69,79,0.16)" }}>
-        <span style={{ color: "#36454F" }}>{actual.code.toUpperCase()}</span>
+        className="text-[12px] h-8 px-2 sm:px-2.5 rounded-lg border font-display font-semibold flex items-center gap-1 sm:gap-1.5 leading-none"
+        style={{ background: "transparent", color: C.dim, borderColor: C.line }}>
+        <span style={{ color: C.chalk }}>{actual.code.toUpperCase()}</span>
         <span className="hidden sm:inline font-body font-normal">{actual.name}</span>
         <span className="text-[9px] leading-none" style={{ opacity: 0.7 }}>{open ? "▲" : "▼"}</span>
       </button>
       {open && (
         <div role="listbox" className="absolute right-0 mt-1 z-30 rounded-lg border overflow-hidden min-w-[150px]"
-          style={{ background: "#FFFFFF", borderColor: "rgba(54,69,79,0.16)", boxShadow: "0 8px 24px rgba(54,69,79,.14)" }}>
+          style={{ background: C.panel, borderColor: C.line, boxShadow: "0 8px 24px rgba(0,0,0,.18)" }}>
           {LANGS.map((l) => (
             <button key={l.code} role="option" aria-selected={lang === l.code}
               onClick={() => { setLang(l.code); setOpen(false); }}
               className="w-full text-left text-[13px] px-3 py-2 flex items-center gap-2 hover:opacity-80"
-              style={{ background: lang === l.code ? "rgba(54,69,79,.07)" : "transparent", color: lang === l.code ? "#36454F" : "#708090" }}>
+              style={{ background: lang === l.code ? C.panel2 : "transparent", color: lang === l.code ? C.chalk : C.dim }}>
               <span className="font-display font-semibold text-[11px] w-6 shrink-0" style={{ opacity: 0.75 }}>{l.code.toUpperCase()}</span>
               <span className="flex-1">{l.name}</span>
               {lang === l.code && <span className="text-[11px]">✓</span>}
@@ -23159,7 +23159,7 @@ export default function App() {
             ("Desarrollado por EBLDigital ↗", más abajo). */}
         <button type="button" onClick={() => setTab("inicio")} aria-label="COACHBASE Ai · ir a Inicio"
           className="flex items-center min-w-0 order-1 shrink-0">
-          <span className="sm:hidden"><AppWordmark height={34} /></span>
+          <span className="sm:hidden"><AppWordmark height={30} /></span>
           <span className="hidden sm:block"><AppWordmark height={44} /></span>
         </button>
 
@@ -23220,7 +23220,9 @@ export default function App() {
         </div>
 
         {/* DERECHA · quién eres y con qué permisos, más las utilidades */}
-        <div className="flex items-center flex-wrap lg:flex-nowrap justify-end gap-1.5 sm:gap-3 order-2 lg:order-3">
+        {/* En el móvil van en una sola fila al lado del logo: todos los botones
+            de 32 px, sin textos y con poco hueco entre ellos. */}
+        <div className="flex items-center flex-nowrap sm:flex-wrap lg:flex-nowrap justify-end gap-1 sm:gap-3 order-2 lg:order-3 min-w-0">
           {/* Quién eres, para entrar en Mi cuenta. El rol ya no se repite aquí:
               desde que va pegado al equipo salía dos veces en la misma barra, y
               el nombre —que es el dato de esta esquina— quedaba de segundo y en
@@ -23258,8 +23260,8 @@ export default function App() {
           {/* En móvil el rol de arriba está oculto, así que Mi cuenta se abre
               desde este botón. */}
           <button onClick={() => setAccountOpen(true)} aria-label={t("p.account")} title={t("p.account")}
-            className="md:hidden text-base px-2.5 py-2 rounded-lg border leading-none" style={{ borderColor: C.line, color: C.chalk }}>
-            <Icono n="usuarios" s={18} />
+            className="md:hidden w-8 h-8 shrink-0 rounded-lg border flex items-center justify-center" style={{ borderColor: C.line, color: C.chalk }}>
+            <Icono n="usuarios" s={16} />
           </button>
           {/* Sincronización, como en Cat Health: la nube dice de un vistazo si
               todo está subido (punto verde), si hay cambios esperando (naranja,
@@ -23288,9 +23290,17 @@ export default function App() {
             {tema === "oscuro" ? "☀" : "☾"}
           </button>
           <LangPicker lang={lang} setLang={setLang} />
-          <button onClick={() => { setDemoMode(false); setAuthToken(null); setSession(null); }} className="text-xs px-3 py-1.5 rounded-lg border shrink-0" style={{ borderColor: C.line, color: C.dim }}>{t("c.exit")}</button>
-          <button onClick={() => setMenuOpen((v) => !v)} aria-expanded={menuOpen} className="relative lg:hidden text-xs px-3 py-2 rounded-lg border font-display uppercase tracking-wide" style={{ borderColor: menuOpen ? MC : C.line, color: menuOpen ? MC : C.chalk }}>
-            ☰<span className="hidden sm:inline"> Menú</span>
+          {/* Salir: en el móvil solo el icono, para que quepa todo en una fila. */}
+          <button onClick={() => { setDemoMode(false); setAuthToken(null); setSession(null); }} aria-label={t("c.exit")} title={t("c.exit")}
+            className="text-xs h-8 w-8 sm:w-auto sm:px-3 rounded-lg border shrink-0 flex items-center justify-center" style={{ borderColor: C.line, color: C.dim }}>
+            <svg className="sm:hidden" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" /><path d="M16 17l5-5-5-5" /><path d="M21 12H9" />
+            </svg>
+            <span className="hidden sm:inline">{t("c.exit")}</span>
+          </button>
+          <button onClick={() => setMenuOpen((v) => !v)} aria-expanded={menuOpen} aria-label="Menú"
+            className="relative lg:hidden text-xs h-8 w-8 sm:w-auto sm:px-3 shrink-0 rounded-lg border font-display uppercase tracking-wide flex items-center justify-center gap-1.5" style={{ borderColor: menuOpen ? MC : C.line, color: menuOpen ? MC : C.chalk }}>
+            ☰<span className="hidden sm:inline">Menú</span>
             {hayAvisosNav && <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full" style={{ background: C.red, boxShadow: `0 0 0 2px ${C.bg}` }} />}
           </button>
         </div>
