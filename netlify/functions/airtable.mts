@@ -114,15 +114,12 @@ const pruebaDias = (v: unknown) => {
   const fin = new Date(y, m - 1, d, 23, 59, 59);
   return Math.max(0, Math.ceil((fin.getTime() - Date.now()) / 86400000));
 };
-/* Fecha (YYYY-MM-DD) de dentro de 30 días, para el campo "Prueba hasta".
-   Toda cuenta que se crea a partir de ahora -invitada por su club o de alta
-   libre- arranca con un mes de prueba automático, sin que el Master tenga
-   que ponerlo a mano registro a registro. */
-const fechaTrial30 = (): string => {
-  const d = new Date();
-  d.setDate(d.getDate() + 30);
-  return d.toISOString().slice(0, 10);
-};
+/* Fecha (YYYY-MM-DD) de "Prueba hasta" de toda cuenta nueva. Decidido con
+   Edu: la prueba es ilimitada -como la de las cuentas actuales, que ya tienen
+   2099-12-31- para todo el que se registre, invitado por su club o de alta
+   libre. Para volver a una prueba de N días basta cambiar esta función. */
+const PRUEBA_ILIMITADA = "2099-12-31";
+const fechaTrial30 = (): string => PRUEBA_ILIMITADA;
 const CL = {
   nombre: "fldlUNDFkJyehw8x0", comunidad: "fld0BUV86fvUDWOcU",
   escudo: "fldX3CMkCrO54gUrV", campo: "fldVH4NDAN2Odlzwe",
@@ -3042,7 +3039,7 @@ const atender = async (req: Request) => {
                Antes además se le regalaban 30 días de PRO sin tarjeta, y quien
                no terminaba el pago tenía igualmente un mes entero gratis. */
             [U.nombre]: b.name, [U.email]: email, [U.rol]: "Club", [U.estado]: "Activo",
-            [U.plan]: "Oficial", [U.pass]: await hashPassword(String(b.password || "")),
+            [U.plan]: "Oficial", [U.prueba]: fechaTrial30(), [U.pass]: await hashPassword(String(b.password || "")),
             [U.club]: [clubId], ...(eqId ? { [U.equipo]: [eqId] } : {}),
           });
           const [eqsF, clubsF] = await Promise.all([list(T_EQUIPOS), list(T_CLUBES)]);
