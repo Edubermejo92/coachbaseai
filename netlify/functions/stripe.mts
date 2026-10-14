@@ -339,6 +339,29 @@ const atender = async (req: Request) => {
          entra sin pagar todavía. */
       "subscription_data[trial_period_days]": "30",
     };
+    /* Código de descuento propio: "ilimitado" = 100 % de descuento para siempre
+       (Stripe no pide tarjeta si el total es 0). Se crea en Stripe la primera
+       vez que se usa, así que no hay que tocar el panel. Cualquier otro código
+       lo sigue gestionando el campo de códigos de la propia página de Stripe. */
+    const codigo = norm(body.codigo);
+    if (codigo === "ilimitado") {
+      try {
+        const ya = await stripe(`promotion_codes?code=${encodeURIComponent(codigo)}&active=true&limit=1`, undefined, "GET");
+        let promo = ya?.data?.[0]?.id as string | undefined;
+        if (!promo) {
+          const cupon = await stripe("coupons", { percent_off: "100", duration: "forever", name: "ilimitado" });
+          promo = (await stripe("promotion_codes", { coupon: cupon.id, code: codigo })).id;
+        }
+        delete params.allow_promotion_codes;
+        params["discounts[0][promotion_code]"] = promo!;
+        params.payment_method_collection = "if_required";
+        delete params["subscription_data[trial_period_days]"];
+      } catch (e) {
+        return j({ error: `No se pudo aplicar el código: ${String(e)}` }, 500);
+      }
+    } else if (codigo) {
+      return j({ error: "codigo_no_valido" }, 400);
+    }
     if (body.club) params["subscription_data[metadata][club]"] = String(body.club);
     if (body.equipo) params["subscription_data[metadata][equipo]"] = String(body.equipo);
     const checkoutSesion = await stripe("checkout/sessions", params);
