@@ -82,6 +82,8 @@ const DEF: Record<string, { airtable: string; campos: Def[] }> = {
     ["fld8lbwE7lGNFPAeJ", "Usuarios 2", "usuarios_2", "enlace", ["usuarios", "fldOlXL957BafrlfE"]],
     ["fldVAopJcEmx4J1zw", "Foto", "foto", "adjuntos"],
     ["fldol5OZE0MEbu6DQ", "Molestia", "molestia", "texto"],
+    /* Solo en Supabase (2026-10-15): Airtable ya no se escribe. */
+    ["fldApoyoJug0rX9q1", "Apoyo", "apoyo", "bool"],
   ] },
   usuarios: { airtable: "tblZf4dFeq4FCjHGJ", campos: [
     ["fldSnD1rqmHptkRlA", "Nombre", "nombre", "texto"],

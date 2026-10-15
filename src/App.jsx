@@ -127,7 +127,7 @@ const DICT = {
     "ln.other": "Otro: 4-1-4-1",
     "cl.waMsg": "Mensaje para WhatsApp",
     "cl.waOpen": "Abrir WhatsApp",
-    "cl.waLegend": "🧤 portero · dorsal en emoji · porteros primero", "cl.fmtClassic": "Clásico", "cl.fmtFull": "Con equipación", "cl.cita": "Convocatoria (hora)", "cl.citaAuto": "Sin hora: 1 h 15′ antes del partido", "cl.kit": "Equipación", "cl.kitHome": "En casa", "cl.kitAway": "Fuera", "cl.kitShirt": "Camiseta", "cl.kitShorts": "Pantalón", "cl.kitSocks": "Medias", "cl.kitHint": "Toca un color para cambiarlo.", "cl.waLegend2": "🧤 portero · por dorsal · con los desconvocados",
+    "cl.waLegend": "🧤 portero · dorsal en emoji · porteros primero", "pf.apoyo": "Jugador de apoyo (otro equipo)", "pf.apoyoHint": "Viene a ayudar: se puede convocar, pero no sale en Desconvocados ni cuenta en la asistencia ni en las estadísticas del equipo.", "pf.apoyoTag": "Apoyo", "cl.fmtClassic": "Clásico", "cl.fmtFull": "Con equipación", "cl.cita": "Convocatoria (hora)", "cl.citaAuto": "Sin hora: 1 h 15′ antes del partido", "cl.kit": "Equipación", "cl.kitHome": "En casa", "cl.kitAway": "Fuera", "cl.kitShirt": "Camiseta", "cl.kitShorts": "Pantalón", "cl.kitSocks": "Medias", "cl.kitHint": "Toca un color para cambiarlo.", "cl.waLegend2": "🧤 portero · por dorsal · con los desconvocados",
     "cl.title": "Convocatoria",
     "cl.readonly": "(solo lectura)", "cl.readonlyDemo": "Esto es la demo: puedes mirarlo todo, pero no se guarda nada. Crea tu cuenta para hacer tu propia convocatoria.",
     "cl.rival": "Rival",
@@ -737,7 +737,7 @@ const DICT = {
     "ln.other": "Other: 4-1-4-1",
     "cl.waMsg": "WhatsApp message",
     "cl.waOpen": "Open WhatsApp",
-    "cl.waLegend": "🧤 goalkeeper · number as emoji · keepers first", "cl.fmtClassic": "Classic", "cl.fmtFull": "With kit", "cl.cita": "Meeting time", "cl.citaAuto": "Empty: 1 h 15′ before kick-off", "cl.kit": "Kit", "cl.kitHome": "Home", "cl.kitAway": "Away", "cl.kitShirt": "Shirt", "cl.kitShorts": "Shorts", "cl.kitSocks": "Socks", "cl.kitHint": "Tap a colour to change it.", "cl.waLegend2": "🧤 goalkeeper · by number · with players left out",
+    "cl.waLegend": "🧤 goalkeeper · number as emoji · keepers first", "pf.apoyo": "Support player (other team)", "pf.apoyoHint": "Comes to help: can be called up, but isn't listed as left out and doesn't count in the team's attendance or stats.", "pf.apoyoTag": "Support", "cl.fmtClassic": "Classic", "cl.fmtFull": "With kit", "cl.cita": "Meeting time", "cl.citaAuto": "Empty: 1 h 15′ before kick-off", "cl.kit": "Kit", "cl.kitHome": "Home", "cl.kitAway": "Away", "cl.kitShirt": "Shirt", "cl.kitShorts": "Shorts", "cl.kitSocks": "Socks", "cl.kitHint": "Tap a colour to change it.", "cl.waLegend2": "🧤 goalkeeper · by number · with players left out",
     "cl.title": "Squad list",
     "cl.readonly": "(read only)", "cl.readonlyDemo": "This is the demo: you can look at everything, but nothing is saved. Create your account to make your own squad list.",
     "cl.rival": "Opponent",
@@ -1359,7 +1359,7 @@ const DICT = {
     "ln.other": "Autre : 4-1-4-1",
     "cl.waMsg": "Message pour WhatsApp",
     "cl.waOpen": "Ouvrir WhatsApp",
-    "cl.waLegend": "🧤 gardien · numéro en emoji · gardiens d'abord", "cl.fmtClassic": "Classique", "cl.fmtFull": "Avec tenue", "cl.cita": "Heure de convocation", "cl.citaAuto": "Vide : 1 h 15′ avant le match", "cl.kit": "Tenue", "cl.kitHome": "Domicile", "cl.kitAway": "Extérieur", "cl.kitShirt": "Maillot", "cl.kitShorts": "Short", "cl.kitSocks": "Chaussettes", "cl.kitHint": "Touchez une couleur pour la changer.", "cl.waLegend2": "🧤 gardien · par numéro · avec les non convoqués",
+    "cl.waLegend": "🧤 gardien · numéro en emoji · gardiens d'abord", "pf.apoyo": "Joueur en renfort (autre équipe)", "pf.apoyoHint": "Vient aider : peut être convoqué, mais n'apparaît pas parmi les non convoqués et ne compte pas dans l'assiduité ni les statistiques de l'équipe.", "pf.apoyoTag": "Renfort", "cl.fmtClassic": "Classique", "cl.fmtFull": "Avec tenue", "cl.cita": "Heure de convocation", "cl.citaAuto": "Vide : 1 h 15′ avant le match", "cl.kit": "Tenue", "cl.kitHome": "Domicile", "cl.kitAway": "Extérieur", "cl.kitShirt": "Maillot", "cl.kitShorts": "Short", "cl.kitSocks": "Chaussettes", "cl.kitHint": "Touchez une couleur pour la changer.", "cl.waLegend2": "🧤 gardien · par numéro · avec les non convoqués",
     "cl.title": "Convocation",
     "cl.readonly": "(lecture seule)",
     "cl.rival": "Adversaire",
@@ -2061,7 +2061,7 @@ const DICT = {
     "ln.other": "Andere: 4-1-4-1",
     "cl.waMsg": "Nachricht für WhatsApp",
     "cl.waOpen": "WhatsApp öffnen",
-    "cl.waLegend": "🧤 Torwart · Nummer als Emoji · Torhüter zuerst", "cl.fmtClassic": "Klassisch", "cl.fmtFull": "Mit Trikot", "cl.cita": "Treffpunkt (Uhrzeit)", "cl.citaAuto": "Leer: 1 h 15′ vor Anpfiff", "cl.kit": "Trikot", "cl.kitHome": "Heim", "cl.kitAway": "Auswärts", "cl.kitShirt": "Trikot", "cl.kitShorts": "Hose", "cl.kitSocks": "Stutzen", "cl.kitHint": "Farbe antippen zum Ändern.", "cl.waLegend2": "🧤 Torwart · nach Nummer · mit Nicht-Nominierten",
+    "cl.waLegend": "🧤 Torwart · Nummer als Emoji · Torhüter zuerst", "pf.apoyo": "Aushilfsspieler (anderes Team)", "pf.apoyoHint": "Hilft aus: kann nominiert werden, steht aber nicht bei den Nicht-Nominierten und zählt nicht für Anwesenheit oder Statistiken des Teams.", "pf.apoyoTag": "Aushilfe", "cl.fmtClassic": "Klassisch", "cl.fmtFull": "Mit Trikot", "cl.cita": "Treffpunkt (Uhrzeit)", "cl.citaAuto": "Leer: 1 h 15′ vor Anpfiff", "cl.kit": "Trikot", "cl.kitHome": "Heim", "cl.kitAway": "Auswärts", "cl.kitShirt": "Trikot", "cl.kitShorts": "Hose", "cl.kitSocks": "Stutzen", "cl.kitHint": "Farbe antippen zum Ändern.", "cl.waLegend2": "🧤 Torwart · nach Nummer · mit Nicht-Nominierten",
     "cl.title": "Kader",
     "cl.readonly": "(nur Ansicht)",
     "cl.rival": "Gegner",
@@ -2762,7 +2762,7 @@ const DICT = {
     "ln.other": "Outro: 4-1-4-1",
     "cl.waMsg": "Mensagem para WhatsApp",
     "cl.waOpen": "Abrir WhatsApp",
-    "cl.waLegend": "🧤 guarda-redes · número em emoji · guarda-redes primeiro", "cl.fmtClassic": "Clássico", "cl.fmtFull": "Com equipamento", "cl.cita": "Hora de convocatória", "cl.citaAuto": "Vazio: 1 h 15′ antes do jogo", "cl.kit": "Equipamento", "cl.kitHome": "Em casa", "cl.kitAway": "Fora", "cl.kitShirt": "Camisola", "cl.kitShorts": "Calções", "cl.kitSocks": "Meias", "cl.kitHint": "Toca numa cor para a mudar.", "cl.waLegend2": "🧤 guarda-redes · por número · com os não convocados",
+    "cl.waLegend": "🧤 guarda-redes · número em emoji · guarda-redes primeiro", "pf.apoyo": "Jogador de apoio (outra equipa)", "pf.apoyoHint": "Vem ajudar: pode ser convocado, mas não aparece nos não convocados nem conta na assiduidade nem nas estatísticas da equipa.", "pf.apoyoTag": "Apoio", "cl.fmtClassic": "Clássico", "cl.fmtFull": "Com equipamento", "cl.cita": "Hora de convocatória", "cl.citaAuto": "Vazio: 1 h 15′ antes do jogo", "cl.kit": "Equipamento", "cl.kitHome": "Em casa", "cl.kitAway": "Fora", "cl.kitShirt": "Camisola", "cl.kitShorts": "Calções", "cl.kitSocks": "Meias", "cl.kitHint": "Toca numa cor para a mudar.", "cl.waLegend2": "🧤 guarda-redes · por número · com os não convocados",
     "cl.title": "Convocatória",
     "cl.readonly": "(apenas leitura)",
     "cl.rival": "Adversário",
@@ -5311,6 +5311,7 @@ const jugToAir = (p, teamRec) => ({
      es el antecedente que no caduca, y esto es lo que le pasa esta semana y
      se borra en cuanto se le pasa. */
   Molestia: p.molestia || "",
+  Apoyo: !!p.apoyo,
   /* La demarcación ya no se escribe: dejó de ser una etiqueta del jugador
      para ser la del hueco que ocupa en la alineación. La columna "Posición"
      de Airtable se queda como está -no se borra lo ya escrito-, simplemente
@@ -5333,6 +5334,9 @@ const jugFromAir = (r, i) => ({
   linea: LINEA_DE_POS[String(r["Posición"] || "").toUpperCase()] || null,
   aviso: r["Aviso medico"] || "",
   molestia: r.Molestia || "",
+  /* Jugador de apoyo: de otro equipo, viene a ayudar. Se convoca, pero no
+     es plantilla: ni desconvocado, ni asistencia, ni estadísticas. */
+  apoyo: !!r.Apoyo,
   /* Foto real, subida por el cuerpo técnico o -única excepción a que sean
      de solo lectura- por la familia/el propio jugador desde su ficha. Vive
      en Airtable como adjunto (no como el antiguo data: URL que solo existía
@@ -10833,6 +10837,9 @@ export default function App() {
      (o sin Superwall), el aviso de siempre. */
   const proAlert = (feature) => mostrarPaywall("funcion_pro", { funcion: feature || "general" }, () => setProModal(feature || true));
   const [players, setPlayers] = useState(PLAYERS_INIT);
+  /* La plantilla sin los jugadores de apoyo (otro equipo que viene a
+     ayudar): es la que cuenta para asistencia y estadísticas. */
+  const jugadoresDelEquipo = players.filter((p) => !p.apoyo);
   const [users, setUsers] = useState(USERS_INIT);
   /* --- disciplina, normativa y galería familiar --- */
   const [incidents, setIncidents] = useState(INCIDENTS_INIT);
@@ -12644,7 +12651,7 @@ export default function App() {
     if (!can("editSquad")) return;
     setAsistencia((a) => {
       const dia = { ...(a[asistFecha] || {}) };
-      players.forEach((p) => { if (!dia[p.id]) dia[p.id] = "presente"; });
+      players.forEach((p) => { if (!dia[p.id] && !p.apoyo) dia[p.id] = "presente"; });
       return { ...a, [asistFecha]: dia };
     });
   };
@@ -12835,7 +12842,7 @@ export default function App() {
     const porDorsal = (a, b) => (Number(a.d) || 0) - (Number(b.d) || 0);
     const linea = (p) => `${keycap(p.d)} ${p.n}${esPortero(p) ? " 🧤" : ""}`;
     const conv = players.filter((p) => called.has(p.id)).sort(porDorsal);
-    const fuera = called.size ? players.filter((p) => !called.has(p.id)).sort(porDorsal) : [];
+    const fuera = called.size ? players.filter((p) => !called.has(p.id) && !p.apoyo).sort(porDorsal) : [];
     const fecha = /^\d{4}-\d{2}-\d{2}$/.test(String(matchInfo.fecha || ""))
       ? (() => { const f = new Date(`${matchInfo.fecha}T12:00:00`); const d = f.toLocaleDateString("es-ES", { weekday: "long", day: "numeric", month: "long" }).replace(/ de /g, " ").replace(",", ""); return d.charAt(0).toUpperCase() + d.slice(1); })()
       : (matchInfo.fecha || "—");
@@ -13460,6 +13467,13 @@ export default function App() {
                 {!profile.linea && lineaHabitual(profile) ? `${t("pf.lineAuto").replace("{l}", t(`lin1.${lineaHabitual(profile)}`))} · ` : ""}{t("pf.lineHint")}
               </div>
             </div>
+            <label className="col-span-2 flex items-start gap-2 rounded-lg border p-2.5 cursor-pointer" style={{ borderColor: profile.apoyo ? AC : C.line }}>
+              <input type="checkbox" checked={!!profile.apoyo} onChange={(e) => editarJugador(profile.id, { apoyo: e.target.checked })} className="mt-0.5" />
+              <span>
+                <span className="block text-sm" style={{ color: C.chalk }}>{t("pf.apoyo")}</span>
+                <span className="block text-[11px] leading-snug" style={{ color: C.dim }}>{t("pf.apoyoHint")}</span>
+              </span>
+            </label>
             <label className="col-span-2 block">
               <span className="text-[10px] font-display uppercase tracking-widest block mb-1" style={{ color: C.dim }}>{t("pf.status")}</span>
               <select value={profile.st} onChange={(e) => editarJugador(profile.id, { st: e.target.value })}
@@ -15683,8 +15697,9 @@ export default function App() {
   /* ================= ASISTENCIA DIARIA ================= */
   const renderAsistencia = () => {
     const diaData = asistencia[asistFecha] || {};
-    const contar = (k) => players.filter((p) => diaData[p.id] === k).length;
-    const sinMarcar = players.filter((p) => !diaData[p.id]).length;
+    const plantilla = players.filter((p) => !p.apoyo);
+    const contar = (k) => plantilla.filter((p) => diaData[p.id] === k).length;
+    const sinMarcar = plantilla.filter((p) => !diaData[p.id]).length;
     const hoy = asistFecha === hoyISO();
     const sumarDias = (delta) => {
       setAsistFecha(sumarDiasISO(asistFecha, delta));
@@ -15756,6 +15771,7 @@ export default function App() {
                       className="w-full flex-1 flex flex-col items-center justify-start gap-1.5 pt-3 pb-2 px-1.5 disabled:opacity-70">
                       <CaraLista p={p} size={56} ring={estado ? color : null} />
                       <span className="w-full text-xs leading-tight text-center line-clamp-2 break-words" style={{ color: C.chalk }}>{p.n}</span>
+                      {p.apoyo && <span className="text-[10px] font-display uppercase tracking-wide" style={{ color: C.dim }}>{t("pf.apoyoTag")}</span>}
                     </button>
                     {can("editSquad") && (
                       /* El motivo, con su punto de color y sin recortar: antes
@@ -15827,6 +15843,7 @@ export default function App() {
      "Por jugador", el porcentaje de cada uno y qué días faltó. Tocar un día
      lo abre arriba, para verlo entero o corregirlo. */
   const renderHistorialAsistencia = () => {
+    const players = jugadoresDelEquipo;
     const loc = lang === "es" ? "es-ES" : lang;
     const dias = Object.keys(asistencia).filter((d) => asistencia[d] && Object.keys(asistencia[d]).length > 0).sort().reverse();
     const fechaCorta = (d) => {
@@ -18215,6 +18232,7 @@ export default function App() {
       {!esSoloLectura && (
         <Card title={t("as.homeTitle")} className="lg:col-span-3">
           {(() => {
+            const players = jugadoresDelEquipo;
             const diaHoy = hoyISO();
             const diaData = asistencia[diaHoy] || {};
             const marcados = players.filter((p) => diaData[p.id]).length;
@@ -19577,7 +19595,7 @@ export default function App() {
        convocables y se avisa. */
     const hayConvocatoria = called.size > 0;
     const suplentesConv = hayConvocatoria ? bench.filter((p) => called.has(p.id)) : bench;
-    const noConvocados = hayConvocatoria ? bench.filter((p) => !called.has(p.id)) : [];
+    const noConvocados = hayConvocatoria ? bench.filter((p) => !called.has(p.id) && !p.apoyo) : [];
     const titularesFuera = hayConvocatoria
       ? [...startersView].map((id) => players.find((p) => p.id === id)).filter((p) => p && !called.has(p.id))
       : [];
@@ -22983,6 +23001,8 @@ export default function App() {
   };
 
   const renderStats = () => {
+    /* Los jugadores de apoyo (de otro equipo) no cuentan aquí. */
+    const players = jugadoresDelEquipo;
     const total = players.length || 1;
     /* Acumulado de la temporada a partir del histórico de partidos: quién ha
        jugado cuántos, cuántos ha empezado, y lo que ha hecho. Solo cuenta lo
