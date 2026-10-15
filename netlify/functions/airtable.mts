@@ -189,6 +189,10 @@ const EQ = {
      se puede decir que falte un parte, y el aviso de "no ha avisado ni antes
      ni después del entreno" sería adivinar. */
   dias: "flddC2z6uAHNSaGXX",
+  /* Equipación de casa y de fuera (camiseta, pantalón, medias), en JSON:
+     {"casa":["🟠","⚫","🟠"],"fuera":["⚪","⚪","⚪"]}. Sale en el mensaje
+     de la convocatoria. Solo en Supabase (2026-10-15). */
+  equipacion: "fldEquipac1onKt7q",
   /* Asistencia diaria del equipo, en JSON y por el mismo motivo que las
      cargas: un documento por equipo, no una fila por día. Antes vivía solo en
      el móvil de quien pasaba lista; con esto lo ve el resto del cuerpo
@@ -658,6 +662,7 @@ const atender = async (req: Request) => {
       web: r.fields[EQ.web] || "", maps: r.fields[EQ.maps] || "",
       encargado: r.fields[EQ.encargado] || "",
       dias: r.fields[EQ.dias] || "",
+      equipacion: r.fields[EQ.equipacion] || "",
       clubRec: clubRec || null, club: club ? club.fields[CL.nombre] : "",
       comunidad: club ? club.fields[CL.comunidad] : "",
     };
@@ -899,6 +904,14 @@ const atender = async (req: Request) => {
           const ds = Array.isArray(b.dias) ? b.dias : [];
           const limpios = [...new Set(ds.map((n: any) => Number(n)).filter((n: number) => Number.isInteger(n) && n >= 0 && n <= 6))].sort();
           f[EQ.dias] = JSON.stringify(limpios);
+        }
+        /* Equipación: solo los colores que ofrece la app, tres por lado. */
+        if (b.equipacion !== undefined) {
+          const COLORES = ["🟠", "⚫", "⚪", "🔴", "🔵", "🟢", "🟡", "🟣", "🟤"];
+          const e = b.equipacion || {};
+          const ok = ["casa", "fuera"].every((l) => Array.isArray(e[l]) && e[l].length === 3 && e[l].every((c: unknown) => COLORES.includes(String(c))));
+          if (!ok) return j({ ok: false, reason: "equipacion_no_valida" }, 400);
+          f[EQ.equipacion] = JSON.stringify({ casa: e.casa, fuera: e.fuera });
         }
         const r = await fetch(`${table(T_EQUIPOS)}/${id}`, { method: "PATCH", headers: H, body: JSON.stringify({ fields: f, typecast: true }) });
         return j({ ok: r.ok }, r.ok ? 200 : 400);

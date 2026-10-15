@@ -127,7 +127,7 @@ const DICT = {
     "ln.other": "Otro: 4-1-4-1",
     "cl.waMsg": "Mensaje para WhatsApp",
     "cl.waOpen": "Abrir WhatsApp",
-    "cl.waLegend": "🧤 portero · dorsal en emoji · porteros primero", "pf.apoyo": "Jugador de apoyo (otro equipo)", "pf.apoyoHint": "Viene a ayudar: se puede convocar, pero no sale en Desconvocados ni cuenta en la asistencia ni en las estadísticas del equipo.", "pf.apoyoTag": "Apoyo", "cl.fmtClassic": "Clásico", "cl.fmtFull": "Con equipación", "cl.cita": "Convocatoria (hora)", "cl.citaAuto": "Sin hora: 1 h 15′ antes del partido", "cl.kit": "Equipación", "cl.kitHome": "En casa", "cl.kitAway": "Fuera", "cl.kitShirt": "Camiseta", "cl.kitShorts": "Pantalón", "cl.kitSocks": "Medias", "cl.kitHint": "Toca un color para cambiarlo.", "cl.waLegend2": "🧤 portero · por dorsal · con los desconvocados",
+    "cl.waLegend": "🧤 portero · dorsal en emoji · porteros primero", "cl.where": "Este partido", "cl.saved": "Guardado para todo el equipo", "pf.apoyo": "Jugador de apoyo (otro equipo)", "pf.apoyoHint": "Viene a ayudar: se puede convocar, pero no sale en Desconvocados ni cuenta en la asistencia ni en las estadísticas del equipo.", "pf.apoyoTag": "Apoyo", "cl.fmtClassic": "Clásico", "cl.fmtFull": "Con equipación", "cl.cita": "Convocatoria (hora)", "cl.citaAuto": "Sin hora: 1 h 15′ antes del partido", "cl.kit": "Equipación", "cl.kitHome": "En casa", "cl.kitAway": "Fuera", "cl.kitShirt": "Camiseta", "cl.kitShorts": "Pantalón", "cl.kitSocks": "Medias", "cl.kitHint": "Toca un color para cambiarlo.", "cl.waLegend2": "🧤 portero · por dorsal · con los desconvocados",
     "cl.title": "Convocatoria",
     "cl.readonly": "(solo lectura)", "cl.readonlyDemo": "Esto es la demo: puedes mirarlo todo, pero no se guarda nada. Crea tu cuenta para hacer tu propia convocatoria.",
     "cl.rival": "Rival",
@@ -737,7 +737,7 @@ const DICT = {
     "ln.other": "Other: 4-1-4-1",
     "cl.waMsg": "WhatsApp message",
     "cl.waOpen": "Open WhatsApp",
-    "cl.waLegend": "🧤 goalkeeper · number as emoji · keepers first", "pf.apoyo": "Support player (other team)", "pf.apoyoHint": "Comes to help: can be called up, but isn't listed as left out and doesn't count in the team's attendance or stats.", "pf.apoyoTag": "Support", "cl.fmtClassic": "Classic", "cl.fmtFull": "With kit", "cl.cita": "Meeting time", "cl.citaAuto": "Empty: 1 h 15′ before kick-off", "cl.kit": "Kit", "cl.kitHome": "Home", "cl.kitAway": "Away", "cl.kitShirt": "Shirt", "cl.kitShorts": "Shorts", "cl.kitSocks": "Socks", "cl.kitHint": "Tap a colour to change it.", "cl.waLegend2": "🧤 goalkeeper · by number · with players left out",
+    "cl.waLegend": "🧤 goalkeeper · number as emoji · keepers first", "cl.where": "This match", "cl.saved": "Saved for the whole team", "pf.apoyo": "Support player (other team)", "pf.apoyoHint": "Comes to help: can be called up, but isn't listed as left out and doesn't count in the team's attendance or stats.", "pf.apoyoTag": "Support", "cl.fmtClassic": "Classic", "cl.fmtFull": "With kit", "cl.cita": "Meeting time", "cl.citaAuto": "Empty: 1 h 15′ before kick-off", "cl.kit": "Kit", "cl.kitHome": "Home", "cl.kitAway": "Away", "cl.kitShirt": "Shirt", "cl.kitShorts": "Shorts", "cl.kitSocks": "Socks", "cl.kitHint": "Tap a colour to change it.", "cl.waLegend2": "🧤 goalkeeper · by number · with players left out",
     "cl.title": "Squad list",
     "cl.readonly": "(read only)", "cl.readonlyDemo": "This is the demo: you can look at everything, but nothing is saved. Create your account to make your own squad list.",
     "cl.rival": "Opponent",
@@ -1359,7 +1359,7 @@ const DICT = {
     "ln.other": "Autre : 4-1-4-1",
     "cl.waMsg": "Message pour WhatsApp",
     "cl.waOpen": "Ouvrir WhatsApp",
-    "cl.waLegend": "🧤 gardien · numéro en emoji · gardiens d'abord", "pf.apoyo": "Joueur en renfort (autre équipe)", "pf.apoyoHint": "Vient aider : peut être convoqué, mais n'apparaît pas parmi les non convoqués et ne compte pas dans l'assiduité ni les statistiques de l'équipe.", "pf.apoyoTag": "Renfort", "cl.fmtClassic": "Classique", "cl.fmtFull": "Avec tenue", "cl.cita": "Heure de convocation", "cl.citaAuto": "Vide : 1 h 15′ avant le match", "cl.kit": "Tenue", "cl.kitHome": "Domicile", "cl.kitAway": "Extérieur", "cl.kitShirt": "Maillot", "cl.kitShorts": "Short", "cl.kitSocks": "Chaussettes", "cl.kitHint": "Touchez une couleur pour la changer.", "cl.waLegend2": "🧤 gardien · par numéro · avec les non convoqués",
+    "cl.waLegend": "🧤 gardien · numéro en emoji · gardiens d'abord", "cl.where": "Ce match", "cl.saved": "Enregistré pour toute l'équipe", "pf.apoyo": "Joueur en renfort (autre équipe)", "pf.apoyoHint": "Vient aider : peut être convoqué, mais n'apparaît pas parmi les non convoqués et ne compte pas dans l'assiduité ni les statistiques de l'équipe.", "pf.apoyoTag": "Renfort", "cl.fmtClassic": "Classique", "cl.fmtFull": "Avec tenue", "cl.cita": "Heure de convocation", "cl.citaAuto": "Vide : 1 h 15′ avant le match", "cl.kit": "Tenue", "cl.kitHome": "Domicile", "cl.kitAway": "Extérieur", "cl.kitShirt": "Maillot", "cl.kitShorts": "Short", "cl.kitSocks": "Chaussettes", "cl.kitHint": "Touchez une couleur pour la changer.", "cl.waLegend2": "🧤 gardien · par numéro · avec les non convoqués",
     "cl.title": "Convocation",
     "cl.readonly": "(lecture seule)",
     "cl.rival": "Adversaire",
@@ -2061,7 +2061,7 @@ const DICT = {
     "ln.other": "Andere: 4-1-4-1",
     "cl.waMsg": "Nachricht für WhatsApp",
     "cl.waOpen": "WhatsApp öffnen",
-    "cl.waLegend": "🧤 Torwart · Nummer als Emoji · Torhüter zuerst", "pf.apoyo": "Aushilfsspieler (anderes Team)", "pf.apoyoHint": "Hilft aus: kann nominiert werden, steht aber nicht bei den Nicht-Nominierten und zählt nicht für Anwesenheit oder Statistiken des Teams.", "pf.apoyoTag": "Aushilfe", "cl.fmtClassic": "Klassisch", "cl.fmtFull": "Mit Trikot", "cl.cita": "Treffpunkt (Uhrzeit)", "cl.citaAuto": "Leer: 1 h 15′ vor Anpfiff", "cl.kit": "Trikot", "cl.kitHome": "Heim", "cl.kitAway": "Auswärts", "cl.kitShirt": "Trikot", "cl.kitShorts": "Hose", "cl.kitSocks": "Stutzen", "cl.kitHint": "Farbe antippen zum Ändern.", "cl.waLegend2": "🧤 Torwart · nach Nummer · mit Nicht-Nominierten",
+    "cl.waLegend": "🧤 Torwart · Nummer als Emoji · Torhüter zuerst", "cl.where": "Dieses Spiel", "cl.saved": "Für das ganze Team gespeichert", "pf.apoyo": "Aushilfsspieler (anderes Team)", "pf.apoyoHint": "Hilft aus: kann nominiert werden, steht aber nicht bei den Nicht-Nominierten und zählt nicht für Anwesenheit oder Statistiken des Teams.", "pf.apoyoTag": "Aushilfe", "cl.fmtClassic": "Klassisch", "cl.fmtFull": "Mit Trikot", "cl.cita": "Treffpunkt (Uhrzeit)", "cl.citaAuto": "Leer: 1 h 15′ vor Anpfiff", "cl.kit": "Trikot", "cl.kitHome": "Heim", "cl.kitAway": "Auswärts", "cl.kitShirt": "Trikot", "cl.kitShorts": "Hose", "cl.kitSocks": "Stutzen", "cl.kitHint": "Farbe antippen zum Ändern.", "cl.waLegend2": "🧤 Torwart · nach Nummer · mit Nicht-Nominierten",
     "cl.title": "Kader",
     "cl.readonly": "(nur Ansicht)",
     "cl.rival": "Gegner",
@@ -2762,7 +2762,7 @@ const DICT = {
     "ln.other": "Outro: 4-1-4-1",
     "cl.waMsg": "Mensagem para WhatsApp",
     "cl.waOpen": "Abrir WhatsApp",
-    "cl.waLegend": "🧤 guarda-redes · número em emoji · guarda-redes primeiro", "pf.apoyo": "Jogador de apoio (outra equipa)", "pf.apoyoHint": "Vem ajudar: pode ser convocado, mas não aparece nos não convocados nem conta na assiduidade nem nas estatísticas da equipa.", "pf.apoyoTag": "Apoio", "cl.fmtClassic": "Clássico", "cl.fmtFull": "Com equipamento", "cl.cita": "Hora de convocatória", "cl.citaAuto": "Vazio: 1 h 15′ antes do jogo", "cl.kit": "Equipamento", "cl.kitHome": "Em casa", "cl.kitAway": "Fora", "cl.kitShirt": "Camisola", "cl.kitShorts": "Calções", "cl.kitSocks": "Meias", "cl.kitHint": "Toca numa cor para a mudar.", "cl.waLegend2": "🧤 guarda-redes · por número · com os não convocados",
+    "cl.waLegend": "🧤 guarda-redes · número em emoji · guarda-redes primeiro", "cl.where": "Este jogo", "cl.saved": "Guardado para toda a equipa", "pf.apoyo": "Jogador de apoio (outra equipa)", "pf.apoyoHint": "Vem ajudar: pode ser convocado, mas não aparece nos não convocados nem conta na assiduidade nem nas estatísticas da equipa.", "pf.apoyoTag": "Apoio", "cl.fmtClassic": "Clássico", "cl.fmtFull": "Com equipamento", "cl.cita": "Hora de convocatória", "cl.citaAuto": "Vazio: 1 h 15′ antes do jogo", "cl.kit": "Equipamento", "cl.kitHome": "Em casa", "cl.kitAway": "Fora", "cl.kitShirt": "Camisola", "cl.kitShorts": "Calções", "cl.kitSocks": "Meias", "cl.kitHint": "Toca numa cor para a mudar.", "cl.waLegend2": "🧤 guarda-redes · por número · com os não convocados",
     "cl.title": "Convocatória",
     "cl.readonly": "(apenas leitura)",
     "cl.rival": "Adversário",
@@ -12814,21 +12814,39 @@ export default function App() {
     fuera: ["⚪", "⚪", "⚪"],
   });
   const [kit, setKit] = useState(kitPorDefecto);
+  const kitValido = (k) => k && ["casa", "fuera"].every((l) => Array.isArray(k[l]) && k[l].length === 3 && k[l].every((c) => KIT_COLORES.includes(c)));
+  /* La equipación es del equipo, no de este móvil: se lee de la nube
+     (session.team.equipacion) y, si no hay, de lo último guardado aquí. */
   useEffect(() => {
     if (!session) return;
     try {
       const f = localStorage.getItem(waFmtKey); setWaFmt(f === "clasico" ? "clasico" : "completo");
-      const k = JSON.parse(localStorage.getItem(`${waFmtKey}_kit`) || "null");
-      setKit(k && Array.isArray(k.casa) && Array.isArray(k.fuera) ? k : kitPorDefecto());
+      let k = null;
+      try { k = JSON.parse(session?.team?.equipacion || "null"); } catch { k = null; }
+      if (!kitValido(k)) k = JSON.parse(localStorage.getItem(`${waFmtKey}_kit`) || "null");
+      setKit(kitValido(k) ? k : kitPorDefecto());
     } catch { setKit(kitPorDefecto()); }
-  }, [waFmtKey]); // eslint-disable-line
+  }, [waFmtKey, session?.team?.equipacion]); // eslint-disable-line
+  const [kitMsg, setKitMsg] = useState("");
   const elegirWaFmt = (f) => { setWaFmt(f); try { localStorage.setItem(waFmtKey, f); } catch { /* noop */ } };
-  const cambiarKit = (lado, i) => setKit((k) => {
-    const sig = KIT_COLORES[(KIT_COLORES.indexOf(k[lado][i]) + 1) % KIT_COLORES.length];
-    const nuevo = { ...k, [lado]: k[lado].map((c, j) => (j === i ? sig : c)) };
+  const kitTimer = useRef(null);
+  const cambiarKit = (lado, i) => {
+    const sig = KIT_COLORES[(KIT_COLORES.indexOf(kit[lado][i]) + 1) % KIT_COLORES.length];
+    const nuevo = { ...kit, [lado]: kit[lado].map((c, j) => (j === i ? sig : c)) };
+    setKit(nuevo);
     try { localStorage.setItem(`${waFmtKey}_kit`, JSON.stringify(nuevo)); } catch { /* noop */ }
-    return nuevo;
-  });
+    /* A la nube, con un respiro: se cambia tocando varias veces seguidas. */
+    const rec = session?.team?.rec;
+    if (!rec || session?.email === "demo") return;
+    clearTimeout(kitTimer.current);
+    kitTimer.current = setTimeout(async () => {
+      const ok = await airTeamPatch(rec, { equipacion: nuevo });
+      if (ok) {
+        setSession((sx) => (sx?.team ? { ...sx, team: { ...sx.team, equipacion: JSON.stringify(nuevo) } } : sx));
+        setKitMsg(t("cl.saved")); setTimeout(() => setKitMsg(""), 2500);
+      }
+    }, 900);
+  };
   /* Hora de convocatoria: la escrita, o 1 h 15′ antes del partido. */
   const horaCita = () => {
     if (String(matchInfo.cita || "").trim()) return matchInfo.cita.trim();
@@ -14598,17 +14616,30 @@ export default function App() {
     if (!j) return "—";
     return /^\d+$/.test(j) ? "J" + j : j.toUpperCase();
   };
-  const rivalDeFixture = (f) => {
-    const mio = normClub(session.club);
-    return (mio && normClub(f.home).includes(mio) ? f.away : f.home) || f.away || f.home;
+  /* Qué lado del cruce somos. Primero por el nombre completo; si no, por el
+     núcleo del nombre ("Club Deportivo Chamartín Vergara 1995" y
+     "C.D. CHAMARTIN VERGARA" son el mismo club), y solo si el núcleo está en
+     un único lado: en un derbi entre dos equipos del club no se adivina. */
+  const nucleoClub = (v) => normClub(v).replace(/[^a-z0-9 ]/g, " ")
+    .replace(/\b(club|deportivo|deportiva|c ?d|a ?d|c ?f|f ?c|u ?d|s ?a ?d|escuela|futbol|de|del)\b/g, " ")
+    .replace(/\b\d+\b/g, " ").replace(/\s+/g, " ").trim();
+  const ladoNuestro = (f) => {
+    const mio = normClub(session?.club);
+    if (mio && normClub(f.home).includes(mio)) return "home";
+    if (mio && normClub(f.away).includes(mio)) return "away";
+    const n = nucleoClub(session?.club);
+    if (!n) return null;
+    const h = nucleoClub(f.home).includes(n), a = nucleoClub(f.away).includes(n);
+    return h && !a ? "home" : a && !h ? "away" : null;
   };
+  const rivalDeFixture = (f) => (ladoNuestro(f) === "home" ? f.away : f.home) || f.away || f.home;
   /* El calendario ya trae el cruce con su local y su visitante, así que no hay
      que preguntarle al entrenador dónde se juega: si nuestro club es el local
      de esa jornada, jugamos en casa. Misma comparación por nombre completo que
      `rivalDeFixture`. */
   const jugamosEnCasa = (f) => {
-    const mio = normClub(session?.club);
-    return !!(mio && normClub(f.home).includes(mio));
+    const lado = ladoNuestro(f);
+    return lado ? lado === "home" : normClub(f.place).trim() === "casa";
   };
   const useAsNext = (f) => {
     setMatchInfo({ rival: rivalDeFixture(f), fecha: f.date, hora: f.time || "—", lugar: f.place || "—", j: f.j || "", casa: jugamosEnCasa(f) });
@@ -20447,7 +20478,10 @@ export default function App() {
                       onChange={(e) => {
                         const v = e.target.value;
                         if (v === "__otro__") { setMatchInfo((m) => ({ ...m, rival: "" })); return; }
-                        const f = sortedFix.find((x) => /^\d+$/.test(String(x.j)) && rivalDeFixture(x) === v);
+                        /* Ida y vuelta: el próximo contra ese rival; si ya
+                           pasaron los dos, el último. */
+                        const contra = sortedFix.filter((x) => /^\d+$/.test(String(x.j)) && rivalDeFixture(x) === v);
+                        const f = contra.find((x) => String(x.date || "") >= hoyISO()) || contra[contra.length - 1];
                         setMatchInfo((m) => f
                           ? { ...m, rival: v, fecha: f.date, hora: f.time || m.hora, lugar: f.place || m.lugar, j: f.j || "", casa: jugamosEnCasa(f) }
                           : { ...m, rival: v });
@@ -20510,19 +20544,41 @@ export default function App() {
             ))}
           </div>
           {waFmt === "completo" && (
-            <div className="mb-3 rounded-lg border p-2.5" style={{ borderColor: C.line, background: C.panel2 }}>
-              <div className="text-[11px] font-display uppercase tracking-widest mb-1.5" style={{ color: C.dim }}>{t("cl.kit")} · {t("cl.kitHint")}</div>
-              {[["casa", t("cl.kitHome")], ["fuera", t("cl.kitAway")]].map(([lado, lbl]) => (
-                <div key={lado} className="flex items-center gap-2 py-1">
-                  <span className="text-xs w-16 shrink-0" style={{ color: (matchInfo.casa === false) === (lado === "fuera") ? AC : C.dim }}>{lbl}</span>
-                  {[t("cl.kitShirt"), t("cl.kitShorts"), t("cl.kitSocks")].map((pieza, i) => (
-                    <button key={pieza} onClick={() => cambiarKit(lado, i)} title={pieza} aria-label={`${lbl} · ${pieza}`}
-                      className="flex-1 flex items-center justify-center gap-1 text-[11px] px-1.5 py-1.5 rounded-lg border" style={{ borderColor: C.line, color: C.dim }}>
-                      <span className="text-base leading-none">{kit[lado][i]}</span><span className="truncate">{pieza}</span>
-                    </button>
-                  ))}
+            <div className="mb-3 rounded-lg border p-3 space-y-3" style={{ borderColor: C.line, background: C.panel2 }}>
+              {/* Dónde se juega decide qué equipación sale en el mensaje. Viene
+                  del calendario, pero se puede corregir aquí. */}
+              <div>
+                <div className="text-[11px] font-display uppercase tracking-widest mb-1.5" style={{ color: C.dim }}>{t("cl.where")}</div>
+                <div className="grid grid-cols-2 gap-1.5">
+                  {[[true, t("cl.kitHome")], [false, t("cl.kitAway")]].map(([enCasa, lbl]) => {
+                    const sel = (matchInfo.casa !== false) === enCasa;
+                    return (
+                      <button key={lbl} onClick={() => setMatchInfo((m) => ({ ...m, casa: enCasa }))} aria-pressed={sel} disabled={!editable}
+                        className="text-xs py-2 rounded-lg border font-display uppercase tracking-wide disabled:opacity-60"
+                        style={{ borderColor: sel ? AC : C.line, background: sel ? AC : "transparent", color: sel ? C.sobre : C.chalk }}>{lbl}</button>
+                    );
+                  })}
                 </div>
-              ))}
+              </div>
+              <div className="text-[11px] font-display uppercase tracking-widest" style={{ color: C.dim }}>{t("cl.kit")} · <span className="normal-case tracking-normal">{t("cl.kitHint")}</span></div>
+              {[["casa", t("cl.kitHome")], ["fuera", t("cl.kitAway")]].map(([lado, lbl]) => {
+                const activa = (matchInfo.casa === false) === (lado === "fuera");
+                return (
+                  <div key={lado}>
+                    <div className="text-xs mb-1 font-display uppercase tracking-wide" style={{ color: activa ? AC : C.dim }}>{lbl}{activa ? " ✓" : ""}</div>
+                    <div className="grid grid-cols-3 gap-1.5">
+                      {[t("cl.kitShirt"), t("cl.kitShorts"), t("cl.kitSocks")].map((pieza, i) => (
+                        <button key={pieza} onClick={() => cambiarKit(lado, i)} aria-label={`${lbl} · ${pieza}`}
+                          className="min-w-0 flex flex-col items-center gap-1 py-2 rounded-lg border" style={{ borderColor: activa ? AC : C.line, color: C.dim }}>
+                          <span className="text-xl leading-none">{kit[lado][i]}</span>
+                          <span className="text-[10px] truncate max-w-full px-1">{pieza}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+              {kitMsg && <div className="text-[11px]" style={{ color: C.green }}>✓ {kitMsg}</div>}
             </div>
           )}
           <pre className="whitespace-pre-wrap text-sm rounded-lg p-4 border font-body leading-relaxed" style={{ background: C.panel2, borderColor: C.line, color: C.chalk }}>{waText()}</pre>
