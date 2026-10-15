@@ -12866,14 +12866,23 @@ export default function App() {
       : (matchInfo.fecha || "—");
     const [cam, pan, med] = matchInfo.casa === false ? kit.fuera : kit.casa;
     const cita = horaCita();
-    const lugar = String(matchInfo.lugar || "").trim();
+    /* En casa, el campo del club (el de la ficha del club, con su enlace de
+       Maps). Fuera, el lugar del partido y un enlace de Maps buscándolo. */
+    const enCasa = matchInfo.casa !== false;
+    const lugarEscrito = String(matchInfo.lugar || "").trim();
+    const sinLugar = !lugarEscrito || lugarEscrito === "—" || normClub(lugarEscrito) === "casa";
+    const lugar = enCasa ? (clubInfo.campo || (sinLugar ? "" : lugarEscrito)) : (sinLugar ? "" : lugarEscrito);
+    const buscarMaps = (q) => (q ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}` : "");
+    const mapa = enCasa
+      ? (clubInfo.maps || session?.team?.maps || buscarMaps([clubInfo.campo, clubInfo.direccion].filter(Boolean).join(", ")))
+      : buscarMaps(lugar);
     return [
       `${matchInfo.j ? `*J${matchInfo.j}* ` : ""}⚔️ *${matchInfo.rival || "—"}*`,
       "",
       `📅 ${fecha}`,
       ...(cita ? [`⏰ Convocatoria ${cita}`] : []),
       `⚽ Hora del Partido ${matchInfo.hora || "—"}`,
-      ...(lugar && lugar !== "—" ? [`📍 ${lugar}`] : []),
+      ...(lugar ? [`📍 ${lugar}`] : []),
       "",
       "*Equipación*",
       `Camiseta ${cam}`, `Pantalón ${pan}`, `Medias ${med}`,
@@ -12881,6 +12890,7 @@ export default function App() {
       "*Convocados*",
       ...conv.map(linea),
       ...(fuera.length ? ["", "*Desconvocados*", ...fuera.map((p) => `${keycap(p.d)} ${p.n}`)] : []),
+      ...(mapa ? ["", `🗺️ ${mapa}`] : []),
     ].join("\n");
   };
   const waText = () => {
