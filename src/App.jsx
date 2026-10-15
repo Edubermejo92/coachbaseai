@@ -127,7 +127,7 @@ const DICT = {
     "ln.other": "Otro: 4-1-4-1",
     "cl.waMsg": "Mensaje para WhatsApp",
     "cl.waOpen": "Abrir WhatsApp",
-    "cl.waLegend": "🧤 portero · dorsal en emoji · porteros primero",
+    "cl.waLegend": "🧤 portero · dorsal en emoji · porteros primero", "cl.fmtClassic": "Clásico", "cl.fmtFull": "Con equipación", "cl.cita": "Convocatoria (hora)", "cl.citaAuto": "Sin hora: 1 h 15′ antes del partido", "cl.kit": "Equipación", "cl.kitHome": "En casa", "cl.kitAway": "Fuera", "cl.kitShirt": "Camiseta", "cl.kitShorts": "Pantalón", "cl.kitSocks": "Medias", "cl.kitHint": "Toca un color para cambiarlo.", "cl.waLegend2": "🧤 portero · por dorsal · con los desconvocados",
     "cl.title": "Convocatoria",
     "cl.readonly": "(solo lectura)", "cl.readonlyDemo": "Esto es la demo: puedes mirarlo todo, pero no se guarda nada. Crea tu cuenta para hacer tu propia convocatoria.",
     "cl.rival": "Rival",
@@ -737,7 +737,7 @@ const DICT = {
     "ln.other": "Other: 4-1-4-1",
     "cl.waMsg": "WhatsApp message",
     "cl.waOpen": "Open WhatsApp",
-    "cl.waLegend": "🧤 goalkeeper · number as emoji · keepers first",
+    "cl.waLegend": "🧤 goalkeeper · number as emoji · keepers first", "cl.fmtClassic": "Classic", "cl.fmtFull": "With kit", "cl.cita": "Meeting time", "cl.citaAuto": "Empty: 1 h 15′ before kick-off", "cl.kit": "Kit", "cl.kitHome": "Home", "cl.kitAway": "Away", "cl.kitShirt": "Shirt", "cl.kitShorts": "Shorts", "cl.kitSocks": "Socks", "cl.kitHint": "Tap a colour to change it.", "cl.waLegend2": "🧤 goalkeeper · by number · with players left out",
     "cl.title": "Squad list",
     "cl.readonly": "(read only)", "cl.readonlyDemo": "This is the demo: you can look at everything, but nothing is saved. Create your account to make your own squad list.",
     "cl.rival": "Opponent",
@@ -1359,7 +1359,7 @@ const DICT = {
     "ln.other": "Autre : 4-1-4-1",
     "cl.waMsg": "Message pour WhatsApp",
     "cl.waOpen": "Ouvrir WhatsApp",
-    "cl.waLegend": "🧤 gardien · numéro en emoji · gardiens d'abord",
+    "cl.waLegend": "🧤 gardien · numéro en emoji · gardiens d'abord", "cl.fmtClassic": "Classique", "cl.fmtFull": "Avec tenue", "cl.cita": "Heure de convocation", "cl.citaAuto": "Vide : 1 h 15′ avant le match", "cl.kit": "Tenue", "cl.kitHome": "Domicile", "cl.kitAway": "Extérieur", "cl.kitShirt": "Maillot", "cl.kitShorts": "Short", "cl.kitSocks": "Chaussettes", "cl.kitHint": "Touchez une couleur pour la changer.", "cl.waLegend2": "🧤 gardien · par numéro · avec les non convoqués",
     "cl.title": "Convocation",
     "cl.readonly": "(lecture seule)",
     "cl.rival": "Adversaire",
@@ -2061,7 +2061,7 @@ const DICT = {
     "ln.other": "Andere: 4-1-4-1",
     "cl.waMsg": "Nachricht für WhatsApp",
     "cl.waOpen": "WhatsApp öffnen",
-    "cl.waLegend": "🧤 Torwart · Nummer als Emoji · Torhüter zuerst",
+    "cl.waLegend": "🧤 Torwart · Nummer als Emoji · Torhüter zuerst", "cl.fmtClassic": "Klassisch", "cl.fmtFull": "Mit Trikot", "cl.cita": "Treffpunkt (Uhrzeit)", "cl.citaAuto": "Leer: 1 h 15′ vor Anpfiff", "cl.kit": "Trikot", "cl.kitHome": "Heim", "cl.kitAway": "Auswärts", "cl.kitShirt": "Trikot", "cl.kitShorts": "Hose", "cl.kitSocks": "Stutzen", "cl.kitHint": "Farbe antippen zum Ändern.", "cl.waLegend2": "🧤 Torwart · nach Nummer · mit Nicht-Nominierten",
     "cl.title": "Kader",
     "cl.readonly": "(nur Ansicht)",
     "cl.rival": "Gegner",
@@ -2762,7 +2762,7 @@ const DICT = {
     "ln.other": "Outro: 4-1-4-1",
     "cl.waMsg": "Mensagem para WhatsApp",
     "cl.waOpen": "Abrir WhatsApp",
-    "cl.waLegend": "🧤 guarda-redes · número em emoji · guarda-redes primeiro",
+    "cl.waLegend": "🧤 guarda-redes · número em emoji · guarda-redes primeiro", "cl.fmtClassic": "Clássico", "cl.fmtFull": "Com equipamento", "cl.cita": "Hora de convocatória", "cl.citaAuto": "Vazio: 1 h 15′ antes do jogo", "cl.kit": "Equipamento", "cl.kitHome": "Em casa", "cl.kitAway": "Fora", "cl.kitShirt": "Camisola", "cl.kitShorts": "Calções", "cl.kitSocks": "Meias", "cl.kitHint": "Toca numa cor para a mudar.", "cl.waLegend2": "🧤 guarda-redes · por número · com os não convocados",
     "cl.title": "Convocatória",
     "cl.readonly": "(apenas leitura)",
     "cl.rival": "Adversário",
@@ -11597,7 +11597,7 @@ export default function App() {
      Municipal Las Rozas") que en una cuenta real parecía de verdad. Ahora solo
      se rellena así en el modo demo. */
   const MATCHINFO_DEMO = { rival: "CD Norte", fecha: "Domingo 27", hora: "10:00", lugar: "Campo Municipal Las Rozas", j: "", arbitro: "", arbComentario: "" };
-  const MATCHINFO_VACIO = { rival: "", fecha: "", hora: "", lugar: "", j: "", arbitro: "", arbComentario: "", casa: true };
+  const MATCHINFO_VACIO = { rival: "", fecha: "", hora: "", cita: "", lugar: "", j: "", arbitro: "", arbComentario: "", casa: true };
   const [matchInfo, setMatchInfo] = useState(MATCHINFO_VACIO);
   /* calendario del equipo */
   const [fixtures, setFixtures] = useState(FIXTURES_INIT);
@@ -12794,7 +12794,72 @@ export default function App() {
     setTimeout(() => setRivalMsg(""), 6000);
   };
 
+  /* ---- Formato de la convocatoria ----
+     "clasico": el de siempre. "completo": jornada y rival, día, hora de
+     convocatoria y de partido, equipación (la de casa o la de fuera según
+     dónde se juegue) y convocados y desconvocados por dorsal. Se elige en
+     Convocatoria y se recuerda por equipo, igual que los colores. */
+  const waFmtKey = `cb_wafmt_${session?.team?.id || "demo"}`;
+  const [waFmt, setWaFmt] = useState("completo");
+  const KIT_COLORES = ["🟠", "⚫", "⚪", "🔴", "🔵", "🟢", "🟡", "🟣", "🟤"];
+  const kitPorDefecto = () => ({
+    casa: esClubChamartinVergara(session?.club) ? ["🟠", "⚫", "🟠"] : ["⚪", "⚪", "⚪"],
+    fuera: ["⚪", "⚪", "⚪"],
+  });
+  const [kit, setKit] = useState(kitPorDefecto);
+  useEffect(() => {
+    if (!session) return;
+    try {
+      const f = localStorage.getItem(waFmtKey); setWaFmt(f === "clasico" ? "clasico" : "completo");
+      const k = JSON.parse(localStorage.getItem(`${waFmtKey}_kit`) || "null");
+      setKit(k && Array.isArray(k.casa) && Array.isArray(k.fuera) ? k : kitPorDefecto());
+    } catch { setKit(kitPorDefecto()); }
+  }, [waFmtKey]); // eslint-disable-line
+  const elegirWaFmt = (f) => { setWaFmt(f); try { localStorage.setItem(waFmtKey, f); } catch { /* noop */ } };
+  const cambiarKit = (lado, i) => setKit((k) => {
+    const sig = KIT_COLORES[(KIT_COLORES.indexOf(k[lado][i]) + 1) % KIT_COLORES.length];
+    const nuevo = { ...k, [lado]: k[lado].map((c, j) => (j === i ? sig : c)) };
+    try { localStorage.setItem(`${waFmtKey}_kit`, JSON.stringify(nuevo)); } catch { /* noop */ }
+    return nuevo;
+  });
+  /* Hora de convocatoria: la escrita, o 1 h 15′ antes del partido. */
+  const horaCita = () => {
+    if (String(matchInfo.cita || "").trim()) return matchInfo.cita.trim();
+    const m = /^(\d{1,2}):(\d{2})/.exec(String(matchInfo.hora || ""));
+    if (!m) return "";
+    const tot = (Number(m[1]) * 60 + Number(m[2]) - 75 + 1440) % 1440;
+    return `${String(Math.floor(tot / 60)).padStart(2, "0")}:${String(tot % 60).padStart(2, "0")}`;
+  };
+  const waTextCompleto = () => {
+    const esPortero = (p) => posDe(p.id) === "POR" || p.linea === "POR";
+    const porDorsal = (a, b) => (Number(a.d) || 0) - (Number(b.d) || 0);
+    const linea = (p) => `${keycap(p.d)} ${p.n}${esPortero(p) ? " 🧤" : ""}`;
+    const conv = players.filter((p) => called.has(p.id)).sort(porDorsal);
+    const fuera = called.size ? players.filter((p) => !called.has(p.id)).sort(porDorsal) : [];
+    const fecha = /^\d{4}-\d{2}-\d{2}$/.test(String(matchInfo.fecha || ""))
+      ? (() => { const f = new Date(`${matchInfo.fecha}T12:00:00`); const d = f.toLocaleDateString("es-ES", { weekday: "long", day: "numeric", month: "long" }).replace(/ de /g, " ").replace(",", ""); return d.charAt(0).toUpperCase() + d.slice(1); })()
+      : (matchInfo.fecha || "—");
+    const [cam, pan, med] = matchInfo.casa === false ? kit.fuera : kit.casa;
+    const cita = horaCita();
+    const lugar = String(matchInfo.lugar || "").trim();
+    return [
+      `${matchInfo.j ? `*J${matchInfo.j}* ` : ""}⚔️ *${matchInfo.rival || "—"}*`,
+      "",
+      `📅 ${fecha}`,
+      ...(cita ? [`⏰ Convocatoria ${cita}`] : []),
+      `⚽ Hora del Partido ${matchInfo.hora || "—"}`,
+      ...(lugar && lugar !== "—" ? [`📍 ${lugar}`] : []),
+      "",
+      "*Equipación*",
+      `Camiseta ${cam}`, `Pantalón ${pan}`, `Medias ${med}`,
+      "",
+      "*Convocados*",
+      ...conv.map(linea),
+      ...(fuera.length ? ["", "*Desconvocados*", ...fuera.map((p) => `${keycap(p.d)} ${p.n}`)] : []),
+    ].join("\n");
+  };
   const waText = () => {
+    if (waFmt === "completo") return waTextCompleto();
     /* El portero encabeza la lista, como en cualquier acta. Quién es el
        portero lo dice la alineación (quien esté puesto bajo palos), no una
        etiqueta en su ficha. */
@@ -20345,8 +20410,8 @@ export default function App() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <Card title={`${t("cl.title")}${matchInfo.j ? ` — J${matchInfo.j}` : ""} ${editable ? "" : t("cl.readonly")}`}>
           <div className="grid grid-cols-2 gap-2 mb-4">
-            {[["rival", t("cl.rival")], ["fecha", t("tr.date")], ["hora", t("tr.time")], ["lugar", t("cl.place")]].map(([k, lbl]) => (
-              <div key={k} className={k === "lugar" ? "col-span-2" : ""}>
+            {[["rival", t("cl.rival")], ["fecha", t("tr.date")], ["hora", t("tr.time")], ["cita", t("cl.cita")], ["lugar", t("cl.place")]].map(([k, lbl]) => (
+              <div key={k} className={k === "lugar" || k === "rival" ? "col-span-2" : ""}>
                 <div className="text-[11px] font-display uppercase tracking-widest" style={{ color: C.dim }}>{lbl}</div>
                 {k === "rival" ? (
                   <>
@@ -20384,7 +20449,9 @@ export default function App() {
                     )}
                   </>
                 ) : (
-                  <input value={matchInfo[k]} disabled={!editable} onChange={(e) => setMatchInfo((m) => ({ ...m, [k]: e.target.value }))} className="w-full rounded-lg px-3 py-2 text-sm outline-none border disabled:opacity-60" style={{ background: C.panel2, borderColor: C.line, color: C.chalk }} />
+                  <input value={matchInfo[k] || ""} disabled={!editable} onChange={(e) => setMatchInfo((m) => ({ ...m, [k]: e.target.value }))}
+                    placeholder={k === "cita" ? (horaCita() || "09:45") : undefined} title={k === "cita" ? t("cl.citaAuto") : undefined}
+                    className="w-full rounded-lg px-3 py-2 text-sm outline-none border disabled:opacity-60" style={{ background: C.panel2, borderColor: C.line, color: C.chalk }} />
                 )}
               </div>
             ))}
@@ -20417,12 +20484,35 @@ export default function App() {
           </div>
         </Card>
         <Card title={t("cl.waMsg")}>
+          <div className="flex gap-1.5 mb-3" role="group">
+            {[["completo", t("cl.fmtFull")], ["clasico", t("cl.fmtClassic")]].map(([k, lbl]) => (
+              <button key={k} onClick={() => elegirWaFmt(k)} aria-pressed={waFmt === k}
+                className="flex-1 text-xs px-3 py-2 rounded-lg border font-display uppercase tracking-wide"
+                style={{ borderColor: waFmt === k ? AC : C.line, background: waFmt === k ? AC : "transparent", color: waFmt === k ? C.sobre : C.chalk }}>{lbl}</button>
+            ))}
+          </div>
+          {waFmt === "completo" && (
+            <div className="mb-3 rounded-lg border p-2.5" style={{ borderColor: C.line, background: C.panel2 }}>
+              <div className="text-[11px] font-display uppercase tracking-widest mb-1.5" style={{ color: C.dim }}>{t("cl.kit")} · {t("cl.kitHint")}</div>
+              {[["casa", t("cl.kitHome")], ["fuera", t("cl.kitAway")]].map(([lado, lbl]) => (
+                <div key={lado} className="flex items-center gap-2 py-1">
+                  <span className="text-xs w-16 shrink-0" style={{ color: (matchInfo.casa === false) === (lado === "fuera") ? AC : C.dim }}>{lbl}</span>
+                  {[t("cl.kitShirt"), t("cl.kitShorts"), t("cl.kitSocks")].map((pieza, i) => (
+                    <button key={pieza} onClick={() => cambiarKit(lado, i)} title={pieza} aria-label={`${lbl} · ${pieza}`}
+                      className="flex-1 flex items-center justify-center gap-1 text-[11px] px-1.5 py-1.5 rounded-lg border" style={{ borderColor: C.line, color: C.dim }}>
+                      <span className="text-base leading-none">{kit[lado][i]}</span><span className="truncate">{pieza}</span>
+                    </button>
+                  ))}
+                </div>
+              ))}
+            </div>
+          )}
           <pre className="whitespace-pre-wrap text-sm rounded-lg p-4 border font-body leading-relaxed" style={{ background: C.panel2, borderColor: C.line, color: C.chalk }}>{waText()}</pre>
           <div className="mt-3 flex gap-2">
             <button onClick={copyWa} className="flex-1 font-display uppercase tracking-wide px-2 py-2.5 rounded-lg font-semibold leading-tight" style={{ background: copied ? C.green : AC, color: C.sobre }}>{copied ? t("cl.copied") : t("cl.copyMsg")}</button>
             <a href={`https://wa.me/?text=${encodeURIComponent(waText())}`} target="_blank" rel="noreferrer" onClick={marcarConvocatoriaEnviada} className="flex-1 text-center font-display uppercase tracking-wider py-2.5 rounded-lg font-semibold border" style={{ borderColor: C.line, color: C.chalk }}>{t("cl.waOpen")}</a>
           </div>
-          <div className="text-[11px] mt-2" style={{ color: C.dim }}>{t("cl.waLegend")}</div>
+          <div className="text-[11px] mt-2" style={{ color: C.dim }}>{waFmt === "completo" ? t("cl.waLegend2") : t("cl.waLegend")}</div>
           {editable && (
             <div className="mt-4 pt-4 border-t" style={{ borderColor: C.line }}>
               <button onClick={saveCall} className="w-full font-display uppercase tracking-wider py-2.5 rounded-lg border" style={{ borderColor: AC, color: AC }}>
