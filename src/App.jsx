@@ -9037,17 +9037,17 @@ async function makePresentationVideo(player, club, teamName, accent, pos) {
    sin eso el canvas queda "manchado" y captureStream falla ENTERO, no solo esa
    foto. La que aun así no cargue no rompe el vídeo -esa ficha sale con el
    dorsal a lo grande, como en el campo cuando falta la foto-. */
-async function makeLineupVideo({ titulares, club, teamName, accent, sysCode, capitanes = [], onPaso }) {
-  const W = 540, H = 675, PORTADA = 2.2, POR_JUGADOR = 2.2, CIERRE = 1.8;
-  const DUR = PORTADA + titulares.length * POR_JUGADOR + CIERRE;
+async function makeLineupVideo({ titulares, club, teamName, accent, sysCode, capitanes = [], escudo = null, onPaso }) {
+  /* Guion: escudo del club → el once en el campo (se enfoca) → cada titular:
+     su foto se enfoca y su dorsal se enciende en el campo → escudo de cierre. */
+  const W = 540, H = 675, PORTADA = 2.4, ONCE = 2.2, POR_JUGADOR = 2.4, CIERRE = 2.4;
+  const DUR = PORTADA + ONCE + titulares.length * POR_JUGADOR + CIERRE;
   const canvas = document.createElement("canvas");
   canvas.width = W; canvas.height = H;
   const ctx = canvas.getContext("2d");
   /* El fondo del vídeo es oscuro SIEMPRE -no sigue el tema de la app-, así que
-     los textos van en claro y no con el color del tema: en tema claro ese color
-     es casi negro y el nombre del jugador se quedaba invisible sobre el fondo.
-     Con el acento pasa lo mismo -hay clubes de negro o azul marino-, así que si
-     no tiene brillo para leerse sobre oscuro, se cae al claro. */
+     los textos van en claro. Si el acento del club no tiene brillo para leerse
+     sobre oscuro (negro, azul marino…), se cae al claro. */
   const CLARO = "#E8EDE6", TENUE = "rgba(232,237,230,0.65)";
   const brilloDe = (col) => {
     const m = /^#?([0-9a-f]{3}|[0-9a-f]{6})$/i.exec(String(col).trim());
@@ -9057,25 +9057,28 @@ async function makeLineupVideo({ titulares, club, teamName, accent, sysCode, cap
     return 0.2126 * r + 0.7152 * g + 0.0722 * b;
   };
   const acento = brilloDe(accent) > 0.4 ? accent : CLARO;
-  /* El texto se encoge hasta caber en el ancho dado: un nombre largo -"C.D.
-     Chamartín Vergara 1995", o un jugador con dos apellidos- se salía del
-     cuadro por los dos lados al ir con un tamaño fijo. */
+  const tintaSobreAcento = acento === CLARO || brilloDe(acento) > 0.6 ? "#141414" : CLARO;
+  /* El texto se encoge hasta caber en el ancho dado. */
   const fuenteQueQuepa = (texto, base, maxAncho, peso = "700") => {
     let px = base;
     ctx.font = `${peso} ${px}px 'Barlow Condensed', sans-serif`;
-    while (ctx.measureText(texto).width > maxAncho && px > 16) {
+    while (ctx.measureText(texto).width > maxAncho && px > 14) {
       px -= 2;
       ctx.font = `${peso} ${px}px 'Barlow Condensed', sans-serif`;
     }
   };
-  const fotos = await Promise.all(titulares.map(({ p }) => new Promise((res) => {
-    if (!p.photo) { res(null); return; }
+  /* Las fotos viven en otro origen (Supabase): con crossOrigin, o el canvas
+     queda "manchado" y la grabación falla entera. La que no cargue no rompe
+     el vídeo: sale el dorsal a lo grande. Igual con el escudo. */
+  const cargar = (src) => new Promise((res) => {
+    if (!src) { res(null); return; }
     const img = new Image();
     img.crossOrigin = "anonymous";
     img.onload = () => res(img);
     img.onerror = () => res(null);
-    img.src = p.photo;
-  })));
+    img.src = src;
+  });
+  const [imgEscudo, ...fotos] = await Promise.all([cargar(escudo), ...titulares.map(({ p }) => cargar(p.photo))]);
   const stream = canvas.captureStream(30);
   const mime = MediaRecorder.isTypeSupported("video/webm;codecs=vp9") ? "video/webm;codecs=vp9" : "video/webm";
   const rec = new MediaRecorder(stream, { mimeType: mime, videoBitsPerSecond: 4_000_000 });
@@ -9083,73 +9086,166 @@ async function makeLineupVideo({ titulares, club, teamName, accent, sysCode, cap
   rec.ondataavailable = (e) => e.data.size && chunks.push(e.data);
   const done = new Promise((res) => { rec.onstop = () => res(URL.createObjectURL(new Blob(chunks, { type: "video/webm" }))); });
   const drawCover = (image, x, y, w, h) => {
-    const s = Math.max(w / image.width, h / image.height);
-    const iw = image.width * s, ih = image.height * s;
+    const sc = Math.max(w / image.width, h / image.height);
+    const iw = image.width * sc, ih = image.height * sc;
     ctx.drawImage(image, x + (w - iw) / 2, y + (h - ih) / 2, iw, ih);
   };
+  const drawContain = (image, cx, cy, maxW, maxH) => {
+    const sc = Math.min(maxW / image.width, maxH / image.height);
+    const iw = image.width * sc, ih = image.height * sc;
+    ctx.drawImage(image, cx - iw / 2, cy - ih / 2, iw, ih);
+  };
+  /* Enfoque: de borroso a nítido. Donde el navegador no tiene ctx.filter, solo
+     se funde. */
+  const conFiltro = "filter" in ctx;
+  const desenfoque = (px) => { if (conFiltro) ctx.filter = px > 0.2 ? `blur(${px.toFixed(1)}px)` : "none"; };
   const fondo = () => {
     for (let i = 0; i < 10; i++) { ctx.fillStyle = i % 2 ? "#17251D" : "#141F17"; ctx.fillRect(0, i * (H / 10), W, H / 10); }
-    ctx.strokeStyle = "rgba(54,69,79,0.18)"; ctx.lineWidth = 3; ctx.strokeRect(16, 16, W - 32, H - 32);
   };
+  /* El escudo (o, sin escudo, la inicial del club en un círculo). */
+  const pintarEscudo = (cx, cy, tam, a) => {
+    ctx.globalAlpha = a;
+    if (imgEscudo) drawContain(imgEscudo, cx, cy, tam, tam);
+    else {
+      ctx.beginPath(); ctx.arc(cx, cy, tam / 2, 0, Math.PI * 2); ctx.fillStyle = "rgba(54,69,79,0.35)"; ctx.fill();
+      ctx.lineWidth = 4; ctx.strokeStyle = acento; ctx.stroke();
+      ctx.textAlign = "center"; ctx.font = `700 ${Math.round(tam * 0.45)}px 'Barlow Condensed', sans-serif`; ctx.fillStyle = acento;
+      ctx.fillText((club || "?").trim().charAt(0).toUpperCase(), cx, cy + tam * 0.16);
+    }
+    ctx.globalAlpha = 1;
+  };
+  /* Campo vertical con el once. `foco` es el índice del titular encendido
+     (-1: todos iguales). Las posiciones x/y vienen en % del hueco de la
+     alineación, igual que en la pantalla. */
+  const pintarCampo = (x0, y0, w, h, foco, a, pulso = 0) => {
+    ctx.globalAlpha = a;
+    for (let i = 0; i < 8; i++) { ctx.fillStyle = i % 2 ? "#1E4A2C" : "#1A4127"; ctx.fillRect(x0, y0 + i * (h / 8), w, h / 8 + 0.5); }
+    ctx.strokeStyle = "rgba(255,255,255,0.55)"; ctx.lineWidth = 2;
+    ctx.strokeRect(x0, y0, w, h);
+    ctx.beginPath(); ctx.moveTo(x0, y0 + h / 2); ctx.lineTo(x0 + w, y0 + h / 2); ctx.stroke();
+    ctx.beginPath(); ctx.arc(x0 + w / 2, y0 + h / 2, w * 0.12, 0, Math.PI * 2); ctx.stroke();
+    const area = (arriba) => {
+      const aw = w * 0.56, ah = h * 0.15, sw = w * 0.26, sh = h * 0.06;
+      const y = arriba ? y0 : y0 + h - ah, ys = arriba ? y0 : y0 + h - sh;
+      ctx.strokeRect(x0 + (w - aw) / 2, y, aw, ah);
+      ctx.strokeRect(x0 + (w - sw) / 2, ys, sw, sh);
+    };
+    area(true); area(false);
+    const r = Math.max(13, Math.min(22, w * 0.045));
+    titulares.forEach(({ p, x = 50, y = 50 }, i) => {
+      const px = x0 + (x / 100) * w, py = y0 + (y / 100) * h;
+      const on = foco === i;
+      const apagado = foco >= 0 && !on;
+      ctx.globalAlpha = a * (apagado ? 0.4 : 1);
+      const rr = on ? r * (1.35 + 0.12 * Math.sin(pulso * Math.PI * 4)) : r;
+      if (on) {
+        ctx.beginPath(); ctx.arc(px, py, rr + 9, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(255,255,255,0.18)"; ctx.fill();
+      }
+      ctx.beginPath(); ctx.arc(px, py, rr, 0, Math.PI * 2);
+      ctx.fillStyle = on ? acento : "#0F1A14"; ctx.fill();
+      ctx.lineWidth = on ? 3 : 2; ctx.strokeStyle = on ? CLARO : acento; ctx.stroke();
+      ctx.textAlign = "center";
+      ctx.font = `700 ${Math.round(rr * 1.05)}px 'Barlow Condensed', sans-serif`;
+      ctx.fillStyle = on ? tintaSobreAcento : CLARO;
+      ctx.fillText(String(p.d), px, py + rr * 0.36);
+      /* Con un titular encendido, solo su nombre: los demás se pisaban. */
+      if (foco < 0 || on) {
+        const corto = String(p.n || "").split(" ")[0].toUpperCase();
+        ctx.font = `600 ${on ? 15 : 12}px 'Barlow Condensed', sans-serif`;
+        ctx.fillStyle = on ? CLARO : TENUE;
+        ctx.fillText(corto, px, py + rr + 14);
+      }
+    });
+    ctx.globalAlpha = 1;
+  };
+  const T_ONCE = PORTADA, T_JUG = PORTADA + ONCE, T_CIERRE = DUR - CIERRE;
   const frame = (t) => {
     fondo();
-    if (t < PORTADA) {
-      const a = ease(t / 0.8);
+    /* 1 · Portada: el escudo entra con zoom, luego club, equipo y sistema. */
+    if (t < T_ONCE) {
+      const a = ease(t / 0.9);
+      pintarEscudo(W / 2, H / 2 - 90, 200 * (0.7 + 0.3 * a), a);
       ctx.textAlign = "center";
-      ctx.fillStyle = acento; ctx.fillRect(W / 2 - (W / 2) * a, H / 2 - 92, W * a, 6);
-      fuenteQueQuepa(club.toUpperCase(), 46, W - 48); ctx.fillStyle = CLARO; ctx.globalAlpha = a;
-      ctx.fillText(club.toUpperCase(), W / 2, H / 2 - 24); ctx.globalAlpha = 1;
-      ctx.font = "500 26px 'Barlow Condensed', sans-serif"; ctx.fillStyle = TENUE; ctx.globalAlpha = a;
-      ctx.fillText(teamName.toUpperCase(), W / 2, H / 2 + 14); ctx.globalAlpha = 1;
-      const a2 = ease((t - 0.9) / 0.8);
-      if (a2 > 0) {
-        ctx.font = "700 72px 'Barlow Condensed', sans-serif"; ctx.fillStyle = acento; ctx.globalAlpha = a2;
-        ctx.fillText(sysCode, W / 2, H / 2 + 100); ctx.globalAlpha = 1;
-      }
+      const a2 = ease((t - 0.6) / 0.8);
+      fuenteQueQuepa(club.toUpperCase(), 42, W - 48); ctx.fillStyle = CLARO; ctx.globalAlpha = a2;
+      ctx.fillText(club.toUpperCase(), W / 2, H / 2 + 70);
+      ctx.font = "500 24px 'Barlow Condensed', sans-serif"; ctx.fillStyle = TENUE;
+      ctx.fillText(teamName.toUpperCase(), W / 2, H / 2 + 104);
+      const a3 = ease((t - 1.2) / 0.7);
+      ctx.globalAlpha = a3; ctx.font = "700 60px 'Barlow Condensed', sans-serif"; ctx.fillStyle = acento;
+      ctx.fillText(sysCode, W / 2, H / 2 + 172);
+      ctx.globalAlpha = 1;
       return;
     }
-    const tras = t - PORTADA;
-    const i = Math.floor(tras / POR_JUGADOR);
-    if (i >= titulares.length) {
-      const a = ease((t - (DUR - CIERRE)) / 0.8);
-      ctx.textAlign = "center";
-      fuenteQueQuepa(teamName.toUpperCase(), 40, W - 48); ctx.fillStyle = CLARO; ctx.globalAlpha = a;
-      ctx.fillText(teamName.toUpperCase(), W / 2, H / 2); ctx.globalAlpha = 1;
-      ctx.fillStyle = acento; ctx.fillRect(0, H - 52, W * a, 52);
-      ctx.font = "600 22px 'Barlow Condensed', sans-serif"; ctx.fillStyle = acento === CLARO ? "rgba(20,20,20,1)" : CLARO; ctx.globalAlpha = a;
-      ctx.fillText("COACHBASE AI", W / 2, H - 18);
+    /* 2 · El once titular en el campo, de borroso a enfocado. */
+    if (t < T_JUG) {
+      const l = t - T_ONCE;
+      const a = ease(l / 0.5), foco = ease(l / 1.2);
+      ctx.textAlign = "center"; ctx.globalAlpha = a;
+      ctx.font = "700 30px 'Barlow Condensed', sans-serif"; ctx.fillStyle = CLARO;
+      ctx.fillText(`ONCE TITULAR · ${sysCode}`, W / 2, 56); ctx.globalAlpha = 1;
+      desenfoque((1 - foco) * 10);
+      const esc = 0.9 + 0.1 * foco;
+      const cw = (W - 60) * esc, ch = (H - 110) * esc;
+      pintarCampo((W - cw) / 2, 76 + (H - 96 - ch) / 2, cw, ch, -1, a);
+      desenfoque(0);
       return;
     }
-    /* Cada ficha entra y sale con su propio fundido, para que el corte entre
-       jugador y jugador no sea seco. */
-    const local = tras - i * POR_JUGADOR;
-    const entra = ease(local / 0.45);
-    const sale = 1 - ease((local - (POR_JUGADOR - 0.35)) / 0.35);
-    const a = Math.max(0, Math.min(entra, sale));
-    const { p, pos } = titulares[i];
-    const foto = fotos[i];
-    ctx.textAlign = "left";
-    ctx.font = "500 20px 'Barlow Condensed', sans-serif"; ctx.fillStyle = TENUE; ctx.globalAlpha = a;
-    ctx.fillText(`${teamName.toUpperCase()} · ${sysCode}`, 24, 60); ctx.globalAlpha = 1;
-    const R = 148, cx = W / 2, cy = 286;
-    ctx.globalAlpha = a;
-    if (foto) {
+    /* 3 · Cada titular: arriba su foto se enfoca; abajo su dorsal se
+       enciende en el campo. */
+    if (t < T_CIERRE) {
+      const tras = t - T_JUG;
+      const i = Math.min(titulares.length - 1, Math.floor(tras / POR_JUGADOR));
+      const local = tras - i * POR_JUGADOR;
+      const entra = ease(local / 0.5);
+      const sale = 1 - ease((local - (POR_JUGADOR - 0.3)) / 0.3);
+      const a = Math.max(0, Math.min(entra, sale));
+      const foco = ease(local / 0.9);
+      const { p, pos } = titulares[i];
+      const foto = fotos[i];
+      /* Campo de abajo, siempre a la vista: solo cambia el dorsal encendido. */
+      pintarCampo(100, 318, 340, 340, i, 1, local);
+      /* Foto con su enfoque */
+      const R = 96, cx = 128, cy = 168, z = 1.18 - 0.18 * foco;
+      ctx.globalAlpha = a;
+      desenfoque((1 - foco) * 12);
       ctx.save(); ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.clip();
-      drawCover(foto, cx - R, cy - R, R * 2, R * 2); ctx.restore();
-    } else {
-      ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.fillStyle = "rgba(54,69,79,0.25)"; ctx.fill();
-      ctx.textAlign = "center"; ctx.font = "700 150px 'Barlow Condensed', sans-serif"; ctx.fillStyle = acento;
-      ctx.fillText(String(p.d), cx, cy + 52); ctx.textAlign = "left";
+      if (foto) drawCover(foto, cx - R * z, cy - R * z, R * 2 * z, R * 2 * z);
+      else {
+        ctx.fillStyle = "rgba(54,69,79,0.35)"; ctx.fillRect(cx - R, cy - R, R * 2, R * 2);
+        ctx.textAlign = "center"; ctx.font = `700 ${Math.round(110 * z)}px 'Barlow Condensed', sans-serif`; ctx.fillStyle = acento;
+        ctx.fillText(String(p.d), cx, cy + 38 * z);
+      }
+      ctx.restore();
+      desenfoque(0);
+      ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.lineWidth = 5; ctx.strokeStyle = acento; ctx.stroke();
+      /* Dorsal, nombre y puesto a la derecha */
+      ctx.textAlign = "left";
+      ctx.font = "700 92px 'Barlow Condensed', sans-serif"; ctx.fillStyle = acento;
+      ctx.fillText(String(p.d), 250 + (1 - a) * 40, 150);
+      fuenteQueQuepa(p.n.toUpperCase(), 38, W - 262); ctx.fillStyle = CLARO;
+      ctx.fillText(p.n.toUpperCase(), 250, 196);
+      ctx.font = "600 22px 'Barlow Condensed', sans-serif"; ctx.fillStyle = TENUE;
+      ctx.fillText(`${pos === "POR" ? "🧤 PORTERO" : pos}${capitanes.includes(p.id) ? " · CAPITÁN" : ""}`, 250, 228);
+      ctx.globalAlpha = 1;
+      ctx.font = "500 18px 'Barlow Condensed', sans-serif"; ctx.fillStyle = TENUE; ctx.textAlign = "right";
+      ctx.fillText(`${i + 1}/${titulares.length}`, W - 24, 296);
+      return;
     }
-    ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.lineWidth = 5; ctx.strokeStyle = acento; ctx.stroke();
+    /* 4 · Cierre: escudo, equipo y marca. */
+    const l = t - T_CIERRE;
+    const a = ease(l / 0.8);
+    pintarEscudo(W / 2, H / 2 - 70, 180, a);
+    ctx.textAlign = "center";
+    fuenteQueQuepa(teamName.toUpperCase(), 40, W - 48); ctx.fillStyle = CLARO; ctx.globalAlpha = a;
+    ctx.fillText(teamName.toUpperCase(), W / 2, H / 2 + 76);
+    ctx.font = "500 22px 'Barlow Condensed', sans-serif"; ctx.fillStyle = TENUE;
+    ctx.fillText(club.toUpperCase(), W / 2, H / 2 + 106);
     ctx.globalAlpha = 1;
-    ctx.font = "700 150px 'Barlow Condensed', sans-serif"; ctx.textAlign = "right";
-    ctx.fillStyle = acento; ctx.globalAlpha = a;
-    ctx.fillText(String(p.d), W - 24, 560);
-    ctx.textAlign = "left"; fuenteQueQuepa(p.n.toUpperCase(), 42, W - 190); ctx.fillStyle = CLARO;
-    ctx.fillText(p.n.toUpperCase(), 24, 540);
-    ctx.font = "600 24px 'Barlow Condensed', sans-serif"; ctx.fillStyle = acento;
-    ctx.fillText(`${pos === "POR" ? "🧤 PORTERO" : pos}${capitanes.includes(p.id) ? " · CAPITÁN" : ""}`, 24, 575);
+    ctx.fillStyle = acento; ctx.fillRect(0, H - 52, W * a, 52);
+    ctx.font = "600 22px 'Barlow Condensed', sans-serif"; ctx.fillStyle = tintaSobreAcento; ctx.globalAlpha = a;
+    ctx.fillText("COACHBASE AI", W / 2, H - 18);
     ctx.globalAlpha = 1;
   };
   rec.start();
@@ -9159,8 +9255,8 @@ async function makeLineupVideo({ titulares, club, teamName, accent, sysCode, cap
     const loop = (now) => {
       const t = (now - t0) / 1000;
       frame(Math.min(t, DUR));
-      const paso = Math.max(0, Math.floor((t - PORTADA) / POR_JUGADOR));
-      if (onPaso && paso !== ultimo) { ultimo = paso; onPaso(Math.min(paso, titulares.length), titulares.length); }
+      const paso = Math.max(0, Math.min(titulares.length, Math.floor((t - T_JUG) / POR_JUGADOR)));
+      if (onPaso && paso !== ultimo) { ultimo = paso; onPaso(paso, titulares.length); }
       if (t < DUR) requestAnimationFrame(loop); else { rec.stop(); res(); }
     };
     requestAnimationFrame(loop);
@@ -19908,8 +20004,10 @@ export default function App() {
       if (!lim.video) return proAlert("video");
       if (lnVidBusy) return;
       const titulares = Object.entries(slotPos)
-        .map(([id, sl]) => ({ p: players.find((x) => x.id === lineupView[id]), pos: sl.label }))
-        .filter((x) => x.p);
+        .map(([id, sl]) => ({ p: players.find((x) => x.id === lineupView[id]), pos: sl.label, x: sl.x, y: sl.y }))
+        .filter((x) => x.p)
+        /* De la portería hacia arriba, como se lee una alineación. */
+        .sort((a, b) => b.y - a.y || a.x - b.x);
       if (!titulares.length) { setLnVidMsg(t("ln.videoNoXI")); setTimeout(() => setLnVidMsg(""), 4000); return; }
       if (lnVidUrl) { URL.revokeObjectURL(lnVidUrl); setLnVidUrl(null); }
       setLnVidBusy(true); setLnVidMsg("");
@@ -19917,7 +20015,7 @@ export default function App() {
         try { await document.fonts?.ready; } catch { /* sin API de fonts: se graba con lo que haya */ }
         const url = await makeLineupVideo({
           titulares, club: session.club || "", teamName: session.team?.name || "", accent: AC,
-          sysCode, capitanes,
+          sysCode, capitanes, escudo: clubInfo.crest || escudoDe(session.club) || crest,
           onPaso: (a, b) => setLnVidMsg(`${t("ln.videoRec")} ${a}/${b}`),
         });
         setLnVidUrl(url);
