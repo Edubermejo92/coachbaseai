@@ -59,6 +59,12 @@ Mejoras opcionales detectadas (no se han tocado para no cambiar el comportamient
 - [x] Hecho y comprobado (ver MEMORIA_PROYECTO.md). Proyecto viejo borrado por Edu.
 - [ ] Edu: en el proyecto nuevo, Auth → URL Configuration: Site URL y Redirect URLs = las de la app.
 
+## TestudoTracker
+- [-] Avisos en segundo plano: descartado por Edu (2026-10-17). Si se retoma: averiguar con qué se
+      hizo la app de Google Play (WebView) y elegir entre OneSignal en el envoltorio o rehacerla
+      como TWA con PWABuilder; servidor en el proyecto Supabase de CoachBase (tablas aparte).
+- [ ] Opcional: subir el código de TestudoTracker a un repositorio de GitHub (hoy solo está en Netlify).
+
 ## Otros
 - [ ] Decidir si las bases Airtable de EBLDigital (CRM Chatbot, Social Images, WhatsApp) también se migran
       (están fuera de este repo; probablemente las usan escenarios de Make).

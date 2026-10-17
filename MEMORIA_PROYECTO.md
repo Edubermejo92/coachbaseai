@@ -76,6 +76,11 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   apuntando al nuevo proyecto (commit 4c0dfe3 en main). Proyecto viejo `vwdnipvfjqeeezuhjstk` borrado.
 - Bases Airtable de EBLDigital (no son de este repo): CRM Chatbot `appHdsn9XmJrbnCem`,
   Social Images Relay `appGthxV35Lb9qih6`, WhatsApp `appreBtChstRh79je`.
+- **TestudoTracker**: solo en Netlify (`testudotrackerapp`, subida a mano en junio, sin repo), un
+  index.html de 2,4 MB con datos en localStorage, sin service worker ni manifest. La app de Google
+  Play es un WebView que abre esa web (no es TWA: no hay assetlinks.json), así que ahí las
+  notificaciones web push no llegan. 2026-10-17: Edu pidió avisos en segundo plano y lo DESCARTÓ
+  al saber que haría falta OneSignal en el envoltorio o rehacer la app como TWA.
 - Límite Supabase Free: 2 proyectos activos por usuario (sumando orgs donde es Owner/Admin).
 
 ## Decisiones
