@@ -208,7 +208,7 @@ export function montarPizarra3D(contenedor, { acento = "#FFFFFF", nombres = {}, 
   scene.background = new THREE.Color("#0A1210");
   scene.fog = new THREE.Fog("#0A1210", 120, 260);
 
-  const camara = new THREE.PerspectiveCamera(40, 1, 0.5, 600);
+  const camara = new THREE.PerspectiveCamera(40, 1, 1, 600);
   camara.position.set(0, 48, 72);
   const controles = new OrbitControls(camara, renderer.domElement);
   controles.enableDamping = true;
@@ -232,12 +232,16 @@ export function montarPizarra3D(contenedor, { acento = "#FFFFFF", nombres = {}, 
   scene.add(relleno);
 
   /* suelo de alrededor, campo y estadio */
-  const suelo = new THREE.Mesh(new THREE.PlaneGeometry(400, 300), new THREE.MeshStandardMaterial({ color: "#16241A", roughness: 1 }));
-  suelo.rotation.x = -Math.PI / 2; suelo.position.y = -0.02; suelo.receiveShadow = true;
+  /* El suelo y el césped se pintan los primeros y sin escribir profundidad:
+     todo lo demás queda encima. Separarlos unos centímetros no basta: en
+     móviles con búfer de profundidad de 16 bits, desde lejos, se pisaban y
+     medio campo salía negro. */
+  const suelo = new THREE.Mesh(new THREE.PlaneGeometry(400, 300), new THREE.MeshStandardMaterial({ color: "#16241A", roughness: 1, depthWrite: false }));
+  suelo.rotation.x = -Math.PI / 2; suelo.position.y = -0.02; suelo.receiveShadow = true; suelo.renderOrder = -2;
   scene.add(suelo);
   const { tex, w, h } = texturaCesped();
-  const campo = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshStandardMaterial({ map: tex, roughness: 0.95 }));
-  campo.rotation.x = -Math.PI / 2; campo.receiveShadow = true;
+  const campo = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshStandardMaterial({ map: tex, roughness: 0.95, depthWrite: false }));
+  campo.rotation.x = -Math.PI / 2; campo.receiveShadow = true; campo.renderOrder = -1;
   scene.add(campo);
   const pIzq = porteria(); pIzq.position.set(-LARGO / 2, 0, 0); pIzq.rotation.y = 0; scene.add(pIzq);
   const pDer = porteria(); pDer.position.set(LARGO / 2, 0, 0); pDer.rotation.y = Math.PI; scene.add(pDer);
