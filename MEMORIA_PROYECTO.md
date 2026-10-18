@@ -90,6 +90,15 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   (MediaRecorder del lienzo WebGL; mp4 si el navegador puede, si no webm).
 - El visor va en un portal a <body>: la pizarra a pantalla completa en móvil va girada con
   transform y un fixed dentro de un padre transformado se descoloca.
+- Creador de jugadas 3D (v2.79.0), pestaña «Crear jugada» del visor o Jugadas → «Nueva jugada
+  3D»: campo a la izquierda y pasos a la derecha (debajo en móvil vertical). Acciones: pase,
+  desmarque, conducción, arrastra defensa, dobla, presión y tiro; «a la vez» junta acciones en
+  un paso. `src/jugada3d.js` (funciones puras) las convierte en movimientos con tiempos; el
+  motor las reproduce (`reproducirPaso`) con el balón de pie en pie. Se eligen jugadores con
+  botones o tocándolos en el 3D, y destinos tocando el césped.
+- Se guarda como una jugada más (`plays`, con `jugada3d: { acciones, balonEn }` y las flechas
+  numeradas como trazos 2D), así se comparte con el equipo y se ve en 2D. Vídeo con rótulos
+  (nombre de la jugada + paso) compuestos en un lienzo 2D encima del 3D.
 
 ## Netlify (lecciones)
 - El conector MCP de Netlify (manage-env-vars) dice "upserted" pero NO guarda nada si se le pasan

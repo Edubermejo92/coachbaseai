@@ -6,7 +6,10 @@
    conos, flechas de movimiento, pases y conducciones, zonas y textos.
    Cámara libre (girar, acercar, desplazar) y vistas de partido: tribuna,
    cenital, detrás de cada portería y esquina. Los pasos de la jugada se
-   animan moviendo a cada jugador de un paso al siguiente.
+   animan moviendo a cada jugador de un paso al siguiente, y las jugadas
+   hechas con acciones (pase, desmarque, conducción… ver jugada3d.js) se
+   reproducen paso a paso con el balón de pie en pie. Se puede tocar el campo
+   para elegir jugadores y puntos.
 
    Sin React, como sincro.js y superwall.js: la app lo carga con import()
    solo cuando se abre la vista 3D, así que Three.js no pesa en el resto.
@@ -20,6 +23,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 const LARGO = 105, ANCHO = 68;
 const B0 = 12, BW = 976, BH = 616;
 const aMetros = (p) => ({ x: ((p.x - B0) / BW) * LARGO - LARGO / 2, z: ((p.y - B0) / BH) * ANCHO - ANCHO / 2 });
+const aTablero = (v) => ({ x: Math.round(((v.x + LARGO / 2) / LARGO) * BW + B0), y: Math.round(((v.z + ANCHO / 2) / ANCHO) * BH + B0) });
 
 /* Los jugadores y el balón van algo más grandes que en la realidad: a escala
    real, desde la tribuna, un jugador es un punto. Es lo que hacen todas las
@@ -192,7 +196,7 @@ function torreFocos(x, z, alto = 26) {
 }
 
 /* ---------- motor ---------- */
-export function montarPizarra3D(contenedor, { acento = "#FFFFFF", nombres = {}, rotulo = "COACHBASE AI" } = {}) {
+export function montarPizarra3D(contenedor, { acento = "#FFFFFF", nombres = {}, rotulo = "COACHBASE AI", alTocar = null } = {}) {
   const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
   renderer.setPixelRatio(Math.min(2, window.devicePixelRatio || 1));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -214,7 +218,7 @@ export function montarPizarra3D(contenedor, { acento = "#FFFFFF", nombres = {}, 
   controles.enableDamping = true;
   controles.dampingFactor = 0.08;
   controles.minDistance = 12;
-  controles.maxDistance = 170;
+  controles.maxDistance = 260;
   controles.maxPolarAngle = Math.PI * 0.47;
   controles.target.set(0, 0, 0);
 
@@ -309,6 +313,10 @@ export function montarPizarra3D(contenedor, { acento = "#FFFFFF", nombres = {}, 
       sp.renderOrder = 10;
       g.add(sp);
     }
+    /* Volumen invisible y generoso para poder tocar al jugador con el dedo. */
+    const toque = new THREE.Mesh(new THREE.CylinderGeometry(0.75, 0.75, 2.6, 10), new THREE.MeshBasicMaterial({ visible: false }));
+    toque.position.y = 1.3; toque.userData.toque = true;
+    g.add(toque);
     g.scale.setScalar(EXAGERA);
     return g;
   };
@@ -344,12 +352,16 @@ export function montarPizarra3D(contenedor, { acento = "#FFFFFF", nombres = {}, 
   };
 
   /* Trazos en el suelo */
-  const matTrazo = (color) => new THREE.MeshStandardMaterial({ color, emissive: color, emissiveIntensity: 0.35, roughness: 0.5 });
+  let opacidadTrazo = 1;
+  const matTrazo = (color) => new THREE.MeshStandardMaterial({
+    color, emissive: color, emissiveIntensity: 0.35, roughness: 0.5,
+    ...(opacidadTrazo < 1 ? { transparent: true, opacity: opacidadTrazo, depthWrite: false } : {}),
+  });
   const tubo = (pts, color, radio = 0.16) => {
     if (pts.length < 2) return null;
     const curva = new THREE.CatmullRomCurve3(pts, false, "centripetal", 0.2);
     const m = new THREE.Mesh(new THREE.TubeGeometry(curva, Math.max(8, pts.length * 6), radio, 8, false), matTrazo(color));
-    m.castShadow = true;
+    m.castShadow = opacidadTrazo >= 1;
     return m;
   };
   const punta = (desde, hasta, color) => {
@@ -380,6 +392,17 @@ export function montarPizarra3D(contenedor, { acento = "#FFFFFF", nombres = {}, 
       const color = s.color || "#FFFFFF";
       const pts = (s.pts || []).map((p) => sobreSuelo(p));
       if (!pts.length) continue;
+      opacidadTrazo = s.opacidad != null ? Number(s.opacidad) : 1;
+      if (s.tool === "text" && s.num) {
+        /* número de paso: chapa redonda flotando sobre su trazo */
+        const sp = spriteTexto(String(s.text || ""), { fondo: color, borde: "#141414", color: "#141414" });
+        sp.material.opacity = opacidadTrazo;
+        sp.scale.set(1.9 * sp.userData.aspecto, 1.9, 1);
+        sp.position.set(pts[0].x, 2.2, pts[0].z);
+        sp.renderOrder = 11;
+        capaTrazos.add(sp);
+        continue;
+      }
       if (s.tool === "text") {
         const sp = spriteTexto(String(s.text || ""), { color, tam: 120, ancho: 512 });
         sp.scale.set(2.2 * sp.userData.aspecto, 2.2, 1);
@@ -430,6 +453,7 @@ export function montarPizarra3D(contenedor, { acento = "#FFFFFF", nombres = {}, 
         capaTrazos.add(punta(recorrido[Math.max(0, n - 2)], recorrido[n - 1], color));
       }
     }
+    opacidadTrazo = 1;
     capaJugada.add(capaTrazos);
   };
 
@@ -444,7 +468,7 @@ export function montarPizarra3D(contenedor, { acento = "#FFFFFF", nombres = {}, 
     a.ok();
   };
   const ponerJugada = ({ tokens = [], shapes = [] }, { animar = false, duracion = 1.1 } = {}) => {
-    acabarAnim();
+    acabarAnim(); acabarPaso();
     const vivos = new Set();
     const viajes = [];
     for (const tk of tokens) {
@@ -455,6 +479,7 @@ export function montarPizarra3D(contenedor, { acento = "#FFFFFF", nombres = {}, 
       if (!f || f.tipo !== tk.type || f.etiqueta !== tk.label) {
         if (f) { capaJugada.remove(f.obj); }
         const obj = crearFicha(tk);
+        obj.userData.fichaId = id;
         obj.position.set(dest.x, 0, dest.z);
         capaJugada.add(obj);
         f = { obj, tipo: tk.type, etiqueta: tk.label };
@@ -483,6 +508,145 @@ export function montarPizarra3D(contenedor, { acento = "#FFFFFF", nombres = {}, 
     return Promise.resolve();
   };
 
+  /* ---------- jugadas paso a paso (ver jugada3d.js) ----------
+     Un paso trae quién corre (ruta, salida y duración) y por dónde va el
+     balón: pegado al pie de quien conduce o por el aire en un pase o un tiro. */
+  const fichaBalon = () => { for (const [, f] of fichas) if (f.tipo === "ball") return f; return null; };
+  const ALTO_BALON = 0;
+  let paso = null;
+  const acabarPaso = () => {
+    if (!paso) return;
+    const p = paso; paso = null;
+    for (const m of p.movs) {
+      const fin = m.curva.getPointAt(1);
+      m.obj?.position.set(fin.x, 0, fin.z);
+    }
+    if (p.balon && p.balonFinal) { const b = aMetros(p.balonFinal); p.balon.obj.position.set(b.x, ALTO_BALON, b.z); }
+    p.ok();
+  };
+  const reproducirPaso = (fase, { velocidad = 1 } = {}) => {
+    acabarAnim(); acabarPaso();
+    const curvaDe = (ruta) => {
+      const pts = ruta.map((q) => { const m = aMetros(q); return new THREE.Vector3(m.x, 0, m.z); });
+      return pts.length > 2 ? new THREE.CatmullRomCurve3(pts, false, "centripetal", 0.4) : new THREE.LineCurve3(pts[0], pts[pts.length - 1] || pts[0]);
+    };
+    const movs = (fase.movs || []).map((m) => ({ ...m, obj: fichas.get(String(m.id))?.obj, curva: curvaDe(m.ruta) })).filter((m) => m.obj);
+    const b = fichaBalon();
+    const segs = (fase.segs || []).map((sg) => ({
+      ...sg,
+      a: sg.desde && (() => { const m = aMetros(sg.desde); return new THREE.Vector3(m.x, ALTO_BALON, m.z); })(),
+      b: sg.hasta && (() => { const m = aMetros(sg.hasta); return new THREE.Vector3(m.x, ALTO_BALON, m.z); })(),
+    }));
+    return new Promise((ok) => {
+      paso = { movs, segs, balon: b, balonFinal: fase.balonFinal, dur: fase.dur, t0: performance.now(), vel: velocidad, ok };
+    });
+  };
+  const tickPaso = (now) => {
+    if (!paso) return;
+    const t = ((now - paso.t0) / 1000) * paso.vel;
+    for (const m of paso.movs) {
+      if (t < m.t0) continue;
+      const k = Math.min(1, (t - m.t0) / m.dur), e = suave(k);
+      const p = m.curva.getPointAt(e);
+      m.obj.position.set(p.x, 0, p.z);
+      if (k < 1) { const tg = m.curva.getTangentAt(Math.min(0.999, e)); m.obj.rotation.y = Math.atan2(tg.x, tg.z); }
+    }
+    if (paso.balon) {
+      const bo = paso.balon.obj;
+      for (const sg of paso.segs) {
+        if (t < sg.t0) continue;
+        const k = Math.min(1, (t - sg.t0) / sg.dur);
+        if (sg.tipo === "vuelo") {
+          bo.position.lerpVectors(sg.a, sg.b, k);
+          bo.position.y = ALTO_BALON + sg.alto * 4 * k * (1 - k);
+          bo.rotation.x += 0.35;
+        } else if (sg.tipo === "sigue") {
+          const f = fichas.get(String(sg.id));
+          if (f) {
+            /* pegado al pie, por delante de hacia donde corre */
+            const ry = f.obj.rotation.y;
+            bo.position.set(f.obj.position.x + Math.sin(ry) * 0.75, ALTO_BALON, f.obj.position.z + Math.cos(ry) * 0.75);
+            if (k < 1) bo.rotation.x += 0.2;
+          }
+        }
+      }
+    }
+    if (t >= paso.dur) acabarPaso();
+  };
+
+  /* Aros de selección bajo los jugadores elegidos, y una marca en el suelo. */
+  const matMarca = new THREE.MeshBasicMaterial({ color: "#FFD54A", transparent: true, opacity: 0.95, depthWrite: false });
+  let marcas = [];
+  const marcar = (ids = []) => {
+    marcas.forEach((m) => m.parent?.remove(m));
+    marcas = [];
+    for (const id of ids) {
+      const f = fichas.get(String(id));
+      if (!f) continue;
+      const aro = new THREE.Mesh(new THREE.RingGeometry(0.62, 0.86, 32), matMarca);
+      aro.rotation.x = -Math.PI / 2; aro.position.y = 0.05; aro.renderOrder = 5;
+      f.obj.add(aro);
+      marcas.push(aro);
+    }
+  };
+  const marcaSuelo = new THREE.Mesh(new THREE.RingGeometry(0.9, 1.25, 32), matMarca);
+  marcaSuelo.rotation.x = -Math.PI / 2; marcaSuelo.visible = false; marcaSuelo.renderOrder = 5;
+  scene.add(marcaSuelo);
+  const marcarPunto = (p) => {
+    marcaSuelo.visible = !!p;
+    if (p) { const m = aMetros(p); marcaSuelo.position.set(m.x, 0.06, m.z); }
+  };
+
+  /* La cámara acompaña al balón: desplaza el encuadre con él sin cambiar
+     el ángulo que haya elegido el entrenador. */
+  let seguir = false;
+  const seguirBalon = (on) => { seguir = !!on; };
+  const tickSeguir = () => {
+    if (!seguir || vuelo) return;
+    const b = fichaBalon();
+    if (!b) return;
+    const objetivo = new THREE.Vector3(b.obj.position.x, 0, b.obj.position.z);
+    const delta = objetivo.sub(controles.target).multiplyScalar(0.06);
+    controles.target.add(delta);
+    camara.position.add(delta);
+    /* y se acerca, como una cámara de televisión que sigue la jugada */
+    const off = camara.position.clone().sub(controles.target);
+    const len = off.length(), cerca = vertical ? 62 : 52;
+    if (len > cerca + 0.5) camara.position.copy(controles.target).addScaledVector(off.normalize(), len + (cerca - len) * 0.03);
+  };
+
+  /* Tocar el campo: un toque corto sin arrastrar (arrastrar es girar la
+     cámara). Devuelve el jugador tocado, si lo hay, y el punto del césped. */
+  if (alTocar) {
+    const dom = renderer.domElement;
+    const rc = new THREE.Raycaster();
+    const plano = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
+    const dedos = new Set();
+    let toque = null;
+    dom.addEventListener("pointerdown", (e) => {
+      dedos.add(e.pointerId);
+      toque = dedos.size === 1 ? { x: e.clientX, y: e.clientY, t: performance.now() } : null;
+    });
+    const soltar = (e) => {
+      dedos.delete(e.pointerId);
+      const tq = toque; toque = null;
+      if (!tq || e.type === "pointercancel") return;
+      if (Math.hypot(e.clientX - tq.x, e.clientY - tq.y) > 9 || performance.now() - tq.t > 650) return;
+      const r = dom.getBoundingClientRect();
+      rc.setFromCamera(new THREE.Vector2(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1), camara);
+      const jugadores = [];
+      for (const [, f] of fichas) if (f.tipo === "home" || f.tipo === "away") jugadores.push(f.obj);
+      const hit = rc.intersectObjects(jugadores, true)[0];
+      let o = hit?.object, ficha = null;
+      while (o && ficha == null) { ficha = o.userData?.fichaId ?? null; o = o.parent; }
+      const q = new THREE.Vector3();
+      const punto = rc.ray.intersectPlane(plano, q) ? aTablero(q) : null;
+      alTocar({ ficha, punto });
+    };
+    dom.addEventListener("pointerup", soltar);
+    dom.addEventListener("pointercancel", soltar);
+  }
+
   /* ---------- cámara ---------- */
   const VISTAS = {
     tribuna: { pos: [0, 48, 74], obj: [0, 0, 3] },
@@ -502,16 +666,58 @@ export function montarPizarra3D(contenedor, { acento = "#FFFFFF", nombres = {}, 
   };
   let vertical = false, ultimaVista = "tribuna";
   let vuelo = null;
+  /* Encuadre: las vistas dan el ángulo; la distancia se calcula para que el
+     campo entero quepa en la pantalla que haya (ancha, vertical, o compartida
+     con el panel de pasos) y quede centrado. Se busca la distancia mínima a la
+     que caben las cuatro esquinas y se corre el punto de mira hasta que el
+     campo queda a la misma altura por arriba que por abajo. */
+  const ESQUINAS = [[-1, -1], [1, -1], [-1, 1], [1, 1]].map(([a, b]) => new THREE.Vector3(a * (LARGO / 2 + 2), 0, b * (ANCHO / 2 + 2)));
+  const encuadrar = (pos0, obj0) => {
+    const dir = pos0.clone().sub(obj0).normalize();
+    const cam = camara.clone();
+    const obj = obj0.clone();
+    const medir = (d) => {
+      cam.position.copy(obj).addScaledVector(dir, d);
+      cam.lookAt(obj); cam.updateMatrixWorld();
+      let cabe = true, y0 = 9, y1 = -9;
+      for (const e of ESQUINAS) {
+        const p = e.clone().project(cam);
+        if (p.z > 1 || Math.abs(p.x) > 0.92 || Math.abs(p.y) > 0.9) cabe = false;
+        y0 = Math.min(y0, p.y); y1 = Math.max(y1, p.y);
+      }
+      return { cabe, centro: (y0 + y1) / 2 };
+    };
+    const adelante = new THREE.Vector3(-dir.x, 0, -dir.z);
+    const puedeCorrer = adelante.lengthSq() > 0.01;
+    if (puedeCorrer) adelante.normalize();
+    let d = pos0.distanceTo(obj0);
+    for (let it = 0; it < 4; it++) {
+      let lo = 10, hi = 420;
+      for (let n = 0; n < 22; n++) { const m = (lo + hi) / 2; if (medir(m).cabe) hi = m; else lo = m; }
+      d = hi;
+      const { centro } = medir(d);
+      if (!puedeCorrer || Math.abs(centro) < 0.03) break;
+      obj.addScaledVector(adelante, centro * d * 0.3);
+    }
+    return { pos: obj.clone().addScaledVector(dir, d), obj };
+  };
+  let enPreset = false;
   const vista = (k) => {
     ultimaVista = k;
     const tabla = vertical ? VISTAS_V : VISTAS;
     const v = tabla[k] || tabla.tribuna;
+    let obj = new THREE.Vector3(...v.obj);
+    let pos = new THREE.Vector3(...v.pos);
+    if (k === "tribuna" || k === "esquina" || k === "cenital") ({ pos, obj } = encuadrar(pos, obj));
     vuelo = {
       t0: performance.now(), dur: 900,
-      p0: camara.position.clone(), p1: new THREE.Vector3(...v.pos),
-      o0: controles.target.clone(), o1: new THREE.Vector3(...v.obj),
+      p0: camara.position.clone(), p1: pos,
+      o0: controles.target.clone(), o1: obj,
     };
+    enPreset = true;
   };
+  /* Si el entrenador mueve la cámara a mano, ya no se le reencuadra. */
+  controles.addEventListener("start", () => { if (!vuelo) enPreset = false; });
   let giro = false;
   const autoGiro = (on) => { giro = !!on; controles.autoRotate = giro; controles.autoRotateSpeed = 0.9; };
 
@@ -524,10 +730,15 @@ export function montarPizarra3D(contenedor, { acento = "#FFFFFF", nombres = {}, 
     /* en vertical (móvil) se abre el ángulo para que quepa el campo */
     camara.fov = w / h < 1 ? 62 : 40;
     camara.updateProjectionMatrix();
-    /* al girar el móvil, la vista elegida se vuelve a encuadrar */
+    /* al girar el móvil, o si cambia mucho la forma de la pantalla, la vista
+       elegida se vuelve a encuadrar */
     const v = w / h < 1;
+    const forma = w / h;
     if (v !== vertical) { vertical = v; vista(ultimaVista); }
+    else if (enPreset && formaPrevia && Math.abs(forma - formaPrevia) / formaPrevia > 0.12) vista(ultimaVista);
+    formaPrevia = forma;
   };
+  let formaPrevia = 0;
   const ro = new ResizeObserver(ajustar);
   ro.observe(contenedor);
   ajustar();
@@ -541,6 +752,13 @@ export function montarPizarra3D(contenedor, { acento = "#FFFFFF", nombres = {}, 
       camara.position.lerpVectors(vuelo.p0, vuelo.p1, e);
       controles.target.lerpVectors(vuelo.o0, vuelo.o1, e);
       if (k >= 1) vuelo = null;
+    }
+    tickPaso(now);
+    tickSeguir();
+    if (marcas.length || marcaSuelo.visible) {
+      const pulso = 1 + 0.12 * Math.sin(now / 180);
+      marcas.forEach((m) => m.scale.setScalar(pulso));
+      marcaSuelo.scale.setScalar(pulso);
     }
     if (anim) {
       const k = Math.min(1, (now - anim.t0) / anim.dur), e = suave(k);
@@ -556,7 +774,7 @@ export function montarPizarra3D(contenedor, { acento = "#FFFFFF", nombres = {}, 
   const lienzo = () => renderer.domElement;
 
   const destruir = () => {
-    acabarAnim();
+    acabarAnim(); acabarPaso();
     cancelAnimationFrame(raf);
     ro.disconnect();
     controles.dispose();
@@ -569,5 +787,5 @@ export function montarPizarra3D(contenedor, { acento = "#FFFFFF", nombres = {}, 
     renderer.domElement.remove();
   };
 
-  return { ponerJugada, vista, autoGiro, foto, lienzo, destruir };
+  return { ponerJugada, reproducirPaso, marcar, marcarPunto, seguirBalon, vista, autoGiro, foto, lienzo, destruir };
 }
