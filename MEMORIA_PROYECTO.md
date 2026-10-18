@@ -79,6 +79,18 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   documentación ni ver un paywall real; probado que sin clave no cambia nada y que con clave
   (sin red) vuelve a lo de siempre sin errores.
 
+## Pizarra 3D (v2.78.0)
+- Motor en `src/pizarra3d.js` con Three.js 0.185.0 (fijado). Se carga con import() al pulsar «3D»
+  en la pizarra: chunk aparte de ~145 KB gzip que no pesa en el resto de la app.
+- Pinta la pizarra tal cual (fichas y trazos del campo entero 1000×640; el rectángulo de cal
+  12..988 × 12..628 = campo de 105×68 m). Solo en el campo entero: los tableros de ABP tienen
+  otra escala y avisan. Mismo candado PRO que PNG y vídeo.
+- Vistas tribuna / cenital / detrás de cada portería / esquina, con juego propio en vertical
+  (móvil) mirando el campo a lo largo. Pasos de la pizarra animados; foto PNG y vídeo
+  (MediaRecorder del lienzo WebGL; mp4 si el navegador puede, si no webm).
+- El visor va en un portal a <body>: la pizarra a pantalla completa en móvil va girada con
+  transform y un fixed dentro de un padre transformado se descoloca.
+
 ## Netlify (lecciones)
 - El conector MCP de Netlify (manage-env-vars) dice "upserted" pero NO guarda nada si se le pasan
   scopes parciales (p. ej. ["functions","runtime"]) o is_secret=true con scopes "all". Solo funciona
