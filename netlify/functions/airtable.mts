@@ -224,6 +224,10 @@ const EQ = {
      son un once -son los mismos once puestos de otra manera para un córner-,
      y porque se guardan por situación: las de atacar no valen para defender. */
   abpCorners: "fldf8u5XdjQrEiIgD",
+  /* La pretemporada de cada equipo (semanas, sesiones y bloques), en JSON.
+     Solo en Supabase (2026-10-18): antes había un plan de ejemplo fijo en la
+     app; ahora cada entrenador hace la suya. */
+  pretemporada: "fldPretemp0radaQ7",
 };
 /* Único campo de Jugadores al que se accede por ID en vez de por NOMBRE: es
    un adjunto (uploadAttachment exige el id del campo, no su nombre) y la
@@ -1188,6 +1192,50 @@ const atender = async (req: Request) => {
         if (!r.ok) {
           const err = await r.text().catch(() => "");
           console.error(`[cargas] Airtable ${r.status}: ${err.slice(0, 300)}`);
+          return j({ ok: false, reason: "airtable" }, 400);
+        }
+        return j({ ok: true });
+      }
+      return j({ error: "Petición no soportada" }, 400);
+    }
+
+    /* ============ PRETEMPORADA ============
+       GET  ?res=pretemporada&team=recX -> el JSON guardado
+       POST ?res=pretemporada&team=recX { pretemporada }
+       El plan de pretemporada del equipo: semanas con sus fechas y, dentro,
+       las sesiones con sus bloques. Mismas reglas que las cargas: lo lee el
+       cuerpo técnico y lo escribe el propio equipo (o quien dirige el club). */
+    if (res === "pretemporada") {
+      const team = url.searchParams.get("team") || "";
+      if (!team) return j({ error: "falta_equipo" }, 400);
+      if (req.method === "GET") {
+        const r = await fetch(`${table(T_EQUIPOS)}/${team}?returnFieldsByFieldId=true`, { headers: H });
+        if (!r.ok) return j({ error: "no_encontrado" }, 404);
+        const d = await r.json().catch(() => ({}));
+        return j({ pretemporada: d?.fields?.[EQ.pretemporada] || "" });
+      }
+      if (req.method === "POST") {
+        const suyo = String(sesion?.equipo || "") === team;
+        const puede = suyo || dirigeElClub(sesion);
+        if (!puede) return j({ ok: false, reason: "no_autorizado" }, 403);
+        const b = await req.json();
+        const txt = String(b.pretemporada || "");
+        /* Un plan de verdad cabe holgado en 200 KB (doce semanas de cinco
+           sesiones con sus bloques no llegan a 40). Lo que no sea un objeto
+           con una lista de semanas es otra cosa, y no se guarda encima. */
+        let doc: any;
+        try { doc = JSON.parse(txt || "{}"); } catch { doc = null; }
+        const semanas = doc?.semanas;
+        const valido = doc && typeof doc === "object" && !Array.isArray(doc) && Array.isArray(semanas) && semanas.length <= 20
+          && semanas.every((w: any) => w && typeof w === "object" && Array.isArray(w.sesiones) && w.sesiones.length <= 14);
+        if (!valido || txt.length > 200000) return j({ ok: false, reason: "formato_invalido" }, 400);
+        const r = await fetch(`${table(T_EQUIPOS)}/${team}`, {
+          method: "PATCH", headers: H,
+          body: JSON.stringify({ fields: { [EQ.pretemporada]: txt }, typecast: true }),
+        });
+        if (!r.ok) {
+          const err = await r.text().catch(() => "");
+          console.error(`[pretemporada] Airtable ${r.status}: ${err.slice(0, 300)}`);
           return j({ ok: false, reason: "airtable" }, 400);
         }
         return j({ ok: true });

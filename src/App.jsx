@@ -505,7 +505,7 @@ const DICT = {
     "ca.notes": "Avisos",
     "pt.orphanOne": "sesión se queda sin día.",
     "pt.orphanMany": "sesiones se quedan sin día.",
-    "pt.orphanFix": "El plan pide tres por semana y ahora hay estos días de entreno marcados en el calendario:",
+    "pt.orphanFix": "Hay más sesiones que días de entreno en esas fechas. Días de entreno marcados ahora en el calendario:",
     "pt.orphanNone": "ninguno",
     "pf.name": "Nombre",
     "pf.number": "Dorsal",
@@ -548,12 +548,12 @@ const DICT = {
     "pt.week": "Semana",
     "pt.session": "Sesión",
     "pt.next": "Siguiente",
-    "pt.hint": "Las doce sesiones del plan, con su duración, el RPE que se espera, la prioridad y la carga. Toca una para ver sus bloques y cargarla entera en Entrenamiento.",
+    "pt.hint": "Las semanas y sesiones de tu pretemporada. Toca una sesión para ver sus bloques y cargarla entera en Entrenamiento; cada una sale en el Calendario en su día de entreno.",
     "pt.blocksTotal": "Bloques:",
     "pt.blocksNote": "el resto es el contenido táctico que decidas ese día.",
     "pt.load": "Cargar en Entrenamiento",
     "pt.loaded": "Cargada en Entrenamiento:",
-    "pt.foot": "El plan es la referencia, no una orden: si el semáforo de la mañana sale con amarillos o el balón ya ha dado suficiente carga, se recorta. El objetivo es alcanzar la carga, no completar el papel.",
+    "pt.foot": "El plan es la referencia, no una orden: si el semáforo de la mañana sale con amarillos o el balón ya ha dado suficiente carga, se recorta. El objetivo es alcanzar la carga, no completar el papel.", "pt.emptyTitle": "Aún no hay pretemporada", "pt.emptyHint": "Cada entrenador hace la pretemporada a su manera. Crea tus semanas con sus fechas y, dentro, tus sesiones con sus bloques: salen en el Calendario en tus días de entreno y cada una se carga entera en Entrenamiento.", "pt.emptyNoPerm": "El cuerpo técnico de tu equipo todavía no ha creado la pretemporada.", "pt.create": "Crear pretemporada", "pt.edit": "Editar", "pt.editHint": "Escribe tu pretemporada: semanas con fechas e idea, y sesiones con minutos, RPE, prioridad, carga, objetivo y bloques. Las sesiones se numeran solas (S1, S2…) y se reparten por tus días de entreno.", "pt.phasePh": "Fase (p. ej. Adaptación)", "pt.from": "Desde", "pt.to": "Hasta", "pt.ideaPh": "Idea de la semana (opcional)", "pt.sessionNamePh": "Nombre de la sesión", "pt.minutes": "Minutos", "pt.priority": "Prioridad", "pt.priorityPh": "Fuerza, resistencia…", "pt.loadLbl": "Carga", "pt.blockPh": "Nombre del bloque", "pt.addBlock": "Bloque", "pt.fromLibrary": "+ De la biblioteca…", "pt.addSession": "Sesión", "pt.fromTraining": "La que tengo en Entrenamiento", "pt.addWeek": "Semana", "pt.save": "Guardar pretemporada", "pt.cancel": "Cancelar", "pt.deleteAll": "Borrar pretemporada", "pt.deleteAsk": "¿Borrar toda la pretemporada de este equipo? Se borra para todo el cuerpo técnico.", "pt.deleteWeekAsk": "¿Borrar la semana {n} con sus sesiones?", "pt.saved": "✓ Pretemporada guardada. La ve todo el cuerpo técnico.", "pt.saveFail": "No se ha podido guardar. Revisa la conexión e inténtalo otra vez.", "pt.weekEmpty": "Esta semana todavía no tiene sesiones.", "pt.cBaja": "Baja", "pt.cMediaBaja": "Media-baja", "pt.cMedia": "Media", "pt.cMediaAlta": "Media-alta", "pt.cAlta": "Alta",
     "cf.target": "RPE previsto:",
     "cf.real": "real:",
     "cf.above": "por encima de lo previsto",
@@ -1110,7 +1110,7 @@ const DICT = {
     "ca.notes": "Notes",
     "pt.orphanOne": "session has no day.",
     "pt.orphanMany": "sessions have no day.",
-    "pt.orphanFix": "The plan asks for three a week and these training days are currently set in the calendar:",
+    "pt.orphanFix": "There are more sessions than training days in those dates. Training days currently set in the calendar:",
     "pt.orphanNone": "none",
     "pf.name": "Name",
     "pf.number": "Number",
@@ -1153,12 +1153,12 @@ const DICT = {
     "pt.week": "Week",
     "pt.session": "Session",
     "pt.next": "Next",
-    "pt.hint": "The twelve sessions of the plan, with duration, target RPE, priority and load. Tap one to see its blocks and load the whole session into Training.",
+    "pt.hint": "The weeks and sessions of your pre-season. Tap a session to see its blocks and load the whole session into Training; each one shows up in the Calendar on its training day.",
     "pt.blocksTotal": "Blocks:",
     "pt.blocksNote": "the rest is the tactical content you choose that day.",
     "pt.load": "Load into Training",
     "pt.loaded": "Loaded into Training:",
-    "pt.foot": "The plan is a reference, not an order: if the morning traffic light shows ambers, or the ball has already given enough load, cut it short. The goal is to reach the load, not to complete the sheet.",
+    "pt.foot": "The plan is a reference, not an order: if the morning traffic light shows ambers, or the ball has already given enough load, cut it short. The goal is to reach the load, not to complete the sheet.", "pt.emptyTitle": "No pre-season yet", "pt.emptyHint": "Every coach runs pre-season their own way. Create your weeks with their dates and, inside them, your sessions with their blocks: they show up in the Calendar on your training days and each one loads whole into Training.", "pt.emptyNoPerm": "Your team's coaching staff hasn't created the pre-season yet.", "pt.create": "Create pre-season", "pt.edit": "Edit", "pt.editHint": "Write your pre-season: weeks with dates and focus, and sessions with minutes, RPE, priority, load, objective and blocks. Sessions are numbered automatically (S1, S2…) and spread over your training days.", "pt.phasePh": "Phase (e.g. Adaptation)", "pt.from": "From", "pt.to": "To", "pt.ideaPh": "Focus of the week (optional)", "pt.sessionNamePh": "Session name", "pt.minutes": "Minutes", "pt.priority": "Priority", "pt.priorityPh": "Strength, endurance…", "pt.loadLbl": "Load", "pt.blockPh": "Block name", "pt.addBlock": "Block", "pt.fromLibrary": "+ From the library…", "pt.addSession": "Session", "pt.fromTraining": "The one I have in Training", "pt.addWeek": "Week", "pt.save": "Save pre-season", "pt.cancel": "Cancel", "pt.deleteAll": "Delete pre-season", "pt.deleteAsk": "Delete this team's whole pre-season? It's deleted for the whole coaching staff.", "pt.deleteWeekAsk": "Delete week {n} and its sessions?", "pt.saved": "✓ Pre-season saved. The whole coaching staff can see it.", "pt.saveFail": "Couldn't save. Check your connection and try again.", "pt.weekEmpty": "This week has no sessions yet.", "pt.cBaja": "Low", "pt.cMediaBaja": "Medium-low", "pt.cMedia": "Medium", "pt.cMediaAlta": "Medium-high", "pt.cAlta": "High",
     "cf.target": "Target RPE:",
     "cf.real": "actual:",
     "cf.above": "above target",
@@ -1732,7 +1732,7 @@ const DICT = {
     "ca.notes": "Notes",
     "pt.orphanOne": "séance reste sans jour.",
     "pt.orphanMany": "séances restent sans jour.",
-    "pt.orphanFix": "Le plan en demande trois par semaine et voici les jours d'entraînement cochés dans le calendrier :",
+    "pt.orphanFix": "Il y a plus de séances que de jours d'entraînement à ces dates. Jours d'entraînement cochés dans le calendrier :",
     "pt.orphanNone": "aucun",
     "pf.name": "Nom",
     "pf.number": "Numéro",
@@ -1775,12 +1775,12 @@ const DICT = {
     "pt.week": "Semaine",
     "pt.session": "Séance",
     "pt.next": "Suivante",
-    "pt.hint": "Les douze séances du plan, avec durée, RPE attendu, priorité et charge. Touchez-en une pour voir ses blocs et charger la séance entière dans Entraînement.",
+    "pt.hint": "Les semaines et séances de votre pré-saison. Touchez une séance pour voir ses blocs et la charger entièrement dans Entraînement ; chacune apparaît dans le Calendrier à son jour d'entraînement.",
     "pt.blocksTotal": "Blocs :",
     "pt.blocksNote": "le reste est le contenu tactique que vous choisissez ce jour-là.",
     "pt.load": "Charger dans Entraînement",
     "pt.loaded": "Chargée dans Entraînement :",
-    "pt.foot": "Le plan est une référence, pas un ordre : si le feu du matin affiche des oranges, ou si le ballon a déjà apporté assez de charge, on raccourcit. L'objectif est d'atteindre la charge, pas de finir la feuille.",
+    "pt.foot": "Le plan est une référence, pas un ordre : si le feu du matin affiche des oranges, ou si le ballon a déjà apporté assez de charge, on raccourcit. L'objectif est d'atteindre la charge, pas de finir la feuille.", "pt.emptyTitle": "Pas encore de pré-saison", "pt.emptyHint": "Chaque entraîneur prépare la pré-saison à sa façon. Créez vos semaines avec leurs dates et, à l'intérieur, vos séances avec leurs blocs : elles apparaissent dans le Calendrier à vos jours d'entraînement et chacune se charge entièrement dans Entraînement.", "pt.emptyNoPerm": "Le staff de votre équipe n'a pas encore créé la pré-saison.", "pt.create": "Créer la pré-saison", "pt.edit": "Modifier", "pt.editHint": "Écrivez votre pré-saison : des semaines avec dates et idée, et des séances avec minutes, RPE, priorité, charge, objectif et blocs. Les séances se numérotent seules (S1, S2…) et se répartissent sur vos jours d'entraînement.", "pt.phasePh": "Phase (ex. Adaptation)", "pt.from": "Du", "pt.to": "Au", "pt.ideaPh": "Idée de la semaine (facultatif)", "pt.sessionNamePh": "Nom de la séance", "pt.minutes": "Minutes", "pt.priority": "Priorité", "pt.priorityPh": "Force, endurance…", "pt.loadLbl": "Charge", "pt.blockPh": "Nom du bloc", "pt.addBlock": "Bloc", "pt.fromLibrary": "+ De la bibliothèque…", "pt.addSession": "Séance", "pt.fromTraining": "Celle que j'ai dans Entraînement", "pt.addWeek": "Semaine", "pt.save": "Enregistrer la pré-saison", "pt.cancel": "Annuler", "pt.deleteAll": "Supprimer la pré-saison", "pt.deleteAsk": "Supprimer toute la pré-saison de cette équipe ? Elle est supprimée pour tout le staff.", "pt.deleteWeekAsk": "Supprimer la semaine {n} et ses séances ?", "pt.saved": "✓ Pré-saison enregistrée. Tout le staff la voit.", "pt.saveFail": "Impossible d'enregistrer. Vérifiez la connexion et réessayez.", "pt.weekEmpty": "Cette semaine n'a pas encore de séances.", "pt.cBaja": "Faible", "pt.cMediaBaja": "Moyenne-faible", "pt.cMedia": "Moyenne", "pt.cMediaAlta": "Moyenne-élevée", "pt.cAlta": "Élevée",
     "cf.target": "RPE prévu :",
     "cf.real": "réel :",
     "cf.above": "au-dessus du prévu",
@@ -2434,7 +2434,7 @@ const DICT = {
     "ca.notes": "Hinweise",
     "pt.orphanOne": "Einheit bleibt ohne Tag.",
     "pt.orphanMany": "Einheiten bleiben ohne Tag.",
-    "pt.orphanFix": "Der Plan verlangt drei pro Woche, und im Kalender sind diese Trainingstage markiert:",
+    "pt.orphanFix": "In diesem Zeitraum gibt es mehr Einheiten als Trainingstage. Aktuell im Kalender markierte Trainingstage:",
     "pt.orphanNone": "keiner",
     "pf.name": "Name",
     "pf.number": "Nummer",
@@ -2477,12 +2477,12 @@ const DICT = {
     "pt.week": "Woche",
     "pt.session": "Einheit",
     "pt.next": "Nächste",
-    "pt.hint": "Die zwölf Einheiten des Plans mit Dauer, erwartetem RPE, Schwerpunkt und Belastung. Tippe eine an, um ihre Blöcke zu sehen und die ganze Einheit ins Training zu laden.",
+    "pt.hint": "Die Wochen und Einheiten deiner Saisonvorbereitung. Tippe eine Einheit an, um ihre Blöcke zu sehen und sie komplett ins Training zu laden; jede erscheint im Kalender an ihrem Trainingstag.",
     "pt.blocksTotal": "Blöcke:",
     "pt.blocksNote": "der Rest ist der taktische Inhalt, den du an dem Tag wählst.",
     "pt.load": "Ins Training laden",
     "pt.loaded": "Ins Training geladen:",
-    "pt.foot": "Der Plan ist eine Richtschnur, kein Befehl: zeigt die Ampel am Morgen Gelb, oder hat der Ball schon genug Belastung gebracht, wird gekürzt. Das Ziel ist die Belastung zu erreichen, nicht das Blatt abzuarbeiten.",
+    "pt.foot": "Der Plan ist eine Richtschnur, kein Befehl: zeigt die Ampel am Morgen Gelb, oder hat der Ball schon genug Belastung gebracht, wird gekürzt. Das Ziel ist die Belastung zu erreichen, nicht das Blatt abzuarbeiten.", "pt.emptyTitle": "Noch keine Saisonvorbereitung", "pt.emptyHint": "Jeder Trainer gestaltet die Saisonvorbereitung auf seine Art. Lege deine Wochen mit Datum an und darin deine Einheiten mit ihren Blöcken: Sie erscheinen im Kalender an deinen Trainingstagen und jede lässt sich komplett ins Training laden.", "pt.emptyNoPerm": "Das Trainerteam deiner Mannschaft hat die Saisonvorbereitung noch nicht angelegt.", "pt.create": "Saisonvorbereitung anlegen", "pt.edit": "Bearbeiten", "pt.editHint": "Schreibe deine Saisonvorbereitung: Wochen mit Datum und Schwerpunkt, und Einheiten mit Minuten, RPE, Priorität, Belastung, Ziel und Blöcken. Die Einheiten werden automatisch nummeriert (S1, S2…) und auf deine Trainingstage verteilt.", "pt.phasePh": "Phase (z. B. Anpassung)", "pt.from": "Von", "pt.to": "Bis", "pt.ideaPh": "Schwerpunkt der Woche (optional)", "pt.sessionNamePh": "Name der Einheit", "pt.minutes": "Minuten", "pt.priority": "Priorität", "pt.priorityPh": "Kraft, Ausdauer…", "pt.loadLbl": "Belastung", "pt.blockPh": "Name des Blocks", "pt.addBlock": "Block", "pt.fromLibrary": "+ Aus der Bibliothek…", "pt.addSession": "Einheit", "pt.fromTraining": "Die aus dem Training", "pt.addWeek": "Woche", "pt.save": "Saisonvorbereitung speichern", "pt.cancel": "Abbrechen", "pt.deleteAll": "Saisonvorbereitung löschen", "pt.deleteAsk": "Die ganze Saisonvorbereitung dieser Mannschaft löschen? Sie wird für das ganze Trainerteam gelöscht.", "pt.deleteWeekAsk": "Woche {n} mit ihren Einheiten löschen?", "pt.saved": "✓ Saisonvorbereitung gespeichert. Das ganze Trainerteam sieht sie.", "pt.saveFail": "Speichern nicht möglich. Prüfe die Verbindung und versuche es erneut.", "pt.weekEmpty": "Diese Woche hat noch keine Einheiten.", "pt.cBaja": "Niedrig", "pt.cMediaBaja": "Mittel-niedrig", "pt.cMedia": "Mittel", "pt.cMediaAlta": "Mittel-hoch", "pt.cAlta": "Hoch",
     "cf.target": "Erwarteter RPE:",
     "cf.real": "real:",
     "cf.above": "über dem Erwarteten",
@@ -3135,7 +3135,7 @@ const DICT = {
     "ca.notes": "Avisos",
     "pt.orphanOne": "sessão fica sem dia.",
     "pt.orphanMany": "sessões ficam sem dia.",
-    "pt.orphanFix": "O plano pede três por semana e estão marcados estes dias de treino no calendário:",
+    "pt.orphanFix": "Há mais sessões do que dias de treino nessas datas. Dias de treino marcados agora no calendário:",
     "pt.orphanNone": "nenhum",
     "pf.name": "Nome",
     "pf.number": "Número",
@@ -3178,12 +3178,12 @@ const DICT = {
     "pt.week": "Semana",
     "pt.session": "Sessão",
     "pt.next": "Seguinte",
-    "pt.hint": "As doze sessões do plano, com duração, RPE esperado, prioridade e carga. Toca numa para veres os blocos e carregares a sessão inteira no Treino.",
+    "pt.hint": "As semanas e sessões da tua pré-época. Toca numa sessão para veres os blocos e carregá-la inteira em Treino; cada uma aparece no Calendário no seu dia de treino.",
     "pt.blocksTotal": "Blocos:",
     "pt.blocksNote": "o resto é o conteúdo tático que decidires nesse dia.",
     "pt.load": "Carregar no Treino",
     "pt.loaded": "Carregada no Treino:",
-    "pt.foot": "O plano é a referência, não uma ordem: se o semáforo da manhã tiver amarelos, ou se a bola já deu carga suficiente, corta-se. O objetivo é atingir a carga, não completar o papel.",
+    "pt.foot": "O plano é a referência, não uma ordem: se o semáforo da manhã tiver amarelos, ou se a bola já deu carga suficiente, corta-se. O objetivo é atingir a carga, não completar o papel.", "pt.emptyTitle": "Ainda não há pré-época", "pt.emptyHint": "Cada treinador faz a pré-época à sua maneira. Cria as tuas semanas com as datas e, dentro, as tuas sessões com os blocos: aparecem no Calendário nos teus dias de treino e cada uma carrega-se inteira em Treino.", "pt.emptyNoPerm": "A equipa técnica da tua equipa ainda não criou a pré-época.", "pt.create": "Criar pré-época", "pt.edit": "Editar", "pt.editHint": "Escreve a tua pré-época: semanas com datas e ideia, e sessões com minutos, RPE, prioridade, carga, objetivo e blocos. As sessões numeram-se sozinhas (S1, S2…) e distribuem-se pelos teus dias de treino.", "pt.phasePh": "Fase (ex. Adaptação)", "pt.from": "De", "pt.to": "Até", "pt.ideaPh": "Ideia da semana (opcional)", "pt.sessionNamePh": "Nome da sessão", "pt.minutes": "Minutos", "pt.priority": "Prioridade", "pt.priorityPh": "Força, resistência…", "pt.loadLbl": "Carga", "pt.blockPh": "Nome do bloco", "pt.addBlock": "Bloco", "pt.fromLibrary": "+ Da biblioteca…", "pt.addSession": "Sessão", "pt.fromTraining": "A que tenho em Treino", "pt.addWeek": "Semana", "pt.save": "Guardar pré-época", "pt.cancel": "Cancelar", "pt.deleteAll": "Apagar pré-época", "pt.deleteAsk": "Apagar toda a pré-época desta equipa? Apaga-se para toda a equipa técnica.", "pt.deleteWeekAsk": "Apagar a semana {n} com as suas sessões?", "pt.saved": "✓ Pré-época guardada. Toda a equipa técnica a vê.", "pt.saveFail": "Não foi possível guardar. Verifica a ligação e tenta de novo.", "pt.weekEmpty": "Esta semana ainda não tem sessões.", "pt.cBaja": "Baixa", "pt.cMediaBaja": "Média-baixa", "pt.cMedia": "Média", "pt.cMediaAlta": "Média-alta", "pt.cAlta": "Alta",
     "cf.target": "RPE previsto:",
     "cf.real": "real:",
     "cf.above": "acima do previsto",
@@ -4631,6 +4631,18 @@ const airCargasGuardar = async (teamRec, cargas) => {
   try {
     const r = await cbFetch(`${AIR}?res=cargas&team=${encodeURIComponent(teamRec)}`, {
       method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ cargas: JSON.stringify(cargas) }),
+    });
+    return await r.json().catch(() => null);
+  } catch { return null; }
+};
+/* Pretemporada del equipo (ver normalizarPretemporada): mismo patrón. */
+const airPretemporadaLeer = async (teamRec) => {
+  try { const r = await cbFetch(`${AIR}?res=pretemporada&team=${encodeURIComponent(teamRec)}`); if (!r.ok) return null; return await r.json(); } catch { return null; }
+};
+const airPretemporadaGuardar = async (teamRec, doc) => {
+  try {
+    const r = await cbFetch(`${AIR}?res=pretemporada&team=${encodeURIComponent(teamRec)}`, {
+      method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ pretemporada: JSON.stringify(doc) }),
     });
     return await r.json().catch(() => null);
   } catch { return null; }
@@ -6552,97 +6564,40 @@ const MESES_TEMP = [
   { k: 5, es: "Mayo" }, { k: 6, es: "Junio" },
 ];
 
-/* ================= PLAN FÍSICO DE PRETEMPORADA =================
-   Las doce sesiones del plan de pretemporada del Infantil B, tal y como las
-   escribió el cuerpo técnico: cuatro semanas con una intención distinta cada
-   una (confirmar cómo llegan, construir, cargar y afinar), y en cada sesión su
-   duración, el RPE que se espera, la prioridad, la carga y los cuatro bloques.
+/* ================= PRETEMPORADA DE CADA EQUIPO =================
+   Cada entrenador hace la pretemporada a su manera, así que el plan no viene
+   escrito en la app: lo crea el cuerpo técnico de cada equipo en Temporada →
+   Pretemporada (semanas con sus fechas y, dentro, sesiones con sus bloques) y
+   se guarda en la nube con el equipo (res=pretemporada). Antes aquí había un
+   plan fijo -el del Infantil B del Chamartín, que era el ejemplo- y lo veían
+   todos los equipos.
 
-   Está aquí y no en un PDF aparte porque el plan sin la app es papel: el
-   entrenador tenía que leerlo en el móvil y volver a teclear los bloques uno a
-   uno en Entrenamiento cada día. Desde aquí la sesión se carga entera.
+   El documento guarda solo lo que escribe el entrenador; normalizarPretemporada
+   le añade lo que lee el resto de la app (calendario, Entrenamiento, cargas):
+   el número de semana y de sesión -S1, S2… seguidos a lo largo de todo el
+   plan- y la duración como texto. */
+const CARGAS_PT = ["Baja", "Media-baja", "Media", "Media-alta", "Alta"];
+const nuevoIdPt = () => `pt${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`;
+const normalizarPretemporada = (doc) => {
+  let n = 0;
+  return (Array.isArray(doc?.semanas) ? doc.semanas : []).map((w, i) => ({
+    id: w.id || `w${i}`, n: i + 1, fase: String(w.nombre || ""), desde: w.desde || "", hasta: w.hasta || "", idea: String(w.idea || ""),
+    sesiones: (Array.isArray(w.sesiones) ? w.sesiones : []).map((x, k) => {
+      const durMin = Math.max(0, Math.round(Number(x.durMin) || 0));
+      return {
+        id: x.id || `s${i}-${k}`, n: ++n, nombre: String(x.nombre || ""), durMin, dur: durMin ? String(durMin) : "–",
+        rpe: String(x.rpe || ""), prioridad: String(x.prioridad || ""), carga: String(x.carga || ""), objetivo: String(x.objetivo || ""),
+        bloques: (Array.isArray(x.bloques) ? x.bloques : []).filter((b) => Array.isArray(b) && String(b[0] || "").trim())
+          .map(([nm, d]) => [String(nm), Math.max(0, Math.round(Number(d) || 0))]),
+      };
+    }),
+  }));
+};
+/* Las sesiones del plan de ejemplo que hubo fijo en la app. Si alguien la
+   tenía cargada en Entrenamiento ("S1 · Reentrada colectiva — …"), al abrir
+   se vacía: ese plan ya no existe y no debe quedarse como objetivo. */
+const PT_EJEMPLO_RETIRADO = /^S\d+ · (Reentrada colectiva|Resistencia intermitente integrada|Velocidad y duelos|Fuerza y aceleración|Día metabólico|Velocidad \+ competitividad|Fuerza específica y aceleración|Pico metabólico específico|Velocidad \+ ensayo competitivo|Consolidación y descarga activa|Último estímulo intenso|Activación precompetitiva) — /;
 
-   Los minutos de cada bloque son el punto medio del rango del documento. La
-   suma no siempre llega a la duración de la sesión —el propio plan deja aire
-   para el contenido táctico del día—, y eso se ve en Entrenamiento como
-   distancia hasta el objetivo, que es justo la decisión que le toca tomar al
-   entrenador.
-
-   El contenido va en español: es el documento del club, no texto de la
-   interfaz. Lo que rodea a las sesiones (etiquetas, botones) sí está en los
-   cinco idiomas. */
-const PRETEMPORADA = [
-  {
-    n: 1, fase: "Adaptación", rango: "1-6 septiembre", desde: "2026-09-01", hasta: "2026-09-06",
-    /* Categorías de la biblioteca que encajan con lo que entrena la semana.
-       La semana confirma cómo llegan: calentamiento, técnica y rondos, con el
-       físico dosificado. */
-    cats: ["warmup", "technique", "rondo", "fitness"],
-    idea: "La primera semana confirma, no castiga: se comprueba cómo llegan del trabajo individual de agosto sin generar fatiga residual.",
-    sesiones: [
-      { n: 1, nombre: "Reentrada colectiva", dur: "70-75", durMin: 72, rpe: "4-5", rpeMin: 4, rpeMax: 5, prioridad: "Fuerza + técnica", carga: "Media-baja",
-        objetivo: "Confirmar cómo llegan del trabajo de agosto y recuperar patrones de movimiento.",
-        bloques: [["Activación neuromuscular", 11], ["Fuerza general A", 14], ["Aceleración corta", 7], ["Integración con balón", 38]] },
-      { n: 2, nombre: "Resistencia intermitente integrada", dur: "75-80", durMin: 78, rpe: "5-6", rpeMin: 5, rpeMax: 6, prioridad: "Resistencia", carga: "Media",
-        objetivo: "Primer estímulo aeróbico-intermitente sin perder balón ni calidad técnica.",
-        bloques: [["Activación neuromuscular", 10], ["Intermitente con balón", 11], ["Juego reducido metabólico", 15], ["Contenido de campo", 38]] },
-      { n: 3, nombre: "Velocidad y duelos", dur: "70-75", durMin: 72, rpe: "5", rpeMin: 5, rpeMax: 5, prioridad: "Velocidad", carga: "Media",
-        objetivo: "Primera exposición de calidad a aceleraciones y conectarlas con duelos y transiciones.",
-        bloques: [["Activación + técnica de carrera", 11], ["Velocidad", 9], ["Duelos intensos", 11], ["Juego competitivo", 38]] },
-    ],
-  },
-  {
-    n: 2, fase: "Construcción", rango: "7-13 septiembre", desde: "2026-09-07", hasta: "2026-09-13",
-    /* Sube el volumen y aparece el día duro: duelos, presión y físico. */
-    cats: ["fitness", "duel", "press", "rondo"],
-    idea: "Sube el volumen de fuerza y aparece el primer día claramente exigente, siempre con calidad por delante del número.",
-    sesiones: [
-      { n: 4, nombre: "Fuerza y aceleración", dur: "75-80", durMin: 78, rpe: "5-6", rpeMin: 5, rpeMax: 6, prioridad: "Fuerza + velocidad", carga: "Media-alta",
-        objetivo: "Aumentar ligeramente volumen de fuerza y exposición a aceleración.",
-        bloques: [["Activación neuromuscular", 11], ["Fuerza general B", 17], ["Aceleraciones", 9], ["Juego posicional con transición", 38]] },
-      { n: 5, nombre: "Día metabólico", dur: "80", durMin: 80, rpe: "6-7", rpeMin: 6, rpeMax: 7, prioridad: "Resistencia específica", carga: "Alta controlada",
-        objetivo: "Repetir esfuerzos y sostener intensidad. El primer día claramente exigente.",
-        bloques: [["Activación", 10], ["Intermitente corto", 9], ["Juego reducido principal", 19], ["Bloque de sufrimiento", 23]] },
-      { n: 6, nombre: "Velocidad + competitividad", dur: "70-75", durMin: 72, rpe: "5-6", rpeMin: 5, rpeMax: 6, prioridad: "Velocidad", carga: "Media",
-        objetivo: "Recuperar calidad neuromuscular tras el día fuerte: velocidad con descanso completo.",
-        bloques: [["Activación", 11], ["Velocidad de calidad", 11], ["Microdosis de fuerza", 8], ["Fútbol competitivo", 38]] },
-    ],
-  },
-  {
-    n: 3, fase: "Carga alta", rango: "14-20 septiembre", desde: "2026-09-14", hasta: "2026-09-20",
-    /* El pico: defender dominados, transición y salida bajo presión. */
-    cats: ["fitness", "duel", "press", "defense", "buildup"],
-    idea: "La semana del mayor estímulo específico del mes. Aquí es donde el semáforo y el RPE mandan más que el papel.",
-    sesiones: [
-      { n: 7, nombre: "Fuerza específica y aceleración", dur: "80", durMin: 80, rpe: "6", rpeMin: 6, rpeMax: 6, prioridad: "Fuerza + aceleración", carga: "Alta",
-        objetivo: "Máximo volumen de fuerza del bloque, manteniendo la técnica por encima del número.",
-        bloques: [["Activación neuromuscular", 11], ["Fuerza general C", 17], ["Aceleración", 9], ["Posesión de alta concentración", 38]] },
-      { n: 8, nombre: "Pico metabólico específico", dur: "80-85", durMin: 83, rpe: "6-7", rpeMin: 6, rpeMax: 7, prioridad: "Resistencia específica", carga: "Alta",
-        objetivo: "El pico del mes: sostener estructura y esfuerzo también cuando el equipo es dominado.",
-        bloques: [["Activación", 11], ["Primer bloque específico", 19], ["Defender cuando somos dominados", 15], ["Juego mayor", 33]] },
-      { n: 9, nombre: "Velocidad + ensayo competitivo", dur: "70-75", durMin: 72, rpe: "5-6", rpeMin: 5, rpeMax: 6, prioridad: "Velocidad + fútbol", carga: "Media-alta",
-        objetivo: "Bajar el volumen y ensayar el partido con velocidad fresca.",
-        bloques: [["Activación", 10], ["Velocidad", 11], ["Transición competitiva", 14], ["Ensayo de partido", 38]] },
-    ],
-  },
-  {
-    n: 4, fase: "Afinamiento", rango: "21-25 septiembre", desde: "2026-09-21", hasta: "2026-09-25",
-    /* Semana de liga: balón de calidad, finalización y balón parado. */
-    cats: ["warmup", "rondo", "finish", "setpiece"],
-    idea: "Semana de liga: se reduce volumen y se mantienen velocidad e intensidad. Llegar disponibles, no cansados.",
-    sesiones: [
-      { n: 10, nombre: "Consolidación y descarga activa", dur: "70-75", durMin: 72, rpe: "5-6", rpeMin: 5, rpeMax: 6, prioridad: "Fuerza breve + balón", carga: "Media",
-        objetivo: "Mantener el estímulo con la mitad del volumen: nada nuevo a estas alturas.",
-        bloques: [["Activación neuromuscular", 11], ["Fuerza microdosis", 11], ["Aceleración", 8], ["Juego con balón", 38]] },
-      { n: 11, nombre: "Último estímulo intenso", dur: "65-70", durMin: 68, rpe: "6", rpeMin: 6, rpeMax: 6, prioridad: "Específico con balón", carga: "Media",
-        objetivo: "Alta intención y pocas series. La carga sale del balón, no de la carrera.",
-        bloques: [["Activación", 10], ["Juego reducido", 15], ["Juego mayor por intervalos", 14], ["Táctica y balón parado", 28]] },
-      { n: 12, nombre: "Activación precompetitiva", dur: "55-60", durMin: 58, rpe: "4-5", rpeMin: 4, rpeMax: 5, prioridad: "Velocidad + confianza", carga: "Baja",
-        objetivo: "Llegar al partido con piernas rápidas y cabeza clara. Unas 48 h antes: jueves si se juega el sábado, viernes si es el domingo.",
-        bloques: [["Activación", 10], ["Velocidad microdosis", 7], ["Balón de alta calidad", 17], ["Plan de partido", 23]] },
-    ],
-  },
-];
 /* Color de la carga prevista: es lo primero que se mira al elegir la sesión
    del día, sobre todo si el semáforo de la mañana ha salido con amarillos.
    Se comprueban primero los compuestos ("media-alta", "media-baja"): mirando
@@ -11662,8 +11617,10 @@ export default function App() {
     try {
       const raw = localStorage.getItem(trainKey);
       const d = raw ? JSON.parse(raw) : null;
-      setTrainMeta(d?.meta || { fecha: "", hora: "18:30", objetivo: "" });
-      setTrainBlocks(Array.isArray(d?.blocks) ? d.blocks : []);
+      /* Sesión del plan de ejemplo que se retiró: se vacía en vez de dejarla. */
+      const retirada = PT_EJEMPLO_RETIRADO.test(String(d?.meta?.objetivo || ""));
+      setTrainMeta(retirada ? { ...d.meta, objetivo: "" } : d?.meta || { fecha: "", hora: "18:30", objetivo: "" });
+      setTrainBlocks(!retirada && Array.isArray(d?.blocks) ? d.blocks : []);
       setTrainTarget(Number(d?.target) > 0 ? Number(d.target) : 60);
     } catch { /* sin localStorage disponible */ }
   }, [trainKey]); // eslint-disable-line
@@ -16021,12 +15978,12 @@ export default function App() {
                 <div className="rounded-lg border p-2.5 mb-2" style={{ borderColor: C.line, background: C.panel2 }}>
                   <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
                     <span className="font-display text-sm shrink-0" style={{ color: AC }}>S{ses.n}</span>
-                    <span className="text-sm flex-1 min-w-[140px]" style={{ color: C.chalk }}>{ses.nombre}</span>
-                    <span className="text-[10px] px-2 py-0.5 rounded-full border shrink-0" style={{ borderColor: C.line, color: C.dim }}>⏱ {ses.dur}′</span>
-                    <span className="text-[10px] px-2 py-0.5 rounded-full border shrink-0" style={{ borderColor: C.line, color: C.dim }}>RPE {ses.rpe}</span>
-                    <span className="text-[10px] px-2 py-0.5 rounded-full border shrink-0" style={{ borderColor: COLOR_CARGA(ses.carga), color: COLOR_CARGA(ses.carga) }}>{ses.carga}</span>
+                    <span className="text-sm flex-1 min-w-[140px]" style={{ color: C.chalk }}>{ses.nombre || "—"}</span>
+                    {ses.durMin > 0 && <span className="text-[10px] px-2 py-0.5 rounded-full border shrink-0" style={{ borderColor: C.line, color: C.dim }}>⏱ {ses.dur}′</span>}
+                    {ses.rpe && <span className="text-[10px] px-2 py-0.5 rounded-full border shrink-0" style={{ borderColor: C.line, color: C.dim }}>RPE {ses.rpe}</span>}
+                    {ses.carga && <span className="text-[10px] px-2 py-0.5 rounded-full border shrink-0" style={{ borderColor: COLOR_CARGA(ses.carga), color: COLOR_CARGA(ses.carga) }}>{etiquetaCarga(ses.carga)}</span>}
                   </div>
-                  <div className="text-[11px] mt-1.5 leading-snug" style={{ color: C.dim }}>{ses.objetivo}</div>
+                  {ses.objetivo && <div className="text-[11px] mt-1.5 leading-snug" style={{ color: C.dim }}>{ses.objetivo}</div>}
                   {can("editTraining") && (
                     <button onClick={() => cargarSesionPlan(ses)}
                       className="mt-2 text-xs px-3 py-1.5 rounded-lg border font-display uppercase tracking-wide"
@@ -22790,6 +22747,52 @@ export default function App() {
     })();
     return () => { vivo = false; };
   }, [session?.team?.rec, refresco]); // eslint-disable-line
+  /* ---- Pretemporada del equipo ----
+     La crea el cuerpo técnico (ver normalizarPretemporada). Se lee de la nube
+     al entrar y se guarda entera al pulsar Guardar; en el dispositivo queda una
+     copia para verla sin conexión. Se edita sobre un borrador para poder
+     cancelar sin tocar lo guardado. */
+  const ptKey = `cb_pretemporada_${session?.team?.id || "demo"}`;
+  const [ptDoc, setPtDoc] = useState({ semanas: [] });
+  const [ptBorrador, setPtBorrador] = useState(null);
+  const [ptBusy, setPtBusy] = useState(false);
+  const [ptGuardadoMsg, setPtGuardadoMsg] = useState("");
+  useEffect(() => {
+    if (!session) return;
+    setPtBorrador(null);
+    try { const raw = localStorage.getItem(ptKey); const d = raw ? JSON.parse(raw) : null; setPtDoc(d && Array.isArray(d.semanas) ? d : { semanas: [] }); }
+    catch { setPtDoc({ semanas: [] }); }
+  }, [ptKey]); // eslint-disable-line
+  useEffect(() => {
+    if (!session) return;
+    try { localStorage.setItem(ptKey, JSON.stringify(ptDoc)); } catch { /* noop */ }
+  }, [ptDoc]); // eslint-disable-line
+  useEffect(() => {
+    const rec = session?.team?.rec;
+    if (!rec || session?.email === "demo") return;
+    let vivo = true;
+    (async () => {
+      const d = await airPretemporadaLeer(rec);
+      if (!vivo || !d || typeof d.pretemporada !== "string") return;
+      try {
+        const remoto = d.pretemporada ? JSON.parse(d.pretemporada) : { semanas: [] };
+        if (remoto && Array.isArray(remoto.semanas)) setPtDoc(remoto);
+      } catch { /* json roto: se ignora */ }
+    })();
+    return () => { vivo = false; };
+  }, [session?.team?.rec, refresco]); // eslint-disable-line
+  const pretemporada = normalizarPretemporada(ptDoc);
+  const guardarPretemporada = async (doc) => {
+    setPtDoc(doc);
+    const avisar = (m) => { setPtGuardadoMsg(m); setTimeout(() => setPtGuardadoMsg(""), 5000); };
+    const rec = session?.team?.rec;
+    if (!rec || session?.email === "demo") { avisar(t(session?.email === "demo" ? "mh.demoNote" : "pf.savedLocal")); return true; }
+    setPtBusy(true);
+    const out = await airPretemporadaGuardar(rec, doc);
+    setPtBusy(false);
+    avisar(out?.queued ? t("sy.queued") : out?.ok ? t("pt.saved") : out?.reason === "no_autorizado" ? t("cf.noRole") : t("pt.saveFail"));
+    return !!(out?.ok || out?.queued);
+  };
   const cargaDe = (id) => ({ ...CARGA_DEFECTO, ...(cargas[id] || {}) });
   const setCarga = (id, campo, valor) => setCargas((c) => ({ ...c, [id]: { ...CARGA_DEFECTO, ...(c[id] || {}), [campo]: valor } }));
   const guardarCargas = async () => {
@@ -23003,7 +23006,7 @@ export default function App() {
         <div className="space-y-1.5">
           {[...dias].reverse().map((d) => {
             const r = resumenDia(d);
-            const s = PRETEMPORADA.flatMap((w) => w.sesiones).find((x) => x.n === d.p);
+            const s = pretemporada.flatMap((w) => w.sesiones).find((x) => x.n === d.p);
             const col = colCarga(r.media);
             return (
               <div key={d.f} className="rounded-lg border p-2.5 flex flex-wrap items-center gap-x-3 gap-y-1" style={{ borderColor: C.line, background: C.panel2 }}>
@@ -23220,7 +23223,8 @@ export default function App() {
     const out = [];
     const d = new Date(desde + "T12:00:00");
     const fin = new Date(hasta + "T12:00:00");
-    while (d <= fin) {
+    /* tope por si una semana se escribe con fechas de un año a otro */
+    for (let k = 0; d <= fin && k < 400; k++) {
       if (trainDays.includes(d.getDay())) {
         out.push(`${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`);
       }
@@ -23233,7 +23237,7 @@ export default function App() {
   const fechasDelPlan = (() => {
     const porSesion = {};
     const porFecha = {};
-    for (const sem of PRETEMPORADA) {
+    for (const sem of pretemporada) {
       const dias = diasDeEntrenoEntre(sem.desde, sem.hasta);
       sem.sesiones.forEach((ses, i) => {
         const f = dias[i] || null;
@@ -23249,48 +23253,225 @@ export default function App() {
      Salen de las categorías reales de los ejercicios, no de una lista escrita
      a mano: si mañana se añade un ejercicio de presión, aparece solo en las
      semanas que trabajan presión. */
-  const ejerciciosDeSemana = (sem) => EXERCISES.filter((e) => (sem.cats || []).includes(e.cat));
   const cargarSesionPlan = (s) => {
     setTrainBlocks([]);
     s.bloques.forEach(([name, dur]) => addTrainBlock({ name, dur, materials: [] }));
-    setTrainTarget(s.durMin);
-    setTrainMeta((m) => ({ ...m, fecha: m.fecha || hoyISO(), objetivo: `S${s.n} · ${s.nombre} — ${s.objetivo}` }));
-    setCargas((c) => ({ ...c, _sesion: { ...SESION_DEFECTO, ...(c._sesion || {}), min: s.durMin, plan: s.n } }));
+    if (s.durMin > 0) setTrainTarget(s.durMin);
+    setTrainMeta((m) => ({ ...m, fecha: m.fecha || hoyISO(), objetivo: [`S${s.n} · ${s.nombre}`, s.objetivo].filter(Boolean).join(" — ") }));
+    setCargas((c) => ({ ...c, _sesion: { ...SESION_DEFECTO, ...(c._sesion || {}), ...(s.durMin > 0 ? { min: s.durMin } : {}), plan: s.n } }));
     setPtMsg(`${t("pt.loaded")} ${t("pt.session")} ${s.n}`);
     setTimeout(() => setPtMsg(""), 5000);
   };
 
+  /* ---- Editor de la pretemporada ----
+     Todo se toca sobre `ptBorrador` (una copia) y no se guarda hasta pulsar
+     Guardar: así se puede montar una semana entera, o deshacerla, sin que el
+     resto del cuerpo técnico vea un plan a medias. */
+  const etiquetaCarga = (c) => ({ Baja: t("pt.cBaja"), "Media-baja": t("pt.cMediaBaja"), Media: t("pt.cMedia"), "Media-alta": t("pt.cMediaAlta"), Alta: t("pt.cAlta") }[c] || c);
+  const ptEditar = () => setPtBorrador(JSON.parse(JSON.stringify(Array.isArray(ptDoc?.semanas) ? ptDoc : { semanas: [] })));
+  const ptCambiar = (fn) => setPtBorrador((b) => { const c = JSON.parse(JSON.stringify(b || { semanas: [] })); fn(c); return c; });
+  const ptMover = (arr, i, d) => { const j = i + d; if (j < 0 || j >= arr.length) return; [arr[i], arr[j]] = [arr[j], arr[i]]; };
+  const ptSesionNueva = (extra = {}) => ({ id: nuevoIdPt(), nombre: "", durMin: 75, rpe: "", prioridad: "", carga: "Media", objetivo: "", bloques: [], ...extra });
+  const ptNuevaSemana = () => ptCambiar((d) => {
+    const ultima = d.semanas[d.semanas.length - 1];
+    const desde = ultima?.hasta ? sumarDiasISO(ultima.hasta, 1) : hoyISO();
+    d.semanas.push({ id: nuevoIdPt(), nombre: "", desde, hasta: sumarDiasISO(desde, 6), idea: "", sesiones: [ptSesionNueva()] });
+  });
+  /* La sesión que está montada ahora en Entrenamiento, pasada al plan. */
+  const ptDeEntrenamiento = (wi) => ptCambiar((d) => {
+    d.semanas[wi].sesiones.push(ptSesionNueva({
+      nombre: (trainMeta.objetivo || "").split(" — ")[0].slice(0, 60),
+      durMin: trainTotal || trainTarget || 75,
+      objetivo: trainMeta.objetivo || "",
+      bloques: trainBlocks.map((b) => [String(b.name || ""), Number(b.dur) || 0]).filter(([n]) => n),
+    }));
+  });
+  const ptGuardarBorrador = async () => {
+    if (!ptBorrador || ptBusy) return;
+    const limpio = {
+      v: 1,
+      semanas: ptBorrador.semanas.map((w) => ({
+        ...w, nombre: String(w.nombre || "").trim().slice(0, 60), idea: String(w.idea || "").trim().slice(0, 400),
+        sesiones: w.sesiones.map((x) => ({
+          ...x, nombre: String(x.nombre || "").trim().slice(0, 80), objetivo: String(x.objetivo || "").trim().slice(0, 400),
+          rpe: String(x.rpe || "").trim().slice(0, 12), prioridad: String(x.prioridad || "").trim().slice(0, 60),
+          durMin: Math.max(0, Math.min(300, Math.round(Number(x.durMin) || 0))),
+          bloques: (x.bloques || []).map(([n, m]) => [String(n || "").trim().slice(0, 80), Math.max(0, Math.min(300, Math.round(Number(m) || 0)))]).filter(([n]) => n),
+        })),
+      })),
+    };
+    if (await guardarPretemporada(limpio)) setPtBorrador(null);
+  };
+  const ptBorrarTodo = async () => {
+    if (!window.confirm(t("pt.deleteAsk"))) return;
+    if (await guardarPretemporada({ v: 1, semanas: [] })) setPtBorrador(null);
+  };
+
+  const renderPretemporadaEditor = () => {
+    const d = ptBorrador;
+    const inpBase = "rounded-lg px-2.5 py-2 text-sm outline-none border";
+    const inp = inpBase + " w-full";
+    const st = { background: C.panel, borderColor: C.line, color: C.chalk };
+    const lbl = "block text-[10px] font-display uppercase tracking-widest mb-1";
+    const mini = "w-8 h-8 shrink-0 rounded-md border text-xs disabled:opacity-25";
+    const valor = (fn) => (e) => { const v = e.target.value; ptCambiar((x) => fn(x, v)); };
+    return (
+      <Card title={`✎ ${t("pt.title")}`}>
+        <div className="text-xs mb-3 leading-relaxed" style={{ color: C.dim }}>{t("pt.editHint")}</div>
+        <div className="space-y-3">
+          {d.semanas.map((w, wi) => {
+            const base = d.semanas.slice(0, wi).reduce((n, x) => n + x.sesiones.length, 0);
+            return (
+              <div key={w.id} className="rounded-lg border p-3" style={{ borderColor: C.line, background: C.panel2 }}>
+                <div className="flex items-center gap-1.5 mb-2">
+                  <span className="font-display uppercase tracking-wide text-sm shrink-0" style={{ color: AC }}>{t("pt.week")} {wi + 1}</span>
+                  <input value={w.nombre} onChange={valor((x, v) => { x.semanas[wi].nombre = v; })} placeholder={t("pt.phasePh")} className={inpBase + " flex-1 min-w-0"} style={st} />
+                  <button onClick={() => ptCambiar((x) => ptMover(x.semanas, wi, -1))} disabled={wi === 0} aria-label={t("w.moveUp")} className={mini} style={{ borderColor: C.line, color: C.dim }}>▲</button>
+                  <button onClick={() => ptCambiar((x) => ptMover(x.semanas, wi, 1))} disabled={wi === d.semanas.length - 1} aria-label={t("w.moveDown")} className={mini} style={{ borderColor: C.line, color: C.dim }}>▼</button>
+                  <button onClick={() => { if (!w.sesiones.length || window.confirm(t("pt.deleteWeekAsk").replace("{n}", wi + 1))) ptCambiar((x) => { x.semanas.splice(wi, 1); }); }}
+                    aria-label={t("w.deleteAction")} className={mini} style={{ borderColor: C.line, color: C.red }}>✕</button>
+                </div>
+                <div className="grid grid-cols-2 gap-2 mb-2">
+                  <label><span className={lbl} style={{ color: C.dim }}>{t("pt.from")}</span>
+                    <input type="date" value={w.desde || ""} onChange={valor((x, v) => { x.semanas[wi].desde = v; })} className={inp} style={st} /></label>
+                  <label><span className={lbl} style={{ color: C.dim }}>{t("pt.to")}</span>
+                    <input type="date" value={w.hasta || ""} onChange={valor((x, v) => { x.semanas[wi].hasta = v; })} className={inp} style={st} /></label>
+                </div>
+                <textarea value={w.idea} onChange={valor((x, v) => { x.semanas[wi].idea = v; })} placeholder={t("pt.ideaPh")} rows={2} className={inp} style={st} />
+                <div className="space-y-2 mt-2">
+                  {w.sesiones.map((s, si) => {
+                    const total = (s.bloques || []).reduce((a, [, m]) => a + (Number(m) || 0), 0);
+                    return (
+                      <div key={s.id} className="rounded-lg border p-2.5" style={{ borderColor: C.line, background: C.panel }}>
+                        <div className="flex items-center gap-1.5">
+                          <span className="font-display text-sm shrink-0 w-8" style={{ color: AC }}>S{base + si + 1}</span>
+                          <input value={s.nombre} onChange={valor((x, v) => { x.semanas[wi].sesiones[si].nombre = v; })} placeholder={t("pt.sessionNamePh")} className={inpBase + " flex-1 min-w-0"} style={st} />
+                          <button onClick={() => ptCambiar((x) => ptMover(x.semanas[wi].sesiones, si, -1))} disabled={si === 0} aria-label={t("w.moveUp")} className={mini} style={{ borderColor: C.line, color: C.dim }}>▲</button>
+                          <button onClick={() => ptCambiar((x) => ptMover(x.semanas[wi].sesiones, si, 1))} disabled={si === w.sesiones.length - 1} aria-label={t("w.moveDown")} className={mini} style={{ borderColor: C.line, color: C.dim }}>▼</button>
+                          <button onClick={() => ptCambiar((x) => { x.semanas[wi].sesiones.splice(si, 1); })} aria-label={t("w.deleteAction")} className={mini} style={{ borderColor: C.line, color: C.red }}>✕</button>
+                        </div>
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-2">
+                          <label><span className={lbl} style={{ color: C.dim }}>{t("pt.minutes")}</span>
+                            <input type="number" min={0} max={300} value={s.durMin} onChange={valor((x, v) => { x.semanas[wi].sesiones[si].durMin = v; })} className={inp} style={st} /></label>
+                          <label><span className={lbl} style={{ color: C.dim }}>RPE</span>
+                            <input value={s.rpe} onChange={valor((x, v) => { x.semanas[wi].sesiones[si].rpe = v; })} placeholder="5-6" className={inp} style={st} /></label>
+                          <label><span className={lbl} style={{ color: C.dim }}>{t("pt.priority")}</span>
+                            <input value={s.prioridad} onChange={valor((x, v) => { x.semanas[wi].sesiones[si].prioridad = v; })} placeholder={t("pt.priorityPh")} className={inp} style={st} /></label>
+                          <label><span className={lbl} style={{ color: C.dim }}>{t("pt.loadLbl")}</span>
+                            <select value={s.carga} onChange={valor((x, v) => { x.semanas[wi].sesiones[si].carga = v; })} className={inp} style={st}>
+                              {CARGAS_PT.map((c) => <option key={c} value={c}>{etiquetaCarga(c)}</option>)}
+                            </select></label>
+                        </div>
+                        <textarea value={s.objetivo} onChange={valor((x, v) => { x.semanas[wi].sesiones[si].objetivo = v; })} placeholder={t("tr.objective")} rows={2} className={inp + " mt-2"} style={st} />
+                        <div className="mt-2 space-y-1">
+                          {(s.bloques || []).map(([nm, m], bi) => (
+                            <div key={bi} className="flex items-center gap-1.5">
+                              <span className="text-[11px] w-4 shrink-0 text-right" style={{ color: C.dim }}>{bi + 1}.</span>
+                              <input value={nm} onChange={valor((x, v) => { x.semanas[wi].sesiones[si].bloques[bi][0] = v; })} placeholder={t("pt.blockPh")} className={inpBase + " flex-1 min-w-0"} style={st} />
+                              <input type="number" min={0} max={300} value={m} onChange={valor((x, v) => { x.semanas[wi].sesiones[si].bloques[bi][1] = v; })} className={inpBase + " w-16 shrink-0 text-right"} style={st} />
+                              <span className="text-xs shrink-0" style={{ color: C.dim }}>′</span>
+                              <button onClick={() => ptCambiar((x) => { x.semanas[wi].sesiones[si].bloques.splice(bi, 1); })} aria-label={t("w.deleteAction")} className={mini} style={{ borderColor: C.line, color: C.dim }}>✕</button>
+                            </div>
+                          ))}
+                          <div className="flex flex-wrap items-center gap-1.5 pt-1">
+                            <button onClick={() => ptCambiar((x) => { x.semanas[wi].sesiones[si].bloques = [...(x.semanas[wi].sesiones[si].bloques || []), ["", 10]]; })}
+                              className="text-xs px-2.5 py-1.5 rounded-lg border" style={{ borderColor: C.line, color: C.chalk }}>+ {t("pt.addBlock")}</button>
+                            <select value="" onChange={(e) => { const ex = EXERCISES.find((z) => z.id === e.target.value); if (ex) ptCambiar((x) => { x.semanas[wi].sesiones[si].bloques = [...(x.semanas[wi].sesiones[si].bloques || []), [ex.name[lang] || ex.name.es, ex.dur]]; }); }}
+                              className="text-xs px-2 py-1.5 rounded-lg border max-w-[220px]" style={st}>
+                              <option value="">{t("pt.fromLibrary")}</option>
+                              {EXERCISES.map((ex) => <option key={ex.id} value={ex.id}>{ex.name[lang] || ex.name.es} · {ex.dur}′</option>)}
+                            </select>
+                            <span className="text-[10px] ml-auto tabular-nums" style={{ color: total > (Number(s.durMin) || 0) ? C.warn : C.dim }}>{t("pt.blocksTotal")} {total}′ / {Number(s.durMin) || 0}′</span>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                  <div className="flex flex-wrap gap-1.5">
+                    <button onClick={() => ptCambiar((x) => { x.semanas[wi].sesiones.push(ptSesionNueva()); })} disabled={w.sesiones.length >= 14}
+                      className="text-xs px-3 py-2 rounded-lg border font-display uppercase tracking-wide disabled:opacity-40" style={{ borderColor: AC, color: AC }}>+ {t("pt.addSession")}</button>
+                    {trainBlocks.length > 0 && (
+                      <button onClick={() => ptDeEntrenamiento(wi)} disabled={w.sesiones.length >= 14}
+                        className="text-xs px-3 py-2 rounded-lg border disabled:opacity-40" style={{ borderColor: C.line, color: C.chalk }}>⤵ {t("pt.fromTraining")}</button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+          <button onClick={ptNuevaSemana} disabled={d.semanas.length >= 20}
+            className="w-full text-sm px-4 py-2.5 rounded-lg border font-display uppercase tracking-wide disabled:opacity-40" style={{ borderColor: AC, color: AC }}>+ {t("pt.addWeek")}</button>
+        </div>
+        <div className="flex flex-wrap items-center gap-2 mt-4">
+          <button onClick={ptGuardarBorrador} disabled={ptBusy}
+            className="text-sm px-4 py-2.5 rounded-lg font-display uppercase tracking-wide font-semibold disabled:opacity-50" style={{ background: AC, color: C.sobre }}>
+            {ptBusy ? "…" : t("pt.save")}
+          </button>
+          <button onClick={() => setPtBorrador(null)} disabled={ptBusy} className="text-sm px-4 py-2.5 rounded-lg border" style={{ borderColor: C.line, color: C.chalk }}>{t("pt.cancel")}</button>
+          {ptDoc?.semanas?.length > 0 && (
+            <button onClick={ptBorrarTodo} disabled={ptBusy} className="text-xs px-3 py-2 rounded-lg border ml-auto" style={{ borderColor: C.line, color: C.red }}>{t("pt.deleteAll")}</button>
+          )}
+        </div>
+        {ptGuardadoMsg && <div className="text-xs mt-3" style={{ color: ptGuardadoMsg.startsWith("✓") ? C.green : C.dim }}>{ptGuardadoMsg}</div>}
+      </Card>
+    );
+  };
+
   const renderPretemporada = () => {
-    /* La sesión que toca: la primera que todavía no se ha cargado nunca. Sin
-       histórico de sesiones hechas no se puede saber más, así que se usa la
-       última cargada como marcador y se propone la siguiente. */
+    if (ptBorrador) return renderPretemporadaEditor();
+    const puedeEditar = can("editTraining");
+    /* La sesión que toca: la siguiente a la última que se cargó en
+       Entrenamiento. Sin histórico de sesiones hechas no se puede saber más. */
+    const totalSes = pretemporada.reduce((n, w) => n + w.sesiones.length, 0);
     const ultima = Number(cargas._sesion?.plan) || 0;
-    const siguiente = ultima < 12 ? ultima + 1 : 12;
+    const siguiente = totalSes ? Math.min(ultima + 1, totalSes) : 0;
+    if (!pretemporada.length) {
+      return (
+        <Card title={`📋 ${t("pt.title")}`}>
+          <div className="text-center py-4">
+            <div className="text-sm mb-1 font-semibold" style={{ color: C.chalk }}>{t("pt.emptyTitle")}</div>
+            <div className="text-xs mb-4 leading-relaxed max-w-md mx-auto" style={{ color: C.dim }}>{t(puedeEditar ? "pt.emptyHint" : "pt.emptyNoPerm")}</div>
+            {puedeEditar && (
+              <button onClick={() => { setPtBorrador({ semanas: [] }); ptNuevaSemana(); }}
+                className="text-sm px-4 py-2.5 rounded-lg font-display uppercase tracking-wide font-semibold" style={{ background: AC, color: C.sobre }}>+ {t("pt.create")}</button>
+            )}
+          </div>
+          {ptGuardadoMsg && <div className="text-xs mt-1 text-center" style={{ color: ptGuardadoMsg.startsWith("✓") ? C.green : C.dim }}>{ptGuardadoMsg}</div>}
+        </Card>
+      );
+    }
     return (
       <Card title={`📋 ${t("pt.title")}`}>
-        <div className="text-xs mb-3 leading-relaxed" style={{ color: C.dim }}>{t("pt.hint")}</div>
+        <div className="flex flex-wrap items-start gap-2 mb-3">
+          <div className="text-xs leading-relaxed flex-1 min-w-[200px]" style={{ color: C.dim }}>{t("pt.hint")}</div>
+          {puedeEditar && (
+            <button onClick={ptEditar} className="text-xs px-3 py-1.5 rounded-lg border font-display uppercase tracking-wide shrink-0" style={{ borderColor: AC, color: AC }}>✎ {t("pt.edit")}</button>
+          )}
+        </div>
         <div className="space-y-3">
-          {PRETEMPORADA.map((sem) => (
-            <div key={sem.n} className="rounded-lg border p-3" style={{ borderColor: C.line, background: C.panel2 }}>
+          {pretemporada.map((sem) => (
+            <div key={sem.id} className="rounded-lg border p-3" style={{ borderColor: C.line, background: C.panel2 }}>
               <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1 mb-1">
                 <span className="font-display uppercase tracking-wide text-sm" style={{ color: C.chalk }}>
-                  {t("pt.week")} {sem.n} · {sem.fase}
+                  {t("pt.week")} {sem.n}{sem.fase ? ` · ${sem.fase}` : ""}
                 </span>
-                <span className="text-[11px]" style={{ color: C.dim }}>{sem.rango}</span>
+                <span className="text-[11px]" style={{ color: C.dim }}>
+                  {[sem.desde && fechaCorta(sem.desde, lang), sem.hasta && fechaCorta(sem.hasta, lang)].filter(Boolean).join(" – ")}
+                </span>
               </div>
-              <div className="text-[11px] mb-2 leading-snug" style={{ color: C.dim }}>{sem.idea}</div>
+              {sem.idea && <div className="text-[11px] mb-2 leading-snug" style={{ color: C.dim }}>{sem.idea}</div>}
               <div className="space-y-1.5">
                 {sem.sesiones.map((s) => {
                   const abierta = ptAbierta === s.n;
                   const esSiguiente = s.n === siguiente;
                   const total = s.bloques.reduce((a, [, d]) => a + d, 0);
                   return (
-                    <div key={s.n} className="rounded-lg border" style={{ borderColor: esSiguiente ? AC : C.line, background: C.panel }}>
+                    <div key={s.id} className="rounded-lg border" style={{ borderColor: esSiguiente ? AC : C.line, background: C.panel }}>
                       <button onClick={() => setPtAbierta(abierta ? null : s.n)} aria-expanded={abierta}
                         className="w-full text-left p-2.5">
                         <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
                           <span className="font-display text-sm shrink-0" style={{ color: AC }}>S{s.n}</span>
-                          <span className="text-sm flex-1 min-w-[140px]" style={{ color: C.chalk }}>{s.nombre}</span>
+                          <span className="text-sm flex-1 min-w-[140px]" style={{ color: C.chalk }}>{s.nombre || "—"}</span>
                           {/* El día que le toca según los días de entreno del
                               equipo. Sin día = esa semana tiene menos días de
                               entreno que sesiones; se dice en vez de callarlo. */}
@@ -23304,15 +23485,15 @@ export default function App() {
                           <span className="text-[11px] shrink-0" style={{ color: C.dim }}>{abierta ? "▾" : "▸"}</span>
                         </div>
                         <div className="flex flex-wrap gap-1.5 mt-1.5">
-                          <span className="text-[10px] px-2 py-0.5 rounded-full border" style={{ borderColor: C.line, color: C.dim }}>⏱ {s.dur}′</span>
-                          <span className="text-[10px] px-2 py-0.5 rounded-full border" style={{ borderColor: C.line, color: C.dim }}>RPE {s.rpe}</span>
-                          <span className="text-[10px] px-2 py-0.5 rounded-full border" style={{ borderColor: C.line, color: C.dim }}>{s.prioridad}</span>
-                          <span className="text-[10px] px-2 py-0.5 rounded-full border" style={{ borderColor: COLOR_CARGA(s.carga), color: COLOR_CARGA(s.carga) }}>{s.carga}</span>
+                          {s.durMin > 0 && <span className="text-[10px] px-2 py-0.5 rounded-full border" style={{ borderColor: C.line, color: C.dim }}>⏱ {s.dur}′</span>}
+                          {s.rpe && <span className="text-[10px] px-2 py-0.5 rounded-full border" style={{ borderColor: C.line, color: C.dim }}>RPE {s.rpe}</span>}
+                          {s.prioridad && <span className="text-[10px] px-2 py-0.5 rounded-full border" style={{ borderColor: C.line, color: C.dim }}>{s.prioridad}</span>}
+                          {s.carga && <span className="text-[10px] px-2 py-0.5 rounded-full border" style={{ borderColor: COLOR_CARGA(s.carga), color: COLOR_CARGA(s.carga) }}>{etiquetaCarga(s.carga)}</span>}
                         </div>
                       </button>
                       {abierta && (
                         <div className="px-2.5 pb-2.5">
-                          <div className="text-[11px] mb-2 leading-snug" style={{ color: C.chalk }}>{s.objetivo}</div>
+                          {s.objetivo && <div className="text-[11px] mb-2 leading-snug" style={{ color: C.chalk }}>{s.objetivo}</div>}
                           <div className="space-y-1">
                             {s.bloques.map(([name, dur], i) => (
                               <div key={i} className="flex items-center justify-between text-xs px-2.5 py-1.5 rounded-lg border" style={{ borderColor: C.line, background: C.panel2 }}>
@@ -23321,48 +23502,28 @@ export default function App() {
                               </div>
                             ))}
                           </div>
-                          <div className="text-[10px] mt-1.5" style={{ color: C.dim }}>
-                            {t("pt.blocksTotal")} {total}′ / {s.durMin}′ · {t("pt.blocksNote")}
-                          </div>
-                          <button onClick={() => cargarSesionPlan(s)}
-                            className="mt-2 w-full text-sm px-4 py-2.5 rounded-lg font-display uppercase tracking-wide font-semibold"
-                            style={{ background: AC, color: C.sobre }}>{t("pt.load")}</button>
+                          {s.bloques.length > 0 && (
+                            <div className="text-[10px] mt-1.5" style={{ color: C.dim }}>
+                              {t("pt.blocksTotal")} {total}′{s.durMin > 0 ? ` / ${s.durMin}′` : ""}{s.durMin > total ? ` · ${t("pt.blocksNote")}` : ""}
+                            </div>
+                          )}
+                          {can("editTraining") && (
+                            <button onClick={() => cargarSesionPlan(s)}
+                              className="mt-2 w-full text-sm px-4 py-2.5 rounded-lg font-display uppercase tracking-wide font-semibold"
+                              style={{ background: AC, color: C.sobre }}>{t("pt.load")}</button>
+                          )}
                         </div>
                       )}
                     </div>
                   );
                 })}
+                {!sem.sesiones.length && <div className="text-[11px] px-1" style={{ color: C.dim }}>{t("pt.weekEmpty")}</div>}
               </div>
-              {/* Ejercicios de la biblioteca que encajan con lo que entrena
-                  esta semana. Se toca uno y se abre montado en la pizarra, que
-                  es donde se explica; añadirlo a la sesión se hace desde
-                  Ejercicios, que es su sitio. */}
-              {(() => {
-                const ejs = ejerciciosDeSemana(sem);
-                if (!ejs.length) return null;
-                return (
-                  <div className="mt-3 pt-3 border-t" style={{ borderColor: C.line }}>
-                    <div className="text-[10px] font-display uppercase tracking-widest mb-1.5" style={{ color: C.dim }}>
-                      {t("pt.exercises")}
-                    </div>
-                    <div className="flex flex-wrap gap-1.5">
-                      {ejs.map((ex) => (
-                        <button key={ex.id} onClick={() => { setPendingExId(ex.id); setTab("pizarra"); }}
-                          className="flex items-center gap-1.5 text-xs px-2.5 py-2 rounded-lg border"
-                          style={{ borderColor: C.line, background: C.panel, color: C.chalk }}>
-                          <span>{ex.icon}</span>
-                          <span className="truncate max-w-[170px]">{ex.name[lang] || ex.name.es}</span>
-                          <span className="text-[10px]" style={{ color: C.dim }}>{ex.dur}′</span>
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                );
-              })()}
             </div>
           ))}
         </div>
         {ptMsg && <div className="text-xs mt-3" style={{ color: C.green }}>✓ {ptMsg}</div>}
+        {ptGuardadoMsg && <div className="text-xs mt-3" style={{ color: ptGuardadoMsg.startsWith("✓") ? C.green : C.dim }}>{ptGuardadoMsg}</div>}
         {/* "Sin día" no es un fallo del plan: es que el equipo tiene menos días
             de entreno configurados que sesiones pide la semana. Se dice cuántas
             faltan y dónde se arregla, en vez de dejar el hueco en ámbar sin
@@ -23372,7 +23533,7 @@ export default function App() {
           if (!huerfanas) return null;
           return (
             <div className="text-[11px] mt-3 rounded-lg border px-3 py-2 leading-relaxed" style={{ borderColor: C.warn, background: `${C.warn}12`, color: C.chalk }}>
-              ⚠ {huerfanas} {huerfanas === 1 ? t("pt.orphanOne") : t("pt.orphanMany")} {t("pt.orphanFix")} <strong>{diasSemanaCortosDomingoPrimero(lang).filter((_, i) => trainDays.includes(i)).join(" · ") || t("pt.orphanNone")}</strong>.
+              ⚠ {huerfanas} {huerfanas === 1 ? t("pt.orphanOne") : t("pt.orphanMany")} {t("pt.orphanFix")} <strong>{diasSemanaCortosDomingoPrimero(lang).filter((_, i) => trainDays.includes(i)).join(" · ") || t("pt.orphanNone")}</strong>
             </div>
           );
         })()}

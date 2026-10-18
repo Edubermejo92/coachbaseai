@@ -27,7 +27,7 @@ export const CLAVE_ULTIMA = "cb_sincro_ultima_v1";
 export const MAX_INTENTOS = 8;
 
 /* Recursos que se guardan como un documento entero por equipo. */
-const DOCS = new Set(["cargas", "abp-corners", "alineacion", "alineaciones-favoritas", "asistencia", "pase-lista", "plan", "jugadas"]);
+const DOCS = new Set(["cargas", "abp-corners", "alineacion", "alineaciones-favoritas", "asistencia", "pase-lista", "plan", "jugadas", "pretemporada"]);
 /* Recursos con registros sueltos que se pueden cambiar o borrar en diferido. */
 const REGISTROS = new Set(["jugadores", "partidos", "incidencias", "partes", "actas", "plantillas", "convocatorias", "entrenamientos", "clubes", "equipos", "propuestas", "parte-sancion"]);
 /* Escrituras POST idempotentes que no son documentos ni altas. */

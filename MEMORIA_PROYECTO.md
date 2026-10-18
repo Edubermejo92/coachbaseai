@@ -100,6 +100,19 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   numeradas como trazos 2D), así se comparte con el equipo y se ve en 2D. Vídeo con rótulos
   (nombre de la jugada + paso) compuestos en un lienzo 2D encima del 3D.
 
+## Pretemporada por equipo (v2.81.0)
+- Ya no hay plan fijo en la app: el de ejemplo (Infantil B, S1–S12 de septiembre) se retiró a
+  petición de Edu ("cada entrenador tiene su forma de hacer pretemporada"). Cada equipo crea la
+  suya en Temporada → Pretemporada: semanas (fase, desde/hasta, idea) con sesiones (minutos,
+  RPE, prioridad, carga, objetivo, bloques). Se numeran solas S1, S2… y se reparten por los
+  días de entreno; salen en Calendario y se cargan en Entrenamiento como antes.
+- Nube: `equipos.pretemporada` (JSON, solo Supabase, fldPretemp0radaQ7), recurso
+  `res=pretemporada` (mismas reglas que cargas; valida forma y tamaño), en la cola sin conexión.
+- Edita quien tiene `editTraining`; la demo es de solo lectura.
+- Limpieza hecha: en Supabase se quitaron las referencias `plan`/`p` al plan viejo en
+  `cargas_fisicas` del Infantil B; en los dispositivos, un objetivo de Entrenamiento que
+  venga del plan viejo ("S1 · Reentrada colectiva — …") se vacía al abrir (PT_EJEMPLO_RETIRADO).
+
 ## Netlify (lecciones)
 - El conector MCP de Netlify (manage-env-vars) dice "upserted" pero NO guarda nada si se le pasan
   scopes parciales (p. ej. ["functions","runtime"]) o is_secret=true con scopes "all". Solo funciona
