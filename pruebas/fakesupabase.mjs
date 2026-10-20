@@ -22,7 +22,7 @@ fs.rmSync(tmp);
 
 export const SB = "https://sb.test";
 /* Tablas que no vienen de Airtable (supabase/migrations/…_avisos.sql). */
-const EXTRA = ["push_suscripciones", "push_programados", "push_enviados"];
+const EXTRA = ["push_suscripciones", "push_programados", "push_enviados", "retransmisiones", "vivo_avisos"];
 const J = (o, s = 200) => new Response(JSON.stringify(o), { status: s, headers: { "content-type": "application/json" } });
 const ident = (s) => {
   if (!/^[a-z_][a-z0-9_]*$/.test(s)) throw new Error(`identificador raro: ${s}`);
@@ -57,7 +57,7 @@ export async function crearFakeSupabase(datos) {
   };
   const jsonDe = async (sql, params) => {
     /* Las tablas de avisos no tienen _orden: se respeta el orden de la consulta. */
-    const orden = /public\."push_\w+"/.test(sql) ? "" : " order by x._orden";
+    const orden = /public\."(push_\w+|retransmisiones|vivo_avisos)"/.test(sql) ? "" : " order by x._orden";
     const [r] = await filas(`with x as (${sql}) select coalesce(json_agg(x${orden}), '[]'::json)::text as j from x`, params);
     return JSON.parse(r.j);
   };
@@ -93,7 +93,9 @@ export async function crearFakeSupabase(datos) {
     const where = conds.length ? `where ${conds.join(" and ")}` : "";
     try {
       if (m === "GET") {
-        const ord = EXTRA.includes(tabla) ? (url.searchParams.get("order") === "enviar_en.asc" ? "enviar_en" : "id") : "_orden";
+        /* order=col.asc|desc, como PostgREST; sin él, el orden natural de la tabla. */
+        const [oc, od] = String(url.searchParams.get("order") || "").split(".");
+        const ord = oc ? `${ident(oc)} ${od === "desc" ? "desc" : "asc"}` : !EXTRA.includes(tabla) ? "_orden" : tabla === "retransmisiones" ? "creado" : "id";
         return J(await jsonDe(`select * from ${T} ${where} order by ${ord} ${limit != null ? `limit ${limit}` : ""} offset ${offset}`, params));
       }
       const cuerpo = init.body ? JSON.parse(init.body) : null;
@@ -104,8 +106,8 @@ export async function crearFakeSupabase(datos) {
           /* on_conflict=id + Prefer resolution=merge-duplicates: upsert. */
           const conflicto = url.searchParams.get("on_conflict");
           const upsert = conflicto && /merge-duplicates/.test(init.headers?.Prefer || "")
-            ? ` on conflict (${ident(conflicto)}) do update set ${Object.keys(fila).map((k) => `${ident(k)} = excluded.${ident(k)}`).join(", ")}`
-            : conflicto && /ignore-duplicates/.test(init.headers?.Prefer || "") ? ` on conflict (${ident(conflicto)}) do nothing` : "";
+            ? ` on conflict (${conflicto.split(",").map(ident).join(", ")}) do update set ${Object.keys(fila).map((k) => `${ident(k)} = excluded.${ident(k)}`).join(", ")}`
+            : conflicto && /ignore-duplicates/.test(init.headers?.Prefer || "") ? ` on conflict (${conflicto.split(",").map(ident).join(", ")}) do nothing` : "";
           const [r] = await jsonDe(
             Object.keys(fila).length
               ? `insert into ${T} (${cols}) select ${cols} from json_populate_record(null::${T}, $1::json)${upsert} returning *`

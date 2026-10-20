@@ -55,8 +55,12 @@ self.addEventListener("notificationclick", (e) => {
   const destino = e.notification.data?.url || "/";
   e.waitUntil(
     self.clients.matchAll({ type: "window", includeUncontrolled: true }).then((cs) => {
+      /* Un aviso de una retransmisión en directo (/vivo/…) abre esa página, y
+         no se lleva por delante la app si estaba abierta en otra pestaña. */
+      const vivo = destino.startsWith("/vivo/");
       for (const c of cs) {
-        if ("focus" in c) { c.navigate?.(destino); return c.focus(); }
+        const esVivo = new URL(c.url).pathname.startsWith("/vivo/");
+        if ("focus" in c && esVivo === vivo) { c.navigate?.(destino); return c.focus(); }
       }
       return self.clients.openWindow(destino);
     })

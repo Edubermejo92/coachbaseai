@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B1F3E">
+<meta name="robots" content="noindex, nofollow">
+<title>Partido en directo · CoachBase AI</title>
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<!--
+  Retransmisión en directo de un partido (ver netlify/lib/vivo.mts).
+  Página suelta, sin la app: la abre cualquiera del grupo con el enlace, sin
+  cuenta y sin instalar nada. Lee el estado cada pocos segundos y, si se pide,
+  se apunta a los avisos de push del servidor para enterarse con el móvil
+  bloqueado. ?demo=1 enseña un partido de ejemplo.
+-->
+<style>
+  :root {
+    --fondo: #0B1F3E; --panel: #10294F; --fila: #173763; --fila2: #0E2546;
+    --verde: #7DC242; --oscuro: #0B1F3E; --tinta: #FFFFFF; --tenue: #9FB2CB; --linea: rgba(255,255,255,.08);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--fondo); color: var(--tinta); }
+  body { font-family: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased;
+    min-height: 100vh; padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom); }
+  main { max-width: 520px; margin: 0 auto; padding-bottom: 28px; }
+  .cab { text-align: center; padding: 18px 16px 14px; color: var(--tenue); font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; line-height: 1.5; }
+  .hero { background: var(--panel); padding: 22px 16px 22px; text-align: center; }
+  .pill { display: inline-flex; align-items: center; gap: 8px; padding: 7px 18px; border-radius: 999px; font-size: 14px; font-weight: 800; letter-spacing: .14em;
+    background: var(--verde); color: var(--oscuro); }
+  .pill .punto { width: 8px; height: 8px; border-radius: 50%; background: var(--oscuro); animation: late 1.4s ease-in-out infinite; }
+  .pill.descanso { background: transparent; color: var(--verde); box-shadow: inset 0 0 0 2px var(--verde); }
+  .pill.final, .pill.previa { background: rgba(255,255,255,.1); color: var(--tinta); }
+  .pill.descanso .punto, .pill.final .punto, .pill.previa .punto { display: none; }
+  @keyframes late { 50% { opacity: .25; } }
+  /* Escudos y marcador a la misma altura aunque un nombre ocupe tres líneas. */
+  .marcador { display: grid; grid-template-columns: 1fr auto 1fr; align-items: start; gap: 6px; margin-top: 22px; }
+  .eq { display: flex; flex-direction: column; align-items: center; gap: 10px; min-width: 0; }
+  .esc { width: 74px; height: 74px; display: flex; align-items: center; justify-content: center; }
+  .esc img { max-width: 100%; max-height: 100%; object-fit: contain; }
+  .esc .letra { width: 70px; height: 70px; border-radius: 50%; border: 3px solid var(--verde); display: flex; align-items: center; justify-content: center;
+    font-size: 30px; font-weight: 800; color: var(--tinta); }
+  .nom { font-size: 16px; font-weight: 800; line-height: 1.2; overflow-wrap: anywhere; }
+  .nom small { display: block; font-size: 12px; font-weight: 600; color: var(--tenue); margin-top: 2px; }
+  .goles { height: 74px; display: flex; align-items: center; gap: 12px; font-size: 68px; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; padding: 0 4px; }
+  .goles .guion { color: var(--verde); font-size: 40px; }
+  .pen { color: var(--tenue); font-size: 14px; font-weight: 700; margin-top: 10px; }
+  .min { color: var(--verde); font-size: 30px; font-weight: 800; margin-top: 18px; font-variant-numeric: tabular-nums; }
+  .parte { color: var(--tenue); font-size: 15px; font-weight: 600; margin-top: 2px; }
+  h2 { margin: 26px 16px 12px; font-size: 14px; font-weight: 800; letter-spacing: .26em; color: var(--verde); text-transform: uppercase; }
+  .gol-fila { display: flex; align-items: stretch; margin: 0 0 6px; background: var(--fila); min-height: 62px; }
+  .gol-fila.rival { background: var(--fila2); }
+  .gol-fila .m { width: 66px; flex: none; display: flex; align-items: center; justify-content: center; font-size: 19px; font-weight: 800;
+    background: var(--verde); color: var(--oscuro); font-variant-numeric: tabular-nums; }
+  .gol-fila.rival .m { background: var(--fila); color: var(--tinta); }
+  .gol-fila .t { padding: 10px 16px; display: flex; flex-direction: column; justify-content: center; min-width: 0; }
+  .gol-fila .n { font-size: 17px; font-weight: 800; }
+  .gol-fila .a { font-size: 13px; font-weight: 500; color: var(--tenue); margin-top: 2px; }
+  .vacio { margin: 0 16px; color: var(--tenue); font-size: 14px; }
+  .avisos { padding: 0 16px; }
+  .btn { width: 100%; border: 0; border-radius: 10px; padding: 17px 16px; font: inherit; font-size: 17px; font-weight: 800; cursor: pointer;
+    background: var(--verde); color: var(--oscuro); }
+  .btn.hecho { background: transparent; color: var(--verde); box-shadow: inset 0 0 0 2px var(--verde); }
+  .nota { color: var(--tenue); font-size: 13px; line-height: 1.5; margin: 10px 2px 0; }
+  .nota a, .quitar { color: var(--tenue); text-decoration: underline; background: none; border: 0; font: inherit; padding: 0; cursor: pointer; }
+  .chk { display: flex; gap: 10px; align-items: flex-start; margin-top: 14px; color: var(--tinta); font-size: 14px; font-weight: 600; line-height: 1.4; cursor: pointer; }
+  .chk input { width: 20px; height: 20px; accent-color: var(--verde); margin: 0; flex: none; }
+  footer { text-align: center; color: var(--tenue); font-size: 12px; margin-top: 34px; padding: 0 16px; line-height: 1.6; }
+  footer a { color: var(--verde); font-weight: 700; text-decoration: none; }
+  .aviso-pagina { margin: 60px 20px; text-align: center; color: var(--tenue); font-size: 16px; line-height: 1.6; }
+  .aviso-pagina strong { display: block; color: var(--tinta); font-size: 20px; margin-bottom: 6px; }
+  /* ¡GOOOL! a pantalla completa */
+  .capa { position: fixed; inset: 0; background: rgba(5, 15, 32, .72); display: flex; align-items: center; justify-content: center; padding: 20px; z-index: 10; }
+  .capa[hidden] { display: none; }
+  .golazo { width: 100%; max-width: 480px; background: var(--verde); color: var(--oscuro); text-align: center; padding: 30px 20px 18px; border-radius: 4px;
+    animation: entra .45s cubic-bezier(.2, 1.4, .4, 1); box-shadow: 0 20px 60px rgba(0,0,0,.45); }
+  .golazo.rival { background: var(--panel); color: var(--tinta); box-shadow: inset 0 0 0 2px var(--verde), 0 20px 60px rgba(0,0,0,.45); }
+  .golazo .grito { font-size: 62px; font-weight: 800; line-height: 1; letter-spacing: -.01em; }
+  .golazo.rival .grito { font-size: 40px; }
+  .golazo .quien { font-size: 22px; font-weight: 800; margin-top: 14px; }
+  .golazo .det { font-size: 17px; font-weight: 600; margin-top: 14px; line-height: 1.45; }
+  .golazo .cerrar { font-size: 12px; font-weight: 600; margin-top: 18px; opacity: .75; }
+  @keyframes entra { from { transform: scale(.6); opacity: 0; } to { transform: none; opacity: 1; } }
+</style>
+</head>
+<body>
+<main id="app">
+  <div class="aviso-pagina" id="cargando">…</div>
+</main>
+<div class="capa" id="capa" hidden></div>
+<script>
+(() => {
+  const API = "/.netlify/functions/airtable?res=vivo";
+  const q = new URLSearchParams(location.search);
+  const codigo = (q.get("c") || "").replace(/[^A-Za-z0-9]/g, "");
+  const demo = q.get("demo") === "1";
+
+  /* ---------- textos ---------- */
+  const TX = {
+    es: { soon: "La retransmisión empieza en breve", soonSub: "En cuanto el equipo empiece a apuntar el partido lo verás aquí.", live: "EN DIRECTO", ht: "DESCANSO", ft: "FINAL", pre: "PRÓXIMAMENTE", p1: "1ª parte", p2: "2ª parte", pr1: "Prórroga · 1ª parte", pr2: "Prórroga · 2ª parte",
+      pen: "Penaltis", descanso: "Descanso", final: "Final del partido", previa: "Antes del partido", startsAt: "Empieza a las {h}", goals: "Goles", noGoals: "Todavía no hay goles.",
+      assist: "Asistencia: {n}", goalOf: "Gol de {e}", alerts: "Avisos", notify: "🔔 Avisarme de los goles", notified: "✓ Te avisaremos de los goles",
+      notifyNote: "Te llegará un aviso con cada gol, el descanso y el final, aunque tengas el móvil bloqueado.", remove: "Quitar los avisos",
+      sound: "Sonido y vibración al marcar, con la página abierta", gooool: "¡GOOOL!", tapClose: "Toca para cerrar", rivalGoal: "Gol de {e}",
+      ios: "En iPhone, los avisos con el móvil bloqueado solo funcionan desde la pantalla de inicio: pulsa Compartir → «Añadir a pantalla de inicio», ábrela desde ahí y vuelve a pulsar el botón.",
+      noPush: "Este navegador no permite avisos con el móvil bloqueado. Con la página abierta sí te enterarás de cada gol.",
+      denied: "Has bloqueado los avisos para esta página. Puedes permitirlos en los ajustes del navegador.", failed: "No se han podido activar los avisos. Inténtalo otra vez.",
+      gone: "Esta retransmisión ya no está activa", goneSub: "El enlace se ha desactivado. Pide el nuevo a tu equipo.", notFound: "No encontramos este partido", notFoundSub: "Revisa que el enlace esté completo.",
+      offline: "Sin conexión. Reintentando…", footer: "Retransmisión en directo con {app}", penalties: "Penaltis: {a}-{b}" },
+    en: { soon: "Live coverage starts soon", soonSub: "As soon as the team starts logging the match you'll see it here.", live: "LIVE", ht: "HALF-TIME", ft: "FULL-TIME", pre: "COMING UP", p1: "1st half", p2: "2nd half", pr1: "Extra time · 1st half", pr2: "Extra time · 2nd half",
+      pen: "Penalties", descanso: "Half-time", final: "Full-time", previa: "Before kick-off", startsAt: "Kick-off at {h}", goals: "Goals", noGoals: "No goals yet.",
+      assist: "Assist: {n}", goalOf: "{e} goal", alerts: "Alerts", notify: "🔔 Tell me about goals", notified: "✓ We'll tell you about goals",
+      notifyNote: "You'll get an alert for every goal, half-time and full-time, even with your phone locked.", remove: "Turn alerts off",
+      sound: "Sound and vibration on goals, with the page open", gooool: "GOOOAL!", tapClose: "Tap to close", rivalGoal: "{e} goal",
+      ios: "On iPhone, lock-screen alerts only work from the home screen: tap Share → “Add to Home Screen”, open it from there and tap the button again.",
+      noPush: "This browser doesn't allow lock-screen alerts. With the page open you'll still see every goal.",
+      denied: "You've blocked alerts for this page. You can allow them in your browser settings.", failed: "Couldn't turn alerts on. Please try again.",
+      gone: "This live coverage is no longer active", goneSub: "The link has been turned off. Ask your team for the new one.", notFound: "We can't find this match", notFoundSub: "Check the link is complete.",
+      offline: "Offline. Retrying…", footer: "Live coverage with {app}", penalties: "Penalties: {a}-{b}" },
+    fr: { soon: "Le direct commence bientôt", soonSub: "Dès que l'équipe commence à suivre le match, vous le verrez ici.", live: "EN DIRECT", ht: "MI-TEMPS", ft: "FIN", pre: "À VENIR", p1: "1re mi-temps", p2: "2e mi-temps", pr1: "Prolongation · 1re", pr2: "Prolongation · 2e",
+      pen: "Tirs au but", descanso: "Mi-temps", final: "Fin du match", previa: "Avant le match", startsAt: "Coup d'envoi à {h}", goals: "Buts", noGoals: "Pas encore de but.",
+      assist: "Passe décisive : {n}", goalOf: "But de {e}", alerts: "Alertes", notify: "🔔 M'avertir des buts", notified: "✓ On vous avertira des buts",
+      notifyNote: "Vous recevrez une alerte à chaque but, à la mi-temps et à la fin, même téléphone verrouillé.", remove: "Désactiver les alertes",
+      sound: "Son et vibration à chaque but, page ouverte", gooool: "BUUUT !", tapClose: "Touchez pour fermer", rivalGoal: "But de {e}",
+      ios: "Sur iPhone, les alertes écran verrouillé ne fonctionnent que depuis l'écran d'accueil : Partager → « Sur l'écran d'accueil », ouvrez-la depuis là et touchez à nouveau le bouton.",
+      noPush: "Ce navigateur ne permet pas les alertes écran verrouillé. Page ouverte, vous verrez quand même chaque but.",
+      denied: "Vous avez bloqué les alertes pour cette page. Autorisez-les dans les réglages du navigateur.", failed: "Impossible d'activer les alertes. Réessayez.",
+      gone: "Ce direct n'est plus actif", goneSub: "Le lien a été désactivé. Demandez le nouveau à votre équipe.", notFound: "Match introuvable", notFoundSub: "Vérifiez que le lien est complet.",
+      offline: "Hors ligne. Nouvelle tentative…", footer: "Direct avec {app}", penalties: "Tirs au but : {a}-{b}" },
+    de: { soon: "Der Liveticker startet gleich", soonSub: "Sobald das Team das Spiel erfasst, siehst du es hier.", live: "LIVE", ht: "HALBZEIT", ft: "ENDE", pre: "DEMNÄCHST", p1: "1. Halbzeit", p2: "2. Halbzeit", pr1: "Verlängerung · 1.", pr2: "Verlängerung · 2.",
+      pen: "Elfmeterschießen", descanso: "Halbzeit", final: "Spielende", previa: "Vor dem Spiel", startsAt: "Anstoß um {h}", goals: "Tore", noGoals: "Noch keine Tore.",
+      assist: "Vorlage: {n}", goalOf: "Tor für {e}", alerts: "Benachrichtigungen", notify: "🔔 Bei Toren benachrichtigen", notified: "✓ Du wirst bei Toren benachrichtigt",
+      notifyNote: "Du bekommst bei jedem Tor, zur Halbzeit und am Ende eine Nachricht, auch bei gesperrtem Handy.", remove: "Benachrichtigungen aus",
+      sound: "Ton und Vibration bei Toren, bei geöffneter Seite", gooool: "TOOOR!", tapClose: "Zum Schließen tippen", rivalGoal: "Tor für {e}",
+      ios: "Auf dem iPhone funktionieren Benachrichtigungen bei gesperrtem Bildschirm nur vom Home-Bildschirm: Teilen → „Zum Home-Bildschirm“, von dort öffnen und den Knopf erneut tippen.",
+      noPush: "Dieser Browser erlaubt keine Benachrichtigungen bei gesperrtem Handy. Bei geöffneter Seite siehst du trotzdem jedes Tor.",
+      denied: "Du hast Benachrichtigungen für diese Seite blockiert. Erlaube sie in den Browser-Einstellungen.", failed: "Benachrichtigungen konnten nicht aktiviert werden. Bitte erneut versuchen.",
+      gone: "Dieser Liveticker ist nicht mehr aktiv", goneSub: "Der Link wurde deaktiviert. Frag dein Team nach dem neuen.", notFound: "Spiel nicht gefunden", notFoundSub: "Prüfe, ob der Link vollständig ist.",
+      offline: "Offline. Neuer Versuch…", footer: "Liveticker mit {app}", penalties: "Elfmeter: {a}-{b}" },
+    pt: { soon: "A transmissão começa em breve", soonSub: "Assim que a equipa começar a registar o jogo, vês aqui.", live: "EM DIRETO", ht: "INTERVALO", ft: "FINAL", pre: "EM BREVE", p1: "1ª parte", p2: "2ª parte", pr1: "Prolongamento · 1ª", pr2: "Prolongamento · 2ª",
+      pen: "Penáltis", descanso: "Intervalo", final: "Final do jogo", previa: "Antes do jogo", startsAt: "Começa às {h}", goals: "Golos", noGoals: "Ainda não há golos.",
+      assist: "Assistência: {n}", goalOf: "Golo do {e}", alerts: "Avisos", notify: "🔔 Avisar-me dos golos", notified: "✓ Vamos avisar-te dos golos",
+      notifyNote: "Recebes um aviso a cada golo, ao intervalo e no fim, mesmo com o telemóvel bloqueado.", remove: "Tirar os avisos",
+      sound: "Som e vibração nos golos, com a página aberta", gooool: "GOOOLO!", tapClose: "Toca para fechar", rivalGoal: "Golo do {e}",
+      ios: "No iPhone, os avisos com o ecrã bloqueado só funcionam a partir do ecrã principal: Partilhar → «Adicionar ao ecrã principal», abre a partir daí e volta a tocar no botão.",
+      noPush: "Este navegador não permite avisos com o telemóvel bloqueado. Com a página aberta vês na mesma cada golo.",
+      denied: "Bloqueaste os avisos desta página. Podes permiti-los nas definições do navegador.", failed: "Não foi possível ativar os avisos. Tenta outra vez.",
+      gone: "Esta transmissão já não está ativa", goneSub: "A ligação foi desativada. Pede a nova à tua equipa.", notFound: "Não encontramos este jogo", notFoundSub: "Verifica se a ligação está completa.",
+      offline: "Sem ligação. A tentar de novo…", footer: "Transmissão em direto com {app}", penalties: "Penáltis: {a}-{b}" },
+  };
+  let lang = (navigator.language || "es").slice(0, 2);
+  if (!TX[lang]) lang = "es";
+  const t = (k, v = {}) => (TX[lang][k] || TX.es[k] || k).replace(/\{(\w+)\}/g, (_, x) => v[x] ?? "");
+
+  /* ---------- utilidades ---------- */
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const EN_JUEGO = ["p1", "p2", "pr1", "pr2", "pen"];
+  const minutoDe = (d) => {
+    const r = d.reloj || {};
+    const secs = (r.base || 0) + (r.desde ? Math.max(0, (Date.now() - r.desde) / 1000) : 0);
+    const el = Math.floor(secs / 60), len = r.periodLen || 35, over = el - len;
+    if (over > 0) return `${(r.periodBase || 0) + len}+${over}`;
+    return String((r.periodBase || 0) + Math.max(r.desde ? 1 : 0, el));
+  };
+  const fechaLarga = (iso) => {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(iso || "")) return "";
+    try { return new Date(`${iso}T12:00:00`).toLocaleDateString(lang, { weekday: "long", day: "numeric", month: "long" }); } catch { return iso; }
+  };
+  /* Sin escudo (o si no carga), un círculo con la inicial, como en la tele. */
+  const inicial = (nombre) => (nombre || "?").replace(/^(C\.?\s?D\.?|U\.?\s?D\.?|C\.?\s?F\.?|A\.?\s?D\.?|S\.?\s?A\.?\s?D\.?|R\.?\s?C\.?\s?D\.?)\s+/i, "")
+    .replace(/^[^A-Za-zÀ-ÿ0-9]+/, "").charAt(0).toUpperCase() || "?";
+  const escudoHTML = (e) => (e.escudo
+    ? `<img src="${esc(e.escudo)}" alt="" data-l="${esc(inicial(e.nombre))}">`
+    : `<div class="letra">${esc(inicial(e.nombre))}</div>`);
+  const arreglarEscudos = () => document.querySelectorAll(".esc img").forEach((img) => {
+    img.onerror = () => { const d = document.createElement("div"); d.className = "letra"; d.textContent = img.dataset.l || "?"; img.replaceWith(d); };
+  });
+
+  /* ---------- sonido y vibración ---------- */
+  const LS_SONIDO = "cb_vivo_sonido";
+  let sonido = true;
+  try { sonido = localStorage.getItem(LS_SONIDO) !== "0"; } catch {}
+  let audio = null;
+  const despertarAudio = () => {
+    try { if (!audio) audio = new (window.AudioContext || window.webkitAudioContext)(); if (audio.state === "suspended") audio.resume(); } catch {}
+  };
+  document.addEventListener("pointerdown", despertarAudio, { passive: true });
+  const bocina = () => {
+    if (!sonido) return;
+    try { navigator.vibrate && navigator.vibrate([250, 120, 250, 120, 500]); } catch {}
+    if (!audio) return;
+    const ahora = audio.currentTime;
+    [[523, 0, .16], [659, .18, .16], [784, .36, .16], [1047, .56, .55]].forEach(([f, t0, d]) => {
+      const o = audio.createOscillator(), g = audio.createGain();
+      o.type = "triangle"; o.frequency.value = f;
+      g.gain.setValueAtTime(0.0001, ahora + t0);
+      g.gain.exponentialRampToValueAtTime(0.35, ahora + t0 + 0.02);
+      g.gain.exponentialRampToValueAtTime(0.0001, ahora + t0 + d);
+      o.connect(g).connect(audio.destination);
+      o.start(ahora + t0); o.stop(ahora + t0 + d + 0.05);
+    });
+  };
+
+  /* ---------- pintar ---------- */
+  let datos = null, clavePush = "", primera = true, vistos = new Set(), partidoVisto = "", firma = "";
+  const pintar = () => {
+    const d = datos;
+    const nos = d.nos || {}, riv = d.rival || {};
+    const A = d.casa !== false ? nos : riv, B = d.casa !== false ? riv : nos;
+    const gA = d.casa !== false ? d.score.us : d.score.them, gB = d.casa !== false ? d.score.them : d.score.us;
+    const est = d.estado || "previa";
+    const pill = EN_JUEGO.includes(est) ? ["", t("live")] : est === "descanso" ? ["descanso", t("ht")] : est === "final" ? ["final", t("ft")] : ["previa", t("pre")];
+    const linea1 = [d.competicion, fechaLarga(d.fecha), d.hora].filter(Boolean).map(esc).join(" · ");
+    let min = "", parte = "";
+    if (EN_JUEGO.includes(est) && est !== "pen") { min = `${minutoDe(d)}′`; parte = t(est); }
+    else if (est === "pen") parte = t("pen");
+    else if (est === "descanso") parte = t("descanso");
+    else if (est === "final") parte = t("final");
+    else parte = d.hora ? t("startsAt", { h: d.hora }) : t("previa");
+    const goles = (d.goles || []).map((g) => g.lado === "us"
+      ? `<div class="gol-fila"><div class="m">${esc(g.min)}′</div><div class="t"><div class="n">${esc(g.nombre || nos.nombre)}</div>${g.asist ? `<div class="a">${esc(t("assist", { n: g.asist }))}</div>` : ""}</div></div>`
+      : `<div class="gol-fila rival"><div class="m">${esc(g.min)}′</div><div class="t"><div class="n">${esc(t("goalOf", { e: riv.nombre }))}</div></div></div>`).join("");
+    $("app").innerHTML = `
+      <header class="cab">${linea1 ? `<div>${linea1}</div>` : ""}${d.lugar ? `<div>${esc(d.lugar)}</div>` : ""}</header>
+      <section class="hero">
+        <span class="pill ${pill[0]}"><span class="punto"></span>${esc(pill[1])}</span>
+        <div class="marcador">
+          <div class="eq"><div class="esc">${escudoHTML(A)}</div><div class="nom">${esc(A.nombre)}${A.sub ? `<small>${esc(A.sub)}</small>` : ""}</div></div>
+          <div class="goles"><span>${gA}</span><span class="guion">–</span><span>${gB}</span></div>
+          <div class="eq"><div class="esc">${escudoHTML(B)}</div><div class="nom">${esc(B.nombre)}${B.sub ? `<small>${esc(B.sub)}</small>` : ""}</div></div>
+        </div>
+        ${d.pen ? `<div class="pen">${esc(t("penalties", { a: d.casa !== false ? d.pen.us : d.pen.them, b: d.casa !== false ? d.pen.them : d.pen.us }))}</div>` : ""}
+        ${min ? `<div class="min" id="min">${esc(min)}</div>` : ""}
+        <div class="parte">${esc(parte)}</div>
+      </section>
+      <h2>${esc(t("goals"))}</h2>
+      ${goles || `<p class="vacio">${esc(t("noGoals"))}</p>`}
+      <h2>${esc(t("alerts"))}</h2>
+      <div class="avisos">
+        <button class="btn" id="avisar">${esc(t("notify"))}</button>
+        <p class="nota" id="avisoNota">${esc(t("notifyNote"))}</p>
+        <label class="chk"><input type="checkbox" id="sonido" ${sonido ? "checked" : ""}> ${esc(t("sound"))}</label>
+      </div>
+      <footer>${t("footer", { app: '<a href="/">CoachBase AI</a>' })}</footer>`;
+    arreglarEscudos();
+    $("sonido").onchange = (e) => { sonido = e.target.checked; despertarAudio(); try { localStorage.setItem(LS_SONIDO, sonido ? "1" : "0"); } catch {} };
+    $("avisar").onclick = avisarme;
+    pintarBotonAvisos();
+  };
+  /* El minuto corre solo entre lectura y lectura. */
+  setInterval(() => { if (datos && $("min") && EN_JUEGO.includes(datos.estado)) $("min").textContent = `${minutoDe(datos)}′`; }, 1000);
+
+  const mostrarGol = (g) => {
+    const d = datos, nos = d.nos || {}, riv = d.rival || {};
+    const A = d.casa !== false ? nos : riv, B = d.casa !== false ? riv : nos;
+    const gA = d.casa !== false ? d.score.us : d.score.them, gB = d.casa !== false ? d.score.them : d.score.us;
+    const nuestro = g.lado === "us";
+    const capa = $("capa");
+    capa.innerHTML = `<div class="golazo ${nuestro ? "" : "rival"}">
+      <div class="grito">${esc(nuestro ? t("gooool") : t("rivalGoal", { e: riv.nombre }))}</div>
+      ${nuestro ? `<div class="quien">${esc(nos.nombre)}</div>` : ""}
+      <div class="det">${esc(`${A.nombre} ${gA}-${gB} ${B.nombre}`)}${nuestro && g.nombre ? ` ·<br>${esc(g.nombre)}, ${esc(g.min)}′` : g.min ? `, ${esc(g.min)}′` : ""}</div>
+      <div class="cerrar">${esc(t("tapClose"))}</div></div>`;
+    capa.hidden = false;
+    clearTimeout(mostrarGol.tm);
+    mostrarGol.tm = setTimeout(() => { capa.hidden = true; }, 12000);
+    bocina();
+  };
+  $("capa").onclick = () => { $("capa").hidden = true; };
+
+  const recibir = (d) => {
+    const nuevos = [];
+    const mismo = d.partido === partidoVisto;
+    for (const g of d.goles || []) if (!vistos.has(g.id) && mismo && !primera) nuevos.push(g);
+    vistos = new Set((d.goles || []).map((g) => g.id));
+    partidoVisto = d.partido;
+    if (d.lang && TX[d.lang]) { lang = d.lang; document.documentElement.lang = lang; }
+    datos = d;
+    /* Solo se repinta si algo ha cambiado: el minuto corre solo (abajo). */
+    const f = JSON.stringify({ ...d, t: 0 });
+    if (f !== firma) { firma = f; pintar(); }
+    if (nuevos.length) mostrarGol(nuevos[nuevos.length - 1]);
+    primera = false;
+  };
+  const pagina = (titulo, sub) => { $("app").innerHTML = `<div class="aviso-pagina"><strong>${esc(titulo)}</strong>${esc(sub)}</div>`; };
+
+  /* ---------- lectura periódica ---------- */
+  /* Sin "no-store": la petición tiene que poder salir de la caché de la CDN
+     (3 s), que es lo que aguanta a un grupo entero preguntando a la vez. */
+  let fallos = 0, siguiente = 0, enCurso = false;
+  const leer = async () => {
+    clearTimeout(siguiente);
+    if (demo || enCurso) return;
+    enCurso = true;
+    let seguir = true;
+    try {
+      const r = await fetch(`${API}&c=${encodeURIComponent(codigo)}`);
+      if (r.status === 404) { pagina(t("notFound"), t("notFoundSub")); seguir = false; }
+      else {
+        const j = await r.json();
+        fallos = 0;
+        if (!j.activa) { pagina(t("gone"), t("goneSub")); seguir = false; }
+        else {
+          clavePush = j.clave || clavePush;
+          if (j.datos && j.datos.v) recibir(j.datos);
+          else if (!datos) pagina(t("soon"), t("soonSub"));
+        }
+      }
+    } catch {
+      fallos++;
+      if (!datos) pagina(t("offline"), "");
+    }
+    enCurso = false;
+    if (seguir) siguiente = setTimeout(leer, document.hidden ? 15000 : fallos ? 8000 : 4000);
+  };
+  /* Al volver a la página (desbloquear el móvil) se lee al momento. */
+  document.addEventListener("visibilitychange", () => { if (!document.hidden && !demo && codigo) leer(); });
+
+  /* ---------- avisos con el móvil bloqueado ---------- */
+  const LS_AVISOS = `cb_vivo_avisos_${codigo}`;
+  const avisosActivos = () => { try { return !!localStorage.getItem(LS_AVISOS); } catch { return false; } };
+  const pintarBotonAvisos = (msg) => {
+    const b = $("avisar"), n = $("avisoNota");
+    if (!b) return;
+    if (avisosActivos()) {
+      b.textContent = t("notified"); b.className = "btn hecho";
+      n.innerHTML = `${esc(t("notifyNote"))} <button class="quitar" id="quitar">${esc(t("remove"))}</button>`;
+      $("quitar").onclick = quitarAvisos;
+    } else {
+      b.textContent = t("notify"); b.className = "btn";
+      n.textContent = msg || t("notifyNote");
+    }
+  };
+  const b64aU8 = (b64) => {
+    const p = "=".repeat((4 - (b64.length % 4)) % 4);
+    const s = atob((b64 + p).replace(/-/g, "+").replace(/_/g, "/"));
+    return Uint8Array.from(s, (c) => c.charCodeAt(0));
+  };
+  async function avisarme() {
+    despertarAudio();
+    if (avisosActivos()) return;
+    if (demo) { try { localStorage.setItem(LS_AVISOS, "demo"); } catch {} pintarBotonAvisos(); return; }
+    const ios = /iPhone|iPad|iPod/.test(navigator.userAgent);
+    const instalada = window.matchMedia && matchMedia("(display-mode: standalone)").matches;
+    if (!("serviceWorker" in navigator) || !("PushManager" in window) || !("Notification" in window) || !clavePush) {
+      pintarBotonAvisos(ios && !instalada ? t("ios") : t("noPush"));
+      return;
+    }
+    try {
+      const permiso = await Notification.requestPermission();
+      if (permiso !== "granted") { pintarBotonAvisos(t("denied")); return; }
+      const reg = await navigator.serviceWorker.register("/sw.js");
+      await navigator.serviceWorker.ready;
+      let sub = await reg.pushManager.getSubscription();
+      if (!sub) sub = await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: b64aU8(clavePush) });
+      const r = await fetch(`${API}&c=${encodeURIComponent(codigo)}`, {
+        method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ sub: sub.toJSON() }),
+      });
+      const j = await r.json().catch(() => ({}));
+      if (!j.ok) throw new Error(j.reason || "fallo");
+      try { localStorage.setItem(LS_AVISOS, sub.endpoint); } catch {}
+      pintarBotonAvisos();
+    } catch {
+      pintarBotonAvisos(t("failed"));
+    }
+  }
+  /* Solo se borra la suscripción de este partido: el mismo navegador puede
+     tener también los avisos de la app, y esos se quedan. */
+  async function quitarAvisos() {
+    let endpoint = "";
+    try { endpoint = localStorage.getItem(LS_AVISOS) || ""; localStorage.removeItem(LS_AVISOS); } catch {}
+    if (endpoint && !demo) fetch(`${API}&c=${encodeURIComponent(codigo)}`, { method: "DELETE", headers: { "content-type": "application/json" }, body: JSON.stringify({ endpoint }) }).catch(() => {});
+    pintarBotonAvisos();
+  }
+
+  /* ---------- arranque ---------- */
+  if (demo) {
+    const ahora = Date.now();
+    const base = {
+      v: 1, lang, partido: "demo", casa: true, competicion: "Liga Infantil", fecha: new Date().toISOString().slice(0, 10), hora: "11:00", lugar: "Campo Municipal",
+      nos: { nombre: "Club Deportivo Ejemplo", sub: "Infantil B", escudo: "" }, rival: { nombre: "Atlético Vecino", escudo: "" },
+      estado: "p1", reloj: { base: 22 * 60, desde: ahora, periodBase: 0, periodLen: 35 }, score: { us: 1, them: 1 }, pen: null,
+      goles: [{ id: "1", lado: "us", min: "12", nombre: "Hugo M.", asist: "Pablo R." }, { id: "2", lado: "them", min: "18", nombre: "", asist: "" }],
+    };
+    recibir(base);
+    setTimeout(() => recibir({ ...base, score: { us: 2, them: 1 }, goles: [...base.goles, { id: "3", lado: "us", min: "23", nombre: "Pablo R.", asist: "" }] }), 6000);
+  } else if (!codigo) {
+    pagina(t("notFound"), t("notFoundSub"));
+  } else {
+    /* Manifiesto de este partido: en iPhone, al añadirla a la pantalla de
+       inicio se abre aquí, y desde ahí sí llegan los avisos. */
+    const m = document.createElement("link");
+    m.rel = "manifest"; m.href = `${API}&c=${encodeURIComponent(codigo)}&m=1`;
+    document.head.appendChild(m);
+    leer();
+  }
+})();
+</script>
+</body>
+</html>

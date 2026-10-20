@@ -1,6 +1,8 @@
 import { contarLlamadas, leerUso } from "../lib/uso-airtable.mts";
 import { instalarSupabase, supabaseActivo } from "../lib/supabase-airtable.mts";
 import { clavePublica, suscribir, desuscribir, programarReloj, avisarPropuesta } from "../lib/avisos.mts";
+import { CODIGO_OK, crearOReusar, actualizar as actualizarVivo, desactivar as desactivarVivo, equipoDe as equipoDeVivo,
+  leerPublico as leerVivo, suscribirPublico as suscribirVivo, desuscribirPublico as desuscribirVivo } from "../lib/vivo.mts";
 // Proxy serverless entre la app y Airtable.
 //   ?res=(vacío)      -> Usuarios: login, registro real (crea club y equipo), alta/baja, roles
 //   ?res=equipos      -> Equipos: listar, crear y editar (rol Master)
@@ -561,7 +563,11 @@ const atender = async (req: Request) => {
        tiene por qué registrarse en COACHBASE para ver a quién se enfrenta. Lo
        que la protege es el código del enlace, y lo que hay detrás es lo mismo
        que se entrega en el acta: dorsal, nombre y posición. */
-    (req.method === "GET" && res === "ficha");
+    (req.method === "GET" && res === "ficha") ||
+    /* La retransmisión en directo también: quien la sigue es la familia o
+       cualquiera del grupo, sin cuenta. La protege el código del enlace, y
+       lo que hay detrás es solo el marcador (ver netlify/lib/vivo.mts). */
+    res === "vivo";
   const sesion = await leerSesion(req);
   if (!abierto && !sesion) {
     return j({ error: "no_autorizado", reason: "Sesión no válida o caducada. Vuelve a iniciar sesión." }, 401);
@@ -1618,6 +1624,67 @@ const atender = async (req: Request) => {
       if (res === "push-reloj" && req.method === "POST") {
         return j(await programarReloj(String(sesion.id), String(b.endpoint || ""), b.avisos));
       }
+      return j({ error: "Petición no soportada" }, 400);
+    }
+
+    /* ================= RETRANSMISIÓN EN DIRECTO =================
+       Ver netlify/lib/vivo.mts. Solo con los datos en Supabase.
+       ?res=vivo&c=…               GET lo que ve el público · POST {sub} avisarme
+                                   de los goles · DELETE {endpoint} (sin cuenta)
+       ?res=retransmision          POST {accion:"crear", team} -> {codigo}
+                                   POST {accion:"desactivar", codigo}
+       ?res=retransmision-datos    POST {codigo, datos} (el estado del partido) */
+    if (res === "vivo") {
+      if (!supabaseActivo()) return j({ ok: false, reason: "sin_supabase" }, 503);
+      const c = String(url.searchParams.get("c") || "");
+      /* Manifiesto propio de cada enlace: en iPhone, los avisos con el móvil
+         bloqueado solo llegan si la página se añade a la pantalla de inicio,
+         y así se abre directamente en este partido. */
+      if (req.method === "GET" && url.searchParams.get("m") === "1") {
+        if (!CODIGO_OK.test(c)) return j({ ok: false, reason: "no_existe" }, 404);
+        return new Response(JSON.stringify({
+          name: "Partido en directo", short_name: "En directo", start_url: `/vivo/?c=${c}`, scope: "/vivo/",
+          display: "standalone", background_color: "#0B1F3E", theme_color: "#0B1F3E",
+          icons: [{ src: "/icon-192.png", sizes: "192x192", type: "image/png" }, { src: "/icon-512.png", sizes: "512x512", type: "image/png" }],
+        }), { status: 200, headers: { "content-type": "application/manifest+json", "Cache-Control": "public, max-age=3600" } });
+      }
+      if (req.method === "GET") {
+        const d = await leerVivo(c);
+        if (!d) return j({ ok: false, reason: "no_existe" }, 404);
+        /* Todo el grupo pregunta cada pocos segundos: la CDN de Netlify guarda
+           la respuesta 3 s por enlace, así que la función contesta una vez
+           cada 3 s aunque lo estén siguiendo cincuenta móviles. */
+        return new Response(JSON.stringify(d), {
+          status: 200,
+          headers: {
+            "content-type": "application/json",
+            "Cache-Control": "public, max-age=0, must-revalidate",
+            "Netlify-CDN-Cache-Control": "public, s-maxage=3, stale-while-revalidate=5",
+            "Netlify-Vary": "query=c",
+          },
+        });
+      }
+      const b = await req.json().catch(() => ({}));
+      if (req.method === "POST") return j(await suscribirVivo(c, b.sub));
+      if (req.method === "DELETE") return j(await desuscribirVivo(c, String(b.endpoint || "")));
+      return j({ error: "Petición no soportada" }, 400);
+    }
+    if (res === "retransmision" || res === "retransmision-datos") {
+      if (!supabaseActivo()) return j({ ok: false, reason: "sin_supabase" }, 503);
+      if (req.method !== "POST") return j({ error: "Petición no soportada" }, 400);
+      const b = await req.json().catch(() => ({}));
+      if (res === "retransmision" && b.accion === "crear") {
+        const team = String(b.team || "");
+        if (!ES_REC.test(team) || !(await puedeEquipo(team))) return j({ ok: false, reason: "no_autorizado" }, 403);
+        return j(await crearOReusar(team));
+      }
+      const codigo = String(b.codigo || "");
+      if (!CODIGO_OK.test(codigo)) return j({ ok: false, reason: "no_existe" }, 404);
+      const equipo = await equipoDeVivo(codigo);
+      if (!equipo) return j({ ok: false, reason: "no_existe" }, 404);
+      if (!(await puedeEquipo(equipo))) return j({ ok: false, reason: "no_autorizado" }, 403);
+      if (res === "retransmision-datos") return j(await actualizarVivo(codigo, b.datos));
+      if (b.accion === "desactivar") return j(await desactivarVivo(codigo));
       return j({ error: "Petición no soportada" }, 400);
     }
 

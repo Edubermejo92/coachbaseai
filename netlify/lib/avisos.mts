@@ -107,6 +107,27 @@ export async function avisarUsuarios(usuarios: string[], aviso: Aviso): Promise<
   return n;
 }
 
+/* Avisos de una retransmisión en directo (ver vivo.mts) a quien los pidió
+   en la página pública: sin cuenta, solo su suscripción de push. Uno por
+   móvil y aviso, aunque el entrenador mande el mismo estado dos veces. */
+export async function avisarVivo(codigo: string, aviso: Aviso): Promise<number> {
+  const subs: { endpoint: string; p256dh: string; auth: string }[] =
+    await rest(`vivo_avisos?select=endpoint,p256dh,auth&codigo=eq.${enc(codigo)}`);
+  if (!subs.length || !(await marcar(aviso.clave))) return 0;
+  let n = 0, fallos = 0;
+  /* De diez en diez: un grupo de familias entero no debe tardar un minuto. */
+  for (let i = 0; i < subs.length; i += 10) {
+    await Promise.all(subs.slice(i, i + 10).map(async (s) => {
+      const r = await mandar({ ...s, usuario: "" }, aviso);
+      if (r === "ok") n++;
+      else if (r === "caducada") await rest(`vivo_avisos?codigo=eq.${enc(codigo)}&endpoint=eq.${enc(s.endpoint)}`, { method: "DELETE" }).catch(() => {});
+      else fallos++;
+    }));
+  }
+  if (!n && fallos) await desmarcar(aviso.clave);
+  return n;
+}
+
 /* ---------- quién es quién ---------- */
 const tieneAlguno = (u: any, roles: string[]) =>
   roles.includes(u.rol) || (u.roles_adicionales || []).some((r: string) => roles.includes(r));

@@ -113,6 +113,28 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   `cargas_fisicas` del Infantil B; en los dispositivos, un objetivo de Entrenamiento que
   venga del plan viejo ("S1 · Reentrada colectiva — …") se vacía al abrir (PT_EJEMPLO_RETIRADO).
 
+## Retransmisión en directo (v2.82.0)
+- Idea sacada del anuncio de la competencia (DirigeTuClub): en Modo partido, «📡 Retransmitir»
+  crea un enlace por equipo (`/vivo/?c=<16 letras>`) que se manda por WhatsApp. La familia lo abre
+  sin cuenta: marcador, minuto en marcha, goles con asistencia, «Avisarme de los goles» (push)
+  y el «¡GOOOL!» a pantalla completa con sonido/vibración opcional.
+- Página aparte y estática `public/vivo/index.html` (no carga la app). Lee `res=vivo` cada 4 s
+  (15 s en segundo plano); la respuesta va cacheada 3 s en el CDN de Netlify por código, así mil
+  espectadores no son mil lecturas en Supabase. `?demo=1` enseña un partido de ejemplo.
+- Nube (solo Supabase): tablas `retransmisiones` (codigo, equipo, datos JSON, activa) y
+  `vivo_avisos` (suscripciones push del público, máx. 2000 por enlace). `netlify/lib/vivo.mts`
+  limpia lo que llega (lista blanca: nada de plantilla ni notas; del rival no sale ningún nombre;
+  escudos solo https o "/") y decide los avisos: gol, descanso y final, una sola vez cada uno
+  (`push_enviados`, `avisarVivo` en avisos.mts).
+- Recursos: `res=vivo` (público: GET datos / m=1 manifiesto / POST y DELETE suscripción),
+  `res=retransmision` (crear o desactivar, con puedeEquipo) y `res=retransmision-datos`
+  (el estado del partido; en la cola sin conexión).
+- En la app: el estado sale del partido en curso (`datosVivo()`), se manda solo con 0,9 s de
+  calma. Al marcar un gol propio pregunta «¿Asistencia de…?». Nombres por defecto «nombre e
+  inicial» (menores), se puede cambiar a completo o dorsal. Guardar el acta = final. El enlace
+  sigue valiendo para los siguientes partidos hasta que se desactiva (y entonces caen las
+  suscripciones). En iPhone el aviso solo llega con la página añadida a la pantalla de inicio.
+
 ## Netlify (lecciones)
 - El conector MCP de Netlify (manage-env-vars) dice "upserted" pero NO guarda nada si se le pasan
   scopes parciales (p. ej. ["functions","runtime"]) o is_secret=true con scopes "all". Solo funciona
@@ -123,7 +145,7 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
 
 ## Pruebas
 - `npm test` = `pruebas/todas.mjs`: todas las pruebas en modo Airtable (fakeair) y en modo Supabase
-  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-10-12: 263 ✓ / 326 ✓, 0 fallos.
+  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-10-20: 304 ✓ / 395 ✓, 0 fallos.
 - Desde la sesión de Claude NO hay red hacia airtable.com ni supabase.co (proxy 403): la prueba
   real contra Supabase la hace la propia app en Netlify.
 

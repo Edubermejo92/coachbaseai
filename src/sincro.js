@@ -31,7 +31,7 @@ const DOCS = new Set(["cargas", "abp-corners", "alineacion", "alineaciones-favor
 /* Recursos con registros sueltos que se pueden cambiar o borrar en diferido. */
 const REGISTROS = new Set(["jugadores", "partidos", "incidencias", "partes", "actas", "plantillas", "convocatorias", "entrenamientos", "clubes", "equipos", "propuestas", "parte-sancion"]);
 /* Escrituras POST idempotentes que no son documentos ni altas. */
-const POST_IDEMPOTENTES = new Set(["datos-jugador", "convocatoria-enviada"]);
+const POST_IDEMPOTENTES = new Set(["datos-jugador", "convocatoria-enviada", "retransmision-datos"]);
 
 const ES_FUNCION = /\/\.netlify\/functions\/airtable$/;
 
