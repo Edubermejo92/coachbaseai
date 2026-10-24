@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import { crearSincro } from "./sincro.js";
 import { iniciarSuperwall, identificarSuperwall, resetSuperwall, estadoSuscripcionSuperwall, atributosSuperwall, paginaSuperwall, mostrarPaywall } from "./superwall.js";
 import { construirJugada, tokensDeEstado, trazosJugada, PIDE, CON_BALON, TIPOS_JUGADA } from "./jugada3d.js";
+import { cargarLogo, pintarLogo, crearAudio, prepararMusica, grabarLienzo, leerOpcionMusica, guardarOpcionMusica, leerCancion, guardarCancion, MAX_CANCION } from "./videoMarca.js";
 
 /* ============================================================
    COACHBASE AI by EBLDigital — Prototipo v9
@@ -86,7 +87,7 @@ const DICT = {
     "ln.sendProposal": "Enviar propuesta",
     "ln.dragHint": "Arrastra para recolocar · toque corto para asignar",
     "ln.benchTitle": "Banquillo", "ln.calledSubs": "Suplentes convocados", "ln.notCalled": "No convocados", "ln.notCalledTag": "No convocado", "ln.noCallYet": "Todavía no hay convocatoria, así que aquí salen todos. Haz la convocatoria y verás quién va y quién se queda fuera.", "ln.goCall": "Ir a Convocatoria", "ln.xiNotCalled": "En el once hay {n} sin convocar: {names}.", "ln.sumCalled": "Convocados", "ln.sumXI": "En el once", "ln.sumSubs": "Suplentes", "ln.sumOut": "Fuera", "ln.callIn": "Convocar", "ln.callOut": "Quitar de la convocatoria", "ln.noneHere": "Nadie.", "conv.label": "Convocatoria", "conv.conv": "Convocado", "conv.tecnica": "Descartado · decisión técnica", "conv.lesion": "Descartado · lesión", "conv.sancion": "Descartado · sanción", "conv.no": "No convocado (sin motivo)", "lin.POR": "Porteros", "lin.DEF": "Defensas", "lin.MED": "Centrocampistas", "lin.DEL": "Delanteros", "lin.none": "Sin demarcación habitual", "lin1.POR": "Portero", "lin1.DEF": "Defensa", "lin1.MED": "Centrocampista", "lin1.DEL": "Delantero", "lin.same": "misma posición", "pf.lineTitle": "Demarcación habitual", "pf.lineHint": "Sirve para proponerte cambios de su misma posición. Si no la pones, se deduce de dónde ha jugado.", "pf.lineAuto": "Deducida: {l}", "pf.lineNone": "Sin poner", "mt.whoOut": "¿Quién sale?", "mt.inFor": "Entra {n}: ¿por quién?", "mt.starterFor": "Titular en {p}: {n}. Cambiar por:", "mt.starterSwapHint": "Antes del saque: cambias el titular sin apuntar nada en el acta.", "mt.onPitchGroup": "En el campo", "mt.benchGroup": "Banquillo", "mt.notCalledGroup": "No convocados", "mt.alreadyOut": "Ya jugaron · pueden volver", "mt.reentry": "Reingresos", "mt.reentryOn": "Quien sale puede volver a entrar", "mt.reentryOff": "Quien sale ya no vuelve", "mt.reentryHint": "En fútbol 7 suele estar permitido; en fútbol 11 depende de la competición.", "mt.newMatch": "Nuevo partido", "mt.newMatchHint": "Pone el marcador, el reloj y el acta a cero y devuelve el once inicial.", "mt.newMatchConfirm": "El acta de este partido no está guardada en el histórico. ¿Empezar otro partido igualmente?", "mt.liveBar": "Partido en curso", "mt.backToMatch": "Volver al partido", "mt.bgHint": "El reloj sigue contando aunque cierres la app o bloquees el móvil, y el acta y el marcador se guardan en este dispositivo. Mientras corre, la pantalla no se apaga.",
-    "ln.video": "🎬 Vídeo del once", "ln.videoPro": "🎬 Vídeo del once · PRO", "ln.videoRec": "Grabando…", "ln.videoOk": "✓ Vídeo listo.", "ln.videoFail": "No se pudo generar el vídeo.", "ln.videoNoXI": "Pon el once antes de generar el vídeo.", "ln.videoDownload": "⤓ Descargar vídeo", "ln.shareWhatsapp": "⬆ Enviar por WhatsApp", "ln.downloadLineup": "⤓ Descargar alineación", "ln.downloadOk": "✓ Descargada.",
+    "ln.video": "🎬 Vídeo del once", "ln.videoPro": "🎬 Vídeo del once · PRO", "ln.videoRec": "Grabando…", "ln.videoOk": "✓ Vídeo listo.", "ln.videoFail": "No se pudo generar el vídeo.", "ln.videoNoXI": "Pon el once antes de generar el vídeo.", "ln.videoDownload": "⤓ Descargar vídeo", "vm.music": "Música", "vm.ours": "CoachBase", "vm.mine": "Mi canción", "vm.none": "Sin música", "vm.change": "Cambiar", "vm.local": "Tu canción se queda en este dispositivo: no se sube a ningún sitio.", "vm.tooBig": "Esa canción pesa demasiado (máx. 25 MB).", "vm.fail": "No se pudo leer tu canción: el vídeo lleva la música de CoachBase.", "ln.shareWhatsapp": "⬆ Enviar por WhatsApp", "ln.downloadLineup": "⤓ Descargar alineación", "ln.downloadOk": "✓ Descargada.",
     "ln.shareImageBusy": "Generando imagen…",
     "ln.shareImageOk": "✓ Imagen lista.",
     "ln.shareImageFail": "No se pudo generar la imagen.",
@@ -696,7 +697,7 @@ const DICT = {
     "ln.sendProposal": "Send proposal",
     "ln.dragHint": "Drag to reposition · tap to assign",
     "ln.benchTitle": "Bench", "ln.calledSubs": "Called-up substitutes", "ln.notCalled": "Not called up", "ln.notCalledTag": "Not called up", "ln.noCallYet": "There is no squad list yet, so everyone shows here. Make the squad list to see who is in and who is left out.", "ln.goCall": "Go to Squad list", "ln.xiNotCalled": "The line-up has {n} not called up: {names}.", "ln.sumCalled": "Called up", "ln.sumXI": "In the XI", "ln.sumSubs": "Subs", "ln.sumOut": "Left out", "ln.callIn": "Call up", "ln.callOut": "Remove from squad list", "ln.noneHere": "Nobody.", "conv.label": "Squad list", "conv.conv": "Called up", "conv.tecnica": "Left out · coach's decision", "conv.lesion": "Left out · injury", "conv.sancion": "Left out · suspension", "conv.no": "Not called up (no reason)", "lin.POR": "Goalkeepers", "lin.DEF": "Defenders", "lin.MED": "Midfielders", "lin.DEL": "Forwards", "lin.none": "No usual position", "lin1.POR": "Goalkeeper", "lin1.DEF": "Defender", "lin1.MED": "Midfielder", "lin1.DEL": "Forward", "lin.same": "same position", "pf.lineTitle": "Usual position", "pf.lineHint": "Used to suggest substitutes for the same position. If you leave it empty, it is worked out from where they have played.", "pf.lineAuto": "Worked out: {l}", "pf.lineNone": "Not set", "mt.whoOut": "Who comes off?", "mt.inFor": "{n} comes on: for whom?", "mt.starterFor": "Starting at {p}: {n}. Replace with:", "mt.starterSwapHint": "Before kick-off: you change the starter without logging a substitution.", "mt.onPitchGroup": "On the pitch", "mt.benchGroup": "Bench", "mt.notCalledGroup": "Not called up", "mt.alreadyOut": "Already played · can come back", "mt.reentry": "Re-entry", "mt.reentryOn": "Players who come off can come back on", "mt.reentryOff": "Players who come off cannot return", "mt.reentryHint": "Usually allowed in 7-a-side; in 11-a-side it depends on the competition.", "mt.newMatch": "New match", "mt.newMatchHint": "Resets the score, clock and log and restores the starting line-up.", "mt.newMatchConfirm": "This match log isn't saved to the history. Start a new match anyway?", "mt.liveBar": "Match in progress", "mt.backToMatch": "Back to the match", "mt.bgHint": "The clock keeps running even if you close the app or lock your phone, and the log and score are kept on this device. While it runs, the screen stays on.",
-    "ln.video": "🎬 Line-up video", "ln.videoPro": "🎬 Line-up video · PRO", "ln.videoRec": "Recording…", "ln.videoOk": "✓ Video ready.", "ln.videoFail": "Could not generate the video.", "ln.videoNoXI": "Pick the XI before making the video.", "ln.videoDownload": "⤓ Download video", "ln.shareWhatsapp": "⬆ Send on WhatsApp", "ln.downloadLineup": "⤓ Download line-up", "ln.downloadOk": "✓ Downloaded.",
+    "ln.video": "🎬 Line-up video", "ln.videoPro": "🎬 Line-up video · PRO", "ln.videoRec": "Recording…", "ln.videoOk": "✓ Video ready.", "ln.videoFail": "Could not generate the video.", "ln.videoNoXI": "Pick the XI before making the video.", "ln.videoDownload": "⤓ Download video", "vm.music": "Music", "vm.ours": "CoachBase", "vm.mine": "My song", "vm.none": "No music", "vm.change": "Change", "vm.local": "Your song stays on this device: it isn't uploaded anywhere.", "vm.tooBig": "That song is too big (max 25 MB).", "vm.fail": "Couldn't read your song: the video uses the CoachBase music.", "ln.shareWhatsapp": "⬆ Send on WhatsApp", "ln.downloadLineup": "⤓ Download line-up", "ln.downloadOk": "✓ Downloaded.",
     "ln.shareImageBusy": "Generating image…",
     "ln.shareImageOk": "✓ Image ready.",
     "ln.shareImageFail": "Couldn't generate the image.",
@@ -1318,7 +1319,7 @@ const DICT = {
     "ln.sendProposal": "Envoyer la proposition",
     "ln.dragHint": "Glissez pour repositionner · touchez pour affecter",
     "ln.benchTitle": "Remplaçants", "ln.calledSubs": "Remplaçants convoqués", "ln.notCalled": "Non convoqués", "ln.notCalledTag": "Non convoqué", "ln.noCallYet": "Pas encore de convocation : tout le monde apparaît ici. Faites la convocation pour voir qui vient et qui reste dehors.", "ln.goCall": "Aller à Convocation", "ln.xiNotCalled": "La composition compte {n} non convoqué(s) : {names}.", "ln.sumCalled": "Convoqués", "ln.sumXI": "Dans le XI", "ln.sumSubs": "Remplaçants", "ln.sumOut": "Dehors", "ln.callIn": "Convoquer", "ln.callOut": "Retirer de la convocation", "ln.noneHere": "Personne.", "conv.label": "Convocation", "conv.conv": "Convoqué", "conv.tecnica": "Écarté · choix technique", "conv.lesion": "Écarté · blessure", "conv.sancion": "Écarté · suspension", "conv.no": "Non convoqué (sans motif)", "lin.POR": "Gardiens", "lin.DEF": "Défenseurs", "lin.MED": "Milieux", "lin.DEL": "Attaquants", "lin.none": "Sans poste habituel", "lin1.POR": "Gardien", "lin1.DEF": "Défenseur", "lin1.MED": "Milieu", "lin1.DEL": "Attaquant", "lin.same": "même poste", "pf.lineTitle": "Poste habituel", "pf.lineHint": "Sert à proposer des remplacements au même poste. Si vous ne l'indiquez pas, il est déduit des matchs joués.", "pf.lineAuto": "Déduit : {l}", "pf.lineNone": "Non défini", "mt.whoOut": "Qui sort ?", "mt.inFor": "{n} entre : à la place de qui ?", "mt.starterFor": "Titulaire au poste {p} : {n}. Remplacer par :", "mt.starterSwapHint": "Avant le coup d'envoi : vous changez le titulaire sans rien noter sur la feuille.", "mt.onPitchGroup": "Sur le terrain", "mt.benchGroup": "Banc", "mt.notCalledGroup": "Non convoqués", "mt.alreadyOut": "Déjà joué · peuvent revenir", "mt.reentry": "Retours en jeu", "mt.reentryOn": "Un joueur remplacé peut revenir", "mt.reentryOff": "Un joueur remplacé ne revient pas", "mt.reentryHint": "Souvent autorisé à 7 ; à 11, cela dépend de la compétition.", "mt.newMatch": "Nouveau match", "mt.newMatchHint": "Remet le score, le chrono et la feuille à zéro et rétablit le onze de départ.", "mt.newMatchConfirm": "La feuille de ce match n'est pas enregistrée dans l'historique. Commencer un autre match quand même ?", "mt.liveBar": "Match en cours", "mt.backToMatch": "Retour au match", "mt.bgHint": "Le chrono continue même si vous fermez l'app ou verrouillez le téléphone, et la feuille et le score restent sur cet appareil. Tant qu'il tourne, l'écran reste allumé.",
-    "ln.video": "🎬 Vidéo du onze", "ln.videoPro": "🎬 Vidéo du onze · PRO", "ln.videoRec": "Enregistrement…", "ln.videoOk": "✓ Vidéo prête.", "ln.videoFail": "Impossible de générer la vidéo.", "ln.videoNoXI": "Composez le onze avant de faire la vidéo.", "ln.videoDownload": "⤓ Télécharger la vidéo", "ln.shareWhatsapp": "⬆ Envoyer par WhatsApp", "ln.downloadLineup": "⤓ Télécharger la compo", "ln.downloadOk": "✓ Téléchargée.",
+    "ln.video": "🎬 Vidéo du onze", "ln.videoPro": "🎬 Vidéo du onze · PRO", "ln.videoRec": "Enregistrement…", "ln.videoOk": "✓ Vidéo prête.", "ln.videoFail": "Impossible de générer la vidéo.", "ln.videoNoXI": "Composez le onze avant de faire la vidéo.", "ln.videoDownload": "⤓ Télécharger la vidéo", "vm.music": "Musique", "vm.ours": "CoachBase", "vm.mine": "Ma chanson", "vm.none": "Sans musique", "vm.change": "Changer", "vm.local": "Ta chanson reste sur cet appareil : elle n'est envoyée nulle part.", "vm.tooBig": "Ce fichier est trop lourd (25 Mo max.).", "vm.fail": "Impossible de lire ta chanson : la vidéo utilise la musique CoachBase.", "ln.shareWhatsapp": "⬆ Envoyer par WhatsApp", "ln.downloadLineup": "⤓ Télécharger la compo", "ln.downloadOk": "✓ Téléchargée.",
     "ln.shareImageBusy": "Génération de l'image…",
     "ln.shareImageOk": "✓ Image prête.",
     "ln.shareImageFail": "Impossible de générer l'image.",
@@ -2020,7 +2021,7 @@ const DICT = {
     "ln.sendProposal": "Vorschlag senden",
     "ln.dragHint": "Ziehen zum Umstellen · Antippen zum Zuweisen",
     "ln.benchTitle": "Bank", "ln.calledSubs": "Nominierte Ersatzspieler", "ln.notCalled": "Nicht nominiert", "ln.notCalledTag": "Nicht nominiert", "ln.noCallYet": "Noch kein Kader, daher stehen hier alle. Stell den Kader zusammen, dann siehst du, wer dabei ist und wer nicht.", "ln.goCall": "Zum Kader", "ln.xiNotCalled": "In der Startelf stehen {n} nicht Nominierte: {names}.", "ln.sumCalled": "Nominiert", "ln.sumXI": "Startelf", "ln.sumSubs": "Ersatz", "ln.sumOut": "Draußen", "ln.callIn": "Nominieren", "ln.callOut": "Aus dem Kader nehmen", "ln.noneHere": "Niemand.", "conv.label": "Kader", "conv.conv": "Nominiert", "conv.tecnica": "Nicht nominiert · Trainerentscheidung", "conv.lesion": "Nicht nominiert · Verletzung", "conv.sancion": "Nicht nominiert · Sperre", "conv.no": "Nicht nominiert (ohne Grund)", "lin.POR": "Torhüter", "lin.DEF": "Verteidiger", "lin.MED": "Mittelfeldspieler", "lin.DEL": "Stürmer", "lin.none": "Ohne Stammposition", "lin1.POR": "Torhüter", "lin1.DEF": "Verteidiger", "lin1.MED": "Mittelfeld", "lin1.DEL": "Stürmer", "lin.same": "gleiche Position", "pf.lineTitle": "Stammposition", "pf.lineHint": "Damit werden Wechsel auf derselben Position vorgeschlagen. Ohne Angabe wird sie aus den bisherigen Einsätzen abgeleitet.", "pf.lineAuto": "Abgeleitet: {l}", "pf.lineNone": "Nicht gesetzt", "mt.whoOut": "Wer geht raus?", "mt.inFor": "{n} kommt rein: für wen?", "mt.starterFor": "Startelf auf {p}: {n}. Ersetzen durch:", "mt.starterSwapHint": "Vor dem Anpfiff: Du tauschst die Startelf, ohne einen Wechsel einzutragen.", "mt.onPitchGroup": "Auf dem Platz", "mt.benchGroup": "Bank", "mt.notCalledGroup": "Nicht nominiert", "mt.alreadyOut": "Schon gespielt · dürfen zurück", "mt.reentry": "Wiedereinwechslung", "mt.reentryOn": "Ausgewechselte dürfen wieder rein", "mt.reentryOff": "Ausgewechselte dürfen nicht zurück", "mt.reentryHint": "Im 7er-Fußball meist erlaubt; im 11er hängt es vom Wettbewerb ab.", "mt.newMatch": "Neues Spiel", "mt.newMatchHint": "Setzt Spielstand, Uhr und Bericht zurück und stellt die Startelf wieder her.", "mt.newMatchConfirm": "Der Spielbericht ist nicht im Verlauf gespeichert. Trotzdem ein neues Spiel beginnen?", "mt.liveBar": "Spiel läuft", "mt.backToMatch": "Zurück zum Spiel", "mt.bgHint": "Die Uhr läuft weiter, auch wenn du die App schließt oder das Handy sperrst, und Bericht und Spielstand bleiben auf diesem Gerät. Solange sie läuft, bleibt der Bildschirm an.",
-    "ln.video": "🎬 Video der Elf", "ln.videoPro": "🎬 Video der Elf · PRO", "ln.videoRec": "Aufnahme…", "ln.videoOk": "✓ Video fertig.", "ln.videoFail": "Video konnte nicht erstellt werden.", "ln.videoNoXI": "Stelle erst die Elf auf.", "ln.videoDownload": "⤓ Video herunterladen", "ln.shareWhatsapp": "⬆ Per WhatsApp senden", "ln.downloadLineup": "⤓ Aufstellung laden", "ln.downloadOk": "✓ Heruntergeladen.",
+    "ln.video": "🎬 Video der Elf", "ln.videoPro": "🎬 Video der Elf · PRO", "ln.videoRec": "Aufnahme…", "ln.videoOk": "✓ Video fertig.", "ln.videoFail": "Video konnte nicht erstellt werden.", "ln.videoNoXI": "Stelle erst die Elf auf.", "ln.videoDownload": "⤓ Video herunterladen", "vm.music": "Musik", "vm.ours": "CoachBase", "vm.mine": "Mein Song", "vm.none": "Ohne Musik", "vm.change": "Ändern", "vm.local": "Dein Song bleibt auf diesem Gerät und wird nirgends hochgeladen.", "vm.tooBig": "Die Datei ist zu groß (max. 25 MB).", "vm.fail": "Dein Song ließ sich nicht lesen: Das Video nutzt die CoachBase-Musik.", "ln.shareWhatsapp": "⬆ Per WhatsApp senden", "ln.downloadLineup": "⤓ Aufstellung laden", "ln.downloadOk": "✓ Heruntergeladen.",
     "ln.shareImageBusy": "Bild wird erstellt…",
     "ln.shareImageOk": "✓ Bild bereit.",
     "ln.shareImageFail": "Bild konnte nicht erstellt werden.",
@@ -2721,7 +2722,7 @@ const DICT = {
     "ln.sendProposal": "Enviar proposta",
     "ln.dragHint": "Arrasta para recolocar · toque curto para atribuir",
     "ln.benchTitle": "Banco", "ln.calledSubs": "Suplentes convocados", "ln.notCalled": "Não convocados", "ln.notCalledTag": "Não convocado", "ln.noCallYet": "Ainda não há convocatória, por isso aparecem todos. Faz a convocatória e vês quem vai e quem fica de fora.", "ln.goCall": "Ir à Convocatória", "ln.xiNotCalled": "No onze há {n} sem convocar: {names}.", "ln.sumCalled": "Convocados", "ln.sumXI": "No onze", "ln.sumSubs": "Suplentes", "ln.sumOut": "De fora", "ln.callIn": "Convocar", "ln.callOut": "Tirar da convocatória", "ln.noneHere": "Ninguém.", "conv.label": "Convocatória", "conv.conv": "Convocado", "conv.tecnica": "Fora · opção técnica", "conv.lesion": "Fora · lesão", "conv.sancion": "Fora · castigo", "conv.no": "Não convocado (sem motivo)", "lin.POR": "Guarda-redes", "lin.DEF": "Defesas", "lin.MED": "Médios", "lin.DEL": "Avançados", "lin.none": "Sem posição habitual", "lin1.POR": "Guarda-redes", "lin1.DEF": "Defesa", "lin1.MED": "Médio", "lin1.DEL": "Avançado", "lin.same": "mesma posição", "pf.lineTitle": "Posição habitual", "pf.lineHint": "Serve para sugerir substituições na mesma posição. Se não a puseres, deduz-se de onde jogou.", "pf.lineAuto": "Deduzida: {l}", "pf.lineNone": "Por definir", "mt.whoOut": "Quem sai?", "mt.inFor": "Entra {n}: por quem?", "mt.starterFor": "Titular em {p}: {n}. Trocar por:", "mt.starterSwapHint": "Antes do apito inicial: trocas o titular sem registar nada na ficha.", "mt.onPitchGroup": "Em campo", "mt.benchGroup": "Banco", "mt.notCalledGroup": "Não convocados", "mt.alreadyOut": "Já jogaram · podem voltar", "mt.reentry": "Reentradas", "mt.reentryOn": "Quem sai pode voltar a entrar", "mt.reentryOff": "Quem sai já não volta", "mt.reentryHint": "No futebol de 7 costuma ser permitido; no de 11 depende da competição.", "mt.newMatch": "Novo jogo", "mt.newMatchHint": "Põe o marcador, o relógio e a ficha a zero e repõe o onze inicial.", "mt.newMatchConfirm": "A ficha deste jogo não está guardada no histórico. Começar outro jogo na mesma?", "mt.liveBar": "Jogo em curso", "mt.backToMatch": "Voltar ao jogo", "mt.bgHint": "O relógio continua a contar mesmo que feches a app ou bloqueies o telemóvel, e a ficha e o marcador ficam guardados neste dispositivo. Enquanto corre, o ecrã não se apaga.",
-    "ln.video": "🎬 Vídeo do onze", "ln.videoPro": "🎬 Vídeo do onze · PRO", "ln.videoRec": "A gravar…", "ln.videoOk": "✓ Vídeo pronto.", "ln.videoFail": "Não foi possível gerar o vídeo.", "ln.videoNoXI": "Escolhe o onze antes de fazer o vídeo.", "ln.videoDownload": "⤓ Descarregar vídeo", "ln.shareWhatsapp": "⬆ Enviar por WhatsApp", "ln.downloadLineup": "⤓ Descarregar onze", "ln.downloadOk": "✓ Descarregado.",
+    "ln.video": "🎬 Vídeo do onze", "ln.videoPro": "🎬 Vídeo do onze · PRO", "ln.videoRec": "A gravar…", "ln.videoOk": "✓ Vídeo pronto.", "ln.videoFail": "Não foi possível gerar o vídeo.", "ln.videoNoXI": "Escolhe o onze antes de fazer o vídeo.", "ln.videoDownload": "⤓ Descarregar vídeo", "vm.music": "Música", "vm.ours": "CoachBase", "vm.mine": "A minha música", "vm.none": "Sem música", "vm.change": "Trocar", "vm.local": "A tua música fica neste dispositivo: não é enviada para lado nenhum.", "vm.tooBig": "Essa música é demasiado grande (máx. 25 MB).", "vm.fail": "Não foi possível ler a tua música: o vídeo leva a música CoachBase.", "ln.shareWhatsapp": "⬆ Enviar por WhatsApp", "ln.downloadLineup": "⤓ Descarregar onze", "ln.downloadOk": "✓ Descarregado.",
     "ln.shareImageBusy": "A gerar imagem…",
     "ln.shareImageOk": "✓ Imagem pronta.",
     "ln.shareImageFail": "Não foi possível gerar a imagem.",
@@ -9849,21 +9850,85 @@ const parseCSV = (txt, startId) => {
   return out;
 };
 
-/* ---------------- Generador de vídeo 5 s (canvas → webm) ---------------- */
-async function makePresentationVideo(player, club, teamName, accent, pos) {
-  const W = 540, H = 675, DUR = 5;
+/* Qué música lleva el vídeo (el del once y el de cada jugador): la de
+   CoachBase, una canción del propio móvil o ninguna. La preferencia y la
+   canción se quedan en este dispositivo (videoMarca.js). */
+function SelectorMusica({ t, C, AC }) {
+  const [opcion, setOpcion] = useState(leerOpcionMusica);
+  const [cancion, setCancion] = useState("");
+  const [aviso, setAviso] = useState("");
+  useEffect(() => {
+    let vivo = true;
+    leerCancion().then((c) => { if (vivo && c) setCancion(c.nombre); });
+    return () => { vivo = false; };
+  }, []);
+  const elegir = (v) => { setOpcion(v); guardarOpcionMusica(v); setAviso(""); };
+  const subir = async (file) => {
+    if (!file) return;
+    if (file.size > MAX_CANCION) { setAviso(t("vm.tooBig")); return; }
+    const c = await guardarCancion(file);
+    setCancion(c.nombre);
+    elegir("propia");
+    setAviso(t("vm.local"));
+  };
+  const elegirArchivo = (
+    <input type="file" accept="audio/*" className="hidden" onChange={(e) => { subir(e.target.files?.[0]); e.target.value = ""; }} />
+  );
+  const cls = "text-[11px] px-2 py-0.5 rounded-full border font-display uppercase tracking-wide cursor-pointer";
+  const chip = (activo) => ({ borderColor: activo ? AC : C.line, color: activo ? AC : C.dim });
+  return (
+    <div className="flex flex-col gap-1">
+      <div className="flex items-center gap-1 flex-wrap">
+        <span className="text-[11px] mr-0.5" style={{ color: C.dim }}>🎵 {t("vm.music")}</span>
+        <button type="button" onClick={() => elegir("coachbase")} className={cls} style={chip(opcion === "coachbase")}>{t("vm.ours")}</button>
+        {cancion ? (
+          <button type="button" onClick={() => elegir("propia")} className={cls} style={chip(opcion === "propia")} title={cancion}>{t("vm.mine")}</button>
+        ) : (
+          <label className={cls} style={chip(false)}>{t("vm.mine")}{elegirArchivo}</label>
+        )}
+        <button type="button" onClick={() => elegir("no")} className={cls} style={chip(opcion === "no")}>{t("vm.none")}</button>
+      </div>
+      {opcion === "propia" && cancion && (
+        <div className="text-[11px] flex items-center gap-1.5 min-w-0" style={{ color: C.dim }}>
+          <span className="truncate">♪ {cancion}</span>
+          <label className="underline cursor-pointer shrink-0" style={{ color: AC }}>{t("vm.change")}{elegirArchivo}</label>
+        </div>
+      )}
+      {aviso && <div className="text-[11px]" style={{ color: aviso === t("vm.local") ? C.dim : C.warn }}>{aviso}</div>}
+    </div>
+  );
+}
+
+/* ---------------- Vídeo de presentación de un jugador (canvas → mp4/webm) ----------------
+   5 s de ficha y 1 s de cierre con el logo de CoachBase AI, con música
+   (videoMarca.js). Devuelve { url, ext }. */
+/* Brillo (0-1) de un color #rgb/#rrggbb: los vídeos tienen fondo oscuro
+   siempre, y un acento de club negro o azul marino no se leería encima. */
+const brilloDe = (col) => {
+  const m = /^#?([0-9a-f]{3}|[0-9a-f]{6})$/i.exec(String(col).trim());
+  if (!m) return 1;
+  const h = m[1].length === 3 ? m[1].split("").map((c) => c + c).join("") : m[1];
+  const [r, g, b] = [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16) / 255);
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+};
+
+async function makePresentationVideo(player, club, teamName, accent, pos, { musica = null, logo = null } = {}) {
+  const W = 540, H = 675, FICHA = 5, DUR = FICHA + 1;
+  /* Fondo oscuro siempre: textos en claro, y el acento del club solo si se
+     lee (como en el vídeo del once). Antes nombre, club y dorsal iban en
+     gris pizarra o en el acento tal cual, y con un club de color oscuro no
+     se veían. */
+  const CLARO = "#E8EDE6", TENUE = "rgba(232,237,230,0.65)";
+  accent = brilloDe(accent) > 0.4 ? accent : CLARO;
   const canvas = document.createElement("canvas");
   canvas.width = W; canvas.height = H;
   const ctx = canvas.getContext("2d");
   const img = new Image();
+  /* La foto vive en Supabase (otro origen): sin crossOrigin el lienzo queda
+     "manchado" y la grabación falla entera. */
+  img.crossOrigin = "anonymous";
   img.src = player.photo;
-  await img.decode();
-  const stream = canvas.captureStream(30);
-  const mime = MediaRecorder.isTypeSupported("video/webm;codecs=vp9") ? "video/webm;codecs=vp9" : "video/webm";
-  const rec = new MediaRecorder(stream, { mimeType: mime, videoBitsPerSecond: 4_000_000 });
-  const chunks = [];
-  rec.ondataavailable = (e) => e.data.size && chunks.push(e.data);
-  const done = new Promise((res) => { rec.onstop = () => res(URL.createObjectURL(new Blob(chunks, { type: "video/webm" }))); });
+  try { await img.decode(); } catch (e) { musica?.parar(); throw e; }
   const drawCover = (image, x, y, w, h) => {
     const s = Math.max(w / image.width, h / image.height);
     const iw = image.width * s, ih = image.height * s;
@@ -9871,13 +9936,14 @@ async function makePresentationVideo(player, club, teamName, accent, pos) {
   };
   const frame = (t) => {
     for (let i = 0; i < 10; i++) { ctx.fillStyle = i % 2 ? "#17251D" : "#141F17"; ctx.fillRect(0, i * (H / 10), W, H / 10); }
-    ctx.strokeStyle = "rgba(54,69,79,0.18)"; ctx.lineWidth = 3; ctx.strokeRect(16, 16, W - 32, H - 32);
+    ctx.strokeStyle = "rgba(232,237,230,0.08)"; ctx.lineWidth = 3; ctx.strokeRect(16, 16, W - 32, H - 32);
     const a1 = ease(t / 0.6);
     ctx.fillStyle = accent; ctx.fillRect(0, 40, W * a1, 6);
-    ctx.font = "600 26px 'Barlow Condensed', sans-serif"; ctx.fillStyle = `rgba(54,69,79,${a1})`; ctx.textAlign = "left";
+    ctx.font = "600 26px 'Barlow Condensed', sans-serif"; ctx.fillStyle = CLARO; ctx.globalAlpha = a1; ctx.textAlign = "left";
     ctx.fillText(club.toUpperCase(), 24, 82);
-    ctx.font = "500 18px 'Barlow Condensed', sans-serif"; ctx.fillStyle = `rgba(143,160,150,${a1})`;
+    ctx.font = "500 18px 'Barlow Condensed', sans-serif"; ctx.fillStyle = TENUE;
     ctx.fillText(teamName.toUpperCase(), 24, 106);
+    ctx.globalAlpha = 1;
     const a2 = ease((t - 0.4) / 1.2);
     if (a2 > 0) {
       const R = 150 * (0.6 + 0.4 * a2), cx = W / 2, cy = 300;
@@ -9892,8 +9958,8 @@ async function makePresentationVideo(player, club, teamName, accent, pos) {
     }
     const a4 = ease((t - 2.6) / 0.9);
     if (a4 > 0) {
-      ctx.textAlign = "left"; ctx.font = "700 44px 'Barlow Condensed', sans-serif"; ctx.fillStyle = `rgba(54,69,79,${a4})`;
-      ctx.fillText(player.n.toUpperCase(), 24, 540 - (1 - a4) * 24);
+      ctx.textAlign = "left"; ctx.font = "700 44px 'Barlow Condensed', sans-serif"; ctx.fillStyle = CLARO; ctx.globalAlpha = a4;
+      ctx.fillText(player.n.toUpperCase(), 24, 540 - (1 - a4) * 24); ctx.globalAlpha = 1;
       /* La demarcación viene de fuera: es la del hueco que ocupa en la
          alineación, no un dato de su ficha. Sin puesto asignado, la tarjeta
          se queda solo con dorsal y nombre. */
@@ -9902,26 +9968,37 @@ async function makePresentationVideo(player, club, teamName, accent, pos) {
         ctx.fillText(pos === "POR" ? "🧤 PORTERO" : pos, 24, 575); ctx.globalAlpha = 1;
       }
     }
-    const a5 = ease((t - 4.2) / 0.6);
-    if (a5 > 0) {
-      ctx.fillStyle = accent; ctx.fillRect(0, H - 52, W * a5, 52);
-      ctx.font = "600 22px 'Barlow Condensed', sans-serif"; ctx.fillStyle = `rgba(20,20,20,${a5})`; ctx.textAlign = "center";
-      ctx.fillText("COACHBASE AI", W / 2, H - 18);
+    if (logo) {
+      /* La marca, pequeña abajo durante la ficha… */
+      pintarLogo(ctx, logo, W / 2, H - 46, 188, ease((t - 0.3) / 0.6));
+    } else {
+      const a5 = ease((t - 4.2) / 0.6);
+      if (a5 > 0) {
+        ctx.fillStyle = accent; ctx.fillRect(0, H - 52, W * a5, 52);
+        ctx.font = "600 22px 'Barlow Condensed', sans-serif"; ctx.fillStyle = `rgba(20,20,20,${a5})`; ctx.textAlign = "center";
+        ctx.fillText("COACHBASE AI", W / 2, H - 18);
+      }
+    }
+    /* …y en grande para cerrar. */
+    const a6 = ease((t - FICHA) / 0.45);
+    if (a6 > 0 && logo) {
+      ctx.fillStyle = `rgba(12,20,15,${0.9 * a6})`; ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = accent; ctx.globalAlpha = a6; ctx.fillRect((W - 380 * a6) / 2, H / 2 + 88, 380 * a6, 5); ctx.globalAlpha = 1;
+      pintarLogo(ctx, logo, W / 2, H / 2 - 6, 400 * (0.92 + 0.08 * a6), a6);
     }
   };
-  rec.start();
-  const t0 = performance.now();
-  await new Promise((res) => {
+  return grabarLienzo(canvas, musica, logo ? DUR : FICHA, () => new Promise((res) => {
+    const fin = logo ? DUR : FICHA;
+    const t0 = performance.now();
     const loop = (now) => {
-      const t = (now - t0) / 1000; frame(Math.min(t, DUR));
-      if (t < DUR) requestAnimationFrame(loop); else { rec.stop(); res(); }
+      const t = (now - t0) / 1000; frame(Math.min(t, fin));
+      if (t < fin) requestAnimationFrame(loop); else res();
     };
     requestAnimationFrame(loop);
-  });
-  return done;
+  }));
 }
 
-/* --------- Vídeo de presentación del ONCE (canvas → webm) ---------
+/* --------- Vídeo de presentación del ONCE (canvas → mp4/webm, con música y logo) ---------
    Para ponerlo en el vestuario o mandarlo la víspera: una tarjeta por titular
    -foto, dorsal, nombre y puesto- encadenadas, con su portada y su cierre.
    Reutiliza el mismo canvas + MediaRecorder que el vídeo individual, porque
@@ -9930,7 +10007,7 @@ async function makePresentationVideo(player, club, teamName, accent, pos) {
    sin eso el canvas queda "manchado" y captureStream falla ENTERO, no solo esa
    foto. La que aun así no cargue no rompe el vídeo -esa ficha sale con el
    dorsal a lo grande, como en el campo cuando falta la foto-. */
-async function makeLineupVideo({ titulares, club, teamName, accent, sysCode, capitanes = [], escudo = null, onPaso }) {
+async function makeLineupVideo({ titulares, club, teamName, accent, sysCode, capitanes = [], escudo = null, onPaso, musica = null, logo = null }) {
   /* Guion: escudo del club → el once en el campo (se enfoca) → cada titular:
      su foto se enfoca y su dorsal se enciende en el campo → escudo de cierre. */
   const W = 540, H = 675, PORTADA = 2.4, ONCE = 2.2, POR_JUGADOR = 2.4, CIERRE = 2.4;
@@ -9942,13 +10019,6 @@ async function makeLineupVideo({ titulares, club, teamName, accent, sysCode, cap
      los textos van en claro. Si el acento del club no tiene brillo para leerse
      sobre oscuro (negro, azul marino…), se cae al claro. */
   const CLARO = "#E8EDE6", TENUE = "rgba(232,237,230,0.65)";
-  const brilloDe = (col) => {
-    const m = /^#?([0-9a-f]{3}|[0-9a-f]{6})$/i.exec(String(col).trim());
-    if (!m) return 1;
-    const h = m[1].length === 3 ? m[1].split("").map((c) => c + c).join("") : m[1];
-    const [r, g, b] = [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16) / 255);
-    return 0.2126 * r + 0.7152 * g + 0.0722 * b;
-  };
   const acento = brilloDe(accent) > 0.4 ? accent : CLARO;
   const tintaSobreAcento = acento === CLARO || brilloDe(acento) > 0.6 ? "#141414" : CLARO;
   /* El texto se encoge hasta caber en el ancho dado. */
@@ -9972,12 +10042,8 @@ async function makeLineupVideo({ titulares, club, teamName, accent, sysCode, cap
     img.src = src;
   });
   const [imgEscudo, ...fotos] = await Promise.all([cargar(escudo), ...titulares.map(({ p }) => cargar(p.photo))]);
-  const stream = canvas.captureStream(30);
-  const mime = MediaRecorder.isTypeSupported("video/webm;codecs=vp9") ? "video/webm;codecs=vp9" : "video/webm";
-  const rec = new MediaRecorder(stream, { mimeType: mime, videoBitsPerSecond: 4_000_000 });
-  const chunks = [];
-  rec.ondataavailable = (e) => e.data.size && chunks.push(e.data);
-  const done = new Promise((res) => { rec.onstop = () => res(URL.createObjectURL(new Blob(chunks, { type: "video/webm" }))); });
+  /* Marca de agua arriba a la derecha mientras se presenta el once. */
+  const marca = (a) => pintarLogo(ctx, logo, W - 89, 38, 130, a);
   const drawCover = (image, x, y, w, h) => {
     const sc = Math.max(w / image.width, h / image.height);
     const iw = image.width * sc, ih = image.height * sc;
@@ -10069,15 +10135,18 @@ async function makeLineupVideo({ titulares, club, teamName, accent, sysCode, cap
       ctx.globalAlpha = a3; ctx.font = "700 60px 'Barlow Condensed', sans-serif"; ctx.fillStyle = acento;
       ctx.fillText(sysCode, W / 2, H / 2 + 172);
       ctx.globalAlpha = 1;
+      pintarLogo(ctx, logo, W / 2, H - 62, 240, a3);
       return;
     }
     /* 2 · El once titular en el campo, de borroso a enfocado. */
     if (t < T_JUG) {
       const l = t - T_ONCE;
       const a = ease(l / 0.5), foco = ease(l / 1.2);
-      ctx.textAlign = "center"; ctx.globalAlpha = a;
+      /* Con el logo arriba a la derecha, el título se arrima a la izquierda. */
+      ctx.textAlign = logo ? "left" : "center"; ctx.globalAlpha = a;
       ctx.font = "700 30px 'Barlow Condensed', sans-serif"; ctx.fillStyle = CLARO;
-      ctx.fillText(`ONCE TITULAR · ${sysCode}`, W / 2, 56); ctx.globalAlpha = 1;
+      ctx.fillText(`ONCE TITULAR · ${sysCode}`, logo ? 24 : W / 2, 56); ctx.globalAlpha = 1;
+      marca(a);
       desenfoque((1 - foco) * 10);
       const esc = 0.9 + 0.1 * foco;
       const cw = (W - 60) * esc, ch = (H - 110) * esc;
@@ -10124,6 +10193,7 @@ async function makeLineupVideo({ titulares, club, teamName, accent, sysCode, cap
       ctx.globalAlpha = 1;
       ctx.font = "500 18px 'Barlow Condensed', sans-serif"; ctx.fillStyle = TENUE; ctx.textAlign = "right";
       ctx.fillText(`${i + 1}/${titulares.length}`, W - 24, 296);
+      marca(1);
       return;
     }
     /* 4 · Cierre: escudo, equipo y marca. */
@@ -10136,25 +10206,30 @@ async function makeLineupVideo({ titulares, club, teamName, accent, sysCode, cap
     ctx.font = "500 22px 'Barlow Condensed', sans-serif"; ctx.fillStyle = TENUE;
     ctx.fillText(club.toUpperCase(), W / 2, H / 2 + 106);
     ctx.globalAlpha = 1;
-    ctx.fillStyle = acento; ctx.fillRect(0, H - 52, W * a, 52);
-    ctx.font = "600 22px 'Barlow Condensed', sans-serif"; ctx.fillStyle = tintaSobreAcento; ctx.globalAlpha = a;
-    ctx.fillText("COACHBASE AI", W / 2, H - 18);
-    ctx.globalAlpha = 1;
+    if (logo) {
+      /* Cierre con la marca en grande. */
+      const a2 = ease((l - 0.3) / 0.7);
+      ctx.fillStyle = acento; ctx.globalAlpha = a2; ctx.fillRect((W - 360 * a2) / 2, H - 162, 360 * a2, 4); ctx.globalAlpha = 1;
+      pintarLogo(ctx, logo, W / 2, H - 82, 360 * (0.92 + 0.08 * a2), a2);
+    } else {
+      ctx.fillStyle = acento; ctx.fillRect(0, H - 52, W * a, 52);
+      ctx.font = "600 22px 'Barlow Condensed', sans-serif"; ctx.fillStyle = tintaSobreAcento; ctx.globalAlpha = a;
+      ctx.fillText("COACHBASE AI", W / 2, H - 18);
+      ctx.globalAlpha = 1;
+    }
   };
-  rec.start();
-  const t0 = performance.now();
   let ultimo = -1;
-  await new Promise((res) => {
+  return grabarLienzo(canvas, musica, DUR, () => new Promise((res) => {
+    const t0 = performance.now();
     const loop = (now) => {
       const t = (now - t0) / 1000;
       frame(Math.min(t, DUR));
       const paso = Math.max(0, Math.min(titulares.length, Math.floor((t - T_JUG) / POR_JUGADOR)));
       if (onPaso && paso !== ultimo) { ultimo = paso; onPaso(paso, titulares.length); }
-      if (t < DUR) requestAnimationFrame(loop); else { rec.stop(); res(); }
+      if (t < DUR) requestAnimationFrame(loop); else res();
     };
     requestAnimationFrame(loop);
-  });
-  return done;
+  }));
 }
 
 /* ---------------- Acceso ---------------- */
@@ -12594,6 +12669,7 @@ export default function App() {
   const [lnVidBusy, setLnVidBusy] = useState(false);
   const [lnVidMsg, setLnVidMsg] = useState("");
   const [lnVidUrl, setLnVidUrl] = useState(null);
+  const [lnVidExt, setLnVidExt] = useState("webm");
   const [lnImgMsg, setLnImgMsg] = useState("");
   const [profileId, setProfileId] = useState(null);
   const [genBusy, setGenBusy] = useState(false);
@@ -13810,10 +13886,19 @@ export default function App() {
   const genVideo = async (p) => {
     if (!lim.video) return proAlert("video");
     if (!p.photo || genBusy) return;
+    /* El audio se crea aquí, aún dentro del clic: después de un await
+       Safari ya no lo deja sonar. */
+    const opcionMusica = leerOpcionMusica();
+    const ac = opcionMusica === "no" ? null : crearAudio();
     setGenBusy(true);
     try {
-      const url = await makePresentationVideo(p, session.club, session.team.name, AC, posDe(p.id));
-      setPlayers((ps) => ps.map((x) => (x.id === p.id ? { ...x, video: url } : x)));
+      const [musica, logo] = await Promise.all([prepararMusica(ac, opcionMusica), cargarLogo()]);
+      const { url, ext } = await makePresentationVideo(p, session.club, session.team.name, AC, posDe(p.id), { musica, logo });
+      setPlayers((ps) => ps.map((x) => (x.id === p.id ? { ...x, video: url, videoExt: ext } : x)));
+      if (musica?.pidioPropia && musica.origen !== "propia") {
+        setFotoJugadorMsg(t("vm.fail"));
+        setTimeout(() => setFotoJugadorMsg(""), 6000);
+      }
     } catch { alert("Tu navegador no soporta la grabación de vídeo (MediaRecorder). Prueba en Chrome/Edge."); }
     setGenBusy(false);
   };
@@ -14540,17 +14625,18 @@ export default function App() {
               </label>
               <button onClick={() => genVideo(profile)} disabled={(lim.video && !profile.photo) || genBusy}
                 className="flex-1 text-sm px-3 py-2.5 rounded-lg font-display uppercase tracking-wide font-semibold disabled:opacity-40"
-                style={{ background: lim.video ? AC : C.panel2, color: lim.video ? "#141414" : C.dim, border: lim.video ? "none" : `1px solid ${C.line}` }}>
-                {!lim.video ? "🎬 Vídeo 5 s · PRO" : genBusy ? "Grabando 5 s…" : profile.video ? "🎬 Rehacer vídeo" : "🎬 Crear vídeo 5 s"}
+                style={{ background: lim.video ? AC : C.panel2, color: lim.video ? C.sobre : C.dim, border: lim.video ? "none" : `1px solid ${C.line}` }}>
+                {!lim.video ? "🎬 Vídeo · PRO" : genBusy ? "Grabando…" : profile.video ? "🎬 Rehacer vídeo" : "🎬 Crear vídeo"}
               </button>
             </div>
+            {lim.video && profile.photo && !genBusy && <div className="mb-2"><SelectorMusica t={t} C={C} AC={AC} /></div>}
             {fotoJugadorMsg && (
-              <div className="text-xs mb-3" style={{ color: fotoJugadorMsg === t("mh.fotoFail") ? C.red : C.dim }}>{fotoJugadorMsg}</div>
+              <div className="text-xs mb-3" style={{ color: fotoJugadorMsg === t("mh.fotoFail") ? C.red : fotoJugadorMsg === t("vm.fail") ? C.warn : C.dim }}>{fotoJugadorMsg}</div>
             )}
           </>
         )}
         {profile.video && lim.video && (
-          <a href={profile.video} download={`presentacion-${profile.n.replace(/\s+/g, "-")}.webm`} className="block text-center text-xs mb-4 underline" style={{ color: AC }}>Descargar vídeo (.webm)</a>
+          <a href={profile.video} download={`presentacion-${profile.n.replace(/\s+/g, "-")}.${profile.videoExt || "webm"}`} className="block text-center text-xs mb-4 underline" style={{ color: AC }}>Descargar vídeo (.{profile.videoExt || "webm"})</a>
         )}
         {/* Ficha editable. Antes esta ventana solo enseñaba los datos y la única
             forma de corregir un dorsal o una demarcación era el importador de
@@ -21016,16 +21102,23 @@ export default function App() {
         .sort((a, b) => b.y - a.y || a.x - b.x);
       if (!titulares.length) { setLnVidMsg(t("ln.videoNoXI")); setTimeout(() => setLnVidMsg(""), 4000); return; }
       if (lnVidUrl) { URL.revokeObjectURL(lnVidUrl); setLnVidUrl(null); }
+      /* El audio se crea aquí, aún dentro del clic: después de un await
+         Safari ya no lo deja sonar. */
+      const opcionMusica = leerOpcionMusica();
+      const ac = opcionMusica === "no" ? null : crearAudio();
       setLnVidBusy(true); setLnVidMsg("");
       try {
         try { await document.fonts?.ready; } catch { /* sin API de fonts: se graba con lo que haya */ }
-        const url = await makeLineupVideo({
+        const [musica, logo] = await Promise.all([prepararMusica(ac, opcionMusica), cargarLogo()]);
+        const { url, ext } = await makeLineupVideo({
           titulares, club: session.club || "", teamName: session.team?.name || "", accent: AC,
           sysCode, capitanes, escudo: clubInfo.crest || escudoDe(session.club) || crest,
           onPaso: (a, b) => setLnVidMsg(`${t("ln.videoRec")} ${a}/${b}`),
+          musica, logo,
         });
         setLnVidUrl(url);
-        setLnVidMsg(t("ln.videoOk"));
+        setLnVidExt(ext);
+        setLnVidMsg(musica?.pidioPropia && musica.origen !== "propia" ? t("vm.fail") : t("ln.videoOk"));
       } catch {
         setLnVidMsg(t("ln.videoFail"));
         setTimeout(() => setLnVidMsg(""), 5000);
@@ -21246,9 +21339,10 @@ export default function App() {
                 style={{ borderColor: lim.video ? C.line : C.line, color: lim.video ? C.chalk : C.dim }}>
                 {lnVidBusy ? (lnVidMsg || t("ln.videoRec")) : lim.video ? t("ln.video") : t("ln.videoPro")}
               </button>
-              {!lnVidBusy && lnVidMsg && <span className="text-[11px] text-right" style={{ color: lnVidMsg === t("ln.videoFail") ? C.warn : C.dim }}>{lnVidMsg}</span>}
+              {lim.video && !lnVidBusy && <SelectorMusica t={t} C={C} AC={AC} />}
+              {!lnVidBusy && lnVidMsg && <span className="text-[11px] text-right" style={{ color: lnVidMsg === t("ln.videoFail") || lnVidMsg === t("vm.fail") ? C.warn : C.dim }}>{lnVidMsg}</span>}
               {lnVidUrl && !lnVidBusy && (
-                <a href={lnVidUrl} download={`once-${(session.team?.name || "equipo").replace(/\s+/g, "-")}-${hoyISO()}.webm`}
+                <a href={lnVidUrl} download={`once-${(session.team?.name || "equipo").replace(/\s+/g, "-")}-${hoyISO()}.${lnVidExt}`}
                   className="text-xs px-2.5 py-1 rounded-lg font-display uppercase tracking-wide text-center font-semibold"
                   style={{ background: AC, color: C.sobre }}>
                   {t("ln.videoDownload")}

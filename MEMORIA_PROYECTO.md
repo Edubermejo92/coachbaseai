@@ -135,6 +135,23 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   sigue valiendo para los siguientes partidos hasta que se desactiva (y entonces caen las
   suscripciones). En iPhone el aviso solo llega con la página añadida a la pantalla de inicio.
 
+## Vídeos con logo y música (v2.83.0)
+- El vídeo del once y el de cada jugador llevan el logo «CoachBase AI by EBLDigital»
+  (`public/marca/coachbase-ebl.png`, sobre tarjeta blanca): en el del once, en la portada,
+  como marca de agua arriba a la derecha y en grande al cierre; en el individual, pequeño
+  abajo y 1 s final en grande (el vídeo pasa de 5 a 6 s).
+- Música: por defecto la pista propia `public/musica/coachbase-intro.mp3` (38,7 s, en bucle,
+  compuesta con `herramientas/componer-musica.py`, sin derechos de terceros). El entrenador
+  puede elegir «Mi canción» del móvil: se guarda solo en su dispositivo (IndexedDB) y nunca
+  se sube. Edu pasó «Dakota» de Stereophonics: NO se metió en el repo (es público y la web
+  la repartiría a todos los clubes); puede elegirla él como canción propia.
+- `src/videoMarca.js`: logo, música (Web Audio → MediaStreamDestination, el AudioContext se
+  crea dentro del clic por Safari) y `grabarLienzo` (MP4 H.264/AAC si el navegador puede,
+  si no webm VP9/Opus).
+- Arreglado de paso: el vídeo individual pintaba nombre/club en gris oscuro y el dorsal en el
+  acento tal cual, ilegibles sobre el fondo oscuro con un club de color oscuro; y la foto se
+  cargaba sin crossOrigin (lienzo "manchado" con fotos de Supabase).
+
 ## Netlify (lecciones)
 - El conector MCP de Netlify (manage-env-vars) dice "upserted" pero NO guarda nada si se le pasan
   scopes parciales (p. ej. ["functions","runtime"]) o is_secret=true con scopes "all". Solo funciona
