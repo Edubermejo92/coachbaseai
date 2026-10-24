@@ -9913,7 +9913,8 @@ const brilloDe = (col) => {
 };
 
 async function makePresentationVideo(player, club, teamName, accent, pos, { musica = null, logo = null } = {}) {
-  const W = 540, H = 675, FICHA = 5, DUR = FICHA + 1;
+  /* Alto PAR: el MP4 (H.264) no admite medidas impares y la grabación fallaría. */
+  const W = 540, H = 676, FICHA = 5, DUR = FICHA + 1;
   /* Fondo oscuro siempre: textos en claro, y el acento del club solo si se
      lee (como en el vídeo del once). Antes nombre, club y dorsal iban en
      gris pizarra o en el acento tal cual, y con un club de color oscuro no
@@ -10010,7 +10011,8 @@ async function makePresentationVideo(player, club, teamName, accent, pos, { musi
 async function makeLineupVideo({ titulares, club, teamName, accent, sysCode, capitanes = [], escudo = null, onPaso, musica = null, logo = null }) {
   /* Guion: escudo del club → el once en el campo (se enfoca) → cada titular:
      su foto se enfoca y su dorsal se enciende en el campo → escudo de cierre. */
-  const W = 540, H = 675, PORTADA = 2.4, ONCE = 2.2, POR_JUGADOR = 2.4, CIERRE = 2.4;
+  /* Alto PAR: el MP4 (H.264) no admite medidas impares y la grabación fallaría. */
+  const W = 540, H = 676, PORTADA = 2.4, ONCE = 2.2, POR_JUGADOR = 2.4, CIERRE = 2.4;
   const DUR = PORTADA + ONCE + titulares.length * POR_JUGADOR + CIERRE;
   const canvas = document.createElement("canvas");
   canvas.width = W; canvas.height = H;

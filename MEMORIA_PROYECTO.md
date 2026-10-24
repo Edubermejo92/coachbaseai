@@ -147,7 +147,7 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   la repartiría a todos los clubes); puede elegirla él como canción propia.
 - `src/videoMarca.js`: logo, música (Web Audio → MediaStreamDestination, el AudioContext se
   crea dentro del clic por Safari) y `grabarLienzo` (MP4 H.264/AAC si el navegador puede,
-  si no webm VP9/Opus).
+  si no webm VP9/Opus). Lienzo de 540×676: alto PAR, H.264 no admite medidas impares.
 - Arreglado de paso: el vídeo individual pintaba nombre/club en gris oscuro y el dorsal en el
   acento tal cual, ilegibles sobre el fondo oscuro con un club de color oscuro; y la foto se
   cargaba sin crossOrigin (lienzo "manchado" con fotos de Supabase).

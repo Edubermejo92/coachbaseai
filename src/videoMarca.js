@@ -190,11 +190,15 @@ export const grabarLienzo = async (canvas, musica, duracion, animar) => {
   catch (e) { musica?.parar(); throw e; }
   const trozos = [];
   rec.ondataavailable = (e) => { if (e.data.size) trozos.push(e.data); };
-  const hecho = new Promise((res) => {
+  const hecho = new Promise((res, rej) => {
     rec.onstop = () => {
       musica?.parar();
       const mime = (rec.mimeType || tipo || "video/webm").split(";")[0];
-      res({ url: URL.createObjectURL(new Blob(trozos, { type: mime })), ext: extensionDe(mime) });
+      const blob = new Blob(trozos, { type: mime });
+      /* Si el codificador falla a mitad, el vídeo sale vacío: mejor el
+         mensaje de error que un archivo en blanco. */
+      if (!blob.size) { rej(new Error("vídeo vacío")); return; }
+      res({ url: URL.createObjectURL(blob), ext: extensionDe(mime) });
     };
   });
   rec.start(250);
