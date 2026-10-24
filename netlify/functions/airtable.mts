@@ -710,6 +710,29 @@ const atender = async (req: Request) => {
     if (!r.ok) throw { status: r.status };
     return await r.json();
   };
+  /* Sube una imagen a un adjunto que solo debe tener UNA (foto de jugador,
+     escudo, foto de un parte) y deja solo esa. uploadAttachment AÑADE al
+     final -Airtable y el adaptador de Supabase igual- y la app enseña la
+     primera: cambiar la foto subía la nueva detrás y seguía viéndose la de
+     siempre (la de Quique en el Infantil B llegó a tener 7). */
+  const subirUnica = async (t: string, recId: string, campo: string, cuerpo: Record<string, unknown>) => {
+    const r = await fetch(`https://content.airtable.com/v0/${BASE()}/${recId}/${campo}/uploadAttachment`, {
+      method: "POST", headers: H, body: JSON.stringify(cuerpo),
+    });
+    const d = await r.json().catch(() => ({}));
+    const lista: any[] = d?.fields?.[campo] || [];
+    const nueva = lista[lista.length - 1];
+    if (r.ok && lista.length > 1 && nueva?.id) {
+      const rp = await fetch(`${table(t)}/${recId}`, {
+        method: "PATCH", headers: H,
+        body: JSON.stringify({ fields: { [campo]: [{ id: nueva.id }] }, returnFieldsByFieldId: true }),
+      });
+      const dp = await rp.json().catch(() => ({}));
+      if (!rp.ok) console.error(`[adjunto] no se pudo dejar solo el último en ${recId}/${campo}: ${rp.status}`);
+      return { ok: true, url: dp?.fields?.[campo]?.[0]?.url || nueva.url || null };
+    }
+    return { ok: r.ok, url: nueva?.url || null };
+  };
   const _equipoPorId = new Map<string, Promise<any | null>>();
   const equipoPorId = (teamId: string): Promise<any | null> => {
     if (_equiposCache) return Promise.resolve(_equiposCache.find((e) => e.id === teamId) || null);
@@ -1833,12 +1856,8 @@ const atender = async (req: Request) => {
       const puede = esFamiliaOJugador ? await esMiHijo(id) : await puedeEquipo(await equipoDeJugador(id) || "");
       if (!puede) return j({ error: "no_autorizado", reason: "No puedes cambiar la foto de ese jugador." }, 403);
       const b = await req.json();
-      const r = await fetch(`https://content.airtable.com/v0/${BASE()}/${id}/${JG_FOTO}/uploadAttachment`, {
-        method: "POST", headers: H,
-        body: JSON.stringify({ contentType: b.contentType || "image/jpeg", file: b.file, filename: b.filename || "jugador.jpg" }),
-      });
-      const d = await r.json().catch(() => ({}));
-      return j({ ok: r.ok, url: d?.fields?.[JG_FOTO]?.[0]?.url || null }, r.ok ? 200 : 400);
+      const out = await subirUnica(T_JUGADORES, id, JG_FOTO, { contentType: b.contentType || "image/jpeg", file: b.file, filename: b.filename || "jugador.jpg" });
+      return j(out, out.ok ? 200 : 400);
     }
 
     /* ============ DATOS PERSONALES DE JUGADOR (nombre) ============
@@ -1944,12 +1963,8 @@ const atender = async (req: Request) => {
         return j({ error: "no_autorizado", reason: "Ese parte no es de tu equipo." }, 403);
       }
       const b = await req.json();
-      const r = await fetch(`https://content.airtable.com/v0/${BASE()}/${id}/${campo}/uploadAttachment`, {
-        method: "POST", headers: H,
-        body: JSON.stringify({ contentType: b.contentType || "image/jpeg", file: b.file, filename: b.filename || "material.jpg" }),
-      });
-      const d = await r.json().catch(() => ({}));
-      return j({ ok: r.ok, url: d?.fields?.[campo]?.[0]?.url || null }, r.ok ? 200 : 400);
+      const out = await subirUnica(T_PARTES, id, campo, { contentType: b.contentType || "image/jpeg", file: b.file, filename: b.filename || "material.jpg" });
+      return j(out, out.ok ? 200 : 400);
     }
 
     if (res === "plantillas") {
@@ -2061,12 +2076,8 @@ const atender = async (req: Request) => {
       }
       const campoEscudo = esClub ? CL.escudo : EQ.escudo;
       // b.file = base64 sin cabecera data:, b.contentType = image/png…
-      const r = await fetch(`https://content.airtable.com/v0/${BASE()}/${id}/${campoEscudo}/uploadAttachment`, {
-        method: "POST", headers: H,
-        body: JSON.stringify({ contentType: b.contentType || "image/png", file: b.file, filename: b.filename || "escudo.png" }),
-      });
-      const d = await r.json().catch(() => ({}));
-      const urlOut = d?.fields?.[campoEscudo]?.[0]?.url || null;
+      const r = await subirUnica(esClub ? T_CLUBES : T_EQUIPOS, id, campoEscudo, { contentType: b.contentType || "image/png", file: b.file, filename: b.filename || "escudo.png" });
+      const urlOut = r.url;
 
       /* Propagar a los equipos del club. Por defecto solo a los que NO tienen
          escudo propio (b.forzarTodos=true lo aplica también a los que ya

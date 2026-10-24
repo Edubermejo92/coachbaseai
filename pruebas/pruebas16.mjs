@@ -66,6 +66,9 @@ dice("subir la foto de un jugador funciona", r.body.ok === true && /\/storage\/v
 dice("el archivo está en el bucket privado", [...fake.archivos.keys()].some((k) => k.startsWith("jugadores/recJ2/fldVAopJcEmx4J1zw/")));
 r = await at(`/${T.JUGADORES}/recJ2`);
 dice("al leer, la foto trae enlace firmado y nombre", (r.body.fields?.Foto || [])[0]?.url?.includes("token=") && r.body.fields.Foto[0].filename === "cara.png");
+r = await call(`?res=foto-jugador&id=recJ2`, { method: "POST", token: tEnt, body: { file: png, contentType: "image/png", filename: "nueva.png" } });
+const [{ foto }] = (await fake.pg.query(`select foto from jugadores where id = 'recJ2'`)).rows;
+dice("cambiar la foto deja solo la nueva (antes se añadía detrás y se seguía viendo la vieja)", r.body.ok === true && foto.length === 1 && foto[0].filename === "nueva.png" && /nueva\.png/.test(decodeURIComponent(r.body.url || "")), JSON.stringify(foto));
 
 const tMaster = await login("ebldigital92@gmail.com");
 r = await call(`?res=escudo&id=recCLUBA&tipo=club`, { method: "POST", token: tMaster, body: { file: png, contentType: "image/png", filename: "escudo.png" } });
