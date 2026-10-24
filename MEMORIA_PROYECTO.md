@@ -146,8 +146,13 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   se sube. Edu pasó «Dakota» de Stereophonics: NO se metió en el repo (es público y la web
   la repartiría a todos los clubes); puede elegirla él como canción propia.
 - `src/videoMarca.js`: logo, música (Web Audio → MediaStreamDestination, el AudioContext se
-  crea dentro del clic por Safari) y `grabarLienzo` (MP4 H.264/AAC si el navegador puede,
-  si no webm VP9/Opus). Lienzo de 540×676: alto PAR, H.264 no admite medidas impares.
+  crea dentro del clic por Safari) y `grabarLienzo`. Lienzo de 540×676: alto PAR, H.264 no
+  admite medidas impares.
+- Formato (v2.83.2): WebM VP9/VP8 + Opus primero. Con MP4, Chrome en Android usa el AAC del
+  teléfono y el vídeo de Edu (Android, Chrome, «Mi canción» = Dakota) salió MUDO en la
+  galería. El MP4 queda para Safari, que no graba WebM. Un medidor (AnalyserNode) comprueba
+  que la música suena al grabar; si no, avisa (`vm.silent`) en vez de entregar un vídeo mudo.
+  De un MP3 largo solo se descomprime el principio (2,5 MB tras la etiqueta ID3).
 - Arreglado de paso: el vídeo individual pintaba nombre/club en gris oscuro y el dorsal en el
   acento tal cual, ilegibles sobre el fondo oscuro con un club de color oscuro; y la foto se
   cargaba sin crossOrigin (lienzo "manchado" con fotos de Supabase).

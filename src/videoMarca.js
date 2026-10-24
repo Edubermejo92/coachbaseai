@@ -111,14 +111,39 @@ const decodificar = (ac, datos) => new Promise((res, rej) => {
   const p = ac.decodeAudioData(datos, res, rej);
   if (p?.then) p.then(res, rej);
 });
-const bajar = async (opcion) => {
+/* De un MP3 largo basta con el principio: el vídeo más largo dura ~35 s, y
+   descomprimir entera una canción de 5 minutos son más de 100 MB de memoria
+   en el móvil. Un MP3 se puede cortar por cualquier sitio (va en tramas
+   sueltas); se respeta la etiqueta ID3 del principio, que puede traer la
+   carátula. Lo que no sea MP3 (m4a…) se lee entero. */
+const PRINCIPIO_MP3 = 2.5 * 1024 * 1024;
+const principioMp3 = async (c) => {
+  const esMp3 = /mpeg|mp3/i.test(c.tipo || "") || /\.mp3$/i.test(c.nombre || "");
+  if (!esMp3 || c.blob.size <= PRINCIPIO_MP3 * 1.5) return null;
+  const cab = new Uint8Array(await c.blob.slice(0, 10).arrayBuffer());
+  const id3 = cab[0] === 0x49 && cab[1] === 0x44 && cab[2] === 0x33
+    ? 10 + (((cab[6] & 0x7f) << 21) | ((cab[7] & 0x7f) << 14) | ((cab[8] & 0x7f) << 7) | (cab[9] & 0x7f))
+    : 0;
+  return c.blob.slice(0, id3 + PRINCIPIO_MP3).arrayBuffer();
+};
+const leerAudio = async (ac, opcion) => {
   if (opcion === "propia") {
     const c = await leerCancion();
-    if (c?.blob) return { datos: await c.blob.arrayBuffer(), origen: "propia" };
+    if (c?.blob) {
+      try {
+        const trozo = await principioMp3(c);
+        if (trozo) {
+          const b = await decodificar(ac, trozo);
+          if (b.duration >= 40) return { buffer: b, origen: "propia" };
+        }
+      } catch { /* se prueba entera */ }
+      try { return { buffer: await decodificar(ac, await c.blob.arrayBuffer()), origen: "propia" }; }
+      catch { /* va la de CoachBase */ }
+    }
   }
   const r = await fetch(MUSICA_URL);
   if (!r.ok) throw new Error(String(r.status));
-  return { datos: await r.arrayBuffer(), origen: "coachbase" };
+  return { buffer: await decodificar(ac, await r.arrayBuffer()), origen: "coachbase" };
 };
 
 /* Deja lista la música para mezclarla en la grabación. null = vídeo mudo
@@ -126,26 +151,28 @@ const bajar = async (opcion) => {
    propia no se puede leer, se usa la de CoachBase y `origen` lo dice. */
 export const prepararMusica = async (ac, opcion) => {
   if (!ac || opcion === "no") { try { ac?.close(); } catch { /* nada */ } return null; }
-  let buffer = null, origen = "coachbase";
-  try {
-    const b = await bajar(opcion);
-    origen = b.origen;
-    buffer = await decodificar(ac, b.datos);
-  } catch {
-    if (origen === "propia") {
-      try { const b = await bajar("coachbase"); origen = b.origen; buffer = await decodificar(ac, b.datos); } catch { /* sin música */ }
-    }
-  }
-  if (!buffer) { try { ac.close(); } catch { /* nada */ } return null; }
+  let leido = null;
+  try { leido = await leerAudio(ac, opcion); } catch { /* sin música */ }
+  if (!leido) { try { ac.close(); } catch { /* nada */ } return null; }
+  const { buffer, origen } = leido;
   const destino = ac.createMediaStreamDestination();
   const volumen = ac.createGain();
   volumen.gain.value = 0;
-  volumen.connect(destino);
-  let fuente = null;
+  /* El medidor va en medio: deja pasar el sonido tal cual y permite saber
+     después si la música llegó a sonar de verdad en la grabación. */
+  const medidor = ac.createAnalyser();
+  medidor.fftSize = 1024;
+  volumen.connect(medidor);
+  medidor.connect(destino);
+  const muestras = new Uint8Array(medidor.fftSize);
+  let fuente = null, reloj = null, pico = 0;
   return {
     origen,
     pidioPropia: opcion === "propia",
     pista: destino.stream.getAudioTracks()[0],
+    /* ¿Ha sonado algo? Si no, el navegador no dejó sonar la música y el
+       vídeo ha salido mudo: mejor decirlo que entregarlo sin avisar. */
+    get sono() { return pico > 0.01; },
     /* Arranca con la grabación: entra en 0,25 s y se funde el último segundo. */
     empezar(duracion) {
       fuente = ac.createBufferSource();
@@ -159,8 +186,13 @@ export const prepararMusica = async (ac, opcion) => {
       volumen.gain.setValueAtTime(0.9, Math.max(t + 0.3, fin - 1));
       volumen.gain.linearRampToValueAtTime(0, fin);
       fuente.start(t);
+      reloj = setInterval(() => {
+        medidor.getByteTimeDomainData(muestras);
+        for (let i = 0; i < muestras.length; i++) pico = Math.max(pico, Math.abs(muestras[i] - 128) / 128);
+      }, 200);
     },
     parar() {
+      clearInterval(reloj);
       try { fuente?.stop(); } catch { /* ya parada */ }
       try { ac.close(); } catch { /* ya cerrado */ }
     },
@@ -168,12 +200,13 @@ export const prepararMusica = async (ac, opcion) => {
 };
 
 /* ---------- formato del vídeo ---------- */
-/* MP4 con H.264 primero: es lo que WhatsApp y el iPhone reproducen sin
-   rechistar (Chrome y Safari actuales). Si no lo hay, el webm de siempre; y
-   el "video/mp4" a secas al final, que en un Chromium sin H.264 sería VP9
-   dentro de MP4 (peor que el webm) y en Safari es su única opción. */
-const CON_AUDIO = ["video/mp4;codecs=avc1,mp4a.40.2", "video/mp4;codecs=avc1,opus", "video/webm;codecs=vp9,opus", "video/webm;codecs=vp8,opus", "video/webm", "video/mp4"];
-const SIN_AUDIO = ["video/mp4;codecs=avc1", "video/webm;codecs=vp9", "video/webm;codecs=vp8", "video/webm", "video/mp4"];
+/* WebM (VP9/VP8 + Opus) primero: el Opus lo codifica el propio Chrome y es
+   fiable. Con MP4, Chrome en Android usa el codificador AAC del teléfono, y
+   ahí el vídeo salió MUDO en la galería de Edu (Android, octubre 2026) aunque
+   el navegador decía que lo admitía. El MP4 queda para Safari, que no graba
+   WebM. */
+const CON_AUDIO = ["video/webm;codecs=vp9,opus", "video/webm;codecs=vp8,opus", "video/webm", "video/mp4;codecs=avc1,mp4a.40.2", "video/mp4"];
+const SIN_AUDIO = ["video/webm;codecs=vp9", "video/webm;codecs=vp8", "video/webm", "video/mp4;codecs=avc1", "video/mp4"];
 export const tipoGrabacion = (conAudio) =>
   (conAudio ? CON_AUDIO : SIN_AUDIO).find((m) => typeof MediaRecorder !== "undefined" && MediaRecorder.isTypeSupported?.(m)) || "";
 export const extensionDe = (tipo) => (String(tipo).startsWith("video/mp4") ? "mp4" : "webm");
