@@ -285,17 +285,74 @@ export function montarPizarra3D(contenedor, { acento = "#FFFFFF", nombres = {}, 
   const matRival2 = new THREE.MeshStandardMaterial({ color: "#E8EDE6", roughness: 0.6 });
   const matPiel = new THREE.MeshStandardMaterial({ color: "#E2B48E", roughness: 0.7 });
 
+  /* Jugador articulado: cadera, rodillas, hombros y codos, para que corra,
+     golpee el balón y lo controle (ver tickCuerpos). Mira hacia +z. Las
+     piezas comparten geometría: son 22 jugadores con las mismas. */
+  const matBota = new THREE.MeshStandardMaterial({ color: "#151515", roughness: 0.5 });
+  const matPelo = new THREE.MeshStandardMaterial({ color: "#2B1D14", roughness: 0.85 });
+  const GEO = {
+    muslo: new THREE.CapsuleGeometry(0.12, 0.28, 4, 10),
+    gemelo: new THREE.CapsuleGeometry(0.095, 0.3, 4, 10),
+    bota: new THREE.BoxGeometry(0.15, 0.1, 0.3),
+    pantalon: new THREE.CylinderGeometry(0.27, 0.25, 0.28, 14),
+    torso: new THREE.CapsuleGeometry(0.245, 0.3, 4, 12),
+    brazo: new THREE.CapsuleGeometry(0.085, 0.2, 4, 8),
+    antebrazo: new THREE.CapsuleGeometry(0.068, 0.24, 4, 8),
+    cabeza: new THREE.SphereGeometry(0.17, 16, 12),
+    pelo: new THREE.SphereGeometry(0.178, 16, 8, 0, Math.PI * 2, 0, Math.PI / 2.1),
+  };
+  const pieza = (geo, mat, y = 0, sombra = true) => {
+    const m = new THREE.Mesh(geo, mat);
+    m.position.y = y; m.castShadow = sombra;
+    return m;
+  };
   const jugador3D = (tipo, etiqueta) => {
     const local = tipo === "home";
     const g = new THREE.Group();
     const camiseta = local ? matLocal : matRival, pantalon = local ? matLocal2 : matRival2;
-    const piernas = new THREE.Mesh(new THREE.CapsuleGeometry(0.17, 0.62, 4, 10), pantalon);
-    piernas.position.y = 0.5;
-    const cuerpo = new THREE.Mesh(new THREE.CapsuleGeometry(0.27, 0.5, 4, 12), camiseta);
-    cuerpo.position.y = 1.15;
-    const cabeza = new THREE.Mesh(new THREE.SphereGeometry(0.17, 16, 12), matPiel);
-    cabeza.position.y = 1.72;
-    [piernas, cuerpo, cabeza].forEach((m) => { m.castShadow = true; g.add(m); });
+    const cuerpo = new THREE.Group(); // sube y baja al correr y al saltar
+    g.add(cuerpo);
+    const cadera = new THREE.Group(); cadera.position.y = 0.93;
+    cuerpo.add(cadera);
+    cadera.add(pieza(GEO.pantalon, pantalon, -0.03));
+    /* Piernas: muslo desde la cadera, gemelo (media del color de la
+       camiseta) desde la rodilla y la bota. */
+    const piernas = [-1, 1].map((lado) => {
+      const muslo = new THREE.Group(); muslo.position.x = lado * 0.12;
+      muslo.add(pieza(GEO.muslo, matPiel, -0.24));
+      const rodilla = new THREE.Group(); rodilla.position.y = -0.46;
+      rodilla.add(pieza(GEO.gemelo, camiseta, -0.23));
+      const bota = pieza(GEO.bota, matBota, -0.44); bota.position.z = 0.06;
+      rodilla.add(bota);
+      muslo.add(rodilla);
+      cadera.add(muslo);
+      return { muslo, rodilla };
+    });
+    /* Tronco, brazos y cabeza cuelgan de la cadera: inclinar el tronco los
+       lleva con él. */
+    const torso = new THREE.Group();
+    cadera.add(torso);
+    torso.add(pieza(GEO.torso, camiseta, 0.38));
+    const brazos = [-1, 1].map((lado) => {
+      const hombro = new THREE.Group(); hombro.position.set(lado * 0.31, 0.66, 0);
+      hombro.rotation.z = lado * 0.12;
+      hombro.add(pieza(GEO.brazo, camiseta, -0.14));
+      const codo = new THREE.Group(); codo.position.y = -0.3;
+      codo.add(pieza(GEO.antebrazo, matPiel, -0.16));
+      hombro.add(codo);
+      torso.add(hombro);
+      return { hombro, codo, lado };
+    });
+    const cabeza = new THREE.Group(); cabeza.position.y = 0.93;
+    cabeza.add(pieza(GEO.cabeza, matPiel));
+    const pelo = pieza(GEO.pelo, matPelo, 0.02, false); pelo.rotation.x = -0.25;
+    cabeza.add(pelo);
+    torso.add(cabeza);
+    g.userData.anim = {
+      cuerpo, cadera, torso, cabeza, piernas, brazos,
+      fase: Math.random() * Math.PI * 2, semilla: Math.random() * 10,
+      vel: 0, w: 0, prev: null, gesto: null, mira: null,
+    };
     /* aro en el suelo con el color del equipo: se lee desde cualquier ángulo */
     const aro = new THREE.Mesh(new THREE.RingGeometry(0.42, 0.58, 28), new THREE.MeshBasicMaterial({ color: local ? colLocal : "#36454F", transparent: true, opacity: 0.9 }));
     aro.rotation.x = -Math.PI / 2; aro.position.y = 0.03;
@@ -513,6 +570,8 @@ export function montarPizarra3D(contenedor, { acento = "#FFFFFF", nombres = {}, 
      balón: pegado al pie de quien conduce o por el aire en un pase o un tiro. */
   const fichaBalon = () => { for (const [, f] of fichas) if (f.tipo === "ball") return f; return null; };
   const ALTO_BALON = 0;
+  /* Lo que tarda el jugador en armar la pierna antes de golpear el balón. */
+  const ARMADO = 0.26;
   let paso = null;
   const acabarPaso = () => {
     if (!paso) return;
@@ -537,13 +596,48 @@ export function montarPizarra3D(contenedor, { acento = "#FFFFFF", nombres = {}, 
       a: sg.desde && (() => { const m = aMetros(sg.desde); return new THREE.Vector3(m.x, ALTO_BALON, m.z); })(),
       b: sg.hasta && (() => { const m = aMetros(sg.hasta); return new THREE.Vector3(m.x, ALTO_BALON, m.z); })(),
     }));
+    /* Si el balón sale nada más empezar, se adelanta el reloj del paso lo
+       justo para que se vea al jugador armar la pierna antes del golpeo. */
+    const primerVuelo = Math.min(Infinity, ...segs.filter((sg) => sg.tipo === "vuelo" && sg.de != null).map((sg) => sg.t0));
+    const adelanto = Math.max(0, ARMADO - primerVuelo);
     return new Promise((ok) => {
-      paso = { movs, segs, balon: b, balonFinal: fase.balonFinal, dur: fase.dur, t0: performance.now(), vel: velocidad, ok };
+      paso = { movs, segs, balon: b, balonFinal: fase.balonFinal, dur: fase.dur, t0: performance.now(), vel: velocidad, adelanto, hechos: new Set(), ok };
     });
   };
   const tickPaso = (now) => {
     if (!paso) return;
-    const t = ((now - paso.t0) / 1000) * paso.vel;
+    const t = ((now - paso.t0) / 1000) * paso.vel - paso.adelanto;
+    /* Gestos: quien pasa o tira arma la pierna y golpea justo cuando sale
+       el balón; quien recibe lo controla; tras un tiro, se celebra. */
+    paso.segs.forEach((sg, k) => {
+      if (sg.tipo !== "vuelo") return;
+      if (sg.de != null && !paso.hechos.has(`c${k}`) && t >= sg.t0 - ARMADO) {
+        paso.hechos.add(`c${k}`);
+        gesto(sg.de, "chut", { hacia: sg.b, vel: paso.vel });
+      }
+      if (sg.para != null && !paso.hechos.has(`r${k}`) && t >= sg.t0 + sg.dur - 0.12) {
+        paso.hechos.add(`r${k}`);
+        gesto(sg.para, "control", { hacia: sg.a, vel: paso.vel });
+      }
+      if (sg.tiro && sg.de != null && !paso.hechos.has(`g${k}`) && t >= sg.t0 + sg.dur) {
+        paso.hechos.add(`g${k}`);
+        gesto(sg.de, "celebra", { vel: paso.vel });
+      }
+      /* El portero (el contrario más cerca de donde va el tiro) se estira
+         hacia el lado del balón: sale para estar en el aire justo cuando
+         el balón pasa por su altura (la estirada llega arriba a ~0,35 s). */
+      if (sg.tiro && sg.de != null && !paso.hechos.has(`p${k}`) && t >= Math.max(sg.t0 + 0.1, sg.t0 + sg.dur - 0.35)) {
+        paso.hechos.add(`p${k}`);
+        const suyo = fichas.get(String(sg.de))?.tipo;
+        let portero = null, mejor = 14;
+        for (const [id, f] of fichas) {
+          if ((f.tipo !== "home" && f.tipo !== "away") || f.tipo === suyo) continue;
+          const dd = Math.hypot(f.obj.position.x - sg.b.x, f.obj.position.z - sg.b.z);
+          if (dd < mejor) { mejor = dd; portero = id; }
+        }
+        if (portero != null) gesto(portero, "estirada", { hacia: sg.b, vel: paso.vel });
+      }
+    });
     for (const m of paso.movs) {
       if (t < m.t0) continue;
       const k = Math.min(1, (t - m.t0) / m.dur), e = suave(k);
@@ -559,14 +653,15 @@ export function montarPizarra3D(contenedor, { acento = "#FFFFFF", nombres = {}, 
         if (sg.tipo === "vuelo") {
           bo.position.lerpVectors(sg.a, sg.b, k);
           bo.position.y = ALTO_BALON + sg.alto * 4 * k * (1 - k);
-          bo.rotation.x += 0.35;
         } else if (sg.tipo === "sigue") {
           const f = fichas.get(String(sg.id));
           if (f) {
-            /* pegado al pie, por delante de hacia donde corre */
+            /* Por delante de hacia donde corre, y a toques: se le separa
+               un poco del pie y vuelve, al ritmo de la zancada. */
             const ry = f.obj.rotation.y;
-            bo.position.set(f.obj.position.x + Math.sin(ry) * 0.75, ALTO_BALON, f.obj.position.z + Math.cos(ry) * 0.75);
-            if (k < 1) bo.rotation.x += 0.2;
+            const fa = f.obj.userData.anim?.fase || 0;
+            const lejos = k < 1 ? 0.7 + 0.32 * (0.5 + 0.5 * Math.sin(fa)) : 0.75;
+            bo.position.set(f.obj.position.x + Math.sin(ry) * lejos, ALTO_BALON, f.obj.position.z + Math.cos(ry) * lejos);
           }
         }
       }
@@ -744,6 +839,146 @@ export function montarPizarra3D(contenedor, { acento = "#FFFFFF", nombres = {}, 
   ajustar();
 
   const suave = (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+
+  /* ---------- cuerpos en movimiento ----------
+     Animación de cada jugador, calculada en cada fotograma a partir de cómo
+     se mueve su ficha: si se desplaza, corre (zancada, brazos, inclinación y
+     rebote, más cuanto más rápido); si está quieto, respira y gira hacia el
+     balón. Encima van los gestos: chut, control y celebración. Así se anima
+     igual una jugada 3D que los pasos de la pizarra o un cambio de sistema. */
+  const lerpA = (a, b, k) => {
+    let d = ((b - a + Math.PI) % (Math.PI * 2)) - Math.PI;
+    if (d < -Math.PI) d += Math.PI * 2;
+    return a + d * k;
+  };
+  const mezcla = (a, b, k) => a + (b - a) * k;
+  const tramo = (p, a, b) => Math.max(0, Math.min(1, (p - a) / (b - a)));
+  const DUR_GESTO = { chut: 0.58, control: 0.5, celebra: 1.7, estirada: 1.25 };
+  const gesto = (id, tipo, { hacia = null, vel = 1 } = {}) => {
+    const f = fichas.get(String(id));
+    const a = f?.obj.userData.anim;
+    if (!a) return;
+    a.gesto = { tipo, t0: performance.now(), dur: DUR_GESTO[tipo] / Math.max(0.2, vel), lado: 1 };
+    a.mira = hacia && tipo !== "estirada" ? Math.atan2(hacia.x - f.obj.position.x, hacia.z - f.obj.position.z) : null;
+    if (tipo === "estirada" && hacia) {
+      /* ¿A su izquierda o a su derecha? Según de qué lado le queda el balón
+         mirando hacia donde mira. */
+      const ry = f.obj.rotation.y;
+      const dx = hacia.x - f.obj.position.x, dz = hacia.z - f.obj.position.z;
+      a.gesto.lado = dx * Math.cos(ry) - dz * Math.sin(ry) >= 0 ? 1 : -1;
+    }
+  };
+  let ultimoTick = 0;
+  const tickCuerpos = (now) => {
+    const dt = ultimoTick ? Math.min(0.1, (now - ultimoTick) / 1000) : 0;
+    ultimoTick = now;
+    const balon = fichaBalon()?.obj.position;
+    for (const [, f] of fichas) {
+      const a = f.obj.userData.anim;
+      if (!a) continue;
+      const pos = f.obj.position;
+      if (!a.prev) a.prev = pos.clone();
+      const d = Math.hypot(pos.x - a.prev.x, pos.z - a.prev.z);
+      a.prev.copy(pos);
+      /* Un salto de varios metros en un fotograma es recolocar la ficha, no
+         correr: no cuenta como velocidad. */
+      const v = dt > 0 && d < 4 ? d / dt : 0;
+      a.vel += (v - a.vel) * Math.min(1, dt * 10);
+      a.w += (Math.min(1, a.vel / 6) - a.w) * Math.min(1, dt * 8);
+      /* Cadencia de unos 1,6 pasos dobles por segundo a velocidad de carrera. */
+      if (a.w > 0.02) a.fase += dt * Math.PI * 2 * (0.95 + 0.11 * a.vel);
+      const w = a.w, sn = Math.sin(a.fase);
+      let cadL = sn * 0.85 * w, cadR = -sn * 0.85 * w;
+      let rodL = (0.12 + Math.max(0, -Math.sin(a.fase - 0.6)) * 1.25) * w, rodR = (0.12 + Math.max(0, Math.sin(a.fase - 0.6)) * 1.25) * w;
+      let hombL = -sn * 0.8 * w, hombR = sn * 0.8 * w, abreL = 0, abreR = 0;
+      const codoBase = 0.3 + 0.95 * w;
+      let codoL = codoBase, codoR = codoBase;
+      let inclina = 0.2 * w, salto = Math.abs(Math.cos(a.fase)) * 0.07 * w;
+      /* Quieto: respira y se balancea un poco. */
+      const quieto = 1 - w, tt = now / 1000 + a.semilla;
+      inclina += quieto * 0.03 * Math.sin(tt * 1.7);
+      abreL -= quieto * 0.04 * (1 + Math.sin(tt * 1.7)); abreR += quieto * 0.04 * (1 + Math.sin(tt * 1.7));
+
+      const gs = a.gesto;
+      if (gs) {
+        const p = (now - gs.t0) / 1000 / gs.dur;
+        if (p >= 1) a.gesto = null;
+        else if (gs.tipo === "chut") {
+          /* Arma la pierna derecha atrás, golpea (a ~45 %) y acompaña. */
+          const arma = tramo(p, 0, 0.45), golpe = tramo(p, 0.45, 0.66), vuelve = tramo(p, 0.66, 1);
+          const cad = p < 0.45 ? mezcla(0, -0.9, arma) : p < 0.66 ? mezcla(-0.9, 1.3, golpe) : mezcla(1.3, 0, vuelve);
+          const rod = p < 0.45 ? mezcla(0.2, 1.55, arma) : p < 0.66 ? mezcla(1.55, 0.05, golpe) : mezcla(0.05, 0.15, vuelve);
+          const env = Math.sin(Math.PI * Math.min(1, p));
+          cadR = mezcla(cadR, cad, 0.95); rodR = mezcla(rodR, rod, 0.95);
+          cadL = mezcla(cadL, -0.08, env); rodL = mezcla(rodL, 0.35, env);
+          abreL -= 0.75 * env; abreR += 0.75 * env;
+          hombL = mezcla(hombL, -0.3, env); hombR = mezcla(hombR, 0.5, env);
+          inclina = mezcla(inclina, p > 0.45 && p < 0.75 ? -0.18 : 0.05, env);
+        } else if (gs.tipo === "control") {
+          const env = Math.sin(Math.PI * p);
+          cadR = mezcla(cadR, 0.55, env); rodR = mezcla(rodR, 0.75, env);
+          rodL = mezcla(rodL, 0.3, env);
+          abreL -= 0.35 * env; abreR += 0.35 * env;
+          inclina = mezcla(inclina, 0.12, env);
+        } else if (gs.tipo === "celebra") {
+          /* Brazos arriba y tres saltos. */
+          const env = p < 0.12 ? p / 0.12 : p > 0.85 ? (1 - p) / 0.15 : 1;
+          hombL = mezcla(hombL, -2.85, env); hombR = mezcla(hombR, -2.85, env);
+          abreL -= 0.3 * env; abreR += 0.3 * env;
+          codoL = mezcla(codoL, 0.15, env); codoR = mezcla(codoR, 0.15, env);
+          const brinco = Math.abs(Math.sin(p * Math.PI * 3));
+          salto = mezcla(salto, brinco * 0.38, env);
+          rodL = mezcla(rodL, 0.2 + (1 - brinco) * 0.5, env); rodR = mezcla(rodR, 0.2 + (1 - brinco) * 0.5, env);
+          inclina = mezcla(inclina, -0.1, env);
+        } else if (gs.tipo === "estirada") {
+          /* Se lanza de lado con los brazos estirados, cae y se levanta. */
+          const sale = tramo(p, 0, 0.28), cae = tramo(p, 0.28, 0.42), sube = tramo(p, 0.7, 1);
+          const giro = p < 0.7 ? mezcla(0, 1.4, suave(sale)) : mezcla(1.4, 0, suave(sube));
+          const lejos = p < 0.7 ? mezcla(0, 0.95, suave(sale)) : mezcla(0.95, 0, suave(sube));
+          const alto = p < 0.28 ? Math.sin(Math.PI * sale) * 0.45 + sale * 0.15 : p < 0.7 ? mezcla(0.15, 0.22, cae) : mezcla(0.22, 0, sube);
+          a.cuerpo.rotation.z = -gs.lado * giro;
+          a.cuerpo.position.x = gs.lado * lejos;
+          salto = alto;
+          const brazos = p < 0.7 ? suave(Math.min(1, p / 0.2)) : 1 - suave(sube);
+          hombL = mezcla(hombL, -2.95, brazos); hombR = mezcla(hombR, -2.95, brazos);
+          codoL = mezcla(codoL, 0.08, brazos); codoR = mezcla(codoR, 0.08, brazos);
+          cadL = mezcla(cadL, 0.15, brazos); cadR = mezcla(cadR, -0.1, brazos);
+          rodL = mezcla(rodL, 0.25, brazos); rodR = mezcla(rodR, 0.4, brazos);
+          inclina = mezcla(inclina, 0, brazos);
+        }
+      }
+      /* Hacia dónde mira: al golpear, hacia donde va el balón; quieto, hacia
+         el balón. Corriendo manda la ruta (tickPaso). */
+      if (a.gesto && a.mira != null && a.gesto.tipo !== "celebra") f.obj.rotation.y = lerpA(f.obj.rotation.y, a.mira, Math.min(1, dt * 12));
+      else if (w < 0.15 && balon && Math.hypot(balon.x - pos.x, balon.z - pos.z) > 1.2) {
+        f.obj.rotation.y = lerpA(f.obj.rotation.y, Math.atan2(balon.x - pos.x, balon.z - pos.z), Math.min(1, dt * 2.5));
+      }
+      const [pi, pd] = a.piernas, [bi, bd] = a.brazos;
+      pi.muslo.rotation.x = -cadL; pi.rodilla.rotation.x = rodL;
+      pd.muslo.rotation.x = -cadR; pd.rodilla.rotation.x = rodR;
+      bi.hombro.rotation.x = hombL; bi.hombro.rotation.z = -0.12 + abreL; bi.codo.rotation.x = -codoL;
+      bd.hombro.rotation.x = hombR; bd.hombro.rotation.z = 0.12 + abreR; bd.codo.rotation.x = -codoR;
+      a.torso.rotation.x = inclina;
+      a.cabeza.rotation.x = -inclina * 0.6;
+      a.cuerpo.position.y = salto;
+      if (!a.gesto || a.gesto.tipo !== "estirada") { a.cuerpo.rotation.z = 0; a.cuerpo.position.x = 0; }
+    }
+  };
+  /* El balón rueda en la dirección en la que va (y gira en el aire). */
+  const RADIO_BALON = 0.22 * EXAGERA;
+  const ejeBalon = new THREE.Vector3();
+  let balonPrev = null;
+  const tickBalon = () => {
+    const b = fichaBalon();
+    if (!b) { balonPrev = null; return; }
+    const p = b.obj.position;
+    if (!balonPrev) { balonPrev = p.clone(); return; }
+    const dx = p.x - balonPrev.x, dz = p.z - balonPrev.z, d = Math.hypot(dx, dz);
+    balonPrev.copy(p);
+    if (d < 1e-4 || d > 20) return;
+    ejeBalon.set(dz, 0, -dx).normalize();
+    b.obj.children[0]?.rotateOnWorldAxis(ejeBalon, d / RADIO_BALON);
+  };
   let raf = 0;
   const bucle = (now) => {
     raf = requestAnimationFrame(bucle);
@@ -754,6 +989,8 @@ export function montarPizarra3D(contenedor, { acento = "#FFFFFF", nombres = {}, 
       if (k >= 1) vuelo = null;
     }
     tickPaso(now);
+    tickCuerpos(now);
+    tickBalon();
     tickSeguir();
     if (marcas.length || marcaSuelo.visible) {
       const pulso = 1 + 0.12 * Math.sin(now / 180);

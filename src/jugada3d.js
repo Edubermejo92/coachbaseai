@@ -188,7 +188,8 @@ export function construirJugada(tokens = [], acciones = [], balonEn = null) {
         const m = metros(desde, destino);
         const dur = T_PASE(m);
         const t0 = Math.max(cursorBalon, corre ? corre.fin - dur : 0);
-        segs.push({ tipo: "vuelo", desde, hasta: destino, alto: ALTO_PASE(m), t0, dur, accion: i });
+        /* `de` golpea y `para` recibe: el 3D anima el chut y el control. */
+        segs.push({ tipo: "vuelo", desde, hasta: destino, alto: ALTO_PASE(m), t0, dur, accion: i, de: poseedor, para: r });
         /* El que la da no se va antes de soltarla. */
         for (const mv of movs) if (mv.id === poseedor && mv.t0 < t0) { mv.t0 = t0; finDe[mv.id].fin = t0 + mv.dur; }
         cursorBalon = t0 + dur;
@@ -201,7 +202,7 @@ export function construirJugada(tokens = [], acciones = [], balonEn = null) {
         /* Al palo largo: es lo que se enseña. */
         const destino = { x: dir > 0 ? 994 : 6, y: 320 + (desde.y < 320 ? 24 : -24) };
         const m = metros(desde, destino);
-        segs.push({ tipo: "vuelo", desde, hasta: destino, alto: 1.4, t0: cursorBalon, dur: T_TIRO(m), accion: i, tiro: true });
+        segs.push({ tipo: "vuelo", desde, hasta: destino, alto: 1.4, t0: cursorBalon, dur: T_TIRO(m), accion: i, tiro: true, de: poseedor });
         cursorBalon += T_TIRO(m);
         poseedor = null;
         balon = destino;

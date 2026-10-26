@@ -135,6 +135,24 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   sigue valiendo para los siguientes partidos hasta que se desactiva (y entonces caen las
   suscripciones). En iPhone el aviso solo llega con la página añadida a la pantalla de inicio.
 
+## Jugadas 3D animadas (v2.87.0)
+- `jugador3D` (src/pizarra3d.js) es ahora un muñeco articulado: cadera → muslos → rodillas
+  (gemelo con el color de la camiseta y bota), torso → hombros → codos, cabeza con pelo.
+  Geometrías compartidas; el estado va en `obj.userData.anim`. Sigue con aro, rótulo y
+  cilindro de toque, y a escala EXAGERA.
+- `tickCuerpos` (cada fotograma) saca la velocidad del desplazamiento de la ficha (un salto
+  de >4 m en un fotograma es recolocar, no correr) y mezcla carrera procedimental (zancada,
+  brazos a la contra, inclinación, bote) con reposo (respira y mira al balón). Encima van
+  gestos con duración (`DUR_GESTO`): chut, control, celebra y estirada del portero.
+- Sincronía en `tickPaso`: los `vuelo` llevan `de`/`para` (src/jugada3d.js). El chut arranca
+  ARMADO (0,26 s) antes de que salga el balón; si el pase sale nada más empezar el paso, el
+  reloj se adelanta (`adelanto`) para que se vea armar la pierna. Quien recibe controla al
+  llegar; tras un tiro, el tirador celebra y el contrario más cercano a donde va (≤14 m) se
+  estira ~0,35 s antes de que llegue. El balón rueda (`tickBalon`, gira sobre el eje
+  perpendicular a su marcha) y en conducción va a toques al ritmo de la zancada.
+- Vale para «Reproducir», la animación de pasos y el vídeo (todo pasa por el mismo bucle).
+  En el Chromium sin GPU del entorno de pruebas va a 5–9 fps; en un móvil va a lo normal.
+
 ## Cambios con marca y animación (v2.86.0)
 - Modo partido (hacerCambio → `cambioAnim` ~4 s): en el campo pequeño el que sale (ficha
   fantasma roja) se va hacia la banda y después el que entra llega a su puesto (cb-entra +
