@@ -87,7 +87,7 @@ const DICT = {
     "ln.sendProposal": "Enviar propuesta",
     "ln.dragHint": "Arrastra para recolocar · toque corto para asignar",
     "ln.benchTitle": "Banquillo", "ln.calledSubs": "Suplentes convocados", "ln.notCalled": "No convocados", "ln.notCalledTag": "No convocado", "ln.noCallYet": "Todavía no hay convocatoria, así que aquí salen todos. Haz la convocatoria y verás quién va y quién se queda fuera.", "ln.goCall": "Ir a Convocatoria", "ln.xiNotCalled": "En el once hay {n} sin convocar: {names}.", "ln.sumCalled": "Convocados", "ln.sumXI": "En el once", "ln.sumSubs": "Suplentes", "ln.sumOut": "Fuera", "ln.callIn": "Convocar", "ln.callOut": "Quitar de la convocatoria", "ln.noneHere": "Nadie.", "conv.label": "Convocatoria", "conv.conv": "Convocado", "conv.tecnica": "Descartado · decisión técnica", "conv.lesion": "Descartado · lesión", "conv.sancion": "Descartado · sanción", "conv.no": "No convocado (sin motivo)", "lin.POR": "Porteros", "lin.DEF": "Defensas", "lin.MED": "Centrocampistas", "lin.DEL": "Delanteros", "lin.none": "Sin demarcación habitual", "lin1.POR": "Portero", "lin1.DEF": "Defensa", "lin1.MED": "Centrocampista", "lin1.DEL": "Delantero", "lin.same": "misma posición", "pf.lineTitle": "Demarcación habitual", "pf.lineHint": "Sirve para proponerte cambios de su misma posición. Si no la pones, se deduce de dónde ha jugado.", "pf.lineAuto": "Deducida: {l}", "pf.lineNone": "Sin poner", "mt.whoOut": "¿Quién sale?", "mt.inFor": "Entra {n}: ¿por quién?", "mt.starterFor": "Titular en {p}: {n}. Cambiar por:", "mt.starterSwapHint": "Antes del saque: cambias el titular sin apuntar nada en el acta.", "mt.onPitchGroup": "En el campo", "mt.benchGroup": "Banquillo", "mt.notCalledGroup": "No convocados", "mt.alreadyOut": "Ya jugaron · pueden volver", "mt.reentry": "Reingresos", "mt.reentryOn": "Quien sale puede volver a entrar", "mt.reentryOff": "Quien sale ya no vuelve", "mt.reentryHint": "En fútbol 7 suele estar permitido; en fútbol 11 depende de la competición.", "mt.newMatch": "Nuevo partido", "mt.newMatchHint": "Pone el marcador, el reloj y el acta a cero y devuelve el once inicial.", "mt.newMatchConfirm": "El acta de este partido no está guardada en el histórico. ¿Empezar otro partido igualmente?", "mt.liveBar": "Partido en curso", "mt.backToMatch": "Volver al partido", "mt.bgHint": "El reloj sigue contando aunque cierres la app o bloquees el móvil, y el acta y el marcador se guardan en este dispositivo. Mientras corre, la pantalla no se apaga.",
-    "ln.video": "🎬 Vídeo del once", "ln.videoPro": "🎬 Vídeo del once · PRO", "ln.videoRec": "Grabando…", "ln.videoOk": "✓ Vídeo listo.", "ln.videoFail": "No se pudo generar el vídeo.", "ln.videoNoXI": "Pon el once antes de generar el vídeo.", "ln.videoDownload": "⤓ Descargar vídeo", "vm.music": "Música", "vm.ours": "CoachBase", "vm.mine": "Mi canción", "vm.none": "Sin música", "vm.change": "Cambiar", "vm.local": "Tu canción se queda en este dispositivo: no se sube a ningún sitio.", "vm.tooBig": "Esa canción pesa demasiado (máx. 25 MB).", "vm.fail": "No se pudo leer tu canción: el vídeo lleva la música de CoachBase.", "vm.silent": "La música no ha sonado al grabar en este navegador: el vídeo ha salido sin ella.", "ln.shareWhatsapp": "⬆ Enviar por WhatsApp", "ln.downloadLineup": "⤓ Descargar alineación", "ln.downloadOk": "✓ Descargada.",
+    "ln.video": "🎬 Vídeo del once", "ln.videoPro": "🎬 Vídeo del once · PRO", "ln.videoRec": "Grabando…", "ln.videoOk": "✓ Vídeo listo.", "ln.videoFail": "No se pudo generar el vídeo.", "ln.videoNoXI": "Pon el once antes de generar el vídeo.", "ln.videoDownload": "⤓ Descargar vídeo", "vm.music": "Música", "vm.ours": "CoachBase", "vm.mine": "Mi canción", "vm.none": "Sin música", "vm.change": "Cambiar", "vm.local": "Tu canción se queda en este dispositivo: no se sube a ningún sitio.", "vm.tooBig": "Esa canción pesa demasiado (máx. 25 MB).", "vm.fail": "No se pudo leer tu canción: el vídeo lleva la música de CoachBase.", "vm.silent": "La música no ha sonado al grabar en este navegador: el vídeo ha salido sin ella.", "nav.liga": "Liga", "lg.title": "Partidos de la liga", "lg.hint": "Todos los partidos del calendario con su resultado. Toca uno para ver el registro del Modo partido y la alineación que preparaste.", "lg.fLiga": "Liga", "lg.fAll": "Todos", "lg.played": "Jugados", "lg.w": "G", "lg.d": "E", "lg.l": "P", "lg.gf": "GF", "lg.ga": "GC", "lg.pts": "Puntos", "lg.empty": "Todavía no hay partidos en el calendario. Impórtalo en Calendario y aparecerán aquí con sus resultados.", "lg.toCal": "Ir a Calendario", "lg.today": "Hoy", "lg.next": "Próximo", "lg.others": "Otros partidos con acta", "lg.othersHint": "Registrados en Modo partido pero sin partido en el calendario (amistosos, torneos…).", "lg.badgeActa": "Acta", "lg.badgeAlin": "Once", "lg.edit": "✎ Editar partido", "lg.useMatch": "▶ Llevar a Modo partido", "lg.actaTitle": "Registro del Modo partido", "lg.noActa": "Este partido no tiene registro del Modo partido.", "lg.noActaHint": "Cuando lo lleves en Modo partido y guardes el acta, aparecerá aquí con los goles, los cambios, las tarjetas y los minutos de cada jugador.", "lg.timeline": "Cronología", "lg.noEvents": "No se apuntó ningún evento.", "lg.players": "Jugadores", "lg.colMin": "Min", "lg.referee": "Árbitro", "lg.actaN": "Acta {n}", "lg.pens": "Penaltis {a}-{b}", "lg.alinTitle": "Alineación para este partido", "lg.alinNone": "No hay ninguna alineación guardada para este partido.", "lg.alinSaveHint": "Se guarda el once que tienes ahora en Alineación ({s}).", "lg.alinSave": "Guardar para este partido", "lg.alinUpdate": "Guardar la actual", "lg.alinLoad": "Cargar", "lg.alinOpen": "⬡ Abrir en Alineación", "lg.alinDelete": "Quitar", "lg.alinRow": "Por partido", "lg.alinSaved": "✓ Alineación guardada para el partido.", "lg.alinSaveFail": "No se pudo guardar. Revisa la conexión.", "lg.alinEmpty": "Pon el once en el campo antes de guardarlo.", "lg.alinOverwrite": "Ya hay una alineación guardada para {p}. ¿Sustituirla por la que tienes ahora?", "lg.alinDeleteAsk": "¿Quitar la alineación guardada para {p}?", "lg.alinApplied": "✓ Puesta en el campo la alineación de {p}.", "lg.alinSavedOn": "Guardada el {d}", "lg.close": "Cerrar", "lg.captain": "C", "ln.shareWhatsapp": "⬆ Enviar por WhatsApp", "ln.downloadLineup": "⤓ Descargar alineación", "ln.downloadOk": "✓ Descargada.",
     "ln.shareImageBusy": "Generando imagen…",
     "ln.shareImageOk": "✓ Imagen lista.",
     "ln.shareImageFail": "No se pudo generar la imagen.",
@@ -697,7 +697,7 @@ const DICT = {
     "ln.sendProposal": "Send proposal",
     "ln.dragHint": "Drag to reposition · tap to assign",
     "ln.benchTitle": "Bench", "ln.calledSubs": "Called-up substitutes", "ln.notCalled": "Not called up", "ln.notCalledTag": "Not called up", "ln.noCallYet": "There is no squad list yet, so everyone shows here. Make the squad list to see who is in and who is left out.", "ln.goCall": "Go to Squad list", "ln.xiNotCalled": "The line-up has {n} not called up: {names}.", "ln.sumCalled": "Called up", "ln.sumXI": "In the XI", "ln.sumSubs": "Subs", "ln.sumOut": "Left out", "ln.callIn": "Call up", "ln.callOut": "Remove from squad list", "ln.noneHere": "Nobody.", "conv.label": "Squad list", "conv.conv": "Called up", "conv.tecnica": "Left out · coach's decision", "conv.lesion": "Left out · injury", "conv.sancion": "Left out · suspension", "conv.no": "Not called up (no reason)", "lin.POR": "Goalkeepers", "lin.DEF": "Defenders", "lin.MED": "Midfielders", "lin.DEL": "Forwards", "lin.none": "No usual position", "lin1.POR": "Goalkeeper", "lin1.DEF": "Defender", "lin1.MED": "Midfielder", "lin1.DEL": "Forward", "lin.same": "same position", "pf.lineTitle": "Usual position", "pf.lineHint": "Used to suggest substitutes for the same position. If you leave it empty, it is worked out from where they have played.", "pf.lineAuto": "Worked out: {l}", "pf.lineNone": "Not set", "mt.whoOut": "Who comes off?", "mt.inFor": "{n} comes on: for whom?", "mt.starterFor": "Starting at {p}: {n}. Replace with:", "mt.starterSwapHint": "Before kick-off: you change the starter without logging a substitution.", "mt.onPitchGroup": "On the pitch", "mt.benchGroup": "Bench", "mt.notCalledGroup": "Not called up", "mt.alreadyOut": "Already played · can come back", "mt.reentry": "Re-entry", "mt.reentryOn": "Players who come off can come back on", "mt.reentryOff": "Players who come off cannot return", "mt.reentryHint": "Usually allowed in 7-a-side; in 11-a-side it depends on the competition.", "mt.newMatch": "New match", "mt.newMatchHint": "Resets the score, clock and log and restores the starting line-up.", "mt.newMatchConfirm": "This match log isn't saved to the history. Start a new match anyway?", "mt.liveBar": "Match in progress", "mt.backToMatch": "Back to the match", "mt.bgHint": "The clock keeps running even if you close the app or lock your phone, and the log and score are kept on this device. While it runs, the screen stays on.",
-    "ln.video": "🎬 Line-up video", "ln.videoPro": "🎬 Line-up video · PRO", "ln.videoRec": "Recording…", "ln.videoOk": "✓ Video ready.", "ln.videoFail": "Could not generate the video.", "ln.videoNoXI": "Pick the XI before making the video.", "ln.videoDownload": "⤓ Download video", "vm.music": "Music", "vm.ours": "CoachBase", "vm.mine": "My song", "vm.none": "No music", "vm.change": "Change", "vm.local": "Your song stays on this device: it isn't uploaded anywhere.", "vm.tooBig": "That song is too big (max 25 MB).", "vm.fail": "Couldn't read your song: the video uses the CoachBase music.", "vm.silent": "The music didn't play while recording in this browser: the video has no sound.", "ln.shareWhatsapp": "⬆ Send on WhatsApp", "ln.downloadLineup": "⤓ Download line-up", "ln.downloadOk": "✓ Downloaded.",
+    "ln.video": "🎬 Line-up video", "ln.videoPro": "🎬 Line-up video · PRO", "ln.videoRec": "Recording…", "ln.videoOk": "✓ Video ready.", "ln.videoFail": "Could not generate the video.", "ln.videoNoXI": "Pick the XI before making the video.", "ln.videoDownload": "⤓ Download video", "vm.music": "Music", "vm.ours": "CoachBase", "vm.mine": "My song", "vm.none": "No music", "vm.change": "Change", "vm.local": "Your song stays on this device: it isn't uploaded anywhere.", "vm.tooBig": "That song is too big (max 25 MB).", "vm.fail": "Couldn't read your song: the video uses the CoachBase music.", "vm.silent": "The music didn't play while recording in this browser: the video has no sound.", "nav.liga": "League", "lg.title": "League matches", "lg.hint": "Every fixture in the calendar with its result. Tap one to see the match mode record and the line-up you prepared.", "lg.fLiga": "League", "lg.fAll": "All", "lg.played": "Played", "lg.w": "W", "lg.d": "D", "lg.l": "L", "lg.gf": "GF", "lg.ga": "GA", "lg.pts": "Points", "lg.empty": "There are no fixtures yet. Import them in Fixtures and they'll show up here with their results.", "lg.toCal": "Go to Fixtures", "lg.today": "Today", "lg.next": "Next", "lg.others": "Other matches with a report", "lg.othersHint": "Recorded in Match mode but not in the fixtures (friendlies, tournaments…).", "lg.badgeActa": "Report", "lg.badgeAlin": "XI", "lg.edit": "✎ Edit match", "lg.useMatch": "▶ Take to Match mode", "lg.actaTitle": "Match mode record", "lg.noActa": "This match has no Match mode record.", "lg.noActaHint": "When you run it in Match mode and save the report, it will appear here with goals, subs, cards and each player's minutes.", "lg.timeline": "Timeline", "lg.noEvents": "No events were recorded.", "lg.players": "Players", "lg.colMin": "Min", "lg.referee": "Referee", "lg.actaN": "Report {n}", "lg.pens": "Penalties {a}-{b}", "lg.alinTitle": "Line-up for this match", "lg.alinNone": "No line-up saved for this match.", "lg.alinSaveHint": "Saves the XI you currently have in Line-up ({s}).", "lg.alinSave": "Save for this match", "lg.alinUpdate": "Save current", "lg.alinLoad": "Load", "lg.alinOpen": "⬡ Open in Line-up", "lg.alinDelete": "Remove", "lg.alinRow": "Per match", "lg.alinSaved": "✓ Line-up saved for the match.", "lg.alinSaveFail": "Couldn't save. Check your connection.", "lg.alinEmpty": "Put the XI on the pitch before saving it.", "lg.alinOverwrite": "There's already a line-up saved for {p}. Replace it with the current one?", "lg.alinDeleteAsk": "Remove the line-up saved for {p}?", "lg.alinApplied": "✓ Line-up for {p} placed on the pitch.", "lg.alinSavedOn": "Saved on {d}", "lg.close": "Close", "lg.captain": "C", "ln.shareWhatsapp": "⬆ Send on WhatsApp", "ln.downloadLineup": "⤓ Download line-up", "ln.downloadOk": "✓ Downloaded.",
     "ln.shareImageBusy": "Generating image…",
     "ln.shareImageOk": "✓ Image ready.",
     "ln.shareImageFail": "Couldn't generate the image.",
@@ -1319,7 +1319,7 @@ const DICT = {
     "ln.sendProposal": "Envoyer la proposition",
     "ln.dragHint": "Glissez pour repositionner · touchez pour affecter",
     "ln.benchTitle": "Remplaçants", "ln.calledSubs": "Remplaçants convoqués", "ln.notCalled": "Non convoqués", "ln.notCalledTag": "Non convoqué", "ln.noCallYet": "Pas encore de convocation : tout le monde apparaît ici. Faites la convocation pour voir qui vient et qui reste dehors.", "ln.goCall": "Aller à Convocation", "ln.xiNotCalled": "La composition compte {n} non convoqué(s) : {names}.", "ln.sumCalled": "Convoqués", "ln.sumXI": "Dans le XI", "ln.sumSubs": "Remplaçants", "ln.sumOut": "Dehors", "ln.callIn": "Convoquer", "ln.callOut": "Retirer de la convocation", "ln.noneHere": "Personne.", "conv.label": "Convocation", "conv.conv": "Convoqué", "conv.tecnica": "Écarté · choix technique", "conv.lesion": "Écarté · blessure", "conv.sancion": "Écarté · suspension", "conv.no": "Non convoqué (sans motif)", "lin.POR": "Gardiens", "lin.DEF": "Défenseurs", "lin.MED": "Milieux", "lin.DEL": "Attaquants", "lin.none": "Sans poste habituel", "lin1.POR": "Gardien", "lin1.DEF": "Défenseur", "lin1.MED": "Milieu", "lin1.DEL": "Attaquant", "lin.same": "même poste", "pf.lineTitle": "Poste habituel", "pf.lineHint": "Sert à proposer des remplacements au même poste. Si vous ne l'indiquez pas, il est déduit des matchs joués.", "pf.lineAuto": "Déduit : {l}", "pf.lineNone": "Non défini", "mt.whoOut": "Qui sort ?", "mt.inFor": "{n} entre : à la place de qui ?", "mt.starterFor": "Titulaire au poste {p} : {n}. Remplacer par :", "mt.starterSwapHint": "Avant le coup d'envoi : vous changez le titulaire sans rien noter sur la feuille.", "mt.onPitchGroup": "Sur le terrain", "mt.benchGroup": "Banc", "mt.notCalledGroup": "Non convoqués", "mt.alreadyOut": "Déjà joué · peuvent revenir", "mt.reentry": "Retours en jeu", "mt.reentryOn": "Un joueur remplacé peut revenir", "mt.reentryOff": "Un joueur remplacé ne revient pas", "mt.reentryHint": "Souvent autorisé à 7 ; à 11, cela dépend de la compétition.", "mt.newMatch": "Nouveau match", "mt.newMatchHint": "Remet le score, le chrono et la feuille à zéro et rétablit le onze de départ.", "mt.newMatchConfirm": "La feuille de ce match n'est pas enregistrée dans l'historique. Commencer un autre match quand même ?", "mt.liveBar": "Match en cours", "mt.backToMatch": "Retour au match", "mt.bgHint": "Le chrono continue même si vous fermez l'app ou verrouillez le téléphone, et la feuille et le score restent sur cet appareil. Tant qu'il tourne, l'écran reste allumé.",
-    "ln.video": "🎬 Vidéo du onze", "ln.videoPro": "🎬 Vidéo du onze · PRO", "ln.videoRec": "Enregistrement…", "ln.videoOk": "✓ Vidéo prête.", "ln.videoFail": "Impossible de générer la vidéo.", "ln.videoNoXI": "Composez le onze avant de faire la vidéo.", "ln.videoDownload": "⤓ Télécharger la vidéo", "vm.music": "Musique", "vm.ours": "CoachBase", "vm.mine": "Ma chanson", "vm.none": "Sans musique", "vm.change": "Changer", "vm.local": "Ta chanson reste sur cet appareil : elle n'est envoyée nulle part.", "vm.tooBig": "Ce fichier est trop lourd (25 Mo max.).", "vm.fail": "Impossible de lire ta chanson : la vidéo utilise la musique CoachBase.", "vm.silent": "La musique n'a pas joué pendant l'enregistrement dans ce navigateur : la vidéo est sans son.", "ln.shareWhatsapp": "⬆ Envoyer par WhatsApp", "ln.downloadLineup": "⤓ Télécharger la compo", "ln.downloadOk": "✓ Téléchargée.",
+    "ln.video": "🎬 Vidéo du onze", "ln.videoPro": "🎬 Vidéo du onze · PRO", "ln.videoRec": "Enregistrement…", "ln.videoOk": "✓ Vidéo prête.", "ln.videoFail": "Impossible de générer la vidéo.", "ln.videoNoXI": "Composez le onze avant de faire la vidéo.", "ln.videoDownload": "⤓ Télécharger la vidéo", "vm.music": "Musique", "vm.ours": "CoachBase", "vm.mine": "Ma chanson", "vm.none": "Sans musique", "vm.change": "Changer", "vm.local": "Ta chanson reste sur cet appareil : elle n'est envoyée nulle part.", "vm.tooBig": "Ce fichier est trop lourd (25 Mo max.).", "vm.fail": "Impossible de lire ta chanson : la vidéo utilise la musique CoachBase.", "vm.silent": "La musique n'a pas joué pendant l'enregistrement dans ce navigateur : la vidéo est sans son.", "nav.liga": "Championnat", "lg.title": "Matchs du championnat", "lg.hint": "Tous les matchs du calendrier avec leur résultat. Touchez-en un pour voir la feuille du Mode match et la composition préparée.", "lg.fLiga": "Championnat", "lg.fAll": "Tous", "lg.played": "Joués", "lg.w": "V", "lg.d": "N", "lg.l": "D", "lg.gf": "BP", "lg.ga": "BC", "lg.pts": "Points", "lg.empty": "Aucun match dans le calendrier pour l'instant. Importez-le dans Calendrier et ils apparaîtront ici avec leurs résultats.", "lg.toCal": "Aller au Calendrier", "lg.today": "Aujourd'hui", "lg.next": "Prochain", "lg.others": "Autres matchs avec feuille", "lg.othersHint": "Enregistrés en Mode match mais absents du calendrier (amicaux, tournois…).", "lg.badgeActa": "Feuille", "lg.badgeAlin": "Onze", "lg.edit": "✎ Modifier le match", "lg.useMatch": "▶ Ouvrir en Mode match", "lg.actaTitle": "Feuille du Mode match", "lg.noActa": "Ce match n'a pas de feuille du Mode match.", "lg.noActaHint": "Quand vous le suivrez en Mode match et enregistrerez la feuille, il apparaîtra ici avec les buts, les changements, les cartons et les minutes de chaque joueur.", "lg.timeline": "Déroulé", "lg.noEvents": "Aucun événement noté.", "lg.players": "Joueurs", "lg.colMin": "Min", "lg.referee": "Arbitre", "lg.actaN": "Feuille {n}", "lg.pens": "Tirs au but {a}-{b}", "lg.alinTitle": "Composition pour ce match", "lg.alinNone": "Aucune composition enregistrée pour ce match.", "lg.alinSaveHint": "Enregistre le onze que vous avez maintenant dans Composition ({s}).", "lg.alinSave": "Enregistrer pour ce match", "lg.alinUpdate": "Enregistrer l'actuelle", "lg.alinLoad": "Charger", "lg.alinOpen": "⬡ Ouvrir dans Composition", "lg.alinDelete": "Retirer", "lg.alinRow": "Par match", "lg.alinSaved": "✓ Composition enregistrée pour le match.", "lg.alinSaveFail": "Échec de l'enregistrement. Vérifiez la connexion.", "lg.alinEmpty": "Placez le onze sur le terrain avant de l'enregistrer.", "lg.alinOverwrite": "Une composition est déjà enregistrée pour {p}. La remplacer par l'actuelle ?", "lg.alinDeleteAsk": "Retirer la composition enregistrée pour {p} ?", "lg.alinApplied": "✓ Composition de {p} placée sur le terrain.", "lg.alinSavedOn": "Enregistrée le {d}", "lg.close": "Fermer", "lg.captain": "C", "ln.shareWhatsapp": "⬆ Envoyer par WhatsApp", "ln.downloadLineup": "⤓ Télécharger la compo", "ln.downloadOk": "✓ Téléchargée.",
     "ln.shareImageBusy": "Génération de l'image…",
     "ln.shareImageOk": "✓ Image prête.",
     "ln.shareImageFail": "Impossible de générer l'image.",
@@ -2021,7 +2021,7 @@ const DICT = {
     "ln.sendProposal": "Vorschlag senden",
     "ln.dragHint": "Ziehen zum Umstellen · Antippen zum Zuweisen",
     "ln.benchTitle": "Bank", "ln.calledSubs": "Nominierte Ersatzspieler", "ln.notCalled": "Nicht nominiert", "ln.notCalledTag": "Nicht nominiert", "ln.noCallYet": "Noch kein Kader, daher stehen hier alle. Stell den Kader zusammen, dann siehst du, wer dabei ist und wer nicht.", "ln.goCall": "Zum Kader", "ln.xiNotCalled": "In der Startelf stehen {n} nicht Nominierte: {names}.", "ln.sumCalled": "Nominiert", "ln.sumXI": "Startelf", "ln.sumSubs": "Ersatz", "ln.sumOut": "Draußen", "ln.callIn": "Nominieren", "ln.callOut": "Aus dem Kader nehmen", "ln.noneHere": "Niemand.", "conv.label": "Kader", "conv.conv": "Nominiert", "conv.tecnica": "Nicht nominiert · Trainerentscheidung", "conv.lesion": "Nicht nominiert · Verletzung", "conv.sancion": "Nicht nominiert · Sperre", "conv.no": "Nicht nominiert (ohne Grund)", "lin.POR": "Torhüter", "lin.DEF": "Verteidiger", "lin.MED": "Mittelfeldspieler", "lin.DEL": "Stürmer", "lin.none": "Ohne Stammposition", "lin1.POR": "Torhüter", "lin1.DEF": "Verteidiger", "lin1.MED": "Mittelfeld", "lin1.DEL": "Stürmer", "lin.same": "gleiche Position", "pf.lineTitle": "Stammposition", "pf.lineHint": "Damit werden Wechsel auf derselben Position vorgeschlagen. Ohne Angabe wird sie aus den bisherigen Einsätzen abgeleitet.", "pf.lineAuto": "Abgeleitet: {l}", "pf.lineNone": "Nicht gesetzt", "mt.whoOut": "Wer geht raus?", "mt.inFor": "{n} kommt rein: für wen?", "mt.starterFor": "Startelf auf {p}: {n}. Ersetzen durch:", "mt.starterSwapHint": "Vor dem Anpfiff: Du tauschst die Startelf, ohne einen Wechsel einzutragen.", "mt.onPitchGroup": "Auf dem Platz", "mt.benchGroup": "Bank", "mt.notCalledGroup": "Nicht nominiert", "mt.alreadyOut": "Schon gespielt · dürfen zurück", "mt.reentry": "Wiedereinwechslung", "mt.reentryOn": "Ausgewechselte dürfen wieder rein", "mt.reentryOff": "Ausgewechselte dürfen nicht zurück", "mt.reentryHint": "Im 7er-Fußball meist erlaubt; im 11er hängt es vom Wettbewerb ab.", "mt.newMatch": "Neues Spiel", "mt.newMatchHint": "Setzt Spielstand, Uhr und Bericht zurück und stellt die Startelf wieder her.", "mt.newMatchConfirm": "Der Spielbericht ist nicht im Verlauf gespeichert. Trotzdem ein neues Spiel beginnen?", "mt.liveBar": "Spiel läuft", "mt.backToMatch": "Zurück zum Spiel", "mt.bgHint": "Die Uhr läuft weiter, auch wenn du die App schließt oder das Handy sperrst, und Bericht und Spielstand bleiben auf diesem Gerät. Solange sie läuft, bleibt der Bildschirm an.",
-    "ln.video": "🎬 Video der Elf", "ln.videoPro": "🎬 Video der Elf · PRO", "ln.videoRec": "Aufnahme…", "ln.videoOk": "✓ Video fertig.", "ln.videoFail": "Video konnte nicht erstellt werden.", "ln.videoNoXI": "Stelle erst die Elf auf.", "ln.videoDownload": "⤓ Video herunterladen", "vm.music": "Musik", "vm.ours": "CoachBase", "vm.mine": "Mein Song", "vm.none": "Ohne Musik", "vm.change": "Ändern", "vm.local": "Dein Song bleibt auf diesem Gerät und wird nirgends hochgeladen.", "vm.tooBig": "Die Datei ist zu groß (max. 25 MB).", "vm.fail": "Dein Song ließ sich nicht lesen: Das Video nutzt die CoachBase-Musik.", "vm.silent": "Die Musik lief bei der Aufnahme in diesem Browser nicht: Das Video hat keinen Ton.", "ln.shareWhatsapp": "⬆ Per WhatsApp senden", "ln.downloadLineup": "⤓ Aufstellung laden", "ln.downloadOk": "✓ Heruntergeladen.",
+    "ln.video": "🎬 Video der Elf", "ln.videoPro": "🎬 Video der Elf · PRO", "ln.videoRec": "Aufnahme…", "ln.videoOk": "✓ Video fertig.", "ln.videoFail": "Video konnte nicht erstellt werden.", "ln.videoNoXI": "Stelle erst die Elf auf.", "ln.videoDownload": "⤓ Video herunterladen", "vm.music": "Musik", "vm.ours": "CoachBase", "vm.mine": "Mein Song", "vm.none": "Ohne Musik", "vm.change": "Ändern", "vm.local": "Dein Song bleibt auf diesem Gerät und wird nirgends hochgeladen.", "vm.tooBig": "Die Datei ist zu groß (max. 25 MB).", "vm.fail": "Dein Song ließ sich nicht lesen: Das Video nutzt die CoachBase-Musik.", "vm.silent": "Die Musik lief bei der Aufnahme in diesem Browser nicht: Das Video hat keinen Ton.", "nav.liga": "Liga", "lg.title": "Ligaspiele", "lg.hint": "Alle Spiele aus dem Spielplan mit Ergebnis. Tippe auf eines, um den Bericht aus dem Spielmodus und die vorbereitete Aufstellung zu sehen.", "lg.fLiga": "Liga", "lg.fAll": "Alle", "lg.played": "Gespielt", "lg.w": "S", "lg.d": "U", "lg.l": "N", "lg.gf": "Tore", "lg.ga": "Gegentore", "lg.pts": "Punkte", "lg.empty": "Noch keine Spiele im Spielplan. Importiere ihn unter Spielplan, dann erscheinen sie hier mit ihren Ergebnissen.", "lg.toCal": "Zum Spielplan", "lg.today": "Heute", "lg.next": "Nächstes", "lg.others": "Weitere Spiele mit Bericht", "lg.othersHint": "Im Spielmodus erfasst, aber nicht im Spielplan (Testspiele, Turniere…).", "lg.badgeActa": "Bericht", "lg.badgeAlin": "Elf", "lg.edit": "✎ Spiel bearbeiten", "lg.useMatch": "▶ In den Spielmodus", "lg.actaTitle": "Bericht aus dem Spielmodus", "lg.noActa": "Für dieses Spiel gibt es keinen Bericht aus dem Spielmodus.", "lg.noActaHint": "Wenn du es im Spielmodus führst und den Bericht speicherst, erscheint es hier mit Toren, Wechseln, Karten und den Minuten jedes Spielers.", "lg.timeline": "Spielverlauf", "lg.noEvents": "Keine Ereignisse erfasst.", "lg.players": "Spieler", "lg.colMin": "Min", "lg.referee": "Schiedsrichter", "lg.actaN": "Bericht {n}", "lg.pens": "Elfmeterschießen {a}-{b}", "lg.alinTitle": "Aufstellung für dieses Spiel", "lg.alinNone": "Für dieses Spiel ist keine Aufstellung gespeichert.", "lg.alinSaveHint": "Speichert die Elf, die du gerade in der Aufstellung hast ({s}).", "lg.alinSave": "Für dieses Spiel speichern", "lg.alinUpdate": "Aktuelle speichern", "lg.alinLoad": "Laden", "lg.alinOpen": "⬡ In der Aufstellung öffnen", "lg.alinDelete": "Entfernen", "lg.alinRow": "Pro Spiel", "lg.alinSaved": "✓ Aufstellung für das Spiel gespeichert.", "lg.alinSaveFail": "Speichern fehlgeschlagen. Prüfe die Verbindung.", "lg.alinEmpty": "Stelle die Elf erst auf dem Platz auf.", "lg.alinOverwrite": "Für {p} ist schon eine Aufstellung gespeichert. Durch die aktuelle ersetzen?", "lg.alinDeleteAsk": "Gespeicherte Aufstellung für {p} entfernen?", "lg.alinApplied": "✓ Aufstellung für {p} auf den Platz gestellt.", "lg.alinSavedOn": "Gespeichert am {d}", "lg.close": "Schließen", "lg.captain": "K", "ln.shareWhatsapp": "⬆ Per WhatsApp senden", "ln.downloadLineup": "⤓ Aufstellung laden", "ln.downloadOk": "✓ Heruntergeladen.",
     "ln.shareImageBusy": "Bild wird erstellt…",
     "ln.shareImageOk": "✓ Bild bereit.",
     "ln.shareImageFail": "Bild konnte nicht erstellt werden.",
@@ -2722,7 +2722,7 @@ const DICT = {
     "ln.sendProposal": "Enviar proposta",
     "ln.dragHint": "Arrasta para recolocar · toque curto para atribuir",
     "ln.benchTitle": "Banco", "ln.calledSubs": "Suplentes convocados", "ln.notCalled": "Não convocados", "ln.notCalledTag": "Não convocado", "ln.noCallYet": "Ainda não há convocatória, por isso aparecem todos. Faz a convocatória e vês quem vai e quem fica de fora.", "ln.goCall": "Ir à Convocatória", "ln.xiNotCalled": "No onze há {n} sem convocar: {names}.", "ln.sumCalled": "Convocados", "ln.sumXI": "No onze", "ln.sumSubs": "Suplentes", "ln.sumOut": "De fora", "ln.callIn": "Convocar", "ln.callOut": "Tirar da convocatória", "ln.noneHere": "Ninguém.", "conv.label": "Convocatória", "conv.conv": "Convocado", "conv.tecnica": "Fora · opção técnica", "conv.lesion": "Fora · lesão", "conv.sancion": "Fora · castigo", "conv.no": "Não convocado (sem motivo)", "lin.POR": "Guarda-redes", "lin.DEF": "Defesas", "lin.MED": "Médios", "lin.DEL": "Avançados", "lin.none": "Sem posição habitual", "lin1.POR": "Guarda-redes", "lin1.DEF": "Defesa", "lin1.MED": "Médio", "lin1.DEL": "Avançado", "lin.same": "mesma posição", "pf.lineTitle": "Posição habitual", "pf.lineHint": "Serve para sugerir substituições na mesma posição. Se não a puseres, deduz-se de onde jogou.", "pf.lineAuto": "Deduzida: {l}", "pf.lineNone": "Por definir", "mt.whoOut": "Quem sai?", "mt.inFor": "Entra {n}: por quem?", "mt.starterFor": "Titular em {p}: {n}. Trocar por:", "mt.starterSwapHint": "Antes do apito inicial: trocas o titular sem registar nada na ficha.", "mt.onPitchGroup": "Em campo", "mt.benchGroup": "Banco", "mt.notCalledGroup": "Não convocados", "mt.alreadyOut": "Já jogaram · podem voltar", "mt.reentry": "Reentradas", "mt.reentryOn": "Quem sai pode voltar a entrar", "mt.reentryOff": "Quem sai já não volta", "mt.reentryHint": "No futebol de 7 costuma ser permitido; no de 11 depende da competição.", "mt.newMatch": "Novo jogo", "mt.newMatchHint": "Põe o marcador, o relógio e a ficha a zero e repõe o onze inicial.", "mt.newMatchConfirm": "A ficha deste jogo não está guardada no histórico. Começar outro jogo na mesma?", "mt.liveBar": "Jogo em curso", "mt.backToMatch": "Voltar ao jogo", "mt.bgHint": "O relógio continua a contar mesmo que feches a app ou bloqueies o telemóvel, e a ficha e o marcador ficam guardados neste dispositivo. Enquanto corre, o ecrã não se apaga.",
-    "ln.video": "🎬 Vídeo do onze", "ln.videoPro": "🎬 Vídeo do onze · PRO", "ln.videoRec": "A gravar…", "ln.videoOk": "✓ Vídeo pronto.", "ln.videoFail": "Não foi possível gerar o vídeo.", "ln.videoNoXI": "Escolhe o onze antes de fazer o vídeo.", "ln.videoDownload": "⤓ Descarregar vídeo", "vm.music": "Música", "vm.ours": "CoachBase", "vm.mine": "A minha música", "vm.none": "Sem música", "vm.change": "Trocar", "vm.local": "A tua música fica neste dispositivo: não é enviada para lado nenhum.", "vm.tooBig": "Essa música é demasiado grande (máx. 25 MB).", "vm.fail": "Não foi possível ler a tua música: o vídeo leva a música CoachBase.", "vm.silent": "A música não tocou ao gravar neste navegador: o vídeo saiu sem som.", "ln.shareWhatsapp": "⬆ Enviar por WhatsApp", "ln.downloadLineup": "⤓ Descarregar onze", "ln.downloadOk": "✓ Descarregado.",
+    "ln.video": "🎬 Vídeo do onze", "ln.videoPro": "🎬 Vídeo do onze · PRO", "ln.videoRec": "A gravar…", "ln.videoOk": "✓ Vídeo pronto.", "ln.videoFail": "Não foi possível gerar o vídeo.", "ln.videoNoXI": "Escolhe o onze antes de fazer o vídeo.", "ln.videoDownload": "⤓ Descarregar vídeo", "vm.music": "Música", "vm.ours": "CoachBase", "vm.mine": "A minha música", "vm.none": "Sem música", "vm.change": "Trocar", "vm.local": "A tua música fica neste dispositivo: não é enviada para lado nenhum.", "vm.tooBig": "Essa música é demasiado grande (máx. 25 MB).", "vm.fail": "Não foi possível ler a tua música: o vídeo leva a música CoachBase.", "vm.silent": "A música não tocou ao gravar neste navegador: o vídeo saiu sem som.", "nav.liga": "Liga", "lg.title": "Jogos da liga", "lg.hint": "Todos os jogos do calendário com o resultado. Toca num para ver o registo do Modo jogo e a escalação que preparaste.", "lg.fLiga": "Liga", "lg.fAll": "Todos", "lg.played": "Jogados", "lg.w": "V", "lg.d": "E", "lg.l": "D", "lg.gf": "GM", "lg.ga": "GS", "lg.pts": "Pontos", "lg.empty": "Ainda não há jogos no calendário. Importa-o em Calendário e aparecem aqui com os resultados.", "lg.toCal": "Ir para o Calendário", "lg.today": "Hoje", "lg.next": "Próximo", "lg.others": "Outros jogos com ficha", "lg.othersHint": "Registados no Modo jogo mas sem jogo no calendário (particulares, torneios…).", "lg.badgeActa": "Ficha", "lg.badgeAlin": "Onze", "lg.edit": "✎ Editar jogo", "lg.useMatch": "▶ Levar ao Modo jogo", "lg.actaTitle": "Registo do Modo jogo", "lg.noActa": "Este jogo não tem registo do Modo jogo.", "lg.noActaHint": "Quando o levares no Modo jogo e guardares a ficha, aparece aqui com os golos, as substituições, os cartões e os minutos de cada jogador.", "lg.timeline": "Cronologia", "lg.noEvents": "Nenhum evento registado.", "lg.players": "Jogadores", "lg.colMin": "Min", "lg.referee": "Árbitro", "lg.actaN": "Ficha {n}", "lg.pens": "Penáltis {a}-{b}", "lg.alinTitle": "Escalação para este jogo", "lg.alinNone": "Não há nenhuma escalação guardada para este jogo.", "lg.alinSaveHint": "Guarda o onze que tens agora na Escalação ({s}).", "lg.alinSave": "Guardar para este jogo", "lg.alinUpdate": "Guardar a atual", "lg.alinLoad": "Carregar", "lg.alinOpen": "⬡ Abrir na Escalação", "lg.alinDelete": "Retirar", "lg.alinRow": "Por jogo", "lg.alinSaved": "✓ Escalação guardada para o jogo.", "lg.alinSaveFail": "Não foi possível guardar. Verifica a ligação.", "lg.alinEmpty": "Põe o onze no campo antes de o guardar.", "lg.alinOverwrite": "Já há uma escalação guardada para {p}. Substituí-la pela atual?", "lg.alinDeleteAsk": "Retirar a escalação guardada para {p}?", "lg.alinApplied": "✓ Escalação de {p} colocada no campo.", "lg.alinSavedOn": "Guardada a {d}", "lg.close": "Fechar", "lg.captain": "C", "ln.shareWhatsapp": "⬆ Enviar por WhatsApp", "ln.downloadLineup": "⤓ Descarregar onze", "ln.downloadOk": "✓ Descarregado.",
     "ln.shareImageBusy": "A gerar imagem…",
     "ln.shareImageOk": "✓ Imagem pronta.",
     "ln.shareImageFail": "Não foi possível gerar a imagem.",
@@ -3744,7 +3744,7 @@ const ROLES = {
      normativa y sus números—, que es justo lo que se pidió al crearlo. */
   club: { label: "Club", color: "#36454F", icon: "⬢",
     desc: "La cuenta del club: nombra al cuerpo técnico, lleva el material y ve todas sus categorías.",
-    tabs: ["inicio", "equipo", "jugadores", "calendario", "estadisticas", "asistencia", "disciplina", "normativa", "usuarios", "material", "premium"],
+    tabs: ["inicio", "equipo", "jugadores", "calendario", "liga", "estadisticas", "asistencia", "disciplina", "normativa", "usuarios", "material", "premium"],
     perms: ["editSquad", "events", "viewUsers", "grantAccess", "createUsers", "viewStats", "discipline", "editDiscipline", "validateDiscipline", "viewDocs", "manageDocs", "editCal", "cargas", "parte"] },
   director: { label: "Director deportivo", color: "#36454F", icon: "✚",
     desc: "Dirige el club: acceso total a todo el sistema.",
@@ -3754,15 +3754,15 @@ const ROLES = {
        categorías, y cuya descripción aquí al lado dice "acceso total a todo el
        sistema"— le salía el apartado en gris y con el aviso de que su rol no
        tiene acceso. */
-    tabs: ["inicio", "equipo", "jugadores", "alineacion", "pizarra", "ejercicios", "entrenamiento", "lesiones", "temporada", "estadisticas", "convocatoria", "calendario", "partido", "asistencia", "disciplina", "normativa", "usuarios", "material", "premium"],
+    tabs: ["inicio", "equipo", "jugadores", "alineacion", "pizarra", "ejercicios", "entrenamiento", "lesiones", "temporada", "estadisticas", "convocatoria", "calendario", "partido", "liga", "asistencia", "disciplina", "normativa", "usuarios", "material", "premium"],
     perms: ["editSquad", "editLineup", "editCall", "events", "viewUsers", "grantAccess", "createUsers", "editTraining", "viewStats", "discipline", "editDiscipline", "validateDiscipline", "viewDocs", "manageDocs", "editCal", "cargas", "parte"] },
   entrenador: { label: "Entrenador principal", color: "#36454F", icon: "◆",
     desc: "Control total de su equipo: edición de todo excepto gestión de usuarios.",
-    tabs: ["inicio", "jugadores", "parte", "alineacion", "pizarra", "ejercicios", "entrenamiento", "lesiones", "temporada", "estadisticas", "convocatoria", "calendario", "partido", "asistencia", "disciplina", "normativa", "usuarios", "material", "premium"],
+    tabs: ["inicio", "jugadores", "parte", "alineacion", "pizarra", "ejercicios", "entrenamiento", "lesiones", "temporada", "estadisticas", "convocatoria", "calendario", "partido", "liga", "asistencia", "disciplina", "normativa", "usuarios", "material", "premium"],
     perms: ["editSquad", "editLineup", "editCall", "events", "createUsers", "editTraining", "viewStats", "discipline", "editDiscipline", "viewDocs", "editCal", "cargas", "parte"] },
   segundo: { label: "Segundo entrenador", color: "#36454F", icon: "◈",
     desc: "Asiste al entrenador: alineaciones, entrenamiento y partido.",
-    tabs: ["inicio", "jugadores", "parte", "alineacion", "pizarra", "ejercicios", "entrenamiento", "lesiones", "temporada", "estadisticas", "convocatoria", "calendario", "partido", "asistencia", "disciplina", "normativa", "material", "premium"],
+    tabs: ["inicio", "jugadores", "parte", "alineacion", "pizarra", "ejercicios", "entrenamiento", "lesiones", "temporada", "estadisticas", "convocatoria", "calendario", "partido", "liga", "asistencia", "disciplina", "normativa", "material", "premium"],
     perms: ["editSquad", "editLineup", "events", "editTraining", "viewStats", "discipline", "editDiscipline", "viewDocs", "editCal", "cargas", "parte"] },
   delegado: { label: "Delegado", color: "#36454F", icon: "▣",
     desc: "Logística del equipo: acta del partido, disciplina y normativa.",
@@ -3776,11 +3776,11 @@ const ROLES = {
        llevando el acta, y los cambios del partido salen de ahí. Sin esta
        pestaña el botón de Alineación de Inicio no le salía y, dentro de Modo
        partido, el once y los cambios se le quedaban en gris. */
-    tabs: ["inicio", "jugadores", "parte", "alineacion", "lesiones", "convocatoria", "calendario", "partido", "asistencia", "disciplina", "normativa", "material", "premium"],
+    tabs: ["inicio", "jugadores", "parte", "alineacion", "lesiones", "convocatoria", "calendario", "partido", "liga", "asistencia", "disciplina", "normativa", "material", "premium"],
     perms: ["editSquad", "editLineup", "events", "discipline", "editDiscipline", "viewDocs", "manageDocs", "editCal", "cargas", "parte"] },
   master: { label: "Master · EBLDigital", color: "#36454F", icon: "★",
     desc: "Administración total: crea los equipos oficiales y da de alta a cualquiera.",
-    tabs: ["inicio", "master", "equipos", "equipo", "jugadores", "alineacion", "pizarra", "ejercicios", "entrenamiento", "lesiones", "temporada", "estadisticas", "convocatoria", "calendario", "partido", "asistencia", "disciplina", "normativa", "usuarios", "material"],
+    tabs: ["inicio", "master", "equipos", "equipo", "jugadores", "alineacion", "pizarra", "ejercicios", "entrenamiento", "lesiones", "temporada", "estadisticas", "convocatoria", "calendario", "partido", "liga", "asistencia", "disciplina", "normativa", "usuarios", "material"],
     perms: ["editSquad", "editLineup", "editCall", "events", "viewUsers", "grantAccess", "createUsers", "editTraining", "viewStats", "discipline", "editDiscipline", "validateDiscipline", "viewDocs", "manageDocs", "editCal", "cargas", "parte", "master"] },
   /* Familia y Jugador: los dos únicos roles de SOLO LECTURA (ver
      ROLES_SOLO_LECTURA más abajo) y los dos únicos con una sola pestaña.
@@ -3887,7 +3887,7 @@ const getAvailableTabs = (club, roleTabs) => roleTabs;
    este interruptor, ni más abierta ni más cerrada. */
 const TABS_GRATIS_DEFECTO = [
   "inicio", "premium", "material",
-  "calendario", "alineacion", "partido", "jugadores", "asistencia", "convocatoria", "lesiones",
+  "calendario", "alineacion", "partido", "liga", "jugadores", "asistencia", "convocatoria", "lesiones",
 ];
 /* Pestañas que el Master puede marcar como gratis o Premium desde su panel.
    Debe coincidir con TABS_CONFIGURABLES del backend (netlify/functions/
@@ -3899,7 +3899,7 @@ const TABS_GRATIS_DEFECTO = [
 const TABS_RETIRADAS = ["coachai"];
 const TABS_CONFIGURABLES = [
   "inicio", "parte", "equipos", "equipo", "jugadores", "calendario", "convocatoria",
-  "alineacion", "partido", "temporada", "entrenamiento", "lesiones", "ejercicios", "pizarra",
+  "alineacion", "partido", "liga", "temporada", "entrenamiento", "lesiones", "ejercicios", "pizarra",
   "asistencia", "disciplina", "normativa", "estadisticas", "usuarios", "material", "premium",
 ];
 /* "inicio" y "premium" no se pueden quitar del gratis: sin inicio no hay
@@ -4672,6 +4672,20 @@ const airFavoritasGuardar = async (teamRec, favoritas) => {
   try {
     const r = await cbFetch(`${AIR}?res=alineaciones-favoritas&team=${encodeURIComponent(teamRec)}`, {
       method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ favoritas: JSON.stringify(favoritas) }),
+    });
+    return await r.json().catch(() => null);
+  } catch { return null; }
+};
+/* La alineación preparada para cada partido del calendario: un objeto por
+   equipo, { <partido>: { lineup, sysCode, slots, capitanes, fecha, j, rival } },
+   donde <partido> es el rec del partido (o su id si aún no está en la nube). */
+const airAlinPartidosLeer = async (teamRec) => {
+  try { const r = await cbFetch(`${AIR}?res=alineaciones-partidos&team=${encodeURIComponent(teamRec)}`); if (!r.ok) return null; return await r.json(); } catch { return null; }
+};
+const airAlinPartidosGuardar = async (teamRec, doc) => {
+  try {
+    const r = await cbFetch(`${AIR}?res=alineaciones-partidos&team=${encodeURIComponent(teamRec)}`, {
+      method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ alineaciones: JSON.stringify(doc) }),
     });
     return await r.json().catch(() => null);
   } catch { return null; }
@@ -5452,6 +5466,8 @@ const ICONOS = {
   alineacion: <><rect x="3.5" y="4.6" width="17" height="14.8" rx="1.6" /><path d="M12 4.6v14.8" /><circle cx="12" cy="12" r="2.7" /></>,
   /* Modo partido: el cronómetro que se pone en marcha. */
   partido: <><circle cx="12" cy="13.6" r="7" /><path d="M12 13.6V9.8M9.6 3.4h4.8M18.6 7.2 20 5.8" /></>,
+  /* Liga: la copa de la temporada. */
+  liga: <><path d="M8 4h8v5.4a4 4 0 0 1-8 0V4z" /><path d="M8 6H5.2a3 3 0 0 0 3.1 4.4M16 6h2.8a3 3 0 0 1-3.1 4.4M12 13.4v3.8M8.6 20.4h6.8" /></>,
   /* Análisis: la lupa sobre lo que pasó (Estadísticas son las barras). */
   /* Temporada: la bandera de la meta a la que apunta el plan. */
   temporada: <><path d="M5 21V3.6" /><path d="M5 4.8h11.6l-2.3 3.4 2.3 3.4H5" /></>,
@@ -5522,7 +5538,7 @@ const Icono = ({ n, s = 18, className = "", style }) => {
    (títulos de pestaña sueltos), pero la navegación ya usa <Icono>. */
 const TAB_ICON = {
   inicio: "▦", equipos: "⬢", equipo: "▥", jugadores: "◉", calendario: "▤", convocatoria: "▣",
-  alineacion: "⬡", partido: "▶", entrenamiento: "◈", temporada: "◱", ejercicios: "≡", pizarra: "✎",
+  alineacion: "⬡", partido: "▶", liga: "◫", entrenamiento: "◈", temporada: "◱", ejercicios: "≡", pizarra: "✎",
   disciplina: "⚑", normativa: "§", estadisticas: "◧", usuarios: "◍", asistencia: "☑",
   material: "◇", parte: "▤", premium: "★", master: "❖",
 };
@@ -5545,7 +5561,7 @@ const NAV_GROUPS = [
      el plan de temporada -que se mira una vez al mes, no cada tarde- y el
      calendario, que antes vivía metido en "Día de partido" aunque también
      enseña los entrenos. Separado, cada uno se abre solo cuando toca. */
-  { label: "navg.partido", tabs: ["convocatoria", "alineacion", "partido"] },
+  { label: "navg.partido", tabs: ["convocatoria", "alineacion", "partido", "liga"] },
   { label: "navg.entrenamiento", tabs: ["entrenamiento", "lesiones", "ejercicios", "pizarra"] },
   { label: "navg.temporada", tabs: ["temporada"] },
   { label: "navg.calendario", tabs: ["calendario"] },
@@ -9181,6 +9197,31 @@ const AMISTOSOS_DEMO = [
     cambios: [[45, 11, 15], [45, 12, 6], [55, 17, 9], [60, 19, 10], [60, 18, 2], [62, 16, 8]],
     goles: [[22, 9], [64, 7]], golesRival: [], amarillas: [] },
 ];
+/* Las primeras jornadas de liga de la demo, ya jugadas: resultado y acta
+   del Modo partido, enlazada a su partido del calendario (`fixture`), para
+   que Liga y Estadísticas enseñen una temporada en marcha. Mismo formato que
+   los amistosos: cambios [minuto, entra, sale], goles [minuto, jugador]. */
+const LIGA_DEMO = [
+  { id: 8201, fixture: 8003, j: "1", fecha: "2026-09-26", hora: "11:00", rival: "AULA C.F. - BREZO OSUNA \"A\"", casa: false, us: 2, them: 1,
+    titulares: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15], sinJugar: [16],
+    cambios: [[45, 12, 6], [50, 11, 15], [60, 13, 8]],
+    goles: [[24, 9], [57, 10]], golesRival: [[38]], amarillas: [[66, 3]] },
+  { id: 8202, fixture: 8004, j: "2", fecha: "2026-10-03", hora: "10:00", rival: "C.F. VALDEBEBAS \"A\"", casa: true, us: 3, them: 1,
+    titulares: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15], sinJugar: [],
+    cambios: [[45, 14, 2], [55, 12, 7], [62, 16, 9]],
+    goles: [[12, 9], [40, 7], [68, 12]], golesRival: [[51]], amarillas: [] },
+  { id: 8203, fixture: 8005, j: "3", fecha: "2026-10-10", hora: "12:15", rival: "C.D. OLIMPICO DE HORTALEZA \"B\"", casa: false, us: 2, them: 2,
+    titulares: [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 15], sinJugar: [16],
+    cambios: [[45, 10, 11], [58, 12, 6], [65, 13, 15]],
+    goles: [[30, 15], [61, 10]], golesRival: [[18], [52]], amarillas: [[44, 5], [70, 8]] },
+  { id: 8204, fixture: 8006, j: "4", fecha: "2026-10-17", hora: "10:00", rival: "C.D. TRIVEMA NAVAL \"A\"", casa: true, us: 0, them: 1,
+    titulares: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15], sinJugar: [],
+    cambios: [[50, 11, 9], [55, 12, 8], [60, 13, 6], [65, 14, 4]],
+    goles: [], golesRival: [[47]], amarillas: [[35, 2]] },
+];
+/* Jornada con resultado apuntado en el calendario pero sin acta: también
+   pasa (el partido no se llevó con la app). */
+const RESULTADOS_SIN_ACTA_DEMO = { 8007: { hg: 1, ag: 3 } };
 const TEXTOS_DEMO = {
   es: { s1: "Conservación y cambio de orientación", s2: "Presión tras pérdida", s3: "Salida de balón ante presión alta", g1: "Rondos + finalización", g2: "Salida de balón", molestia: "Sobrecarga en el isquiotibial derecho", pinchado: "1 balón pinchado" },
   en: { s1: "Keeping the ball and switching play", s2: "Pressing straight after losing the ball", s3: "Building out against a high press", g1: "Rondos + finishing", g2: "Building out from the back", molestia: "Tight right hamstring", pinchado: "1 punctured ball" },
@@ -9205,7 +9246,7 @@ const demoTemporada = (hoy, lang = "es", entrenador = "") => {
   /* Partidos jugados: acta (lo más reciente primero, como la guarda Modo
      partido), ficha por jugador y minutos de cada uno. */
   const minutos = {};
-  const historial = AMISTOSOS_DEMO.map((m) => {
+  const historial = [...AMISTOSOS_DEMO, ...LIGA_DEMO].map((m) => {
     const enCampo = new Map(m.titulares.map((id) => [id, { desde: 0, hasta: 70 }]));
     for (const [min, entra, sale] of m.cambios) {
       enCampo.get(sale).hasta = min;
@@ -9231,10 +9272,11 @@ const demoTemporada = (hoy, lang = "es", entrenador = "") => {
       ...m.cambios.map(([min, entra, sale]) => ({ min, disp: String(min), type: "cambio", player: jug(entra).n, dorsal: jug(entra).d, sale: jug(sale).n })),
     ].sort((a, b) => b.min - a.min).map(({ min, ...e }) => ({ card: null, periodoNombre: null, resultado: null, lado: null, ...e }));
     return {
-      id: m.id, fecha: m.fecha, rival: m.rival, j: "AM", us: m.us, them: m.them, casa: m.casa,
+      id: m.id, fecha: m.fecha, rival: m.rival, j: m.j || "AM", us: m.us, them: m.them, casa: m.casa,
+      ...(m.fixture ? { partido: String(m.fixture) } : {}),
       penUs: null, penThem: null, eventos: acta.length, jugadores, acta, lugar: "", arbitro: "", arbComentario: "",
     };
-  }).reverse();
+  }).sort((a, b) => String(b.fecha).localeCompare(String(a.fecha)));
 
   /* Los mismos amistosos en el calendario, con su resultado. */
   const amistosos = AMISTOSOS_DEMO.map((m) => ({
@@ -9242,7 +9284,13 @@ const demoTemporada = (hoy, lang = "es", entrenador = "") => {
     home: m.casa ? NUESTRO_DEMO : m.rival, away: m.casa ? m.rival : NUESTRO_DEMO,
     hg: m.casa ? m.us : m.them, ag: m.casa ? m.them : m.us,
   }));
-  const fixtures = [...CAL_DEMO, ...amistosos].sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0));
+  /* Las jornadas ya jugadas, con su resultado. */
+  const liga = CAL_DEMO.map((f) => {
+    const m = LIGA_DEMO.find((x) => x.fixture === f.id);
+    if (m) return { ...f, time: m.hora, hg: m.casa ? m.us : m.them, ag: m.casa ? m.them : m.us };
+    return RESULTADOS_SIN_ACTA_DEMO[f.id] ? { ...f, ...RESULTADOS_SIN_ACTA_DEMO[f.id] } : f;
+  });
+  const fixtures = [...liga, ...amistosos].sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0));
 
   /* Días de entreno (martes y jueves) de las últimas cinco semanas, hoy
      incluido si toca, y los de alrededor de hoy para las sesiones. */
@@ -12583,6 +12631,102 @@ export default function App() {
     setFavMsg(t("ln.favApplied").replace("{name}", fav.nombre));
     setTimeout(() => setFavMsg(""), 4000);
   };
+  /* ---------------- ALINEACIÓN DE CADA PARTIDO ----------------
+     El once preparado para un partido concreto del calendario -la jornada 7
+     contra tal-, para recuperarlo en Alineación ese día o verlo desde Liga.
+     Un documento por equipo con una entrada por partido
+     (res=alineaciones-partidos); la clave es el rec del partido, o su id
+     mientras no esté en la nube. Sin equipo en la nube (o en la demo) vive
+     solo en memoria. */
+  const [alinPartidos, setAlinPartidos] = useState({});
+  const [alinPartidoSel, setAlinPartidoSel] = useState("");
+  const [alinPartidoMsg, setAlinPartidoMsg] = useState("");
+  const [alinPartidoBusy, setAlinPartidoBusy] = useState(false);
+  useEffect(() => {
+    const rec = session?.team?.rec;
+    setAlinPartidos({});
+    if (!rec || session?.email === "demo") return;
+    let vivo = true;
+    (async () => {
+      const d = await airAlinPartidosLeer(rec);
+      if (!vivo) return;
+      try {
+        const doc = JSON.parse(d?.alineaciones || "{}");
+        if (doc && typeof doc === "object" && !Array.isArray(doc)) setAlinPartidos(doc);
+      } catch { /* json roto en la nube: se ignora */ }
+    })();
+    return () => { vivo = false; };
+  }, [session?.team?.rec, refresco]); // eslint-disable-line
+  const claveFixture = (f) => String(f?.rec || f?.id || "");
+  const alinDeFixture = (f) => (f ? alinPartidos[String(f.rec || "")] || alinPartidos[String(f.id ?? "")] || null : null);
+  const nombrePartido = (f) => `${etiquetaJornada(f)} · ${rivalDeFixture(f) || "—"}`;
+  const avisoAlinPartido = (txt) => { setAlinPartidoMsg(txt); setTimeout(() => setAlinPartidoMsg(""), 4000); };
+  const guardarAlinPartidos = async (doc) => {
+    setAlinPartidos(doc);
+    const rec = session?.team?.rec;
+    if (!rec || session?.email === "demo") { avisoAlinPartido(t("lg.alinSaved")); return; }
+    setAlinPartidoBusy(true);
+    const out = await airAlinPartidosGuardar(rec, doc);
+    setAlinPartidoBusy(false);
+    avisoAlinPartido(t(out?.queued ? "sy.queued" : out?.ok ? "lg.alinSaved" : "lg.alinSaveFail"));
+  };
+  /* Se guarda el once que quien pulsa tiene delante (el borrador, si es el
+     segundo entrenador), con su sistema, el tablero tal cual y los
+     capitanes. Los jugadores van por su rec; sin rec (equipo que aún no
+     está en la nube, demo), por su id. */
+  const guardarAlinParaPartido = (f) => {
+    if (!f || alinPartidoBusy || !can("editLineup")) return;
+    const once = canProposeChanges() ? (lineupDraft || lineup) : lineup;
+    if (!Object.values(once || {}).some((x) => x != null)) { avisoAlinPartido(t("lg.alinEmpty")); return; }
+    if (alinDeFixture(f) && !window.confirm(t("lg.alinOverwrite").replace("{p}", nombrePartido(f)))) return;
+    const lista = playersRef.current;
+    const ref = (id) => { const p = lista.find((x) => x.id === id); return p ? (p.rec || p.id) : null; };
+    const slotsOnce = {};
+    Object.entries(once).forEach(([slot, id]) => { const r = ref(id); if (r != null) slotsOnce[slot] = r; });
+    const doc = { ...alinPartidos };
+    delete doc[String(f.id ?? "")];
+    delete doc[String(f.rec || "")];
+    doc[claveFixture(f)] = {
+      lineup: slotsOnce, sysCode, slots: slotPos,
+      capitanes: capitanes.map(ref).filter((x) => x != null),
+      fecha: f.date || "", j: String(f.j || ""), rival: rivalDeFixture(f) || "",
+      guardada: new Date().toISOString(),
+    };
+    /* Tope de 80 (el servidor no admite más): fuera las de partidos más antiguos. */
+    const claves = Object.keys(doc);
+    if (claves.length > 80) {
+      claves.sort((a, b) => String(doc[a].fecha || "").localeCompare(String(doc[b].fecha || "")))
+        .slice(0, claves.length - 80).forEach((k) => { delete doc[k]; });
+    }
+    guardarAlinPartidos(doc);
+  };
+  /* Ponerla en el campo: igual que una favorita (al borrador si quien la
+     carga está proponiendo cambios). Los capitanes solo los cambia quien
+     manda en la alineación oficial. */
+  const aplicarAlinPartido = (f) => {
+    const a = alinDeFixture(f);
+    if (!a || !can("editLineup")) return false;
+    if (canProposeChanges() && miPropuestaPendiente("lineup")) return false;
+    if (a.sysCode) { setSlotPos(slotsGuardados(a.slots, a.sysCode)); setSysCode(a.sysCode); }
+    setLineupSmart(() => traducirSlotsDeRecs(a.lineup));
+    if (!canProposeChanges() && Array.isArray(a.capitanes)) {
+      const lista = playersRef.current;
+      setCapitanes(a.capitanes
+        .map((v) => lista.find((x) => x.rec === v) || lista.find((x) => x.id === v))
+        .filter(Boolean).map((x) => x.id).slice(0, MAX_CAPITANES));
+    }
+    setSelSlot(null);
+    avisoAlinPartido(t("lg.alinApplied").replace("{p}", nombrePartido(f)));
+    return true;
+  };
+  const quitarAlinPartido = (f) => {
+    if (alinPartidoBusy || !can("editLineup") || !alinDeFixture(f)) return;
+    if (!window.confirm(t("lg.alinDeleteAsk").replace("{p}", nombrePartido(f)))) return;
+    const doc = { ...alinPartidos };
+    delete doc[String(f.id ?? "")];
+    delete doc[String(f.rec || "")];
+    guardarAlinPartidos(doc);
+  };
   /* ---------------- ABP · CÓRNERS ----------------
      El mismo once, colocado de otra manera. `abpSit` es null cuando se está
      mirando el once de siempre, y "ataque" o "defensa" cuando se está
@@ -12684,7 +12828,7 @@ export default function App() {
      Municipal Las Rozas") que en una cuenta real parecía de verdad. Ahora solo
      se rellena así en el modo demo. */
   const MATCHINFO_DEMO = { rival: "CD Norte", fecha: "Domingo 27", hora: "10:00", lugar: "Campo Municipal Las Rozas", j: "", arbitro: "", arbComentario: "" };
-  const MATCHINFO_VACIO = { rival: "", fecha: "", hora: "", cita: "", lugar: "", j: "", arbitro: "", arbComentario: "", casa: true };
+  const MATCHINFO_VACIO = { rival: "", fecha: "", hora: "", cita: "", lugar: "", j: "", arbitro: "", arbComentario: "", casa: true, partido: "" };
   const [matchInfo, setMatchInfo] = useState(MATCHINFO_VACIO);
   /* calendario del equipo */
   const [fixtures, setFixtures] = useState(FIXTURES_INIT);
@@ -15844,7 +15988,7 @@ export default function App() {
     return lado ? lado === "home" : normClub(f.place).trim() === "casa";
   };
   const useAsNext = (f) => {
-    setMatchInfo({ rival: rivalDeFixture(f), fecha: f.date, hora: f.time || "—", lugar: f.place || "—", j: f.j || "", casa: jugamosEnCasa(f) });
+    setMatchInfo({ rival: rivalDeFixture(f), fecha: f.date, hora: f.time || "—", lugar: f.place || "—", j: f.j || "", casa: jugamosEnCasa(f), partido: String(f.rec || f.id || "") });
     setTab("partido");
   };
   /* Todos los rivales que aparecen en el calendario, sin repetir y en el
@@ -15874,7 +16018,7 @@ export default function App() {
     const f = sortedFix.find((x) => /^\d+$/.test(String(x.j)) && rivalDeFixture(x) === o.k);
     setMatchInfo((m) => ({
       ...m, rival: o.k, casa: lado !== "izq",
-      ...(f ? { fecha: f.date, hora: f.time || m.hora, lugar: f.place || m.lugar, j: f.j || "" } : {}),
+      ...(f ? { fecha: f.date, hora: f.time || m.hora, lugar: f.place || m.lugar, j: f.j || "", partido: String(f.rec || f.id || "") } : { partido: "" }),
     }));
   };
 
@@ -16234,6 +16378,389 @@ export default function App() {
           </div>
         )}
       </>
+    );
+  };
+
+  /* ================= LIGA: TODOS LOS PARTIDOS =================
+     Los partidos del calendario con su resultado y, de cada uno, el registro
+     del Modo partido (el acta guardada) y la alineación que se preparó para
+     él. Las actas nuevas llevan apuntado su partido (`partido`); las de antes
+     se reconocen por la jornada, la fecha y el rival. Las que no casan con
+     ningún partido (un amistoso que no está en el calendario) salen al final:
+     ningún registro se queda sin poder abrirse. */
+  const [ligaFiltro, setLigaFiltro] = useState("liga");
+  const [ligaSel, setLigaSel] = useState(null); // clave del partido, o "acta:<id>"
+  const [ligaActa, setLigaActa] = useState(0);
+  /* Al entrar, el próximo partido a la vista: con 30 jornadas no hay que
+     bajar a buscarlo. */
+  useEffect(() => {
+    if (tab !== "liga") return;
+    const id = setTimeout(() => document.getElementById("liga-proximo")?.scrollIntoView({ block: "center" }), 80);
+    return () => clearTimeout(id);
+  }, [tab]); // eslint-disable-line
+  const parecidoRival = (a, b) => {
+    const x = nucleoClub(a) || normClub(a), y = nucleoClub(b) || normClub(b);
+    return !!x && !!y && (x.includes(y) || y.includes(x));
+  };
+  const diasEntre = (a, b) => Math.abs(new Date(`${a}T12:00:00`) - new Date(`${b}T12:00:00`)) / 864e5;
+  const esDeEsePartido = (m, f) => !!m.partido && (m.partido === String(f.rec || "") || m.partido === String(f.id ?? ""));
+  const pareceDeEsePartido = (m, f) => {
+    if (!m.fecha || !f.date) return false;
+    const rival = parecidoRival(m.rival, rivalDeFixture(f));
+    const jornada = /^\d+$/.test(String(m.j || "")) && String(m.j) === String(f.j);
+    const dias = diasEntre(m.fecha, f.date);
+    return (jornada && (rival || dias <= 21)) || (rival && dias <= 3) || (m.fecha === f.date && !m.rival);
+  };
+  const enlazarActas = (partidos) => {
+    const porPartido = new Map(), sueltas = [];
+    /* La más reciente primero: si un partido se guardó dos veces (al
+       descanso y al final), manda la última. */
+    for (const m of [...historial].sort((a, b) => (b.id || 0) - (a.id || 0))) {
+      const f = partidos.find((x) => esDeEsePartido(m, x)) || partidos.find((x) => pareceDeEsePartido(m, x));
+      if (f) porPartido.set(claveFixture(f), [...(porPartido.get(claveFixture(f)) || []), m]);
+      else sueltas.push(m);
+    }
+    return { porPartido, sueltas };
+  };
+  /* Goles del cruce (local, visitante): lo apuntado en el calendario y, si
+     no hay nada, lo del acta. */
+  const golesDelCruce = (f, m) => {
+    if (f && f.hg !== "" && f.hg != null && f.ag !== "" && f.ag != null) return { h: Number(f.hg), a: Number(f.ag) };
+    if (!m) return null;
+    const lado = f ? ladoNuestro(f) : null;
+    const enCasa = lado ? lado === "home" : m.casa !== false;
+    return enCasa ? { h: m.us, a: m.them } : { h: m.them, a: m.us };
+  };
+  /* G / E / P desde nuestro lado. */
+  const desenlace = (f, g, m) => {
+    let nos = null, ellos = null;
+    const lado = f ? ladoNuestro(f) : null;
+    if (g && lado) { nos = lado === "home" ? g.h : g.a; ellos = lado === "home" ? g.a : g.h; }
+    else if (m) { nos = m.us; ellos = m.them; }
+    if (nos == null || ellos == null) return null;
+    return nos > ellos ? "w" : nos < ellos ? "l" : "d";
+  };
+  const colorDesenlace = (r) => (r === "w" ? C.green : r === "l" ? C.red : r === "d" ? C.warn : C.dim);
+  const nuestroNombre = () => `${session?.club || ""} ${session?.team?.name || ""}`.trim();
+
+  const renderLiga = () => {
+    const todos = sortedFix.filter((f) => !esAviso(f));
+    const { porPartido, sueltas } = enlazarActas(todos);
+    const deLiga = (f) => /^\d+$/.test(String(f.j || "").trim());
+    const lista = ligaFiltro === "liga" ? todos.filter(deLiga) : todos;
+    const proximo = lista.find((f) => f.date >= todayISO) || null;
+    /* La clasificación propia: solo liga, solo con resultado y sabiendo qué
+       lado somos. */
+    const tabla = { pj: 0, w: 0, d: 0, l: 0, gf: 0, gc: 0 };
+    for (const f of todos.filter(deLiga)) {
+      const m = (porPartido.get(claveFixture(f)) || [])[0];
+      const g = golesDelCruce(f, m);
+      const lado = ladoNuestro(f);
+      const r = desenlace(f, g, m);
+      if (!r) continue;
+      tabla.pj++; tabla[r]++;
+      if (g && lado) { tabla.gf += lado === "home" ? g.h : g.a; tabla.gc += lado === "home" ? g.a : g.h; }
+      else if (m) { tabla.gf += m.us; tabla.gc += m.them; }
+    }
+    const chip = (texto, color) => (
+      <span className="px-1.5 py-0.5 rounded font-display text-[10px] uppercase tracking-wide" style={{ color, border: `1px solid ${color}` }}>{texto}</span>
+    );
+    const filaPartido = (f) => {
+      const k = claveFixture(f);
+      const m = (porPartido.get(k) || [])[0] || null;
+      const g = golesDelCruce(f, m);
+      const lado = ladoNuestro(f);
+      const r = desenlace(f, g, m);
+      const esProximo = proximo && claveFixture(proximo) === k;
+      const equipo = (nombre, goles, nuestro) => (
+        <div className="flex items-center justify-between gap-2 min-w-0">
+          <span className={`truncate text-sm ${nuestro ? "font-semibold" : ""}`} style={{ color: C.chalk }}>{nombre || "—"}</span>
+          {g && <span className="font-display text-lg leading-none tabular-nums shrink-0" style={{ color: nuestro ? colorDesenlace(r) : C.chalk }}>{goles}</span>}
+        </div>
+      );
+      return (
+        <button key={k} id={esProximo ? "liga-proximo" : undefined} onClick={() => { setLigaSel(k); setLigaActa(0); }}
+          className="w-full text-left rounded-lg border px-3 py-2.5 flex gap-3 items-center hover:opacity-90"
+          style={{ borderColor: esProximo ? AC : C.line, background: C.panel2 }}>
+          <div className="w-16 shrink-0">
+            <div className="font-display text-sm" style={{ color: AC }}>{etiquetaJornada(f)}</div>
+            <div className="text-[11px] leading-tight" style={{ color: C.dim }}>{fechaCorta(f.date, lang)}</div>
+            {!g && f.time && <div className="text-[11px]" style={{ color: C.dim }}>{f.time}</div>}
+          </div>
+          <div className="flex-1 min-w-0 space-y-0.5">
+            {equipo(f.home, g?.h, lado === "home")}
+            {equipo(f.away, g?.a, lado === "away")}
+          </div>
+          <div className="shrink-0 flex flex-col items-end gap-1">
+            {f.date === todayISO ? chip(t("lg.today"), AC) : esProximo ? chip(t("lg.next"), AC) : null}
+            {r && chip(t(`lg.${r}`), colorDesenlace(r))}
+            {m && <span className="text-[10px] font-display uppercase tracking-wide" style={{ color: C.dim }}>{t("lg.badgeActa")}</span>}
+            {alinDeFixture(f) && <span className="text-[10px] font-display uppercase tracking-wide" style={{ color: C.dim }}>{t("lg.badgeAlin")}</span>}
+          </div>
+        </button>
+      );
+    };
+    const filaSuelta = (m) => {
+      const enCasa = m.casa !== false;
+      const r = desenlace(null, null, m);
+      return (
+        <button key={`acta:${m.id}`} onClick={() => { setLigaSel(`acta:${m.id}`); setLigaActa(0); }}
+          className="w-full text-left rounded-lg border px-3 py-2.5 flex gap-3 items-center hover:opacity-90"
+          style={{ borderColor: C.line, background: C.panel2 }}>
+          <div className="w-16 shrink-0">
+            <div className="font-display text-sm" style={{ color: AC }}>{/^\d+$/.test(String(m.j || "")) ? `J${m.j}` : (m.j || "—")}</div>
+            <div className="text-[11px] leading-tight" style={{ color: C.dim }}>{fechaCorta(m.fecha, lang)}</div>
+          </div>
+          <div className="flex-1 min-w-0 space-y-0.5">
+            {[[enCasa ? nuestroNombre() : m.rival, enCasa ? m.us : m.them, enCasa], [enCasa ? m.rival : nuestroNombre(), enCasa ? m.them : m.us, !enCasa]].map(([n, gl, nuestro], i) => (
+              <div key={i} className="flex items-center justify-between gap-2 min-w-0">
+                <span className={`truncate text-sm ${nuestro ? "font-semibold" : ""}`} style={{ color: C.chalk }}>{n || "—"}</span>
+                <span className="font-display text-lg leading-none tabular-nums shrink-0" style={{ color: nuestro ? colorDesenlace(r) : C.chalk }}>{gl}</span>
+              </div>
+            ))}
+          </div>
+          <div className="shrink-0 flex flex-col items-end gap-1">
+            {r && chip(t(`lg.${r}`), colorDesenlace(r))}
+            <span className="text-[10px] font-display uppercase tracking-wide" style={{ color: C.dim }}>{t("lg.badgeActa")}</span>
+          </div>
+        </button>
+      );
+    };
+    return (
+      <div className="space-y-4">
+        <Card title={t("lg.title")}>
+          <div className="text-xs mb-3" style={{ color: C.dim }}>{t("lg.hint")}</div>
+          <div className="grid grid-cols-4 sm:grid-cols-7 gap-1.5 mb-3">
+            {[["lg.played", tabla.pj, C.chalk], ["lg.w", tabla.w, C.green], ["lg.d", tabla.d, C.warn], ["lg.l", tabla.l, C.red],
+              ["lg.gf", tabla.gf, C.chalk], ["lg.ga", tabla.gc, C.chalk], ["lg.pts", tabla.w * 3 + tabla.d, AC]].map(([k, v, col]) => (
+              <div key={k} className="rounded-lg border px-2 py-1.5 text-center" style={{ borderColor: C.line, background: C.panel2 }}>
+                <div className="font-display text-xl tabular-nums leading-none" style={{ color: col }}>{v}</div>
+                <div className="text-[10px] uppercase tracking-wide mt-1 truncate" style={{ color: C.dim }}>{t(k)}</div>
+              </div>
+            ))}
+          </div>
+          <div className="flex gap-1.5">
+            {[["liga", "lg.fLiga"], ["todos", "lg.fAll"]].map(([k, lbl]) => (
+              <button key={k} onClick={() => setLigaFiltro(k)} aria-pressed={ligaFiltro === k}
+                className="text-xs px-3 py-1 rounded-full border font-display uppercase tracking-wide"
+                style={{ borderColor: ligaFiltro === k ? AC : C.line, color: ligaFiltro === k ? AC : C.dim, background: ligaFiltro === k ? `${AC}1A` : "transparent" }}>
+                {t(lbl)}
+              </button>
+            ))}
+          </div>
+        </Card>
+        {lista.length === 0 && sueltas.length === 0 ? (
+          <Card>
+            <div className="text-sm mb-3" style={{ color: C.dim }}>{t("lg.empty")}</div>
+            <button onClick={() => setTab("calendario")} className="text-xs px-3 py-1.5 rounded-lg border font-display uppercase tracking-wide"
+              style={{ borderColor: AC, color: AC }}>{t("lg.toCal")}</button>
+          </Card>
+        ) : (
+          <div className="space-y-1.5">{lista.map(filaPartido)}</div>
+        )}
+        {sueltas.length > 0 && (
+          <Card title={t("lg.others")}>
+            <div className="text-xs mb-2" style={{ color: C.dim }}>{t("lg.othersHint")}</div>
+            <div className="space-y-1.5">{sueltas.map(filaSuelta)}</div>
+          </Card>
+        )}
+        {renderLigaDetalle(todos, porPartido, sueltas)}
+      </div>
+    );
+  };
+
+  /* Detalle de un partido: resultado, registro del Modo partido y alineación. */
+  const renderLigaDetalle = (todos, porPartido, sueltas) => {
+    if (!ligaSel) return null;
+    const suelta = ligaSel.startsWith("acta:");
+    const f = suelta ? null : todos.find((x) => claveFixture(x) === ligaSel) || null;
+    const actas = suelta ? sueltas.filter((m) => `acta:${m.id}` === ligaSel) : (porPartido.get(ligaSel) || []);
+    if (!f && !actas.length) return null;
+    const m = actas[Math.min(ligaActa, actas.length - 1)] || null;
+    const g = golesDelCruce(f, m);
+    const lado = f ? ladoNuestro(f) : (m?.casa !== false ? "home" : "away");
+    const r = desenlace(f, g, m);
+    const local = f ? f.home : (lado === "home" ? nuestroNombre() : m.rival);
+    const visitante = f ? f.away : (lado === "home" ? m.rival : nuestroNombre());
+    const fecha = f?.date || m?.fecha || "";
+    const cerrar = () => setLigaSel(null);
+    const seccion = (titulo, hijos) => (
+      <div className="mt-4">
+        <div className="text-[11px] font-display uppercase tracking-widest mb-1.5" style={{ color: C.dim }}>{titulo}</div>
+        {hijos}
+      </div>
+    );
+    const boton = (texto, onClick, principal = false) => (
+      <button onClick={onClick} disabled={alinPartidoBusy}
+        className="text-xs px-3 py-1.5 rounded-lg border font-display uppercase tracking-wide disabled:opacity-50"
+        style={principal ? { background: AC, borderColor: AC, color: C.sobre } : { borderColor: C.line, color: C.chalk }}>{texto}</button>
+    );
+    /* Cronología en orden de juego: el acta se guarda con lo último arriba. */
+    const cronologia = m && Array.isArray(m.acta) ? [...m.acta].reverse() : [];
+    const tarjetasDe = (j) => (j.amarillas || j.dobleAmarilla || j.rojas
+      ? `${"🟨".repeat(j.amarillas || 0)}${j.dobleAmarilla ? "🟨🟨" : ""}${"🟥".repeat(j.rojas || 0)}`
+      : j.tarjetas ? String(j.tarjetas) : "—");
+    const guardada = f ? alinDeFixture(f) : null;
+    const onceGuardado = guardada ? (() => {
+      const slots = slotsGuardados(guardada.slots, guardada.sysCode || sysCode);
+      const porSlot = traducirSlotsDeRecs(guardada.lineup);
+      const caps = new Set((guardada.capitanes || []).map((v) => (players.find((x) => x.rec === v) || players.find((x) => x.id === v))?.id));
+      return Object.entries(porSlot)
+        .map(([slot, id]) => ({ slot, s: slots[slot], p: players.find((x) => x.id === id) }))
+        .filter((x) => x.p)
+        .sort((a, b) => (b.s?.y ?? 0) - (a.s?.y ?? 0) || (a.s?.x ?? 0) - (b.s?.x ?? 0))
+        .map((x) => ({ ...x, capitan: caps.has(x.p.id) }));
+    })() : [];
+    return (
+      <div className="fixed inset-0 z-40 flex items-end sm:items-center justify-center sm:p-4" style={{ background: "rgba(0,0,0,.72)" }} onClick={cerrar}>
+        <div role="dialog" aria-modal="true" aria-label={t("lg.title")}
+          className="w-full sm:max-w-2xl rounded-t-2xl sm:rounded-lg border p-4 sm:p-5 max-h-[92vh] overflow-y-auto"
+          style={{ background: C.panel, borderColor: AC }} onClick={(e) => e.stopPropagation()}>
+          <div className="flex items-start justify-between gap-3">
+            <div className="text-xs" style={{ color: C.dim }}>
+              <span className="font-display" style={{ color: AC }}>{f ? etiquetaJornada(f) : (m?.j || "—")}</span>
+              {" · "}{fechaLegible(fecha, lang)}{f?.time ? ` · ${f.time}` : ""}{(f?.place || m?.lugar) ? ` · ${f?.place || m.lugar}` : ""}
+            </div>
+            <button onClick={cerrar} aria-label={t("lg.close")} className="text-lg leading-none px-1" style={{ color: C.dim }}>✕</button>
+          </div>
+          {/* Marcador */}
+          <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-3 mt-3">
+            <div className={`text-sm text-right ${lado === "home" ? "font-semibold" : ""}`} style={{ color: C.chalk }}>{local || "—"}</div>
+            <div className="font-display text-3xl tabular-nums px-3 py-1 rounded-lg" style={{ background: C.panel2, color: r ? colorDesenlace(r) : C.dim }}>
+              {g ? `${g.h} – ${g.a}` : "– : –"}
+            </div>
+            <div className={`text-sm ${lado === "away" ? "font-semibold" : ""}`} style={{ color: C.chalk }}>{visitante || "—"}</div>
+          </div>
+          {m && m.penUs != null && m.penThem != null && (
+            <div className="text-xs text-center mt-1" style={{ color: C.dim }}>
+              {t("lg.pens").replace("{a}", lado === "away" ? m.penThem : m.penUs).replace("{b}", lado === "away" ? m.penUs : m.penThem)}
+            </div>
+          )}
+          {f && (
+            <div className="flex flex-wrap gap-1.5 mt-3">
+              {puedeEditarCal() && boton(t("lg.edit"), () => { cerrar(); abrirFixture(f); })}
+              {f.date >= todayISO && roleTabs.includes("partido") && boton(t("lg.useMatch"), () => { cerrar(); useAsNext(f); })}
+            </div>
+          )}
+
+          {seccion(t("lg.actaTitle"), !m ? (
+            <div className="rounded-lg border p-3 text-sm" style={{ borderColor: C.line, color: C.dim }}>
+              <div style={{ color: C.chalk }}>{t("lg.noActa")}</div>
+              <div className="text-xs mt-1">{t("lg.noActaHint")}</div>
+            </div>
+          ) : (
+            <div className="rounded-lg border overflow-hidden" style={{ borderColor: C.line }}>
+              {actas.length > 1 && (
+                <div className="flex flex-wrap gap-1.5 px-3 pt-3">
+                  {actas.map((a, i) => (
+                    <button key={a.id} onClick={() => setLigaActa(i)}
+                      className="text-[11px] px-2 py-0.5 rounded-full border"
+                      style={{ borderColor: i === Math.min(ligaActa, actas.length - 1) ? AC : C.line, color: i === Math.min(ligaActa, actas.length - 1) ? AC : C.dim }}>
+                      {t("lg.actaN").replace("{n}", actas.length - i)} · {a.us}-{a.them}
+                    </button>
+                  ))}
+                </div>
+              )}
+              {(m.arbitro || m.arbComentario) && (
+                <div className="px-3 pt-3 text-xs" style={{ color: C.dim }}>
+                  <span className="font-display uppercase tracking-wide">{t("lg.referee")}:</span>{" "}
+                  <span style={{ color: C.chalk }}>{m.arbitro || "—"}</span>
+                  {m.arbComentario && <div className="mt-0.5 italic">{m.arbComentario}</div>}
+                </div>
+              )}
+              <div className="px-3 py-3">
+                <div className="text-[10px] font-display uppercase tracking-widest mb-1" style={{ color: C.dim }}>{t("lg.timeline")}</div>
+                {cronologia.length === 0 ? (
+                  <div className="text-xs" style={{ color: C.dim }}>{t("lg.noEvents")}</div>
+                ) : (
+                  <ol className="space-y-1">
+                    {cronologia.map((e, i) => (
+                      <li key={i} className="flex gap-2 text-sm" style={{ color: C.chalk }}>
+                        <span className="w-9 shrink-0 text-right font-display tabular-nums"
+                          style={{ color: e.type === "gol" ? C.green : e.type === "golRival" ? C.red : C.dim }}>
+                          {e.type === "periodo" ? "·" : `${e.disp ?? ""}′`}
+                        </span>
+                        <span className="min-w-0" style={{ color: e.type === "periodo" ? C.dim : C.chalk }}>{descEvento(e, lang)}</span>
+                      </li>
+                    ))}
+                  </ol>
+                )}
+              </div>
+              {Array.isArray(m.jugadores) && m.jugadores.length > 0 && (
+                <div className="border-t overflow-x-auto" style={{ borderColor: C.line }}>
+                  <table className="w-full text-sm" style={{ color: C.chalk }}>
+                    <thead>
+                      <tr className="text-[10px] font-display uppercase tracking-widest" style={{ color: C.dim }}>
+                        <th className="text-left px-3 py-1.5">{t("st.colPlayer")}</th>
+                        <th className="px-1.5 py-1.5">{t("st.colStarter")}</th>
+                        <th className="px-1.5 py-1.5">{t("lg.colMin")}</th>
+                        <th className="px-1.5 py-1.5" title={t("st.colGoals")} aria-label={t("st.colGoals")}>⚽</th>
+                        <th className="px-1.5 py-1.5" title={t("st.colCards")} aria-label={t("st.colCards")}>🟨</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[...m.jugadores].sort((a, b) => Number(b.titular) - Number(a.titular) || (b.minutos || 0) - (a.minutos || 0) || a.d - b.d).map((j) => (
+                        <tr key={j.id ?? `${j.d}${j.n}`} className="border-t" style={{ borderColor: C.line }}>
+                          <td className="px-3 py-1.5 truncate max-w-[10rem]"><span style={{ color: C.dim }}>{j.d}</span> {j.n}</td>
+                          <td className="px-1.5 py-1.5 text-center text-xs" style={{ color: j.titular ? C.green : C.dim }}>{j.titular ? (j.pos || "✓") : "—"}</td>
+                          <td className="px-1.5 py-1.5 text-center tabular-nums">{j.minutos != null ? `${j.minutos}′` : "—"}</td>
+                          <td className="px-1.5 py-1.5 text-center tabular-nums">{j.goles || "—"}</td>
+                          <td className="px-1.5 py-1.5 text-center whitespace-nowrap">{tarjetasDe(j)}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </div>
+          ))}
+
+          {f && seccion(t("lg.alinTitle"), (
+            <div className="rounded-lg border p-3" style={{ borderColor: C.line }}>
+              {guardada ? (
+                <>
+                  <div className="flex flex-wrap items-baseline justify-between gap-2 mb-2">
+                    <span className="font-display text-lg" style={{ color: AC }}>{guardada.sysCode || ""}</span>
+                    {guardada.guardada && (
+                      <span className="text-[11px]" style={{ color: C.dim }}>
+                        {t("lg.alinSavedOn").replace("{d}", new Date(guardada.guardada).toLocaleString(lang === "es" ? "es-ES" : lang, { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }))}
+                      </span>
+                    )}
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1">
+                    {onceGuardado.map(({ slot, s, p, capitan }) => (
+                      <div key={slot} className="flex items-center gap-2 text-sm min-w-0" style={{ color: C.chalk }}>
+                        <span className="w-10 shrink-0 font-display text-xs" style={{ color: C.dim }}>{s?.label || ""}</span>
+                        <span className="w-6 shrink-0 text-right font-display tabular-nums" style={{ color: AC }}>{p.d}</span>
+                        <span className="truncate">{p.n}</span>
+                        {capitan && <span className="text-[10px] font-display px-1 rounded border shrink-0" style={{ borderColor: AC, color: AC }}>{t("lg.captain")}</span>}
+                      </div>
+                    ))}
+                  </div>
+                  {can("editLineup") && (
+                    <div className="flex flex-wrap gap-1.5 mt-3">
+                      {boton(t("lg.alinOpen"), () => { if (aplicarAlinPartido(f)) { cerrar(); setTab("alineacion"); } }, true)}
+                      {boton(t("lg.alinUpdate"), () => guardarAlinParaPartido(f))}
+                      {boton(t("lg.alinDelete"), () => quitarAlinPartido(f))}
+                    </div>
+                  )}
+                </>
+              ) : (
+                <>
+                  <div className="text-sm" style={{ color: C.dim }}>{t("lg.alinNone")}</div>
+                  {can("editLineup") && (
+                    <div className="mt-2">
+                      <div className="text-xs mb-2" style={{ color: C.dim }}>{t("lg.alinSaveHint").replace("{s}", sysCode)}</div>
+                      {boton(t("lg.alinSave"), () => guardarAlinParaPartido(f), true)}
+                    </div>
+                  )}
+                </>
+              )}
+              {alinPartidoMsg && <div className="text-[11px] mt-2" style={{ color: alinPartidoMsg === t("lg.alinSaveFail") ? C.red : C.dim }}>{alinPartidoMsg}</div>}
+            </div>
+          ))}
+        </div>
+      </div>
     );
   };
 
@@ -21316,6 +21843,49 @@ export default function App() {
               {favMsg && <span className="text-[11px]" style={{ color: favMsg === t("ln.favSaveFail") ? C.red : C.dim }}>{favMsg}</span>}
             </div>
           )}
+          {/* El once de cada partido del calendario: se elige el partido
+              (por defecto el próximo), y se guarda ahí el que hay en el campo
+              o se carga el que se guardó. Los que ya tienen once llevan ✓. */}
+          {!abpSit && can("editLineup") && (() => {
+            const partidos = sortedFix.filter((f) => !esAviso(f));
+            if (!partidos.length) return null;
+            const elegido = partidos.find((f) => claveFixture(f) === alinPartidoSel)
+              || nextMatchFix || partidos.find((f) => f.date >= todayISO) || partidos[partidos.length - 1];
+            const guardada = alinDeFixture(elegido);
+            const puesta = !!guardada && (guardada.sysCode || sysCode) === sysCode && mismoOnce(traducirSlotsDeRecs(guardada.lineup), lineupView);
+            return (
+              <div className="flex flex-wrap items-center gap-1.5 mb-2 pb-2 border-b" style={{ borderColor: C.line }}>
+                <span className="text-[11px] uppercase tracking-wide" style={{ color: C.dim }}>{t("lg.alinRow")}</span>
+                <select value={claveFixture(elegido)} onChange={(e) => setAlinPartidoSel(e.target.value)} aria-label={t("lg.alinRow")}
+                  className="text-xs rounded-lg px-2 py-1 border min-w-0 max-w-[15rem]"
+                  style={{ background: C.panel2, borderColor: puesta ? AC : C.line, color: C.chalk }}>
+                  {partidos.map((f) => (
+                    <option key={claveFixture(f)} value={claveFixture(f)}>
+                      {alinDeFixture(f) ? "✓ " : ""}{etiquetaJornada(f)} · {fechaCorta(f.date, lang)} · {rivalDeFixture(f)}
+                    </option>
+                  ))}
+                </select>
+                {guardada && (
+                  <button onClick={() => aplicarAlinPartido(elegido)} disabled={alinPartidoBusy}
+                    className="text-xs px-2 py-1 rounded-lg border disabled:opacity-40"
+                    style={{ borderColor: puesta ? AC : C.line, color: puesta ? AC : C.chalk, background: puesta ? `${AC}1A` : "transparent" }}>
+                    {puesta ? "★ " : ""}{t("lg.alinLoad")}
+                  </button>
+                )}
+                <button onClick={() => guardarAlinParaPartido(elegido)} disabled={alinPartidoBusy}
+                  className="text-xs px-2 py-1 rounded-lg border disabled:opacity-40" style={{ borderColor: AC, color: AC }}>
+                  {guardada ? t("lg.alinUpdate") : t("lg.alinSave")}
+                </button>
+                {guardada && (
+                  <button onClick={() => quitarAlinPartido(elegido)} disabled={alinPartidoBusy} aria-label={t("lg.alinDelete")}
+                    className="px-1.5 text-xs opacity-60 hover:opacity-100" style={{ color: C.dim }}>✕</button>
+                )}
+                {alinPartidoMsg && (
+                  <span className="text-[11px] w-full" style={{ color: alinPartidoMsg === t("lg.alinSaveFail") ? C.red : C.dim }}>{alinPartidoMsg}</span>
+                )}
+              </div>
+            );
+          })()}
           <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
             <div className="text-xs" style={{ color: C.dim }}>
               {abpSit ? t("ln.abpDragHint") : t("ln.dragHint")}
@@ -21690,14 +22260,14 @@ export default function App() {
                       disabled={!editable}
                       onChange={(e) => {
                         const v = e.target.value;
-                        if (v === "__otro__") { setMatchInfo((m) => ({ ...m, rival: "" })); return; }
+                        if (v === "__otro__") { setMatchInfo((m) => ({ ...m, rival: "", partido: "" })); return; }
                         /* Ida y vuelta: el próximo contra ese rival; si ya
                            pasaron los dos, el último. */
                         const contra = sortedFix.filter((x) => /^\d+$/.test(String(x.j)) && rivalDeFixture(x) === v);
                         const f = contra.find((x) => String(x.date || "") >= hoyISO()) || contra[contra.length - 1];
                         setMatchInfo((m) => f
-                          ? { ...m, rival: v, fecha: f.date, hora: f.time || m.hora, lugar: f.place || m.lugar, j: f.j || "", casa: jugamosEnCasa(f) }
-                          : { ...m, rival: v });
+                          ? { ...m, rival: v, fecha: f.date, hora: f.time || m.hora, lugar: f.place || m.lugar, j: f.j || "", casa: jugamosEnCasa(f), partido: String(f.rec || f.id || "") }
+                          : { ...m, rival: v, partido: "" });
                       }}
                       className="w-full rounded-lg px-3 py-2 text-sm outline-none border disabled:opacity-60" style={{ background: C.panel2, borderColor: C.line, color: C.chalk }}>
                       {rivalesDelCalendario.map((r) => <option key={r} value={r}>{r}</option>)}
@@ -22910,6 +23480,10 @@ export default function App() {
       fecha: hoyISO(),
       rival: matchInfo.rival || rivalProx || "Rival",
       j: matchInfo.j || nextMatchFix?.j || "",
+      /* El partido del calendario del que viene (su rec, o su id si aún no
+         está en la nube): así Liga lo enlaza sin adivinar. Vacío si se
+         jugó contra alguien que no está en el calendario. */
+      partido: matchInfo.partido || "",
       us: score.us, them: score.them,
       /* Dónde se jugó. Los goles siempre son nuestros y del rival; esto es lo
          que permite volver a leer el partido como local-visitante. */
@@ -22927,6 +23501,9 @@ export default function App() {
         /* Quién sale en un cambio: sin esto el acta guardada decía solo
            "Cambio — Fulano" y había que adivinar por quién. */
         sale: e.sale || null,
+        /* Y quién dio el pase de gol: se pedía en el partido pero no se
+           guardaba en el acta. */
+        asist: e.asist || null,
       })),
       lugar: matchInfo.lugar || "",
       /* Árbitro: nombre y comentario del cuerpo técnico, para tenerlo a mano
@@ -25117,7 +25694,7 @@ export default function App() {
      dependen los permisos y el resto de la app. */
   const visibleTabs = allTabs;
   const TODAS_TABS = ["inicio", "mihijo", "parte", "master", "equipos", "equipo", "jugadores", "calendario", "convocatoria",
-    "alineacion", "partido", "temporada", "entrenamiento", "lesiones", "ejercicios", "pizarra",
+    "alineacion", "partido", "liga", "temporada", "entrenamiento", "lesiones", "ejercicios", "pizarra",
     "asistencia", "disciplina", "normativa", "estadisticas", "usuarios", "material", "premium"];
   /* Las del Master no se le enseñan a nadie más: no es que estén bloqueadas, es
      que no existen para el resto de cuentas. */
@@ -25813,6 +26390,7 @@ export default function App() {
           {tab === "master" && can("master") && renderMasterPanel()}
           {tab === "equipos" && can("master") && renderTeams()}
           {tab === "calendario" && renderCalendar()}
+          {tab === "liga" && renderLiga()}
           {tab === "disciplina" && can("discipline") && renderDiscipline()}
           {/* Una pestaña con dos caras: quien dirige el club ve el control de
               todos sus entrenadores; quien entrena, su propio parte. Es el

@@ -135,6 +135,27 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   sigue valiendo para los siguientes partidos hasta que se desactiva (y entonces caen las
   suscripciones). En iPhone el aviso solo llega con la página añadida a la pantalla de inicio.
 
+## Liga y alineación por partido (v2.84.0)
+- Pestaña «Liga» (`tab` "liga", en «Día de partido"): todos los partidos del calendario
+  (filtro Liga = jornada numérica / Todos) con resultado, G-E-P, resumen de la temporada
+  (jugados, G/E/P, GF/GC, puntos) y, al tocar uno, su acta del Modo partido (cronología,
+  jugadores con titular/minutos/goles/tarjetas, árbitro) y su alineación guardada.
+- Enlace acta↔partido: las actas nuevas guardan `partido` (rec o id del partido; lo pone
+  matchInfo.partido al venir del calendario); las viejas se reconocen por jornada + rival o
+  fecha. Las que no casan con ningún partido salen en «Otros partidos con acta». El acta
+  ahora guarda también la asistencia de cada gol (`asist`).
+- Alineación por partido: `equipos.alineaciones_partidos` (JSON, solo Supabase,
+  fldAlinPartidosQ8), recurso `res=alineaciones-partidos` (hasta 80 partidos, 300 KB, en la
+  cola sin conexión). En Alineación, fila «Por partido» (selector con ✓, Cargar / Guardar
+  la actual / ✕); también desde el detalle del partido en Liga.
+- El menú por rol guardado por el Master en `config` no tenía «liga»: se añadió a mano en
+  Supabase (director, entrenador, segundo, delegado) tras publicar. Una pestaña nueva NO
+  aparece sola si hay menú personalizado guardado: hay que añadirla ahí también.
+- Seguridad (arreglado aquí): los documentos por equipo (cargas, asistencia, pase-lista,
+  plan, jugadas, pretemporada, alineacion, favoritas, abp-corners) dejaban leer y escribir a
+  cualquier director/club de CUALQUIER club. Ahora todos usan `puedeEquipo(team)`.
+- Demo: J1–J4 de liga jugadas con acta (LIGA_DEMO) y J5 con resultado sin acta.
+
 ## Vídeos con logo y música (v2.83.0)
 - El vídeo del once y el de cada jugador llevan el logo «CoachBase AI by EBLDigital»
   (`public/marca/coachbase-ebl.png`, sobre tarjeta blanca): en el del once, en la portada,
@@ -167,7 +188,7 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
 
 ## Pruebas
 - `npm test` = `pruebas/todas.mjs`: todas las pruebas en modo Airtable (fakeair) y en modo Supabase
-  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-10-20: 304 ✓ / 395 ✓, 0 fallos.
+  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-10-26: 325 ✓ / 417 ✓, 0 fallos.
 - Desde la sesión de Claude NO hay red hacia airtable.com ni supabase.co (proxy 403): la prueba
   real contra Supabase la hace la propia app en Netlify.
 

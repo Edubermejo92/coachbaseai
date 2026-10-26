@@ -147,7 +147,7 @@ const CLAVE_CONFIG_GLOBAL = "global";
    de un interruptor que ella misma gestiona. */
 const TABS_CONFIGURABLES = [
   "inicio", "parte", "equipos", "equipo", "jugadores", "calendario", "convocatoria",
-  "alineacion", "partido", "temporada", "entrenamiento", "lesiones", "ejercicios", "pizarra",
+  "alineacion", "partido", "liga", "temporada", "entrenamiento", "lesiones", "ejercicios", "pizarra",
   "asistencia", "disciplina", "normativa", "estadisticas", "usuarios", "material", "premium",
 ];
 /* "inicio" y "premium" no se pueden quitar del gratis: sin inicio no hay
@@ -230,6 +230,10 @@ const EQ = {
      Solo en Supabase (2026-10-18): antes había un plan de ejemplo fijo en la
      app; ahora cada entrenador hace la suya. */
   pretemporada: "fldPretemp0radaQ7",
+  /* La alineación preparada para cada partido del calendario, en JSON
+     ({ <partido>: { lineup, sysCode, slots, capitanes, fecha, j, rival } }).
+     Solo en Supabase (2026-10-26). */
+  alineacionesPartidos: "fldAlinPartidosQ8",
 };
 /* Único campo de Jugadores al que se accede por ID en vez de por NOMBRE: es
    un adjunto (uploadAttachment exige el id del campo, no su nombre) y la
@@ -1137,6 +1141,13 @@ const atender = async (req: Request) => {
     if (res === "jugadas") {
       const team = url.searchParams.get("team") || "";
       if (!team) return j({ error: "falta_equipo" }, 400);
+      /* Leer y escribir, solo el propio equipo, la dirección o la cuenta de
+         SU club, el Master y la familia del equipo (puedeEquipo). Antes
+         bastaba con ser director o club de CUALQUIER club para leer y
+         sobrescribir los documentos de un equipo ajeno -cargas físicas,
+         asistencia, alineaciones-, y la lectura no se comprobaba. Igual en
+         todos los documentos-por-equipo de aquí abajo. */
+      if (!(await puedeEquipo(team))) return j({ ok: false, reason: "no_autorizado" }, 403);
       if (req.method === "GET") {
         const r = await fetch(`${table(T_EQUIPOS)}/${team}?returnFieldsByFieldId=true`, { headers: H });
         if (!r.ok) return j({ error: "no_encontrado" }, 404);
@@ -1144,9 +1155,6 @@ const atender = async (req: Request) => {
         return j({ jugadas: d?.fields?.[EQ.jugadas] || "" });
       }
       if (req.method === "POST") {
-        const suyo = String(sesion?.equipo || "") === team;
-        const puede = suyo || dirigeElClub(sesion);
-        if (!puede) return j({ ok: false, reason: "no_autorizado" }, 403);
         const b = await req.json();
         const r = await fetch(`${table(T_EQUIPOS)}/${team}`, {
           method: "PATCH", headers: H,
@@ -1165,6 +1173,7 @@ const atender = async (req: Request) => {
     if (res === "plan") {
       const team = url.searchParams.get("team") || "";
       if (!team) return j({ error: "falta_equipo" }, 400);
+      if (!(await puedeEquipo(team))) return j({ ok: false, reason: "no_autorizado" }, 403);
       if (req.method === "GET") {
         const r = await fetch(`${table(T_EQUIPOS)}/${team}?returnFieldsByFieldId=true`, { headers: H });
         if (!r.ok) return j({ error: "no_encontrado" }, 404);
@@ -1174,9 +1183,6 @@ const atender = async (req: Request) => {
       if (req.method === "POST") {
         /* Solo el propio equipo: sin esto, cualquiera con sesión podría
            sobrescribir la planificación de otro equipo mandando su id. */
-        const suyo = String(sesion?.equipo || "") === team;
-        const puede = suyo || dirigeElClub(sesion);
-        if (!puede) return j({ ok: false, reason: "no_autorizado" }, 403);
         const b = await req.json();
         const r = await fetch(`${table(T_EQUIPOS)}/${team}`, {
           method: "PATCH", headers: H,
@@ -1203,6 +1209,7 @@ const atender = async (req: Request) => {
     if (res === "cargas") {
       const team = url.searchParams.get("team") || "";
       if (!team) return j({ error: "falta_equipo" }, 400);
+      if (!(await puedeEquipo(team))) return j({ ok: false, reason: "no_autorizado" }, 403);
       if (req.method === "GET") {
         const r = await fetch(`${table(T_EQUIPOS)}/${team}?returnFieldsByFieldId=true`, { headers: H });
         if (!r.ok) return j({ error: "no_encontrado" }, 404);
@@ -1210,9 +1217,6 @@ const atender = async (req: Request) => {
         return j({ cargas: d?.fields?.[EQ.cargas] || "" });
       }
       if (req.method === "POST") {
-        const suyo = String(sesion?.equipo || "") === team;
-        const puede = suyo || dirigeElClub(sesion);
-        if (!puede) return j({ ok: false, reason: "no_autorizado" }, 403);
         const b = await req.json();
         const r = await fetch(`${table(T_EQUIPOS)}/${team}`, {
           method: "PATCH", headers: H,
@@ -1237,6 +1241,7 @@ const atender = async (req: Request) => {
     if (res === "pretemporada") {
       const team = url.searchParams.get("team") || "";
       if (!team) return j({ error: "falta_equipo" }, 400);
+      if (!(await puedeEquipo(team))) return j({ ok: false, reason: "no_autorizado" }, 403);
       if (req.method === "GET") {
         const r = await fetch(`${table(T_EQUIPOS)}/${team}?returnFieldsByFieldId=true`, { headers: H });
         if (!r.ok) return j({ error: "no_encontrado" }, 404);
@@ -1244,9 +1249,6 @@ const atender = async (req: Request) => {
         return j({ pretemporada: d?.fields?.[EQ.pretemporada] || "" });
       }
       if (req.method === "POST") {
-        const suyo = String(sesion?.equipo || "") === team;
-        const puede = suyo || dirigeElClub(sesion);
-        if (!puede) return j({ ok: false, reason: "no_autorizado" }, 403);
         const b = await req.json();
         const txt = String(b.pretemporada || "");
         /* Un plan de verdad cabe holgado en 200 KB (doce semanas de cinco
@@ -1284,6 +1286,7 @@ const atender = async (req: Request) => {
     if (res === "asistencia") {
       const team = url.searchParams.get("team") || "";
       if (!team) return j({ error: "falta_equipo" }, 400);
+      if (!(await puedeEquipo(team))) return j({ ok: false, reason: "no_autorizado" }, 403);
       if (req.method === "GET") {
         const r = await fetch(`${table(T_EQUIPOS)}/${team}?returnFieldsByFieldId=true`, { headers: H });
         if (!r.ok) return j({ error: "no_encontrado" }, 404);
@@ -1291,9 +1294,6 @@ const atender = async (req: Request) => {
         return j({ asistencia: d?.fields?.[EQ.asistencia] || "" });
       }
       if (req.method === "POST") {
-        const suyo = String(sesion?.equipo || "") === team;
-        const puede = suyo || dirigeElClub(sesion);
-        if (!puede) return j({ ok: false, reason: "no_autorizado" }, 403);
         const b = await req.json();
         const r = await fetch(`${table(T_EQUIPOS)}/${team}`, {
           method: "PATCH", headers: H,
@@ -1319,6 +1319,7 @@ const atender = async (req: Request) => {
     if (res === "pase-lista") {
       const team = url.searchParams.get("team") || "";
       if (!team) return j({ error: "falta_equipo" }, 400);
+      if (!(await puedeEquipo(team))) return j({ ok: false, reason: "no_autorizado" }, 403);
       if (req.method === "GET") {
         const r = await fetch(`${table(T_EQUIPOS)}/${team}?returnFieldsByFieldId=true`, { headers: H });
         if (!r.ok) return j({ error: "no_encontrado" }, 404);
@@ -1326,9 +1327,6 @@ const atender = async (req: Request) => {
         return j({ paseLista: d?.fields?.[EQ.paseLista] || "" });
       }
       if (req.method === "POST") {
-        const suyo = String(sesion?.equipo || "") === team;
-        const puede = suyo || dirigeElClub(sesion);
-        if (!puede) return j({ ok: false, reason: "no_autorizado" }, 403);
         const b = await req.json();
         const r = await fetch(`${table(T_EQUIPOS)}/${team}`, {
           method: "PATCH", headers: H,
@@ -1356,6 +1354,7 @@ const atender = async (req: Request) => {
     if (res === "alineacion") {
       const team = url.searchParams.get("team") || "";
       if (!team) return j({ error: "falta_equipo" }, 400);
+      if (!(await puedeEquipo(team))) return j({ ok: false, reason: "no_autorizado" }, 403);
       if (req.method === "GET") {
         const r = await fetch(`${table(T_EQUIPOS)}/${team}?returnFieldsByFieldId=true`, { headers: H });
         if (!r.ok) return j({ error: "no_encontrado" }, 404);
@@ -1363,9 +1362,6 @@ const atender = async (req: Request) => {
         return j({ alineacion: d?.fields?.[EQ.alineacion] || "" });
       }
       if (req.method === "POST") {
-        const suyo = String(sesion?.equipo || "") === team;
-        const puede = suyo || dirigeElClub(sesion);
-        if (!puede) return j({ ok: false, reason: "no_autorizado" }, 403);
         const b = await req.json();
         const r = await fetch(`${table(T_EQUIPOS)}/${team}`, {
           method: "PATCH", headers: H,
@@ -1394,6 +1390,7 @@ const atender = async (req: Request) => {
     if (res === "alineaciones-favoritas") {
       const team = url.searchParams.get("team") || "";
       if (!team) return j({ error: "falta_equipo" }, 400);
+      if (!(await puedeEquipo(team))) return j({ ok: false, reason: "no_autorizado" }, 403);
       if (req.method === "GET") {
         const r = await fetch(`${table(T_EQUIPOS)}/${team}?returnFieldsByFieldId=true`, { headers: H });
         if (!r.ok) return j({ error: "no_encontrado" }, 404);
@@ -1401,9 +1398,6 @@ const atender = async (req: Request) => {
         return j({ favoritas: d?.fields?.[EQ.alineacionesFavoritas] || "" });
       }
       if (req.method === "POST") {
-        const suyo = String(sesion?.equipo || "") === team;
-        const puede = suyo || dirigeElClub(sesion);
-        if (!puede) return j({ ok: false, reason: "no_autorizado" }, 403);
         const b = await req.json();
         let lista: unknown;
         try { lista = JSON.parse(String(b.favoritas || "[]")); } catch { lista = null; }
@@ -1424,6 +1418,47 @@ const atender = async (req: Request) => {
       return j({ error: "Petición no soportada" }, 400);
     }
 
+    /* ============ ALINEACIÓN DE CADA PARTIDO ============
+       GET  ?res=alineaciones-partidos&team=recX
+       POST ?res=alineaciones-partidos&team=recX { alineaciones }
+       El once que el cuerpo técnico prepara para un partido concreto del
+       calendario -la jornada 7 contra tal-, para recuperarlo en Alineación
+       ese día. Un objeto por equipo con una entrada por partido, mismas
+       reglas que las favoritas. Una temporada son ~30-40 partidos: hasta 80
+       entradas y 300 KB. */
+    if (res === "alineaciones-partidos") {
+      const team = url.searchParams.get("team") || "";
+      if (!team) return j({ error: "falta_equipo" }, 400);
+      if (!(await puedeEquipo(team))) return j({ ok: false, reason: "no_autorizado" }, 403);
+      if (req.method === "GET") {
+        const r = await fetch(`${table(T_EQUIPOS)}/${team}?returnFieldsByFieldId=true`, { headers: H });
+        if (!r.ok) return j({ error: "no_encontrado" }, 404);
+        const d = await r.json().catch(() => ({}));
+        return j({ alineaciones: d?.fields?.[EQ.alineacionesPartidos] || "" });
+      }
+      if (req.method === "POST") {
+        const b = await req.json();
+        const txt = String(b.alineaciones || "");
+        let doc: any;
+        try { doc = JSON.parse(txt || "{}"); } catch { doc = null; }
+        const entradas = doc && typeof doc === "object" && !Array.isArray(doc) ? Object.values(doc) : null;
+        const valido = !!entradas && entradas.length <= 80
+          && entradas.every((x: any) => x && typeof x === "object" && !Array.isArray(x) && x.lineup && typeof x.lineup === "object" && !Array.isArray(x.lineup));
+        if (!valido || txt.length > 300000) return j({ ok: false, reason: "formato_invalido" }, 400);
+        const r = await fetch(`${table(T_EQUIPOS)}/${team}`, {
+          method: "PATCH", headers: H,
+          body: JSON.stringify({ fields: { [EQ.alineacionesPartidos]: txt }, typecast: true }),
+        });
+        if (!r.ok) {
+          const err = await r.text().catch(() => "");
+          console.error(`[alineaciones-partidos] Airtable ${r.status}: ${err.slice(0, 300)}`);
+          return j({ ok: false, reason: "airtable" }, 400);
+        }
+        return j({ ok: true });
+      }
+      return j({ error: "Petición no soportada" }, 400);
+    }
+
     /* ============ ABP · CÓRNERS ============
        GET  ?res=abp-corners&team=recX
        POST ?res=abp-corners&team=recX { abp }
@@ -1436,6 +1471,7 @@ const atender = async (req: Request) => {
     if (res === "abp-corners") {
       const team = url.searchParams.get("team") || "";
       if (!team) return j({ error: "falta_equipo" }, 400);
+      if (!(await puedeEquipo(team))) return j({ ok: false, reason: "no_autorizado" }, 403);
       if (req.method === "GET") {
         const r = await fetch(`${table(T_EQUIPOS)}/${team}?returnFieldsByFieldId=true`, { headers: H });
         if (!r.ok) return j({ error: "no_encontrado" }, 404);
@@ -1443,9 +1479,6 @@ const atender = async (req: Request) => {
         return j({ abp: d?.fields?.[EQ.abpCorners] || "" });
       }
       if (req.method === "POST") {
-        const suyo = String(sesion?.equipo || "") === team;
-        const puede = suyo || dirigeElClub(sesion);
-        if (!puede) return j({ ok: false, reason: "no_autorizado" }, 403);
         const b = await req.json();
         let doc: any;
         try { doc = JSON.parse(String(b.abp || "{}")); } catch { doc = null; }

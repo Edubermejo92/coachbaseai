@@ -60,6 +60,8 @@ const DEF: Record<string, { airtable: string; campos: Def[] }> = {
     ["fldEquipac1onKt7q", "Equipacion", "equipacion", "texto"],
     /* Solo en Supabase (2026-10-18). */
     ["fldPretemp0radaQ7", "Pretemporada", "pretemporada", "texto"],
+    /* Solo en Supabase (2026-10-26). */
+    ["fldAlinPartidosQ8", "Alineaciones partidos", "alineaciones_partidos", "texto"],
     ["fldXjBDGFcYDkEn9M", "Asistencia", "asistencia", "texto"],
     ["fld0ShmGEK97QIhr8", "Alineacion", "alineacion", "texto"],
     ["fldugauQwyDXX4IrG", "Pase de lista", "pase_de_lista", "texto"],
