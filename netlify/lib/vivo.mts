@@ -149,6 +149,15 @@ export async function leerPublico(codigo: string) {
   return { ok: true, activa: !!f.activa, datos: f.activa ? json(f.datos) : null, clave: f.activa ? await clavePublica().catch(() => "") : "" };
 }
 
+/* ---------- lo que ve quien es del equipo, dentro de la app ---------- */
+/* El directo activo de un equipo (el más reciente): la página de la familia
+   lo enseña sin que haga falta el enlace de WhatsApp. */
+export async function activaDeEquipo(equipo: string) {
+  const f = (await rest(`retransmisiones?select=codigo,datos&equipo=eq.${enc(equipo)}&activa=eq.true&order=creado.desc&limit=1`))[0];
+  if (!f) return { ok: true, activa: false, codigo: null, datos: null };
+  return { ok: true, activa: true, codigo: f.codigo, datos: json(f.datos) };
+}
+
 export async function suscribirPublico(codigo: string, sub: any) {
   if (!CODIGO_OK.test(codigo)) return { ok: false, reason: "no_existe" };
   const f = await fila(codigo);

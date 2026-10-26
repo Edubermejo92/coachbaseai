@@ -19,7 +19,7 @@ globalThis.__enviarPushPrueba = async (sub, aviso) => {
   return "ok";
 };
 
-const tEnt = await login("ent@a.com"), tDirB = await login("dir@b.com");
+const tEnt = await login("ent@a.com"), tDirB = await login("dir@b.com"), tDirA = await login("dir@a.com");
 
 /* ---- crear el enlace ---- */
 let r = await call("?res=retransmision", { method: "POST", token: tEnt, body: { accion: "crear", team: "recSEN" } });
@@ -73,6 +73,16 @@ dice("mandar lo mismo otra vez no repite el aviso", enviados.length === 0);
 r = await call(`?res=vivo&c=${codigo}`);
 dice("el público ve el gol con su asistente", r.body.datos.goles[0]?.nombre === "Hugo M." && r.body.datos.goles[0]?.asist === "Pablo R.");
 
+/* ---- dentro de la app: el directo del equipo, sin enlace ---- */
+r = await call("?res=retransmision&team=recSEN", { token: tEnt });
+dice("quien es del equipo ve su directo sin el enlace", r.body.activa === true && r.body.codigo === codigo && r.body.datos?.score?.us === 1, JSON.stringify(r.body).slice(0, 120));
+r = await call("?res=retransmision&team=recSEN", { token: tDirA });
+dice("la dirección de su club también", r.body.activa === true);
+r = await call("?res=retransmision&team=recSEN", { token: tDirB });
+dice("otro club no", r.status === 403);
+r = await call("?res=retransmision&team=recSEN");
+dice("sin sesión no", r.status === 401);
+
 const descanso = { ...gol1, estado: "descanso", score: { us: 1, them: 1 }, goles: [...gol1.goles, { id: "g2", lado: "them", min: "30", nombre: "Alguien" }] };
 enviados = [];
 await call("?res=retransmision-datos", { method: "POST", token: tEnt, body: { codigo, datos: descanso } });
@@ -95,6 +105,8 @@ r = await call("?res=retransmision", { method: "POST", token: tEnt, body: { acci
 dice("el entrenador lo desactiva", r.body.ok === true);
 r = await call(`?res=vivo&c=${codigo}`);
 dice("desactivado ya no enseña el partido", r.body.activa === false && r.body.datos === null);
+r = await call("?res=retransmision&team=recSEN", { token: tEnt });
+dice("y en la app el equipo deja de tener directo", r.body.activa === false && r.body.codigo === null);
 dice("y se olvidan las suscripciones", (await q(`select count(*)::int n from vivo_avisos where codigo = $1`, [codigo]))[0].n === 0);
 r = await call("?res=retransmision-datos", { method: "POST", token: tEnt, body: { codigo, datos: gol1 } });
 dice("a un enlace desactivado no se le mandan datos", r.body.reason === "desactivada");

@@ -2,7 +2,7 @@ import { contarLlamadas, leerUso } from "../lib/uso-airtable.mts";
 import { instalarSupabase, supabaseActivo } from "../lib/supabase-airtable.mts";
 import { clavePublica, suscribir, desuscribir, programarReloj, avisarPropuesta } from "../lib/avisos.mts";
 import { CODIGO_OK, crearOReusar, actualizar as actualizarVivo, desactivar as desactivarVivo, equipoDe as equipoDeVivo,
-  leerPublico as leerVivo, suscribirPublico as suscribirVivo, desuscribirPublico as desuscribirVivo } from "../lib/vivo.mts";
+  activaDeEquipo as vivoDeEquipo, leerPublico as leerVivo, suscribirPublico as suscribirVivo, desuscribirPublico as desuscribirVivo } from "../lib/vivo.mts";
 // Proxy serverless entre la app y Airtable.
 //   ?res=(vacío)      -> Usuarios: login, registro real (crea club y equipo), alta/baja, roles
 //   ?res=equipos      -> Equipos: listar, crear y editar (rol Master)
@@ -1687,7 +1687,9 @@ const atender = async (req: Request) => {
        Ver netlify/lib/vivo.mts. Solo con los datos en Supabase.
        ?res=vivo&c=…               GET lo que ve el público · POST {sub} avisarme
                                    de los goles · DELETE {endpoint} (sin cuenta)
-       ?res=retransmision          POST {accion:"crear", team} -> {codigo}
+       ?res=retransmision          GET team -> el directo activo del equipo (para
+                                   quien es del equipo: la familia lo ve en su página)
+                                   POST {accion:"crear", team} -> {codigo}
                                    POST {accion:"desactivar", codigo}
        ?res=retransmision-datos    POST {codigo, datos} (el estado del partido) */
     if (res === "vivo") {
@@ -1727,6 +1729,11 @@ const atender = async (req: Request) => {
     }
     if (res === "retransmision" || res === "retransmision-datos") {
       if (!supabaseActivo()) return j({ ok: false, reason: "sin_supabase" }, 503);
+      if (res === "retransmision" && req.method === "GET") {
+        const team = String(url.searchParams.get("team") || "");
+        if (!ES_REC.test(team) || !(await puedeEquipo(team))) return j({ ok: false, reason: "no_autorizado" }, 403);
+        return j(await vivoDeEquipo(team));
+      }
       if (req.method !== "POST") return j({ error: "Petición no soportada" }, 400);
       const b = await req.json().catch(() => ({}));
       if (res === "retransmision" && b.accion === "crear") {

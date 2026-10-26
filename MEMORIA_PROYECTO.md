@@ -135,6 +135,16 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   sigue valiendo para los siguientes partidos hasta que se desactiva (y entonces caen las
   suscripciones). En iPhone el aviso solo llega con la página añadida a la pantalla de inicio.
 
+## Retransmisión: familias con cuenta y botón visible (v2.85.0)
+- La familia y el jugador ven el directo en su página (DirectoEquipo, arriba del todo) sin el
+  enlace: marcador, minuto que corre, último gol y «Ver el directo». Se pregunta una vez a
+  `GET res=retransmision&team` (puedeEquipo; vivo.mts activaDeEquipo) y luego se sigue por
+  `res=vivo&c=` (cacheado en la CDN). Cada 8 s en juego, cada minuto si no. Solo se enseña
+  en juego, en el descanso, el día del partido antes de empezar y 6 h tras el final.
+  Componente propio para que el segundero no repinte toda la app.
+- En Modo partido el botón ya no es una píldora en la esquina: barra ancha arriba
+  («📡 Retransmitir a las familias»; en directo, verde «En directo para las familias»).
+
 ## Liga y alineación por partido (v2.84.0)
 - Pestaña «Liga» (`tab` "liga", en «Día de partido"): todos los partidos del calendario
   (filtro Liga = jornada numérica / Todos) con resultado, G-E-P, resumen de la temporada
@@ -188,7 +198,7 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
 
 ## Pruebas
 - `npm test` = `pruebas/todas.mjs`: todas las pruebas en modo Airtable (fakeair) y en modo Supabase
-  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-10-26: 325 ✓ / 417 ✓, 0 fallos.
+  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-10-26: 325 ✓ / 422 ✓, 0 fallos.
 - Desde la sesión de Claude NO hay red hacia airtable.com ni supabase.co (proxy 403): la prueba
   real contra Supabase la hace la propia app en Netlify.
 
