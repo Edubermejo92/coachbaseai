@@ -85,6 +85,31 @@
   .golazo .det { font-size: 17px; font-weight: 600; margin-top: 14px; line-height: 1.45; }
   .golazo .cerrar { font-size: 12px; font-weight: 600; margin-top: 18px; opacity: .75; }
   @keyframes entra { from { transform: scale(.6); opacity: 0; } to { transform: none; opacity: 1; } }
+  /* Cambios: en la lista, flecha verde el que entra y roja el que sale. */
+  .cambio-fila { display: flex; align-items: stretch; margin: 0 0 6px; background: var(--fila2); min-height: 58px; }
+  .cambio-fila .m { width: 66px; flex: none; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 800;
+    background: var(--fila); color: var(--tinta); font-variant-numeric: tabular-nums; }
+  .cambio-fila .t { padding: 8px 16px; display: flex; flex-direction: column; justify-content: center; gap: 4px; min-width: 0; }
+  .lado { display: flex; align-items: center; gap: 9px; font-size: 15px; font-weight: 800; min-width: 0; }
+  .lado.sale { color: var(--tenue); font-weight: 600; }
+  .lado span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .flecha { width: 20px; height: 20px; border-radius: 50%; flex: none; display: inline-flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 800; line-height: 1; }
+  .flecha.entra { background: var(--verde); color: var(--oscuro); }
+  .flecha.sale { background: #E5484D; color: #fff; }
+  /* El rótulo de un cambio nuevo, abajo, como en la tele: sube, primero el
+     que entra, después el que sale, y se va solo. */
+  .rotulo { position: fixed; left: 12px; right: 12px; bottom: 18px; z-index: 9; max-width: 520px; margin: 0 auto; background: var(--panel);
+    border-left: 6px solid var(--verde); box-shadow: 0 14px 40px rgba(0,0,0,.5); padding: 12px 16px 13px; animation: rotulo 5.2s ease both; }
+  .rotulo .rc { display: flex; justify-content: space-between; color: var(--verde); font-size: 12px; font-weight: 800; letter-spacing: .22em; text-transform: uppercase; margin-bottom: 8px; }
+  .rotulo .lado { font-size: 18px; animation: desliza .45s cubic-bezier(.2, 1, .3, 1) both; }
+  .rotulo .lado + .lado { margin-top: 6px; }
+  .rotulo .lado.entra { animation-delay: .35s; }
+  .rotulo .lado.sale { animation-delay: .8s; color: var(--tenue); }
+  .rotulo .et { font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; opacity: .8; flex: none; }
+  @keyframes rotulo { 0% { transform: translateY(150%); opacity: 0; } 8% { transform: none; opacity: 1; } 90% { transform: none; opacity: 1; } 100% { transform: translateY(150%); opacity: 0; } }
+  @keyframes desliza { from { transform: translateX(-22px); opacity: 0; } to { transform: none; opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) { .rotulo, .rotulo .lado, .golazo { animation: none !important; } }
 </style>
 </head>
 <body>
@@ -102,7 +127,7 @@
   /* ---------- textos ---------- */
   const TX = {
     es: { soon: "La retransmisión empieza en breve", soonSub: "En cuanto el equipo empiece a apuntar el partido lo verás aquí.", live: "EN DIRECTO", ht: "DESCANSO", ft: "FINAL", pre: "PRÓXIMAMENTE", p1: "1ª parte", p2: "2ª parte", pr1: "Prórroga · 1ª parte", pr2: "Prórroga · 2ª parte",
-      pen: "Penaltis", descanso: "Descanso", final: "Final del partido", previa: "Antes del partido", startsAt: "Empieza a las {h}", goals: "Goles", noGoals: "Todavía no hay goles.",
+      pen: "Penaltis", descanso: "Descanso", final: "Final del partido", previa: "Antes del partido", startsAt: "Empieza a las {h}", goals: "Goles", noGoals: "Todavía no hay goles.", subs: "Cambios", sub: "Cambio", subIn: "Entra", subOut: "Sale",
       assist: "Asistencia: {n}", goalOf: "Gol de {e}", alerts: "Avisos", notify: "🔔 Avisarme de los goles", notified: "✓ Te avisaremos de los goles",
       notifyNote: "Te llegará un aviso con cada gol, el descanso y el final, aunque tengas el móvil bloqueado.", remove: "Quitar los avisos",
       sound: "Sonido y vibración al marcar, con la página abierta", gooool: "¡GOOOL!", tapClose: "Toca para cerrar", rivalGoal: "Gol de {e}",
@@ -112,7 +137,7 @@
       gone: "Esta retransmisión ya no está activa", goneSub: "El enlace se ha desactivado. Pide el nuevo a tu equipo.", notFound: "No encontramos este partido", notFoundSub: "Revisa que el enlace esté completo.",
       offline: "Sin conexión. Reintentando…", footer: "Retransmisión en directo con {app}", penalties: "Penaltis: {a}-{b}" },
     en: { soon: "Live coverage starts soon", soonSub: "As soon as the team starts logging the match you'll see it here.", live: "LIVE", ht: "HALF-TIME", ft: "FULL-TIME", pre: "COMING UP", p1: "1st half", p2: "2nd half", pr1: "Extra time · 1st half", pr2: "Extra time · 2nd half",
-      pen: "Penalties", descanso: "Half-time", final: "Full-time", previa: "Before kick-off", startsAt: "Kick-off at {h}", goals: "Goals", noGoals: "No goals yet.",
+      pen: "Penalties", descanso: "Half-time", final: "Full-time", previa: "Before kick-off", startsAt: "Kick-off at {h}", goals: "Goals", noGoals: "No goals yet.", subs: "Substitutions", sub: "Substitution", subIn: "On", subOut: "Off",
       assist: "Assist: {n}", goalOf: "{e} goal", alerts: "Alerts", notify: "🔔 Tell me about goals", notified: "✓ We'll tell you about goals",
       notifyNote: "You'll get an alert for every goal, half-time and full-time, even with your phone locked.", remove: "Turn alerts off",
       sound: "Sound and vibration on goals, with the page open", gooool: "GOOOAL!", tapClose: "Tap to close", rivalGoal: "{e} goal",
@@ -122,7 +147,7 @@
       gone: "This live coverage is no longer active", goneSub: "The link has been turned off. Ask your team for the new one.", notFound: "We can't find this match", notFoundSub: "Check the link is complete.",
       offline: "Offline. Retrying…", footer: "Live coverage with {app}", penalties: "Penalties: {a}-{b}" },
     fr: { soon: "Le direct commence bientôt", soonSub: "Dès que l'équipe commence à suivre le match, vous le verrez ici.", live: "EN DIRECT", ht: "MI-TEMPS", ft: "FIN", pre: "À VENIR", p1: "1re mi-temps", p2: "2e mi-temps", pr1: "Prolongation · 1re", pr2: "Prolongation · 2e",
-      pen: "Tirs au but", descanso: "Mi-temps", final: "Fin du match", previa: "Avant le match", startsAt: "Coup d'envoi à {h}", goals: "Buts", noGoals: "Pas encore de but.",
+      pen: "Tirs au but", descanso: "Mi-temps", final: "Fin du match", previa: "Avant le match", startsAt: "Coup d'envoi à {h}", goals: "Buts", noGoals: "Pas encore de but.", subs: "Changements", sub: "Changement", subIn: "Entre", subOut: "Sort",
       assist: "Passe décisive : {n}", goalOf: "But de {e}", alerts: "Alertes", notify: "🔔 M'avertir des buts", notified: "✓ On vous avertira des buts",
       notifyNote: "Vous recevrez une alerte à chaque but, à la mi-temps et à la fin, même téléphone verrouillé.", remove: "Désactiver les alertes",
       sound: "Son et vibration à chaque but, page ouverte", gooool: "BUUUT !", tapClose: "Touchez pour fermer", rivalGoal: "But de {e}",
@@ -132,7 +157,7 @@
       gone: "Ce direct n'est plus actif", goneSub: "Le lien a été désactivé. Demandez le nouveau à votre équipe.", notFound: "Match introuvable", notFoundSub: "Vérifiez que le lien est complet.",
       offline: "Hors ligne. Nouvelle tentative…", footer: "Direct avec {app}", penalties: "Tirs au but : {a}-{b}" },
     de: { soon: "Der Liveticker startet gleich", soonSub: "Sobald das Team das Spiel erfasst, siehst du es hier.", live: "LIVE", ht: "HALBZEIT", ft: "ENDE", pre: "DEMNÄCHST", p1: "1. Halbzeit", p2: "2. Halbzeit", pr1: "Verlängerung · 1.", pr2: "Verlängerung · 2.",
-      pen: "Elfmeterschießen", descanso: "Halbzeit", final: "Spielende", previa: "Vor dem Spiel", startsAt: "Anstoß um {h}", goals: "Tore", noGoals: "Noch keine Tore.",
+      pen: "Elfmeterschießen", descanso: "Halbzeit", final: "Spielende", previa: "Vor dem Spiel", startsAt: "Anstoß um {h}", goals: "Tore", noGoals: "Noch keine Tore.", subs: "Wechsel", sub: "Wechsel", subIn: "Rein", subOut: "Raus",
       assist: "Vorlage: {n}", goalOf: "Tor für {e}", alerts: "Benachrichtigungen", notify: "🔔 Bei Toren benachrichtigen", notified: "✓ Du wirst bei Toren benachrichtigt",
       notifyNote: "Du bekommst bei jedem Tor, zur Halbzeit und am Ende eine Nachricht, auch bei gesperrtem Handy.", remove: "Benachrichtigungen aus",
       sound: "Ton und Vibration bei Toren, bei geöffneter Seite", gooool: "TOOOR!", tapClose: "Zum Schließen tippen", rivalGoal: "Tor für {e}",
@@ -142,7 +167,7 @@
       gone: "Dieser Liveticker ist nicht mehr aktiv", goneSub: "Der Link wurde deaktiviert. Frag dein Team nach dem neuen.", notFound: "Spiel nicht gefunden", notFoundSub: "Prüfe, ob der Link vollständig ist.",
       offline: "Offline. Neuer Versuch…", footer: "Liveticker mit {app}", penalties: "Elfmeter: {a}-{b}" },
     pt: { soon: "A transmissão começa em breve", soonSub: "Assim que a equipa começar a registar o jogo, vês aqui.", live: "EM DIRETO", ht: "INTERVALO", ft: "FINAL", pre: "EM BREVE", p1: "1ª parte", p2: "2ª parte", pr1: "Prolongamento · 1ª", pr2: "Prolongamento · 2ª",
-      pen: "Penáltis", descanso: "Intervalo", final: "Final do jogo", previa: "Antes do jogo", startsAt: "Começa às {h}", goals: "Golos", noGoals: "Ainda não há golos.",
+      pen: "Penáltis", descanso: "Intervalo", final: "Final do jogo", previa: "Antes do jogo", startsAt: "Começa às {h}", goals: "Golos", noGoals: "Ainda não há golos.", subs: "Substituições", sub: "Substituição", subIn: "Entra", subOut: "Sai",
       assist: "Assistência: {n}", goalOf: "Golo do {e}", alerts: "Avisos", notify: "🔔 Avisar-me dos golos", notified: "✓ Vamos avisar-te dos golos",
       notifyNote: "Recebes um aviso a cada golo, ao intervalo e no fim, mesmo com o telemóvel bloqueado.", remove: "Tirar os avisos",
       sound: "Som e vibração nos golos, com a página aberta", gooool: "GOOOLO!", tapClose: "Toca para fechar", rivalGoal: "Golo do {e}",
@@ -207,7 +232,7 @@
   };
 
   /* ---------- pintar ---------- */
-  let datos = null, clavePush = "", primera = true, vistos = new Set(), partidoVisto = "", firma = "";
+  let datos = null, clavePush = "", primera = true, vistos = new Set(), vistosCambios = new Set(), partidoVisto = "", firma = "";
   const pintar = () => {
     const d = datos;
     const nos = d.nos || {}, riv = d.rival || {};
@@ -225,6 +250,9 @@
     const goles = (d.goles || []).map((g) => g.lado === "us"
       ? `<div class="gol-fila"><div class="m">${esc(g.min)}′</div><div class="t"><div class="n">${esc(g.nombre || nos.nombre)}</div>${g.asist ? `<div class="a">${esc(t("assist", { n: g.asist }))}</div>` : ""}</div></div>`
       : `<div class="gol-fila rival"><div class="m">${esc(g.min)}′</div><div class="t"><div class="n">${esc(t("goalOf", { e: riv.nombre }))}</div></div></div>`).join("");
+    const cambios = (d.cambios || []).map((c) => `<div class="cambio-fila"><div class="m">${esc(c.min)}′</div><div class="t">
+      <div class="lado entra"><span class="flecha entra" aria-label="${esc(t("subIn"))}">▲</span><span>${esc(c.entra || "—")}</span></div>
+      ${c.sale ? `<div class="lado sale"><span class="flecha sale" aria-label="${esc(t("subOut"))}">▼</span><span>${esc(c.sale)}</span></div>` : ""}</div></div>`).join("");
     $("app").innerHTML = `
       <header class="cab">${linea1 ? `<div>${linea1}</div>` : ""}${d.lugar ? `<div>${esc(d.lugar)}</div>` : ""}</header>
       <section class="hero">
@@ -240,6 +268,7 @@
       </section>
       <h2>${esc(t("goals"))}</h2>
       ${goles || `<p class="vacio">${esc(t("noGoals"))}</p>`}
+      ${cambios ? `<h2>${esc(t("subs"))}</h2>${cambios}` : ""}
       <h2>${esc(t("alerts"))}</h2>
       <div class="avisos">
         <button class="btn" id="avisar">${esc(t("notify"))}</button>
@@ -273,11 +302,25 @@
   };
   $("capa").onclick = () => { $("capa").hidden = true; };
 
+  const mostrarCambio = (c) => {
+    document.querySelectorAll(".rotulo").forEach((x) => x.remove());
+    const el = document.createElement("div");
+    el.className = "rotulo";
+    el.setAttribute("role", "status");
+    el.innerHTML = `<div class="rc"><span>⇄ ${esc(t("sub"))}</span><span>${esc(c.min)}′</span></div>
+      <div class="lado entra"><span class="flecha entra">▲</span><span class="et">${esc(t("subIn"))}</span><span>${esc(c.entra || "—")}</span></div>
+      ${c.sale ? `<div class="lado sale"><span class="flecha sale">▼</span><span class="et">${esc(t("subOut"))}</span><span>${esc(c.sale)}</span></div>` : ""}`;
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 5400);
+  };
+
   const recibir = (d) => {
     const nuevos = [];
     const mismo = d.partido === partidoVisto;
     for (const g of d.goles || []) if (!vistos.has(g.id) && mismo && !primera) nuevos.push(g);
     vistos = new Set((d.goles || []).map((g) => g.id));
+    const cambiosNuevos = (d.cambios || []).filter((c) => !vistosCambios.has(c.id) && mismo && !primera);
+    vistosCambios = new Set((d.cambios || []).map((c) => c.id));
     partidoVisto = d.partido;
     if (d.lang && TX[d.lang]) { lang = d.lang; document.documentElement.lang = lang; }
     datos = d;
@@ -285,6 +328,7 @@
     const f = JSON.stringify({ ...d, t: 0 });
     if (f !== firma) { firma = f; pintar(); }
     if (nuevos.length) mostrarGol(nuevos[nuevos.length - 1]);
+    if (cambiosNuevos.length) mostrarCambio(cambiosNuevos[cambiosNuevos.length - 1]);
     primera = false;
   };
   const pagina = (titulo, sub) => { $("app").innerHTML = `<div class="aviso-pagina"><strong>${esc(titulo)}</strong>${esc(sub)}</div>`; };
@@ -388,7 +432,9 @@
       goles: [{ id: "1", lado: "us", min: "12", nombre: "Hugo M.", asist: "Pablo R." }, { id: "2", lado: "them", min: "18", nombre: "", asist: "" }],
     };
     recibir(base);
-    setTimeout(() => recibir({ ...base, score: { us: 2, them: 1 }, goles: [...base.goles, { id: "3", lado: "us", min: "23", nombre: "Pablo R.", asist: "" }] }), 6000);
+    const conGol = { ...base, score: { us: 2, them: 1 }, goles: [...base.goles, { id: "3", lado: "us", min: "23", nombre: "Pablo R.", asist: "" }] };
+    setTimeout(() => recibir(conGol), 6000);
+    setTimeout(() => recibir({ ...conGol, cambios: [{ id: "c1", min: "25", entra: "Leo B.", sale: "Bruno S." }] }), 20000);
   } else if (!codigo) {
     pagina(t("notFound"), t("notFoundSub"));
   } else {

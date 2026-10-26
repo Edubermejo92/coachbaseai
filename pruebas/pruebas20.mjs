@@ -73,6 +73,16 @@ dice("mandar lo mismo otra vez no repite el aviso", enviados.length === 0);
 r = await call(`?res=vivo&c=${codigo}`);
 dice("el público ve el gol con su asistente", r.body.datos.goles[0]?.nombre === "Hugo M." && r.body.datos.goles[0]?.asist === "Pablo R.");
 
+/* Los cambios: se ven en el directo con quién entra y quién sale, pero no
+   mandan aviso (serían demasiados). */
+enviados = [];
+await call("?res=retransmision-datos", { method: "POST", token: tEnt, body: { codigo, datos: { ...gol1, cambios: [{ id: "c1", min: "40", entra: "Leo B.", sale: "Bruno S.", telefono: "600000000" }] } } });
+r = await call(`?res=vivo&c=${codigo}`);
+const c0 = r.body.datos.cambios?.[0] || {};
+dice("el público ve el cambio: quién entra y quién sale", c0.entra === "Leo B." && c0.sale === "Bruno S." && c0.min === "40", JSON.stringify(r.body.datos.cambios));
+dice("y nada más del cambio", !("telefono" in c0));
+dice("un cambio no manda aviso push", enviados.length === 0, JSON.stringify(enviados.map((e) => e.titulo)));
+
 /* ---- dentro de la app: el directo del equipo, sin enlace ---- */
 r = await call("?res=retransmision&team=recSEN", { token: tEnt });
 dice("quien es del equipo ve su directo sin el enlace", r.body.activa === true && r.body.codigo === codigo && r.body.datos?.score?.us === 1, JSON.stringify(r.body).slice(0, 120));

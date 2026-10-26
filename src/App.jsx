@@ -13538,6 +13538,11 @@ export default function App() {
   /* Cambio que se empieza por el que entra (desde la plantilla): falta
      decir por quién. */
   const [entraPendiente, setEntraPendiente] = useState(null);
+  /* El último cambio, mientras dura su animación (unos 4 s): en el campo el
+     que sale se va hacia la banda y el que entra llega a su puesto, la
+     plantilla los destaca y arriba sale el aviso. `k` distingue un cambio de
+     otro aunque sea en el mismo puesto. */
+  const [cambioAnim, setCambioAnim] = useState(null);
   /* Jugador cuyo selector de convocatoria (convocado / descartado y por qué)
      está abierto en Alineación. */
   const [convMenu, setConvMenu] = useState(null);
@@ -13872,6 +13877,14 @@ export default function App() {
       nombre: e.type === "gol" ? nombreVivo(e.player, e.dorsal) : "",
       asist: e.type === "gol" && e.asist ? nombreVivo(e.asist, e.asistDorsal) : "",
     }));
+    /* Los cambios, con el mismo formato de nombre que los goles: la página
+       del directo los enseña con su flecha de entrada y de salida. */
+    const cambios = [...events].reverse().filter((e) => e.type === "cambio").map((e, i) => ({
+      id: e.id || `c${e.half}-${e.disp}-${i}`,
+      min: String(e.disp || e.min || ""),
+      entra: nombreVivo(e.player, e.dorsal),
+      sale: e.sale ? nombreVivo(e.sale, e.saleDorsal) : "",
+    }));
     const empezado = running || secs > 0 || events.length > 0;
     const estado = vivo?.final ? "final" : enDescanso ? "descanso" : periodo === "pen" ? "pen" : empezado ? periodo : "previa";
     return {
@@ -13887,6 +13900,7 @@ export default function App() {
       score: { us: score.us, them: score.them },
       pen: periodo === "pen" || penUs > 0 || penThem > 0 ? { us: penUs, them: penThem } : null,
       goles,
+      cambios,
     };
   };
   const vivoFirma = vivo?.codigo && vivo.codigo !== "demo" ? JSON.stringify(datosVivo()) : "";
@@ -13929,6 +13943,22 @@ export default function App() {
     addEvent("cambio", entra, sale ? { sale: sale.n, saleDorsal: sale.d, salePid: sale.id } : {});
     setCambioSlot(null);
     setEntraPendiente(null);
+    const k = Date.now();
+    setCambioAnim({ k, slot, min: dispAbs, entra: { id: entra.id, d: entra.d, n: entra.n }, sale: sale ? { id: sale.id, d: sale.d, n: sale.n } : null });
+    setTimeout(() => setCambioAnim((c) => (c && c.k === k ? null : c)), 4200);
+  };
+  /* Quién ha entrado y quién ha salido en este partido, con su minuto, para
+     marcarlos en el campo y en la plantilla todo el partido (no solo durante
+     la animación). Con reingresos vale el último movimiento de cada uno. */
+  const marcasDeCambios = () => {
+    const entro = new Map(), salio = new Map();
+    for (const e of [...events].reverse()) {
+      if (e.type !== "cambio") continue;
+      const m = String(e.disp || e.min || "");
+      if (e.pid != null) { entro.set(e.pid, m); salio.delete(e.pid); }
+      if (e.salePid != null) salio.set(e.salePid, m);
+    }
+    return { entro, salio };
   };
   /* Antes del saque no hay cambios: se cambia el titular. Mismo gesto -tocar
      al jugador y elegir quién va-, pero sin apuntar nada en el acta, que si
@@ -22719,6 +22749,31 @@ export default function App() {
   };
   const renderMatch = () => (
     <div className="space-y-4">
+      {/* El aviso de un cambio, arriba: baja, se queda unos segundos y se
+          va. Va a <body> para no depender de dónde esté el scroll. */}
+      {cambioAnim && createPortal(
+        <div key={cambioAnim.k} role="status" aria-live="polite"
+          className="cb-anim fixed left-1/2 -translate-x-1/2 top-3 z-[60] w-[min(92vw,26rem)] rounded-xl px-4 py-3 shadow-2xl"
+          style={{ background: C.panel, border: `1px solid ${C.line}`, animation: "cb-aviso-cambio 4s ease both" }}>
+          <div className="flex items-center justify-between gap-2 mb-1.5">
+            <span className="font-display text-xs uppercase tracking-widest" style={{ color: C.dim }}>⇄ {nombreEvento("cambio", lang)}</span>
+            <span className="font-display text-sm tabular-nums" style={{ color: AC }}>{cambioAnim.min}′</span>
+          </div>
+          <div className="flex items-center gap-2 text-sm min-w-0" style={{ color: C.chalk }}>
+            <span className="w-5 h-5 rounded-full flex items-center justify-center text-xs shrink-0" style={{ background: C.green, color: "#fff" }}>↑</span>
+            <span className="font-display tabular-nums shrink-0" style={{ color: C.green }}>{cambioAnim.entra.d}</span>
+            <span className="truncate font-semibold">{cambioAnim.entra.n}</span>
+          </div>
+          {cambioAnim.sale && (
+            <div className="flex items-center gap-2 text-sm min-w-0 mt-1" style={{ color: C.chalk }}>
+              <span className="w-5 h-5 rounded-full flex items-center justify-center text-xs shrink-0" style={{ background: C.red, color: "#fff" }}>↓</span>
+              <span className="font-display tabular-nums shrink-0" style={{ color: C.red }}>{cambioAnim.sale.d}</span>
+              <span className="truncate">{cambioAnim.sale.n}</span>
+            </div>
+          )}
+        </div>,
+        document.body,
+      )}
       {/* ---- Marcador, reloj y parte ----
            Lo primero de la pantalla: es lo que se mira cada dos minutos desde
            el banquillo. Antes encima iba la lista de jugadores y había que
@@ -22900,6 +22955,7 @@ export default function App() {
               una sola lista por dorsal y había que fijarse en el color del
               nombre para saber quién jugaba. */}
           {(() => {
+            const { entro, salio } = marcasDeCambios();
             const enCampoIds = new Set(Object.values(lineup).filter(Boolean));
             const campo = Object.keys(slotPos).map((k) => players.find((x) => x.id === lineup[k])).filter(Boolean);
             const banco = players.filter((x) => !enCampoIds.has(x.id) && estadoConvocatoria(x) === "conv").sort((a, b) => a.d - b.d);
@@ -22914,12 +22970,32 @@ export default function App() {
             const slotP = Object.keys(lineup).find((k) => lineup[k] === p.id);
             const estC = estadoConvocatoria(p);
             const lin = lineaHabitual(p);
+            /* El que acaba de entrar llega a "En el campo" con un destello
+               verde; el que acaba de salir, al banquillo con uno rojo. */
+            const acabaDeEntrar = cambioAnim?.entra.id === p.id && grupo === "campo";
+            const acabaDeSalir = cambioAnim?.sale?.id === p.id && grupo !== "campo";
             return (
-              <div key={p.id} className="rounded-lg border" style={{ borderColor: abierto ? AC : C.line, background: grupo === "fuera" ? "transparent" : C.panel2 }}>
+              <div key={acabaDeEntrar || acabaDeSalir ? `${p.id}-${cambioAnim.k}` : p.id}
+                className={`rounded-lg border ${acabaDeEntrar || acabaDeSalir ? "cb-anim" : ""}`}
+                style={{
+                  borderColor: abierto ? AC : acabaDeEntrar ? C.green : acabaDeSalir ? C.red : C.line,
+                  background: grupo === "fuera" ? "transparent" : C.panel2,
+                  ...(acabaDeEntrar ? { animation: "cb-fila-entra 1.6s ease-out .5s both" } : acabaDeSalir ? { animation: "cb-fila-sale 1.6s ease-out both" } : {}),
+                }}>
                 <button onClick={() => setJugadorAccion(abierto ? null : p.id)}
                   className="w-full flex items-center gap-2 px-2.5 py-2 text-left min-h-11">
                   <span className="font-display text-sm tabular-nums w-6 shrink-0" style={{ color: AC }}>{p.d}</span>
                   <span className="flex-1 min-w-0 truncate text-sm" style={{ color: grupo === "fuera" ? C.dim : C.chalk }}>{p.n}</span>
+                  {/* Quién ha entrado y quién ha salido, con el minuto, todo
+                      el partido. */}
+                  {entro.has(p.id) && (
+                    <span className="text-[10px] font-display tabular-nums px-1.5 py-0.5 rounded shrink-0" title={t("mt.subIn")}
+                      style={{ color: C.green, border: `1px solid ${C.green}` }}>↑ {entro.get(p.id)}′</span>
+                  )}
+                  {salio.has(p.id) && (
+                    <span className="text-[10px] font-display tabular-nums px-1.5 py-0.5 rounded shrink-0" title={t("mt.subOut")}
+                      style={{ color: C.red, border: `1px solid ${C.red}` }}>↓ {salio.get(p.id)}′</span>
+                  )}
                   <span className="text-[10px] shrink-0 text-right" style={{ color: grupo === "fuera" ? colorConvocatoria(estC) : C.dim }}>
                     {grupo === "campo" ? slotPos[slotP]?.label : grupo === "banco" ? (lin ? t(`lin1.${lin}`) : "") : (estC === "no" ? t("ln.notCalledTag") : t(`conv.${estC}`).split("·").pop().trim())}
                   </span>
@@ -23322,24 +23398,53 @@ export default function App() {
                           <rect x="75" y="6" width="150" height="52" /><rect x="75" y="342" width="150" height="52" />
                         </g>
                       </svg>
-                      {Object.entries(slotPos).map(([slot, s]) => {
-                        const p = players.find((x) => x.id === lineup[slot]);
-                        const sel = cambioSlot === slot;
-                        return (
-                          <button key={slot} disabled={!can("editLineup")}
-                            onClick={() => { setEntraPendiente(null); setCambioSlot(sel ? null : slot); if (!sel) irAlCambio(); }}
-                            className="absolute -translate-x-1/2 -translate-y-1/2 rounded-full flex items-center justify-center font-display text-sm font-bold border-2"
+                      {(() => {
+                        const { entro } = marcasDeCambios();
+                        const fichas = Object.entries(slotPos).map(([slot, s]) => {
+                          const p = players.find((x) => x.id === lineup[slot]);
+                          const sel = cambioSlot === slot;
+                          /* El que acaba de entrar llega desde la banda cuando
+                             el que sale ya se ha ido (de ahí el retraso), y se
+                             queda con una onda verde un momento. */
+                          const llega = cambioAnim && cambioAnim.slot === slot && p && p.id === cambioAnim.entra.id;
+                          return (
+                            <button key={llega ? `${slot}-${cambioAnim.k}` : slot} disabled={!can("editLineup")}
+                              onClick={() => { setEntraPendiente(null); setCambioSlot(sel ? null : slot); if (!sel) irAlCambio(); }}
+                              className={`absolute -translate-x-1/2 -translate-y-1/2 rounded-full flex items-center justify-center font-display text-sm font-bold border-2 ${llega ? "cb-anim" : ""}`}
+                              style={{
+                                left: `${s.x}%`, top: `${s.y}%`, width: 30, height: 30,
+                                background: sel ? AC : llega ? C.green : p ? C.panel : "transparent",
+                                color: sel ? C.sobre : llega ? "#fff" : p ? C.chalk : C.dim,
+                                borderColor: sel ? AC : llega || (p && entro.has(p.id)) ? C.green : p ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.18)",
+                                ...(llega ? { animation: "cb-entra .8s cubic-bezier(.2,.9,.3,1.2) .55s both, cb-onda 1.1s ease-out 1.35s 2" } : {}),
+                              }}
+                              title={p ? `${p.d} ${p.n} · ${s.label}${entro.has(p.id) ? ` · ↑ ${entro.get(p.id)}′` : ""}` : s.label}>
+                              {p ? p.d : "+"}
+                              {/* Quien ha entrado en el partido lleva su flecha
+                                  todo el rato, no solo durante la animación. */}
+                              {p && entro.has(p.id) && (
+                                <span aria-hidden="true" className="absolute -top-1.5 -right-1.5 w-3.5 h-3.5 rounded-full flex items-center justify-center text-[8px] leading-none"
+                                  style={{ background: C.green, color: "#fff" }}>↑</span>
+                              )}
+                            </button>
+                          );
+                        });
+                        /* El que sale: una ficha fantasma, roja, que se va
+                           hacia la banda desde su puesto. */
+                        const sp = cambioAnim?.sale && slotPos[cambioAnim.slot];
+                        const fantasma = sp ? (
+                          <div key={`sale-${cambioAnim.k}`} aria-hidden="true"
+                            className="cb-anim cb-fantasma absolute rounded-full flex items-center justify-center font-display text-sm font-bold border-2 pointer-events-none"
                             style={{
-                              left: `${s.x}%`, top: `${s.y}%`, width: 30, height: 30,
-                              background: sel ? AC : p ? C.panel : "transparent",
-                              color: sel ? C.sobre : p ? C.chalk : C.dim,
-                              borderColor: sel ? AC : p ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.18)",
-                            }}
-                            title={p ? `${p.d} ${p.n} · ${s.label}` : s.label}>
-                            {p ? p.d : "+"}
-                          </button>
-                        );
-                      })}
+                              left: `${sp.x}%`, top: `${sp.y}%`, width: 30, height: 30, transform: "translate(-50%, -50%)",
+                              background: C.red, color: "#fff", borderColor: C.red,
+                              animation: "cb-sale .6s ease-in both",
+                            }}>
+                            {cambioAnim.sale.d}
+                          </div>
+                        ) : null;
+                        return [...fichas, fantasma];
+                      })()}
                     </div>
                   </div>
 

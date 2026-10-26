@@ -135,6 +135,18 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   sigue valiendo para los siguientes partidos hasta que se desactiva (y entonces caen las
   suscripciones). En iPhone el aviso solo llega con la página añadida a la pantalla de inicio.
 
+## Cambios con marca y animación (v2.86.0)
+- Modo partido (hacerCambio → `cambioAnim` ~4 s): en el campo pequeño el que sale (ficha
+  fantasma roja) se va hacia la banda y después el que entra llega a su puesto (cb-entra +
+  onda verde); aviso arriba «⇄ Cambio min · ↑ entra · ↓ sale» (portal a body). Todo el
+  partido: flecha ↑ en la ficha de quien entró y chips «↑ min′» / «↓ min′» en la plantilla
+  (`marcasDeCambios()` a partir de los eventos). Keyframes en src/index.css; con «reducir
+  movimiento» no hay animación ni fantasma. Los cambios antes del saque (cambiarTitular) no
+  se animan: no son cambios del acta.
+- Directo: datosVivo manda `cambios` (min, entra, sale con el formato de nombre elegido),
+  limpiarDatos los admite (máx. 30) y NO generan push. /vivo los lista («Cambios» con ▲/▼) y
+  saca un rótulo abajo, tipo tele, al llegar uno nuevo. Demo de /vivo: cambio a los 20 s.
+
 ## Retransmisión: familias con cuenta y botón visible (v2.85.0)
 - La familia y el jugador ven el directo en su página (DirectoEquipo, arriba del todo) sin el
   enlace: marcador, minuto que corre, último gol y «Ver el directo». Se pregunta una vez a
@@ -198,7 +210,7 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
 
 ## Pruebas
 - `npm test` = `pruebas/todas.mjs`: todas las pruebas en modo Airtable (fakeair) y en modo Supabase
-  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-10-26: 325 ✓ / 422 ✓, 0 fallos.
+  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-10-26: 325 ✓ / 425 ✓, 0 fallos.
 - Desde la sesión de Claude NO hay red hacia airtable.com ni supabase.co (proxy 403): la prueba
   real contra Supabase la hace la propia app en Netlify.
 

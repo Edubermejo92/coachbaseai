@@ -7,8 +7,8 @@
 
    Lo que sale al público lo compone limpiarDatos: una lista cerrada de
    campos, recortados. Nada de plantilla, notas, estadísticas ni datos de los
-   jugadores más allá del nombre de quien marca o asiste, como lo haya
-   elegido el entrenador (nombre e inicial, completo o solo el dorsal).
+   jugadores más allá del nombre de quien marca, asiste, entra o sale, como lo
+   haya elegido el entrenador (nombre e inicial, completo o solo el dorsal).
 
    Un enlace por equipo: sirve para todos los partidos hasta que el
    entrenador lo desactiva, y entre partido y partido sigue enseñando el
@@ -67,6 +67,14 @@ export function limpiarDatos(d: any) {
     score: { us: num(d?.score?.us, 0, 99), them: num(d?.score?.them, 0, 99) },
     pen: d?.pen ? { us: num(d.pen.us, 0, 30), them: num(d.pen.them, 0, 30) } : null,
     goles,
+    /* Los cambios: minuto, quién entra y quién sale (con el formato de
+       nombre que eligió el entrenador). Sin avisos push: serían demasiados. */
+    cambios: (Array.isArray(d?.cambios) ? d.cambios : []).slice(0, 30).map((c: any, i: number) => ({
+      id: txt(c?.id, 40) || `c${i}`,
+      min: txt(c?.min, 8),
+      entra: txt(c?.entra, 60),
+      sale: txt(c?.sale, 60),
+    })),
     t: ahora,
   };
 }
