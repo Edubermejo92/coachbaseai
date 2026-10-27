@@ -135,6 +135,24 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   sigue valiendo para los siguientes partidos hasta que se desactiva (y entonces caen las
   suscripciones). En iPhone el aviso solo llega con la página añadida a la pantalla de inicio.
 
+## Asistencia solo en días de entreno o partido (v2.88.0)
+- Edu: "Solo se pasa lista días de entrenamiento y partidos, el resto de días no aparece claro".
+- `queHayElDia(fecha)` (App.jsx, junto a renderAsistencia): partidos del día sin los avisos PT,
+  y entreno si el día está en `trainDays`, hay sesión publicada con esa fecha o el borrador de
+  Entrenamiento es de ese día. OJO: `sesionDelDia` ya existe (pretemporada), no reutilizar el
+  nombre. `diaConSesion(desde, ±1)` busca hasta 62 días el anterior/siguiente con sesión o con
+  lista ya pasada; `etiquetasSesion(fecha)` da las chapas (Partido · J6 · rival · hora /
+  Entrenamiento · hora / Sesión extra).
+- Asistencia: chapas bajo la fecha; las flechas saltan entre días con sesión (la fecha sigue
+  abriendo cualquier día). Día sin sesión y sin lista: tarjeta «Sin entreno ni partido» con los
+  días fijos, botones Anterior/Siguiente y «Hubo sesión extra: pasar lista igualmente» (solo
+  editSquad; `asistExtra` = esa fecha). Sin resumen del día en esos días. Día futuro con sesión:
+  aviso «aún no ha llegado» en vez de «no se pasó lista». Historial con las chapas por día.
+- Inicio («Asistencia de hoy»): día sin sesión → «Hoy no hay entreno ni partido» + próximo; día
+  con sesión → «Hoy: Entrenamiento · 18:30» encima de «Pasar lista».
+- Disciplina → Pasar lista: al cambiar la fecha elige solo Partido/Entrenamiento si el día solo
+  tiene uno, y avisa si ese día no hay nada en el calendario.
+
 ## Jugadas 3D animadas (v2.87.0)
 - `jugador3D` (src/pizarra3d.js) es ahora un muñeco articulado: cadera → muslos → rodillas
   (gemelo con el color de la camiseta y bota), torso → hombros → codos, cabeza con pelo.
@@ -228,7 +246,7 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
 
 ## Pruebas
 - `npm test` = `pruebas/todas.mjs`: todas las pruebas en modo Airtable (fakeair) y en modo Supabase
-  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-10-26: 325 ✓ / 425 ✓, 0 fallos.
+  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-10-27: 325 ✓ / 425 ✓, 0 fallos.
 - Desde la sesión de Claude NO hay red hacia airtable.com ni supabase.co (proxy 403): la prueba
   real contra Supabase la hace la propia app en Netlify.
 
