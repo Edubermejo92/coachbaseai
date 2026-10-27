@@ -94,6 +94,9 @@ const U = {
   /* Solo para el Rol Familia: qué jugador de la plantilla es su hijo/a. Lo
      escribe el propio registro; nadie más lo toca. */
   hijo: "fldOlXL957BafrlfE",
+  /* Invitación de un club a una cuenta que ya existía (ver invitarAlClub), en
+     JSON: { club, equipo, rol, rolesExtra, por, fecha }. Solo Supabase. */
+  invitacion: "fldInvitaClubQ9",
 };
 
 /* El Master es UNA cuenta, la de EBLDigital, y no se reparte desde la app.
@@ -824,6 +827,24 @@ const atender = async (req: Request) => {
     if (!clubId) return false;
     if (esMaster) return true;
     return (await miClub()) === clubId;
+  };
+  /* La invitación de un club guardada en la ficha (ver invitarAlClub), y
+     cómo se le enseña a quien la recibe: con los nombres, sin ids. */
+  const leerInvitacion = (rec: any) => {
+    try {
+      const v = JSON.parse(String(rec?.fields?.[U.invitacion] || ""));
+      return v && typeof v === "object" && v.club ? v : null;
+    } catch { return null; }
+  };
+  const invitacionOut = async (rec: any) => {
+    const inv = leerInvitacion(rec);
+    if (!inv) return null;
+    const [cl, eq] = await Promise.all([
+      filaPorId(T_CLUBES, String(inv.club)).catch(() => null),
+      inv.equipo ? filaPorId(T_EQUIPOS, String(inv.equipo)).catch(() => null) : null,
+    ]);
+    if (!cl) return null;
+    return { club: cl.fields?.[CL.nombre] || "", equipo: eq?.fields?.[EQ.nombre] || "", rol: inv.rol || "", por: inv.por || "", fecha: inv.fecha || "" };
   };
 
   /* ================= FILAS DE UN EQUIPO =================
@@ -1658,6 +1679,7 @@ const atender = async (req: Request) => {
           clubRec: clRec || null,
           crest: cl ? (cl.fields[CL.escudo]?.[0]?.url || null) : null,
           team: eq ? teamOut(eq, clubs) : null,
+          invitacion: await invitacionOut(rec),
         },
       });
     }
@@ -2689,6 +2711,7 @@ const atender = async (req: Request) => {
             clubRec: clRec || null,
             crest: cl ? (cl.fields[CL.escudo]?.[0]?.url || null) : null,
             team: eq ? teamOut(eq, clubs) : null,
+            invitacion: await invitacionOut(rec),
           },
         });
       }
@@ -3017,6 +3040,107 @@ const atender = async (req: Request) => {
         return j({ ok: !!d?.id, rec: d?.id, activa: !!inicial }, d?.id ? 200 : 400);
       }
 
+      /* ================= SUMAR AL CLUB A QUIEN YA TIENE CUENTA =================
+         createUser solo da de alta correos nuevos. Un entrenador que se
+         registró por su cuenta (plan personal, con su propio "club") ya tiene
+         ficha, y el alta le contestaba "Ese correo ya tiene ficha" sin más
+         salida. Aquí el club le deja una invitación en su ficha y no se le
+         mueve hasta que la acepta él al entrar: cambiar de club le cambia el
+         equipo con el que trabaja, y nadie debería poder llevarse la cuenta de
+         otro con solo saber su correo.
+         Solo cuentas de cuerpo técnico que no estén ya en un club con
+         dirección (cuenta Club o director deportivo): a esas las suelta su
+         club, no las recoge otro. */
+      const ROLES_INVITABLES = ["entrenador", "segundo", "delegado"];
+      const patchUsuario = (recId: string, fields: Record<string, unknown>) =>
+        fetch(`${api}/${recId}`, { method: "PATCH", headers: H, body: JSON.stringify({ fields, typecast: true }) });
+      const plazasLlenas = (clubRec: string, limite: number, recs: any[]) =>
+        limite > 0 && recs.filter((r) => (r.fields[U.club] || []).includes(clubRec)).length >= limite;
+      if (b.action === "invitarAlClub") {
+        if (!esMaster && !dirigeElClub(sesion)) return j({ ok: false, reason: "no_autorizado" }, 403);
+        const pedido = rolKey(b.rol);
+        const puede = (ASIGNABLES[rolKey(sesion?.rol)] || []).filter((k) => ROLES_INVITABLES.includes(k));
+        if (!puede.includes(pedido)) return j({ ok: false, reason: "rol_no_permitido" }, 403);
+        const email = norm(b.email);
+        const clubRec = String(b.clubRec || "");
+        if (!email || !clubRec) return j({ ok: false, reason: "faltan_datos" }, 400);
+        if (!(await puedeClub(clubRec))) return j({ ok: false, reason: "no_autorizado" }, 403);
+        const teamRec = String(b.teamRec || "");
+        if (teamRec) {
+          const eq = await equipoPorId(teamRec);
+          if (!eq || ((eq.fields[EQ.club] || [])[0] || null) !== clubRec) return j({ ok: false, reason: "equipo_no_valido" }, 400);
+        }
+        const recs = await allUsers();
+        const quien = recs.find((r) => norm(r.fields[U.email]) === email);
+        if (!quien) return j({ ok: false, reason: "no_existe" });
+        if ((quien.fields[U.club] || []).includes(clubRec)) return j({ ok: false, reason: "ya_en_club" });
+        if (!ROLES_INVITABLES.includes(rolReal(quien.fields[U.rol], quien.fields[U.email]))) return j({ ok: false, reason: "no_invitable" }, 409);
+        const suClub = (quien.fields[U.club] || [])[0] || null;
+        if (suClub && recs.some((r) => r.id !== quien.id && (r.fields[U.club] || []).includes(suClub) &&
+          ["club", "director"].includes(rolKey(r.fields[U.rol])) && norm(r.fields[U.estado]) !== "suspendido")) {
+          return j({ ok: false, reason: "otro_club" }, 409);
+        }
+        const club = await filaPorId(T_CLUBES, clubRec);
+        const limite = Number(club?.fields?.[CL.limite]) || 0;
+        if (plazasLlenas(clubRec, limite, recs)) {
+          return j({ ok: false, reason: "limite_alcanzado", limite, ocupadas: recs.filter((r) => (r.fields[U.club] || []).includes(clubRec)).length }, 403);
+        }
+        const extras = (Array.isArray(b.rolesExtra) ? b.rolesExtra : [])
+          .map((x: unknown) => rolKey(x)).filter((k: string) => puede.includes(k) && k !== pedido);
+        const yo = recs.find((r) => r.id === sesion?.id);
+        const inv = {
+          club: clubRec, equipo: teamRec || null, rol: ROL_LABEL[pedido], rolesExtra: extras.map((k: string) => ROL_LABEL[k]),
+          por: yo?.fields[U.nombre] || "", fecha: new Date().toISOString().slice(0, 10),
+        };
+        const r = await patchUsuario(quien.id, { [U.invitacion]: JSON.stringify(inv) });
+        /* El id solo sirve para poder anularla desde la lista del club. */
+        return j({ ok: r.ok, ...(r.ok ? { rec: quien.id } : {}) }, r.ok ? 200 : 400);
+      }
+      /* Quien recibe la invitación la acepta o la rechaza. Al aceptar pasa al
+         club y a la categoría que le pusieron, con el rol que le dieron y la
+         cuenta como las del club (plan Oficial). Su equipo de antes se queda
+         donde estaba, sin tocar. */
+      if (b.action === "responderInvitacionClub") {
+        if (!sesion?.id) return j({ ok: false, reason: "no_autorizado" }, 401);
+        const yo = await filaPorId(T_USUARIOS, String(sesion.id));
+        const inv = leerInvitacion(yo);
+        if (!yo || !inv) return j({ ok: false, reason: "sin_invitacion" }, 404);
+        const limpiar = { [U.invitacion]: "" };
+        if (!b.aceptar) {
+          const r = await patchUsuario(yo.id, limpiar);
+          return j({ ok: r.ok }, r.ok ? 200 : 400);
+        }
+        const club = await filaPorId(T_CLUBES, String(inv.club)).catch(() => null);
+        if (!club) {
+          await patchUsuario(yo.id, limpiar);
+          return j({ ok: false, reason: "club_no_existe" }, 409);
+        }
+        let equipo = inv.equipo ? await equipoPorId(String(inv.equipo)).catch(() => null) : null;
+        if (equipo && ((equipo.fields[EQ.club] || [])[0] || null) !== club.id) equipo = null;
+        if (!equipo) equipo = (await list(T_EQUIPOS)).find((e) => (e.fields[EQ.club] || []).includes(club.id)) || null;
+        if (plazasLlenas(club.id, Number(club.fields?.[CL.limite]) || 0, await allUsers())) {
+          return j({ ok: false, reason: "limite_alcanzado" }, 403);
+        }
+        const rol = ROLES_INVITABLES.includes(rolKey(inv.rol)) ? ROL_LABEL[rolKey(inv.rol)] : ROL_LABEL.entrenador;
+        const extras = (Array.isArray(inv.rolesExtra) ? inv.rolesExtra : [])
+          .map((x: unknown) => rolKey(x)).filter((k: string) => ROLES_INVITABLES.includes(k) && k !== rolKey(rol));
+        const r = await patchUsuario(yo.id, {
+          [U.club]: [club.id], [U.equipo]: equipo ? [equipo.id] : [], [U.rol]: rol,
+          [U.rolesExtra]: extras.map((k: string) => ROL_LABEL[k]), [U.plan]: "Oficial", [U.invitacion]: "",
+        });
+        return j({ ok: r.ok }, r.ok ? 200 : 400);
+      }
+      /* El club anula una invitación que todavía no se ha aceptado. */
+      if (b.action === "anularInvitacionClub") {
+        if (!esMaster && !dirigeElClub(sesion)) return j({ ok: false, reason: "no_autorizado" }, 403);
+        const rec = await filaPorId(T_USUARIOS, String(b.usuarioRec || "")).catch(() => null);
+        const inv = leerInvitacion(rec);
+        if (!rec || !inv) return j({ ok: false, reason: "sin_invitacion" }, 404);
+        if (!(await puedeClub(String(inv.club)))) return j({ ok: false, reason: "no_autorizado" }, 403);
+        const r = await patchUsuario(rec.id, { [U.invitacion]: "" });
+        return j({ ok: r.ok }, r.ok ? 200 : 400);
+      }
+
       /* ================= FAMILIA / JUGADOR: VINCULAR DESDE LA FICHA =================
          El club invita directamente desde la ficha del jugador -hasta 2 emails
          de padres/tutores y 1 del propio jugador-, sin que nadie tenga que
@@ -3319,7 +3443,8 @@ const atender = async (req: Request) => {
         filtro = (rec) => (rec.fields[U.equipo] || []).includes(requestedTeam);
       }
       const eqsNombre = new Map((await list(T_EQUIPOS)).map((e: any) => [e.id, e.fields[EQ.nombre] || ""]));
-      const rows = (await allUsers()).filter(filtro)
+      const todos = await allUsers();
+      const rows = todos.filter(filtro)
         /* El Master es la cuenta de EBLDigital, no cuerpo técnico de nadie: no
            tiene por qué salir en la plantilla de un club. */
         .filter((rec) => rolReal(rec.fields[U.rol], rec.fields[U.email]) !== "master")
@@ -3331,7 +3456,16 @@ const atender = async (req: Request) => {
           parteMat: !!rec.fields[U.parteMat],
           faltas: rec.fields[U.faltas] || "",
         }));
-      return j({ records: rows });
+      /* Invitaciones de este club que aún no se han aceptado: solo para quien
+         lo dirige, que es quien puede anularlas. Va el correo que se escribió,
+         no el nombre de la cuenta, que es de esa persona hasta que acepte. */
+      const invitados = requestedClub && (esMaster || dirigeElClub(sesion))
+        ? todos.filter((rec) => leerInvitacion(rec)?.club === requestedClub).map((rec) => {
+          const inv = leerInvitacion(rec);
+          return { id: rec.id, email: rec.fields[U.email] || "", rol: inv.rol || "", teamName: eqsNombre.get(inv.equipo) || "", fecha: inv.fecha || "" };
+        })
+        : [];
+      return j({ records: rows, invitados });
     }
 
     if (req.method === "PATCH" && id) {

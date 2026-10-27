@@ -119,6 +119,7 @@ const DEF: Record<string, { airtable: string; campos: Def[] }> = {
     ["fld4okYQmHxbEQ6C8", "Parte de material", "parte_de_material", "bool"],
     ["fldqlZapTFUOOLaQl", "Faltas material", "faltas_material", "texto"],
     ["fldOlXL957BafrlfE", "Hijo", "hijo", "enlace", ["jugadores", "fld8lbwE7lGNFPAeJ"]],
+    ["fldInvitaClubQ9", "Invitacion club", "invitacion_club", "texto"],
   ] },
   normativa: { airtable: "tblNgKxTA0TUq93Oa", campos: [
     ["fld23acIDYlpjUrU9", "Título", "titulo", "texto"],

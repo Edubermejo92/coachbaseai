@@ -135,6 +135,35 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   sigue valiendo para los siguientes partidos hasta que se desactiva (y entonces caen las
   suscripciones). En iPhone el aviso solo llega con la página añadida a la pantalla de inicio.
 
+## Invitar al club a quien ya tiene cuenta · menú · sin cargas (v2.89.0)
+- Edu: "Quiero poder añadir desde club a un entrenador registrado aparte (Yen en el Chamartín)".
+  Yen Fabricio Mesa se registró solo (plan Gratis) en el "club" «Mi equipo» con un «Alevín A»
+  vacío; createUser contestaba `exists` ("Ese correo ya tiene ficha") y no había salida.
+- Invitación con aceptación, no traspaso directo (si no, cualquier club se llevaría la cuenta
+  de otro con saber su correo). `usuarios.invitacion_club` (JSON, fldInvitaClubQ9, migración
+  20261027120000, aplicada en producción): { club, equipo, rol, rolesExtra, por, fecha }.
+  - `invitarAlClub` (club/director/master; rol entrenador/segundo/delegado; categoría del club;
+    plazas): no_existe · ya_en_club · no_invitable (familia/club/director) · otro_club (su club
+    tiene cuenta Club o director activos) · limite_alcanzado. Devuelve `rec`.
+  - `responderInvitacionClub {aceptar}`: aceptar = club, equipo (o el primero del club), rol,
+    roles extra, plan Oficial y se borra la invitación; su equipo anterior no se toca.
+  - `anularInvitacionClub {usuarioRec}`: solo el club que invitó.
+  - login y `res=yo` devuelven `user.invitacion` (nombres, sin ids); GET usuarios por club
+    devuelve `invitados` (solo a quien dirige el club; el correo, no el nombre).
+- App: en Usuarios, si el alta dice `exists` y quien da de alta dirige el club, sale «Invitar al
+  club» con el mismo rol y categoría; lista «Invitaciones pendientes» con «Anular». Quien está
+  invitado ve arriba (cualquier pestaña) «{club} te invita a unirte» con Aceptar/Rechazar; al
+  aceptar se pide `yo`, se guarda la sesión (`sesionConYo`, también la usa el refresco al
+  arrancar) y se recarga. Pruebas: pruebas22.mjs (29).
+- Menú lateral de ordenador: el atajo de WhatsApp de Convocatoria va en una línea propia debajo
+  (`atajoWaConvocatoria(alPulsar, enLinea)`); al lado dejaba 131 px y con la fuente de respaldo
+  de Windows "Convocatoria" salía cortada. En el móvil sigue al lado.
+- Cargas físicas fuera de Lesiones (Edu): se quitaron renderCargas/renderHistorico/
+  renderMolestias, el semáforo de la ficha, la columna de la plantilla, los puntos de la
+  alineación y la línea de la lista PRO. Se mantienen `cargas`/`setCargas` y su sincronización:
+  la pretemporada guarda ahí `_sesion` (qué sesión del plan toca). Los datos viejos siguen en
+  `equipos.cargas_fisicas` por si se quieren recuperar.
+
 ## Asistencia solo en días de entreno o partido (v2.88.0)
 - Edu: "Solo se pasa lista días de entrenamiento y partidos, el resto de días no aparece claro".
 - `queHayElDia(fecha)` (App.jsx, junto a renderAsistencia): partidos del día sin los avisos PT,
@@ -246,7 +275,7 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
 
 ## Pruebas
 - `npm test` = `pruebas/todas.mjs`: todas las pruebas en modo Airtable (fakeair) y en modo Supabase
-  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-10-27: 325 ✓ / 425 ✓, 0 fallos.
+  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-10-27: 354 ✓ / 454 ✓, 0 fallos.
 - Desde la sesión de Claude NO hay red hacia airtable.com ni supabase.co (proxy 403): la prueba
   real contra Supabase la hace la propia app en Netlify.
 

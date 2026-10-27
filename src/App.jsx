@@ -392,7 +392,7 @@ const DICT = {
     "u.passShort": "La contraseña inicial es demasiado corta. Ponle al menos 4 caracteres, o déjala en blanco.",
     "u.createdActive": "✓ {n} dado de alta y ya puede entrar con {e} y la contraseña que le has puesto. Dile que la cambie desde Mi cuenta.",
     "u.createdPending": "✓ {n} dado de alta. Dile que entre en «Es mi primera vez» con {e} y elija ahí su contraseña.",
-    "u.roleNotAllowed": "Tu rol no puede repartir ese nivel.",
+    "u.roleNotAllowed": "Tu rol no puede repartir ese nivel.", "u.invExists": "{e} ya tiene cuenta en CoachBase (por ejemplo, se registró por su cuenta).", "u.invHow": "Puedes invitarle al club como {r} en {c}. Verá la invitación al entrar y, si la acepta, pasará a trabajar con vosotros.", "u.invBtn": "Invitar al club", "u.invSent": "Invitación enviada a {e}. La verá en cuanto entre en la app.", "u.invPending": "Invitaciones pendientes", "u.invWaiting": "Sin aceptar", "u.invCancel": "Anular", "u.invErrNone": "Ese correo no tiene cuenta: dale de alta con el formulario normal.", "u.invErrIn": "Esa persona ya está en tu club.", "u.invErrKind": "Esa cuenta no es de cuerpo técnico (familia, club o director): no se puede invitar así.", "u.invErrOther": "Esa persona pertenece a otro club. Primero la tiene que dar de baja su club.", "u.invErrFull": "No quedan plazas libres en el club. Sube el límite o libera una plaza.", "u.invErrRole": "Solo la dirección del club puede invitar a cuentas que ya existen.", "u.invErrFail": "No se pudo completar. Revisa la conexión e inténtalo otra vez.", "ic.kicker": "Invitación de club", "ic.title": "{c} te invita a unirte", "ic.bodyTeam": "Entrarías como {r} en {e}.", "ic.body": "Entrarías como {r}.", "ic.by": "Te invita {p}.", "ic.note": "Al aceptar, tu cuenta pasa a ser del club y trabajarás con los datos de esa categoría. Lo que tienes ahora no se borra, pero deja de estar en tu cuenta.", "ic.accept": "Aceptar y unirme", "ic.reject": "Rechazar", "ic.full": "El club no tiene plazas libres ahora mismo. Avísales para que liberen una.", "ic.fail": "No se pudo responder. Revisa la conexión e inténtalo otra vez.",
     "u.clubUnique": "Este club ya tiene su cuenta de club. Solo puede haber una.",
     "u.newTeam": "Crear categoría nueva…",
     "u.newTeamHint": "Se crea dentro de tu club y la persona entra directamente en ella. Tú te quedas en la tuya.",
@@ -563,7 +563,7 @@ const DICT = {
     "cf.medNote": "Aviso médico",
     "cf.medNotePh": "Antecedente o limitación permanente: lesiones previas, alergias, condiciones a tener en cuenta al dosificar la carga.",
     "cf.medNoteNone": "Sin aviso.",
-    "cf.medNoteSave": "Sale fijo en el control de cargas físicas. Se guarda con la plantilla.",
+    "cf.medNoteSave": "Queda fijo en la ficha del jugador. Se guarda con la plantilla.",
     "cf.rpeTitle": "RPE post-sesión",
     "cf.rpeHint": "Se pregunta 15-30 minutos después de terminar: «del 1 al 10, ¿cuánto esfuerzo te ha supuesto la sesión en conjunto?». La carga interna (RPE × minutos reales) es orientativa: sirve para comparar al jugador consigo mismo, no con sus compañeros.",
     "cf.sessionDate": "Fecha de la sesión",
@@ -997,7 +997,7 @@ const DICT = {
     "u.passShort": "The initial password is too short. Give it at least 4 characters, or leave it blank.",
     "u.createdActive": "✓ {n} registered and can sign in right away with {e} and the password you set. Tell them to change it from My account.",
     "u.createdPending": "✓ {n} registered. Tell them to use \u201cIt's my first time\u201d with {e} and choose their password there.",
-    "u.roleNotAllowed": "Your role can't hand out that level.",
+    "u.roleNotAllowed": "Your role can't hand out that level.", "u.invExists": "{e} already has a CoachBase account (for example, they signed up on their own).", "u.invHow": "You can invite them to the club as {r} in {c}. They'll see the invitation when they log in and, if they accept, they'll start working with you.", "u.invBtn": "Invite to the club", "u.invSent": "Invitation sent to {e}. They'll see it as soon as they open the app.", "u.invPending": "Pending invitations", "u.invWaiting": "Not accepted yet", "u.invCancel": "Cancel", "u.invErrNone": "That email has no account: add them with the normal form.", "u.invErrIn": "That person is already in your club.", "u.invErrKind": "That account isn't coaching staff (family, club or director): it can't be invited this way.", "u.invErrOther": "That person belongs to another club. Their club has to remove them first.", "u.invErrFull": "There are no free seats in the club. Raise the limit or free a seat.", "u.invErrRole": "Only the club's management can invite existing accounts.", "u.invErrFail": "Couldn't complete it. Check your connection and try again.", "ic.kicker": "Club invitation", "ic.title": "{c} invites you to join", "ic.bodyTeam": "You'd join as {r} in {e}.", "ic.body": "You'd join as {r}.", "ic.by": "Invited by {p}.", "ic.note": "If you accept, your account becomes part of the club and you'll work with that team's data. What you have now isn't deleted, but it's no longer in your account.", "ic.accept": "Accept and join", "ic.reject": "Decline", "ic.full": "The club has no free seats right now. Let them know so they can free one.", "ic.fail": "Couldn't send your answer. Check your connection and try again.",
     "u.clubUnique": "This club already has its club account. There can only be one.",
     "u.newTeam": "Create a new age group…",
     "u.newTeamHint": "It is created inside your club and the person joins it directly. You stay in yours.",
@@ -1168,7 +1168,7 @@ const DICT = {
     "cf.medNote": "Medical note",
     "cf.medNotePh": "Permanent history or limitation: past injuries, allergies, conditions to bear in mind when setting the load.",
     "cf.medNoteNone": "No note.",
-    "cf.medNoteSave": "Shown permanently in the physical load control. Saved with the squad.",
+    "cf.medNoteSave": "Stays on the player's profile. Saved with the squad.",
     "cf.rpeTitle": "Post-session RPE",
     "cf.rpeHint": "Asked 15-30 minutes after finishing: “from 1 to 10, how hard was the session overall?”. Internal load (RPE × real minutes) is a rough guide: it compares a player with himself, not with his team-mates.",
     "cf.sessionDate": "Session date",
@@ -1619,7 +1619,7 @@ const DICT = {
     "u.passShort": "The initial password is too short. Give it at least 4 characters, or leave it blank.",
     "u.createdActive": "✓ {n} registered and can sign in right away with {e} and the password you set. Tell them to change it from My account.",
     "u.createdPending": "✓ {n} registered. Tell them to use \u201cIt's my first time\u201d with {e} and choose their password there.",
-    "u.roleNotAllowed": "Your role can't hand out that level.",
+    "u.roleNotAllowed": "Your role can't hand out that level.", "u.invExists": "{e} a déjà un compte CoachBase (par exemple, inscrit de son côté).", "u.invHow": "Vous pouvez l'inviter au club comme {r} dans {c}. L'invitation s'affichera à sa connexion et, s'il l'accepte, il travaillera avec vous.", "u.invBtn": "Inviter au club", "u.invSent": "Invitation envoyée à {e}. Elle s'affichera dès son entrée dans l'app.", "u.invPending": "Invitations en attente", "u.invWaiting": "Pas encore acceptée", "u.invCancel": "Annuler", "u.invErrNone": "Cet e-mail n'a pas de compte : créez-le avec le formulaire habituel.", "u.invErrIn": "Cette personne est déjà dans votre club.", "u.invErrKind": "Ce compte n'est pas du staff (famille, club ou directeur) : impossible de l'inviter ainsi.", "u.invErrOther": "Cette personne appartient à un autre club. Son club doit d'abord la retirer.", "u.invErrFull": "Plus de places libres dans le club. Augmentez la limite ou libérez une place.", "u.invErrRole": "Seule la direction du club peut inviter des comptes existants.", "u.invErrFail": "Impossible de terminer. Vérifiez la connexion et réessayez.", "ic.kicker": "Invitation d'un club", "ic.title": "{c} vous invite à le rejoindre", "ic.bodyTeam": "Vous entreriez comme {r} dans {e}.", "ic.body": "Vous entreriez comme {r}.", "ic.by": "Invitation de {p}.", "ic.note": "En acceptant, votre compte passe au club et vous travaillerez avec les données de cette équipe. Ce que vous avez maintenant n'est pas supprimé, mais ne sera plus dans votre compte.", "ic.accept": "Accepter et rejoindre", "ic.reject": "Refuser", "ic.full": "Le club n'a plus de place libre pour l'instant. Prévenez-le pour qu'il en libère une.", "ic.fail": "Impossible d'envoyer la réponse. Vérifiez la connexion et réessayez.",
     "u.clubUnique": "This club already has its club account. There can only be one.",
     "u.newTeam": "Create a new age group…",
     "u.newTeamHint": "It is created inside your club and the person joins it directly. You stay in yours.",
@@ -1790,7 +1790,7 @@ const DICT = {
     "cf.medNote": "Avis médical",
     "cf.medNotePh": "Antécédent ou limitation permanente : blessures passées, allergies, conditions à prendre en compte pour doser la charge.",
     "cf.medNoteNone": "Aucun avis.",
-    "cf.medNoteSave": "Affiché en permanence dans le contrôle des charges. Enregistré avec l'effectif.",
+    "cf.medNoteSave": "Reste sur la fiche du joueur. Enregistré avec l'effectif.",
     "cf.rpeTitle": "RPE après séance",
     "cf.rpeHint": "On demande 15-30 minutes après la fin : « de 1 à 10, quel effort la séance t'a demandé dans l'ensemble ? ». La charge interne (RPE × minutes réelles) est indicative : elle compare le joueur à lui-même, pas à ses coéquipiers.",
     "cf.sessionDate": "Date de la séance",
@@ -2321,7 +2321,7 @@ const DICT = {
     "u.passShort": "The initial password is too short. Give it at least 4 characters, or leave it blank.",
     "u.createdActive": "✓ {n} registered and can sign in right away with {e} and the password you set. Tell them to change it from My account.",
     "u.createdPending": "✓ {n} registered. Tell them to use \u201cIt's my first time\u201d with {e} and choose their password there.",
-    "u.roleNotAllowed": "Your role can't hand out that level.",
+    "u.roleNotAllowed": "Your role can't hand out that level.", "u.invExists": "{e} hat bereits ein CoachBase-Konto (zum Beispiel selbst registriert).", "u.invHow": "Du kannst die Person als {r} in {c} in den Verein einladen. Sie sieht die Einladung beim Anmelden und arbeitet nach dem Annehmen mit euch.", "u.invBtn": "In den Verein einladen", "u.invSent": "Einladung an {e} gesendet. Sie erscheint, sobald die Person die App öffnet.", "u.invPending": "Offene Einladungen", "u.invWaiting": "Noch nicht angenommen", "u.invCancel": "Zurückziehen", "u.invErrNone": "Diese E-Mail hat kein Konto: lege es mit dem normalen Formular an.", "u.invErrIn": "Diese Person ist bereits in deinem Verein.", "u.invErrKind": "Dieses Konto gehört nicht zum Trainerteam (Familie, Verein oder Sportdirektor) und kann so nicht eingeladen werden.", "u.invErrOther": "Diese Person gehört zu einem anderen Verein. Dieser muss sie zuerst entfernen.", "u.invErrFull": "Im Verein sind keine Plätze frei. Erhöhe das Limit oder gib einen Platz frei.", "u.invErrRole": "Nur die Vereinsleitung kann bestehende Konten einladen.", "u.invErrFail": "Das hat nicht geklappt. Prüfe die Verbindung und versuche es erneut.", "ic.kicker": "Einladung eines Vereins", "ic.title": "{c} lädt dich ein", "ic.bodyTeam": "Du wärst {r} in {e}.", "ic.body": "Du wärst {r}.", "ic.by": "Eingeladen von {p}.", "ic.note": "Wenn du annimmst, gehört dein Konto zum Verein und du arbeitest mit den Daten dieser Mannschaft. Was du jetzt hast, wird nicht gelöscht, ist aber nicht mehr in deinem Konto.", "ic.accept": "Annehmen und beitreten", "ic.reject": "Ablehnen", "ic.full": "Der Verein hat gerade keine freien Plätze. Sag Bescheid, damit einer frei wird.", "ic.fail": "Antwort konnte nicht gesendet werden. Prüfe die Verbindung und versuche es erneut.",
     "u.clubUnique": "This club already has its club account. There can only be one.",
     "u.newTeam": "Create a new age group…",
     "u.newTeamHint": "It is created inside your club and the person joins it directly. You stay in yours.",
@@ -2492,7 +2492,7 @@ const DICT = {
     "cf.medNote": "Medizinischer Hinweis",
     "cf.medNotePh": "Dauerhafte Vorgeschichte oder Einschränkung: frühere Verletzungen, Allergien, Dinge, die bei der Belastungssteuerung zu beachten sind.",
     "cf.medNoteNone": "Kein Hinweis.",
-    "cf.medNoteSave": "Erscheint dauerhaft in der Belastungskontrolle. Wird mit dem Kader gespeichert.",
+    "cf.medNoteSave": "Bleibt im Spielerprofil. Wird mit dem Kader gespeichert.",
     "cf.rpeTitle": "RPE nach der Einheit",
     "cf.rpeHint": "Wird 15-30 Minuten nach Schluss gefragt: „Von 1 bis 10, wie anstrengend war die Einheit insgesamt?“. Die interne Belastung (RPE × reale Minuten) ist ein Richtwert: sie vergleicht den Spieler mit sich selbst, nicht mit den Mitspielern.",
     "cf.sessionDate": "Datum der Einheit",
@@ -3022,7 +3022,7 @@ const DICT = {
     "u.passShort": "La contraseña inicial es demasiado corta. Ponle al menos 4 caracteres, o déjala en blanco.",
     "u.createdActive": "✓ {n} dado de alta y ya puede entrar con {e} y la contraseña que le has puesto. Dile que la cambie desde Mi cuenta.",
     "u.createdPending": "✓ {n} dado de alta. Dile que entre en «Es mi primera vez» con {e} y elija ahí su contraseña.",
-    "u.roleNotAllowed": "Tu rol no puede repartir ese nivel.",
+    "u.roleNotAllowed": "Tu rol no puede repartir ese nivel.", "u.invExists": "{e} já tem conta no CoachBase (por exemplo, registou-se por conta própria).", "u.invHow": "Podes convidá-lo para o clube como {r} em {c}. Verá o convite ao entrar e, se aceitar, passa a trabalhar convosco.", "u.invBtn": "Convidar para o clube", "u.invSent": "Convite enviado para {e}. Vai vê-lo assim que entrar na app.", "u.invPending": "Convites pendentes", "u.invWaiting": "Por aceitar", "u.invCancel": "Anular", "u.invErrNone": "Esse e-mail não tem conta: dá-lhe de alta com o formulário normal.", "u.invErrIn": "Essa pessoa já está no teu clube.", "u.invErrKind": "Essa conta não é de equipa técnica (família, clube ou diretor): não pode ser convidada assim.", "u.invErrOther": "Essa pessoa pertence a outro clube. Primeiro o clube dela tem de a retirar.", "u.invErrFull": "Não há lugares livres no clube. Sobe o limite ou liberta um lugar.", "u.invErrRole": "Só a direção do clube pode convidar contas que já existem.", "u.invErrFail": "Não foi possível concluir. Verifica a ligação e tenta outra vez.", "ic.kicker": "Convite de clube", "ic.title": "{c} convida-te a juntares-te", "ic.bodyTeam": "Entrarias como {r} em {e}.", "ic.body": "Entrarias como {r}.", "ic.by": "Convite de {p}.", "ic.note": "Ao aceitar, a tua conta passa a ser do clube e vais trabalhar com os dados dessa equipa. O que tens agora não é apagado, mas deixa de estar na tua conta.", "ic.accept": "Aceitar e juntar-me", "ic.reject": "Recusar", "ic.full": "O clube não tem lugares livres neste momento. Avisa-os para libertarem um.", "ic.fail": "Não foi possível responder. Verifica a ligação e tenta outra vez.",
     "u.clubUnique": "Este club ya tiene su cuenta de club. Solo puede haber una.",
     "u.newTeam": "Crear categoría nueva…",
     "u.newTeamHint": "Se crea dentro de tu club y la persona entra directamente en ella. Tú te quedas en la tuya.",
@@ -3193,7 +3193,7 @@ const DICT = {
     "cf.medNote": "Aviso médico",
     "cf.medNotePh": "Antecedente ou limitação permanente: lesões anteriores, alergias, condições a ter em conta ao doseá-la carga.",
     "cf.medNoteNone": "Sem aviso.",
-    "cf.medNoteSave": "Aparece fixo no controlo de cargas físicas. Guarda-se com o plantel.",
+    "cf.medNoteSave": "Fica fixo na ficha do jogador. Guarda-se com o plantel.",
     "cf.rpeTitle": "RPE pós-sessão",
     "cf.rpeHint": "Pergunta-se 15-30 minutos depois de acabar: «de 1 a 10, quanto esforço te exigiu a sessão no conjunto?». A carga interna (RPE × minutos reais) é orientativa: serve para comparar o jogador consigo próprio, não com os colegas.",
     "cf.sessionDate": "Data da sessão",
@@ -4009,8 +4009,6 @@ const PRO_FEATURES = (lang) => [
     free: T(lang, "pf.calls.free"), pro: T(lang, "pf.calls.pro") },
   { k: "calendar", nombre: T(lang, "pf.calendar.nombre"), icon: "📅",
     free: T(lang, "pf.calendar.free").replace("{n}", FREE_CAPS.fixtures), pro: T(lang, "pf.calendar.pro") },
-  { k: "cargas", nombre: T(lang, "pf.cargas.nombre"), icon: "🚦",
-    free: SIN_PRO, pro: T(lang, "pf.cargas.pro") },
   { k: "stats", nombre: T(lang, "pf.stats.nombre"), icon: "📊",
     free: T(lang, "pf.stats.free"), pro: T(lang, "pf.stats.pro") },
   { k: "video", nombre: T(lang, "pf.video.nombre"), icon: "🎬",
@@ -4543,7 +4541,9 @@ const airUsers = async ({ teamRec = "", clubRec = "" } = {}) => {
     const r = await cbFetch(AIR + q);
     if (!r.ok) return null;
     const d = await r.json();
-    return d.records || null;
+    /* `invitados`: invitaciones del club aún sin aceptar (solo le llegan a
+       quien dirige el club). */
+    return d.records ? { records: d.records, invitados: d.invitados || [] } : null;
   } catch { return null; }
 };
 const airCreate = (body) => { try { return cbFetch(AIR, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) }).catch(() => {}); } catch { return null; } };
@@ -5142,6 +5142,28 @@ const airSub = async (email) => {
    comentario del backend: la sesión vive en localStorage y se restauraba tal
    cual, así que cualquier cambio hecho en Airtable —o cualquier dato que una
    versión anterior se inventara— seguía en pantalla hasta cerrar sesión. */
+/* La sesión guardada, puesta al día con lo que dice el servidor (?res=yo). */
+const sesionConYo = (sx, u) => ({
+  ...sx,
+  name: u.name || sx.name,
+  role: LABEL2ROL[u.rol] || sx.role,
+  plan: String(u.plan || "Oficial").toLowerCase() === "gratis" ? "free" : "oficial",
+  club: u.club || sx.club,
+  comunidad: u.comunidad || sx.comunidad,
+  /* Sin categoría en la ficha, sin categoría en la app: aquí es donde
+     se descarta el "Infantil B" heredado. */
+  team: u.team || { rec: "", id: "", name: "", cat: "infantil", f7: false, half: 35, sub: "", club: u.club || sx.club },
+  categoryId: u.team?.rec || sx.categoryId,
+  currentCategory: u.team?.name || "",
+  rolesExtra: u.rolesExtra || [],
+  clubRec: u.clubRec || "",
+  clubCrest: u.crest || null,
+  parteMat: !!u.parteMat,
+  prueba: Number(u.prueba) || 0,
+  pendingApproval: String(u.estado || "").toLowerCase() !== "activo",
+  userId: u.id,
+  invitacion: u.invitacion || null,
+});
 const airYo = async () => {
   try {
     const r = await cbFetch(AIR + "?res=yo");
@@ -5182,6 +5204,12 @@ const airDesvincularPariente = async (usuarioRec) => {
 /* Alta de un miembro del cuerpo técnico por el club: crea la ficha sin
    contraseña; la persona la reclama registrándose con ese mismo correo. */
 const airUserCreate = async (body) => { try { const r = await cbFetch(AIR, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ action: "createUser", ...body }) }); return await r.json().catch(() => null); } catch { return null; } };
+/* Sumar al club a alguien que ya tenía cuenta (se registró por su cuenta):
+   el club le invita, esa persona acepta o rechaza al entrar y, mientras
+   tanto, el club puede anular la invitación. */
+const airInvitarAlClub = (body) => airPost({ action: "invitarAlClub", ...body });
+const airResponderInvitacion = (aceptar) => airPost({ action: "responderInvitacionClub", aceptar });
+const airAnularInvitacion = (usuarioRec) => airPost({ action: "anularInvitacionClub", usuarioRec });
 /* Panel de administración de club (Master): límite de plazas y estado de
    pago. Sin `limite` en el body solo consulta; con `limite` también lo guarda. */
 const airClubAdmin = async (clubRec, limite) => { try { const r = await cbFetch(AIR, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ action: "clubAdmin", clubRec, ...(limite !== undefined ? { limite } : {}) }) }); return await r.json().catch(() => null); } catch { return null; } };
@@ -11336,27 +11364,7 @@ export default function App() {
         if (d.caducada) { setSession(null); setAuthToken(null); return; }
         if (!d.ok || !d.user) return;
         if (d.token) setAuthToken(d.token);
-        const u = d.user;
-        setSession((sx) => (sx ? {
-          ...sx,
-          name: u.name || sx.name,
-          role: LABEL2ROL[u.rol] || sx.role,
-          plan: String(u.plan || "Oficial").toLowerCase() === "gratis" ? "free" : "oficial",
-          club: u.club || sx.club,
-          comunidad: u.comunidad || sx.comunidad,
-          /* Sin categoría en la ficha, sin categoría en la app: aquí es donde
-             se descarta el "Infantil B" heredado. */
-          team: u.team || { rec: "", id: "", name: "", cat: "infantil", f7: false, half: 35, sub: "", club: u.club || sx.club },
-          categoryId: u.team?.rec || sx.categoryId,
-          currentCategory: u.team?.name || "",
-          rolesExtra: u.rolesExtra || [],
-          clubRec: u.clubRec || "",
-          clubCrest: u.crest || null,
-          parteMat: !!u.parteMat,
-          prueba: Number(u.prueba) || 0,
-          pendingApproval: String(u.estado || "").toLowerCase() !== "activo",
-          userId: u.id,
-        } : sx));
+        setSession((sx) => (sx ? sesionConYo(sx, d.user) : sx));
       })();
     }
     return () => clearTimeout(id);
@@ -13230,6 +13238,13 @@ export default function App() {
     setNuMsg(out.reutilizado ? t("u.newTeamReused").replace("{n}", nombre) : t("u.newTeamOk").replace("{n}", nombre));
   };
   const [nuMsg, setNuMsg] = useState("");
+  /* Alta de un correo que ya tiene cuenta: en vez de quedarse en "ya tiene
+     ficha", se ofrece invitarle al club (ver invitarAlClub). */
+  const [nuInvitar, setNuInvitar] = useState(null);
+  const [invitadosClub, setInvitadosClub] = useState([]);
+  /* La invitación que ha recibido esta cuenta: respuesta en curso y aviso. */
+  const [invBusy, setInvBusy] = useState(false);
+  const [invMsg, setInvMsg] = useState("");
   /* Subida del escudo del club (una vez, aplicado a todos sus equipos) */
   const [clubCrestBusy, setClubCrestBusy] = useState(null);
   /* Panel "Gestionar club": límite de plazas y estado de pago, por club */
@@ -14427,15 +14442,22 @@ export default function App() {
      hasta el final y buscar el botón-. Sale solo cuando ya hay gente
      convocada: sin nadie marcado el mensaje iría con la lista vacía, y eso no
      es un atajo, es un mensaje que hay que borrar. */
-  const atajoWaConvocatoria = (alPulsar) => {
+  /* En el menú lateral del ordenador va en su propia línea, debajo
+     (`enLinea`): al lado de la fila, el botón de 40 px dejaba a la palabra
+     131 px y con la fuente de respaldo de Windows "Convocatoria" no cabía y
+     salía cortada. En el móvil hay ancho de sobra y sigue al lado. */
+  const atajoWaConvocatoria = (alPulsar, enLinea = false) => {
     if (!called.size) return null;
     return (
       <a href={`https://wa.me/?text=${encodeURIComponent(waText())}`} target="_blank" rel="noreferrer"
         onClick={(e) => { e.stopPropagation(); marcarConvocatoriaEnviada(); alPulsar?.(); }}
         title={t("cl.waOpen")} aria-label={`${t("cl.waOpen")} — ${navLabel("convocatoria")}`}
-        className="shrink-0 w-10 h-10 rounded-lg border flex items-center justify-center"
+        className={enLinea
+          ? "ml-10 mr-1 mb-1 flex items-center gap-2 px-2.5 py-1.5 rounded-lg border text-xs hover:opacity-80"
+          : "shrink-0 w-10 h-10 rounded-lg border flex items-center justify-center"}
         style={{ borderColor: C.line, color: "#25D366" }}>
-        <Icono n="whatsapp" s={18} />
+        <Icono n="whatsapp" s={enLinea ? 15 : 18} />
+        {enLinea && <span style={{ color: C.chalk }}>{t("cl.waOpen")}</span>}
       </a>
     );
   };
@@ -14502,14 +14524,15 @@ export default function App() {
        —así no se veía a sí misma en su propia plantilla. */
     const porClub = dirigeElClub(session?.role) && clubInfo.rec;
     (async () => {
-      let rows = await airUsers(porClub ? { clubRec: clubInfo.rec } : { teamRec: session.team?.rec });
+      let datos = await airUsers(porClub ? { clubRec: clubInfo.rec } : { teamRec: session.team?.rec });
       /* Si la petición por club no vuelve —una función del servidor anterior a
          que existiera ?club= responde 400— se pide por equipo antes de darse
          por vencido: es preferible ver el cuerpo técnico de una categoría que
          una lista vacía que parece que no hay nadie dado de alta. */
-      if (!rows && porClub && session.team?.rec) rows = await airUsers({ teamRec: session.team.rec });
-      if (!alive || !rows) return;
-      setUsers(rows.map((r) => ({
+      if (!datos && porClub && session.team?.rec) datos = await airUsers({ teamRec: session.team.rec });
+      if (!alive || !datos) return;
+      setInvitadosClub(datos.invitados);
+      setUsers(datos.records.map((r) => ({
         id: r.id, name: r.name, email: r.email,
         role: LABEL2ROL[r.rol] || "entrenador",
         team: r.teamName || "", teamRec: r.teamRec || "",
@@ -15037,27 +15060,10 @@ export default function App() {
           </div>
         )}
 
-        {/* Cómo llega hoy, según el parte de cargas. Solo lectura: el parte se
-            pasa en Lesiones y duplicar aquí la edición sería tener dos sitios
-            donde escribir lo mismo. */}
-        {isPro && can("cargas") && (() => {
-          const c = cargaDe(profile.id);
-          const col = (SEMAFORO.find((x) => x.k === c.estado) || SEMAFORO[0]).color;
-          return (
-            <button onClick={() => { setProfileId(null); setTab("lesiones"); }}
-              className="mt-3 w-full rounded-lg border p-2.5 flex items-center gap-3 text-left" style={{ borderColor: C.line, background: C.panel2 }}>
-              <span className="w-3 h-3 rounded-full shrink-0" style={{ background: col }} />
-              <span className="text-sm flex-1" style={{ color: C.chalk }}>
-                {t("cf.load")} <strong className="tabular-nums">{c.carga}%</strong>
-              </span>
-              <span className="text-[11px] shrink-0" style={{ color: AC }}>{t("sq.loadGo")} ›</span>
-            </button>
-          );
-        })()}
         {/* Aviso médico permanente: antecedentes y limitaciones que hay que
             tener delante cada vez que se dosifica la carga de este jugador.
-            Se escribe una vez aquí y sale fijo en el control de cargas, en vez
-            de depender de que alguien lo reescriba en la nota de cada día. */}
+            Se escribe una vez aquí y queda fijo en la ficha (y con ⚠ en la
+            plantilla y en la alineación). */}
         <div className="mt-3 rounded-lg border p-2.5" style={{ borderColor: profile.aviso ? C.warn : C.line, background: C.panel2 }}>
           <div className="text-[10px] font-display uppercase tracking-widest mb-1.5" style={{ color: profile.aviso ? C.warn : C.dim }}>
             ⚠ {t("cf.medNote")}
@@ -20572,7 +20578,7 @@ export default function App() {
                 )}
               </div>
               <button disabled={!nu.name.trim() || !nu.email.trim() || nuBusy || nuCatNueva} onClick={async () => {
-                setNuBusy(true); setNuMsg("");
+                setNuBusy(true); setNuMsg(""); setNuInvitar(null);
                 const out = await airUserCreate({
                   name: nu.name.trim(), email: nu.email.trim(), rol: ROL2LABEL[nu.role] || "Entrenador principal",
                   clubRec: clubInfo.rec || undefined, teamRec: catElegida || undefined,
@@ -20589,7 +20595,14 @@ export default function App() {
                     : t("u.createdPending").replace("{n}", nu.name.trim()).replace("{e}", nu.email.trim()));
                   setUsers((us) => [...us, { id: out.rec, name: nu.name.trim(), email: nu.email.trim(), role: nu.role, status: out.activa ? "activo" : "pendiente" }]);
                   setNu({ name: "", email: "", role: "entrenador", team: nu.team, pass: "" }); }
-                else if (out?.reason === "exists") setNuMsg("Ese correo ya tiene ficha.");
+                else if (out?.reason === "exists") {
+                  /* Ya tiene cuenta (p. ej. se registró por su cuenta): la
+                     dirección del club puede invitarle con el mismo rol y la
+                     misma categoría que acaba de elegir. */
+                  if (dirigeElClub(session?.role) && clubInfo.rec && ["entrenador", "segundo", "delegado"].includes(nu.role)) {
+                    setNuInvitar({ email: nu.email.trim(), rol: ROL2LABEL[nu.role], teamRec: catElegida || "", teamName: catsDelClub.find((e) => e.rec === catElegida)?.name || "" });
+                  } else setNuMsg("Ese correo ya tiene ficha.");
+                }
                 else if (out?.reason === "limite_alcanzado") setNuMsg(`Este club ya tiene ${out.ocupadas}/${out.limite} plazas ocupadas. Sube el límite en "Gestionar club" o libera una plaza.`);
                 else if (out?.reason === "director_unico") setNuMsg("Este club ya tiene un director deportivo. Solo puede haber uno; para cambiarlo, primero hay que dar de baja al actual.");
                 else if (out?.reason === "no_autorizado") setNuMsg("Tu rol no puede dar de alta usuarios.");
@@ -20622,6 +20635,56 @@ export default function App() {
               </div>
             )}
             {nuMsg && <div className="text-xs mt-2" style={{ color: nuMsg.startsWith("✓") ? C.green : C.red }}>{nuMsg}</div>}
+            {nuInvitar && (
+              <div className="mt-2 rounded-lg border p-3" style={{ borderColor: AC, background: C.panel2 }}>
+                <div className="text-sm" style={{ color: C.chalk }}>{t("u.invExists").replace("{e}", nuInvitar.email)}</div>
+                <div className="text-xs mt-1 leading-relaxed" style={{ color: C.dim }}>
+                  {t("u.invHow").replace("{r}", rLabel(lang, LABEL2ROL[nuInvitar.rol] || "entrenador")).replace("{c}", nuInvitar.teamName || "—")}
+                </div>
+                <div className="flex flex-wrap gap-2 mt-2.5">
+                  <button disabled={nuBusy} onClick={async () => {
+                    setNuBusy(true);
+                    const out = await airInvitarAlClub({ email: nuInvitar.email, rol: nuInvitar.rol, teamRec: nuInvitar.teamRec || undefined, clubRec: clubInfo.rec });
+                    setNuBusy(false);
+                    if (out?.ok) {
+                      setInvitadosClub((xs) => [...xs.filter((x) => x.id !== out.rec), { id: out.rec, email: nuInvitar.email.toLowerCase(), rol: nuInvitar.rol, teamName: nuInvitar.teamName, fecha: hoyISO() }]);
+                      setNuMsg(`✓ ${t("u.invSent").replace("{e}", nuInvitar.email)}`);
+                      setNuInvitar(null);
+                      setNu({ name: "", email: "", role: "entrenador", team: nu.team, pass: "" });
+                      return;
+                    }
+                    const motivo = { no_existe: "u.invErrNone", ya_en_club: "u.invErrIn", no_invitable: "u.invErrKind", otro_club: "u.invErrOther",
+                      limite_alcanzado: "u.invErrFull", rol_no_permitido: "u.roleNotAllowed", no_autorizado: "u.invErrRole" }[out?.reason];
+                    setNuMsg(t(motivo || "u.invErrFail"));
+                    setNuInvitar(null);
+                  }} className="px-3 py-2 rounded-lg font-display uppercase tracking-wide font-semibold text-sm disabled:opacity-40"
+                    style={{ background: AC, color: C.sobre }}>{nuBusy ? t("a.sending") : t("u.invBtn")}</button>
+                  <button onClick={() => setNuInvitar(null)} className="px-3 py-2 rounded-lg border text-sm" style={{ borderColor: C.line, color: C.dim }}>{t("c.cancel")}</button>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+        {/* Invitaciones a cuentas que ya existían, todavía sin aceptar. */}
+        {invitadosClub.length > 0 && (
+          <div className="mb-3 rounded-lg border p-3" style={{ borderColor: C.line, background: C.panel2 }}>
+            <div className="text-[11px] font-display uppercase tracking-widest mb-1" style={{ color: C.dim }}>{t("u.invPending")}</div>
+            {invitadosClub.map((x) => (
+              <div key={x.id} className="flex flex-wrap items-center gap-2 py-2 border-t first:border-t-0" style={{ borderColor: C.line }}>
+                <div className="flex-1 min-w-[160px]">
+                  <div className="text-sm" style={{ color: C.chalk }}>{x.email}</div>
+                  <div className="text-xs" style={{ color: C.dim }}>
+                    {[rLabel(lang, LABEL2ROL[x.rol] || "entrenador"), x.teamName, x.fecha && fechaCorta(x.fecha, lang)].filter(Boolean).join(" · ")}
+                  </div>
+                </div>
+                <span className="text-xs font-display uppercase tracking-wide px-2 py-1 rounded" style={{ color: AC, border: `1px solid ${AC}` }}>{t("u.invWaiting")}</span>
+                <button onClick={async () => {
+                  const out = await airAnularInvitacion(x.id);
+                  if (out?.ok) setInvitadosClub((xs) => xs.filter((y) => y.id !== x.id));
+                  else setNuMsg(t("u.invErrFail"));
+                }} className="text-xs px-2.5 py-1.5 rounded-lg border" style={{ borderColor: C.line, color: C.dim }}>{t("u.invCancel")}</button>
+              </div>
+            ))}
           </div>
         )}
         <div className="space-y-2">
@@ -20997,11 +21060,6 @@ export default function App() {
           </>
         )}
       </Card>
-      {/* El semáforo de carga muscular vivía en Temporada, lejos de la lista
-          de lesionados con la que en realidad se consulta a la vez: antes de
-          fichar a alguien de rojo para el once hace falta mirar las dos
-          cosas juntas. Ahora comparten pantalla -mismo dato, un solo sitio-. */}
-      {renderCargas()}
       </div>
     );
   };
@@ -21512,9 +21570,6 @@ export default function App() {
     </div>
   );
   const renderSquad = () => {
-    /* La columna de carga es parte de las cargas físicas, que son PRO: si no,
-       aquí se enseñaría de tapadillo una función de pago. */
-    const verCargas = isPro && can("cargas");
     return (
     <div className="space-y-4">
       {can("editSquad") && (
@@ -21566,13 +21621,10 @@ export default function App() {
           <table className="w-full text-sm" style={{ color: C.chalk }}>
             <thead><tr className="font-display uppercase tracking-widest text-xs" style={{ color: C.dim }}>
               <th className="text-left py-2" colSpan={2}>Jugador</th><th className="text-left hidden sm:table-cell">Pos</th><th className="text-left">Estado</th>
-              {verCargas && <th className="text-left">{t("sq.load")}</th>}
               <th className="text-right">Asist.</th><th className="text-right">Min.</th>
             </tr></thead>
             <tbody>
               {players.map((p) => {
-                const c = cargaDe(p.id);
-                const colC = (SEMAFORO.find((x) => x.k === c.estado) || SEMAFORO[0]).color;
                 return (
                 <tr key={p.id} className="border-t" style={{ borderColor: C.line }}>
                   <td className="py-2 w-10"><button onClick={() => setProfileId(p.id)}><Avatar p={p} /></button></td>
@@ -21588,24 +21640,6 @@ export default function App() {
                   </button></td>
                   <td className="hidden sm:table-cell" style={{ color: C.dim }}>{posDe(p.id) || "—"}</td>
                   <td><button onClick={() => cycleStatus(p.id)} className="flex items-center hover:opacity-80 whitespace-nowrap" style={{ cursor: can("editSquad") ? "pointer" : "default" }}><Dot st={p.st} />{p.st}</button></td>
-                  {/* Resumen de la carga física del día: el mismo semáforo y el
-                      mismo porcentaje que se rellenan en Lesiones. Aquí solo se
-                      consulta —se toca para ir a cambiarlo—, porque esta pantalla
-                      es la foto de la plantilla y el parte se pasa en la suya. */}
-                  {verCargas && (
-                    <td>
-                      {/* En móvil solo el punto: con el porcentaje al lado, la
-                          tabla pedía 386 px de los 390 de pantalla y se comía
-                          todo el margen. El color es el dato que se lee de un
-                          vistazo; la cifra cabe a partir de tablet. El py-1
-                          sube el botón a los 24 px mínimos para el dedo. */}
-                      <button onClick={() => setTab("lesiones")} title={`${t("cf.load")} ${c.carga}%${c.nota ? ` · ${c.nota}` : ""}`}
-                        className="flex items-center gap-2 py-1 hover:opacity-80">
-                        <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: colC }} />
-                        <span className="tabular-nums hidden sm:inline" style={{ color: C.chalk }}>{c.carga}%</span>
-                      </button>
-                    </td>
-                  )}
                   <td className="text-right">{attPct(p)}%</td><td className="text-right">{p.min}</td>
                 </tr>
                 );
@@ -21651,7 +21685,6 @@ export default function App() {
        lados -convocatoria, estadísticas...-, sin verse afectados por un
        borrador que todavía no se ha aprobado. */
     const propone = canProposeChanges();
-    const verCargasLn = isPro && can("cargas");
     const lineupView = propone ? (lineupDraft || lineup) : lineup;
     const startersView = new Set(Object.values(lineupView));
     const bench = players.filter((p) => !startersView.has(p.id));
@@ -22416,18 +22449,6 @@ export default function App() {
                       </span>
                       <span className="flex items-center gap-2 text-[11px] leading-none flex-wrap" style={{ color: C.dim }}>
                         <Dot st={p.st} />
-                        {/* Cómo llega ese jugador hoy, aquí mismo: montar el once
-                            sin saber quién viene en amarillo es justo el error
-                            que el semáforo existe para evitar. */}
-                        {verCargasLn && (() => {
-                          const c = cargaDe(p.id);
-                          const col = (SEMAFORO.find((x) => x.k === c.estado) || SEMAFORO[0]).color;
-                          return (
-                            <span className="flex items-center gap-1 tabular-nums" title={c.nota || `${t("cf.load")} ${c.carga}%`}>
-                              <span className="w-2 h-2 rounded-full inline-block" style={{ background: col }} />{c.carga}%
-                            </span>
-                          );
-                        })()}
                         {p.aviso && <span title={p.aviso} style={{ color: C.warn }}>⚠</span>}
                         {/* La demarcación que se enseña es la del hueco que
                             ocupa ahora mismo; quien está en el banquillo no
@@ -24007,22 +24028,11 @@ export default function App() {
 
 
   /* ================= CARGAS FÍSICAS DE PRETEMPORADA =================
-     El semáforo diario del plan físico, jugador a jugador. La idea del plan es
-     que quien pasa el control de bienestar no reporte los verdes uno a uno:
-     solo eleva amarillos y rojos antes de empezar. Por eso la pantalla ordena
-     por estado y saca arriba el recuento de a cuántos hay que mirar hoy.
-     El porcentaje de carga es una estimación de cuánto del trabajo previsto
-     puede asumir ese jugador; se escribe a mano porque quien la pone es quien
-     ha hablado con el chaval, no un cálculo. */
-  const SEMAFORO = [
-    { k: "verde", icon: "🟢", color: "#2f6b4f" },
-    { k: "amarillo", icon: "🟡", color: "#d9a441" },
-    { k: "rojo", icon: "🔴", color: "#b4474a" },
-  ];
-  const CARGA_DEFECTO = { estado: "verde", carga: 100, nota: "" };
+     El semáforo diario (verde/amarillo/rojo y carga%) se quitó de Lesiones a
+     petición de Edu, y con él sus lecturas en la ficha, la plantilla y la
+     alineación. El documento del equipo se sigue leyendo y guardando porque
+     la pretemporada apunta en él qué sesión del plan toca (`_sesion`). */
   const [cargas, setCargas] = useState({});
-  const [cargasMsg, setCargasMsg] = useState("");
-  const [cargasBusy, setCargasBusy] = useState(false);
   const cargasKey = `cb_cargas_${session?.team?.id || "demo"}`;
   useEffect(() => {
     if (!session) return;
@@ -24089,409 +24099,12 @@ export default function App() {
     avisar(out?.queued ? t("sy.queued") : out?.ok ? t("pt.saved") : out?.reason === "no_autorizado" ? t("cf.noRole") : t("pt.saveFail"));
     return !!(out?.ok || out?.queued);
   };
-  const cargaDe = (id) => ({ ...CARGA_DEFECTO, ...(cargas[id] || {}) });
-  const setCarga = (id, campo, valor) => setCargas((c) => ({ ...c, [id]: { ...CARGA_DEFECTO, ...(c[id] || {}), [campo]: valor } }));
-  const guardarCargas = async () => {
-    if (cargasBusy) return;
-    if (!session?.team?.rec) { setCargasMsg(t("cf.notCloud")); return; }
-    setCargasBusy(true); setCargasMsg("");
-    const out = await airCargasGuardar(session.team.rec, cargas);
-    setCargasBusy(false);
-    setCargasMsg(out?.queued ? t("sy.queued") : out?.ok ? t("cf.saved") : out?.reason === "no_autorizado" ? t("cf.noRole") : t("cf.saveFail"));
-    if (out?.ok) setTimeout(() => setCargasMsg(""), 4000);
-  };
-  /* Media de carga del grupo: la referencia rápida de si hoy se entrena el plan
-     completo o hay que recortarlo. Solo cuenta a los jugadores de la plantilla,
-     no a los que ya no están pero siguen en el JSON guardado. */
-  const cargaMedia = players.length
-    ? Math.round(players.reduce((s, p) => s + (Number(cargaDe(p.id).carga) || 0), 0) / players.length)
-    : 0;
-  const porEstado = (k) => players.filter((p) => cargaDe(p.id).estado === k).length;
-
   /* Qué sesión del plan es la de hoy. Va en la misma bolsa que las cargas
      —bajo una clave reservada que no puede chocar con ningún id de
      jugador— para que se guarde y se comparta de una sola vez. La pone
      cargarSesionPlan() al cargar una sesión desde Pretemporada; aquí no hay
      ningún formulario que la toque a mano. */
   const SESION_DEFECTO = { min: 70 };
-  const sesionRpe = { ...SESION_DEFECTO, ...(cargas._sesion || {}) };
-
-  /* ---------------- Histórico de partes ----------------
-     El parte del día se sobrescribía: al abrir la app al día siguiente no
-     quedaba nada de lo anterior. Cada día cerrado se archiva comprimido en
-     la misma bolsa del equipo: fecha, sesión del plan, minutos reales y,
-     por jugador, [semáforo, carga%]. Un día con 19 jugadores ocupa unos 300
-     caracteres, así que una temporada entera cabe de sobra en el documento
-     del equipo y no hace falta una tabla nueva. Se guardan los 200 últimos
-     por si acaso. */
-  const HIST_MAX = 200;
-  const EST_IDX = ["verde", "amarillo", "rojo"];
-  const historico = Array.isArray(cargas._hist) ? cargas._hist : [];
-  /* Cuentas de un día archivado. Se recalculan al leer en vez de guardarse:
-     así un día viejo sigue cuadrando aunque cambie la plantilla. Antes esto
-     promediaba el RPE que se preguntaba después de la sesión; ahora que ese
-     paso se ha quitado, promedia la carga% que ya se apunta antes de
-     empezar -es el mismo dato de siempre, no uno nuevo que pedir. */
-  const resumenDia = (d) => {
-    const filas = Object.values(d.j || {});
-    const cargasD = filas.map((f) => Number(f[1]) || 0);
-    const media = cargasD.length ? cargasD.reduce((s, v) => s + v, 0) / cargasD.length : 0;
-    return {
-      media, total: filas.length,
-      amarillos: filas.filter((f) => f[0] === 1).length,
-      rojos: filas.filter((f) => f[0] === 2).length,
-    };
-  };
-  const cerrarDia = async () => {
-    if (cargasBusy) return;
-    const j = {};
-    for (const p of players) {
-      const c = cargaDe(p.id);
-      /* La nota de "Molestia post" antes se perdía al cerrar el día -solo se
-         archivaba el semáforo y la carga%-, así que la zona que anotaba el
-         entrenador un martes ya no estaba el jueves. Ahora, si hay texto, se
-         archiva como tercera posición de la fila; si no hay nota no se añade,
-         para no engordar el documento con miles de comas vacías. */
-      const fila = [Math.max(0, EST_IDX.indexOf(c.estado)), Number(c.carga) || 0];
-      if (c.nota && c.nota.trim()) fila.push(c.nota.trim());
-      j[p.id] = fila;
-    }
-    const entrada = { f: hoyISO(), p: Number(sesionRpe.plan) || 0, m: Number(sesionRpe.min) || 0, j };
-    /* Si ya hay un parte archivado de esa misma fecha se sustituye, no se
-       duplica: cerrar el día dos veces por error no debe inventar sesiones. */
-    const resto = historico.filter((d) => d.f !== entrada.f);
-    const nuevo = [...resto, entrada].sort((a, b) => (a.f < b.f ? -1 : 1)).slice(-HIST_MAX);
-    /* La plantilla arranca limpia el día siguiente, pero el histórico y la
-       sesión del plan que tocaba se conservan. */
-    const siguiente = { _hist: nuevo, _sesion: { ...SESION_DEFECTO, fecha: hoyISO(), min: sesionRpe.min, plan: sesionRpe.plan } };
-    setCargas(siguiente);
-    setCargasBusy(true); setCargasMsg("");
-    if (session?.team?.rec) {
-      const out = await airCargasGuardar(session.team.rec, siguiente);
-      setCargasMsg(out?.queued ? t("sy.queued") : out?.ok ? t("cf.dayClosed") : out?.reason === "no_autorizado" ? t("cf.noRole") : t("cf.saveFail"));
-    } else {
-      setCargasMsg(t("cf.dayClosedLocal"));
-    }
-    setCargasBusy(false);
-    setTimeout(() => setCargasMsg(""), 5000);
-  };
-
-  /* Mismo umbral en todo el histórico: 70% en adelante va bien, entre 40 y
-     70 es para vigilar, por debajo de 40 es la alarma. */
-  const colCarga = (media) => media === 0 ? C.line : media >= 70 ? C.green : media >= 40 ? AC : "#b4474a";
-  const renderHistorico = () => {
-    if (!isPro || historico.length === 0) return null;
-    const dias = [...historico].slice(-20);
-    const jugadorSel = players.find((p) => p.id === histPlayer) || null;
-    return (
-      <Card title={`📈 ${t("cf.histTitle")}`}>
-        <div className="text-xs mb-3 leading-relaxed" style={{ color: C.dim }}>{t("cf.histHint")}</div>
-
-        {/* Tendencia del grupo: la carga% media del día, la misma que se
-            anota antes de entrenar. */}
-        <div className="rounded-lg border p-3 mb-3" style={{ borderColor: C.line, background: C.panel2 }}>
-          <div className="text-[11px] font-display uppercase tracking-wide mb-2" style={{ color: C.dim }}>{t("cf.histTrend")}</div>
-          {/* h-28 y no h-24: la barra más alta más su cifra encima y la fecha
-              debajo no cabían en 96 px y el número quedaba cortado. */}
-          <div className="flex items-end gap-1 h-28 overflow-x-auto">
-            {dias.map((d) => {
-              const r = resumenDia(d);
-              const col = colCarga(r.media);
-              return (
-                <div key={d.f} className="flex flex-col items-center justify-end gap-1 shrink-0" style={{ width: 26 }}
-                  title={`${d.f} · ${t("cf.avg")} ${Math.round(r.media)}%`}>
-                  <span className="text-[9px] tabular-nums" style={{ color: C.dim }}>{r.media ? Math.round(r.media) : ""}</span>
-                  <div className="w-full rounded-t" style={{ height: `${Math.max(3, (r.media / 100) * 68)}px`, background: col }} />
-                  <span className="text-[9px] tabular-nums" style={{ color: C.dim }}>{d.f.slice(8, 10)}/{d.f.slice(5, 7)}</span>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Un jugador contra sí mismo, que es la comparación que pide el plan
-            —nunca contra sus compañeros—. */}
-        <div className="mb-3">
-          <label className="block">
-            <span className="text-[11px] block mb-1" style={{ color: C.dim }}>{t("cf.histPlayer")}</span>
-            <select value={histPlayer || ""} onChange={(e) => setHistPlayer(Number(e.target.value) || null)}
-              className="w-full sm:w-72 px-2.5 py-1.5 rounded-lg border text-sm"
-              style={{ background: C.panel2, borderColor: C.line, color: C.chalk }}>
-              <option value="" style={{ background: C.panel }}>{t("cf.histPickPlayer")}</option>
-              {players.map((p) => <option key={p.id} value={p.id} style={{ background: C.panel }}>#{p.d} {p.n}</option>)}
-            </select>
-          </label>
-          {jugadorSel && (
-            <div className="mt-2 rounded-lg border p-3" style={{ borderColor: C.line, background: C.panel2 }}>
-              {jugadorSel.aviso && (
-                <div className="text-[11px] px-2.5 py-1.5 rounded-lg border mb-2 leading-snug"
-                  style={{ borderColor: C.warn, background: `${C.warn}14`, color: C.warn }}>⚠ {jugadorSel.aviso}</div>
-              )}
-              <div className="flex flex-wrap gap-1.5">
-                {dias.map((d) => {
-                  const f = (d.j || {})[jugadorSel.id];
-                  const carga = f ? Number(f[1]) : 0;
-                  const est = f ? EST_IDX[f[0]] || "verde" : "verde";
-                  const col = !f ? C.line : est === "rojo" ? "#b4474a" : est === "amarillo" ? "#d9a441" : colCarga(carga);
-                  return (
-                    <div key={d.f} className="rounded-lg border px-2 py-1.5 text-center shrink-0" style={{ borderColor: col, minWidth: 54 }}
-                      title={`${d.f}${f ? ` · ${t("cf.load")} ${carga}%` : ""}`}>
-                      <div className="text-[9px] tabular-nums" style={{ color: C.dim }}>{d.f.slice(8, 10)}/{d.f.slice(5, 7)}</div>
-                      <div className="font-display text-sm tabular-nums" style={{ color: col }}>{f ? `${carga}%` : "—"}</div>
-                    </div>
-                  );
-                })}
-              </div>
-              {(() => {
-                const suyos = dias.filter((d) => (d.j || {})[jugadorSel.id]).map((d) => Number(((d.j || {})[jugadorSel.id] || [])[1]) || 0);
-                if (!suyos.length) return <div className="text-[11px] mt-2" style={{ color: C.dim }}>{t("cf.histNoPlayerData")}</div>;
-                const media = Math.round(suyos.reduce((a, b) => a + b, 0) / suyos.length);
-                const faltas = dias.length - suyos.length;
-                return (
-                  <div className="text-[11px] mt-2" style={{ color: C.dim }}>
-                    {t("cf.avg")} <strong style={{ color: C.chalk }}>{media}%</strong> · {suyos.length} {t("cf.histSessions")}
-                    {faltas > 0 && ` · ${faltas} ${t("cf.histMissing")}`}
-                  </div>
-                );
-              })()}
-              {/* Media mensual de la carga física (no del RPE): "cuánto del
-                  trabajo previsto podía asumir" cada mes, mes a mes, para ver
-                  si el jugador viene mejorando o si sigue arrastrando algo.
-                  Se calcula sobre TODO el histórico -no solo los últimos 20
-                  días del gráfico de arriba-, para que un mes entero no se
-                  quede fuera por el recorte. */}
-              {(() => {
-                const porMes = {};
-                for (const d of historico) {
-                  const f = (d.j || {})[jugadorSel.id];
-                  if (!f) continue;
-                  const mes = d.f.slice(0, 7);
-                  (porMes[mes] || (porMes[mes] = [])).push(Number(f[1]) || 0);
-                }
-                const meses = Object.keys(porMes).sort();
-                if (!meses.length) return null;
-                const mesLabel = (m) => {
-                  const [y, mm] = m.split("-").map(Number);
-                  return new Date(y, mm - 1, 1).toLocaleDateString(lang === "es" ? "es-ES" : lang, { month: "short", year: "2-digit" });
-                };
-                return (
-                  <div className="mt-3 pt-3 border-t" style={{ borderColor: C.line }}>
-                    <div className="text-[10px] font-display uppercase tracking-widest mb-1.5" style={{ color: C.dim }}>{t("cf.loadMonthly")}</div>
-                    <div className="flex flex-wrap gap-1.5">
-                      {meses.map((mes) => {
-                        const vals = porMes[mes];
-                        const media = Math.round(vals.reduce((a, b) => a + b, 0) / vals.length);
-                        const col = media >= 70 ? C.green : media >= 40 ? AC : "#b4474a";
-                        return (
-                          <div key={mes} className="rounded-lg border px-2 py-1.5 text-center shrink-0" style={{ borderColor: C.line, minWidth: 58 }}
-                            title={`${vals.length} ${t("cf.histSessions")}`}>
-                            <div className="text-[9px] capitalize" style={{ color: C.dim }}>{mesLabel(mes)}</div>
-                            <div className="font-display text-sm tabular-nums" style={{ color: col }}>{media}%</div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                );
-              })()}
-            </div>
-          )}
-        </div>
-
-        {/* El detalle, del más reciente al más antiguo. */}
-        <div className="space-y-1.5">
-          {[...dias].reverse().map((d) => {
-            const r = resumenDia(d);
-            const s = pretemporada.flatMap((w) => w.sesiones).find((x) => x.n === d.p);
-            const col = colCarga(r.media);
-            return (
-              <div key={d.f} className="rounded-lg border p-2.5 flex flex-wrap items-center gap-x-3 gap-y-1" style={{ borderColor: C.line, background: C.panel2 }}>
-                <div className="text-sm tabular-nums shrink-0" style={{ color: C.chalk }}>{d.f.slice(8, 10)}/{d.f.slice(5, 7)}</div>
-                <div className="text-sm flex-1 min-w-[150px]" style={{ color: C.chalk }}>
-                  {s ? `S${s.n} · ${s.nombre}` : t("cf.histNoPlan")}
-                </div>
-                <div className="text-[11px] tabular-nums shrink-0" style={{ color: C.dim }}>{d.m}′</div>
-                <div className="text-[11px] tabular-nums shrink-0" style={{ color: r.media ? col : C.dim }}>
-                  {t("cf.load")} {r.media ? `${Math.round(r.media)}%` : "—"}
-                </div>
-                <div className="flex gap-1.5 shrink-0 text-[11px]">
-                  {r.amarillos > 0 && <span style={{ color: "#d9a441" }}>🟡 {r.amarillos}</span>}
-                  {r.rojos > 0 && <span style={{ color: "#b4474a" }}>🔴 {r.rojos}</span>}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-        {historico.length > dias.length && (
-          <div className="text-[11px] mt-2" style={{ color: C.dim }}>{t("cf.histShowing")} {dias.length} / {historico.length}</div>
-        )}
-      </Card>
-    );
-  };
-  /* ---- Historial de molestias ----
-     La nota de "Molestia post" (zona, adaptación) que se escribe cada día en
-     amarillo o rojo antes solo vivía mientras la plantilla seguía sin
-     cerrar: al cerrar el día se archivaba el semáforo y la carga%, pero el
-     texto se perdía. Ahora cerrarDia lo guarda como tercera posición de la
-     fila, y aquí se recorre todo el histórico para sacar, jugador por
-     jugador, quién ha ido dejando molestias y qué decía cada una -sin
-     filtros ni estados que validar, es solo para leer la tendencia. */
-  const renderMolestias = () => {
-    if (!isPro || historico.length === 0) return null;
-    const molestias = [];
-    for (const d of historico) {
-      for (const [pid, fila] of Object.entries(d.j || {})) {
-        if (fila[2]) molestias.push({ f: d.f, pid: Number(pid), nota: fila[2] });
-      }
-    }
-    if (!molestias.length) return null;
-    molestias.sort((a, b) => (a.f < b.f ? 1 : -1));
-    return (
-      <Card title={`🩹 ${t("cf.painHistTitle")}`}>
-        <div className="text-xs mb-3 leading-relaxed" style={{ color: C.dim }}>{t("cf.painHistHint")}</div>
-        <div className="space-y-1.5">
-          {molestias.map((m, i) => {
-            const p = players.find((x) => x.id === m.pid);
-            return (
-              <div key={i} className="rounded-lg border p-2.5 flex flex-wrap items-center gap-x-3 gap-y-1" style={{ borderColor: C.line, background: C.panel2 }}>
-                <div className="text-sm tabular-nums shrink-0" style={{ color: C.dim }}>{m.f.slice(8, 10)}/{m.f.slice(5, 7)}</div>
-                <div className="text-sm shrink-0" style={{ color: C.chalk }}>{p ? `#${p.d} ${p.n}` : `#${m.pid}`}</div>
-                <div className="text-sm flex-1 min-w-[120px]" style={{ color: C.dim }}>{m.nota}</div>
-              </div>
-            );
-          })}
-        </div>
-      </Card>
-    );
-  };
-
-  const renderCargas = () => {
-    const puede = can("cargas");
-    /* Primero los rojos, después los amarillos: es el orden en el que hay que
-       mirarlos antes de empezar la sesión. Dentro de cada estado, por dorsal. */
-    const orden = { rojo: 0, amarillo: 1, verde: 2 };
-    const lista = [...players].sort((a, b) => {
-      const d = orden[cargaDe(a.id).estado] - orden[cargaDe(b.id).estado];
-      return d !== 0 ? d : (Number(a.d) || 0) - (Number(b.d) || 0);
-    });
-    /* Barra de guardado. Aparece al final de las dos hojas —la de antes de
-       entrenar y la de después— porque las rellenan momentos distintos del día
-       y quien termina cualquiera de las dos tiene el botón a mano. Las dos
-       guardan lo mismo: un único documento por equipo. */
-    const barraGuardar = () => puede ? (
-      <div className="mt-4 pt-3 border-t flex flex-wrap items-center gap-3" style={{ borderColor: C.line }}>
-        <button onClick={guardarCargas} disabled={cargasBusy}
-          className="font-display uppercase tracking-wide text-sm px-4 py-2.5 rounded-lg font-semibold disabled:opacity-50"
-          style={{ background: AC, color: C.sobre }}>
-          {cargasBusy ? t("a.sending") : t("cf.share")}
-        </button>
-        {/* "Cerrar el día" archiva el parte antes de limpiarlo: si solo lo
-            borrara, la tendencia que el plan pide observar no existiría. */}
-        <button onClick={cerrarDia} disabled={cargasBusy}
-          className="text-sm px-4 py-2.5 rounded-lg border font-display uppercase tracking-wide disabled:opacity-50"
-          style={{ borderColor: C.line, color: C.chalk }}>{t("cf.closeDay")}</button>
-        {cargasMsg && <span className="text-xs" style={{ color: cargasMsg === t("cf.saved") ? C.green : C.red }}>{cargasMsg}</span>}
-      </div>
-    ) : <div className="text-[11px] mt-3" style={{ color: C.dim }}>{t("cf.readOnly")}</div>;
-    return (
-      <>
-      <Card title={`🚦 ${t("cf.title")}`}>
-        {!isPro ? (
-          <div className="rounded-lg border p-4 text-center" style={{ borderColor: AC, background: C.panel2 }}>
-            <div className="font-display uppercase tracking-wide text-lg" style={{ color: AC }}>★ {t("cf.proTitle")}</div>
-            <div className="text-sm mt-1.5" style={{ color: C.chalk }}>{t("cf.proWhat")}</div>
-            <button onClick={() => proAlert("cargas")}
-              className="mt-3 text-sm px-4 py-2 rounded-lg font-display uppercase tracking-wide font-semibold"
-              style={{ background: AC, color: C.sobre }}>{t("cf.proBtn")}</button>
-          </div>
-        ) : (
-          <>
-            <div className="text-xs mb-3 leading-relaxed" style={{ color: C.dim }}>{t("cf.hint")}</div>
-            {/* Lo que hay que mirar hoy, de un vistazo: los verdes no se
-                reportan uno a uno, los amarillos y rojos sí. */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-3">
-              {SEMAFORO.map((s) => (
-                <div key={s.k} className="rounded-lg border p-2.5" style={{ borderColor: C.line, background: C.panel2 }}>
-                  <div className="text-[11px] font-display uppercase tracking-wide" style={{ color: s.color }}>{s.icon} {t(`cf.${s.k}`)}</div>
-                  <div className="font-display text-2xl tabular-nums" style={{ color: porEstado(s.k) ? C.chalk : C.dim }}>{porEstado(s.k)}</div>
-                </div>
-              ))}
-              <div className="rounded-lg border p-2.5" style={{ borderColor: AC, background: C.panel2 }}>
-                <div className="text-[11px] font-display uppercase tracking-wide" style={{ color: AC }}>{t("cf.avg")}</div>
-                <div className="font-display text-2xl tabular-nums" style={{ color: C.chalk }}>{cargaMedia}%</div>
-              </div>
-            </div>
-
-            {players.length === 0 ? (
-              <div className="text-sm" style={{ color: C.dim }}>{t("cf.noPlayers")}</div>
-            ) : (
-              <div className="space-y-1.5">
-                {lista.map((p) => {
-                  const c = cargaDe(p.id);
-                  const col = (SEMAFORO.find((s) => s.k === c.estado) || SEMAFORO[0]).color;
-                  return (
-                    <div key={p.id} className="rounded-lg border p-2.5" style={{ borderColor: c.estado === "verde" ? C.line : col, background: C.panel2 }}>
-                      <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-                        <div className="text-sm flex-1 min-w-[150px]" style={{ color: C.chalk }}>
-                          <span className="tabular-nums" style={{ color: C.dim }}>#{p.d}</span> {p.n}
-                        </div>
-                        <div className="flex gap-1.5">
-                          {SEMAFORO.map((s) => (
-                            <button key={s.k} onClick={() => puede && setCarga(p.id, "estado", s.k)} disabled={!puede}
-                              aria-pressed={c.estado === s.k} aria-label={`${p.n}: ${t(`cf.${s.k}`)}`} title={t(`cf.${s.k}Help`)}
-                              className="text-base w-9 h-9 rounded-lg border flex items-center justify-center disabled:opacity-60"
-                              style={{
-                                borderColor: c.estado === s.k ? s.color : C.line,
-                                borderWidth: c.estado === s.k ? 2 : 1,
-                                background: c.estado === s.k ? `${s.color}22` : "transparent",
-                                filter: c.estado === s.k ? "none" : "grayscale(1) opacity(.55)",
-                              }}>{s.icon}</button>
-                          ))}
-                        </div>
-                        {/* El porcentaje va con barra además del número: el
-                            número dice cuánto y la barra deja comparar la fila
-                            con las de arriba sin leerlas una a una. */}
-                        <div className="flex items-center gap-2 w-full sm:w-auto">
-                          <input type="range" min={0} max={100} step={5} value={c.carga} disabled={!puede}
-                            onChange={(e) => setCarga(p.id, "carga", Number(e.target.value))}
-                            aria-label={`${t("cf.load")} ${p.n}`}
-                            className="flex-1 sm:w-32 h-6 accent-current" style={{ color: col }} />
-                          <input type="number" min={0} max={100} value={c.carga} disabled={!puede}
-                            onChange={(e) => setCarga(p.id, "carga", Math.max(0, Math.min(100, Number(e.target.value) || 0)))}
-                            className="w-16 px-2 py-1 rounded-lg border bg-transparent text-sm tabular-nums text-right"
-                            style={{ borderColor: C.line, color: C.chalk }} />
-                          <span className="text-sm" style={{ color: C.dim }}>%</span>
-                        </div>
-                      </div>
-                      {p.aviso && (
-                        <div className="mt-2 text-[11px] px-2.5 py-1.5 rounded-lg border leading-snug"
-                          style={{ borderColor: C.warn, background: `${C.warn}14`, color: C.warn }}>
-                          ⚠ {p.aviso}
-                        </div>
-                      )}
-                      {(puede || c.nota) && (
-                        <input value={c.nota} disabled={!puede}
-                          onChange={(e) => setCarga(p.id, "nota", e.target.value)}
-                          placeholder={t("cf.notePh")} aria-label={`${t("cf.note")} ${p.n}`}
-                          className="mt-2 w-full px-2.5 py-1.5 rounded-lg border bg-transparent text-xs"
-                          style={{ borderColor: C.line, color: C.chalk }} />
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-
-            {barraGuardar()}
-          </>
-        )}
-      </Card>
-
-      {renderHistorico()}
-      {renderMolestias()}
-      </>
-    );
-  };
 
   /* ---- El plan de pretemporada, sesión a sesión ----
      Cargar una sesión no es "sugerirla": deja los cuatro bloques puestos en
@@ -25940,6 +25553,8 @@ export default function App() {
          mandar partes como cualquier otro técnico. */
       parteMat: (res && res.ok) ? !!res.user.parteMat : parteMatLocal(em),
       userId: res?.user?.id,
+      /* Invitación de un club a esta cuenta, si la hay (ver InvitacionClub). */
+      invitacion: res?.user?.invitacion || null,
     });
     setTab("inicio");
     return null;
@@ -26663,22 +26278,20 @@ export default function App() {
                   <span className="text-[11px] shrink-0">·</span>
                 </div>
               );
-              /* Igual que en el menú del móvil: el atajo de WhatsApp al lado
-                 de la convocatoria, en su propia fila. */
-              const atajo = k === "convocatoria" && !bloq ? atajoWaConvocatoria() : null;
+              /* El atajo de WhatsApp de la convocatoria, aquí en una línea
+                 propia debajo: al lado se comía el ancho de la palabra. */
+              const atajo = k === "convocatoria" && !bloq ? atajoWaConvocatoria(undefined, true) : null;
               const fila = (
               <button onClick={() => (bloq ? mostrarPaywall("funcion_pro", { funcion: k }, () => setTab("premium")) : setTab(k))} aria-current={tab === k ? "page" : undefined}
                 title={bloq ? t("c.proTab") : undefined}
-                className={`nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-left font-display uppercase text-sm ${atajo ? "flex-1 min-w-0" : ""}`}
+                className="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-left font-display uppercase text-sm"
                 style={{ background: tab === k ? "rgba(54,69,79,.06)" : "transparent", color: tab === k ? MC : bloq ? C.dim : C.chalk, borderLeft: tab === k ? `3px solid ${MC}` : "3px solid transparent" }}>
                 <span className="w-4 shrink-0 flex justify-center" style={{ color: tab === k ? MC : C.dim }}><Icono n={k} s={16} /></span>
                 <span className="flex-1 min-w-0 truncate" title={navLabel(k)}>{navLabel(k)}</span>
                 {bloq && <span className="text-[11px] shrink-0" style={{ color: AC }} aria-label={t("c.proTab")}>★</span>}
               </button>
               );
-              return atajo
-                ? <div key={k} className="flex items-center gap-1.5">{fila}{atajo}</div>
-                : <div key={k}>{fila}</div>;
+              return <div key={k}>{fila}{atajo}</div>;
             };
             /* Cabecera de apartado: la etiqueta y, a continuación, un filete que
                corre hasta el borde — una línea de cal saliéndose de la pizarra.
@@ -26722,6 +26335,51 @@ export default function App() {
         </nav>
 
         <main className={`flex-1 w-full p-4 sm:p-5 ${session?.categories?.length > 1 ? "pb-32" : "pb-24"} lg:pb-5 max-w-6xl`}>
+          {/* Un club ha invitado a esta cuenta (que ya existía por su cuenta).
+              Va arriba de todo y en cualquier pestaña: es una decisión que
+              cambia con qué equipo trabaja, no un aviso más. */}
+          {session?.invitacion && !esDemo && (() => {
+            const inv = session.invitacion;
+            const rol = rLabel(lang, LABEL2ROL[inv.rol] || "entrenador");
+            const responder = async (aceptar) => {
+              setInvBusy(true); setInvMsg("");
+              const out = await airResponderInvitacion(aceptar);
+              if (!out?.ok) {
+                setInvBusy(false);
+                setInvMsg(t(out?.reason === "limite_alcanzado" ? "ic.full" : "ic.fail"));
+                return;
+              }
+              if (!aceptar) { setInvBusy(false); setSession((sx) => (sx ? { ...sx, invitacion: null } : sx)); return; }
+              /* Ya es del club: se pide la sesión nueva (el token lleva el
+                 equipo) y se recarga, para que todo lo que se guarda por
+                 equipo se lea ya del suyo nuevo. */
+              const d = await airYo();
+              if (d?.ok && d.user) {
+                if (d.token) setAuthToken(d.token);
+                try { localStorage.setItem("cb_session_v1", JSON.stringify(sesionConYo(session, d.user))); } catch { /* noop */ }
+              }
+              window.location.reload();
+            };
+            return (
+              <div className="mb-4 rounded-xl border-2 p-4" style={{ borderColor: AC, background: C.panel }} role="region" aria-label={t("ic.kicker")}>
+                <div className="text-[11px] font-display uppercase tracking-widest" style={{ color: AC }}>{t("ic.kicker")}</div>
+                <div className="font-display text-lg sm:text-xl mt-1" style={{ color: C.chalk }}>{t("ic.title").replace("{c}", inv.club)}</div>
+                <div className="text-sm mt-1" style={{ color: C.chalk }}>
+                  {(inv.equipo ? t("ic.bodyTeam").replace("{e}", inv.equipo) : t("ic.body")).replace("{r}", rol)}
+                  {inv.por && <span style={{ color: C.dim }}> {t("ic.by").replace("{p}", inv.por)}</span>}
+                </div>
+                <div className="text-xs mt-2 leading-relaxed" style={{ color: C.dim }}>{t("ic.note")}</div>
+                <div className="flex flex-wrap gap-2 mt-3">
+                  <button disabled={invBusy} onClick={() => responder(true)}
+                    className="px-4 py-2 rounded-lg font-display uppercase tracking-wide font-semibold text-sm disabled:opacity-40"
+                    style={{ background: AC, color: C.sobre }}>{invBusy ? t("a.sending") : t("ic.accept")}</button>
+                  <button disabled={invBusy} onClick={() => responder(false)}
+                    className="px-4 py-2 rounded-lg border text-sm disabled:opacity-40" style={{ borderColor: C.line, color: C.dim }}>{t("ic.reject")}</button>
+                </div>
+                {invMsg && <div className="text-xs mt-2" style={{ color: C.red }}>{invMsg}</div>}
+              </div>
+            );
+          })()}
           {/* Partido en curso: desde cualquier otra pestaña se ve el reloj y
               el marcador, y se vuelve al partido de un toque. */}
           {tab !== "partido" && visibleTabs.includes("partido") && verApartado("events") && enJuego && !actaGuardada && (
@@ -26756,8 +26414,8 @@ export default function App() {
           {tab === "usuarios" && (verApartado("viewUsers") || verApartado("createUsers")) && renderUsers()}
           {tab === "pizarra" && <Whiteboard AC={AC} lang={lang} squad={players} alineaciones={alineacionesParaPizarra()} onIrAlineacion={() => setTab("alineacion")} teamId={session.team?.id} teamRec={session.team?.rec} isF7={!!session.team?.f7} canSavePlays={isPro} onPro={proAlert} pendingExId={pendingExId} onConsumePending={() => setPendingExId(null)} pendingPlayId={pendingPlayId} onConsumePlay={() => setPendingPlayId(null)} />}
           {tab === "ejercicios" && verApartado("editTraining") && renderExercises()}
-          {/* Las cargas físicas ya no viven aquí: se fueron a Lesiones, con la
-             lista de lesionados que se consulta a la vez. Esta pestaña queda
+          {/* Las cargas físicas ya no viven aquí (ni en Lesiones: se quitaron
+             de la app). Esta pestaña queda
              solo para quien planifica -la propuesta semanal de sesiones y la
              planificación de los diez meses-, así que se abre con un único
              permiso y ya no hace falta el conmutador de tres vías. */}
