@@ -135,6 +135,13 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   sigue valiendo para los siguientes partidos hasta que se desactiva (y entonces caen las
   suscripciones). En iPhone el aviso solo llega con la página añadida a la pantalla de inicio.
 
+## Accesos rápidos legibles en el ordenador (v2.89.1)
+- Edu: "Los accesos rápidos no se leen bien en escritorio". En el ordenador la tarjeta de Inicio
+  va en la columna estrecha (230-360 px) y seguía con tres botones por fila (60-100 px cada uno):
+  "ASISTENCI-A", "MATERIA-L". Ahora: `lg:grid-cols-1` con icono al lado; tablet, tres por fila;
+  móvil, dos por fila con el icono encima (al lado, "Estadísticas" no cabía en 158 px). Medido sin
+  cortes de 390 a 1920 px.
+
 ## Invitar al club a quien ya tiene cuenta · menú · sin cargas (v2.89.0)
 - Edu: "Quiero poder añadir desde club a un entrenador registrado aparte (Yen en el Chamartín)".
   Yen Fabricio Mesa se registró solo (plan Gratis) en el "club" «Mi equipo» con un «Alevín A»

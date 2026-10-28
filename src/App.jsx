@@ -20456,9 +20456,14 @@ export default function App() {
       {/* Accesos rápidos: antes eran TODAS las pestañas del rol (veinte
           botones), es decir, el menú otra vez. Ahora, como mucho seis de las
           que más se usan entre semana, sin repetir las que ya tienen botón
-          en la cabecera (convocatoria, alineación, entrenamiento, partido). */}
+          en la cabecera (convocatoria, alineación, entrenamiento, partido).
+          En el ordenador la tarjeta va en la columna estrecha de la derecha
+          (230-360 px): con tres por fila cada botón se quedaba en 60-100 px y
+          las palabras se partían ("ASISTENCI-A"). Ahí van uno por fila, con su
+          icono al lado; en la tablet, en cuadrícula de tres, y en el móvil, de
+          dos con el icono encima, que es lo que deja sitio a "Estadísticas". */}
       <Card title={t("h.quick")}>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-1 gap-2">
           {(() => {
             const disponibles = getAvailableTabs(session?.club, role.tabs).filter((k) => k !== "inicio" && (k !== "usuarios" || lim.users));
             const enCabecera = ["convocatoria", "alineacion", "entrenamiento", "partido"];
@@ -20466,7 +20471,12 @@ export default function App() {
             const elegidas = [...preferidas, ...disponibles].filter((k, i, a) => a.indexOf(k) === i && disponibles.includes(k) && !enCabecera.includes(k));
             return elegidas.slice(0, 6);
           })().map((k) => (
-            <button key={k} onClick={() => setTab(k)} className="font-display uppercase tracking-wide text-sm px-2 py-2.5 rounded-lg border hover:opacity-80 leading-tight break-words min-w-0" style={{ borderColor: C.line, color: C.chalk, background: C.panel2 }}>{navLabel(k)}</button>
+            <button key={k} onClick={() => setTab(k)} title={navLabel(k)}
+              className="font-display uppercase tracking-wide text-sm px-2 sm:px-2.5 lg:px-3 py-2.5 rounded-lg border hover:opacity-80 leading-tight min-w-0 flex flex-col sm:flex-row items-center gap-1 sm:gap-2 lg:gap-2.5 text-center sm:text-left"
+              style={{ borderColor: C.line, color: C.chalk, background: C.panel2 }}>
+              <Icono n={k} s={16} style={{ color: C.dim }} />
+              <span className="min-w-0 truncate">{navLabel(k)}</span>
+            </button>
           ))}
         </div>
       </Card>
