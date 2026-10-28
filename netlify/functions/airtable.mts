@@ -1,6 +1,6 @@
 import { contarLlamadas, leerUso } from "../lib/uso-airtable.mts";
 import { instalarSupabase, supabaseActivo } from "../lib/supabase-airtable.mts";
-import { clavePublica, suscribir, desuscribir, programarReloj, avisarPropuesta } from "../lib/avisos.mts";
+import { clavePublica, suscribir, desuscribir, programarReloj, programarPrueba, avisarPropuesta } from "../lib/avisos.mts";
 import { CODIGO_OK, crearOReusar, actualizar as actualizarVivo, desactivar as desactivarVivo, equipoDe as equipoDeVivo,
   activaDeEquipo as vivoDeEquipo, leerPublico as leerVivo, suscribirPublico as suscribirVivo, desuscribirPublico as desuscribirVivo } from "../lib/vivo.mts";
 // Proxy serverless entre la app y Airtable.
@@ -1690,7 +1690,7 @@ const atender = async (req: Request) => {
        ?res=push          GET la clave pública · POST {sub} apuntarse · DELETE {endpoint}
        ?res=push-reloj    POST {endpoint, avisos:[{en, titulo, cuerpo, clave}]}
                           (sustituye los del reloj de ese móvil; [] los cancela) */
-    if (res === "push" || res === "push-reloj") {
+    if (res === "push" || res === "push-reloj" || res === "push-prueba") {
       if (!supabaseActivo()) return j({ ok: false, reason: "sin_supabase" }, 503);
       if (!sesion?.id || !ES_REC.test(String(sesion.id))) return j({ ok: false, reason: "no_autorizado" }, 401);
       const b = req.method === "GET" ? {} : await req.json().catch(() => ({}));
@@ -1701,6 +1701,10 @@ const atender = async (req: Request) => {
       }
       if (res === "push-reloj" && req.method === "POST") {
         return j(await programarReloj(String(sesion.id), String(b.endpoint || ""), b.avisos));
+      }
+      /* Aviso de prueba a este móvil (Mi cuenta → Avisos): ver programarPrueba. */
+      if (res === "push-prueba" && req.method === "POST") {
+        return j(await programarPrueba(String(sesion.id), String(b.endpoint || ""), { titulo: b.titulo, cuerpo: b.cuerpo }));
       }
       return j({ error: "Petición no soportada" }, 400);
     }

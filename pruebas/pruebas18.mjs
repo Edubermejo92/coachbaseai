@@ -125,6 +125,21 @@ dice("uno que llega con 20 minutos de retraso ya no se manda", e.enviados === 0 
 r = await call("?res=push-reloj", { method: "POST", token: tEnt, body: { endpoint: "https://push.test/ent", avisos: [] } });
 dice("parar el reloj los cancela", r.body.ok === true && (await q(`select count(*)::int n from push_programados`))[0].n === 0);
 
+/* ---- aviso de prueba (Mi cuenta) ---- */
+r = await call("?res=push-prueba", { method: "POST", token: tDir, body: { endpoint: "https://push.test/ent" } });
+dice("nadie puede pedir una prueba para el móvil de otro", r.body.reason === "sin_suscripcion", JSON.stringify(r.body));
+const tPrueba = Date.now();
+r = await call("?res=push-prueba", { method: "POST", token: tEnt, body: { endpoint: "https://push.test/ent", titulo: "✅ Alerts work", cuerpo: "This phone gets them" } });
+await call("?res=push-prueba", { method: "POST", token: tEnt, body: { endpoint: "https://push.test/ent" } });
+dice("la prueba queda programada medio minuto después, y solo una", r.body.ok === true && Date.parse(r.body.en) - tPrueba >= 25000 &&
+  (await q(`select count(*)::int n from push_programados where tag = 'cb-prueba'`))[0].n === 1, JSON.stringify(r.body));
+enviados = [];
+e = await A.enviarProgramados(new Date(tPrueba + 5000));
+dice("no sale al momento (da tiempo a cerrar la app)", e.enviados === 0);
+e = await A.enviarProgramados(new Date(tPrueba + 40000));
+dice("sale en la pasada siguiente al móvil que la pidió, y abre la app en Inicio",
+  e.enviados === 1 && enviados[0]?.usuario === "recENT" && enviados[0]?.tag === "cb-prueba" && enviados[0]?.url === "/" && /funcionan/.test(enviados[0]?.titulo || ""), JSON.stringify(enviados));
+
 /* ---- suscripción caducada ---- */
 await call("?res=push", { method: "POST", token: tEnt, body: { sub: sub("caducado") } });
 await A.avisarUsuarios(["recENT"], { titulo: "x", cuerpo: "y", tag: "t", clave: "prueba-caducada" });

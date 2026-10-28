@@ -170,7 +170,7 @@ const DICT = {
     "mt.pushNoSupport": "Con la app cerrada no llegarán: este navegador no lo permite (en iPhone, añade la app a la pantalla de inicio y actívalos desde ahí).",
     "mt.pushNoServer": "Ahora mismo solo suenan con la app abierta o en segundo plano: el servidor de avisos no está disponible.",
     "p.noti": "Avisos en este móvil",
-    "p.notiHint": "Al cuerpo técnico: convocatoria sin mandar (jueves y viernes), el día de partido, parte de material olvidado y propuestas por aprobar. En Modo partido, además, el final de cada parte. Llegan aunque la app esté cerrada.",
+    "p.notiHint": "Al cuerpo técnico: convocatoria sin mandar (jueves y viernes), el día de partido, parte de material olvidado y propuestas por aprobar. En Modo partido, además, el final de cada parte. Llegan aunque la app esté cerrada.", "p.notiHintClub": "A la dirección del club: cada mañana, las categorías que no mandaron el parte de material el día anterior, y las propuestas de cambio de las categorías sin entrenador principal. Los de convocatoria, partido y material le llegan al cuerpo técnico de cada categoría en sus propios móviles. Llegan aunque la app esté cerrada.", "p.pushOk": "Este móvil está apuntado en el servidor: te llegarán aunque cierres la app.", "p.pushTest": "Enviar aviso de prueba", "p.pushTestSent": "Enviado. Cierra la app o bloquea el móvil: en menos de un minuto te llegará «✅ Los avisos funcionan». Si no llega, revisa que Chrome tenga permitidas las notificaciones de esta web y que el ahorro de batería no lo bloquee.", "p.pushTestFail": "No se pudo enviar la prueba. Desactiva y vuelve a activar los avisos, y vuelve a probar.", "p.pushTestTitle": "✅ Los avisos funcionan", "p.pushTestBody": "Este móvil recibe los avisos de CoachBase aunque la app esté cerrada.",
     "p.notiTestBody": "Te avisaremos de la convocatoria, el día de partido, el material y las propuestas.",
     "mt.notiBlocked": "Has bloqueado las notificaciones para este sitio. Actívalas en los ajustes del navegador y vuelve aquí.",
     "mt.notiTestTitle": "Avisos activados",
@@ -780,7 +780,7 @@ const DICT = {
     "mt.pushNoSupport": "They won't arrive with the app closed: this browser doesn't allow it (on iPhone, add the app to your home screen and turn them on from there).",
     "mt.pushNoServer": "For now they only go off with the app open or in the background: the alerts server isn't available.",
     "p.noti": "Alerts on this phone",
-    "p.notiHint": "For the coaching staff: squad call not sent (Thursday and Friday), match day, missing kit report and proposals to approve. In Match mode, also the end of each half. They arrive even with the app closed.",
+    "p.notiHint": "For the coaching staff: squad call not sent (Thursday and Friday), match day, missing kit report and proposals to approve. In Match mode, also the end of each half. They arrive even with the app closed.", "p.notiHintClub": "For club management: every morning, the teams that didn't send the equipment report the day before, and change proposals from teams without a head coach. Squad call, match day and equipment alerts go to each team's coaching staff on their own phones. They arrive even with the app closed.", "p.pushOk": "This phone is registered on the server: alerts will reach you even if you close the app.", "p.pushTest": "Send a test alert", "p.pushTestSent": "Sent. Close the app or lock the phone: within a minute you'll get «✅ Alerts are working». If it doesn't arrive, check that Chrome allows notifications for this site and that battery saver isn't blocking it.", "p.pushTestFail": "Couldn't send the test. Turn alerts off and on again, then try once more.", "p.pushTestTitle": "✅ Alerts are working", "p.pushTestBody": "This phone receives CoachBase alerts even with the app closed.",
     "p.notiTestBody": "We'll let you know about the squad call, match day, kit and proposals.",
     "mt.notiBlocked": "You've blocked notifications for this site. Turn them on in your browser settings and come back.",
     "mt.notiTestTitle": "Alerts on",
@@ -1402,7 +1402,7 @@ const DICT = {
     "mt.pushNoSupport": "Application fermée, elles n'arriveront pas : ce navigateur ne le permet pas (sur iPhone, ajoutez l'appli à l'écran d'accueil et activez-les depuis là).",
     "mt.pushNoServer": "Pour l'instant elles ne sonnent qu'avec l'appli ouverte ou en arrière-plan : le serveur d'alertes n'est pas disponible.",
     "p.noti": "Alertes sur ce téléphone",
-    "p.notiHint": "Pour le staff : convocation non envoyée (jeudi et vendredi), jour de match, rapport de matériel oublié et propositions à valider. En mode match, aussi la fin de chaque période. Elles arrivent même application fermée.",
+    "p.notiHint": "Pour le staff : convocation non envoyée (jeudi et vendredi), jour de match, rapport de matériel oublié et propositions à valider. En mode match, aussi la fin de chaque période. Elles arrivent même application fermée.", "p.notiHintClub": "Pour la direction du club : chaque matin, les équipes qui n'ont pas envoyé le rapport de matériel la veille, et les propositions de changement des équipes sans entraîneur principal. Les alertes de convocation, de match et de matériel vont au staff de chaque équipe, sur leurs propres téléphones. Elles arrivent même app fermée.", "p.pushOk": "Ce téléphone est enregistré sur le serveur : les alertes arriveront même app fermée.", "p.pushTest": "Envoyer une alerte de test", "p.pushTestSent": "Envoyée. Fermez l'app ou verrouillez le téléphone : dans moins d'une minute vous recevrez « ✅ Les alertes fonctionnent ». Sinon, vérifiez que Chrome autorise les notifications de ce site et que l'économiseur de batterie ne les bloque pas.", "p.pushTestFail": "Impossible d'envoyer le test. Désactivez puis réactivez les alertes et réessayez.", "p.pushTestTitle": "✅ Les alertes fonctionnent", "p.pushTestBody": "Ce téléphone reçoit les alertes CoachBase même app fermée.",
     "p.notiTestBody": "Nous vous préviendrons pour la convocation, le jour de match, le matériel et les propositions.",
     "mt.notiBlocked": "Vous avez bloqué les notifications pour ce site. Activez-les dans les réglages du navigateur et revenez.",
     "mt.notiTestTitle": "Alertes activées",
@@ -2104,7 +2104,7 @@ const DICT = {
     "mt.pushNoSupport": "Bei geschlossener App kommen sie nicht an: Dieser Browser erlaubt es nicht (auf dem iPhone die App zum Home-Bildschirm hinzufügen und dort aktivieren).",
     "mt.pushNoServer": "Im Moment kommen sie nur bei offener App oder im Hintergrund: Der Benachrichtigungsserver ist nicht verfügbar.",
     "p.noti": "Benachrichtigungen auf diesem Handy",
-    "p.notiHint": "Für das Trainerteam: Nominierung nicht verschickt (Donnerstag und Freitag), Spieltag, fehlender Materialbericht und offene Vorschläge. Im Spielmodus außerdem das Ende jeder Halbzeit. Sie kommen auch bei geschlossener App an.",
+    "p.notiHint": "Für das Trainerteam: Nominierung nicht verschickt (Donnerstag und Freitag), Spieltag, fehlender Materialbericht und offene Vorschläge. Im Spielmodus außerdem das Ende jeder Halbzeit. Sie kommen auch bei geschlossener App an.", "p.notiHintClub": "Für die Vereinsleitung: jeden Morgen die Mannschaften, die am Vortag keinen Materialbericht geschickt haben, und Änderungsvorschläge von Mannschaften ohne Cheftrainer. Hinweise zu Nominierung, Spieltag und Material gehen an das Trainerteam jeder Mannschaft auf deren eigene Handys. Sie kommen auch bei geschlossener App an.", "p.pushOk": "Dieses Handy ist auf dem Server angemeldet: Hinweise kommen auch an, wenn du die App schließt.", "p.pushTest": "Testhinweis senden", "p.pushTestSent": "Gesendet. Schließe die App oder sperre das Handy: In weniger als einer Minute kommt „✅ Hinweise funktionieren“. Falls nicht, prüfe, ob Chrome Benachrichtigungen für diese Seite erlaubt und der Energiesparmodus sie nicht blockiert.", "p.pushTestFail": "Der Test konnte nicht gesendet werden. Schalte die Hinweise aus und wieder ein und versuche es erneut.", "p.pushTestTitle": "✅ Hinweise funktionieren", "p.pushTestBody": "Dieses Handy bekommt CoachBase-Hinweise auch bei geschlossener App.",
     "p.notiTestBody": "Wir benachrichtigen dich zu Nominierung, Spieltag, Material und Vorschlägen.",
     "mt.notiBlocked": "Du hast Benachrichtigungen für diese Seite blockiert. Schalte sie in den Browser-Einstellungen ein und komm zurück.",
     "mt.notiTestTitle": "Hinweise an",
@@ -2805,7 +2805,7 @@ const DICT = {
     "mt.pushNoSupport": "Com a app fechada não vão chegar: este navegador não permite (no iPhone, adicione a app ao ecrã principal e ative-os a partir daí).",
     "mt.pushNoServer": "Por agora só tocam com a app aberta ou em segundo plano: o servidor de avisos não está disponível.",
     "p.noti": "Avisos neste telemóvel",
-    "p.notiHint": "Para a equipa técnica: convocatória por enviar (quinta e sexta), dia de jogo, relatório de material esquecido e propostas por aprovar. No Modo jogo, também o fim de cada parte. Chegam mesmo com a app fechada.",
+    "p.notiHint": "Para a equipa técnica: convocatória por enviar (quinta e sexta), dia de jogo, relatório de material esquecido e propostas por aprovar. No Modo jogo, também o fim de cada parte. Chegam mesmo com a app fechada.", "p.notiHintClub": "Para a direção do clube: todas as manhãs, as equipas que não enviaram o relatório de material no dia anterior, e as propostas de alteração das equipas sem treinador principal. Os avisos de convocatória, jogo e material chegam à equipa técnica de cada equipa nos seus próprios telemóveis. Chegam mesmo com a app fechada.", "p.pushOk": "Este telemóvel está registado no servidor: os avisos chegam mesmo que feches a app.", "p.pushTest": "Enviar aviso de teste", "p.pushTestSent": "Enviado. Fecha a app ou bloqueia o telemóvel: em menos de um minuto vais receber «✅ Os avisos funcionam». Se não chegar, verifica se o Chrome permite notificações deste site e se a poupança de bateria não o bloqueia.", "p.pushTestFail": "Não foi possível enviar o teste. Desativa e volta a ativar os avisos e tenta outra vez.", "p.pushTestTitle": "✅ Os avisos funcionam", "p.pushTestBody": "Este telemóvel recebe os avisos do CoachBase mesmo com a app fechada.",
     "p.notiTestBody": "Vamos avisar-te da convocatória, do dia de jogo, do material e das propostas.",
     "mt.notiBlocked": "Bloqueaste as notificações para este site. Ativa-as nas definições do navegador e volta aqui.",
     "mt.notiTestTitle": "Avisos ativados",
@@ -9850,6 +9850,18 @@ const desactivarPush = async () => {
     await sub.unsubscribe().catch(() => {});
   } catch { /* noop */ }
 };
+/* Pide al servidor un aviso de prueba para ESTE móvil: llega medio minuto
+   después por el mismo camino que los de verdad, así que se puede cerrar la
+   app y comprobar que también llega así. "ok" o el motivo. */
+const pedirAvisoPrueba = async (titulo, cuerpo) => {
+  try {
+    const endpoint = (await (await navigator.serviceWorker?.ready)?.pushManager?.getSubscription())?.endpoint || "";
+    if (!endpoint) return "sin_suscripcion";
+    const r = await cbFetch(`${AIR}?res=push-prueba`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ endpoint, titulo, cuerpo }) });
+    const d = await r.json().catch(() => null);
+    return d?.ok ? "ok" : d?.reason || "error";
+  } catch { return "error"; }
+};
 const endpointPush = async () => {
   try { return (await (await navigator.serviceWorker?.ready)?.pushManager?.getSubscription())?.endpoint || ""; }
   catch { return ""; }
@@ -13661,6 +13673,8 @@ export default function App() {
   /* Si además el servidor puede avisar con la app cerrada: "ok", o el
      motivo por el que no ("sin-soporte", "sin-servidor", "error"). */
   const [pushEstado, setPushEstado] = useState("");
+  /* Aviso de prueba desde Mi cuenta: "", "enviando", "ok" o el motivo. */
+  const [pruebaPush, setPruebaPush] = useState("");
   /* Un solo interruptor para todos los avisos, en Mi cuenta y en Modo
      partido: el permiso es del navegador, no de cada pantalla. */
   const alternarAvisos = async (tituloPrueba, cuerpoPrueba) => {
@@ -14934,8 +14948,30 @@ export default function App() {
             </button>
             <div className="text-[11px] mt-2 leading-relaxed" style={{ color: C.dim }}>
               {Notification.permission === "denied" ? t("mt.notiBlocked")
-                : `${t("p.notiHint")}${notisOk && pushEstado && pushEstado !== "ok" ? ` ${t(pushEstado === "sin-soporte" ? "mt.pushNoSupport" : "mt.pushNoServer")}` : ""}`}
+                /* Qué le llega a quién: la dirección del club no recibe los de
+                   cada categoría (convocatoria, partido, material), sino el
+                   resumen de partes de cada mañana. */
+                : `${t(dirigeElClub(session?.role) && !["entrenador", "segundo", "delegado"].some((r) => tieneRolFront(session, r)) ? "p.notiHintClub" : "p.notiHint")}${notisOk && pushEstado && pushEstado !== "ok" ? ` ${t(pushEstado === "sin-soporte" ? "mt.pushNoSupport" : "mt.pushNoServer")}` : ""}`}
             </div>
+            {/* Confirmación de que el servidor ya tiene este móvil, y una
+                prueba de verdad: el aviso sale del servidor medio minuto
+                después, con la app cerrada si se quiere. */}
+            {notisOk && pushEstado === "ok" && (
+              <div className="mt-2">
+                <div className="text-[11px]" style={{ color: C.green }}>✓ {t("p.pushOk")}</div>
+                <button disabled={pruebaPush === "enviando"} onClick={async () => {
+                  setPruebaPush("enviando");
+                  setPruebaPush(await pedirAvisoPrueba(t("p.pushTestTitle"), t("p.pushTestBody")));
+                }} className="mt-2 text-xs px-3 py-1.5 rounded-lg border disabled:opacity-50" style={{ borderColor: C.line, color: C.chalk }}>
+                  {pruebaPush === "enviando" ? t("a.sending") : `📨 ${t("p.pushTest")}`}
+                </button>
+                {pruebaPush && pruebaPush !== "enviando" && (
+                  <div className="text-[11px] mt-1.5 leading-relaxed" style={{ color: pruebaPush === "ok" ? C.green : C.red }}>
+                    {t(pruebaPush === "ok" ? "p.pushTestSent" : "p.pushTestFail")}
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         )}
 

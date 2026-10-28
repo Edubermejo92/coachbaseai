@@ -135,6 +135,22 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   sigue valiendo para los siguientes partidos hasta que se desactiva (y entonces caen las
   suscripciones). En iPhone el aviso solo llega con la página añadida a la pantalla de inicio.
 
+## Avisos: comprobación y aviso de prueba (v2.90.1)
+- Edu: "Comprueba que funcionan los avisos" (captura de Mi cuenta con «Avisos activados").
+- Estado real en producción (28/10): claves VAPID en Vault ✓; avisos-reloj ~1440 pasadas/día y
+  avisos-reglas ~288/día ✓; 7 avisos enviados con éxito (resumen de partes al club, 12-27 oct, a
+  DANI BERMEJO, director). Solo hay 2 suscripciones en toda la app, las dos de DANI BERMEJO; el
+  cuerpo técnico del Infantil B (FIDEL entrenador, EDUARDO y MANUEL segundos) no tiene ninguna,
+  así que convocatoria/partido/material no le llegan a nadie hasta que activen los avisos en sus
+  móviles con su cuenta. El director no recibe los de categoría (por diseño, STAFF en avisos.mts).
+- Nuevo: `res=push-prueba` → `programarPrueba()` (avisos.mts) mete en push_programados un aviso
+  `cb-prueba` a 30 s para ESE móvil (solo si la suscripción es suya; uno pendiente por móvil) y
+  sale por avisos-reloj, como los de verdad: se puede cerrar la app y ver que llega.
+  enviarProgramados: url "/?tab=partido" solo para `cb-reloj`. Pruebas en pruebas18 (+4).
+- Mi cuenta → Avisos: «✓ Este móvil está apuntado en el servidor» cuando `pushEstado === "ok"`
+  (antes el botón solo reflejaba el permiso del navegador), botón «📨 Enviar aviso de prueba» y
+  texto según el rol (`p.notiHintClub` para club/director sin rol de cuerpo técnico).
+
 ## Jugadas 3D de ejemplo y vídeo de un toque (v2.90.0)
 - Edu: "Crea varias jugadas predeterminadas 3D que luego se puedan editar, porque ahora es difícil
   crear una jugada 3D o 2D y que se guarde en vídeo".
@@ -300,7 +316,7 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
 
 ## Pruebas
 - `npm test` = `pruebas/todas.mjs`: todas las pruebas en modo Airtable (fakeair) y en modo Supabase
-  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-10-28: 401 ✓ / 501 ✓, 0 fallos.
+  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-10-28: 401 ✓ / 505 ✓, 0 fallos.
 - Desde la sesión de Claude NO hay red hacia airtable.com ni supabase.co (proxy 403): la prueba
   real contra Supabase la hace la propia app en Netlify.
 

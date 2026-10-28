@@ -280,7 +280,7 @@ export async function enviarProgramados(ahora = new Date()) {
     const tarde = ahora.getTime() - new Date(a.enviar_en).getTime() > 10 * 60000;
     const s = subs.find((x) => x.endpoint === a.endpoint);
     if (!tarde && s && (await marcar(`prog|${a.endpoint}|${a.clave}`))) {
-      const r = await mandar(s, { titulo: a.titulo, cuerpo: a.cuerpo, tag: a.tag, url: "/?tab=partido", clave: a.clave });
+      const r = await mandar(s, { titulo: a.titulo, cuerpo: a.cuerpo, tag: a.tag, url: a.tag === "cb-reloj" ? "/?tab=partido" : "/", clave: a.clave });
       if (r === "ok") enviados++;
       else if (r === "caducada") await borrarSub(a.endpoint);
     }
@@ -304,6 +304,27 @@ export async function programarReloj(usuario: string, endpoint: string, avisos: 
   })).filter((f) => f.titulo && f.clave && Date.parse(f.enviar_en) > ahora - 60000 && Date.parse(f.enviar_en) < ahora + 5 * 3600000);
   if (filas.length) await rest("push_programados", { method: "POST", body: filas, prefer: "return=minimal" });
   return { ok: true, programados: filas.length };
+}
+
+/* ---------- aviso de prueba ----------
+   Desde Mi cuenta: el servidor manda un aviso a ESTE móvil medio minuto
+   después, por el mismo camino que los de verdad (push_programados y la
+   función de cada minuto). Da tiempo a cerrar la app y comprobar que llega
+   también así. Uno pendiente por móvil como mucho. */
+export async function programarPrueba(usuario: string, endpoint: string, textos: any = {}, ahora = Date.now()) {
+  const suya = await rest(`push_suscripciones?select=endpoint&endpoint=eq.${enc(endpoint)}&usuario=eq.${enc(usuario)}`);
+  if (!suya.length) return { ok: false, reason: "sin_suscripcion" };
+  await rest(`push_programados?endpoint=eq.${enc(endpoint)}&tag=eq.cb-prueba`, { method: "DELETE" });
+  const en = new Date(ahora + 30000).toISOString();
+  await rest("push_programados", {
+    method: "POST", prefer: "return=minimal",
+    body: [{
+      usuario, endpoint, tag: "cb-prueba", enviar_en: en, clave: `prueba-${ahora}`,
+      titulo: String(textos?.titulo || "✅ Los avisos funcionan").slice(0, 120),
+      cuerpo: String(textos?.cuerpo || "Este móvil recibe los avisos de CoachBase aunque la app esté cerrada.").slice(0, 240),
+    }],
+  });
+  return { ok: true, en };
 }
 
 /* ---------- 3. al momento: propuesta nueva ---------- */
