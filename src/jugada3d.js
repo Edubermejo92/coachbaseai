@@ -272,3 +272,15 @@ export function trazosJugada(jug, { resaltar = null, solo = null, color = "#FFFF
   });
   return out;
 }
+
+/* Los pasos de la pizarra 2D sacados de la jugada: una foto por momento, con
+   las flechas de lo que pasa a continuación (la última, sin flechas). Así una
+   jugada hecha en 3D también se reproduce y se graba en vídeo en 2D. */
+export function pasosDeJugada(tokens = [], acciones = [], balonEn = null) {
+  const jug = construirJugada(tokens, acciones, balonEn);
+  if (!jug.fases.length) return [];
+  return jug.estados.map((e, n) => ({
+    tokens: tokensDeEstado(tokens, e),
+    shapes: n < jug.fases.length ? trazosJugada(jug, { solo: n }).map(({ opacidad, ...s }) => s) : [], // eslint-disable-line no-unused-vars
+  }));
+}

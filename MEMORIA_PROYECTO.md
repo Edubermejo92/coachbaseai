@@ -135,6 +135,24 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   sigue valiendo para los siguientes partidos hasta que se desactiva (y entonces caen las
   suscripciones). En iPhone el aviso solo llega con la página añadida a la pantalla de inicio.
 
+## Jugadas 3D de ejemplo y vídeo de un toque (v2.90.0)
+- Edu: "Crea varias jugadas predeterminadas 3D que luego se puedan editar, porque ahora es difícil
+  crear una jugada 3D o 2D y que se guarde en vídeo".
+- `src/jugadasModelo.js`: 9 jugadas (pared y tiro, desdoble, salida desde el portero, centro al
+  segundo palo, tercer hombre, contraataque 3x2, cambio de orientación, balón a la espalda, córner
+  al primer palo). Formato del creador (fichas `l9`/`r4` + `balon`, `balonEn`, acciones), atacando
+  a la derecha; nombre/descripción en 5 idiomas, categoría y `vista` de cámara (detrás de la
+  portería que se ataca; la salida, detrás de la nuestra). pruebas23.mjs (47) las monta todas.
+- Pizarra3D: `base` ahora es estado (antes, las fichas de la pizarra sin más). «📚 Jugadas de
+  ejemplo» en el panel de crear (abierto de entrada si no hay jugadores), en Jugadas →
+  «📚 Jugadas 3D de ejemplo» (`ver3D = "modelos"`) y en el aviso de pizarra vacía del modo ver.
+  Al elegir una: fichas, pasos, nombre, cámara y se reproduce sola (`arrancar`). Se edita como
+  cualquier otra; al guardar va con `nueva: true` → jugada nueva (no pisa la abierta).
+- 2D: `pasosDeJugada()` (jugada3d.js) saca los pasos de la pizarra de una jugada 3D; se ponen al
+  guardarla y al abrir una jugada con `jugada3d`. «⏺ Vídeo» de la pizarra con ≥2 pasos graba una
+  sola pasada y se descarga solo al acabar (`recRef.unaVuelta`, `pasoRef`); el archivo lleva el
+  nombre de la jugada. Probado: mp4 del 3D y webm del 2D se descargan sin tocar nada más.
+
 ## Accesos rápidos legibles en el ordenador (v2.89.1)
 - Edu: "Los accesos rápidos no se leen bien en escritorio". En el ordenador la tarjeta de Inicio
   va en la columna estrecha (230-360 px) y seguía con tres botones por fila (60-100 px cada uno):
@@ -282,7 +300,7 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
 
 ## Pruebas
 - `npm test` = `pruebas/todas.mjs`: todas las pruebas en modo Airtable (fakeair) y en modo Supabase
-  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-10-27: 354 ✓ / 454 ✓, 0 fallos.
+  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-10-28: 401 ✓ / 501 ✓, 0 fallos.
 - Desde la sesión de Claude NO hay red hacia airtable.com ni supabase.co (proxy 403): la prueba
   real contra Supabase la hace la propia app en Netlify.
 
