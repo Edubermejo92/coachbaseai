@@ -7,6 +7,8 @@
    dispositivo (IndexedDB) y nunca se sube: la app no reparte música de
    terceros. También puede quitarla. */
 
+import { configMp4, grabarMp4 } from "./videoMp4.js";
+
 const LOGO_URL = "/marca/coachbase-ebl.png";
 const MUSICA_URL = "/musica/coachbase-intro.mp3";
 export const MAX_CANCION = 25 * 1024 * 1024;
@@ -168,11 +170,35 @@ export const prepararMusica = async (ac, opcion) => {
   let fuente = null, reloj = null, pico = 0;
   return {
     origen,
+    buffer,
     pidioPropia: opcion === "propia",
     pista: destino.stream.getAudioTracks()[0],
     /* ¿Ha sonado algo? Si no, el navegador no dejó sonar la música y el
        vídeo ha salido mudo: mejor decirlo que entregarlo sin avisar. */
     get sono() { return pico > 0.01; },
+    /* La misma mezcla (entra en 0,25 s y se funde el último segundo), hecha
+       sin que tenga que sonar: para el MP4 que se monta a mano (videoMp4.js).
+       Así la música no depende de que el navegador deje sonar el audio. */
+    async renderizar(duracion, sampleRate = buffer.sampleRate) {
+      const Offline = window.OfflineAudioContext || window.webkitOfflineAudioContext;
+      const fin = Math.max(0.5, duracion);
+      const oac = new Offline(2, Math.ceil(fin * sampleRate), sampleRate);
+      const f = oac.createBufferSource();
+      f.buffer = buffer;
+      f.loop = true;
+      const g = oac.createGain();
+      f.connect(g);
+      g.connect(oac.destination);
+      g.gain.setValueAtTime(0, 0);
+      g.gain.linearRampToValueAtTime(0.9, 0.25);
+      g.gain.setValueAtTime(0.9, Math.max(0.3, fin - 1));
+      g.gain.linearRampToValueAtTime(0, fin);
+      f.start(0);
+      const mezcla = await oac.startRendering();
+      const d = mezcla.getChannelData(0);
+      for (let i = 0; i < d.length && pico <= 0.01; i += 64) pico = Math.max(pico, Math.abs(d[i]));
+      return mezcla;
+    },
     /* Arranca con la grabación: entra en 0,25 s y se funde el último segundo. */
     empezar(duracion) {
       fuente = ac.createBufferSource();
@@ -199,7 +225,7 @@ export const prepararMusica = async (ac, opcion) => {
   };
 };
 
-/* ---------- formato del vídeo ---------- */
+/* ---------- formato del vídeo (si no se puede el MP4 de videoMp4.js) ---------- */
 /* WebM (VP9/VP8 + Opus) primero: el Opus lo codifica el propio Chrome y es
    fiable. Con MP4, Chrome en Android usa el codificador AAC del teléfono, y
    ahí el vídeo salió MUDO en la galería de Edu (Android, octubre 2026) aunque
@@ -212,8 +238,21 @@ export const tipoGrabacion = (conAudio) =>
 export const extensionDe = (tipo) => (String(tipo).startsWith("video/mp4") ? "mp4" : "webm");
 
 /* Graba el lienzo (y la música, si hay) mientras `animar` dibuja; devuelve
-   { url, ext } del vídeo. `animar` recibe la duración y resuelve al acabar. */
+   { url, ext } del vídeo. `animar` recibe la duración y resuelve al acabar.
+   Primero, MP4 de verdad (H.264 + AAC, videoMp4.js), el que acepta todo el
+   mundo; si el navegador no tiene esos codificadores, MediaRecorder. */
 export const grabarLienzo = async (canvas, musica, duracion, animar) => {
+  let cfg = null;
+  try { cfg = await configMp4({ ancho: canvas.width, alto: canvas.height, conAudio: !!musica, sampleRate: musica?.buffer?.sampleRate }); }
+  catch { cfg = null; }
+  if (cfg) {
+    try {
+      const audio = musica ? await musica.renderizar(duracion, cfg.audio.sampleRate) : null;
+      const r = await grabarMp4(canvas, audio, animar, cfg);
+      musica?.parar();
+      return r;
+    } catch (e) { console.warn("[vídeo] el MP4 no ha salido, se graba con MediaRecorder", e); }
+  }
   const stream = canvas.captureStream(30);
   if (musica?.pista) stream.addTrack(musica.pista);
   const tipo = tipoGrabacion(!!musica?.pista);

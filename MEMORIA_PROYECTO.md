@@ -135,6 +135,24 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   sigue valiendo para los siguientes partidos hasta que se desactiva (y entonces caen las
   suscripciones). En iPhone el aviso solo llega con la página añadida a la pantalla de inicio.
 
+## Vídeos en MP4 de verdad (v2.90.2)
+- Edu: "El formato de archivo de los vídeos con música no es compatible". Desde la v2.83.2 los
+  vídeos con música salían en WebM (VP9+Opus) para que sonara la música en Android; WebM no lo
+  aceptan WhatsApp, Instagram, el iPhone ni muchas galerías.
+- `src/videoMp4.js` (+ dependencia `mp4-muxer@5.2.2`): WebCodecs. Cada fotograma del lienzo pasa
+  por el VideoEncoder H.264 del móvil (perfil baseline→main→high, nivel según tamaño) a 30 fps con
+  la hora real; la música se mezcla aparte con OfflineAudioContext (`musica.renderizar()` en
+  videoMarca.js, misma entrada/salida que antes) y pasa por AudioEncoder AAC (si no hay AAC, Opus
+  dentro del MP4). mp4-muxer `fastStart: "in-memory"` → MP4 normal (ftyp, moov, mdat), no el
+  fragmentado de MediaRecorder. Lados impares: se recorta un píxel (visibleRect).
+- Lo usan: vídeo del once y vídeo de cada jugador (`grabarLienzo`, si `configMp4` da null →
+  MediaRecorder como antes), los vídeos del 3D (`grabarVideo` en Pizarra3D) y el de la pizarra 2D
+  (`startRecording`, con un recorder de mentira para pararlo igual).
+- El Chromium de pruebas no tiene H.264 ni AAC: se probó el mismo camino con
+  `window.__cbMp4Codecs = { video: "vp09.00.10.08", audio: "opus" }` y ffprobe: once 33,4 s con
+  vídeo y audio cuadrados, música con entrada y salida; 3D y 2D en MP4 con moov al principio.
+  Sin WebCodecs sigue saliendo el WebM de antes.
+
 ## Avisos: comprobación y aviso de prueba (v2.90.1)
 - Edu: "Comprueba que funcionan los avisos" (captura de Mi cuenta con «Avisos activados").
 - Estado real en producción (28/10): claves VAPID en Vault ✓; avisos-reloj ~1440 pasadas/día y

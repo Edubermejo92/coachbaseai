@@ -5,6 +5,7 @@ import { iniciarSuperwall, identificarSuperwall, resetSuperwall, estadoSuscripci
 import { construirJugada, tokensDeEstado, trazosJugada, pasosDeJugada, PIDE, CON_BALON, TIPOS_JUGADA } from "./jugada3d.js";
 import { JUGADAS_MODELO, textoModelo } from "./jugadasModelo.js";
 import { cargarLogo, pintarLogo, crearAudio, prepararMusica, grabarLienzo, leerOpcionMusica, guardarOpcionMusica, leerCancion, guardarCancion, MAX_CANCION } from "./videoMarca.js";
+import { configMp4, grabarMp4 } from "./videoMp4.js";
 
 /* ============================================================
    COACHBASE AI by EBLDigital — Prototipo v9
@@ -7536,13 +7537,26 @@ function Pizarra3D({ AC, lang, jugada, steps = [], stepIdx = -1, nombres = {}, t
     await guion();
     if (rec.state === "recording") rec.stop();
   };
+  /* MP4 de verdad (H.264, videoMp4.js) si el navegador puede; si no, como
+     antes. Se para igual: cortando el guion (cortar / cortarJ). */
+  const grabarVideo = async (lienzo, nombre, guion) => {
+    const cfg = await configMp4({ ancho: lienzo.width, alto: lienzo.height, conAudio: false }).catch(() => null);
+    if (!cfg) { await grabarStream(lienzo.captureStream(30), nombre, guion); return; }
+    setGrabando(true);
+    try {
+      const { url, ext } = await grabarMp4(lienzo, null, guion, cfg);
+      descargar(url, `${nombre}.${ext}`);
+      setTimeout(() => URL.revokeObjectURL(url), 5000);
+    } catch { window.alert(t("w.noVideoSupport")); }
+    finally { if (vivo.current) setGrabando(false); }
+  };
   const sinVideo = () => typeof MediaRecorder === "undefined" || !motor.current?.lienzo()?.captureStream;
   /* El vídeo de "ver" graba el propio lienzo 3D. Con pasos, la jugada animada
      de principio a fin; sin pasos, una vuelta de cámara alrededor del campo. */
   const grabar = async () => {
     if (grabando) { cortar.current = true; if (grab.current?.state === "recording") grab.current.stop(); return; }
     if (sinVideo()) { window.alert(t("w.noVideoSupport")); return; }
-    await grabarStream(motor.current.lienzo().captureStream(30), `pizarra-3d-${hoyISO()}`, async () => {
+    await grabarVideo(motor.current.lienzo(), `pizarra-3d-${hoyISO()}`, async () => {
       if (steps.length > 1) { await secuencia(); return; }
       cortar.current = false;
       motor.current?.autoGiro(true); setGiro(true);
@@ -7650,7 +7664,7 @@ function Pizarra3D({ AC, lang, jugada, steps = [], stepIdx = -1, nombres = {}, t
     };
     pintar();
     const nombre = (nombreJ.trim() || t("j3.defaultName")).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "jugada";
-    await grabarStream(cv.captureStream(30), `${nombre}-3d`, reproducirJugada);
+    await grabarVideo(cv, `${nombre}-3d`, reproducirJugada);
     pintando = false;
   };
   const guardarJ = async () => {
@@ -8084,29 +8098,42 @@ function Whiteboard({ AC, lang, teamId, teamRec, isF7, pendingExId, onConsumePen
     img.src = "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(xml)));
     recRef.current.raf = requestAnimationFrame(recordFrame);
   };
-  const startRecording = () => {
+  const startRecording = async () => {
     if (!canSavePlays) { onPro?.(); return; }
-    if (typeof MediaRecorder === "undefined" || !recCanvasRef.current?.captureStream) {
-      window.alert(t("w.noVideoSupport"));
-      return;
-    }
     const canvas = recCanvasRef.current;
-    canvas.width = base.w; canvas.height = base.h;
-    const stream = canvas.captureStream(24);
-    const rec = new MediaRecorder(stream, { mimeType: "video/webm" });
-    recRef.current.chunks = [];
-    rec.ondataavailable = (e) => { if (e.data.size) recRef.current.chunks.push(e.data); };
-    rec.onstop = () => {
-      const blob = new Blob(recRef.current.chunks, { type: "video/webm" });
+    if (!canvas) return;
+    /* Lados pares: el H.264 no admite impares. */
+    const par = (v) => { const r = Math.round(v); return r + (r % 2); };
+    canvas.width = par(base.w); canvas.height = par(base.h);
+    /* Con el nombre de la jugada abierta, como el vídeo del 3D. */
+    const nombre = (plays.find((x) => x.id === playAbierta)?.name || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    const bajar = (url, ext) => {
       const a = document.createElement("a");
-      a.href = URL.createObjectURL(blob);
-      /* Con el nombre de la jugada abierta, como el vídeo del 3D. */
-      const nombre = (plays.find((x) => x.id === playAbierta)?.name || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
-      a.download = `${nombre || "pizarra"}-${hoyISO()}.webm`;
+      a.href = url; a.download = `${nombre || "pizarra"}-${hoyISO()}.${ext}`;
       a.click();
+      setTimeout(() => URL.revokeObjectURL(url), 5000);
     };
-    recRef.current.recorder = rec;
-    rec.start();
+    /* MP4 de verdad (H.264, videoMp4.js) si el navegador puede: el WebM de
+       MediaRecorder no lo aceptan WhatsApp ni muchas galerías. Se para igual
+       que antes, con recorder.stop(). */
+    const cfg = await configMp4({ ancho: canvas.width, alto: canvas.height, conAudio: false }).catch(() => null);
+    if (cfg) {
+      let acabar = () => {};
+      const fin = new Promise((res) => { acabar = res; });
+      recRef.current.recorder = { state: "recording", stop() { if (this.state === "recording") { this.state = "inactive"; acabar(); } } };
+      grabarMp4(canvas, null, () => fin, cfg).then(({ url, ext }) => bajar(url, ext)).catch(() => window.alert(t("w.noVideoSupport")));
+    } else {
+      if (typeof MediaRecorder === "undefined" || !canvas.captureStream) {
+        window.alert(t("w.noVideoSupport"));
+        return;
+      }
+      const rec = new MediaRecorder(canvas.captureStream(24), { mimeType: "video/webm" });
+      recRef.current.chunks = [];
+      rec.ondataavailable = (e) => { if (e.data.size) recRef.current.chunks.push(e.data); };
+      rec.onstop = () => bajar(URL.createObjectURL(new Blob(recRef.current.chunks, { type: "video/webm" })), "webm");
+      recRef.current.recorder = rec;
+      rec.start();
+    }
     setRecSecs(0);
     recRef.current.timer = setInterval(() => setRecSecs((s) => s + 1), 1000);
     recordFrame();
