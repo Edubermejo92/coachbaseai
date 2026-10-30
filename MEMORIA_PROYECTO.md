@@ -135,6 +135,31 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   sigue valiendo para los siguientes partidos hasta que se desactiva (y entonces caen las
   suscripciones). En iPhone el aviso solo llega con la página añadida a la pantalla de inicio.
 
+## Guía de la app para los nuevos (v2.91.0)
+- Edu: "Crea un tutorial para los nuevos donde indiques funcionalidades y primeros pasos como
+  añadir jugadores, dar accesos a familias, todo de la app y que puedan verlo después en
+  cualquier momento".
+- Textos en `src/guia.js` (ES y EN; fr/de/pt usan el inglés): `pasos` por grupo (staff,
+  direccion, familia, jugador; `soloSi` = permiso de `can`), `secciones` (cada apartado con su
+  `tab` para «Abrir» y para enseñar solo los del menú de ese rol; `cuenta: true` abre Mi cuenta),
+  `faq` (`para: "staff" | "familia"`). Los nombres de botones son los de la app tal cual: si se
+  cambia uno, cambiarlo también ahí. `pruebas/pruebas24.mjs` comprueba que ES y EN tienen lo
+  mismo y que cada `tab` existe.
+- Ventana `src/Guia.jsx` (React.lazy: 7,6 kB + 34 kB de textos, solo al abrirla): pestañas
+  Primeros pasos (con progreso) · Funciones · Preguntas (familias: sin Funciones), buscador sin
+  tildes en las tres a la vez, Esc cierra. Pinta con funciones, no componentes internos.
+- Dónde se abre: «📘 Guía» al final del menú ⋯ del móvil y del lateral del ordenador; botón
+  «Guía de la app» en Mi cuenta; enlace al final de la página de la familia/jugador; tarjeta
+  «Primeros pasos» arriba en Inicio (equipo y club): progreso, el siguiente paso (abre la guía en
+  él), «Ver la guía» y «Ocultar» (localStorage `cb_guia_oculta:<email>`). Desaparece sola cuando
+  está todo lo comprobable.
+- Se marcan solos (`hechosGuia` en App.jsx): plantilla (hay jugadores), fotos (alguno con
+  foto), calendario (algún partido que no sea aviso PT), staff (más de un usuario), once (7+ en
+  la alineación), avisos (`notisOk`), instalar (display-mode standalone); club: categorías
+  (usuarios > 1), escudo; «dar acceso a las familias» no se comprueba.
+- Grupo: familia/jugador por rol; dirección = cuenta del club o director/master sin rol de
+  entrenador (mismo criterio que el texto de avisos de Mi cuenta); el resto, cuerpo técnico.
+
 ## El vídeo del once seguía en WebM en el móvil de Edu (v2.90.3)
 - Edu (30/10, minutos después de publicar la v2.90.2) mandó el vídeo del once: WebM de
   MediaRecorder (VP9+Opus, 540x676, sin duración). O el móvil seguía con la versión anterior
@@ -359,7 +384,7 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
 
 ## Pruebas
 - `npm test` = `pruebas/todas.mjs`: todas las pruebas en modo Airtable (fakeair) y en modo Supabase
-  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-10-30: 401 ✓ / 507 ✓, 0 fallos.
+  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-10-30: 415 ✓ / 521 ✓, 0 fallos.
 - Desde la sesión de Claude NO hay red hacia airtable.com ni supabase.co (proxy 403): la prueba
   real contra Supabase la hace la propia app en Netlify.
 

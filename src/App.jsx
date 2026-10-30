@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import { createPortal } from "react-dom";
 import { crearSincro } from "./sincro.js";
 import { iniciarSuperwall, identificarSuperwall, resetSuperwall, estadoSuscripcionSuperwall, atributosSuperwall, paginaSuperwall, mostrarPaywall } from "./superwall.js";
@@ -6,6 +6,9 @@ import { construirJugada, tokensDeEstado, trazosJugada, pasosDeJugada, PIDE, CON
 import { JUGADAS_MODELO, textoModelo } from "./jugadasModelo.js";
 import { cargarLogo, pintarLogo, crearAudio, prepararMusica, grabarLienzo, leerOpcionMusica, guardarOpcionMusica, leerCancion, guardarCancion, MAX_CANCION, tipoGrabacion, extensionDe } from "./videoMarca.js";
 import { configMp4, grabarMp4, avisarDiag } from "./videoMp4.js";
+/* La guía (Guia.jsx con los textos de guia.js) es mucho texto que no hace
+   falta para usar la app: se descarga al abrirla. */
+const Guia = lazy(() => import("./Guia.jsx"));
 
 /* ============================================================
    COACHBASE AI by EBLDigital — Prototipo v9
@@ -171,7 +174,7 @@ const DICT = {
     "mt.pushNoSupport": "Con la app cerrada no llegarán: este navegador no lo permite (en iPhone, añade la app a la pantalla de inicio y actívalos desde ahí).",
     "mt.pushNoServer": "Ahora mismo solo suenan con la app abierta o en segundo plano: el servidor de avisos no está disponible.",
     "p.noti": "Avisos en este móvil",
-    "p.notiHint": "Al cuerpo técnico: convocatoria sin mandar (jueves y viernes), el día de partido, parte de material olvidado y propuestas por aprobar. En Modo partido, además, el final de cada parte. Llegan aunque la app esté cerrada.", "p.notiHintClub": "A la dirección del club: cada mañana, las categorías que no mandaron el parte de material el día anterior, y las propuestas de cambio de las categorías sin entrenador principal. Los de convocatoria, partido y material le llegan al cuerpo técnico de cada categoría en sus propios móviles. Llegan aunque la app esté cerrada.", "p.pushOk": "Este móvil está apuntado en el servidor: te llegarán aunque cierres la app.", "p.pushTest": "Enviar aviso de prueba", "p.pushTestSent": "Enviado. Cierra la app o bloquea el móvil: en menos de un minuto te llegará «✅ Los avisos funcionan». Si no llega, revisa que Chrome tenga permitidas las notificaciones de esta web y que el ahorro de batería no lo bloquee.", "p.pushTestFail": "No se pudo enviar la prueba. Desactiva y vuelve a activar los avisos, y vuelve a probar.", "p.pushTestTitle": "✅ Los avisos funcionan", "p.pushTestBody": "Este móvil recibe los avisos de CoachBase aunque la app esté cerrada.", "up.new": "Hay una versión nueva de CoachBase.", "up.reload": "Actualizar",
+    "p.notiHint": "Al cuerpo técnico: convocatoria sin mandar (jueves y viernes), el día de partido, parte de material olvidado y propuestas por aprobar. En Modo partido, además, el final de cada parte. Llegan aunque la app esté cerrada.", "p.notiHintClub": "A la dirección del club: cada mañana, las categorías que no mandaron el parte de material el día anterior, y las propuestas de cambio de las categorías sin entrenador principal. Los de convocatoria, partido y material le llegan al cuerpo técnico de cada categoría en sus propios móviles. Llegan aunque la app esté cerrada.", "p.pushOk": "Este móvil está apuntado en el servidor: te llegarán aunque cierres la app.", "p.pushTest": "Enviar aviso de prueba", "p.pushTestSent": "Enviado. Cierra la app o bloquea el móvil: en menos de un minuto te llegará «✅ Los avisos funcionan». Si no llega, revisa que Chrome tenga permitidas las notificaciones de esta web y que el ahorro de batería no lo bloquee.", "p.pushTestFail": "No se pudo enviar la prueba. Desactiva y vuelve a activar los avisos, y vuelve a probar.", "p.pushTestTitle": "✅ Los avisos funcionan", "p.pushTestBody": "Este móvil recibe los avisos de CoachBase aunque la app esté cerrada.", "up.new": "Hay una versión nueva de CoachBase.", "up.reload": "Actualizar", "gu.open": "Guía", "gu.account": "Guía de la app", "gu.cardTitle": "Primeros pasos", "gu.progress": "{a} de {b} hechos", "gu.next": "Siguiente:", "gu.cardHint": "Deja la app lista en unos minutos. La guía completa está siempre en el menú (Guía).", "gu.see": "Ver la guía", "gu.hide": "Ocultar", "gu.family": "¿Cómo funciona la app? Ver la guía",
     "p.notiTestBody": "Te avisaremos de la convocatoria, el día de partido, el material y las propuestas.",
     "mt.notiBlocked": "Has bloqueado las notificaciones para este sitio. Actívalas en los ajustes del navegador y vuelve aquí.",
     "mt.notiTestTitle": "Avisos activados",
@@ -781,7 +784,7 @@ const DICT = {
     "mt.pushNoSupport": "They won't arrive with the app closed: this browser doesn't allow it (on iPhone, add the app to your home screen and turn them on from there).",
     "mt.pushNoServer": "For now they only go off with the app open or in the background: the alerts server isn't available.",
     "p.noti": "Alerts on this phone",
-    "p.notiHint": "For the coaching staff: squad call not sent (Thursday and Friday), match day, missing kit report and proposals to approve. In Match mode, also the end of each half. They arrive even with the app closed.", "p.notiHintClub": "For club management: every morning, the teams that didn't send the equipment report the day before, and change proposals from teams without a head coach. Squad call, match day and equipment alerts go to each team's coaching staff on their own phones. They arrive even with the app closed.", "p.pushOk": "This phone is registered on the server: alerts will reach you even if you close the app.", "p.pushTest": "Send a test alert", "p.pushTestSent": "Sent. Close the app or lock the phone: within a minute you'll get «✅ Alerts are working». If it doesn't arrive, check that Chrome allows notifications for this site and that battery saver isn't blocking it.", "p.pushTestFail": "Couldn't send the test. Turn alerts off and on again, then try once more.", "p.pushTestTitle": "✅ Alerts are working", "p.pushTestBody": "This phone receives CoachBase alerts even with the app closed.", "up.new": "A new version of CoachBase is available.", "up.reload": "Update",
+    "p.notiHint": "For the coaching staff: squad call not sent (Thursday and Friday), match day, missing kit report and proposals to approve. In Match mode, also the end of each half. They arrive even with the app closed.", "p.notiHintClub": "For club management: every morning, the teams that didn't send the equipment report the day before, and change proposals from teams without a head coach. Squad call, match day and equipment alerts go to each team's coaching staff on their own phones. They arrive even with the app closed.", "p.pushOk": "This phone is registered on the server: alerts will reach you even if you close the app.", "p.pushTest": "Send a test alert", "p.pushTestSent": "Sent. Close the app or lock the phone: within a minute you'll get «✅ Alerts are working». If it doesn't arrive, check that Chrome allows notifications for this site and that battery saver isn't blocking it.", "p.pushTestFail": "Couldn't send the test. Turn alerts off and on again, then try once more.", "p.pushTestTitle": "✅ Alerts are working", "p.pushTestBody": "This phone receives CoachBase alerts even with the app closed.", "up.new": "A new version of CoachBase is available.", "up.reload": "Update", "gu.open": "Guide", "gu.account": "App guide", "gu.cardTitle": "First steps", "gu.progress": "{a} of {b} done", "gu.next": "Next:", "gu.cardHint": "Get the app ready in a few minutes. The full guide is always in the menu (Guide).", "gu.see": "Open the guide", "gu.hide": "Hide", "gu.family": "How does the app work? Open the guide",
     "p.notiTestBody": "We'll let you know about the squad call, match day, kit and proposals.",
     "mt.notiBlocked": "You've blocked notifications for this site. Turn them on in your browser settings and come back.",
     "mt.notiTestTitle": "Alerts on",
@@ -1403,7 +1406,7 @@ const DICT = {
     "mt.pushNoSupport": "Application fermée, elles n'arriveront pas : ce navigateur ne le permet pas (sur iPhone, ajoutez l'appli à l'écran d'accueil et activez-les depuis là).",
     "mt.pushNoServer": "Pour l'instant elles ne sonnent qu'avec l'appli ouverte ou en arrière-plan : le serveur d'alertes n'est pas disponible.",
     "p.noti": "Alertes sur ce téléphone",
-    "p.notiHint": "Pour le staff : convocation non envoyée (jeudi et vendredi), jour de match, rapport de matériel oublié et propositions à valider. En mode match, aussi la fin de chaque période. Elles arrivent même application fermée.", "p.notiHintClub": "Pour la direction du club : chaque matin, les équipes qui n'ont pas envoyé le rapport de matériel la veille, et les propositions de changement des équipes sans entraîneur principal. Les alertes de convocation, de match et de matériel vont au staff de chaque équipe, sur leurs propres téléphones. Elles arrivent même app fermée.", "p.pushOk": "Ce téléphone est enregistré sur le serveur : les alertes arriveront même app fermée.", "p.pushTest": "Envoyer une alerte de test", "p.pushTestSent": "Envoyée. Fermez l'app ou verrouillez le téléphone : dans moins d'une minute vous recevrez « ✅ Les alertes fonctionnent ». Sinon, vérifiez que Chrome autorise les notifications de ce site et que l'économiseur de batterie ne les bloque pas.", "p.pushTestFail": "Impossible d'envoyer le test. Désactivez puis réactivez les alertes et réessayez.", "p.pushTestTitle": "✅ Les alertes fonctionnent", "p.pushTestBody": "Ce téléphone reçoit les alertes CoachBase même app fermée.", "up.new": "Une nouvelle version de CoachBase est disponible.", "up.reload": "Mettre à jour",
+    "p.notiHint": "Pour le staff : convocation non envoyée (jeudi et vendredi), jour de match, rapport de matériel oublié et propositions à valider. En mode match, aussi la fin de chaque période. Elles arrivent même application fermée.", "p.notiHintClub": "Pour la direction du club : chaque matin, les équipes qui n'ont pas envoyé le rapport de matériel la veille, et les propositions de changement des équipes sans entraîneur principal. Les alertes de convocation, de match et de matériel vont au staff de chaque équipe, sur leurs propres téléphones. Elles arrivent même app fermée.", "p.pushOk": "Ce téléphone est enregistré sur le serveur : les alertes arriveront même app fermée.", "p.pushTest": "Envoyer une alerte de test", "p.pushTestSent": "Envoyée. Fermez l'app ou verrouillez le téléphone : dans moins d'une minute vous recevrez « ✅ Les alertes fonctionnent ». Sinon, vérifiez que Chrome autorise les notifications de ce site et que l'économiseur de batterie ne les bloque pas.", "p.pushTestFail": "Impossible d'envoyer le test. Désactivez puis réactivez les alertes et réessayez.", "p.pushTestTitle": "✅ Les alertes fonctionnent", "p.pushTestBody": "Ce téléphone reçoit les alertes CoachBase même app fermée.", "up.new": "Une nouvelle version de CoachBase est disponible.", "up.reload": "Mettre à jour", "gu.open": "Guide", "gu.account": "Guide de l'app", "gu.cardTitle": "Premiers pas", "gu.progress": "{a} sur {b} faits", "gu.next": "Prochaine étape :", "gu.cardHint": "Préparez l'app en quelques minutes. Le guide complet est toujours dans le menu (Guide).", "gu.see": "Voir le guide", "gu.hide": "Masquer", "gu.family": "Comment fonctionne l'app ? Voir le guide",
     "p.notiTestBody": "Nous vous préviendrons pour la convocation, le jour de match, le matériel et les propositions.",
     "mt.notiBlocked": "Vous avez bloqué les notifications pour ce site. Activez-les dans les réglages du navigateur et revenez.",
     "mt.notiTestTitle": "Alertes activées",
@@ -2105,7 +2108,7 @@ const DICT = {
     "mt.pushNoSupport": "Bei geschlossener App kommen sie nicht an: Dieser Browser erlaubt es nicht (auf dem iPhone die App zum Home-Bildschirm hinzufügen und dort aktivieren).",
     "mt.pushNoServer": "Im Moment kommen sie nur bei offener App oder im Hintergrund: Der Benachrichtigungsserver ist nicht verfügbar.",
     "p.noti": "Benachrichtigungen auf diesem Handy",
-    "p.notiHint": "Für das Trainerteam: Nominierung nicht verschickt (Donnerstag und Freitag), Spieltag, fehlender Materialbericht und offene Vorschläge. Im Spielmodus außerdem das Ende jeder Halbzeit. Sie kommen auch bei geschlossener App an.", "p.notiHintClub": "Für die Vereinsleitung: jeden Morgen die Mannschaften, die am Vortag keinen Materialbericht geschickt haben, und Änderungsvorschläge von Mannschaften ohne Cheftrainer. Hinweise zu Nominierung, Spieltag und Material gehen an das Trainerteam jeder Mannschaft auf deren eigene Handys. Sie kommen auch bei geschlossener App an.", "p.pushOk": "Dieses Handy ist auf dem Server angemeldet: Hinweise kommen auch an, wenn du die App schließt.", "p.pushTest": "Testhinweis senden", "p.pushTestSent": "Gesendet. Schließe die App oder sperre das Handy: In weniger als einer Minute kommt „✅ Hinweise funktionieren“. Falls nicht, prüfe, ob Chrome Benachrichtigungen für diese Seite erlaubt und der Energiesparmodus sie nicht blockiert.", "p.pushTestFail": "Der Test konnte nicht gesendet werden. Schalte die Hinweise aus und wieder ein und versuche es erneut.", "p.pushTestTitle": "✅ Hinweise funktionieren", "p.pushTestBody": "Dieses Handy bekommt CoachBase-Hinweise auch bei geschlossener App.", "up.new": "Es gibt eine neue Version von CoachBase.", "up.reload": "Aktualisieren",
+    "p.notiHint": "Für das Trainerteam: Nominierung nicht verschickt (Donnerstag und Freitag), Spieltag, fehlender Materialbericht und offene Vorschläge. Im Spielmodus außerdem das Ende jeder Halbzeit. Sie kommen auch bei geschlossener App an.", "p.notiHintClub": "Für die Vereinsleitung: jeden Morgen die Mannschaften, die am Vortag keinen Materialbericht geschickt haben, und Änderungsvorschläge von Mannschaften ohne Cheftrainer. Hinweise zu Nominierung, Spieltag und Material gehen an das Trainerteam jeder Mannschaft auf deren eigene Handys. Sie kommen auch bei geschlossener App an.", "p.pushOk": "Dieses Handy ist auf dem Server angemeldet: Hinweise kommen auch an, wenn du die App schließt.", "p.pushTest": "Testhinweis senden", "p.pushTestSent": "Gesendet. Schließe die App oder sperre das Handy: In weniger als einer Minute kommt „✅ Hinweise funktionieren“. Falls nicht, prüfe, ob Chrome Benachrichtigungen für diese Seite erlaubt und der Energiesparmodus sie nicht blockiert.", "p.pushTestFail": "Der Test konnte nicht gesendet werden. Schalte die Hinweise aus und wieder ein und versuche es erneut.", "p.pushTestTitle": "✅ Hinweise funktionieren", "p.pushTestBody": "Dieses Handy bekommt CoachBase-Hinweise auch bei geschlossener App.", "up.new": "Es gibt eine neue Version von CoachBase.", "up.reload": "Aktualisieren", "gu.open": "Anleitung", "gu.account": "App-Anleitung", "gu.cardTitle": "Erste Schritte", "gu.progress": "{a} von {b} erledigt", "gu.next": "Als Nächstes:", "gu.cardHint": "Richte die App in wenigen Minuten ein. Die ganze Anleitung findest du immer im Menü (Anleitung).", "gu.see": "Anleitung öffnen", "gu.hide": "Ausblenden", "gu.family": "Wie funktioniert die App? Anleitung öffnen",
     "p.notiTestBody": "Wir benachrichtigen dich zu Nominierung, Spieltag, Material und Vorschlägen.",
     "mt.notiBlocked": "Du hast Benachrichtigungen für diese Seite blockiert. Schalte sie in den Browser-Einstellungen ein und komm zurück.",
     "mt.notiTestTitle": "Hinweise an",
@@ -2806,7 +2809,7 @@ const DICT = {
     "mt.pushNoSupport": "Com a app fechada não vão chegar: este navegador não permite (no iPhone, adicione a app ao ecrã principal e ative-os a partir daí).",
     "mt.pushNoServer": "Por agora só tocam com a app aberta ou em segundo plano: o servidor de avisos não está disponível.",
     "p.noti": "Avisos neste telemóvel",
-    "p.notiHint": "Para a equipa técnica: convocatória por enviar (quinta e sexta), dia de jogo, relatório de material esquecido e propostas por aprovar. No Modo jogo, também o fim de cada parte. Chegam mesmo com a app fechada.", "p.notiHintClub": "Para a direção do clube: todas as manhãs, as equipas que não enviaram o relatório de material no dia anterior, e as propostas de alteração das equipas sem treinador principal. Os avisos de convocatória, jogo e material chegam à equipa técnica de cada equipa nos seus próprios telemóveis. Chegam mesmo com a app fechada.", "p.pushOk": "Este telemóvel está registado no servidor: os avisos chegam mesmo que feches a app.", "p.pushTest": "Enviar aviso de teste", "p.pushTestSent": "Enviado. Fecha a app ou bloqueia o telemóvel: em menos de um minuto vais receber «✅ Os avisos funcionam». Se não chegar, verifica se o Chrome permite notificações deste site e se a poupança de bateria não o bloqueia.", "p.pushTestFail": "Não foi possível enviar o teste. Desativa e volta a ativar os avisos e tenta outra vez.", "p.pushTestTitle": "✅ Os avisos funcionam", "p.pushTestBody": "Este telemóvel recebe os avisos do CoachBase mesmo com a app fechada.", "up.new": "Há uma nova versão do CoachBase.", "up.reload": "Atualizar",
+    "p.notiHint": "Para a equipa técnica: convocatória por enviar (quinta e sexta), dia de jogo, relatório de material esquecido e propostas por aprovar. No Modo jogo, também o fim de cada parte. Chegam mesmo com a app fechada.", "p.notiHintClub": "Para a direção do clube: todas as manhãs, as equipas que não enviaram o relatório de material no dia anterior, e as propostas de alteração das equipas sem treinador principal. Os avisos de convocatória, jogo e material chegam à equipa técnica de cada equipa nos seus próprios telemóveis. Chegam mesmo com a app fechada.", "p.pushOk": "Este telemóvel está registado no servidor: os avisos chegam mesmo que feches a app.", "p.pushTest": "Enviar aviso de teste", "p.pushTestSent": "Enviado. Fecha a app ou bloqueia o telemóvel: em menos de um minuto vais receber «✅ Os avisos funcionam». Se não chegar, verifica se o Chrome permite notificações deste site e se a poupança de bateria não o bloqueia.", "p.pushTestFail": "Não foi possível enviar o teste. Desativa e volta a ativar os avisos e tenta outra vez.", "p.pushTestTitle": "✅ Os avisos funcionam", "p.pushTestBody": "Este telemóvel recebe os avisos do CoachBase mesmo com a app fechada.", "up.new": "Há uma nova versão do CoachBase.", "up.reload": "Atualizar", "gu.open": "Guia", "gu.account": "Guia da app", "gu.cardTitle": "Primeiros passos", "gu.progress": "{a} de {b} feitos", "gu.next": "Próximo:", "gu.cardHint": "Deixe a app pronta em poucos minutos. O guia completo está sempre no menu (Guia).", "gu.see": "Ver o guia", "gu.hide": "Ocultar", "gu.family": "Como funciona a app? Ver o guia",
     "p.notiTestBody": "Vamos avisar-te da convocatória, do dia de jogo, do material e das propostas.",
     "mt.notiBlocked": "Bloqueaste as notificações para este site. Ativa-as nas definições do navegador e volta aqui.",
     "mt.notiTestTitle": "Avisos ativados",
@@ -14730,6 +14733,27 @@ export default function App() {
     return () => window.removeEventListener("cb:video", enviar);
   }, [session?.email]);
 
+  /* ================= GUÍA =================
+     `guia`: null cerrada, o con qué abrirla ({ id } de un paso, desde la
+     tarjeta de Inicio). La tarjeta «Primeros pasos» de Inicio se puede
+     ocultar (cada persona en su móvil); la guía sigue en el menú. Los textos
+     de la tarjeta (guia.js) se piden solo si se va a enseñar. */
+  const [guia, setGuia] = useState(null);
+  const claveGuia = `cb_guia_oculta:${session?.email || ""}`;
+  const [guiaOculta, setGuiaOculta] = useState(false);
+  const [guiaMod, setGuiaMod] = useState(null);
+  useEffect(() => {
+    try { setGuiaOculta(localStorage.getItem(claveGuia) === "1"); } catch { setGuiaOculta(false); }
+  }, [claveGuia]);
+  useEffect(() => {
+    if (!session || guiaOculta || guiaMod || ["familia", "jugador"].includes(session.role)) return;
+    import("./guia.js").then(setGuiaMod).catch(() => {});
+  }, [session?.email, guiaOculta]); // eslint-disable-line react-hooks/exhaustive-deps
+  const ocultarGuia = () => {
+    setGuiaOculta(true);
+    try { localStorage.setItem(claveGuia, "1"); } catch { /* sin almacenamiento: se oculta hasta recargar */ }
+  };
+
   /* ================= MI CUENTA ================= */
   const [accountOpen, setAccountOpen] = useState(false);
   const [accCur, setAccCur] = useState("");
@@ -14833,6 +14857,11 @@ export default function App() {
         </div>
         <div className="text-sm" style={{ color: C.chalk }}>{session.name}</div>
         <div className="text-[11px] mb-4" style={{ color: C.dim }}>{session.email} · {rLabel(lang, session.role)}</div>
+        <button onClick={() => { cerrarCuenta(); setGuia({}); }}
+          className="w-full mb-4 text-sm px-3 py-2 rounded-lg border font-display uppercase tracking-wide flex items-center justify-center gap-2"
+          style={{ borderColor: C.line, color: C.chalk }}>
+          📘 {t("gu.account")}
+        </button>
 
         {/* ---- MI EQUIPO ----
             Cambiarse de equipo es cosa de cada uno: la gente cambia a mitad de
@@ -20026,6 +20055,7 @@ export default function App() {
       : "";
     return (
       <div className="space-y-4">
+        {renderTarjetaGuia()}
         {/* Cabecera: escudo y nombre del club —no una categoría suelta— y los
             dos sitios a los que va el club desde aquí. */}
         <div className="rounded-lg border overflow-hidden" style={{ borderColor: C.line, background: C.panel }}>
@@ -20144,6 +20174,7 @@ export default function App() {
 
   const renderHomeEquipo = () => (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      {renderTarjetaGuia()}
       {/* ================= CARTEL DE PARTIDO =================
           Antes esto era el escudo y el nombre del club centrados, que no
           cuentan nada nuevo: ya están en la cabecera. Un entrenador abre la
@@ -21613,6 +21644,11 @@ export default function App() {
             </div>
           )}
         </Card>
+        {/* La guía también para las familias: qué ven, el directo, cómo
+            instalar la app y sus dudas. */}
+        <button onClick={() => setGuia({})} className="w-full text-sm rounded-lg border px-4 py-3 flex items-center gap-2 text-left" style={{ borderColor: C.line, background: C.panel, color: C.chalk }}>
+          <span>📘</span><span className="flex-1">{t("gu.family")}</span><span style={{ color: AC }}>→</span>
+        </button>
       </div>
     );
   };
@@ -25934,6 +25970,76 @@ export default function App() {
     ? TODAS_TABS.filter((k) => allTabs.includes(k))
     : TODAS_TABS.filter((k) => allTabs.includes(k) || !["master", "equipos", "parte"].includes(k));
   const sinAcceso = (k) => !allTabs.includes(k);
+
+  /* ---- Guía: qué pasos le tocan y cuáles ya ha hecho ----
+     Dirección = la cuenta del club, o director/master que no entrena (mismo
+     criterio que el texto de los avisos en Mi cuenta). Lo que la app puede
+     comprobar se marca solo; dar acceso a las familias no (se puede hacer
+     de dos formas y no se ve desde aquí). */
+  const grupoGuia = session.role === "jugador" ? "jugador" : session.role === "familia" ? "familia"
+    : esCuentaClub || (dirigeElClub(session.role) && !["entrenador", "segundo", "delegado"].some((r) => tieneRolFront(session, r))) ? "direccion" : "staff";
+  const instalada = typeof window !== "undefined" && (window.matchMedia?.("(display-mode: standalone)").matches || window.navigator.standalone === true);
+  const hechosGuia = grupoGuia === "staff" ? {
+    plantilla: players.length > 0,
+    fotos: players.some((p) => p.photo),
+    calendario: fixtures.some((f) => String(f.j || "").trim().toUpperCase() !== "PT"),
+    staff: users.length > 1,
+    alineacion: Object.values(lineup).filter(Boolean).length >= 7,
+    avisos: !!notisOk,
+    instalar: instalada,
+  } : grupoGuia === "direccion" ? {
+    categorias: users.length > 1,
+    club: !!(clubInfo.crest || session.clubCrest),
+    avisos: !!notisOk,
+    instalar: instalada,
+  } : { instalar: instalada };
+  /* Tarjeta «Primeros pasos» en Inicio: cuántos lleva y el siguiente que le
+     falta (al tocarlo, la guía se abre en ese paso). Desaparece sola cuando
+     ha hecho todo lo comprobable, o si la oculta. */
+  const renderTarjetaGuia = () => {
+    if (!guiaMod || guiaOculta || !["staff", "direccion"].includes(grupoGuia)) return null;
+    const pasos = guiaMod.pasosDe(guiaMod.textosGuia(lang), grupoGuia, can);
+    const comprobables = pasos.filter((p) => hechosGuia[p.id] !== undefined);
+    const hechos = comprobables.filter((p) => hechosGuia[p.id]).length;
+    const sig = pasos.find((p) => hechosGuia[p.id] === false);
+    if (!sig) return null;
+    return (
+      <div className="lg:col-span-3 rounded-lg border p-4" style={{ borderColor: AC, background: C.panel }}>
+        <div className="flex items-center gap-2.5">
+          <span className="font-display text-[11px] uppercase tracking-[0.18em] shrink-0" style={{ color: AC }}>📘 {t("gu.cardTitle")}</span>
+          <span className="h-px flex-1" style={{ background: C.line }} />
+          <span className="text-xs shrink-0" style={{ color: C.dim }}>{t("gu.progress").replace("{a}", hechos).replace("{b}", comprobables.length)}</span>
+        </div>
+        <div className="h-1.5 rounded-full overflow-hidden mt-2.5" style={{ background: C.line }}>
+          <div className="h-full rounded-full" style={{ width: `${(hechos / Math.max(1, comprobables.length)) * 100}%`, background: C.green }} />
+        </div>
+        <button onClick={() => setGuia({ id: sig.id })} className="mt-3 w-full text-left flex items-center gap-3 rounded-lg border px-3 py-2.5" style={{ borderColor: C.line }}>
+          <span className="w-7 h-7 shrink-0 rounded-full flex items-center justify-center text-xs font-semibold" style={{ border: `1.5px solid ${AC}`, color: AC }}>{pasos.indexOf(sig) + 1}</span>
+          <span className="flex-1 min-w-0">
+            <span className="block text-[11px] uppercase tracking-wide" style={{ color: C.dim }}>{t("gu.next")}</span>
+            <span className="block font-display text-base uppercase tracking-wide" style={{ color: C.chalk }}>{sig.titulo}</span>
+          </span>
+          <span className="shrink-0" style={{ color: AC }}>→</span>
+        </button>
+        <p className="text-xs mt-2.5" style={{ color: C.dim }}>{t("gu.cardHint")}</p>
+        <div className="flex flex-wrap gap-2 mt-3">
+          <button onClick={() => setGuia({})} className="text-xs px-3 py-1.5 rounded-lg font-display uppercase tracking-wide font-semibold" style={{ background: AC, color: C.sobre }}>{t("gu.see")}</button>
+          <button onClick={ocultarGuia} className="text-xs px-3 py-1.5 rounded-lg border font-display uppercase tracking-wide" style={{ borderColor: C.line, color: C.dim }}>{t("gu.hide")}</button>
+        </div>
+      </div>
+    );
+  };
+  /* La entrada «Guía» del menú (móvil y ordenador), aparte de los apartados. */
+  const botonGuiaMenu = (alPulsar, movil) => (
+    <div className="mt-3 pt-3 border-t" style={{ borderColor: C.line }}>
+      <button onClick={() => { alPulsar?.(); setGuia({}); }}
+        className={`nav-item w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left font-display uppercase text-sm ${movil ? "min-h-12 tracking-wide" : ""}`}
+        style={{ color: C.chalk, borderLeft: "3px solid transparent" }}>
+        <span className="w-4 shrink-0 flex justify-center">📘</span>
+        <span className="flex-1 min-w-0 truncate">{t("gu.open")}</span>
+      </button>
+    </div>
+  );
   const mobileTabsDefault = [...visibleTabs.filter((k) => ["inicio", "pizarra", "entrenamiento", "partido"].includes(k)), ...visibleTabs.filter((k) => !["inicio", "pizarra", "entrenamiento", "partido"].includes(k))].slice(0, 4);
   /* Si la persona ha elegido su propio orden (ver "Personalizar menú" en Mi
      cuenta), manda eso: primero sus elegidas que sigan estando a su alcance
@@ -26418,6 +26524,7 @@ export default function App() {
                       {sueltas.map(Boton)}
                     </div>
                   )}
+                  {botonGuiaMenu(() => setMenuOpen(false), true)}
                 </>
               );
             })()}
@@ -26545,6 +26652,7 @@ export default function App() {
               </>
             );
           })()}
+          {botonGuiaMenu()}
           <div className="mt-auto px-3 py-2">
             <a href={EBL} target="_blank" rel="noreferrer" className="text-[10px] block" style={{ color: C.dim }}>{t("c.by")} ↗</a>
             <a href="/privacidad" target="_blank" rel="noreferrer" className="text-[10px] block mt-0.5" style={{ color: C.dim }}>Política de privacidad</a>
@@ -26676,6 +26784,14 @@ export default function App() {
 
       {renderProfile()}
       {renderAccount()}
+      {guia && (
+        <Suspense fallback={null}>
+          <Guia lang={lang} grupo={grupoGuia} hechos={hechosGuia} tabs={visibleTabs} puede={can} C={C} AC={AC} inicial={guia}
+            onCerrar={() => setGuia(null)}
+            onIr={(k) => { setGuia(null); setTab(k); window.scrollTo?.(0, 0); }}
+            onCuenta={() => { setGuia(null); setAccountOpen(true); }} />
+        </Suspense>
+      )}
 
       <div className="lg:hidden fixed bottom-0 inset-x-0 z-20">
         {/* Tira de categorías: solo aparece con más de una (ej. quien lleva
