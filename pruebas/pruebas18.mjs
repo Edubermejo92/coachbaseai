@@ -140,6 +140,18 @@ e = await A.enviarProgramados(new Date(tPrueba + 40000));
 dice("sale en la pasada siguiente al móvil que la pidió, y abre la app en Inicio",
   e.enviados === 1 && enviados[0]?.usuario === "recENT" && enviados[0]?.tag === "cb-prueba" && enviados[0]?.url === "/" && /funcionan/.test(enviados[0]?.titulo || ""), JSON.stringify(enviados));
 
+/* ---- cómo salen los vídeos (videoMp4.js → registro de la función) ---- */
+{
+  const antes = console.log, lineas = [];
+  console.log = (...a) => { if (String(a[0]).startsWith("[diag-video]")) lineas.push(a.join(" ")); else antes(...a); };
+  const sinCuenta = await call("?res=diag-video", { method: "POST", body: { detalle: { ruta: "mp4" } } });
+  r = await call("?res=diag-video", { method: "POST", token: tEnt, body: { detalle: { ruta: "mediarecorder", tipo: "video/webm", intentos: ["avc1.42E01F 540x676: Encoder creation error."] }, version: "2.90.3" } });
+  console.log = antes;
+  dice("el registro de vídeos pide sesión", sinCuenta.status === 401 && !lineas.some((l) => l.includes('"mp4"')), String(sinCuenta.status));
+  dice("y apunta en el registro la cuenta, la versión y cómo salió", r.body.ok === true && lineas.length === 1 &&
+    lineas[0].includes('"u":"recENT"') && lineas[0].includes("2.90.3") && lineas[0].includes("Encoder creation error"), lineas.join(" | "));
+}
+
 /* ---- suscripción caducada ---- */
 await call("?res=push", { method: "POST", token: tEnt, body: { sub: sub("caducado") } });
 await A.avisarUsuarios(["recENT"], { titulo: "x", cuerpo: "y", tag: "t", clave: "prueba-caducada" });

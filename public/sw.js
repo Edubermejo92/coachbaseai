@@ -3,7 +3,7 @@
    llamadas a la API (Airtable, Coach AI, Stripe -todo bajo /.netlify/-)
    NUNCA se cachean: son datos en vivo, y servir una respuesta vieja de la
    plantilla o de una propuesta sería peor que no responder. */
-const CACHE = "cb-shell-v3";
+const CACHE = "cb-shell-v4";
 
 self.addEventListener("install", (e) => {
   self.skipWaiting();
@@ -22,6 +22,8 @@ self.addEventListener("fetch", (e) => {
   if (e.request.method !== "GET") return;
   if (url.origin !== self.location.origin) return;
   if (url.pathname.startsWith("/.netlify/")) return;
+  /* La comprobación de versión nueva de la app (App.jsx): siempre a la red. */
+  if (url.searchParams.has("cb-version")) return;
 
   /* Navegación (abrir la app): red primero, y si no hay red, el índice
      cacheado -para que al menos arranque y avise de que está offline. */

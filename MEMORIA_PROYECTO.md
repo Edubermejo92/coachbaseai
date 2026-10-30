@@ -135,6 +135,31 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   sigue valiendo para los siguientes partidos hasta que se desactiva (y entonces caen las
   suscripciones). En iPhone el aviso solo llega con la página añadida a la pantalla de inicio.
 
+## El vídeo del once seguía en WebM en el móvil de Edu (v2.90.3)
+- Edu (30/10, minutos después de publicar la v2.90.2) mandó el vídeo del once: WebM de
+  MediaRecorder (VP9+Opus, 540x676, sin duración). O el móvil seguía con la versión anterior
+  abierta, o algún codificador falló y se cayó en silencio a MediaRecorder. No se sabe cuál.
+- `videoMp4.js` ya no se fía de `isConfigSupported`: prueba de verdad cada codificador antes de
+  empezar. Vídeo: H.264 al tamaño justo → H.264 a múltiplos de 16 (redimensionado en un lienzo
+  aparte) → H.264 por software → VP9 dentro del MP4 (Chrome lo trae siempre). Cada uno se prueba
+  con un fotograma (sin error, saca algo, trae la cabecera avcC / el colorSpace del VP9). Con
+  `lienzo` en `configMp4` la prueba se hace ahí y quien llama sabe antes de empezar si tiene que
+  ir por MediaRecorder. Audio: se codifica entero con AAC (48k/44,1k) y si falla, no trae
+  cabecera o sale mudo (se decodifica el tramo central con AudioDecoder y se compara con el pico
+  de la música), Opus. Tiempos máximos en los flush (algún codificador se cuelga).
+- Último recurso (MediaRecorder): MP4 con Opus antes que WebM (`video/mp4;codecs=avc1,opus`,
+  Chrome 126+), nunca MP4 con AAC (salió mudo en Android). La pizarra 2D también.
+- Probado (Chromium de pruebas, sin H.264 ni AAC, sin el gancho `__cbMp4Codecs`): once en MP4
+  VP9+Opus con música (-17,7 dB de media); un navegador que "admite" H.264 y AAC pero fallan →
+  los prueba todos y sale VP9+Opus en MP4; un audio mudo → se detecta y sale el MP4 de
+  MediaRecorder. 2D y 3D en MP4.
+- Registro: cada vídeo dispara `cb:video` (ruta, codificadores, intentos fallidos) y la app lo
+  manda a `res=diag-video`, que solo hace `console.log("[diag-video]", …)` en la función (id de
+  cuenta, versión, navegador; sin datos personales). Se lee en los logs de Netlify.
+- Versión nueva: la app instalada se queda abierta días. Al volver a ella y cada 10 min pide
+  `/?cb-version=…` (el service worker no lo cachea, `cb-shell-v4`) y si el JS del índice es
+  otro, franja arriba «Hay una versión nueva de CoachBase · Actualizar» (recarga a mano, no sola).
+
 ## Vídeos en MP4 de verdad (v2.90.2)
 - Edu: "El formato de archivo de los vídeos con música no es compatible". Desde la v2.83.2 los
   vídeos con música salían en WebM (VP9+Opus) para que sonara la música en Android; WebM no lo
@@ -334,7 +359,7 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
 
 ## Pruebas
 - `npm test` = `pruebas/todas.mjs`: todas las pruebas en modo Airtable (fakeair) y en modo Supabase
-  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-10-28: 401 ✓ / 505 ✓, 0 fallos.
+  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-10-30: 401 ✓ / 507 ✓, 0 fallos.
 - Desde la sesión de Claude NO hay red hacia airtable.com ni supabase.co (proxy 403): la prueba
   real contra Supabase la hace la propia app en Netlify.
 

@@ -4,8 +4,8 @@ import { crearSincro } from "./sincro.js";
 import { iniciarSuperwall, identificarSuperwall, resetSuperwall, estadoSuscripcionSuperwall, atributosSuperwall, paginaSuperwall, mostrarPaywall } from "./superwall.js";
 import { construirJugada, tokensDeEstado, trazosJugada, pasosDeJugada, PIDE, CON_BALON, TIPOS_JUGADA } from "./jugada3d.js";
 import { JUGADAS_MODELO, textoModelo } from "./jugadasModelo.js";
-import { cargarLogo, pintarLogo, crearAudio, prepararMusica, grabarLienzo, leerOpcionMusica, guardarOpcionMusica, leerCancion, guardarCancion, MAX_CANCION } from "./videoMarca.js";
-import { configMp4, grabarMp4 } from "./videoMp4.js";
+import { cargarLogo, pintarLogo, crearAudio, prepararMusica, grabarLienzo, leerOpcionMusica, guardarOpcionMusica, leerCancion, guardarCancion, MAX_CANCION, tipoGrabacion, extensionDe } from "./videoMarca.js";
+import { configMp4, grabarMp4, avisarDiag } from "./videoMp4.js";
 
 /* ============================================================
    COACHBASE AI by EBLDigital — Prototipo v9
@@ -171,7 +171,7 @@ const DICT = {
     "mt.pushNoSupport": "Con la app cerrada no llegarán: este navegador no lo permite (en iPhone, añade la app a la pantalla de inicio y actívalos desde ahí).",
     "mt.pushNoServer": "Ahora mismo solo suenan con la app abierta o en segundo plano: el servidor de avisos no está disponible.",
     "p.noti": "Avisos en este móvil",
-    "p.notiHint": "Al cuerpo técnico: convocatoria sin mandar (jueves y viernes), el día de partido, parte de material olvidado y propuestas por aprobar. En Modo partido, además, el final de cada parte. Llegan aunque la app esté cerrada.", "p.notiHintClub": "A la dirección del club: cada mañana, las categorías que no mandaron el parte de material el día anterior, y las propuestas de cambio de las categorías sin entrenador principal. Los de convocatoria, partido y material le llegan al cuerpo técnico de cada categoría en sus propios móviles. Llegan aunque la app esté cerrada.", "p.pushOk": "Este móvil está apuntado en el servidor: te llegarán aunque cierres la app.", "p.pushTest": "Enviar aviso de prueba", "p.pushTestSent": "Enviado. Cierra la app o bloquea el móvil: en menos de un minuto te llegará «✅ Los avisos funcionan». Si no llega, revisa que Chrome tenga permitidas las notificaciones de esta web y que el ahorro de batería no lo bloquee.", "p.pushTestFail": "No se pudo enviar la prueba. Desactiva y vuelve a activar los avisos, y vuelve a probar.", "p.pushTestTitle": "✅ Los avisos funcionan", "p.pushTestBody": "Este móvil recibe los avisos de CoachBase aunque la app esté cerrada.",
+    "p.notiHint": "Al cuerpo técnico: convocatoria sin mandar (jueves y viernes), el día de partido, parte de material olvidado y propuestas por aprobar. En Modo partido, además, el final de cada parte. Llegan aunque la app esté cerrada.", "p.notiHintClub": "A la dirección del club: cada mañana, las categorías que no mandaron el parte de material el día anterior, y las propuestas de cambio de las categorías sin entrenador principal. Los de convocatoria, partido y material le llegan al cuerpo técnico de cada categoría en sus propios móviles. Llegan aunque la app esté cerrada.", "p.pushOk": "Este móvil está apuntado en el servidor: te llegarán aunque cierres la app.", "p.pushTest": "Enviar aviso de prueba", "p.pushTestSent": "Enviado. Cierra la app o bloquea el móvil: en menos de un minuto te llegará «✅ Los avisos funcionan». Si no llega, revisa que Chrome tenga permitidas las notificaciones de esta web y que el ahorro de batería no lo bloquee.", "p.pushTestFail": "No se pudo enviar la prueba. Desactiva y vuelve a activar los avisos, y vuelve a probar.", "p.pushTestTitle": "✅ Los avisos funcionan", "p.pushTestBody": "Este móvil recibe los avisos de CoachBase aunque la app esté cerrada.", "up.new": "Hay una versión nueva de CoachBase.", "up.reload": "Actualizar",
     "p.notiTestBody": "Te avisaremos de la convocatoria, el día de partido, el material y las propuestas.",
     "mt.notiBlocked": "Has bloqueado las notificaciones para este sitio. Actívalas en los ajustes del navegador y vuelve aquí.",
     "mt.notiTestTitle": "Avisos activados",
@@ -781,7 +781,7 @@ const DICT = {
     "mt.pushNoSupport": "They won't arrive with the app closed: this browser doesn't allow it (on iPhone, add the app to your home screen and turn them on from there).",
     "mt.pushNoServer": "For now they only go off with the app open or in the background: the alerts server isn't available.",
     "p.noti": "Alerts on this phone",
-    "p.notiHint": "For the coaching staff: squad call not sent (Thursday and Friday), match day, missing kit report and proposals to approve. In Match mode, also the end of each half. They arrive even with the app closed.", "p.notiHintClub": "For club management: every morning, the teams that didn't send the equipment report the day before, and change proposals from teams without a head coach. Squad call, match day and equipment alerts go to each team's coaching staff on their own phones. They arrive even with the app closed.", "p.pushOk": "This phone is registered on the server: alerts will reach you even if you close the app.", "p.pushTest": "Send a test alert", "p.pushTestSent": "Sent. Close the app or lock the phone: within a minute you'll get «✅ Alerts are working». If it doesn't arrive, check that Chrome allows notifications for this site and that battery saver isn't blocking it.", "p.pushTestFail": "Couldn't send the test. Turn alerts off and on again, then try once more.", "p.pushTestTitle": "✅ Alerts are working", "p.pushTestBody": "This phone receives CoachBase alerts even with the app closed.",
+    "p.notiHint": "For the coaching staff: squad call not sent (Thursday and Friday), match day, missing kit report and proposals to approve. In Match mode, also the end of each half. They arrive even with the app closed.", "p.notiHintClub": "For club management: every morning, the teams that didn't send the equipment report the day before, and change proposals from teams without a head coach. Squad call, match day and equipment alerts go to each team's coaching staff on their own phones. They arrive even with the app closed.", "p.pushOk": "This phone is registered on the server: alerts will reach you even if you close the app.", "p.pushTest": "Send a test alert", "p.pushTestSent": "Sent. Close the app or lock the phone: within a minute you'll get «✅ Alerts are working». If it doesn't arrive, check that Chrome allows notifications for this site and that battery saver isn't blocking it.", "p.pushTestFail": "Couldn't send the test. Turn alerts off and on again, then try once more.", "p.pushTestTitle": "✅ Alerts are working", "p.pushTestBody": "This phone receives CoachBase alerts even with the app closed.", "up.new": "A new version of CoachBase is available.", "up.reload": "Update",
     "p.notiTestBody": "We'll let you know about the squad call, match day, kit and proposals.",
     "mt.notiBlocked": "You've blocked notifications for this site. Turn them on in your browser settings and come back.",
     "mt.notiTestTitle": "Alerts on",
@@ -1403,7 +1403,7 @@ const DICT = {
     "mt.pushNoSupport": "Application fermée, elles n'arriveront pas : ce navigateur ne le permet pas (sur iPhone, ajoutez l'appli à l'écran d'accueil et activez-les depuis là).",
     "mt.pushNoServer": "Pour l'instant elles ne sonnent qu'avec l'appli ouverte ou en arrière-plan : le serveur d'alertes n'est pas disponible.",
     "p.noti": "Alertes sur ce téléphone",
-    "p.notiHint": "Pour le staff : convocation non envoyée (jeudi et vendredi), jour de match, rapport de matériel oublié et propositions à valider. En mode match, aussi la fin de chaque période. Elles arrivent même application fermée.", "p.notiHintClub": "Pour la direction du club : chaque matin, les équipes qui n'ont pas envoyé le rapport de matériel la veille, et les propositions de changement des équipes sans entraîneur principal. Les alertes de convocation, de match et de matériel vont au staff de chaque équipe, sur leurs propres téléphones. Elles arrivent même app fermée.", "p.pushOk": "Ce téléphone est enregistré sur le serveur : les alertes arriveront même app fermée.", "p.pushTest": "Envoyer une alerte de test", "p.pushTestSent": "Envoyée. Fermez l'app ou verrouillez le téléphone : dans moins d'une minute vous recevrez « ✅ Les alertes fonctionnent ». Sinon, vérifiez que Chrome autorise les notifications de ce site et que l'économiseur de batterie ne les bloque pas.", "p.pushTestFail": "Impossible d'envoyer le test. Désactivez puis réactivez les alertes et réessayez.", "p.pushTestTitle": "✅ Les alertes fonctionnent", "p.pushTestBody": "Ce téléphone reçoit les alertes CoachBase même app fermée.",
+    "p.notiHint": "Pour le staff : convocation non envoyée (jeudi et vendredi), jour de match, rapport de matériel oublié et propositions à valider. En mode match, aussi la fin de chaque période. Elles arrivent même application fermée.", "p.notiHintClub": "Pour la direction du club : chaque matin, les équipes qui n'ont pas envoyé le rapport de matériel la veille, et les propositions de changement des équipes sans entraîneur principal. Les alertes de convocation, de match et de matériel vont au staff de chaque équipe, sur leurs propres téléphones. Elles arrivent même app fermée.", "p.pushOk": "Ce téléphone est enregistré sur le serveur : les alertes arriveront même app fermée.", "p.pushTest": "Envoyer une alerte de test", "p.pushTestSent": "Envoyée. Fermez l'app ou verrouillez le téléphone : dans moins d'une minute vous recevrez « ✅ Les alertes fonctionnent ». Sinon, vérifiez que Chrome autorise les notifications de ce site et que l'économiseur de batterie ne les bloque pas.", "p.pushTestFail": "Impossible d'envoyer le test. Désactivez puis réactivez les alertes et réessayez.", "p.pushTestTitle": "✅ Les alertes fonctionnent", "p.pushTestBody": "Ce téléphone reçoit les alertes CoachBase même app fermée.", "up.new": "Une nouvelle version de CoachBase est disponible.", "up.reload": "Mettre à jour",
     "p.notiTestBody": "Nous vous préviendrons pour la convocation, le jour de match, le matériel et les propositions.",
     "mt.notiBlocked": "Vous avez bloqué les notifications pour ce site. Activez-les dans les réglages du navigateur et revenez.",
     "mt.notiTestTitle": "Alertes activées",
@@ -2105,7 +2105,7 @@ const DICT = {
     "mt.pushNoSupport": "Bei geschlossener App kommen sie nicht an: Dieser Browser erlaubt es nicht (auf dem iPhone die App zum Home-Bildschirm hinzufügen und dort aktivieren).",
     "mt.pushNoServer": "Im Moment kommen sie nur bei offener App oder im Hintergrund: Der Benachrichtigungsserver ist nicht verfügbar.",
     "p.noti": "Benachrichtigungen auf diesem Handy",
-    "p.notiHint": "Für das Trainerteam: Nominierung nicht verschickt (Donnerstag und Freitag), Spieltag, fehlender Materialbericht und offene Vorschläge. Im Spielmodus außerdem das Ende jeder Halbzeit. Sie kommen auch bei geschlossener App an.", "p.notiHintClub": "Für die Vereinsleitung: jeden Morgen die Mannschaften, die am Vortag keinen Materialbericht geschickt haben, und Änderungsvorschläge von Mannschaften ohne Cheftrainer. Hinweise zu Nominierung, Spieltag und Material gehen an das Trainerteam jeder Mannschaft auf deren eigene Handys. Sie kommen auch bei geschlossener App an.", "p.pushOk": "Dieses Handy ist auf dem Server angemeldet: Hinweise kommen auch an, wenn du die App schließt.", "p.pushTest": "Testhinweis senden", "p.pushTestSent": "Gesendet. Schließe die App oder sperre das Handy: In weniger als einer Minute kommt „✅ Hinweise funktionieren“. Falls nicht, prüfe, ob Chrome Benachrichtigungen für diese Seite erlaubt und der Energiesparmodus sie nicht blockiert.", "p.pushTestFail": "Der Test konnte nicht gesendet werden. Schalte die Hinweise aus und wieder ein und versuche es erneut.", "p.pushTestTitle": "✅ Hinweise funktionieren", "p.pushTestBody": "Dieses Handy bekommt CoachBase-Hinweise auch bei geschlossener App.",
+    "p.notiHint": "Für das Trainerteam: Nominierung nicht verschickt (Donnerstag und Freitag), Spieltag, fehlender Materialbericht und offene Vorschläge. Im Spielmodus außerdem das Ende jeder Halbzeit. Sie kommen auch bei geschlossener App an.", "p.notiHintClub": "Für die Vereinsleitung: jeden Morgen die Mannschaften, die am Vortag keinen Materialbericht geschickt haben, und Änderungsvorschläge von Mannschaften ohne Cheftrainer. Hinweise zu Nominierung, Spieltag und Material gehen an das Trainerteam jeder Mannschaft auf deren eigene Handys. Sie kommen auch bei geschlossener App an.", "p.pushOk": "Dieses Handy ist auf dem Server angemeldet: Hinweise kommen auch an, wenn du die App schließt.", "p.pushTest": "Testhinweis senden", "p.pushTestSent": "Gesendet. Schließe die App oder sperre das Handy: In weniger als einer Minute kommt „✅ Hinweise funktionieren“. Falls nicht, prüfe, ob Chrome Benachrichtigungen für diese Seite erlaubt und der Energiesparmodus sie nicht blockiert.", "p.pushTestFail": "Der Test konnte nicht gesendet werden. Schalte die Hinweise aus und wieder ein und versuche es erneut.", "p.pushTestTitle": "✅ Hinweise funktionieren", "p.pushTestBody": "Dieses Handy bekommt CoachBase-Hinweise auch bei geschlossener App.", "up.new": "Es gibt eine neue Version von CoachBase.", "up.reload": "Aktualisieren",
     "p.notiTestBody": "Wir benachrichtigen dich zu Nominierung, Spieltag, Material und Vorschlägen.",
     "mt.notiBlocked": "Du hast Benachrichtigungen für diese Seite blockiert. Schalte sie in den Browser-Einstellungen ein und komm zurück.",
     "mt.notiTestTitle": "Hinweise an",
@@ -2806,7 +2806,7 @@ const DICT = {
     "mt.pushNoSupport": "Com a app fechada não vão chegar: este navegador não permite (no iPhone, adicione a app ao ecrã principal e ative-os a partir daí).",
     "mt.pushNoServer": "Por agora só tocam com a app aberta ou em segundo plano: o servidor de avisos não está disponível.",
     "p.noti": "Avisos neste telemóvel",
-    "p.notiHint": "Para a equipa técnica: convocatória por enviar (quinta e sexta), dia de jogo, relatório de material esquecido e propostas por aprovar. No Modo jogo, também o fim de cada parte. Chegam mesmo com a app fechada.", "p.notiHintClub": "Para a direção do clube: todas as manhãs, as equipas que não enviaram o relatório de material no dia anterior, e as propostas de alteração das equipas sem treinador principal. Os avisos de convocatória, jogo e material chegam à equipa técnica de cada equipa nos seus próprios telemóveis. Chegam mesmo com a app fechada.", "p.pushOk": "Este telemóvel está registado no servidor: os avisos chegam mesmo que feches a app.", "p.pushTest": "Enviar aviso de teste", "p.pushTestSent": "Enviado. Fecha a app ou bloqueia o telemóvel: em menos de um minuto vais receber «✅ Os avisos funcionam». Se não chegar, verifica se o Chrome permite notificações deste site e se a poupança de bateria não o bloqueia.", "p.pushTestFail": "Não foi possível enviar o teste. Desativa e volta a ativar os avisos e tenta outra vez.", "p.pushTestTitle": "✅ Os avisos funcionam", "p.pushTestBody": "Este telemóvel recebe os avisos do CoachBase mesmo com a app fechada.",
+    "p.notiHint": "Para a equipa técnica: convocatória por enviar (quinta e sexta), dia de jogo, relatório de material esquecido e propostas por aprovar. No Modo jogo, também o fim de cada parte. Chegam mesmo com a app fechada.", "p.notiHintClub": "Para a direção do clube: todas as manhãs, as equipas que não enviaram o relatório de material no dia anterior, e as propostas de alteração das equipas sem treinador principal. Os avisos de convocatória, jogo e material chegam à equipa técnica de cada equipa nos seus próprios telemóveis. Chegam mesmo com a app fechada.", "p.pushOk": "Este telemóvel está registado no servidor: os avisos chegam mesmo que feches a app.", "p.pushTest": "Enviar aviso de teste", "p.pushTestSent": "Enviado. Fecha a app ou bloqueia o telemóvel: em menos de um minuto vais receber «✅ Os avisos funcionam». Se não chegar, verifica se o Chrome permite notificações deste site e se a poupança de bateria não o bloqueia.", "p.pushTestFail": "Não foi possível enviar o teste. Desativa e volta a ativar os avisos e tenta outra vez.", "p.pushTestTitle": "✅ Os avisos funcionam", "p.pushTestBody": "Este telemóvel recebe os avisos do CoachBase mesmo com a app fechada.", "up.new": "Há uma nova versão do CoachBase.", "up.reload": "Atualizar",
     "p.notiTestBody": "Vamos avisar-te da convocatória, do dia de jogo, do material e das propostas.",
     "mt.notiBlocked": "Bloqueaste as notificações para este site. Ativa-as nas definições do navegador e volta aqui.",
     "mt.notiTestTitle": "Avisos ativados",
@@ -7519,6 +7519,7 @@ function Pizarra3D({ AC, lang, jugada, steps = [], stepIdx = -1, nombres = {}, t
   /* Graba un stream de vídeo mientras dura `guion`, y lo descarga al acabar. */
   const grabarStream = async (stream, nombre, guion) => {
     const tipo = TIPOS_VIDEO.find((m) => MediaRecorder.isTypeSupported?.(m)) || "";
+    avisarDiag({ ruta: "mediarecorder", tipo, donde: "pizarra 3D" });
     let rec;
     try { rec = new MediaRecorder(stream, tipo ? { mimeType: tipo, videoBitsPerSecond: 6000000 } : undefined); }
     catch { window.alert(t("w.noVideoSupport")); return; }
@@ -7540,7 +7541,7 @@ function Pizarra3D({ AC, lang, jugada, steps = [], stepIdx = -1, nombres = {}, t
   /* MP4 de verdad (H.264, videoMp4.js) si el navegador puede; si no, como
      antes. Se para igual: cortando el guion (cortar / cortarJ). */
   const grabarVideo = async (lienzo, nombre, guion) => {
-    const cfg = await configMp4({ ancho: lienzo.width, alto: lienzo.height, conAudio: false }).catch(() => null);
+    const cfg = await configMp4({ ancho: lienzo.width, alto: lienzo.height, conAudio: false, lienzo }).catch(() => null);
     if (!cfg) { await grabarStream(lienzo.captureStream(30), nombre, guion); return; }
     setGrabando(true);
     try {
@@ -8116,7 +8117,7 @@ function Whiteboard({ AC, lang, teamId, teamRec, isF7, pendingExId, onConsumePen
     /* MP4 de verdad (H.264, videoMp4.js) si el navegador puede: el WebM de
        MediaRecorder no lo aceptan WhatsApp ni muchas galerías. Se para igual
        que antes, con recorder.stop(). */
-    const cfg = await configMp4({ ancho: canvas.width, alto: canvas.height, conAudio: false }).catch(() => null);
+    const cfg = await configMp4({ ancho: canvas.width, alto: canvas.height, conAudio: false, lienzo: canvas }).catch(() => null);
     if (cfg) {
       let acabar = () => {};
       const fin = new Promise((res) => { acabar = res; });
@@ -8127,10 +8128,17 @@ function Whiteboard({ AC, lang, teamId, teamRec, isF7, pendingExId, onConsumePen
         window.alert(t("w.noVideoSupport"));
         return;
       }
-      const rec = new MediaRecorder(canvas.captureStream(24), { mimeType: "video/webm" });
+      /* Sin MP4 a mano, el MP4 de MediaRecorder si lo tiene (Chrome 126+);
+         WebM solo como último recurso. */
+      const tipo = tipoGrabacion(false);
+      avisarDiag({ ruta: "mediarecorder", tipo, donde: "pizarra 2D" });
+      const rec = new MediaRecorder(canvas.captureStream(24), tipo ? { mimeType: tipo } : undefined);
       recRef.current.chunks = [];
       rec.ondataavailable = (e) => { if (e.data.size) recRef.current.chunks.push(e.data); };
-      rec.onstop = () => bajar(URL.createObjectURL(new Blob(recRef.current.chunks, { type: "video/webm" })), "webm");
+      rec.onstop = () => {
+        const mime = (rec.mimeType || tipo || "video/webm").split(";")[0];
+        bajar(URL.createObjectURL(new Blob(recRef.current.chunks, { type: mime })), extensionDe(mime));
+      };
       recRef.current.recorder = rec;
       rec.start();
     }
@@ -14681,6 +14689,46 @@ export default function App() {
   /* Card, Dot y Avatar viven fuera de este componente (justo encima de
      App). Ver el comentario de allí: definirlos aquí dentro rompía la
      escritura en todos los formularios. */
+
+  /* ================= VERSIÓN NUEVA =================
+     La app se queda abierta días en el móvil (sobre todo instalada), y un
+     arreglo publicado no le llega hasta que se recarga: Edu siguió sacando
+     el vídeo del once en WebM minutos después de publicar el MP4 (30 oct
+     2026). Al volver a la app, y cada 10 minutos, se mira si el índice de la
+     web apunta a otro JS que el que está corriendo; si es así, se ofrece
+     actualizar (sin recargar por su cuenta: podría perder lo que se está
+     escribiendo). `cb-version` hace que el service worker no lo sirva de la
+     caché (public/sw.js). */
+  const [hayVersion, setHayVersion] = useState(false);
+  useEffect(() => {
+    const mio = document.querySelector('script[type="module"][src]')?.getAttribute("src");
+    if (!mio || !mio.includes("/assets/")) return undefined;
+    let parado = false;
+    const mirar = async () => {
+      if (parado || document.visibilityState !== "visible") return;
+      try {
+        const html = await (await fetch(`/?cb-version=${Date.now()}`, { cache: "no-store" })).text();
+        const otro = html.match(/<script[^>]*type="module"[^>]*src="([^"]+)"/)?.[1];
+        if (otro && otro !== mio && otro.includes("/assets/")) setHayVersion(true);
+      } catch { /* sin red: ya se mirará */ }
+    };
+    const iv = setInterval(mirar, 10 * 60 * 1000);
+    document.addEventListener("visibilitychange", mirar);
+    return () => { parado = true; clearInterval(iv); document.removeEventListener("visibilitychange", mirar); };
+  }, []);
+
+  /* Cómo ha salido cada vídeo (videoMp4.js → "cb:video"): qué codificadores
+     tiene el móvil y por dónde ha grabado. Va al registro del servidor, sin
+     datos de nadie, para poder arreglar un móvil que no saca MP4 sin tenerlo
+     en la mano. */
+  useEffect(() => {
+    if (!session?.email || session.email === "demo") return undefined;
+    const enviar = (e) => {
+      cbFetch(`${AIR}?res=diag-video`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ detalle: e.detail, version: APP_VERSION }) }).catch(() => {});
+    };
+    window.addEventListener("cb:video", enviar);
+    return () => window.removeEventListener("cb:video", enviar);
+  }, [session?.email]);
 
   /* ================= MI CUENTA ================= */
   const [accountOpen, setAccountOpen] = useState(false);
@@ -25931,6 +25979,14 @@ export default function App() {
           los dos, de modo que el menú lateral queda debajo de ambos. */}
       <div ref={headerRef} className="sticky top-0 z-10">
       {!esDemo && <AvisoCorte />}
+      {hayVersion && (
+        <div className="flex items-center justify-center gap-3 px-4 py-2 text-sm" style={{ background: AC, color: C.sobre }}>
+          <span>{t("up.new")}</span>
+          <button onClick={() => window.location.reload()} className="px-3 py-1 rounded-lg font-display uppercase tracking-wide text-xs font-semibold border" style={{ borderColor: C.sobre, color: C.sobre }}>
+            {t("up.reload")}
+          </button>
+        </div>
+      )}
       {/* Tres zonas: marca a la izquierda, equipo en el centro, rol a la
           derecha. En pantalla ancha es una rejilla de tres columnas para que
           el centro quede centrado de verdad y no dependa de lo largos que

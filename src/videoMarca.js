@@ -7,7 +7,7 @@
    dispositivo (IndexedDB) y nunca se sube: la app no reparte música de
    terceros. También puede quitarla. */
 
-import { configMp4, grabarMp4 } from "./videoMp4.js";
+import { configMp4, grabarMp4, avisarDiag } from "./videoMp4.js";
 
 const LOGO_URL = "/marca/coachbase-ebl.png";
 const MUSICA_URL = "/musica/coachbase-intro.mp3";
@@ -226,13 +226,13 @@ export const prepararMusica = async (ac, opcion) => {
 };
 
 /* ---------- formato del vídeo (si no se puede el MP4 de videoMp4.js) ---------- */
-/* WebM (VP9/VP8 + Opus) primero: el Opus lo codifica el propio Chrome y es
-   fiable. Con MP4, Chrome en Android usa el codificador AAC del teléfono, y
-   ahí el vídeo salió MUDO en la galería de Edu (Android, octubre 2026) aunque
-   el navegador decía que lo admitía. El MP4 queda para Safari, que no graba
-   WebM. */
-const CON_AUDIO = ["video/webm;codecs=vp9,opus", "video/webm;codecs=vp8,opus", "video/webm", "video/mp4;codecs=avc1,mp4a.40.2", "video/mp4"];
-const SIN_AUDIO = ["video/webm;codecs=vp9", "video/webm;codecs=vp8", "video/webm", "video/mp4;codecs=avc1", "video/mp4"];
+/* Último recurso, y aun así MP4 antes que WebM: un WebM no se puede mandar
+   por WhatsApp (Edu, 30 oct 2026). Chrome graba MP4 con MediaRecorder desde
+   la versión 126; con Opus, no con AAC: con AAC el vídeo salió MUDO en la
+   galería de Edu (Android, octubre 2026) aunque el navegador decía que lo
+   admitía. WebM solo si no queda otra; el MP4 a secas es para Safari. */
+const CON_AUDIO = ["video/mp4;codecs=avc1,opus", "video/mp4;codecs=vp9,opus", "video/webm;codecs=vp9,opus", "video/webm;codecs=vp8,opus", "video/webm", "video/mp4"];
+const SIN_AUDIO = ["video/mp4;codecs=avc1", "video/mp4;codecs=vp9", "video/webm;codecs=vp9", "video/webm;codecs=vp8", "video/webm", "video/mp4"];
 export const tipoGrabacion = (conAudio) =>
   (conAudio ? CON_AUDIO : SIN_AUDIO).find((m) => typeof MediaRecorder !== "undefined" && MediaRecorder.isTypeSupported?.(m)) || "";
 export const extensionDe = (tipo) => (String(tipo).startsWith("video/mp4") ? "mp4" : "webm");
@@ -243,11 +243,11 @@ export const extensionDe = (tipo) => (String(tipo).startsWith("video/mp4") ? "mp
    mundo; si el navegador no tiene esos codificadores, MediaRecorder. */
 export const grabarLienzo = async (canvas, musica, duracion, animar) => {
   let cfg = null;
-  try { cfg = await configMp4({ ancho: canvas.width, alto: canvas.height, conAudio: !!musica, sampleRate: musica?.buffer?.sampleRate }); }
+  try { cfg = await configMp4({ ancho: canvas.width, alto: canvas.height, conAudio: !!musica, sampleRate: musica?.buffer?.sampleRate, lienzo: canvas }); }
   catch { cfg = null; }
   if (cfg) {
     try {
-      const audio = musica ? await musica.renderizar(duracion, cfg.audio.sampleRate) : null;
+      const audio = musica ? (sr) => musica.renderizar(duracion, sr) : null;
       const r = await grabarMp4(canvas, audio, animar, cfg);
       musica?.parar();
       return r;
@@ -256,6 +256,7 @@ export const grabarLienzo = async (canvas, musica, duracion, animar) => {
   const stream = canvas.captureStream(30);
   if (musica?.pista) stream.addTrack(musica.pista);
   const tipo = tipoGrabacion(!!musica?.pista);
+  avisarDiag({ ruta: "mediarecorder", tipo });
   const opciones = { videoBitsPerSecond: 4_000_000, ...(musica?.pista ? { audioBitsPerSecond: 128_000 } : {}) };
   let rec;
   try { rec = new MediaRecorder(stream, tipo ? { mimeType: tipo, ...opciones } : opciones); }

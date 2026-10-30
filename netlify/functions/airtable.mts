@@ -1684,6 +1684,23 @@ const atender = async (req: Request) => {
       });
     }
 
+    /* ================= CÓMO SALEN LOS VÍDEOS =================
+       ?res=diag-video  POST {detalle, version}: qué codificadores tiene el
+       móvil y por dónde ha grabado el vídeo (videoMp4.js). Solo se escribe
+       en el registro de la función, para arreglar a distancia un móvil que
+       no saca MP4. Nada de datos personales: el id de la cuenta y el
+       navegador. */
+    if (res === "diag-video" && req.method === "POST") {
+      if (!sesion?.id) return j({ ok: false, reason: "no_autorizado" }, 401);
+      const b = await req.json().catch(() => ({}));
+      console.log("[diag-video]", JSON.stringify({
+        u: String(sesion.id), v: String(b.version || "").slice(0, 20),
+        ua: String(req.headers.get("user-agent") || "").slice(0, 200),
+        d: b.detalle,
+      }).slice(0, 2500));
+      return j({ ok: true });
+    }
+
     /* ================= AVISOS CON LA APP CERRADA =================
        Ver netlify/lib/avisos.mts. Solo con los datos en Supabase: es donde
        se guarda qué móviles han aceptado avisos.
