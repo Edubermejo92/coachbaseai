@@ -169,9 +169,17 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   y sustituye `fetch` para afirmar que un evento de TestudoTracker sale con 200 y **cero**
   llamadas, que uno de CoachBase sí se guarda, y los casos de firma (otro secreto, dos `v1` con
   la buena primero, `v0` de acompañante, firma vieja, secreto de ejemplo).
-- **Pendiente de Edu**: poner en Netlify las dos claves de verdad (Stripe → Desarrolladores →
-  Webhooks → el endpoint de CoachBase → "Revelar" el signing secret; y la clave secreta de la
-  API). Hasta entonces el webhook sigue devolviendo 400 y Stripe apaga el endpoint el 11 nov.
+- **Secreto del webhook, resuelto (5 nov, 22:10)**: el signing secret de un endpoint solo lo
+  enseña Stripe al CREARLO (`GET /v1/webhook_endpoints/{id}` no lo devuelve), así que se creó uno
+  nuevo por API —`we_1UYYr0HuBVT1cFkvhtIXPhC6`, misma URL y mismos 4 eventos—, su secreto se
+  guardó en `STRIPE_WEBHOOK_SECRET` de Netlify (contextos dev/branch-deploy/deploy-preview/
+  production; `dev-server` se queda con el texto viejo, no lo admite la API) y el antiguo
+  `we_1TxbaJ…` se dejó **desactivado** (no hay operación de borrado en el MCP de Stripe). Con eso
+  los reintentos y el aviso del 11 nov se acaban.
+- **Sigue pendiente de Edu**: `STRIPE_SECRET_KEY`. Stripe NO tiene API para crear ni leer una
+  clave secreta —solo el panel—, así que hay que copiarla a mano en Netlify. Sin ella el webhook
+  acepta y descarta bien lo de otras apps, pero una compra de CoachBase daría 500 (el handler
+  llama a `customers/…` y a `line_items`), y el checkout tampoco se puede crear.
 
 ## Guía de la app para los nuevos (v2.91.0)
 - Edu: "Crea un tutorial para los nuevos donde indiques funcionalidades y primeros pasos como
