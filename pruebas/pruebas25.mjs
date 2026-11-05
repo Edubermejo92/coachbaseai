@@ -26,7 +26,7 @@ execSync(`npx esbuild ${FN} --bundle --format=esm --platform=node --target=node2
 const SECRETO = "whsec_pruebaDeSecretoDeFirma0123456789";
 const ENV = {
   STRIPE_WEBHOOK_SECRET: SECRETO,
-  STRIPE_SECRET_KEY: "sk_live_deMentira",
+  STRIPE_SECRET_KEY: "clave-de-mentira",
   AIRTABLE_TOKEN: "patDeMentira",
   AIRTABLE_BASE: "appDVtUWdtfzkV1sA",
   APP_URL: "https://coachbase-ai.netlify.app",
@@ -152,9 +152,14 @@ dice("el v0 que acompaña a la firma no estorba", r.status === 200);
 r = await avisar(subNuestra, { t: Math.floor(Date.now() / 1000) - 3600 });
 dice("una firma de hace una hora se rechaza (no se puede repetir una petición vieja)", r.status === 400);
 
-/* ---- el fallo de Edu: el secreto de ejemplo sin sustituir ---- */
-ENV.STRIPE_WEBHOOK_SECRET = "<tu_signing_secret_del_webhook>";
-r = await avisar(subNuestra, { secreto: "<tu_signing_secret_del_webhook>" });
+/* ---- el fallo de Edu: en Netlify seguía el texto de ejemplo de las
+       instrucciones en lugar del secreto, así que no empezaba por whsec_.
+       Aquí va otro texto cualquiera a propósito: escribir el de verdad haría
+       saltar el escáner de secretos de Netlify, que compara los archivos con
+       los valores de las variables de entorno y tumba el despliegue. ---- */
+const SIN_SUSTITUIR = "pon-aqui-el-signing-secret";
+ENV.STRIPE_WEBHOOK_SECRET = SIN_SUSTITUIR;
+r = await avisar(subNuestra, { secreto: SIN_SUSTITUIR });
 dice("con el texto de ejemplo en Netlify se rechaza y el registro dice por qué",
   r.status === 400 && ultimoRegistro().includes("STRIPE_WEBHOOK_SECRET sin configurar"), ultimoRegistro());
 ENV.STRIPE_WEBHOOK_SECRET = SECRETO;
