@@ -190,19 +190,63 @@ async function guardarSuscripcion(email: string, campos: Record<string, unknown>
 }
 
 /* Verificación de la firma del webhook (HMAC-SHA256, sin SDK) */
+const VENTANA_FIRMA = 15 * 60; // segundos
+
 async function firmaValida(payload: string, header: string, secret: string) {
-  const parts = Object.fromEntries(header.split(",").map((p) => p.split("=") as [string, string]));
-  const t = parts["t"], v1 = parts["v1"];
-  if (!t || !v1) return false;
+  /* Stripe manda t=… y uno o VARIOS v1=… (mientras se rota el secreto viajan
+     los dos, el viejo y el nuevo). Antes el header se leía con
+     Object.fromEntries, que se queda solo con el ÚLTIMO v1: si el bueno
+     venía el primero, una firma válida se daba por mala. */
+  let t = "";
+  const firmas: string[] = [];
+  for (const parte of header.split(",")) {
+    const i = parte.indexOf("=");
+    if (i < 1) continue;
+    const clave = parte.slice(0, i).trim(), valor = parte.slice(i + 1).trim();
+    if (clave === "t") t = valor;
+    else if (clave === "v1") firmas.push(valor);
+  }
+  if (!t || !firmas.length) return false;
+  /* La hora iba en la firma pero no se miraba: quien capturase una petición
+     válida podía repetirla para siempre. Stripe firma de nuevo cada
+     reintento, así que la ventana no corta ninguna entrega legítima. */
+  const edad = Math.abs(Date.now() / 1000 - Number(t));
+  if (!Number.isFinite(edad) || edad > VENTANA_FIRMA) return false;
   const key = await crypto.subtle.importKey("raw", new TextEncoder().encode(secret),
     { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
   const mac = await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(`${t}.${payload}`));
   const hex = [...new Uint8Array(mac)].map((b) => b.toString(16).padStart(2, "0")).join("");
-  if (hex.length !== v1.length) return false;
-  let diff = 0;
-  for (let i = 0; i < hex.length; i++) diff |= hex.charCodeAt(i) ^ v1.charCodeAt(i);
-  return diff === 0;
+  return firmas.some((v1) => {
+    if (hex.length !== v1.length) return false;
+    let diff = 0;
+    for (let i = 0; i < hex.length; i++) diff |= hex.charCodeAt(i) ^ v1.charCodeAt(i);
+    return diff === 0;
+  });
 }
+
+/* ¿Este evento es de CoachBase?
+   La cuenta de Stripe (EBLDigital) cobra para varias apps -CoachBase y
+   TestudoTracker-, y en Stripe un endpoint recibe TODOS los eventos de la
+   cuenta: no se pueden filtrar por app. Así que desde que TestudoTracker
+   empezó a cobrar (2 nov 2026), sus suscripciones llegaban aquí; sin este
+   filtro, un cliente de la app de tortugas se habría guardado en la tabla
+   Suscripciones como un PRO de CoachBase.
+   Primero lo que dice el propio evento (metadata.app, que pone el checkout
+   de abajo) y, si no lo lleva -una suscripción creada a mano en el panel-,
+   el precio: si no es uno de los nuestros, no es nuestro. */
+const APP_ID = "coachbase-ai";
+const esNuestro = (o: any, priceId?: string) => {
+  const app = o?.metadata?.app;
+  if (app) return String(app) === APP_ID;
+  return !!priceId && [...Object.values(PLANES), PRICE()].includes(priceId);
+};
+/* De otra app: 200 y a otra cosa. Con un 400 o un 500 Stripe lo reintenta
+   durante días y acaba avisando de que va a apagar el endpoint -que es el
+   correo que llegó el 5 de noviembre-. */
+const ignorado = (ev: any) => {
+  console.log(`[stripe webhook] ${ev.type} de otra app (${ev?.data?.object?.metadata?.app || "sin metadata"}): ignorado`);
+  return j({ received: true, ignorado: true });
+};
 
 const atender = async (req: Request) => {
   instalarSupabase();
@@ -232,15 +276,29 @@ const atender = async (req: Request) => {
 
   /* ---------- WEBHOOK ---------- */
   if (action === "webhook") {
-    const secret = Netlify.env.get("STRIPE_WEBHOOK_SECRET");
+    const secret = Netlify.env.get("STRIPE_WEBHOOK_SECRET") || "";
     const raw = await req.text();
     const sig = req.headers.get("stripe-signature") || "";
-    if (!secret || !(await firmaValida(raw, sig, secret))) return j({ error: "firma no válida" }, 400);
+    /* Los secretos de Stripe empiezan por whsec_. Si no, en Netlify sigue el
+       texto de ejemplo de las instrucciones de arriba sin sustituir, que es
+       justo lo que pasaba: TODOS los avisos se rechazaban con un 400 y en el
+       registro no quedaba por qué. Se dice en claro, que es barato de leer. */
+    if (!secret.startsWith("whsec_")) {
+      console.error("[stripe webhook] STRIPE_WEBHOOK_SECRET sin configurar en Netlify (no empieza por whsec_)");
+      return j({ error: "webhook sin configurar" }, 400);
+    }
+    if (!(await firmaValida(raw, sig, secret))) {
+      console.error("[stripe webhook] firma no válida (¿secreto de otro endpoint, o reloj desfasado?)");
+      return j({ error: "firma no válida" }, 400);
+    }
 
     const ev = JSON.parse(raw);
     const o = ev.data?.object || {};
     try {
       if (ev.type === "checkout.session.completed") {
+        /* Si el propio evento ya dice que es de otra app, ni se le pregunta
+           el precio a Stripe. */
+        if (o.metadata?.app && String(o.metadata.app) !== APP_ID) return ignorado(ev);
         /* El precio real de la compra. El objeto de la sesión no lo trae, así
            que hay que pedir sus line_items. Antes se escribía PRICE() a secas
            —el mensual por defecto—, así que quien compraba Temporada o
@@ -256,6 +314,7 @@ const atender = async (req: Request) => {
           const li = await stripe(`checkout/sessions/${o.id}/line_items?limit=1`, undefined, "GET");
           priceId = li.data?.[0]?.price?.id;
         } catch { /* se omite el campo */ }
+        if (!esNuestro(o, priceId)) return ignorado(ev);
         await guardarSuscripcion(o.customer_details?.email || o.customer_email, {
           [S.customer]: o.customer, [S.sub]: o.subscription,
           ...(priceId ? { [S.price]: priceId } : {}),
@@ -264,8 +323,11 @@ const atender = async (req: Request) => {
         });
       }
       if (ev.type === "customer.subscription.created" || ev.type === "customer.subscription.updated") {
-        const cust = await stripe(`customers/${o.customer}`, undefined, "GET");
         const priceId = o.items?.data?.[0]?.price?.id;
+        /* Antes de pedirle nada a Stripe: las suscripciones de otra app se
+           reconocen con lo que ya trae el evento. */
+        if (!esNuestro(o, priceId)) return ignorado(ev);
+        const cust = await stripe(`customers/${o.customer}`, undefined, "GET");
         const estado = ESTADOS[o.status] || "Ninguna";
         await guardarSuscripcion(cust.email, {
           [S.customer]: o.customer, [S.sub]: o.id,
@@ -281,8 +343,9 @@ const atender = async (req: Request) => {
         await actualizarLimiteClub(cust.email, priceId, CON_PRO.includes(estado));
       }
       if (ev.type === "customer.subscription.deleted") {
-        const cust = await stripe(`customers/${o.customer}`, undefined, "GET");
         const priceId = o.items?.data?.[0]?.price?.id;
+        if (!esNuestro(o, priceId)) return ignorado(ev);
+        const cust = await stripe(`customers/${o.customer}`, undefined, "GET");
         await guardarSuscripcion(cust.email, { [S.estado]: "Cancelada", [S.cancelar]: false });
         /* Baja del pago: el club vuelve al techo gratuito de 1 plaza. */
         await actualizarLimiteClub(cust.email, priceId, false);
@@ -331,7 +394,12 @@ const atender = async (req: Request) => {
       allow_promotion_codes: "true",
       locale: "es",
       customer_email: miEmail,
-      "subscription_data[metadata][app]": "coachbase-ai",
+      /* La app, también en la propia sesión y no solo en la suscripción: el
+         evento checkout.session.completed trae la metadata de la sesión, y
+         con ella el webhook sabe que es nuestro sin preguntarle el precio a
+         Stripe (ver esNuestro). */
+      "metadata[app]": APP_ID,
+      "subscription_data[metadata][app]": APP_ID,
       "subscription_data[metadata][plan]": plan,
       /* Mismo mes de prueba que el resto de la app (ver fechaTrial30 en
          airtable.mts): Stripe no cobra la tarjeta hasta que pasen 30 días,

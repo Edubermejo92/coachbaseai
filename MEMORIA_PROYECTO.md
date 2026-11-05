@@ -135,6 +135,44 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   sigue valiendo para los siguientes partidos hasta que se desactiva (y entonces caen las
   suscripciones). En iPhone el aviso solo llega con la página añadida a la pantalla de inicio.
 
+## El webhook de Stripe fallaba: eventos de OTRA app y claves de ejemplo (v2.91.1)
+- Stripe avisó por correo (5 nov): 35 entregas fallidas al webhook de CoachBase desde el 2 nov
+  21:10:35 UTC, y amenaza con apagar el endpoint el 11 nov. En los registros de Netlify las 35
+  peticiones **sí llegaban** y la función contestaba **400** = "firma no válida".
+- Dos causas, independientes:
+  1. **La cuenta de Stripe (EBLDigital) es compartida.** El 2 nov a las 11:59 se creó el webhook
+     de TestudoTracker (`we_1UXJu2…`), y ese mismo día a las 21:10 alguien se suscribió a
+     TestudoTracker Premium. En Stripe un endpoint recibe TODOS los eventos de la cuenta —no se
+     pueden filtrar por app—, así que los `customer.subscription.*` de las tortugas llegaban al
+     endpoint de CoachBase (`we_1TxbaJ…`), que tiene los mismos 4 tipos de evento activados.
+  2. **Las claves de Stripe en Netlify siguen siendo el texto de ejemplo** de las instrucciones
+     de la cabecera de stripe.mts: `STRIPE_WEBHOOK_SECRET` y `STRIPE_SECRET_KEY` valen
+     `<tu_…>` en todos los contextos (producción incluida), puestos el 28/07/2026 y nunca
+     sustituidos. Por eso la firma no cuadraba nunca. Consecuencia mayor: **el cobro de
+     CoachBase no ha funcionado nunca**; en toda la cuenta live hay 1 sola suscripción y es de
+     TestudoTracker, así que no se ha perdido ningún pago.
+- Arreglado en el código (lo segundo lo tiene que poner Edu en Netlify):
+  - `esNuestro()` + `ignorado()`: lo que no es de CoachBase se contesta con **200** y sin gastar
+    ni una llamada a Stripe o Airtable. Se mira `metadata.app` y, si el evento no la lleva (una
+    suscripción creada a mano en el panel), el price_id contra PLANES. Sin esto, en cuanto la
+    firma funcionara, un cliente de TestudoTracker se habría guardado como PRO de CoachBase.
+  - El checkout marca también la **sesión** con `metadata[app]`, no solo la suscripción: así
+    `checkout.session.completed` se reconoce sin preguntarle el precio a Stripe.
+  - `firmaValida()`: Stripe manda uno o **varios** `v1=` (mientras se rota el secreto van el
+    viejo y el nuevo) y el header se leía con `Object.fromEntries`, que se queda con el último
+    —una firma buena en primera posición se rechazaba—. Ahora se prueban todas. Y la `t` de la
+    firma, que viajaba sin mirarse, se comprueba contra una ventana de 15 min: sin eso una
+    petición válida capturada se podía repetir para siempre.
+  - Si `STRIPE_WEBHOOK_SECRET` no empieza por `whsec_`, el registro lo dice con todas las
+    letras en vez de un 400 mudo.
+- `pruebas/pruebas25.mjs` (17 ✓, el primer test de stripe.mts): construye la función con esbuild
+  y sustituye `fetch` para afirmar que un evento de TestudoTracker sale con 200 y **cero**
+  llamadas, que uno de CoachBase sí se guarda, y los casos de firma (otro secreto, dos `v1` con
+  la buena primero, `v0` de acompañante, firma vieja, secreto de ejemplo).
+- **Pendiente de Edu**: poner en Netlify las dos claves de verdad (Stripe → Desarrolladores →
+  Webhooks → el endpoint de CoachBase → "Revelar" el signing secret; y la clave secreta de la
+  API). Hasta entonces el webhook sigue devolviendo 400 y Stripe apaga el endpoint el 11 nov.
+
 ## Guía de la app para los nuevos (v2.91.0)
 - Edu: "Crea un tutorial para los nuevos donde indiques funcionalidades y primeros pasos como
   añadir jugadores, dar accesos a familias, todo de la app y que puedan verlo después en
@@ -384,7 +422,7 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
 
 ## Pruebas
 - `npm test` = `pruebas/todas.mjs`: todas las pruebas en modo Airtable (fakeair) y en modo Supabase
-  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-10-30: 415 ✓ / 521 ✓, 0 fallos.
+  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-11-05: 432 ✓ / 538 ✓, 0 fallos.
 - Desde la sesión de Claude NO hay red hacia airtable.com ni supabase.co (proxy 403): la prueba
   real contra Supabase la hace la propia app en Netlify.
 

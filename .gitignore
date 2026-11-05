@@ -2,4 +2,5 @@ node_modules
 dist
 .netlify
 pruebas/fn.mjs
+pruebas/fn-stripe.mjs
 pruebas/*.tmp.mjs
