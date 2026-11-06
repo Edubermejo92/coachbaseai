@@ -135,6 +135,25 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   sigue valiendo para los siguientes partidos hasta que se desactiva (y entonces caen las
   suscripciones). En iPhone el aviso solo llega con la página añadida a la pantalla de inicio.
 
+## Ver la app como quien no paga (v2.92.0)
+- Edu: "pon a edubermejo92 sin ser PRO" —para poder probar el muro de pago y el checkout de
+  Stripe con una cuenta de verdad—. Dos pegas: su cuenta es PRO por el club (Chamartín Vergara
+  lo tiene regalado por código, `esClubChamartinVergara` dentro de `isPro`) Y porque **las 11
+  cuentas de la base tienen `prueba_hasta` = 2099-12-31**, así que hoy no hay nadie "no PRO" en
+  toda la app. Quitárselo de verdad exigía tocar código igualmente.
+- Elegido con él, frente a quitarle el PRO a la cuenta en permanente (perdería vídeos y Modo
+  partido en su día a día con el Infantil B) o a quitar el PRO regalado del club (afectaría a
+  Fidel, Manuel y el director): un **interruptor** en Mi cuenta, "Ver la app como gratis".
+- `verGratis` en App.jsx: localStorage `cb_ver_gratis:<email>`, por dispositivo y por cuenta.
+  Mientras está puesto, `isPro` y `pagaDeVerdad` son false, `trialDaysLeft` es 0 (si no, saltaban
+  los avisos de "te quedan N días") y `lim` pasa a `LIMITS.free`. No toca la base ni a nadie más.
+- Franja ámbar arriba mientras está encendido, con botón para quitarlo: sin eso es cuestión de
+  tiempo que alguien lo deje puesto y crea que la app se ha roto. Solo para cuerpo técnico y
+  dirección: el portal de las familias ya es gratis y ahí no hay nada que simular.
+- Probado en el navegador (demo, entrenador principal): 0 candados ★ en el menú antes, 8 después;
+  la cabecera pasa a "VERSIÓN BÁSICA" + "IR A PREMIUM"; Premium ofrece pagar; se apaga desde la
+  franja y vuelve todo; aguanta la recarga; sin errores de JS.
+
 ## El webhook de Stripe fallaba: eventos de OTRA app y claves de ejemplo (v2.91.1)
 - Stripe avisó por correo (5 nov): 35 entregas fallidas al webhook de CoachBase desde el 2 nov
   21:10:35 UTC, y amenaza con apagar el endpoint el 11 nov. En los registros de Netlify las 35
