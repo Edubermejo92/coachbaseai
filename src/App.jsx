@@ -11614,9 +11614,18 @@ export default function App() {
      puesta muy lejos. Este interruptor (Mi cuenta) apaga el PRO solo para
      quien lo enciende y solo en ese dispositivo: no toca la cuenta ni a nadie
      más, y se quita igual de fácil. Mientras está puesto sale un aviso arriba,
-     para que nadie confunda esto con que la app se ha roto. */
+     para que nadie confunda esto con que la app se ha roto.
+     Es una herramienta para probar el cobro, no una opción para el cuerpo
+     técnico de un club: solo la ve quien está en esta lista. Se mira el id de
+     la ficha de Usuarios y no el correo, para no dejar una dirección personal
+     escrita en un repositorio que es público. */
+  const PRUEBAN_SIN_PRO = ["recXcisfzVVSYRsJT"];
+  const puedeVerGratis = !!session && PRUEBAN_SIN_PRO.includes(session.userId);
   const claveGratis = `cb_ver_gratis:${session?.email || ""}`;
-  const [verGratis, setVerGratis] = useState(false);
+  const [verGratisPuesto, setVerGratis] = useState(false);
+  /* Si deja de estar en la lista, lo que quedara guardado en el móvil no
+     surte efecto: la cuenta vuelve a ser la que es. */
+  const verGratis = verGratisPuesto && puedeVerGratis;
   useEffect(() => {
     try { setVerGratis(localStorage.getItem(claveGratis) === "1"); } catch { setVerGratis(false); }
   }, [claveGratis]);
@@ -15098,9 +15107,9 @@ export default function App() {
         )}
 
         {/* ---- Ver la app como quien no paga ----
-             Solo para el cuerpo técnico y la dirección: el portal de las
-             familias es gratis de por sí y ahí no hay nada que simular. */}
-        {!["familia", "jugador"].includes(session.role) && (
+             Solo para las cuentas de PRUEBAN_SIN_PRO: al resto no se le
+             enseña un interruptor que no es asunto suyo. */}
+        {puedeVerGratis && (
           <div className="pt-4 mt-4 border-t" style={{ borderColor: C.line }}>
             <div className="font-display text-sm uppercase tracking-widest mb-3" style={{ color: C.dim }}>{t("vg.title")}</div>
             <button onClick={() => cambiarVerGratis(!verGratis)} role="switch" aria-checked={verGratis}
@@ -25811,6 +25820,9 @@ export default function App() {
     const defaultCat = getDefaultCategory(res?.user?.id || 0, finalRole, club);
     setSession({
       name, role: finalRole, plan, club, comunidad, email: em, team,
+      /* El id de la ficha: lo usa PRUEBAN_SIN_PRO, y sin esto no estaría
+         hasta que ?res=yo refrescara la sesión. */
+      userId: res?.user?.id || "",
       /* Roles adicionales de verdad (ej. segundo + delegado a la vez), tal y
          como los devuelve el login real. En la demo/sin backend se queda
          vacío: ahí los roles combinados se simulan con CATEGORIES_INIT. */

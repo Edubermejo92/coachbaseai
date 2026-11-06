@@ -135,7 +135,7 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   sigue valiendo para los siguientes partidos hasta que se desactiva (y entonces caen las
   suscripciones). En iPhone el aviso solo llega con la página añadida a la pantalla de inicio.
 
-## Ver la app como quien no paga (v2.92.0)
+## Ver la app como quien no paga (v2.92.0 · v2.92.1)
 - Edu: "pon a edubermejo92 sin ser PRO" —para poder probar el muro de pago y el checkout de
   Stripe con una cuenta de verdad—. Dos pegas: su cuenta es PRO por el club (Chamartín Vergara
   lo tiene regalado por código, `esClubChamartinVergara` dentro de `isPro`) Y porque **las 11
@@ -148,8 +148,15 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   Mientras está puesto, `isPro` y `pagaDeVerdad` son false, `trialDaysLeft` es 0 (si no, saltaban
   los avisos de "te quedan N días") y `lim` pasa a `LIMITS.free`. No toca la base ni a nadie más.
 - Franja ámbar arriba mientras está encendido, con botón para quitarlo: sin eso es cuestión de
-  tiempo que alguien lo deje puesto y crea que la app se ha roto. Solo para cuerpo técnico y
-  dirección: el portal de las familias ya es gratis y ahí no hay nada que simular.
+  tiempo que alguien lo deje puesto y crea que la app se ha roto.
+- **Solo para las cuentas de `PRUEBAN_SIN_PRO`** (Edu, v2.92.1): es una herramienta para probar
+  el cobro, no una opción que deba ver el cuerpo técnico de un club. Se compara contra
+  `session.userId` —el id de la ficha de Usuarios— y NO contra el correo, porque el repositorio
+  es público y ahí no se deja una dirección personal escrita. `sesionConYo` ya traía `userId`; se
+  añadió también al entrar, para que esté sin esperar al refresco de `?res=yo`. Si una cuenta
+  deja de estar en la lista, lo que tenga guardado en el móvil deja de surtir efecto.
+- Ojo al probarlo en la demo: su objeto de sesión lleva `userId: 1` más abajo del todo y pisa
+  cualquier id que se ponga antes. Para una prueba, añadir el `1` a `PRUEBAN_SIN_PRO` y quitarlo.
 - Probado en el navegador (demo, entrenador principal): 0 candados ★ en el menú antes, 8 después;
   la cabecera pasa a "VERSIÓN BÁSICA" + "IR A PREMIUM"; Premium ofrece pagar; se apaga desde la
   franja y vuelve todo; aguanta la recarga; sin errores de JS.
