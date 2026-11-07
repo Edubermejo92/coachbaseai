@@ -135,6 +135,23 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   sigue valiendo para los siguientes partidos hasta que se desactiva (y entonces caen las
   suscripciones). En iPhone el aviso solo llega con la página añadida a la pantalla de inicio.
 
+## Alineación: el dedo no desplazaba, y actualizar más a lo bruto (v2.93.3)
+- Edu: "en alineación se hace difícil desplazar". El contenedor del campo llevaba `touch-none`,
+  que apaga el desplazamiento táctil en TODA su superficie, y en un móvil el campo es casi la
+  pantalla entera: solo se podía desplazar agarrando las franjas de alrededor.
+- Arreglado sin perder el arrastre: el campo pasa a **`touch-pan-y`** y el `touch-none` se mueve
+  a **cada ficha**, y solo si `can("editLineup")`. Un `touch-action` de un hijo manda sobre el
+  del padre, así que el dedo sobre el césped desplaza la página y sobre una ficha la arrastra.
+- Comprobado con gestos táctiles de verdad (CDP `Input.dispatchTouchEvent`, no el ratón, que no
+  pasa por `touch-action`): césped → la página se desplaza (763→950) y las fichas no se mueven;
+  ficha → la ficha se mueve y la página se queda quieta. En la demo las fichas no llevan
+  `touch-none` porque ahí no se puede editar, así que para probarlo hay que quitar `esDemo` de
+  `can` con una marca PRUEBA-TEMPORAL y volver a ponerlo.
+- Edu avisó de que el aviso de versión nueva seguía saliendo: sus capturas eran de antes de que
+  se desplegara el arreglo, pero por si acaso **«Actualizar» ya no hace `reload()`**, que en un
+  WebView puede volver a servir lo que ya tenía. Navega a la misma dirección con un `?cb=<hora>`
+  que no se puede sacar de ninguna caché, y el parámetro se quita de la barra nada más cargar.
+
 ## La alineación se iba de lado en el móvil (v2.93.2)
 - Edu mandó una captura: la pantalla arrastrada hacia un lado, el contenido cortado por la
   izquierda y una franja blanca ocupando un cuarto de la derecha. En la demo no se reproducía.

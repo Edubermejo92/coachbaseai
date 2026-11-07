@@ -14741,6 +14741,14 @@ export default function App() {
   const [versionNueva, setVersionNueva] = useState("");
   const [versionTapada, setVersionTapada] = useState("");
   useEffect(() => {
+    /* El `cb` con el que se fuerza la recarga ya ha hecho su trabajo. */
+    try {
+      const u = new URL(window.location.href);
+      if (u.searchParams.has("cb")) {
+        u.searchParams.delete("cb");
+        window.history.replaceState(null, "", u.pathname + u.search + u.hash);
+      }
+    } catch { /* da igual: solo es cosmético */ }
     try { setVersionTapada(localStorage.getItem("cb_version_oculta") || ""); } catch { /* sin almacenamiento */ }
     const mio = document.querySelector('script[type="module"][src]')?.getAttribute("src");
     if (!mio || !mio.includes("/assets/")) return undefined;
@@ -14773,7 +14781,14 @@ export default function App() {
       const reg = await navigator.serviceWorker?.getRegistration();
       if (reg) await reg.unregister();
     } catch { /* se recarga igual */ }
-    window.location.reload();
+    /* Y no `reload()`: en un WebView una recarga puede volver a servir lo que
+       ya tenía. Se navega a una dirección que no ha visto nunca, que no hay
+       forma de sacar de ninguna caché. El `cb` se quita nada más cargar. */
+    try {
+      const u = new URL(window.location.href);
+      u.searchParams.set("cb", String(Date.now()));
+      window.location.replace(u.toString());
+    } catch { window.location.reload(); }
   };
 
   /* Cómo ha salido cada vídeo (videoMp4.js → "cb:video"): qué codificadores
@@ -22598,7 +22613,14 @@ export default function App() {
               tablero de 324px eso es un 10% más de sitio para separar fichas.
               De tableta para arriba no hace falta y queda mejor con su
               margen, como el resto de la pantalla. */}
-          <div ref={pitchRef} className={`relative touch-none select-none ${abpSit ? "-mx-4 sm:mx-0" : "w-full"}`} style={{ aspectRatio: abpSit ? "400/340" : "3/4" }} onPointerMove={onPitchMove} onPointerUp={() => onSlotUp(null)}>
+          /* `touch-pan-y` y no `touch-none`: el campo ocupa casi toda la
+             pantalla del móvil y con `none` el dedo no desplazaba la página
+             en ninguna parte de él ("se hace difícil desplazar", Edu, 7 nov
+             2026). Así el dedo sobre el césped desplaza como en cualquier
+             sitio, y arrastrar una ficha sigue funcionando porque cada ficha
+             lleva su propio `touch-none` (ver más abajo), que manda sobre
+             esto. */
+          <div ref={pitchRef} className={`relative touch-pan-y select-none ${abpSit ? "-mx-4 sm:mx-0" : "w-full"}`} style={{ aspectRatio: abpSit ? "400/340" : "3/4" }} onPointerMove={onPitchMove} onPointerUp={() => onSlotUp(null)}>
             <svg viewBox={abpSit ? "0 0 400 340" : "0 0 300 400"} className="absolute inset-0 w-full h-full pointer-events-none">
               {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
                 abpSit
@@ -22642,7 +22664,10 @@ export default function App() {
                  primero que esté libre. */
               const sugerido = !sel && !selSlot && id === primerHuecoLibre;
               return (
-                <div key={id} onPointerDown={(e) => onSlotDown(e, id)} onPointerUp={() => onSlotUp(id)} className="absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center" style={{ left: `${s.x}%`, top: `${s.y}%`, cursor: can("editLineup") ? "grab" : "default" }}>
+                /* `touch-none` solo en la ficha y solo si se puede editar:
+                   es lo único que hay que poder arrastrar hacia arriba y
+                   hacia abajo sin que la página se vaya detrás. */
+                <div key={id} onPointerDown={(e) => onSlotDown(e, id)} onPointerUp={() => onSlotUp(id)} className={`absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center ${can("editLineup") ? "touch-none" : ""}`} style={{ left: `${s.x}%`, top: `${s.y}%`, cursor: can("editLineup") ? "grab" : "default" }}>
                   <PitchToken p={p} label={s.label} selected={sel} accent={AC} textColor={C.chalk}
                     borderColor={sel ? AC : sugerido ? AC : p && hayConvocatoria && !called.has(p.id) ? C.warn : p && p.st !== "disponible" ? stColor(p.st) : "rgba(54,69,79,0.5)"} />
                   {/* La demarcación (s.label, p.ej. "DFC") se mostraba solo
