@@ -135,7 +135,7 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   sigue valiendo para los siguientes partidos hasta que se desactiva (y entonces caen las
   suscripciones). En iPhone el aviso solo llega con la página añadida a la pantalla de inicio.
 
-## Apuntar el resultado desde Inicio, el día del partido (v2.94.0)
+## Apuntar el resultado desde Inicio, el día del partido (v2.94.0 · v2.94.1)
 - Edu: "añade aquí una opción para poner el resultado del partido el día del partido", sobre la
   tarjeta de próximo partido de Inicio. No todos los partidos se llevan con el cronómetro: hasta
   ahora, para dejar el resultado había que ir al calendario, buscar la jornada y abrir el
@@ -149,11 +149,18 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   cada equipo al lado: es la única forma de no equivocarse de lado cuando se juega fuera. Si ya
   hay resultado, la cabecera lo enseña y el botón pasa a «Cambiar resultado». Vacío ≠ 0-0: el
   botón no se activa hasta que hay algo escrito en las dos.
+- **Una vez puesto, manda la vista grande** (v2.94.1): dejar las dos casillas ahí parecía que
+  seguía pendiente de rellenar. Ahora sale una línea por equipo -el nuestro en negrita- con el
+  gol a 30 px, coloreado según se ganara, empatara o perdiera, el chip G/E/P en la cabecera y un
+  botón «Cambiar resultado» que devuelve las casillas ya rellenas (con Cancelar). Una línea por
+  equipo y no "3–1" porque así no hay que acordarse de si jugábamos en casa.
 - Probado en el navegador (demo, con `can` sin `esDemo` por una marca PRUEBA-TEMPORAL, luego
   revertida): botón apagado al principio, se enciende al escribir, guarda y confirma, y en Liga
   la fila del partido pasa a "J7 · sáb 7 nov · A.D. VILLA ROSA 3 · Chamartín 1 · Hoy · P" —con
-  la P de perdido, así que también entra en la clasificación. En la demo no sale, porque ahí no
-  se puede editar.
+  la P de perdido, así que también entra en la clasificación. Después: las casillas desaparecen,
+  los goles salen a 30 px con el nuestro en rojo, «Cambiar resultado» las devuelve con el 3 y el
+  1 dentro, corregir vuelve a la vista grande y Cancelar la deja como estaba. En la demo no sale
+  nada de esto, porque ahí no se puede editar.
 
 ## Alineación: el dedo no desplazaba, y actualizar más a lo bruto (v2.93.3)
 - Edu: "en alineación se hace difícil desplazar". El contenedor del campo llevaba `touch-none`,

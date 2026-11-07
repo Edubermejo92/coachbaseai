@@ -20084,6 +20084,9 @@ export default function App() {
   const [resL, setResL] = useState("");
   const [resV, setResV] = useState("");
   const [resMsg, setResMsg] = useState("");
+  /* Con resultado ya puesto manda la vista grande; esto la abre para
+     corregirlo. */
+  const [resEdit, setResEdit] = useState(false);
   const diasProx = (() => {
     const iso = nextMatchFix?.date;
     if (!iso || !/^\d{4}-\d{2}-\d{2}$/.test(iso)) return null;
@@ -20405,6 +20408,53 @@ export default function App() {
           const local = nextMatchFix.home || session.club;
           const visitante = nextMatchFix.away || "";
           const yaHay = nextMatchFix.hg !== "" && nextMatchFix.hg != null && nextMatchFix.ag !== "" && nextMatchFix.ag != null;
+          const lado = ladoNuestro(nextMatchFix);
+          const g = yaHay ? { h: Number(nextMatchFix.hg), a: Number(nextMatchFix.ag) } : null;
+          const r = yaHay ? desenlace(nextMatchFix, g, null) : null;
+          const cabecera = (extra) => (
+            <div className="flex items-center gap-2.5 pt-3 mb-2">
+              <span className="font-display text-[11px] uppercase tracking-[0.18em] shrink-0" style={{ color: C.dim }}>{t("h.resultTitle")}</span>
+              <span className="h-px flex-1" style={{ background: C.line }} />
+              {extra}
+            </div>
+          );
+          /* ---- Ya hay resultado: se enseña y punto ----
+             En vez de dejar las dos casillas puestas, que parecen pendientes
+             de rellenar. Una línea por equipo -el nuestro en negrita- con el
+             gol en grande: así no hay que acordarse de si jugábamos en casa.
+             El color dice de un vistazo si se ganó, se empató o se perdió. */
+          if (yaHay && !resEdit) {
+            const linea = (nombre, goles, nuestro) => (
+              <div className="flex items-center justify-between gap-3 min-w-0">
+                <span className={`truncate ${nuestro ? "font-semibold text-base" : "text-sm"}`} style={{ color: C.chalk }}>{nombre || "—"}</span>
+                <span className="font-display text-3xl sm:text-4xl leading-none tabular-nums shrink-0" style={{ color: nuestro ? colorDesenlace(r) : C.chalk }}>{goles}</span>
+              </div>
+            );
+            return (
+              <div className="px-4 pb-4 pt-1 border-t mt-1" style={{ borderColor: C.line }}>
+                {cabecera(r && (
+                  <span className="px-1.5 py-0.5 rounded font-display text-[10px] uppercase tracking-wide shrink-0"
+                    style={{ color: colorDesenlace(r), border: `1px solid ${colorDesenlace(r)}` }}>{t(`lg.${r}`)}</span>
+                ))}
+                <div className="space-y-1">
+                  {linea(local, g.h, lado === "home")}
+                  {linea(visitante, g.a, lado === "away")}
+                </div>
+                <div className="flex items-center gap-2 mt-3">
+                  <button onClick={() => { setResL(String(nextMatchFix.hg)); setResV(String(nextMatchFix.ag)); setResMsg(""); setResEdit(true); }}
+                    className="text-xs px-3 py-1.5 rounded-lg border font-display uppercase tracking-wide"
+                    style={{ borderColor: C.line, color: C.chalk }}>
+                    {t("h.resultUpdate")}
+                  </button>
+                  {resMsg && <span className="text-[11px]" style={{ color: C.green }}>{resMsg}</span>}
+                </div>
+              </div>
+            );
+          }
+          /* ---- Todavía no, o se está corrigiendo ----
+             En el orden del acta -local a la izquierda- y con el nombre de
+             cada equipo al lado: es la única forma de no equivocarse de lado
+             cuando jugamos fuera. */
           const caja = (v, set, etiqueta) => (
             <input inputMode="numeric" value={v} onChange={(e) => { set(e.target.value.replace(/[^0-9]/g, "").slice(0, 2)); setResMsg(""); }}
               aria-label={etiqueta} placeholder="–"
@@ -20413,11 +20463,7 @@ export default function App() {
           );
           return (
             <div className="px-4 pb-4 pt-1 border-t mt-1" style={{ borderColor: C.line }}>
-              <div className="flex items-center gap-2.5 pt-3 mb-2">
-                <span className="font-display text-[11px] uppercase tracking-[0.18em] shrink-0" style={{ color: C.dim }}>{t("h.resultTitle")}</span>
-                <span className="h-px flex-1" style={{ background: C.line }} />
-                {yaHay && <span className="text-[11px] tabular-nums shrink-0" style={{ color: AC }}>{nextMatchFix.hg}–{nextMatchFix.ag}</span>}
-              </div>
+              {cabecera(null)}
               <div className="flex items-center gap-2 flex-wrap">
                 <span className="text-xs text-right min-w-0 flex-1 truncate" style={{ color: C.chalk }}>{local}</span>
                 {caja(resL, setResL, local)}
@@ -20427,12 +20473,16 @@ export default function App() {
               </div>
               <div className="flex items-center gap-2 mt-2.5">
                 <button disabled={resL === "" || resV === ""}
-                  onClick={async () => { await guardarResultado(nextMatchFix, resL, resV); setResMsg(t("h.resultSaved")); }}
+                  onClick={async () => { await guardarResultado(nextMatchFix, resL, resV); setResEdit(false); setResMsg(t("h.resultSaved")); }}
                   className="text-xs px-3 py-1.5 rounded-lg font-display uppercase tracking-wide font-semibold disabled:opacity-40"
                   style={{ background: AC, color: C.sobre }}>
-                  {yaHay ? t("h.resultUpdate") : t("h.resultSave")}
+                  {t("h.resultSave")}
                 </button>
-                {resMsg && <span className="text-[11px]" style={{ color: C.green }}>{resMsg}</span>}
+                {yaHay && (
+                  <button onClick={() => { setResEdit(false); setResMsg(""); }} className="text-xs px-3 py-1.5 rounded-lg border font-display uppercase tracking-wide" style={{ borderColor: C.line, color: C.dim }}>
+                    {t("c.cancel")}
+                  </button>
+                )}
               </div>
               <div className="text-[11px] mt-2 leading-relaxed" style={{ color: C.dim }}>{t("h.resultHint")}</div>
             </div>
