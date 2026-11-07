@@ -11643,7 +11643,7 @@ export default function App() {
      el registro libre sin backend. Antes vivía únicamente en localStorage: se
      reiniciaba al borrar caché y no viajaba entre dispositivos, así que el
      mismo usuario tenía prueba infinita cambiando de móvil. */
-  const trialDaysLeft = (session && !verGratis) ? Math.max(Number(session.prueba) || 0, trialLeft(session.email)) : 0;
+  const trialDaysLeft = (session && !verGratis) ? Math.max(Number(session.prueba) || 0, session.sinServidor ? trialLeft(session.email) : 0) : 0;
   const onTrial = trialDaysLeft > 0 && !session?.pro;
   /* C.D. Chamartín Vergara tiene la app completa sin pagar, para todo su
      cuerpo técnico: no depende del rol de cada persona ni de si tiene
@@ -25816,7 +25816,10 @@ export default function App() {
       name = d.name; roleLabel = ROL2LABEL[d.role]; estado = d.estado;
     }
     if (estado === "suspendido") return T(lang, "a.accSusp");
-    startTrial(em);
+    /* La prueba local de 14 días es solo para el modo demo sin servidor. Con
+       servidor manda "Prueba hasta": si no, cada login en un dispositivo
+       nuevo regalaba otros 14 días de PRO y cancelar en Stripe no lo quitaba. */
+    if (!res) startTrial(em);
     const finalRole = LABEL2ROL[roleLabel] || "entrenador";
     const userCategories = getCategoriesForUser(res?.user?.id || 0, finalRole, club);
     const defaultCat = getDefaultCategory(res?.user?.id || 0, finalRole, club);
@@ -25838,6 +25841,7 @@ export default function App() {
       categoryId: defaultCat?.id || team?.rec,
       pendingApproval: estado !== "activo",
       prueba: Number(res?.user?.prueba) || 0,
+      sinServidor: !res,
       /* El registro del club, dicho por el servidor. Ver el comentario del
          backend: emparejar por nombre acababa en el club equivocado o en
          ninguno, y con él fallaba todo lo que se pide "de mi club". */
