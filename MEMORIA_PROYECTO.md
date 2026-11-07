@@ -135,6 +135,23 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   sigue valiendo para los siguientes partidos hasta que se desactiva (y entonces caen las
   suscripciones). En iPhone el aviso solo llega con la página añadida a la pantalla de inicio.
 
+## La alineación se iba de lado en el móvil (v2.93.2)
+- Edu mandó una captura: la pantalla arrastrada hacia un lado, el contenido cortado por la
+  izquierda y una franja blanca ocupando un cuarto de la derecha. En la demo no se reproducía.
+- Lo dispara **el nombre de su canción**: «Wiz Khalifa - Black And Yellow [G-Mix] ft. Snoop Dogg,
+  Juicy J & T-Pain.mp3». Medido en el navegador con esa canción sembrada: a 390 px de ventana,
+  `scrollWidth` daba **505** — la página entera 115 px más ancha que la pantalla.
+- Causa: un hijo de un contenedor flex no encoge por debajo de su contenido salvo que lleve
+  `min-w-0` (su `min-width` vale `auto`). La columna de botones de la alineación medía 472 px
+  dentro de un padre de 324, y por eso el `truncate` del nombre no hacía nada: no tenía contra
+  qué recortar. Arreglado con `min-w-0` en esa columna (`flex flex-col items-stretch`) y en la
+  raíz del selector de música. Ahora el nombre se recorta con puntos suspensivos y la página
+  vuelve a medir justo lo que la pantalla.
+- Es la **tercera vez** que muerde lo mismo (antes: el título de las tarjetas, ver `Card`). Por
+  eso queda `herramientas/medir-ancho.cjs`: recorre 6 pestañas a 360, 390 y 412 px con un nombre
+  de canción largo sembrado y dice qué elemento se sale. 18 combinaciones, todas limpias.
+  No entra en `npm test` porque necesita navegador y el servidor de vista previa.
+
 ## El aviso de versión nueva no se podía quitar (v2.93.1)
 - Edu mandó una captura: la franja «Hay una versión nueva de CoachBase · ACTUALIZAR» ocupando dos
   líneas enteras arriba del móvil. Comprobado en el navegador que NO es un falso positivo (con la

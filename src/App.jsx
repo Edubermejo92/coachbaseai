@@ -10232,7 +10232,9 @@ function SelectorMusica({ t, C, AC }) {
   const cls = "text-[11px] px-2 py-0.5 rounded-full border font-display uppercase tracking-wide cursor-pointer";
   const chip = (activo) => ({ borderColor: activo ? AC : C.line, color: activo ? AC : C.dim });
   return (
-    <div className="flex flex-col gap-1">
+    /* `min-w-0`: ver la columna de botones de la alineación. El nombre de la
+       canción es lo más largo que hay aquí y es quien estira. */
+    <div className="flex flex-col gap-1 min-w-0">
       <div className="flex items-center gap-1 flex-wrap">
         <span className="text-[11px] mr-0.5" style={{ color: C.dim }}>🎵 {t("vm.music")}</span>
         <button type="button" onClick={() => elegir("coachbase")} className={cls} style={chip(opcion === "coachbase")}>{t("vm.ours")}</button>
@@ -22547,7 +22549,15 @@ export default function App() {
             <div className="text-xs" style={{ color: C.dim }}>
               {abpSit ? t("ln.abpDragHint") : t("ln.dragHint")}
             </div>
-            <div className="flex flex-col items-stretch gap-1.5">
+            {/* `min-w-0`: un hijo de un flex no encoge por debajo de su
+                contenido salvo que se le diga. Sin esto, el nombre largo de
+                una canción propia («Wiz Khalifa - Black And Yellow [G-Mix]
+                ft. Snoop Dogg…», Edu, 7 nov 2026) estiraba esta columna a
+                472 px dentro de un padre de 324, y la PÁGINA ENTERA se podía
+                arrastrar de lado dejando una franja blanca a la derecha. El
+                `truncate` del nombre no servía de nada: no tenía contra qué
+                recortar. */}
+            <div className="flex flex-col items-stretch gap-1.5 min-w-0 max-w-full">
               {lnImgMsg && <span className="text-[11px] text-right" style={{ color: lnImgMsg.startsWith("✓") ? C.dim : C.warn }}>{lnImgMsg}</span>}
               <button onClick={() => compartirAlineacion()} disabled={lnImgBusy}
                 className="text-xs px-2.5 py-1 rounded-lg border font-display uppercase tracking-wide disabled:opacity-50"
