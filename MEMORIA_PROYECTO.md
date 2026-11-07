@@ -135,6 +135,26 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   sigue valiendo para los siguientes partidos hasta que se desactiva (y entonces caen las
   suscripciones). En iPhone el aviso solo llega con la página añadida a la pantalla de inicio.
 
+## Apuntar el resultado desde Inicio, el día del partido (v2.94.0)
+- Edu: "añade aquí una opción para poner el resultado del partido el día del partido", sobre la
+  tarjeta de próximo partido de Inicio. No todos los partidos se llevan con el cronómetro: hasta
+  ahora, para dejar el resultado había que ir al calendario, buscar la jornada y abrir el
+  formulario del partido.
+- Se guarda **donde ya lo guardaba el calendario**: los campos `hg`/`ag` del propio partido. No
+  hay dato nuevo ni tabla nueva, y `golesDelCruce()` ya los lee antes que el acta, así que Liga,
+  la clasificación y Estadísticas lo recogen solos. `guardarResultado(f, hg, ag)` (junto a
+  `guardarFixture`) actualiza `fixtures` y sube ese partido con `airEdit("partidos", …)`.
+- Sale **solo el día del partido** (`diasProx === 0`) y solo a quien puede tocar el calendario
+  (`can("editCal")`). Dos casillas en el orden del acta —local a la izquierda— con el nombre de
+  cada equipo al lado: es la única forma de no equivocarse de lado cuando se juega fuera. Si ya
+  hay resultado, la cabecera lo enseña y el botón pasa a «Cambiar resultado». Vacío ≠ 0-0: el
+  botón no se activa hasta que hay algo escrito en las dos.
+- Probado en el navegador (demo, con `can` sin `esDemo` por una marca PRUEBA-TEMPORAL, luego
+  revertida): botón apagado al principio, se enciende al escribir, guarda y confirma, y en Liga
+  la fila del partido pasa a "J7 · sáb 7 nov · A.D. VILLA ROSA 3 · Chamartín 1 · Hoy · P" —con
+  la P de perdido, así que también entra en la clasificación. En la demo no sale, porque ahí no
+  se puede editar.
+
 ## Alineación: el dedo no desplazaba, y actualizar más a lo bruto (v2.93.3)
 - Edu: "en alineación se hace difícil desplazar". El contenedor del campo llevaba `touch-none`,
   que apaga el desplazamiento táctil en TODA su superficie, y en un móvil el campo es casi la
