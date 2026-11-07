@@ -88,6 +88,24 @@ const S = {
   usuario: "fldqN9PDei93K4GZ7",
 };
 const U_EMAIL = "fldJWlJ17YuZNe4Jx";
+const U_PRUEBA = "fldevbPLxMunBH9NR";
+/* Final de la prueba de la app ("Prueba hasta", YYYY-MM-DD) en segundos
+   Unix: las 23:59:59 de ese día en Madrid. null si no tiene o no se puede
+   leer; en ese caso el checkout cobra sin prueba. */
+async function finDePrueba(email: string): Promise<number | null> {
+  try {
+    const usuarios = await atList(T_USUARIOS);
+    const u = usuarios.find((r) => norm(r.fields[U_EMAIL]) === norm(email));
+    const v = String(u?.fields?.[U_PRUEBA] || "");
+    if (!/^\d{4}-\d{2}-\d{2}/.test(v)) return null;
+    const [y, m, d] = v.slice(0, 10).split("-").map(Number);
+    /* 23:59:59 en Madrid = 22:59:59 UTC (invierno) o 21:59:59 (verano);
+       se toma la más temprana para no pasarse nunca del día. */
+    return Math.floor(Date.UTC(y, m - 1, d, 21, 59, 59) / 1000);
+  } catch {
+    return null;
+  }
+}
 const U_CLUB = "fldV2DDL6v5szs0y3";
 const CL_LIMITE = "fldiIev3Pd9eWhulJ";
 
@@ -418,12 +436,17 @@ const atender = async (req: Request) => {
       "metadata[app]": APP_ID,
       "subscription_data[metadata][app]": APP_ID,
       "subscription_data[metadata][plan]": plan,
-      /* Mismo mes de prueba que el resto de la app (ver fechaTrial30 en
-         airtable.mts): Stripe no cobra la tarjeta hasta que pasen 30 días,
-         así que quien paga por primera vez tiene el mismo margen que quien
-         entra sin pagar todavía. */
-      "subscription_data[trial_period_days]": "30",
     };
+    /* La prueba son 30 días EN TOTAL (decidido con Edu el 07/11/2026). Antes
+       Stripe regalaba otros 30 al pagar, así que se sumaban hasta 60. Ahora
+       Stripe solo da los días que le quedan de "Prueba hasta" en la app: si
+       paga el día 10, no se le cobra hasta el día 30; si paga con la prueba
+       ya acabada, se le cobra en el acto. Stripe exige que trial_end esté al
+       menos 48 h en el futuro: con menos margen se cobra ya. */
+    const finPrueba = await finDePrueba(miEmail);
+    if (finPrueba && finPrueba - Date.now() / 1000 > 48 * 3600 + 300) {
+      params["subscription_data[trial_end]"] = String(finPrueba);
+    }
     /* Código de descuento propio: "ilimitado" = 100 % de descuento para siempre
        (Stripe no pide tarjeta si el total es 0). Se crea en Stripe la primera
        vez que se usa, así que no hay que tocar el panel. Cualquier otro código
@@ -440,7 +463,7 @@ const atender = async (req: Request) => {
         delete params.allow_promotion_codes;
         params["discounts[0][promotion_code]"] = promo!;
         params.payment_method_collection = "if_required";
-        delete params["subscription_data[trial_period_days]"];
+        delete params["subscription_data[trial_end]"];
       } catch (e) {
         return j({ error: `No se pudo aplicar el código: ${String(e)}` }, 500);
       }
