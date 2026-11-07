@@ -135,6 +135,27 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   sigue valiendo para los siguientes partidos hasta que se desactiva (y entonces caen las
   suscripciones). En iPhone el aviso solo llega con la página añadida a la pantalla de inicio.
 
+## El aviso de versión nueva no se podía quitar (v2.93.1)
+- Edu mandó una captura: la franja «Hay una versión nueva de CoachBase · ACTUALIZAR» ocupando dos
+  líneas enteras arriba del móvil. Comprobado en el navegador que NO es un falso positivo (con la
+  misma versión no sale): el aviso era correcto —el WebView de Median mantiene la página viva
+  días y yo había desplegado— pero estaba mal hecho.
+- Tres fallos, los tres míos (v2.90.3): **no se podía apartar** (el único botón era Actualizar);
+  **volvía en cada despliegue**, y aquí se despliega varias veces al día; y si la recarga no traía
+  el JS nuevo, la franja se quedaba **para siempre y sin salida**.
+- Arreglado:
+  - Se guarda QUÉ versión se ha visto (`versionNueva`, el src del bundle) en vez de un sí/no, y
+    un ✕ «Ahora no» la aparta anotándola en `localStorage.cb_version_oculta`. No vuelve por esa
+    versión; por la siguiente sí.
+  - `actualizarVersion()`: antes de recargar borra TODAS las cachés y da de baja el service
+    worker (main.jsx lo vuelve a registrar al cargar). Recargar a secas no bastaba: el SW seguía
+    sirviendo el JS guardado y en un WebView eso dura días. Si algo de eso falla, recarga igual.
+  - Franja de una línea: de ~115 px a **38 px** medidos, texto más corto («Hay una versión
+    nueva») y truncado si no cabe.
+- Probado en el navegador: sale con versión nueva; el ✕ la quita y no vuelve con la misma pero sí
+  con una posterior; y con una marca metida a mano en la caché `cb-shell-v4` se comprueba que
+  Actualizar la tira de verdad antes de recargar.
+
 ## Reseñas de Google Play dentro de la app (v2.93.0)
 - **Arquitectura detectada (importante):** la app de Android NO está en este repositorio. Es un
   **Median.co** (`co.median.android.coachbaseai`) que carga la web de Netlify **en remoto** en un
