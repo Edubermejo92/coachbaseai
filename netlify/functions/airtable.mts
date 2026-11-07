@@ -119,12 +119,18 @@ const pruebaDias = (v: unknown) => {
   const fin = new Date(y, m - 1, d, 23, 59, 59);
   return Math.max(0, Math.ceil((fin.getTime() - Date.now()) / 86400000));
 };
-/* Fecha (YYYY-MM-DD) de "Prueba hasta" de toda cuenta nueva. Decidido con
-   Edu: la prueba es ilimitada -como la de las cuentas actuales, que ya tienen
-   2099-12-31- para todo el que se registre, invitado por su club o de alta
-   libre. Para volver a una prueba de N días basta cambiar esta función. */
-const PRUEBA_ILIMITADA = "2099-12-31";
-const fechaTrial30 = (): string => PRUEBA_ILIMITADA;
+/* Fecha (YYYY-MM-DD) de "Prueba hasta" de toda cuenta nueva: 30 días de PRO
+   desde el alta, invitado por su club o de alta libre. Decidido con Edu el
+   07/11/2026; antes era ilimitada (2099-12-31) y con ella nadie tenía motivo
+   para pagar ni perdía el PRO al cancelar en Stripe. La fecha se calcula en
+   hora de Madrid para que un alta de madrugada no pierda un día. */
+const DIAS_PRUEBA = 30;
+const fechaTrial30 = (): string => {
+  const hoy = new Date().toLocaleDateString("en-CA", { timeZone: "Europe/Madrid" });
+  const [y, m, d] = hoy.split("-").map(Number);
+  const fin = new Date(Date.UTC(y, m - 1, d + DIAS_PRUEBA));
+  return fin.toISOString().slice(0, 10);
+};
 const CL = {
   nombre: "fldlUNDFkJyehw8x0", comunidad: "fld0BUV86fvUDWOcU",
   escudo: "fldX3CMkCrO54gUrV", campo: "fldVH4NDAN2Odlzwe",
