@@ -135,6 +135,48 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   sigue valiendo para los siguientes partidos hasta que se desactiva (y entonces caen las
   suscripciones). En iPhone el aviso solo llega con la página añadida a la pantalla de inicio.
 
+## Reseñas de Google Play dentro de la app (v2.93.0)
+- **Arquitectura detectada (importante):** la app de Android NO está en este repositorio. Es un
+  **Median.co** (`co.median.android.coachbaseai`) que carga la web de Netlify **en remoto** en un
+  WebView; no hay `build.gradle`, ni `AndroidManifest.xml`, ni `gradlew`, ni keystore en ningún
+  sitio, y el AAB lo compila Median desde su panel. Por eso aquí NO se puede escribir la clase
+  Kotlin `ReviewBridge` con `addJavascriptInterface`, ni subir el `versionCode`, ni correr
+  `./gradlew bundleRelease`: no existe el proyecto. versionCode/versionName/targetSdk viven en el
+  panel de Median y en Play Console.
+- Camino elegido con Edu: el **plugin oficial «App Review» de Median**, que envuelve la API de
+  reseñas in-app de Google. Se activa en el panel de Median y desde la web se llama con
+  `median.appreview.prompt({...})`. Estado en Play (5 nov 2026): **solo pruebas internas**.
+- **`src/resena.js`** — un único sitio, con los umbrales como constantes exportadas arriba:
+  `ROLES_RESENA = ["director","entrenador","segundo","delegado"]` (familias fuera: no eligen la
+  app, se la pone el club; jugador fuera por menor; Master y cuenta de club fuera),
+  `DIAS_PRIMER_USO = 7`, `ACCIONES_MINIMAS = 3`, `DIAS_ENTRE_PETICIONES = 90`.
+  `pedirResena(motivo, sesion, ahora)` apunta la acción y, solo si se cumple TODO, llama al
+  puente. Devuelve el motivo de la decisión ("pedida", "sin-puente", "demo", "rol", "pocos-dias",
+  "pocas-acciones", "reciente"), que es lo que miran las pruebas. Nunca lanza: lo llama código
+  que acaba de guardar algo. Prefiere el puente de Median y acepta `window.AndroidReview` por si
+  algún día se empaqueta a mano.
+- Estado por cuenta en `localStorage`, clave `cb_review_<userId>` (`{ desde, acciones, pedida,
+  ultimoMotivo }`), todo entre try/catch. La fecha de petición se escribe **antes** de abrir el
+  diálogo: Google no dice si lo ha enseñado y el cupo se gasta igual.
+- **Los 7 días cuentan desde la primera acción positiva**, no desde el registro: ese dato no
+  existía y así no hay nada que migrar. Se peca de tarde, que es el lado bueno.
+- Dónde se llama (localizado y confirmado en `src/App.jsx`), siempre justo DESPUÉS de que la
+  acción salga bien, nunca al abrir la app ni en mitad de la pizarra o del cronómetro:
+  - **Partido**: botón de cerrar el acta en Modo partido (`pedirResena("partido", session)` tras
+    `guardarEnHistorico()` + `setActaGuardada(true)`).
+  - **Convocatoria**: `marcarConvocatoriaEnviada()`, después de su guardia (no cuenta en la demo
+    ni sin partido real). Cubre los tres sitios desde los que se manda.
+  - **Entrenamiento**: `guardarPlantilla()` y `publicarSesion()`, ambos solo con `out.ok`. Una
+    propuesta del segundo entrenador NO cuenta: todavía no hay sesión guardada.
+- PROHIBIDO un botón «Valóranos» con esta API: Google limita cuántas veces aparece el diálogo y
+  el botón parecería roto. Si se quiere botón, que abra la ficha de Play.
+- Pruebas: `pruebas/pruebas26.mjs` (27 ✓) con window y localStorage fingidos — sin puente no
+  llama, Master/demo/familia/jugador/club no llaman, 2 acciones no, la 3ª sí, no repite antes de
+  90 días, cada cuenta su contador, dato corrupto y almacenamiento bloqueado no tumban nada.
+  `pruebas/pruebas27.mjs` (8 ✓) monta el bundle ya construido en **jsdom 24** (de la 25 en
+  adelante cambia la API): React pinta, sale la pantalla de acceso y no queda ningún error de
+  arranque, que es justo lo que `vite build` no detecta. Se salta sola si no hay `dist/`.
+
 ## Ver la app como quien no paga (v2.92.0 · v2.92.1)
 - Edu: "pon a edubermejo92 sin ser PRO" —para poder probar el muro de pago y el checkout de
   Stripe con una cuenta de verdad—. Dos pegas: su cuenta es PRO por el club (Chamartín Vergara
@@ -456,7 +498,7 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
 
 ## Pruebas
 - `npm test` = `pruebas/todas.mjs`: todas las pruebas en modo Airtable (fakeair) y en modo Supabase
-  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-11-05: 432 ✓ / 538 ✓, 0 fallos.
+  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-11-07: 467 ✓ / 573 ✓, 0 fallos.
 - Desde la sesión de Claude NO hay red hacia airtable.com ni supabase.co (proxy 403): la prueba
   real contra Supabase la hace la propia app en Netlify.
 

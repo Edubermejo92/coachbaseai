@@ -6,6 +6,7 @@ import { construirJugada, tokensDeEstado, trazosJugada, pasosDeJugada, PIDE, CON
 import { JUGADAS_MODELO, textoModelo } from "./jugadasModelo.js";
 import { cargarLogo, pintarLogo, crearAudio, prepararMusica, grabarLienzo, leerOpcionMusica, guardarOpcionMusica, leerCancion, guardarCancion, MAX_CANCION, tipoGrabacion, extensionDe } from "./videoMarca.js";
 import { configMp4, grabarMp4, avisarDiag } from "./videoMp4.js";
+import { pedirResena } from "./resena.js";
 /* La guía (Guia.jsx con los textos de guia.js) es mucho texto que no hace
    falta para usar la app: se descarga al abrirla. */
 const Guia = lazy(() => import("./Guia.jsx"));
@@ -13200,7 +13201,7 @@ export default function App() {
       compartida: plCompartir,
     });
     setPlBusy(false);
-    if (out?.ok) { setPlMsg(t("tr.savedNamed").replace("{name}", plNombre.trim())); setPlNombre(""); setPlCompartir(false); cargarPlantillas(); }
+    if (out?.ok) { setPlMsg(t("tr.savedNamed").replace("{name}", plNombre.trim())); setPlNombre(""); setPlCompartir(false); cargarPlantillas(); pedirResena("entrenamiento", session); }
     else setPlMsg(t("se.planSaveFail"));
   };
   /* Guarda la sesión ya montada (la del día, con su hora), no un guion
@@ -13231,7 +13232,7 @@ export default function App() {
       fecha: meta.fecha, hora: meta.hora,
       teamRec: session.team.rec, clubRec: clubInfo.rec || undefined,
     });
-    if (out?.ok) cargarPlantillas();
+    if (out?.ok) { cargarPlantillas(); pedirResena("entrenamiento", session); }
     return { ok: !!out?.ok, msg: out?.ok ? t("tr.sessionSaved").replace("{n}", total) : t("se.planSaveFail") };
   };
   const guardarSesion = async () => {
@@ -14605,6 +14606,7 @@ export default function App() {
       method: "POST", headers: { "content-type": "application/json" },
       body: JSON.stringify({ team, fecha: matchInfo.fecha, hora: matchInfo.hora, rival: matchInfo.rival, lugar: matchInfo.lugar, convocados }),
     }).catch(() => {});
+    pedirResena("convocatoria", session);
   };
   /* ---- Atajo de WhatsApp en la navegación ----
      La convocatoria siempre termina igual: mandándola al grupo. Tenerlo al
@@ -24016,7 +24018,7 @@ export default function App() {
         {/* Cerrar el acta se hacía solo desde Análisis, y el partido se acaba
             aquí. Sin esto había que acordarse de cambiar de pantalla, y lo que
             no se guarda no aparece luego en Estadísticas. */}
-        <button onClick={() => { guardarEnHistorico(); setActaGuardada(true); if (vivo?.codigo && !vivo.final) setVivo({ ...vivo, final: true }); }} disabled={events.length === 0}
+        <button onClick={() => { guardarEnHistorico(); setActaGuardada(true); if (vivo?.codigo && !vivo.final) setVivo({ ...vivo, final: true }); pedirResena("partido", session); }} disabled={events.length === 0}
           className="w-full min-h-12 rounded-lg font-display uppercase tracking-wide font-semibold disabled:opacity-40"
           style={{ background: actaGuardada ? C.panel2 : AC, color: actaGuardada ? C.dim : C.sobre, border: `1px solid ${actaGuardada ? C.line : AC}` }}>
           {actaGuardada ? t("mt.closeActaSaved") : t("mt.closeActaBtn")}

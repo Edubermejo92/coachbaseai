@@ -1,5 +1,27 @@
 # Acciones futuras
 
+## Reseñas de Google Play (v2.93.0, 7 nov 2026)
+La parte web está hecha y desplegada; el puente nativo lo tiene que encender Edu.
+1. [ ] **Edu — Median**: activar el plugin **App Review** en el panel de Median.co y reconstruir
+       la app. Sin eso, `median.appreview.prompt` no existe y el helper no hace nada (que es lo
+       que pasa hoy: en el navegador y en la app actual no se pide ninguna reseña).
+2. [ ] **Edu — probar bien**: la API NO funciona con un APK de depuración instalado a mano. Hay
+       que probarlo desde la **pista de prueba interna** o con la **compartición interna de
+       apps** de Play Console, con la cuenta de Google que tenga acceso.
+       Para forzar el diálogo sin esperar 7 días, borrar `cb_review_<userId>` de localStorage y
+       bajar los umbrales a mano en `src/resena.js`, o usar el flujo de pruebas que documenta
+       Google (FakeReviewManager no aplica aquí: el código nativo es de Median).
+3. [ ] **A las 2–4 semanas**: mirar en Play Console → Calificaciones y reseñas si han entrado
+       reseñas nuevas y qué nota traen. Si no entra ninguna, el problema es el cupo de Google o
+       que el plugin no está activo, no los umbrales.
+4. [ ] **Decidir si las familias entran en `ROLES_RESENA`**. Hoy NO están: no eligen la app, se
+       la impone el club, así que su reseña dice poco de la app y mucho del club. Pero son la
+       mayoría de los usuarios: si hacen falta reseñas en volumen, es la palanca. Se cambia en
+       una línea de `src/resena.js`.
+5. [ ] Si alguna vez se quiere un botón «Valóranos» en Mi cuenta, que abra
+       `https://play.google.com/store/apps/details?id=co.median.android.coachbaseai`, NUNCA la
+       API in-app: Google limita cuántas veces se enseña el diálogo y el botón parecería roto.
+
 ## Migración Airtable → Supabase (CoachBase AI)
 Hecho por Claude (2026-10-12, rama `ccr-70f0cfbb-b7o161`):
 - [x] Proyecto Supabase `vjsowjjdeufpeiwmtnmr` reactivado; esquema viejo apartado a `coachbase_julio`.
