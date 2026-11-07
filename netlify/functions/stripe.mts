@@ -186,7 +186,18 @@ async function guardarSuscripcion(email: string, campos: Record<string, unknown>
   const usuarios = await atList(T_USUARIOS);
   const u = usuarios.find((r) => norm(r.fields[U_EMAIL]) === norm(email));
   if (u) fields[S.usuario] = [u.id];
-  await atWrite(atUrl(T_SUBS), "POST", fields);
+  try {
+    await atWrite(atUrl(T_SUBS), "POST", fields);
+  } catch (e) {
+    /* Stripe manda checkout.session.completed y subscription.created a la
+       vez: los dos veían que no había fila y los dos la creaban. En Supabase
+       hay un índice único por email (migración 20261107120000), así que el
+       segundo INSERT falla; entonces la fila ya la ha creado el otro aviso y
+       basta con actualizarla. */
+    const ahora = await buscarSuscripcion(email);
+    if (!ahora) throw e;
+    await atWrite(`${atUrl(T_SUBS)}/${ahora.id}`, "PATCH", fields);
+  }
 }
 
 /* Verificación de la firma del webhook (HMAC-SHA256, sin SDK) */
@@ -334,7 +345,13 @@ const atender = async (req: Request) => {
           [S.price]: priceId,
           [S.importe]: (o.items?.data?.[0]?.price?.unit_amount || 999) / 100,
           [S.estado]: estado,
-          [S.fin]: o.current_period_end ? new Date(o.current_period_end * 1000).toISOString() : null,
+          /* Desde la API 2025-06-30.basil el periodo va en cada línea de la
+             suscripción y ya no en la suscripción: leyendo solo
+             o.current_period_end la fecha quedaba siempre vacía. */
+          [S.fin]: (() => {
+            const fin = o.items?.data?.[0]?.current_period_end ?? o.current_period_end;
+            return fin ? new Date(fin * 1000).toISOString() : null;
+          })(),
           [S.cancelar]: !!o.cancel_at_period_end,
         });
         /* Si es un plan de CLUB (no individual) y está en un estado que da
