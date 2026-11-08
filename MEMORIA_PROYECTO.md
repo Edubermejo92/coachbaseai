@@ -135,6 +135,51 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   sigue valiendo para los siguientes partidos hasta que se desactiva (y entonces caen las
   suscripciones). En iPhone el aviso solo llega con la página añadida a la pantalla de inicio.
 
+## El jugador ve su sitio en cada balón parado, en 2D y en 3D (v2.96.0)
+- Segundo paso de lo que pidió Edu el 8 nov: que cada jugador abra su ficha y vea qué tiene que
+  hacer en cada acción a balón parado. El primero fue la v2.95.0 (las seis situaciones).
+- **Dónde**: tarjeta nueva «Balón parado · tu sitio» en Mi ficha, entre la alineación y la
+  disciplina. La ven Jugador y Familia: `renderMihijo` es la misma pantalla para los dos.
+- **Qué enseña**: las mismas dos filas de botones que el entrenador (lado y jugada), las
+  colocaciones guardadas de esa situación, el campo con su ficha marcada y, en una frase, dónde
+  le toca ponerse: «Tú vas al segundo palo». La frase sale de `zonaAbp(x, y)` — once zonas con
+  las referencias del campo (línea de gol, área pequeña, punto de penalti, frontal, bandas) y
+  traducida en los cinco idiomas (claves `abz.*`). Un punto en un dibujo no se recuerda el
+  domingo; una frase sí.
+- Solo se enseñan las colocaciones **guardadas**: lo que el entrenador está moviendo en su
+  pantalla no ha salido de su móvil, y enseñar un borrador sería peor que no enseñar nada.
+- **Permisos**: no hizo falta tocar el servidor. `?res=abp-corners` es un GET y `puedeEquipo`
+  ya lo deja pasar para una cuenta de familia o jugador, porque `sesion.equipo` es su equipo.
+- **3D** (`AbpVista3D`): reutiliza `montarPizarra3D` (Three.js), que se descarga solo al pulsar
+  el botón 3D, así que la ficha del jugador no carga medio megabyte mientras no lo pida. Dos
+  encuadres nuevos en `pizarra3d.js`, `abpFondo` y `abpBanda`: los cinco que había encuadran el
+  campo entero y un córner salía diminuto.
+- **Del tablero 2D al campo 3D** (`abpATablero`): el tablero de ABP NO está a escala -se estira
+  a lo ancho para poder coger las fichas con el dedo-, así que al pasar al 3D hay que deshacer
+  el estirón. A lo largo, del 7,6% al 51,2% van los 16,5 m del área EXACTOS (el punto de penalti
+  cae en los 11 m y el área pequeña en los 5,5), y lo que queda por debajo se reparte hasta el
+  medio campo. La portería de la jugada va siempre a la derecha.
+- El balón se pinta donde lo dice el reglamento: el punto de penalti o el banderín del córner.
+  En una falta lo decide dónde se pitó, que no se guarda en ninguna parte, así que no se pinta.
+- **Refactor**: toda la lógica de ABP sale de `src/App.jsx` a **`src/abp.js`** (tablas, claves,
+  `abpPorDefecto`, `abpConSlots`, `zonaAbp`, el paso al 3D). La usan las dos pantallas y, sobre
+  todo, se puede probar sin montar la app. El dibujo del campo se queda en App.jsx como
+  componente `CampoAbp`, que ahora comparten entrenador y jugador.
+- **Arreglado**: el efecto que carga el ABP dependía solo de `session.team.rec`, y el equipo de
+  la demo no tiene `rec`: al entrar en la demo no se volvía a disparar y la pantalla del jugador
+  salía vacía. Ahora depende también de `session.email`, y en la demo cada situación trae una
+  colocación de ejemplo.
+- Pruebas: **`pruebas/pruebas28.mjs`** (59 comprobaciones, sin servidor ni navegador). Entre
+  ellas, la regla del dedo: en un móvil de 390px ninguna pareja de fichas de ninguna colocación
+  de salida queda a menos de 44px. Total 532 ✓ / 638 ✓.
+- Comprobado en el navegador: las seis situaciones en Jugador y en Familia a 360/390/412px sin
+  que nada se salga de ancho, el 3D montando el estadio con WebGL y sin errores de consola.
+- **Pendiente de lo que pidió Edu**: si está convocado o no para el próximo partido, la hora y
+  el rival, las asistencias de gol y el detalle de a qué entrenos ha faltado. La convocatoria
+  hoy vive solo en el móvil del entrenador (`localStorage cb_calldraft_*`): para que el jugador
+  sepa si está convocado hay que subirla a la nube como un documento de equipo, igual que el ABP
+  o la alineación —y sin los motivos de descarte, que son del cuerpo técnico—.
+
 ## ABP: faltas y penaltis, no solo córners (v2.95.0)
 - Pedido por Edu (8 nov 2026) como primer paso de la vista del jugador: que cada jugador vea
   "qué tiene que hacer" en cada acción a balón parado. Antes de eso hay que poder prepararlas,
@@ -616,7 +661,7 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
 
 ## Pruebas
 - `npm test` = `pruebas/todas.mjs`: todas las pruebas en modo Airtable (fakeair) y en modo Supabase
-  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-11-08: 473 ✓ / 579 ✓, 0 fallos.
+  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-11-08: 532 ✓ / 638 ✓, 0 fallos.
 - Desde la sesión de Claude NO hay red hacia airtable.com ni supabase.co (proxy 403): la prueba
   real contra Supabase la hace la propia app en Netlify.
 

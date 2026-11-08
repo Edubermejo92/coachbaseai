@@ -749,6 +749,15 @@ export function montarPizarra3D(contenedor, { acento = "#FFFFFF", nombres = {}, 
     porteriaIzq: { pos: [-82, 20, 0], obj: [0, 0, 0] },
     porteriaDer: { pos: [82, 20, 0], obj: [0, 0, 0] },
     esquina: { pos: [-64, 32, 46], obj: [-6, 0, 0] },
+    /* ---- Balón parado (ver abp.js) ----
+       Las cinco de arriba encuadran el campo entero y un córner, que pasa en
+       veinte metros de área, sale diminuto. Estas dos se quedan en el área,
+       que es donde está la jugada: una detrás de la portería, como se ve
+       desde el fondo, y otra a la altura de los ojos desde el frontal, que
+       es lo que ve el jugador que llega al remate. La portería de la jugada
+       es siempre la de la derecha. */
+    abpFondo: { pos: [76, 15, 0], obj: [40, 0, 0] },
+    abpBanda: { pos: [40, 9, 52], obj: [44, 0, 0] },
   };
   /* En un móvil en vertical el campo a lo ancho no cabe: las vistas se giran
      para mirarlo a lo largo, como se ve desde detrás de una portería. */
@@ -758,6 +767,10 @@ export function montarPizarra3D(contenedor, { acento = "#FFFFFF", nombres = {}, 
     porteriaIzq: { pos: [-86, 22, 0], obj: [0, 0, 0] },
     porteriaDer: { pos: [86, 22, 0], obj: [0, 0, 0] },
     esquina: { pos: [-78, 46, 40], obj: [-2, 0, 0] },
+    /* Las dos de balón parado miran a lo largo del campo, que es justo lo que
+       cabe en un móvil en vertical: valen igual. */
+    abpFondo: { pos: [76, 15, 0], obj: [40, 0, 0] },
+    abpBanda: { pos: [40, 9, 52], obj: [44, 0, 0] },
   };
   let vertical = false, ultimaVista = "tribuna";
   let vuelo = null;

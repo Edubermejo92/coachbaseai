@@ -6,6 +6,8 @@ import { construirJugada, tokensDeEstado, trazosJugada, pasosDeJugada, PIDE, CON
 import { JUGADAS_MODELO, textoModelo } from "./jugadasModelo.js";
 import { cargarLogo, pintarLogo, crearAudio, prepararMusica, grabarLienzo, leerOpcionMusica, guardarOpcionMusica, leerCancion, guardarCancion, MAX_CANCION, tipoGrabacion, extensionDe } from "./videoMarca.js";
 import { configMp4, grabarMp4, avisarDiag } from "./videoMp4.js";
+import { JUGADAS_ABP, CLAVES_ABP, claveAbp, ladoDeAbp, jugadaDeAbp, ETIQUETA_JUGADA, nombreAbp,
+  abpPorDefecto, abpConSlots, abpSoloPos, zonaAbp, tokensAbp3d, balonAbp } from "./abp.js";
 import { pedirResena } from "./resena.js";
 /* La guía (Guia.jsx con los textos de guia.js) es mucho texto que no hace
    falta para usar la app: se descarga al abrirla. */
@@ -123,6 +125,26 @@ const DICT = {
     "ln.abpSaveOk": "✓ Guardada para todo el cuerpo técnico.",
     "ln.abpSaveFail": "No se ha podido guardar. Revisa la conexión.",
     "ln.abpDownload": "⤓ Descargar jugada",
+    "ln.abpDemoName": "Ejemplo",
+    "jg.abpTitle": "Balón parado · tu sitio",
+    "jg.abpHint": "Lo que ha preparado tu entrenador para cada acción a balón parado. Tu ficha va marcada.",
+    "jg.abpEmpty": "Tu entrenador todavía no ha guardado ninguna colocación para esta jugada.",
+    "jg.abpYouAre": "Tú vas {z}.",
+    "jg.abpNotInXI": "No estás en el once que hay puesto ahora mismo, así que todavía no tienes sitio en esta jugada.",
+    "abz.porteria": "en la portería",
+    "abz.corner": "al banderín de córner",
+    "abz.paloIzq": "al palo izquierdo",
+    "abz.paloDer": "al palo derecho",
+    "abz.areaPequena": "al área pequeña",
+    "abz.penalti": "al punto de penalti",
+    "abz.area": "dentro del área",
+    "abz.frontal": "al frontal del área",
+    "abz.bandaIzq": "a la banda izquierda",
+    "abz.bandaDer": "a la banda derecha",
+    "abz.lejos": "lejos del área",
+    "abz.atras": "atrás, en tu campo",
+    "ab3.fondo": "Desde el fondo",
+    "ab3.banda": "Desde la banda",
     "ln.favSave": "☆ Guardar como favorita",
     "ln.favMax": "Ya tienes 3 favoritas guardadas. Borra una para guardar otra.",
     "ln.favNamePrompt": "Nombre para esta alineación (p. ej. «Con lesionados»)",
@@ -737,6 +759,26 @@ const DICT = {
     "ln.abpSaveOk": "✓ Saved for the whole coaching staff.",
     "ln.abpSaveFail": "Couldn't save. Check your connection.",
     "ln.abpDownload": "⤓ Download set piece",
+    "ln.abpDemoName": "Example",
+    "jg.abpTitle": "Set pieces · your spot",
+    "jg.abpHint": "What your coach has set up for each set piece. Your token is highlighted.",
+    "jg.abpEmpty": "Your coach hasn't saved a set-up for this one yet.",
+    "jg.abpYouAre": "You go {z}.",
+    "jg.abpNotInXI": "You're not in the XI that's picked right now, so you don't have a spot in this one yet.",
+    "abz.porteria": "in goal",
+    "abz.corner": "to the corner flag",
+    "abz.paloIzq": "to the left post",
+    "abz.paloDer": "to the right post",
+    "abz.areaPequena": "into the six-yard box",
+    "abz.penalti": "to the penalty spot",
+    "abz.area": "inside the box",
+    "abz.frontal": "to the edge of the box",
+    "abz.bandaIzq": "out on the left",
+    "abz.bandaDer": "out on the right",
+    "abz.lejos": "away from the box",
+    "abz.atras": "back in your own half",
+    "ab3.fondo": "From behind the goal",
+    "ab3.banda": "From the touchline",
     "ln.favSave": "☆ Save as favorite",
     "ln.favMax": "You already have 3 saved favorites. Delete one to save another.",
     "ln.favNamePrompt": "Name for this lineup (e.g. \"With injuries\")",
@@ -1363,6 +1405,26 @@ const DICT = {
     "ln.abpSaveOk": "✓ Enregistré pour tout le staff.",
     "ln.abpSaveFail": "Impossible d'enregistrer. Vérifiez la connexion.",
     "ln.abpDownload": "⤓ Télécharger le CPA",
+    "ln.abpDemoName": "Exemple",
+    "jg.abpTitle": "CPA · ta place",
+    "jg.abpHint": "Ce que ton entraîneur a préparé pour chaque coup de pied arrêté. Ton jeton est mis en évidence.",
+    "jg.abpEmpty": "Ton entraîneur n'a pas encore enregistré de placement pour cette situation.",
+    "jg.abpYouAre": "Tu vas {z}.",
+    "jg.abpNotInXI": "Tu n'es pas dans le onze actuel, tu n'as donc pas encore de place sur cette situation.",
+    "abz.porteria": "dans les buts",
+    "abz.corner": "au drapeau de corner",
+    "abz.paloIzq": "au poteau gauche",
+    "abz.paloDer": "au poteau droit",
+    "abz.areaPequena": "dans les six mètres",
+    "abz.penalti": "sur le point de penalty",
+    "abz.area": "dans la surface",
+    "abz.frontal": "à l'entrée de la surface",
+    "abz.bandaIzq": "sur l'aile gauche",
+    "abz.bandaDer": "sur l'aile droite",
+    "abz.lejos": "loin de la surface",
+    "abz.atras": "en retrait, dans ton camp",
+    "ab3.fondo": "Derrière le but",
+    "ab3.banda": "Depuis la touche",
     "ln.favSave": "☆ Enregistrer comme favori",
     "ln.favMax": "Vous avez déjà 3 favoris enregistrés. Supprimez-en un pour en enregistrer un autre.",
     "ln.favNamePrompt": "Nom pour cette composition (ex. « Avec blessés »)",
@@ -2069,6 +2131,26 @@ const DICT = {
     "ln.abpSaveOk": "✓ Für das ganze Trainerteam gespeichert.",
     "ln.abpSaveFail": "Speichern nicht möglich. Prüfe die Verbindung.",
     "ln.abpDownload": "⤓ Standard herunterladen",
+    "ln.abpDemoName": "Beispiel",
+    "jg.abpTitle": "Standards · dein Platz",
+    "jg.abpHint": "Was dein Trainer für jede Standardsituation vorbereitet hat. Dein Spielstein ist hervorgehoben.",
+    "jg.abpEmpty": "Dein Trainer hat für diese Situation noch keine Aufstellung gespeichert.",
+    "jg.abpYouAre": "Du gehst {z}.",
+    "jg.abpNotInXI": "Du stehst nicht in der aktuellen Elf, also hast du hier noch keinen Platz.",
+    "abz.porteria": "ins Tor",
+    "abz.corner": "zur Eckfahne",
+    "abz.paloIzq": "an den linken Pfosten",
+    "abz.paloDer": "an den rechten Pfosten",
+    "abz.areaPequena": "in den Fünfmeterraum",
+    "abz.penalti": "an den Elfmeterpunkt",
+    "abz.area": "in den Strafraum",
+    "abz.frontal": "an den Strafraumrand",
+    "abz.bandaIzq": "auf die linke Seite",
+    "abz.bandaDer": "auf die rechte Seite",
+    "abz.lejos": "weg vom Strafraum",
+    "abz.atras": "hinten in der eigenen Hälfte",
+    "ab3.fondo": "Hinter dem Tor",
+    "ab3.banda": "Von der Seitenlinie",
     "ln.favSave": "☆ Als Favorit speichern",
     "ln.favMax": "Du hast bereits 3 gespeicherte Favoriten. Lösche einen, um einen weiteren zu speichern.",
     "ln.favNamePrompt": "Name für diese Aufstellung (z. B. „Mit Verletzten“)",
@@ -2774,6 +2856,26 @@ const DICT = {
     "ln.abpSaveOk": "✓ Guardada para toda a equipa técnica.",
     "ln.abpSaveFail": "Não foi possível guardar. Verifica a ligação.",
     "ln.abpDownload": "⤓ Descarregar jogada",
+    "ln.abpDemoName": "Exemplo",
+    "jg.abpTitle": "Bola parada · o teu lugar",
+    "jg.abpHint": "O que o teu treinador preparou para cada bola parada. A tua peça vai marcada.",
+    "jg.abpEmpty": "O teu treinador ainda não guardou nenhuma colocação para esta jogada.",
+    "jg.abpYouAre": "Tu vais {z}.",
+    "jg.abpNotInXI": "Não estás no onze que está escolhido agora, por isso ainda não tens lugar nesta jogada.",
+    "abz.porteria": "à baliza",
+    "abz.corner": "ao canto do campo",
+    "abz.paloIzq": "ao poste esquerdo",
+    "abz.paloDer": "ao poste direito",
+    "abz.areaPequena": "à pequena área",
+    "abz.penalti": "à marca de grande penalidade",
+    "abz.area": "dentro da área",
+    "abz.frontal": "à entrada da área",
+    "abz.bandaIzq": "à ala esquerda",
+    "abz.bandaDer": "à ala direita",
+    "abz.lejos": "longe da área",
+    "abz.atras": "atrás, no teu meio-campo",
+    "ab3.fondo": "Por trás da baliza",
+    "ab3.banda": "Da linha lateral",
     "ln.favSave": "☆ Guardar como favorita",
     "ln.favMax": "Já tens 3 favoritas guardadas. Apaga uma para guardar outra.",
     "ln.favNamePrompt": "Nome para esta alinhação (ex.: «Com lesionados»)",
@@ -9717,154 +9819,105 @@ function buildSlots(code) {
   });
   return slots;
 }
-/* ================= ABP · BALÓN PARADO =================
-   El mismo once, colocado de otra manera. Un córner no se defiende ni se
-   ataca con el dibujo del sistema: los centrales suben al área, el portero
-   se pega al palo y alguien se queda arriba para la contra. Por eso las
-   posiciones de ABP viven aparte de `slotPos` y no lo tocan -volver al once
-   después de preparar un balón parado tiene que devolver el equipo tal y
-   como estaba.
-   Hay seis situaciones: córner, falta y penalti, cada una a favor y en
-   contra. Cada una guarda su propia colocación y sus propias colocaciones
-   guardadas, porque no se parecen en nada entre sí.
-   Las listas de abajo son el punto de partida que se ofrece al entrar: una
-   colocación razonable que el entrenador mueve a su gusto, no una propuesta
-   táctica cerrada. En todas la portería está arriba: la que se ataca cuando
-   el balón parado es a favor, la que se defiende cuando es en contra. */
-const CORNER_ATAQUE = [
-  [50, 94],                     /* portero: atrás del todo, si se pierde el balón el córner es del rival */
-  [25, 75], [75, 75],           /* dos que se quedan para la contra */
-  [8, 13],                      /* el que saca, en el banderín */
-  [34, 18], [66, 18],           /* primer y segundo palo */
-  [50, 34],                     /* punto de penalti */
-  [50, 56],                     /* frontal, para el rechace */
-  [26, 55], [80, 42],           /* segunda jugada y llegada desde atrás */
-  [17, 35],                     /* saque en corto */
-];
-const CORNER_DEFENSA = [
-  [50, 8],                      /* portero, en la línea */
-  [30, 14], [70, 14],           /* los dos palos */
-  [24, 34], [41, 34], [59, 34], [76, 34],   /* la zona, delante del área pequeña */
-  [14, 56], [86, 56],           /* al hombre */
-  [50, 56],                     /* el frontal, para el rechace */
-  [50, 82],                     /* el que se queda arriba */
-];
-/* Nota sobre estas dos tablas: en un córner de verdad los dos de los palos
-   están pegados a la zona, y el portero a un metro de ellos. Dibujado a
-   escala eso son tres fichas una encima de otra en un móvil, y una ficha
-   tapada no se puede arrastrar. Se separan lo justo para que cada una se
-   pueda coger con el dedo -medido: ninguna pareja a menos del diámetro de
-   una ficha en una pantalla de 390px-, y a partir de ahí el entrenador las
-   junta tanto como quiera. */
-/* ---- Faltas ----
-   Una falta a favor cerca del área: el que la saca marca donde está el
-   balón -no hay una ficha aparte para el balón, la ficha del lanzador ES el
-   balón-, dos remates a los palos, uno al punto de penalti, las llegadas y
-   dos que se quedan atrás por si el rival sale a la contra. */
-/* El orden importa: las coordenadas se reparten entre los puestos del sistema
-   tal y como están dibujados -portero, defensas, medios, delanteros-, así que
-   el que saca la falta cae en un medio y los dos que remiten a los palos en
-   los delanteros, que es lo normal. */
-const FALTA_ATAQUE = [
-  [50, 94],                     /* portero: en su área, el balón está en la otra mitad */
-  [22, 78], [78, 78],           /* los dos defensas que se quedan por si hay contra */
-  [27, 36], [73, 36],           /* las dos llegadas desde atrás */
-  [40, 60],                     /* el que la saca: aquí está el balón */
-  [59, 66],                     /* el segundo lanzador, para el engaño */
-  [50, 47],                     /* frontal del área, para el rechace */
-  [37, 19], [63, 19],           /* primer y segundo palo */
-  [50, 29],                     /* punto de penalti */
-];
-/* Una falta en contra: barrera, marcas en el área y uno al balón para que no
-   la saquen en corto. La barrera de verdad va hombro con hombro; dibujada a
-   escala serían cuatro fichas pegadas y una ficha tapada no se puede
-   arrastrar, así que se separa lo justo para cogerla con el dedo. */
-const FALTA_DEFENSA = [
-  [50, 10],                     /* portero, tapando su palo */
-  [20, 26], [36, 26], [64, 26], [80, 26],   /* los defensas, a las marcas del área */
-  [26, 46], [42, 46], [58, 46], [74, 46],   /* la barrera */
-  [50, 60],                     /* al balón, para que no la saquen en corto */
-  [50, 82],                     /* el que se queda arriba */
-];
-/* En la fila del borde del área las fichas van en zigzag, una arriba y otra
-   abajo. Puestas todas a la misma altura caben -se tocan pero no se tapan-,
-   pero el cartel con el nombre de cada una es más ancho que la ficha y los
-   nombres se montaban unos encima de otros. */
-/* ---- Penaltis ----
-   En un penalti el reglamento coloca al equipo: solo el lanzador y el
-   portero rival dentro del área, y los demás fuera y por detrás del balón.
-   Lo que sí decide el entrenador es QUIÉN lanza y quién se queda cerca del
-   borde del área para el rechace, que es lo que se prepara aquí. */
-const PENALTI_ATAQUE = [
-  [50, 94],                     /* portero: en su área */
-  [25, 78], [50, 78], [75, 78], /* los defensas atrás, por si falla y sale la contra */
-  [16, 54],                     /* el cuarto defensa, ya en el borde del área */
-  [29, 62], [42, 54], [58, 62], /* los medios, al rechace */
-  [50, 42],                     /* el lanzador, detrás del balón */
-  [71, 54], [84, 62],           /* los otros dos de arriba, al rechace */
-];
-const PENALTI_DEFENSA = [
-  [50, 9],                      /* portero, en la línea */
-  [16, 54], [29, 62], [42, 54], [58, 62],   /* los defensas, fuera del área y a por el rechace */
-  [71, 54], [84, 62], [30, 78], /* los medios */
-  [50, 78], [70, 78],           /* la segunda línea */
-  [50, 92],                     /* el que se queda arriba para la contra */
-];
+/* Las seis situaciones a balón parado y sus colocaciones de salida viven
+   en src/abp.js: las usan la pantalla del entrenador y la del jugador, y
+   así se pueden probar sin montar la app entera. */
 
-/* Las seis situaciones. La clave es la que viaja a la nube y la que indexa
-   `abpPos` y `abpGuardadas`; "ataque" y "defensa" son el córner y se llaman
-   así desde la primera versión, cuando el córner era lo único que había: se
-   mantienen tal cual para no perder lo que ya tiene guardado un equipo. */
-const JUGADAS_ABP = ["corner", "falta", "penalti"];
-const CLAVES_ABP = ["ataque", "defensa", "faltaAtaque", "faltaDefensa", "penaltiAtaque", "penaltiDefensa"];
-const claveAbp = (jugada, lado) => (jugada === "corner" ? lado : `${jugada}${lado === "defensa" ? "Defensa" : "Ataque"}`);
-const ladoDeAbp = (sit) => (sit === "defensa" || String(sit).endsWith("Defensa") ? "defensa" : "ataque");
-const jugadaDeAbp = (sit) => (String(sit).startsWith("falta") ? "falta" : String(sit).startsWith("penalti") ? "penalti" : "corner");
-const ETIQUETA_JUGADA = { corner: "ln.abpCorner", falta: "ln.abpFalta", penalti: "ln.abpPenalti" };
-/* "Córner a favor", "Falta en contra"... el nombre de la situación tal y como
-   se ve en la tarjeta, en la imagen que se comparte y en el texto. */
-const nombreAbp = (t, sit) => `${t(ETIQUETA_JUGADA[jugadaDeAbp(sit)])} ${t(ladoDeAbp(sit) === "defensa" ? "ln.abpDefensa" : "ln.abpAtaque")}`;
-const TABLAS_ABP = {
-  ataque: CORNER_ATAQUE, defensa: CORNER_DEFENSA,
-  faltaAtaque: FALTA_ATAQUE, faltaDefensa: FALTA_DEFENSA,
-  penaltiAtaque: PENALTI_ATAQUE, penaltiDefensa: PENALTI_DEFENSA,
+/* El mismo balón parado, en 3D. No es la pizarra 3D entera -esa va a
+   pantalla completa y trae pasos, grabación y edición-: aquí solo hace falta
+   ver la jugada desde donde se ve en el campo de verdad, poder girarla y
+   encontrarse a uno mismo, que es lo que no se consigue mirando un dibujo
+   desde arriba. El motor (Three.js, ~500 kB) se descarga solo al pulsar 3D,
+   así que la pantalla del jugador no lo carga mientras no lo pida. */
+const VISTAS_ABP3D = [["abpFondo", "ab3.fondo"], ["abpBanda", "ab3.banda"], ["cenital", "w.3dCenital"], ["tribuna", "w.3dTribuna"]];
+const AbpVista3D = ({ tokens, balon, marcado, nombres, acento, t, C }) => {
+  const caja = useRef(null), motor = useRef(null), vivo = useRef(false);
+  const [estado, setEstado] = useState("cargando");
+  const [vistaK, setVistaK] = useState("abpFondo");
+  const [giro, setGiro] = useState(false);
+  /* Una cadena con todo lo que se pinta: así el efecto de abajo se vuelve a
+     disparar al cambiar de situación sin depender de la identidad de un
+     array que se construye nuevo en cada render. */
+  const clave = JSON.stringify([tokens, balon, marcado]);
+  useEffect(() => {
+    vivo.current = true;
+    import("./pizarra3d.js").then(({ montarPizarra3D }) => {
+      if (!vivo.current || !caja.current) return;
+      try {
+        motor.current = montarPizarra3D(caja.current, { acento, nombres });
+        setEstado("listo");
+      } catch (e) { console.warn("[abp 3d]", e); setEstado("error"); }
+    }).catch((e) => { console.warn("[abp 3d]", e); if (vivo.current) setEstado("error"); });
+    return () => { vivo.current = false; motor.current?.destruir(); motor.current = null; };
+  }, []); // eslint-disable-line
+  useEffect(() => {
+    const m = motor.current;
+    if (estado !== "listo" || !m) return;
+    m.ponerJugada({ tokens: balon ? [...tokens, { id: "balon", type: "ball", x: balon.x, y: balon.y }] : tokens });
+    m.marcar(marcado ? [marcado] : []);
+  }, [estado, clave]); // eslint-disable-line
+  /* El encuadre se pone una vez al cargar; a partir de ahí manda el dedo del
+     jugador, que puede girar el campo y acercarse. */
+  useEffect(() => { if (estado === "listo") motor.current?.vista(vistaK); }, [estado]); // eslint-disable-line
+  const cambiarVista = (k) => { setVistaK(k); setGiro(false); motor.current?.autoGiro(false); motor.current?.vista(k); };
+  const alternarGiro = () => { const on = !giro; setGiro(on); motor.current?.autoGiro(on); };
+  return (
+    <>
+      <div className="relative w-full rounded-lg overflow-hidden" style={{ aspectRatio: "4/3", background: "#0E1512" }}>
+        <div ref={caja} className="absolute inset-0" />
+        {estado !== "listo" && (
+          <div className="absolute inset-0 flex items-center justify-center text-xs text-center px-4" style={{ color: C.dim }}>
+            {t(estado === "error" ? "w.3dFail" : "w.3dLoading")}
+          </div>
+        )}
+      </div>
+      {estado === "listo" && (
+        <>
+          <div className="flex flex-wrap items-center gap-1.5 mt-2">
+            {VISTAS_ABP3D.map(([k, lbl]) => {
+              const act = vistaK === k && !giro;
+              return (
+                <button key={k} onClick={() => cambiarVista(k)} className="text-xs px-2.5 py-1 rounded-lg border font-display"
+                  style={{ borderColor: act ? acento : C.line, color: act ? acento : C.dim }}>{t(lbl)}</button>
+              );
+            })}
+            <button onClick={alternarGiro} className="text-xs px-2.5 py-1 rounded-lg border font-display"
+              style={{ borderColor: giro ? acento : C.line, color: giro ? acento : C.dim }}>{t("w.3dGiro")}</button>
+          </div>
+          <div className="text-[11px] mt-1.5 leading-relaxed" style={{ color: C.dim }}>{t("w.3dHint")}</div>
+        </>
+      )}
+    </>
+  );
 };
-/* Reparte esas coordenadas entre los puestos del sistema que se esté usando,
-   en el orden en el que están dibujados en el campo (portero primero). Si el
-   sistema tuviera más puestos que coordenadas -no ocurre en 11 ni en 7- los
-   que sobren se quedan en el frontal, que es donde menos estorban. */
-const abpPorDefecto = (sit, slots) => {
-  const tabla = TABLAS_ABP[sit] || CORNER_ATAQUE;
-  const out = {};
-  Object.entries(slots).forEach(([id, s], i) => {
-    const [x, y] = tabla[i] || [50, 55];
-    out[id] = { label: s.label, x, y };
-  });
-  return out;
-};
-/* Lo que llega de la nube trae solo el sitio de cada ficha: la demarcación
-   sale del sistema que se esté usando ahora, que es el que manda. Un puesto
-   guardado que ya no exista -se ha cambiado de sistema- se descarta, y uno
-   nuevo cae en su posición por defecto. */
-const abpConSlots = (guardado, slots, sit) => {
-  const base = abpPorDefecto(sit, slots);
-  if (!guardado || typeof guardado !== "object") return base;
-  const out = {};
-  Object.keys(base).forEach((id) => {
-    const g = guardado[id];
-    out[id] = Number.isFinite(g?.x) && Number.isFinite(g?.y)
-      ? { label: base[id].label, x: g.x, y: g.y }
-      : base[id];
-  });
-  return out;
-};
-/* Al revés: a la nube solo viaja el sitio. La demarcación no se guarda porque
-   no es de la jugada, es del sistema. */
-const abpSoloPos = (pos) => {
-  const out = {};
-  Object.entries(pos || {}).forEach(([id, s]) => { out[id] = { x: s.x, y: s.y }; });
-  return out;
-};
+
+/* El campo de los balones parados: media cancha apaisada, con la portería
+   arriba -la que se ataca si la jugada es a favor, la que se defiende si es
+   en contra- y los dos banderines de córner a la vista.
+   El campo entero no sirve para esto: once fichas apretadas en el 15% de
+   arriba no se pueden colocar con el dedo. Y apaisado porque en un balón
+   parado el equipo se reparte a lo ANCHO del área, de palo a palo y hacia el
+   frontal, así que es el ancho lo que hace falta.
+   Lo usan dos pantallas: la del entrenador, que coloca las fichas, y la del
+   jugador, que solo mira dónde le toca ponerse. */
+const CampoAbp = ({ chalk }) => (
+  <svg viewBox="0 0 400 340" className="absolute inset-0 w-full h-full pointer-events-none">
+    {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
+      <rect key={i} x="0" y={i * 42.5} width="400" height="42.5" fill={i % 2 ? "#17251D" : "#152219"} />
+    ))}
+    <g stroke={chalk} strokeOpacity="0.5" strokeWidth="1.6" fill="none">
+      <rect x="8" y="26" width="384" height="306" />
+      <line x1="8" y1="26" x2="392" y2="26" />
+      <rect x="170" y="12" width="60" height="14" strokeOpacity="0.85" />
+      <rect x="46" y="26" width="308" height="148" />
+      <rect x="130" y="26" width="140" height="50" />
+      <circle cx="200" cy="125" r="3" fill={chalk} fillOpacity="0.5" stroke="none" />
+      <path d="M 131 174 A 85 85 0 0 0 269 174" />
+      <path d="M 8 44 A 18 18 0 0 0 26 26" />
+      <path d="M 392 44 A 18 18 0 0 1 374 26" />
+    </g>
+  </svg>
+);
 
 /* El tablero de una alineación guardada: no solo en qué sistema jugaba, sino
    DÓNDE estaba puesta cada ficha. Si el entrenador abre a un lateral, junta a
@@ -13159,6 +13212,13 @@ export default function App() {
   const [abpMsg, setAbpMsg] = useState("");
   const [abpBusy, setAbpBusy] = useState(false);
   const abpListo = useRef(false);
+  /* Lo mismo, pero para la pantalla del jugador y de su familia: qué
+     situación está mirando y cuál de las colocaciones guardadas de esa
+     situación. Va aparte del estado del entrenador porque son dos pantallas
+     distintas y nadie las ve a la vez. */
+  const [jugAbpSit, setJugAbpSit] = useState("ataque");
+  const [jugAbpSel, setJugAbpSel] = useState("");
+  const [jugAbp3d, setJugAbp3d] = useState(false);
   const abpLado = abpSit ? ladoDeAbp(abpSit) : null;
   /* Al entrar en una situación por primera vez -o al cambiar de sistema- se
      ofrece la colocación por defecto de esa situación; a partir de ahí manda
@@ -13177,7 +13237,16 @@ export default function App() {
   useEffect(() => {
     const rec = session?.team?.rec;
     abpListo.current = false;
-    if (!rec || session?.email === "demo") { setAbpGuardadas(Object.fromEntries(CLAVES_ABP.map((k) => [k, []]))); return; }
+    if (!rec || session?.email === "demo") {
+      /* En la demo no hay nube, pero sí hay que poder ver la función: cada
+         situación trae una colocación de ejemplo, que es la de salida. Sin
+         esto la pantalla del jugador en la demo sale siempre vacía y parece
+         que no estuviera hecha. */
+      const demo = session?.email === "demo";
+      setAbpGuardadas(Object.fromEntries(CLAVES_ABP.map((k) => [k,
+        demo ? [{ id: `demo-${k}`, nombre: t("ln.abpDemoName"), pos: abpSoloPos(abpPorDefecto(k, slotPos)) }] : []])));
+      return;
+    }
     let vivo = true;
     (async () => {
       const d = await airAbpLeer(rec);
@@ -13192,7 +13261,11 @@ export default function App() {
       abpListo.current = true;
     })();
     return () => { vivo = false; };
-  }, [session?.team?.rec, refresco]); // eslint-disable-line
+    /* `session?.email` va en las dependencias aparte del equipo: el equipo
+       de la demo no tiene `rec`, así que al entrar en la demo ese valor
+       sigue siendo undefined y el efecto no se volvía a disparar -la
+       pantalla del jugador salía vacía en la demo-. */
+  }, [session?.team?.rec, session?.email, refresco]); // eslint-disable-line
   const guardarAbpEnLaNube = async (doc) => {
     const rec = session?.team?.rec;
     if (!rec || session?.email === "demo") {
@@ -21853,6 +21926,117 @@ export default function App() {
           )}
         </Card>
 
+        {/* ---- Balón parado: dónde le toca ponerse ----
+            Lo que ha preparado el cuerpo técnico para cada córner, falta y
+            penalti, a favor y en contra. Solo las colocaciones GUARDADAS: lo
+            que el entrenador está moviendo ahora mismo en su pantalla no ha
+            salido de su móvil, y enseñar un borrador sería peor que no
+            enseñar nada.
+            Además de marcar su ficha se dice con palabras dónde está -"al
+            segundo palo"-: un punto en un dibujo no se recuerda el domingo,
+            una frase sí. ---- */}
+        {(() => {
+          const lista = abpGuardadas[jugAbpSit] || [];
+          const elegida = lista.find((g) => g.id === jugAbpSel) || lista[0] || null;
+          const pos = elegida ? abpConSlots(elegida.pos, slotPos, jugAbpSit) : null;
+          const miSlot = pos && miId != null
+            ? Object.keys(pos).find((slot) => lineup[slot] === miId) || null
+            : null;
+          const botonLado = (lado) => {
+            const act = ladoDeAbp(jugAbpSit) === lado;
+            return (
+              <button key={lado} onClick={() => { setJugAbpSit(claveAbp(jugadaDeAbp(jugAbpSit), lado)); setJugAbpSel(""); }}
+                className="text-xs px-3 py-2 rounded-lg border font-display uppercase tracking-wide"
+                style={{ borderColor: act ? AC : C.line, background: act ? AC : "transparent", color: act ? C.sobre : C.chalk }}>
+                {t(lado === "defensa" ? "ln.abpDefensa" : "ln.abpAtaque")}
+              </button>
+            );
+          };
+          return (
+            <Card title={t("jg.abpTitle")}>
+              <div className="text-[11px] mb-2 leading-relaxed" style={{ color: C.dim }}>{t("jg.abpHint")}</div>
+              {/* Las mismas dos filas que ve el entrenador, para que hablen
+                  de lo mismo: arriba el lado, debajo la jugada. */}
+              <div className="flex flex-wrap items-center gap-1.5 mb-2 min-w-0">{["ataque", "defensa"].map(botonLado)}</div>
+              <div className="flex flex-wrap items-center gap-1.5 mb-3 min-w-0">
+                {JUGADAS_ABP.map((jg) => {
+                  const act = jugadaDeAbp(jugAbpSit) === jg;
+                  return (
+                    <button key={jg} onClick={() => { setJugAbpSit(claveAbp(jg, ladoDeAbp(jugAbpSit))); setJugAbpSel(""); }}
+                      className="text-xs px-3 py-1.5 rounded-lg border font-display uppercase tracking-wide"
+                      style={{ borderColor: act ? AC : C.line, background: act ? `${AC}1A` : "transparent", color: act ? AC : C.dim }}>
+                      {t(ETIQUETA_JUGADA[jg])}
+                    </button>
+                  );
+                })}
+              </div>
+              {!elegida || !pos ? (
+                <div className="text-sm" style={{ color: C.dim }}>{t("jg.abpEmpty")}</div>
+              ) : (
+                <>
+                  {/* Hasta cinco colocaciones por situación: el córner al
+                      primer palo, el de la jugada ensayada… */}
+                  {lista.length > 1 && (
+                    <div className="flex flex-wrap items-center gap-1.5 mb-2">
+                      {lista.map((g) => (
+                        <button key={g.id} onClick={() => setJugAbpSel(g.id)}
+                          className="text-xs px-2.5 py-1 rounded-lg border font-display"
+                          style={{ borderColor: g.id === elegida.id ? AC : C.line, color: g.id === elegida.id ? AC : C.dim }}>
+                          ⬡ {g.nombre}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                  <div className="rounded-lg border px-3 py-2 mb-2 text-sm leading-relaxed" style={{ borderColor: AC, background: `${AC}14`, color: C.chalk }}>
+                    {miSlot
+                      ? <>⬡ {t("jg.abpYouAre").replace("{z}", t(zonaAbp(pos[miSlot].x, pos[miSlot].y)))}</>
+                      : t("jg.abpNotInXI")}
+                  </div>
+                  {/* 2D o 3D. El dibujo de arriba dice dónde hay que estar; el
+                      3D enseña CÓMO se ve eso desde el campo, que es lo que un
+                      chaval reconoce el domingo. Se entra en 2D: el motor de
+                      Three.js solo se descarga si pulsa 3D. */}
+                  <div className="flex items-center gap-1.5 mb-2">
+                    {[[false, "2D"], [true, "3D"]].map(([v, lbl]) => (
+                      <button key={lbl} onClick={() => setJugAbp3d(v)}
+                        className="text-xs px-3 py-1.5 rounded-lg border font-display uppercase tracking-wide"
+                        style={{ borderColor: jugAbp3d === v ? AC : C.line, background: jugAbp3d === v ? AC : "transparent", color: jugAbp3d === v ? C.sobre : C.dim }}>
+                        {lbl}
+                      </button>
+                    ))}
+                  </div>
+                  {jugAbp3d ? (
+                    <AbpVista3D
+                      tokens={tokensAbp3d(pos, (slot) => players.find((x) => x.id === lineup[slot])?.d ?? "")}
+                      balon={balonAbp(jugAbpSit)}
+                      marcado={miSlot}
+                      nombres={Object.fromEntries(players.filter((x) => x.d != null && x.d !== "").map((x) => [String(x.d), x.n || ""]))}
+                      acento={AC} t={t} C={C} />
+                  ) : (
+                    <div className="relative -mx-4 sm:mx-0" style={{ aspectRatio: "400/340" }}>
+                      <CampoAbp chalk={C.chalk} />
+                      {Object.entries(pos).map(([slot, sl]) => {
+                        const pj = players.find((x) => x.id === lineup[slot]);
+                        const esMio = !!pj && pj.id === miId;
+                        return (
+                          <div key={slot} className="absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center" style={{ left: `${sl.x}%`, top: `${sl.y}%` }}>
+                            <PitchToken p={pj} label={sl.label} selected={esMio} accent={AC} textColor={C.chalk}
+                              borderColor={esMio ? AC : "rgba(54,69,79,0.5)"} />
+                            <div className="mt-0.5 px-1 rounded text-[9px] max-w-[70px] truncate"
+                              style={{ background: esMio ? AC : "rgba(14,21,18,0.85)", color: esMio ? "#141414" : C.chalk, fontWeight: esMio ? 700 : 400 }}>
+                              {pj ? `${pj.d} ${pj.n.split(" ")[0]}` : sl.label}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </>
+              )}
+            </Card>
+          );
+        })()}
+
         {/* ---- 3. Disciplina: solo lo de este jugador, nunca lo de sus compañeros ---- */}
         <Card title={t("mh.discTitle")}>
           {misIncidencias.length === 0 ? (
@@ -22864,42 +23048,18 @@ export default function App() {
               veía escrito encima del campo en la pantalla de Alineación
               (v2.93.3 a v2.94.1). */}
           <div ref={pitchRef} className={`relative touch-pan-y select-none ${abpSit ? "-mx-4 sm:mx-0" : "w-full"}`} style={{ aspectRatio: abpSit ? "400/340" : "3/4" }} onPointerMove={onPitchMove} onPointerUp={() => onSlotUp(null)}>
-            <svg viewBox={abpSit ? "0 0 400 340" : "0 0 300 400"} className="absolute inset-0 w-full h-full pointer-events-none">
-              {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
-                abpSit
-                  ? <rect key={i} x="0" y={i * 42.5} width="400" height="42.5" fill={i % 2 ? "#17251D" : "#152219"} />
-                  : <rect key={i} x="0" y={i * 50} width="300" height="50" fill={i % 2 ? "#17251D" : "#152219"} />
-              ))}
-              {abpSit ? (
-                /* ---- El campo de un córner ----
-                   El campo entero no sirve para esto: once fichas apretadas
-                   en el 15% de arriba no se pueden colocar con el dedo. Se
-                   dibuja el área ampliada, con la portería arriba -la que se
-                   ataca, o la que se defiende- y los dos banderines de
-                   córner a la vista, que es el marco real de la jugada.
-                   Y apaisado: en un córner el equipo se reparte a lo ANCHO
-                   del área -de palo a palo y hacia el frontal-, así que es el
-                   ancho lo que hace falta. De pie, once fichas en veinte
-                   metros de área salían unas encima de otras. */
-                <g stroke={C.chalk} strokeOpacity="0.5" strokeWidth="1.6" fill="none">
-                  <rect x="8" y="26" width="384" height="306" />
-                  <line x1="8" y1="26" x2="392" y2="26" />
-                  <rect x="170" y="12" width="60" height="14" strokeOpacity="0.85" />
-                  <rect x="46" y="26" width="308" height="148" />
-                  <rect x="130" y="26" width="140" height="50" />
-                  <circle cx="200" cy="125" r="3" fill={C.chalk} fillOpacity="0.5" stroke="none" />
-                  <path d="M 131 174 A 85 85 0 0 0 269 174" />
-                  <path d="M 8 44 A 18 18 0 0 0 26 26" />
-                  <path d="M 392 44 A 18 18 0 0 1 374 26" />
-                </g>
-              ) : (
+            {abpSit ? <CampoAbp chalk={C.chalk} /> : (
+              <svg viewBox="0 0 300 400" className="absolute inset-0 w-full h-full pointer-events-none">
+                {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
+                  <rect key={i} x="0" y={i * 50} width="300" height="50" fill={i % 2 ? "#17251D" : "#152219"} />
+                ))}
                 <g stroke={C.chalk} strokeOpacity="0.5" strokeWidth="1.5" fill="none">
                   <rect x="8" y="8" width="284" height="384" /><line x1="8" y1="200" x2="292" y2="200" /><circle cx="150" cy="200" r="34" />
                   <rect x="75" y="8" width="150" height="52" /><rect x="115" y="8" width="70" height="22" /><rect x="75" y="340" width="150" height="52" /><rect x="115" y="370" width="70" height="22" />
                   <path d="M 116 60 A 34 34 0 0 0 184 60" /><path d="M 116 340 A 34 34 0 0 1 184 340" />
                 </g>
-              )}
-            </svg>
+              </svg>
+            )}
             {Object.entries(abpSit ? posDeAbp(abpSit) : slotPos).map(([id, s]) => {
               const p = players.find((x) => x.id === lineupView[id]); const sel = selSlot === id;
               /* El aro marcado señala el hueco donde entraría el siguiente que
