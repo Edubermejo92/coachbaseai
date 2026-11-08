@@ -135,6 +135,35 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   sigue valiendo para los siguientes partidos hasta que se desactiva (y entonces caen las
   suscripciones). En iPhone el aviso solo llega con la página añadida a la pantalla de inicio.
 
+## Mi ficha: próximo partido, convocatoria, asistencias de gol y a qué entrenos faltó (v2.97.0)
+- Lo que faltaba de lo que pidió Edu el 8 nov. Todo en Mi ficha, que ven igual Jugador y Familia.
+- **Próximo partido**, lo primero de la página: el día en grande, la hora, contra quién, el campo
+  y un distintivo de **convocado / no convocado**. Si el día es hoy o mañana se dice así
+  («¡Hoy juegas!») y la fecha pasa debajo.
+- La convocatoria **no hacía falta inventarla**: el cuerpo técnico ya la guarda al mandarla por
+  WhatsApp (`?res=convocatoria-enviada` escribe fecha, hora, rival, lugar y la lista de recs en
+  la tabla Convocatorias). `?res=hijo` lee la primera con fecha >= hoy y devuelve solo
+  `{ fecha, hora, rival, lugar, convocado }`: **su** sí o su no, nunca quién más está convocado
+  ni por qué se queda fuera un compañero -los motivos de descarte son del cuerpo técnico y
+  siguen sin salir del móvil del entrenador-.
+- Si la lista todavía no está hecha, la tarjeta se rellena con el partido del calendario y pone
+  «Lista sin salir»: saber que el sábado se juega a las 11:30 ya vale.
+- **Asistencias de gol**: estaban en el acta desde siempre -se preguntan al marcar- pero no se le
+  contaban a nadie. Ahora el acta guarda además `asistDorsal` y `?res=hijo` las cuenta por
+  dorsal, con respaldo por nombre para las actas anteriores a este cambio. Cuarta casilla en
+  «Sus partidos» (Titular · Minutos · Goles · Asist.) y `◎n` en la línea de cada partido.
+- **A qué entrenos faltó**: `?res=hijo` devuelve `asistDias`, los últimos 40 días con lista y
+  SOLO su casilla de cada uno. Bajo el porcentaje salen los días que no fue, con el motivo
+  (Estudios, Enfermedad, Lesión, Sin explicación) y en su color. Si no faltó a ninguno, se dice.
+- **Helper**: `diasHastaISO(iso)` a nivel de módulo (0 = hoy, 1 = mañana), y `diasProx` de Inicio
+  pasa a usarlo en vez de repetir la cuenta.
+- Pruebas: `pruebas/pruebas15.mjs` sube a 23 (+14: las asistencias por dorsal y por nombre, la
+  convocatoria que viene y no la de ayer, que no se cuela quién más está convocado, el día a día
+  de la asistencia y que no se cuela el de un compañero). Total 546 ✓ / 652 ✓.
+- Cuidado al tocar esto: `ASIST_DIAS_DEMO` y `PROXIMA_DEMO` son FUNCIONES, no constantes, porque
+  `hoyISO` y `sumarDiasISO` se declaran más abajo en App.jsx; como constantes reventarían al
+  cargar el módulo (lo que caza pruebas27).
+
 ## El jugador ve su sitio en cada balón parado, en 2D y en 3D (v2.96.0)
 - Segundo paso de lo que pidió Edu el 8 nov: que cada jugador abra su ficha y vea qué tiene que
   hacer en cada acción a balón parado. El primero fue la v2.95.0 (las seis situaciones).
@@ -661,7 +690,7 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
 
 ## Pruebas
 - `npm test` = `pruebas/todas.mjs`: todas las pruebas en modo Airtable (fakeair) y en modo Supabase
-  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-11-08: 532 ✓ / 638 ✓, 0 fallos.
+  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-11-08: 546 ✓ / 652 ✓, 0 fallos.
 - Desde la sesión de Claude NO hay red hacia airtable.com ni supabase.co (proxy 403): la prueba
   real contra Supabase la hace la propia app en Netlify.
 

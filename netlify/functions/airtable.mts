@@ -1871,6 +1871,9 @@ const atender = async (req: Request) => {
          plantilla, y de ahí sacar solo el dato de este jugador: nunca la
          plantilla ni la asistencia de sus compañeros. */
       let asistencia: { pct: number; dias: number } | null = null;
+      /* Y el día a día, para poder decirle a qué entrenos faltó y por qué.
+         Solo SU casilla de cada día, nunca la de un compañero. */
+      let asistDias: { d: string; e: string }[] = [];
       let pidHijo = "";
       const equipoHijo = (jg.fields.Equipo || [])[0] || null;
       if (equipoHijo) {
@@ -1891,6 +1894,14 @@ const atender = async (req: Request) => {
                 const presentes = dias.filter((d: any) => d[pid] === "presente").length;
                 asistencia = { pct: Math.round((presentes / dias.length) * 100), dias: dias.length };
               }
+              /* Los últimos 40 días con lista, del más reciente al más
+                 antiguo: suficiente para una temporada a la vista y poco
+                 bastante para no engordar la respuesta. */
+              asistDias = Object.entries(todo)
+                .filter(([dia, d]: any) => /^\d{4}-\d{2}-\d{2}$/.test(dia) && d && Object.keys(d).length > 0)
+                .map(([dia, d]: any) => ({ d: String(dia), e: String(d[pid] || "") }))
+                .sort((a, b) => b.d.localeCompare(a.d))
+                .slice(0, 40);
             } catch { /* json roto en Airtable: se ignora */ }
           }
         }
@@ -1908,15 +1919,50 @@ const atender = async (req: Request) => {
           if (!m || !Array.isArray(m.jugadores)) return null;
           const yo = m.jugadores.find((x: any) => x.rec === hijoRec)
             || m.jugadores.find((x: any) => !x.rec && pidHijo && String(x.id) === pidHijo);
+          /* Las asistencias de gol no están en su ficha del partido: se
+             apuntan en el acta, en el propio gol ("quién dio el pase"). Se
+             cuentan por dorsal cuando el acta lo trae, y por nombre en las
+             actas de antes de que se guardara el dorsal. */
+          const miNombre = String(jg.fields?.Nombre || "").trim();
+          const asistencias = Array.isArray(m.acta)
+            ? m.acta.filter((e: any) => e?.type === "gol" && (
+                (yo?.d != null && e.asistDorsal != null && String(e.asistDorsal) === String(yo.d))
+                || (!!e.asist && !!miNombre && String(e.asist).trim() === miNombre)
+              )).length
+            : 0;
           return {
             fecha: m.fecha || r.fields?.Fecha || "", rival: m.rival || r.fields?.Rival || "",
             casa: !!m.casa, us: Number(m.us) || 0, them: Number(m.them) || 0,
             convocado: !!yo, titular: !!yo?.titular, minutos: Number(yo?.minutos) || 0,
             goles: Number(yo?.goles) || 0, tarjetas: Number(yo?.tarjetas) || 0,
+            asistencias,
           };
         }).filter(Boolean).sort((a: any, b: any) => String(b.fecha).localeCompare(String(a.fecha)));
       }
-      return j({ ok: true, pendiente: false, hijo: { rec: hijoRec, ...jg.fields }, asistencia, partidos });
+      /* ---- La próxima convocatoria ----
+         Lo que de verdad pregunta un chaval el viernes: cuándo se juega,
+         contra quién, a qué hora, dónde y si está en la lista. Sale de la
+         convocatoria que el cuerpo técnico ya guarda al mandarla por
+         WhatsApp (ver "convocatoria enviada" más arriba), así que no hay
+         nada nuevo que escribir: solo leerla.
+         De la lista sale SU sí o su no, nunca quién más está convocado ni
+         por qué se queda fuera un compañero -eso es del cuerpo técnico-. */
+      let proxima: { fecha: string; hora: string; rival: string; lugar: string; convocado: boolean } | null = null;
+      if (equipoHijo) {
+        const hoyStr = new Date().toISOString().slice(0, 10);
+        const convs = (await filasDeEquipo("convocatorias", equipoHijo).catch(() => [] as any[]))
+          .filter((r: any) => /^\d{4}-\d{2}-\d{2}$/.test(String(r.fields?.Fecha || "")))
+          .sort((a: any, b: any) => String(a.fields.Fecha).localeCompare(String(b.fields.Fecha)));
+        const prox = convs.find((r: any) => String(r.fields.Fecha) >= hoyStr) || null;
+        if (prox) proxima = {
+          fecha: String(prox.fields.Fecha),
+          hora: String(prox.fields.Hora || ""),
+          rival: String(prox.fields.Rival || ""),
+          lugar: String(prox.fields.Lugar || ""),
+          convocado: (prox.fields.Convocados || []).map(String).includes(hijoRec),
+        };
+      }
+      return j({ ok: true, pendiente: false, hijo: { rec: hijoRec, ...jg.fields }, asistencia, asistDias, partidos, proxima });
     }
 
     /* ================= PARIENTES DE UN JUGADOR (vista del club) =================

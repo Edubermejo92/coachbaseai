@@ -145,6 +145,13 @@ const DICT = {
     "abz.atras": "atrás, en tu campo",
     "ab3.fondo": "Desde el fondo",
     "ab3.banda": "Desde la banda",
+    "mh.assistsN": "Asist.",
+    "jg.pxHoy": "¡Hoy juegas!",
+    "jg.pxManana": "Mañana",
+    "jg.pxVs": "contra {x}",
+    "jg.pxConvocado": "✓ Convocado",
+    "jg.pxNoConvocado": "No convocado",
+    "jg.pxSinLista": "Lista sin salir",
     "ln.favSave": "☆ Guardar como favorita",
     "ln.favMax": "Ya tienes 3 favoritas guardadas. Borra una para guardar otra.",
     "ln.favNamePrompt": "Nombre para esta alineación (p. ej. «Con lesionados»)",
@@ -779,6 +786,13 @@ const DICT = {
     "abz.atras": "back in your own half",
     "ab3.fondo": "From behind the goal",
     "ab3.banda": "From the touchline",
+    "mh.assistsN": "Assists",
+    "jg.pxHoy": "You play today!",
+    "jg.pxManana": "Tomorrow",
+    "jg.pxVs": "vs {x}",
+    "jg.pxConvocado": "✓ Called up",
+    "jg.pxNoConvocado": "Not called up",
+    "jg.pxSinLista": "Squad not out yet",
     "ln.favSave": "☆ Save as favorite",
     "ln.favMax": "You already have 3 saved favorites. Delete one to save another.",
     "ln.favNamePrompt": "Name for this lineup (e.g. \"With injuries\")",
@@ -1425,6 +1439,13 @@ const DICT = {
     "abz.atras": "en retrait, dans ton camp",
     "ab3.fondo": "Derrière le but",
     "ab3.banda": "Depuis la touche",
+    "mh.assistsN": "P. déc.",
+    "jg.pxHoy": "Tu joues aujourd'hui !",
+    "jg.pxManana": "Demain",
+    "jg.pxVs": "contre {x}",
+    "jg.pxConvocado": "✓ Convoqué",
+    "jg.pxNoConvocado": "Non convoqué",
+    "jg.pxSinLista": "Groupe pas encore annoncé",
     "ln.favSave": "☆ Enregistrer comme favori",
     "ln.favMax": "Vous avez déjà 3 favoris enregistrés. Supprimez-en un pour en enregistrer un autre.",
     "ln.favNamePrompt": "Nom pour cette composition (ex. « Avec blessés »)",
@@ -2151,6 +2172,13 @@ const DICT = {
     "abz.atras": "hinten in der eigenen Hälfte",
     "ab3.fondo": "Hinter dem Tor",
     "ab3.banda": "Von der Seitenlinie",
+    "mh.assistsN": "Vorlagen",
+    "jg.pxHoy": "Heute spielst du!",
+    "jg.pxManana": "Morgen",
+    "jg.pxVs": "gegen {x}",
+    "jg.pxConvocado": "✓ Im Kader",
+    "jg.pxNoConvocado": "Nicht im Kader",
+    "jg.pxSinLista": "Kader noch nicht da",
     "ln.favSave": "☆ Als Favorit speichern",
     "ln.favMax": "Du hast bereits 3 gespeicherte Favoriten. Lösche einen, um einen weiteren zu speichern.",
     "ln.favNamePrompt": "Name für diese Aufstellung (z. B. „Mit Verletzten“)",
@@ -2876,6 +2904,13 @@ const DICT = {
     "abz.atras": "atrás, no teu meio-campo",
     "ab3.fondo": "Por trás da baliza",
     "ab3.banda": "Da linha lateral",
+    "mh.assistsN": "Assist.",
+    "jg.pxHoy": "Hoje jogas!",
+    "jg.pxManana": "Amanhã",
+    "jg.pxVs": "contra {x}",
+    "jg.pxConvocado": "✓ Convocado",
+    "jg.pxNoConvocado": "Não convocado",
+    "jg.pxSinLista": "Lista ainda por sair",
     "ln.favSave": "☆ Guardar como favorita",
     "ln.favMax": "Já tens 3 favoritas guardadas. Apaga uma para guardar outra.",
     "ln.favNamePrompt": "Nome para esta alinhação (ex.: «Com lesionados»)",
@@ -9439,6 +9474,23 @@ const HIJO_DEMO = {
 /* Asistencia de ejemplo: 7 de 8 días con lista pasada, el mismo cálculo
    ({pct, dias}) que devuelve de verdad ?res=hijo. */
 const ASISTENCIA_DEMO = { pct: 88, dias: 8 };
+/* Y el día a día: siete presentes y uno de estudios, que es el 88% de
+   arriba. Fechas relativas a hoy para que la demo no envejezca.
+   Es una función y no una constante a propósito: `hoyISO` y `sumarDiasISO`
+   se declaran más abajo en este mismo archivo, y una constante que las
+   llamara al cargar el módulo reventaría antes de que arrancara la app. */
+const ASIST_DIAS_DEMO = () => [0, 3, 5, 8, 10, 13, 15, 18].map((atras, i) => ({
+  d: sumarDiasISO(hoyISO(), -atras), e: i === 3 ? "estudios" : "presente",
+}));
+/* La próxima convocatoria de ejemplo: el sábado que viene, convocado. Es lo
+   mismo que devuelve ?res=hijo leyendo la convocatoria que el cuerpo técnico
+   guardó al mandarla. */
+const PROXIMA_DEMO = () => {
+  const hoy = new Date(`${hoyISO()}T12:00:00`);
+  const faltan = (6 - hoy.getDay() + 7) % 7 || 7;   /* el próximo sábado */
+  return { fecha: sumarDiasISO(hoyISO(), faltan), hora: "11:30", rival: "C.D. CANILLAS \"C\"",
+    lugar: "Campo de La Concepción", convocado: true };
+};
 /* Cuerpo técnico de ejemplo. Los correos son de dominios reservados para
    documentación (RFC 2606), que no existen y no pueden recibir nada. */
 const USUARIOS_DEMO = [
@@ -10166,6 +10218,16 @@ const fechaLegible = (iso, lang = "es") => {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(String(iso || ""))) return iso || "";
   const [y, m, d] = iso.split("-").map(Number);
   return new Date(y, m - 1, d).toLocaleDateString(lang === "es" ? "es-ES" : lang, { weekday: "long", day: "numeric", month: "long" });
+};
+/* Cuántos días faltan para una fecha, desde hoy: 0 = hoy, 1 = mañana,
+   negativo si ya pasó. Se compara a mediodía para que el cambio de hora no
+   desplace un día entero. */
+const diasHastaISO = (iso) => {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(String(iso || ""))) return null;
+  const [y, m, d] = iso.split("-").map(Number);
+  const destino = new Date(y, m - 1, d, 12, 0, 0);
+  const hoy = new Date(); hoy.setHours(12, 0, 0, 0);
+  return Math.round((destino - hoy) / 86400000);
 };
 /* Nombre del mes en el idioma activo, para las cabeceras de calendario:
    antes iba en un array fijo en español ("Enero", "Febrero"…) y no cambiaba
@@ -11950,6 +12012,11 @@ export default function App() {
   const [hijoAsistencia, setHijoAsistencia] = useState(null);
   /* Sus partidos: una línea por acta del equipo, solo con lo suyo. */
   const [hijoPartidos, setHijoPartidos] = useState([]);
+  /* Día a día de la asistencia -a qué entrenos vino y a cuáles no- y la
+     próxima convocatoria: cuándo, contra quién, dónde y si está en la lista.
+     Las dos cosas vienen de ?res=hijo, filtradas a este jugador. */
+  const [hijoAsistDias, setHijoAsistDias] = useState([]);
+  const [hijoProxima, setHijoProxima] = useState(null);
   useEffect(() => {
     if (!["familia", "jugador"].includes(session?.role)) return;
     /* La demo no tiene una cuenta real en Airtable detrás, así que
@@ -11962,9 +12029,16 @@ export default function App() {
       /* Lo mismo que devolvería ?res=hijo, sacado de los partidos de ejemplo. */
       setHijoPartidos(demoTemporada(hoyISO(), lang).historial.map((m) => {
         const yo = m.jugadores.find((x) => x.id === HIJO_DEMO.id);
+        /* Las asistencias de gol, como en el servidor: del acta, por dorsal. */
+        const asistencias = Array.isArray(m.acta)
+          ? m.acta.filter((e) => e?.type === "gol" && yo?.d != null && String(e.asistDorsal ?? "") === String(yo.d)).length
+          : 0;
         return { fecha: m.fecha, rival: m.rival, casa: m.casa, us: m.us, them: m.them, convocado: !!yo,
-          titular: !!yo?.titular, minutos: yo?.minutos || 0, goles: yo?.goles || 0, tarjetas: yo?.tarjetas || 0 };
+          titular: !!yo?.titular, minutos: yo?.minutos || 0, goles: yo?.goles || 0, tarjetas: yo?.tarjetas || 0,
+          asistencias };
       }));
+      setHijoAsistDias(ASIST_DIAS_DEMO());
+      setHijoProxima(PROXIMA_DEMO());
       return;
     }
     (async () => {
@@ -11972,7 +12046,9 @@ export default function App() {
       setHijoPendiente(!!d?.pendiente);
       setHijo(d?.hijo ? jugFromAir(d.hijo, 0) : null);
       setHijoAsistencia(d?.asistencia || null);
+      setHijoAsistDias(Array.isArray(d?.asistDias) ? d.asistDias : []);
       setHijoPartidos(Array.isArray(d?.partidos) ? d.partidos : []);
+      setHijoProxima(d?.proxima || null);
     })();
   }, [session?.role]); // eslint-disable-line
   /* Único bloque editable de la página de Familia/Jugador: la foto y el
@@ -20265,12 +20341,8 @@ export default function App() {
      corregirlo. */
   const [resEdit, setResEdit] = useState(false);
   const diasProx = (() => {
-    const iso = nextMatchFix?.date;
-    if (!iso || !/^\d{4}-\d{2}-\d{2}$/.test(iso)) return null;
-    const [y, m, d] = iso.split("-").map(Number);
-    const destino = new Date(y, m - 1, d, 12, 0, 0);
-    const hoy = new Date(); hoy.setHours(12, 0, 0, 0);
-    return Math.max(0, Math.round((destino - hoy) / 86400000));
+    const n = diasHastaISO(nextMatchFix?.date);
+    return n == null ? null : Math.max(0, n);
   })();
   const fechaProx = (() => {
     if (!nextMatchFix?.date) return matchInfo.fecha || t("h.noDate");
@@ -21765,6 +21837,51 @@ export default function App() {
             retransmitiendo: lo primero que se busca un sábado por la mañana. */}
         <DirectoEquipo teamRec={session?.team?.rec || null} demo={session?.email === "demo"}
           nombreNos={`${session?.club || ""} ${session?.team?.name || ""}`.trim()} lang={lang} t={t} />
+        {/* ---- Próximo partido ----
+            Lo que pregunta un chaval el viernes: cuándo se juega, a qué hora,
+            contra quién, dónde y si está en la lista. La convocatoria sale de
+            la que el cuerpo técnico guarda al mandarla por WhatsApp; de ella
+            solo sale SU sí o su no -ni quién más está convocado, ni por qué
+            se queda fuera un compañero-.
+            Si todavía no está hecha, se enseña igual el partido que hay en el
+            calendario y se dice que la lista aún no ha salido: saber que el
+            sábado se juega a las 11:30 ya vale, aunque no se sepa el resto. */}
+        {(() => {
+          const delCalendario = proximos[0] || null;
+          const p2 = hijoProxima || (delCalendario ? {
+            fecha: delCalendario.date, hora: delCalendario.time || "",
+            rival: rivalDeFixture(delCalendario) || "",
+            lugar: delCalendario.place || "", convocado: null,
+          } : null);
+          if (!p2 || !p2.fecha) return null;
+          const dias = diasHastaISO(p2.fecha);
+          const cuando = dias === 0 ? t("jg.pxHoy") : dias === 1 ? t("jg.pxManana") : null;
+          return (
+            <Card title={t("h.nextMatch")}>
+              <div className="flex items-start justify-between gap-3 flex-wrap">
+                <div className="min-w-0">
+                  <div className="font-display text-xl leading-tight" style={{ color: cuando ? AC : C.chalk }}>
+                    {cuando || fechaLegible(p2.fecha, lang)}
+                  </div>
+                  <div className="text-sm mt-0.5" style={{ color: C.chalk }}>
+                    {p2.hora ? `${p2.hora} · ` : ""}{p2.rival ? t("jg.pxVs").replace("{x}", p2.rival) : ""}
+                  </div>
+                  {p2.lugar && <div className="text-xs mt-0.5" style={{ color: C.dim }}>{p2.lugar}</div>}
+                  {cuando && <div className="text-xs mt-0.5" style={{ color: C.dim }}>{fechaLegible(p2.fecha, lang)}</div>}
+                </div>
+                <span className="shrink-0 text-xs px-2.5 py-1 rounded-full border font-display uppercase tracking-wide"
+                  style={p2.convocado === null
+                    ? { borderColor: C.line, color: C.dim }
+                    : p2.convocado
+                      ? { borderColor: C.green, background: `${C.green}1A`, color: C.green }
+                      : { borderColor: C.warn, background: `${C.warn}1A`, color: C.warn }}>
+                  {p2.convocado === null ? t("jg.pxSinLista") : t(p2.convocado ? "jg.pxConvocado" : "jg.pxNoConvocado")}
+                </span>
+              </div>
+            </Card>
+          );
+        })()}
+
         {/* ---- 1. Ficha: foto y datos personales ---- */}
         <Card title={`${tituloFicha} · ${hijo.n}`}>
           <div className="flex items-center gap-4 mb-4">
@@ -21829,10 +21946,33 @@ export default function App() {
           <div className="rounded-lg border p-2.5" style={{ borderColor: C.line, background: C.panel2 }}>
             <div className="text-[10px] font-display uppercase tracking-widest mb-1" style={{ color: C.dim }}>{t("fm.attTitle")}</div>
             {hijoAsistencia ? (
-              <div className="flex items-baseline gap-1.5">
-                <span className="font-display text-2xl tabular-nums" style={{ color: AC }}>{hijoAsistencia.pct}%</span>
-                <span className="text-xs" style={{ color: C.dim }}>{t("fm.attOf").replace("{n}", hijoAsistencia.dias)}</span>
-              </div>
+              <>
+                <div className="flex items-baseline gap-1.5">
+                  <span className="font-display text-2xl tabular-nums" style={{ color: AC }}>{hijoAsistencia.pct}%</span>
+                  <span className="text-xs" style={{ color: C.dim }}>{t("fm.attOf").replace("{n}", hijoAsistencia.dias)}</span>
+                </div>
+                {/* El porcentaje solo no dice nada: lo que se quiere saber es
+                    QUÉ días faltó y por qué. Se listan los que no fueron
+                    "presente" -los que sí vino no hacen falta uno a uno-. */}
+                {(() => {
+                  const faltas = hijoAsistDias.filter((x) => x.e !== "presente");
+                  if (!hijoAsistDias.length) return null;
+                  if (!faltas.length) return <div className="text-xs mt-1.5" style={{ color: C.green }}>✓ {t("as.histNoMiss")}</div>;
+                  return (
+                    <div className="mt-2">
+                      <div className="text-[10px] font-display uppercase tracking-widest mb-1" style={{ color: C.dim }}>{t("as.histMissed")}</div>
+                      <div className="flex flex-wrap gap-1.5">
+                        {faltas.map((x) => (
+                          <span key={x.d} className="text-[11px] px-2 py-0.5 rounded-full border whitespace-nowrap"
+                            style={{ borderColor: asistColor(x.e), color: asistColor(x.e) }}>
+                            {fechaCorta(x.d, lang)} · {asistLabel(x.e, t)}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })()}
+              </>
             ) : (
               <div className="text-xs" style={{ color: C.dim }}>{t("fm.attNone")}</div>
             )}
@@ -21851,11 +21991,16 @@ export default function App() {
             return (
               <>
                 <div className="text-xs mb-2" style={{ color: C.dim }}>{t("mh.calledOf").replace("{n}", conv.length).replace("{t}", hijoPartidos.length)}</div>
-                <div className="grid grid-cols-3 gap-2 mb-3">
-                  {[["mh.starterN", conv.filter((m) => m.titular).length], ["mh.minutesN", tot("minutos")], ["mh.goalsN", tot("goles")]].map(([k, v]) => (
-                    <div key={k} className="rounded-lg border p-2.5 text-center" style={{ borderColor: C.line, background: C.panel2 }}>
-                      <div className="font-display text-2xl tabular-nums" style={{ color: AC }}>{v}</div>
-                      <div className="text-[10px] font-display uppercase tracking-widest" style={{ color: C.dim }}>{t(k)}</div>
+                {/* Cuatro casillas, no tres: las asistencias de gol estaban
+                    en el acta -se preguntan al marcar- pero no se le
+                    contaban a nadie. En un móvil de 360px caben las cuatro
+                    en una fila con el número algo más pequeño. */}
+                <div className="grid grid-cols-4 gap-1.5 mb-3">
+                  {[["mh.starterN", conv.filter((m) => m.titular).length], ["mh.minutesN", tot("minutos")],
+                    ["mh.goalsN", tot("goles")], ["mh.assistsN", tot("asistencias")]].map(([k, v]) => (
+                    <div key={k} className="rounded-lg border p-2 text-center min-w-0" style={{ borderColor: C.line, background: C.panel2 }}>
+                      <div className="font-display text-xl tabular-nums" style={{ color: AC }}>{v}</div>
+                      <div className="text-[9px] font-display uppercase tracking-wide truncate" style={{ color: C.dim }}>{t(k)}</div>
                     </div>
                   ))}
                 </div>
@@ -21866,7 +22011,7 @@ export default function App() {
                       <span className="flex-1 min-w-0 truncate">{m.rival}</span>
                       <span className="font-display tabular-nums shrink-0" style={{ color: m.us > m.them ? C.green : m.us < m.them ? C.red : C.dim }}>{m.us}-{m.them}</span>
                       <span className="text-[11px] shrink-0 text-right w-28" style={{ color: m.convocado ? C.chalk : C.dim }}>
-                        {!m.convocado ? t("mh.notCalled") : !m.titular && !m.minutos ? t("mh.unused") : `${t(m.titular ? "mh.starter" : "mh.sub")} · ${m.minutos}′${m.goles ? ` · ⚽${m.goles}` : ""}`}
+                        {!m.convocado ? t("mh.notCalled") : !m.titular && !m.minutos ? t("mh.unused") : `${t(m.titular ? "mh.starter" : "mh.sub")} · ${m.minutos}′${m.goles ? ` · ⚽${m.goles}` : ""}${m.asistencias ? ` · ◎${m.asistencias}` : ""}`}
                       </span>
                     </div>
                   ))}
@@ -24671,8 +24816,11 @@ export default function App() {
            "Cambio — Fulano" y había que adivinar por quién. */
         sale: e.sale || null,
         /* Y quién dio el pase de gol: se pedía en el partido pero no se
-           guardaba en el acta. */
+           guardaba en el acta. Con el dorsal además, porque es lo que
+           permite contarle las asistencias a cada jugador en su ficha sin
+           depender de cómo esté escrito el nombre. */
         asist: e.asist || null,
+        asistDorsal: e.asistDorsal ?? null,
       })),
       lugar: matchInfo.lugar || "",
       /* Árbitro: nombre y comentario del cuerpo técnico, para tenerlo a mano
