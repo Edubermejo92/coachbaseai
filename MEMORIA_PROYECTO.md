@@ -1,6 +1,6 @@
 # Memoria del proyecto — CoachBase AI
 
-Última actualización: 2026-10-12
+Última actualización: 2026-11-08
 
 ## Qué es
 App web (React + Vite, `src/App.jsx` ~23k líneas) desplegada en Netlify (sitio `coachbase-ai`),
@@ -134,6 +134,42 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   inicial» (menores), se puede cambiar a completo o dorsal. Guardar el acta = final. El enlace
   sigue valiendo para los siguientes partidos hasta que se desactiva (y entonces caen las
   suscripciones). En iPhone el aviso solo llega con la página añadida a la pantalla de inicio.
+
+## ABP: faltas y penaltis, no solo córners (v2.95.0)
+- Pedido por Edu (8 nov 2026) como primer paso de la vista del jugador: que cada jugador vea
+  "qué tiene que hacer" en cada acción a balón parado. Antes de eso hay que poder prepararlas,
+  y solo existía el córner.
+- **Seis situaciones**: córner, falta y penalti, cada una a favor y en contra. En la app son dos
+  filas de botones -arriba el lado (el once / a favor / en contra), debajo la jugada-. Una sola
+  fila de siete no cabe en un móvil de 360px, y desplazándola de lado no se ven las opciones que
+  no están elegidas. La jugada se mantiene al cambiar de lado: lo normal es preparar el córner a
+  favor y pasar al córner en contra.
+- **Claves de almacenamiento**: `ataque`, `defensa` (el córner, se llaman así desde la primera
+  versión y no se tocan para no perder lo guardado), `faltaAtaque`, `faltaDefensa`,
+  `penaltiAtaque`, `penaltiDefensa`. Lista única en `CLAVES_ABP` (`src/App.jsx`), y la misma lista
+  repetida en `netlify/functions/airtable.mts` para validar.
+- **Servidor**: sigue siendo `?res=abp-corners` -el nombre nació con el córner y lo usan las
+  versiones ya instaladas en los móviles-. La validación acepta ahora cualquiera de las seis
+  claves, máximo 5 colocaciones de cada, rechaza claves desconocidas y sigue exigiendo el córner,
+  para que una app antigua (que solo manda `ataque` y `defensa`) siga guardando.
+- **Colocaciones por defecto**: cuatro tablas nuevas (`FALTA_ATAQUE`, `FALTA_DEFENSA`,
+  `PENALTI_ATAQUE`, `PENALTI_DEFENSA`) junto a las dos del córner, en `TABLAS_ABP`. El orden de
+  cada tabla importa: las coordenadas se reparten entre los puestos del sistema tal y como están
+  dibujados (portero, defensas, medios, delanteros), así que el que saca la falta cae en un medio
+  y los remates a los palos en los delanteros.
+- Medido en un móvil de 390px: ninguna pareja de fichas a menos de 46px (el diámetro de una
+  ficha), que es lo que hace falta para poder cogerla con el dedo. En la fila del borde del área
+  las fichas van en zigzag: a la misma altura caben, pero el cartel con el nombre es más ancho que
+  la ficha y los nombres se montaban unos encima de otros.
+- **Arreglado de paso**: desde v2.93.3 se veía escrito en la pantalla de Alineación, encima del
+  campo, el comentario del código que explica el `touch-pan-y` -se escribió sin las llaves, así que
+  para JSX no era un comentario sino texto-.
+- Pruebas: `pruebas/pruebas13.mjs` (+6: las seis se guardan y vuelven, añadir una falta no toca el
+  córner, más de 5 en un penalti no cuela, una situación inventada tampoco, y una app antigua que
+  solo manda el córner sigue guardando). Total 473 ✓ / 579 ✓.
+- **Pendiente** (lo que pidió Edu y aún no está): la vista del jugador -ver SU colocación en cada
+  situación, en 2D y en 3D, con su ficha resaltada-, minutos jugados, próximo partido con hora y
+  rival, si está convocado, y goles/asistencias/asistencia a entrenamientos.
 
 ## Apuntar el resultado desde Inicio, el día del partido (v2.94.0 · v2.94.1)
 - Edu: "añade aquí una opción para poner el resultado del partido el día del partido", sobre la
@@ -580,7 +616,7 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
 
 ## Pruebas
 - `npm test` = `pruebas/todas.mjs`: todas las pruebas en modo Airtable (fakeair) y en modo Supabase
-  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-11-07: 467 ✓ / 573 ✓, 0 fallos.
+  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-11-08: 473 ✓ / 579 ✓, 0 fallos.
 - Desde la sesión de Claude NO hay red hacia airtable.com ni supabase.co (proxy 403): la prueba
   real contra Supabase la hace la propia app en Netlify.
 

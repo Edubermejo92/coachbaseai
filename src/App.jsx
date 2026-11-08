@@ -102,11 +102,15 @@ const DICT = {
     "ln.captain": "Capitán", "ln.captainShort": "C", "ln.captainMax": "Como mucho 3 capitanes.", "ln.staffTitle": "Cuerpo técnico", "ln.staffHint": "Quién se sienta en el banquillo. Sale en la alineación compartida, como en el acta.", "ln.staffName": "Nombre", "ln.staffRole": "Cargo. Ej. Segundo entrenador", "ln.staffAdd": "+ Añadir", "ln.staffEmpty": "Todavía no has puesto a nadie.", "ln.xiFull": "El once está completo. Toca un puesto del campo para cambiar a quien esté ahí.",
     "ln.favTitle": "Favoritas",
     "ln.tabXI": "El once",
-    "ln.abpTitle": "ABP · Córner",
-    "ln.abpAtaque": "Córner a favor",
-    "ln.abpDefensa": "Córner en contra",
-    "ln.abpHint": "El mismo once, colocado para un córner. Arrastra las fichas por el área; el dibujo del once no se toca.",
-    "ln.abpDragHint": "Arrastra cada ficha a su sitio en el área",
+    "ln.abpTitle": "ABP · Balón parado",
+    "ln.abpShort": "ABP",
+    "ln.abpAtaque": "a favor",
+    "ln.abpDefensa": "en contra",
+    "ln.abpCorner": "Córner",
+    "ln.abpFalta": "Falta",
+    "ln.abpPenalti": "Penalti",
+    "ln.abpHint": "El mismo once, colocado para un balón parado. Elige la jugada y arrastra las fichas; el dibujo del once no se toca.",
+    "ln.abpDragHint": "Arrastra cada ficha a su sitio",
     "ln.abpSaved": "Guardadas",
     "ln.abpSave": "+ Guardar colocación",
     "ln.abpFull": "Ya tienes 5",
@@ -118,7 +122,7 @@ const DICT = {
     "ln.abpReset": "↺ Colocación de salida",
     "ln.abpSaveOk": "✓ Guardada para todo el cuerpo técnico.",
     "ln.abpSaveFail": "No se ha podido guardar. Revisa la conexión.",
-    "ln.abpDownload": "⤓ Descargar córner",
+    "ln.abpDownload": "⤓ Descargar jugada",
     "ln.favSave": "☆ Guardar como favorita",
     "ln.favMax": "Ya tienes 3 favoritas guardadas. Borra una para guardar otra.",
     "ln.favNamePrompt": "Nombre para esta alineación (p. ej. «Con lesionados»)",
@@ -712,11 +716,15 @@ const DICT = {
     "ln.captain": "Captain", "ln.captainShort": "C", "ln.captainMax": "Three captains at most.", "ln.staffTitle": "Coaching staff", "ln.staffHint": "Who is on the bench. Shows on the shared line-up, like on the team sheet.", "ln.staffName": "Name", "ln.staffRole": "Role. E.g. Assistant coach", "ln.staffAdd": "+ Add", "ln.staffEmpty": "Nobody added yet.", "ln.xiFull": "The XI is complete. Tap a position on the pitch to swap whoever is there.",
     "ln.favTitle": "Favorites",
     "ln.tabXI": "The XI",
-    "ln.abpTitle": "Set piece · Corner",
-    "ln.abpAtaque": "Corner for",
-    "ln.abpDefensa": "Corner against",
-    "ln.abpHint": "The same XI, set up for a corner. Drag the tokens around the box; your line-up shape is left untouched.",
-    "ln.abpDragHint": "Drag each token to its spot in the box",
+    "ln.abpTitle": "Set pieces",
+    "ln.abpShort": "Set piece",
+    "ln.abpAtaque": "for us",
+    "ln.abpDefensa": "against us",
+    "ln.abpCorner": "Corner",
+    "ln.abpFalta": "Free kick",
+    "ln.abpPenalti": "Penalty",
+    "ln.abpHint": "The same XI, set up for a set piece. Pick the situation and drag the tokens; your line-up shape is left untouched.",
+    "ln.abpDragHint": "Drag each token to its spot",
     "ln.abpSaved": "Saved",
     "ln.abpSave": "+ Save set-up",
     "ln.abpFull": "5 already saved",
@@ -728,7 +736,7 @@ const DICT = {
     "ln.abpReset": "↺ Starting set-up",
     "ln.abpSaveOk": "✓ Saved for the whole coaching staff.",
     "ln.abpSaveFail": "Couldn't save. Check your connection.",
-    "ln.abpDownload": "⤓ Download corner",
+    "ln.abpDownload": "⤓ Download set piece",
     "ln.favSave": "☆ Save as favorite",
     "ln.favMax": "You already have 3 saved favorites. Delete one to save another.",
     "ln.favNamePrompt": "Name for this lineup (e.g. \"With injuries\")",
@@ -1334,11 +1342,15 @@ const DICT = {
     "ln.captain": "Capitaine", "ln.captainShort": "C", "ln.captainMax": "Trois capitaines au maximum.", "ln.staffTitle": "Staff technique", "ln.staffHint": "Qui est sur le banc. Apparaît sur la composition partagée.", "ln.staffName": "Nom", "ln.staffRole": "Fonction. Ex. Adjoint", "ln.staffAdd": "+ Ajouter", "ln.staffEmpty": "Personne pour l'instant.", "ln.xiFull": "Le onze est complet. Touche une place sur le terrain pour remplacer celui qui l'occupe.",
     "ln.favTitle": "Favoris",
     "ln.tabXI": "Le onze",
-    "ln.abpTitle": "CPA · Corner",
-    "ln.abpAtaque": "Corner offensif",
-    "ln.abpDefensa": "Corner défensif",
-    "ln.abpHint": "Le même onze, placé pour un corner. Faites glisser les jetons dans la surface ; la compo n'est pas modifiée.",
-    "ln.abpDragHint": "Placez chaque jeton dans la surface",
+    "ln.abpTitle": "Coups de pied arrêtés",
+    "ln.abpShort": "CPA",
+    "ln.abpAtaque": "pour nous",
+    "ln.abpDefensa": "contre nous",
+    "ln.abpCorner": "Corner",
+    "ln.abpFalta": "Coup franc",
+    "ln.abpPenalti": "Penalty",
+    "ln.abpHint": "Le même onze, placé sur coup de pied arrêté. Choisissez la situation et faites glisser les jetons ; la compo n'est pas modifiée.",
+    "ln.abpDragHint": "Placez chaque jeton à sa place",
     "ln.abpSaved": "Enregistrés",
     "ln.abpSave": "+ Enregistrer le placement",
     "ln.abpFull": "Déjà 5",
@@ -1350,7 +1362,7 @@ const DICT = {
     "ln.abpReset": "↺ Placement de départ",
     "ln.abpSaveOk": "✓ Enregistré pour tout le staff.",
     "ln.abpSaveFail": "Impossible d'enregistrer. Vérifiez la connexion.",
-    "ln.abpDownload": "⤓ Télécharger le corner",
+    "ln.abpDownload": "⤓ Télécharger le CPA",
     "ln.favSave": "☆ Enregistrer comme favori",
     "ln.favMax": "Vous avez déjà 3 favoris enregistrés. Supprimez-en un pour en enregistrer un autre.",
     "ln.favNamePrompt": "Nom pour cette composition (ex. « Avec blessés »)",
@@ -2036,11 +2048,15 @@ const DICT = {
     "ln.captain": "Kapitän", "ln.captainShort": "C", "ln.captainMax": "Höchstens drei Kapitäne.", "ln.staffTitle": "Trainerteam", "ln.staffHint": "Wer auf der Bank sitzt. Erscheint in der geteilten Aufstellung.", "ln.staffName": "Name", "ln.staffRole": "Funktion, z. B. Co-Trainer", "ln.staffAdd": "+ Hinzufügen", "ln.staffEmpty": "Noch niemand eingetragen.", "ln.xiFull": "Die Elf ist komplett. Tippe eine Position auf dem Feld an, um den Spieler dort zu tauschen.",
     "ln.favTitle": "Favoriten",
     "ln.tabXI": "Die Elf",
-    "ln.abpTitle": "Standard · Ecke",
-    "ln.abpAtaque": "Ecke für uns",
-    "ln.abpDefensa": "Ecke gegen uns",
-    "ln.abpHint": "Dieselbe Elf, für eine Ecke aufgestellt. Zieh die Spielsteine im Strafraum; die Aufstellung bleibt unangetastet.",
-    "ln.abpDragHint": "Zieh jeden Spielstein an seinen Platz im Strafraum",
+    "ln.abpTitle": "Standardsituationen",
+    "ln.abpShort": "Standard",
+    "ln.abpAtaque": "für uns",
+    "ln.abpDefensa": "gegen uns",
+    "ln.abpCorner": "Ecke",
+    "ln.abpFalta": "Freistoß",
+    "ln.abpPenalti": "Elfmeter",
+    "ln.abpHint": "Dieselbe Elf, für eine Standardsituation aufgestellt. Wähle die Situation und zieh die Spielsteine; die Aufstellung bleibt unangetastet.",
+    "ln.abpDragHint": "Zieh jeden Spielstein an seinen Platz",
     "ln.abpSaved": "Gespeichert",
     "ln.abpSave": "+ Aufstellung speichern",
     "ln.abpFull": "Schon 5",
@@ -2052,7 +2068,7 @@ const DICT = {
     "ln.abpReset": "↺ Ausgangsaufstellung",
     "ln.abpSaveOk": "✓ Für das ganze Trainerteam gespeichert.",
     "ln.abpSaveFail": "Speichern nicht möglich. Prüfe die Verbindung.",
-    "ln.abpDownload": "⤓ Ecke herunterladen",
+    "ln.abpDownload": "⤓ Standard herunterladen",
     "ln.favSave": "☆ Als Favorit speichern",
     "ln.favMax": "Du hast bereits 3 gespeicherte Favoriten. Lösche einen, um einen weiteren zu speichern.",
     "ln.favNamePrompt": "Name für diese Aufstellung (z. B. „Mit Verletzten“)",
@@ -2737,11 +2753,15 @@ const DICT = {
     "ln.captain": "Capitão", "ln.captainShort": "C", "ln.captainMax": "No máximo 3 capitães.", "ln.staffTitle": "Equipa técnica", "ln.staffHint": "Quem fica no banco. Aparece no onze partilhado.", "ln.staffName": "Nome", "ln.staffRole": "Cargo. Ex.: Treinador adjunto", "ln.staffAdd": "+ Adicionar", "ln.staffEmpty": "Ainda não puseste ninguém.", "ln.xiFull": "O onze está completo. Toca numa posição do campo para trocar quem lá está.",
     "ln.favTitle": "Favoritas",
     "ln.tabXI": "O onze",
-    "ln.abpTitle": "Bola parada · Canto",
-    "ln.abpAtaque": "Canto a favor",
-    "ln.abpDefensa": "Canto contra",
-    "ln.abpHint": "O mesmo onze, colocado para um canto. Arrasta as peças pela área; o desenho do onze não se toca.",
-    "ln.abpDragHint": "Arrasta cada peça para o seu lugar na área",
+    "ln.abpTitle": "Bola parada",
+    "ln.abpShort": "Bola parada",
+    "ln.abpAtaque": "a favor",
+    "ln.abpDefensa": "contra",
+    "ln.abpCorner": "Canto",
+    "ln.abpFalta": "Livre",
+    "ln.abpPenalti": "Penálti",
+    "ln.abpHint": "O mesmo onze, colocado para uma bola parada. Escolhe a jogada e arrasta as peças; o desenho do onze não se toca.",
+    "ln.abpDragHint": "Arrasta cada peça para o seu lugar",
     "ln.abpSaved": "Guardadas",
     "ln.abpSave": "+ Guardar colocação",
     "ln.abpFull": "Já tens 5",
@@ -2753,7 +2773,7 @@ const DICT = {
     "ln.abpReset": "↺ Colocação inicial",
     "ln.abpSaveOk": "✓ Guardada para toda a equipa técnica.",
     "ln.abpSaveFail": "Não foi possível guardar. Verifica a ligação.",
-    "ln.abpDownload": "⤓ Descarregar canto",
+    "ln.abpDownload": "⤓ Descarregar jogada",
     "ln.favSave": "☆ Guardar como favorita",
     "ln.favMax": "Já tens 3 favoritas guardadas. Apaga uma para guardar outra.",
     "ln.favNamePrompt": "Nome para esta alinhação (ex.: «Com lesionados»)",
@@ -9697,17 +9717,20 @@ function buildSlots(code) {
   });
   return slots;
 }
-/* ================= ABP · CÓRNERS =================
+/* ================= ABP · BALÓN PARADO =================
    El mismo once, colocado de otra manera. Un córner no se defiende ni se
    ataca con el dibujo del sistema: los centrales suben al área, el portero
    se pega al palo y alguien se queda arriba para la contra. Por eso las
    posiciones de ABP viven aparte de `slotPos` y no lo tocan -volver al once
-   después de preparar un córner tiene que devolver el equipo tal y como
-   estaba.
-   Las dos listas son el punto de partida que se ofrece al entrar: una
+   después de preparar un balón parado tiene que devolver el equipo tal y
+   como estaba.
+   Hay seis situaciones: córner, falta y penalti, cada una a favor y en
+   contra. Cada una guarda su propia colocación y sus propias colocaciones
+   guardadas, porque no se parecen en nada entre sí.
+   Las listas de abajo son el punto de partida que se ofrece al entrar: una
    colocación razonable que el entrenador mueve a su gusto, no una propuesta
-   táctica cerrada. En los dos casos la portería está arriba: la que se ataca
-   en ataque, la que se defiende en defensa. */
+   táctica cerrada. En todas la portería está arriba: la que se ataca cuando
+   el balón parado es a favor, la que se defiende cuando es en contra. */
 const CORNER_ATAQUE = [
   [50, 94],                     /* portero: atrás del todo, si se pierde el balón el córner es del rival */
   [25, 75], [75, 75],           /* dos que se quedan para la contra */
@@ -9733,12 +9756,85 @@ const CORNER_DEFENSA = [
    pueda coger con el dedo -medido: ninguna pareja a menos del diámetro de
    una ficha en una pantalla de 390px-, y a partir de ahí el entrenador las
    junta tanto como quiera. */
+/* ---- Faltas ----
+   Una falta a favor cerca del área: el que la saca marca donde está el
+   balón -no hay una ficha aparte para el balón, la ficha del lanzador ES el
+   balón-, dos remates a los palos, uno al punto de penalti, las llegadas y
+   dos que se quedan atrás por si el rival sale a la contra. */
+/* El orden importa: las coordenadas se reparten entre los puestos del sistema
+   tal y como están dibujados -portero, defensas, medios, delanteros-, así que
+   el que saca la falta cae en un medio y los dos que remiten a los palos en
+   los delanteros, que es lo normal. */
+const FALTA_ATAQUE = [
+  [50, 94],                     /* portero: en su área, el balón está en la otra mitad */
+  [22, 78], [78, 78],           /* los dos defensas que se quedan por si hay contra */
+  [27, 36], [73, 36],           /* las dos llegadas desde atrás */
+  [40, 60],                     /* el que la saca: aquí está el balón */
+  [59, 66],                     /* el segundo lanzador, para el engaño */
+  [50, 47],                     /* frontal del área, para el rechace */
+  [37, 19], [63, 19],           /* primer y segundo palo */
+  [50, 29],                     /* punto de penalti */
+];
+/* Una falta en contra: barrera, marcas en el área y uno al balón para que no
+   la saquen en corto. La barrera de verdad va hombro con hombro; dibujada a
+   escala serían cuatro fichas pegadas y una ficha tapada no se puede
+   arrastrar, así que se separa lo justo para cogerla con el dedo. */
+const FALTA_DEFENSA = [
+  [50, 10],                     /* portero, tapando su palo */
+  [20, 26], [36, 26], [64, 26], [80, 26],   /* los defensas, a las marcas del área */
+  [26, 46], [42, 46], [58, 46], [74, 46],   /* la barrera */
+  [50, 60],                     /* al balón, para que no la saquen en corto */
+  [50, 82],                     /* el que se queda arriba */
+];
+/* En la fila del borde del área las fichas van en zigzag, una arriba y otra
+   abajo. Puestas todas a la misma altura caben -se tocan pero no se tapan-,
+   pero el cartel con el nombre de cada una es más ancho que la ficha y los
+   nombres se montaban unos encima de otros. */
+/* ---- Penaltis ----
+   En un penalti el reglamento coloca al equipo: solo el lanzador y el
+   portero rival dentro del área, y los demás fuera y por detrás del balón.
+   Lo que sí decide el entrenador es QUIÉN lanza y quién se queda cerca del
+   borde del área para el rechace, que es lo que se prepara aquí. */
+const PENALTI_ATAQUE = [
+  [50, 94],                     /* portero: en su área */
+  [25, 78], [50, 78], [75, 78], /* los defensas atrás, por si falla y sale la contra */
+  [16, 54],                     /* el cuarto defensa, ya en el borde del área */
+  [29, 62], [42, 54], [58, 62], /* los medios, al rechace */
+  [50, 42],                     /* el lanzador, detrás del balón */
+  [71, 54], [84, 62],           /* los otros dos de arriba, al rechace */
+];
+const PENALTI_DEFENSA = [
+  [50, 9],                      /* portero, en la línea */
+  [16, 54], [29, 62], [42, 54], [58, 62],   /* los defensas, fuera del área y a por el rechace */
+  [71, 54], [84, 62], [30, 78], /* los medios */
+  [50, 78], [70, 78],           /* la segunda línea */
+  [50, 92],                     /* el que se queda arriba para la contra */
+];
+
+/* Las seis situaciones. La clave es la que viaja a la nube y la que indexa
+   `abpPos` y `abpGuardadas`; "ataque" y "defensa" son el córner y se llaman
+   así desde la primera versión, cuando el córner era lo único que había: se
+   mantienen tal cual para no perder lo que ya tiene guardado un equipo. */
+const JUGADAS_ABP = ["corner", "falta", "penalti"];
+const CLAVES_ABP = ["ataque", "defensa", "faltaAtaque", "faltaDefensa", "penaltiAtaque", "penaltiDefensa"];
+const claveAbp = (jugada, lado) => (jugada === "corner" ? lado : `${jugada}${lado === "defensa" ? "Defensa" : "Ataque"}`);
+const ladoDeAbp = (sit) => (sit === "defensa" || String(sit).endsWith("Defensa") ? "defensa" : "ataque");
+const jugadaDeAbp = (sit) => (String(sit).startsWith("falta") ? "falta" : String(sit).startsWith("penalti") ? "penalti" : "corner");
+const ETIQUETA_JUGADA = { corner: "ln.abpCorner", falta: "ln.abpFalta", penalti: "ln.abpPenalti" };
+/* "Córner a favor", "Falta en contra"... el nombre de la situación tal y como
+   se ve en la tarjeta, en la imagen que se comparte y en el texto. */
+const nombreAbp = (t, sit) => `${t(ETIQUETA_JUGADA[jugadaDeAbp(sit)])} ${t(ladoDeAbp(sit) === "defensa" ? "ln.abpDefensa" : "ln.abpAtaque")}`;
+const TABLAS_ABP = {
+  ataque: CORNER_ATAQUE, defensa: CORNER_DEFENSA,
+  faltaAtaque: FALTA_ATAQUE, faltaDefensa: FALTA_DEFENSA,
+  penaltiAtaque: PENALTI_ATAQUE, penaltiDefensa: PENALTI_DEFENSA,
+};
 /* Reparte esas coordenadas entre los puestos del sistema que se esté usando,
    en el orden en el que están dibujados en el campo (portero primero). Si el
    sistema tuviera más puestos que coordenadas -no ocurre en 11 ni en 7- los
    que sobren se quedan en el frontal, que es donde menos estorban. */
 const abpPorDefecto = (sit, slots) => {
-  const tabla = sit === "defensa" ? CORNER_DEFENSA : CORNER_ATAQUE;
+  const tabla = TABLAS_ABP[sit] || CORNER_ATAQUE;
   const out = {};
   Object.entries(slots).forEach(([id, s], i) => {
     const [x, y] = tabla[i] || [50, 55];
@@ -9763,7 +9859,7 @@ const abpConSlots = (guardado, slots, sit) => {
   return out;
 };
 /* Al revés: a la nube solo viaja el sitio. La demarcación no se guarda porque
-   no es del córner, es del sistema. */
+   no es de la jugada, es del sistema. */
 const abpSoloPos = (pos) => {
   const out = {};
   Object.entries(pos || {}).forEach(([id, s]) => { out[id] = { x: s.x, y: s.y }; });
@@ -13046,23 +13142,31 @@ export default function App() {
     delete doc[String(f.rec || "")];
     guardarAlinPartidos(doc);
   };
-  /* ---------------- ABP · CÓRNERS ----------------
+  /* ---------------- ABP · BALÓN PARADO ----------------
      El mismo once, colocado de otra manera. `abpSit` es null cuando se está
-     mirando el once de siempre, y "ataque" o "defensa" cuando se está
-     preparando un córner: de ahí sale qué tablero se pinta y de dónde salen
-     las posiciones de las fichas. `abpPos` no toca `slotPos` -volver al once
-     después de preparar un córner devuelve el equipo tal y como estaba-. */
+     mirando el once de siempre, y una de las seis claves de `CLAVES_ABP`
+     -córner, falta o penalti, a favor o en contra- cuando se está preparando
+     un balón parado: de ahí sale qué tablero se pinta y de dónde salen las
+     posiciones de las fichas. `abpPos` no toca `slotPos` -volver al once
+     después de preparar una jugada devuelve el equipo tal y como estaba-.
+     La jugada y el lado se eligen en dos filas de botones distintas, así que
+     se recuerda la última jugada elegida: al pasar de "a favor" a "en contra"
+     se sigue preparando la misma jugada. */
   const [abpSit, setAbpSit] = useState(null);
-  const [abpPos, setAbpPos] = useState({ ataque: {}, defensa: {} });
-  const [abpGuardadas, setAbpGuardadas] = useState({ ataque: [], defensa: [] });
+  const [abpJugada, setAbpJugada] = useState("corner");
+  const [abpPos, setAbpPos] = useState(() => Object.fromEntries(CLAVES_ABP.map((k) => [k, {}])));
+  const [abpGuardadas, setAbpGuardadas] = useState(() => Object.fromEntries(CLAVES_ABP.map((k) => [k, []])));
   const [abpMsg, setAbpMsg] = useState("");
   const [abpBusy, setAbpBusy] = useState(false);
   const abpListo = useRef(false);
+  const abpLado = abpSit ? ladoDeAbp(abpSit) : null;
   /* Al entrar en una situación por primera vez -o al cambiar de sistema- se
      ofrece la colocación por defecto de esa situación; a partir de ahí manda
      lo que el entrenador haya movido. */
   const posDeAbp = (sit) => (Object.keys(abpPos[sit] || {}).length ? abpPos[sit] : abpPorDefecto(sit, slotPos));
-  const abrirAbp = (sit) => {
+  const abrirAbp = (jugada, lado) => {
+    const sit = claveAbp(jugada, lado);
+    setAbpJugada(jugada);
     setAbpSit(sit);
     setSelSlot(null);
     setAbpPos((p) => (Object.keys(p[sit] || {}).length ? p : { ...p, [sit]: abpPorDefecto(sit, slotPos) }));
@@ -13073,17 +13177,17 @@ export default function App() {
   useEffect(() => {
     const rec = session?.team?.rec;
     abpListo.current = false;
-    if (!rec || session?.email === "demo") { setAbpGuardadas({ ataque: [], defensa: [] }); return; }
+    if (!rec || session?.email === "demo") { setAbpGuardadas(Object.fromEntries(CLAVES_ABP.map((k) => [k, []]))); return; }
     let vivo = true;
     (async () => {
       const d = await airAbpLeer(rec);
       if (!vivo) return;
       try {
         const doc = JSON.parse(d?.abp || "{}");
-        setAbpGuardadas({
-          ataque: Array.isArray(doc.ataque) ? doc.ataque : [],
-          defensa: Array.isArray(doc.defensa) ? doc.defensa : [],
-        });
+        /* Un equipo que guardó córners antes de que existieran las faltas y
+           los penaltis trae solo dos claves: las otras cuatro se quedan
+           vacías, no se pierde nada. */
+        setAbpGuardadas(Object.fromEntries(CLAVES_ABP.map((k) => [k, Array.isArray(doc[k]) ? doc[k] : []])));
       } catch { /* json roto en Airtable: se ignora */ }
       abpListo.current = true;
     })();
@@ -22295,7 +22399,7 @@ export default function App() {
       ctx.fillStyle = "#E8EDE6"; ctx.font = "700 26px 'Barlow Condensed', sans-serif";
       ctx.fillText(String(session.club || "").toUpperCase(), 18, 30);
       ctx.fillStyle = AC; ctx.font = "500 17px 'Barlow Condensed', sans-serif";
-      ctx.fillText(`${session.team?.name || ""} · ${t(abpSit === "defensa" ? "ln.abpDefensa" : "ln.abpAtaque")}`, 18, 54);
+      ctx.fillText(`${session.team?.name || ""} · ${nombreAbp(t, abpSit)}`, 18, 54);
       const py = headerH;
       const px = (pct) => (pct / 100) * pitchW, pyy = (pct) => py + (pct / 100) * pitchH;
       for (let i = 0; i < 8; i++) {
@@ -22359,7 +22463,7 @@ export default function App() {
         .filter((x) => x.p)
         .map(({ sl, p }) => `${sl.label} ${keycap(p.d)} ${p.n}`);
       return [
-        `⬡ *${t("ln.abpTitle").toUpperCase()} · ${t(abpSit === "defensa" ? "ln.abpDefensa" : "ln.abpAtaque").toUpperCase()} — ${session.club || ""} ${session.team?.name || ""}*`,
+        `⬡ *${t("ln.abpTitle").toUpperCase()} · ${nombreAbp(t, abpSit).toUpperCase()} — ${session.club || ""} ${session.team?.name || ""}*`,
         "",
         ...lineas,
       ].join("\n");
@@ -22475,7 +22579,7 @@ export default function App() {
         if (!blob) { setLnImgBusy(false); setLnImgMsg(t("ln.shareImageFail")); return; }
         const equipoEnElNombre = (session.team?.name || "equipo").replace(/\s+/g, "-");
         const nombre = abpSit
-          ? `corner-${abpSit}-${equipoEnElNombre}-${hoyISO()}.png`
+          ? `abp-${abpSit}-${equipoEnElNombre}-${hoyISO()}.png`
           : `alineacion-${equipoEnElNombre}-${hoyISO()}.png`;
         const file = new File([blob], nombre, { type: "image/png" });
         const descargar = () => {
@@ -22513,11 +22617,11 @@ export default function App() {
     };
     return (
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        {/* Preparando un córner la tarjeta ocupa las dos columnas: el tablero
-            sale al doble de ancho, que es justo lo que hace falta para que
-            once fichas quepan sin taparse. */}
+        {/* Preparando un balón parado la tarjeta ocupa las dos columnas: el
+            tablero sale al doble de ancho, que es justo lo que hace falta para
+            que once fichas quepan sin taparse. */}
         <Card className={abpSit ? "lg:col-span-2" : undefined} title={abpSit
-          ? `${t("ln.abpTitle")} — ${t(abpSit === "defensa" ? "ln.abpDefensa" : "ln.abpAtaque")}`
+          ? `${t("ln.abpShort")} · ${nombreAbp(t, abpSit)}`
           : `${propone ? t("ln.proposalTitle") : t("ln.startersTitle")} — ${sysCode}`}>
           {propone && (
             miPropuestaPendiente("lineup") ? (
@@ -22539,18 +22643,41 @@ export default function App() {
           )}
           {/* ---- Once o balón parado ----
                Son dos maneras distintas de mirar al mismo equipo: el dibujo
-               con el que se sale a jugar, y dónde se pone cada uno cuando hay
-               un córner. Cambiar de una a otra no toca la otra: se puede
-               preparar el córner y volver al once tal y como estaba. */}
-          <div className="flex items-center gap-1.5 mb-3">
-            {[[null, t("ln.tabXI")], ["ataque", t("ln.abpAtaque")], ["defensa", t("ln.abpDefensa")]].map(([k, lbl]) => (
-              <button key={String(k)} onClick={() => (k ? abrirAbp(k) : setAbpSit(null))}
-                className="text-xs px-3 py-2 rounded-lg border font-display uppercase tracking-wide"
-                style={{ borderColor: abpSit === k ? AC : C.line, background: abpSit === k ? AC : "transparent", color: abpSit === k ? C.sobre : C.chalk }}>
-                {lbl}
-              </button>
-            ))}
+               con el que se sale a jugar, y dónde se pone cada uno en un
+               balón parado. Cambiar de una a otra no toca la otra: se puede
+               preparar la jugada y volver al once tal y como estaba.
+               Dos filas y no una de siete botones: seis situaciones seguidas
+               no caben en un móvil de 360px, y desplazándolas de lado las que
+               no están elegidas no se ven. Arriba el lado -el once, a favor,
+               en contra- y debajo la jugada. */}
+          <div className="flex flex-wrap items-center gap-1.5 mb-2 min-w-0">
+            {[[null, t("ln.tabXI")], ["ataque", t("ln.abpAtaque")], ["defensa", t("ln.abpDefensa")]].map(([k, lbl]) => {
+              const act = k ? abpLado === k : !abpSit;
+              return (
+                <button key={String(k)} onClick={() => (k ? abrirAbp(abpJugada, k) : setAbpSit(null))}
+                  className="text-xs px-3 py-2 rounded-lg border font-display uppercase tracking-wide"
+                  style={{ borderColor: act ? AC : C.line, background: act ? AC : "transparent", color: act ? C.sobre : C.chalk }}>
+                  {lbl}
+                </button>
+              );
+            })}
           </div>
+          {/* La jugada. Se mantiene al cambiar de lado: lo normal es preparar
+              el córner a favor y pasar al córner en contra, no a la falta. */}
+          {abpSit && (
+            <div className="flex flex-wrap items-center gap-1.5 mb-3 min-w-0">
+              {JUGADAS_ABP.map((jg) => {
+                const act = jugadaDeAbp(abpSit) === jg;
+                return (
+                  <button key={jg} onClick={() => abrirAbp(jg, abpLado)}
+                    className="text-xs px-3 py-1.5 rounded-lg border font-display uppercase tracking-wide"
+                    style={{ borderColor: act ? AC : C.line, background: act ? `${AC}1A` : "transparent", color: act ? AC : C.dim }}>
+                    {t(ETIQUETA_JUGADA[jg])}
+                  </button>
+                );
+              })}
+            </div>
+          )}
           {abpSit && (
             <div className="text-[11px] mb-2 leading-relaxed" style={{ color: C.dim }}>{t("ln.abpHint")}</div>
           )}
@@ -22572,10 +22699,11 @@ export default function App() {
             </div>
           </div>
           )}
-          {/* ---- Córners guardados ----
-             Hasta cinco de cada situación: el córner al primer palo, el de la
-             jugada ensayada, el de cuando falta el central alto... Atacar y
-             defender se guardan por separado porque no se parecen en nada. */}
+          {/* ---- Colocaciones guardadas ----
+             Hasta cinco de cada una de las seis situaciones: el córner al
+             primer palo, el de la jugada ensayada, la falta con dos
+             lanzadores... Cada situación guarda las suyas: un córner a favor
+             y una falta en contra no se parecen en nada. */}
           {abpSit && (
             <div className="flex flex-wrap items-center gap-1.5 mb-2 pb-2 border-b" style={{ borderColor: C.line }}>
               <span className="text-[11px] uppercase tracking-wide" style={{ color: C.dim }}>{t("ln.abpSaved")}</span>
@@ -22725,13 +22853,16 @@ export default function App() {
               tablero de 324px eso es un 10% más de sitio para separar fichas.
               De tableta para arriba no hace falta y queda mejor con su
               margen, como el resto de la pantalla. */}
-          /* `touch-pan-y` y no `touch-none`: el campo ocupa casi toda la
-             pantalla del móvil y con `none` el dedo no desplazaba la página
-             en ninguna parte de él ("se hace difícil desplazar", Edu, 7 nov
-             2026). Así el dedo sobre el césped desplaza como en cualquier
-             sitio, y arrastrar una ficha sigue funcionando porque cada ficha
-             lleva su propio `touch-none` (ver más abajo), que manda sobre
-             esto. */
+          {/* `touch-pan-y` y no `touch-none`: el campo ocupa casi toda la
+              pantalla del móvil y con `none` el dedo no desplazaba la página
+              en ninguna parte de él ("se hace difícil desplazar", Edu, 7 nov
+              2026). Así el dedo sobre el césped desplaza como en cualquier
+              sitio, y arrastrar una ficha sigue funcionando porque cada ficha
+              lleva su propio `touch-none` (ver más abajo), que manda sobre
+              esto.
+              Sin las llaves esto NO es un comentario de JSX: es texto, y se
+              veía escrito encima del campo en la pantalla de Alineación
+              (v2.93.3 a v2.94.1). */}
           <div ref={pitchRef} className={`relative touch-pan-y select-none ${abpSit ? "-mx-4 sm:mx-0" : "w-full"}`} style={{ aspectRatio: abpSit ? "400/340" : "3/4" }} onPointerMove={onPitchMove} onPointerUp={() => onSlotUp(null)}>
             <svg viewBox={abpSit ? "0 0 400 340" : "0 0 300 400"} className="absolute inset-0 w-full h-full pointer-events-none">
               {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => (

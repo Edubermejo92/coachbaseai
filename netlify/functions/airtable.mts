@@ -1486,12 +1486,16 @@ const atender = async (req: Request) => {
       return j({ error: "Petición no soportada" }, 400);
     }
 
-    /* ============ ABP · CÓRNERS ============
+    /* ============ ABP · BALÓN PARADO ============
        GET  ?res=abp-corners&team=recX
        POST ?res=abp-corners&team=recX { abp }
-       Cómo se coloca el equipo en un córner, a favor y en contra. Hasta 5
-       colocaciones de cada: no es una lista de alineaciones -los jugadores
-       son los mismos del once- sino dónde se pone cada uno dentro del área.
+       Cómo se coloca el equipo en un balón parado: córner, falta y penalti,
+       cada uno a favor y en contra. Hasta 5 colocaciones de cada una de las
+       seis: no es una lista de alineaciones -los jugadores son los mismos del
+       once- sino dónde se pone cada uno dentro del área.
+       El nombre del recurso sigue siendo "abp-corners" porque nació cuando
+       el córner era lo único que había, y lo usan las versiones de la app que
+       ya están instaladas en los móviles.
        Mismas reglas y mismo documento-por-equipo que "alineacion": lo que
        prepara el entrenador el martes tiene que verlo su segundo y su
        delegado desde el banquillo el domingo. */
@@ -1509,12 +1513,19 @@ const atender = async (req: Request) => {
         const b = await req.json();
         let doc: any;
         try { doc = JSON.parse(String(b.abp || "{}")); } catch { doc = null; }
-        /* Las dos situaciones son obligatorias y cada una es una lista de
-           como mucho 5: si llega otra cosa, es un documento de otra versión
-           o un error, y machacar lo que hay sería perder el trabajo del
+        /* El córner -"ataque" y "defensa"- es obligatorio, las otras cuatro
+           situaciones son opcionales: una app anterior a las faltas y los
+           penaltis manda solo las dos del córner y tiene que seguir
+           guardando. Cada clave que llegue tiene que ser conocida y una lista
+           de como mucho 5; si llega otra cosa es un error o un documento de
+           otra versión, y machacar lo que hay sería perder el trabajo del
            cuerpo técnico. */
+        const CLAVES_ABP = ["ataque", "defensa", "faltaAtaque", "faltaDefensa", "penaltiAtaque", "penaltiDefensa"];
         const lista = (x: unknown) => Array.isArray(x) && x.length <= 5;
-        if (!doc || typeof doc !== "object" || Array.isArray(doc) || !lista(doc.ataque) || !lista(doc.defensa)) {
+        const formatoOk = !!doc && typeof doc === "object" && !Array.isArray(doc)
+          && lista(doc.ataque) && lista(doc.defensa)
+          && Object.keys(doc).every((k) => CLAVES_ABP.includes(k) && lista(doc[k]));
+        if (!formatoOk) {
           return j({ ok: false, reason: "formato_invalido" }, 400);
         }
         const r = await fetch(`${table(T_EQUIPOS)}/${team}`, {
