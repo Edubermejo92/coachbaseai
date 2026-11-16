@@ -1522,6 +1522,14 @@ const atender = async (req: Request) => {
            cuerpo técnico. */
         const CLAVES_ABP = ["ataque", "defensa", "faltaAtaque", "faltaDefensa", "penaltiAtaque", "penaltiDefensa"];
         const lista = (x: unknown) => Array.isArray(x) && x.length <= 5;
+        /* Desde que cada puesto puede llevar su misión y una nota, el
+           documento crece: seis situaciones por cinco colocaciones por once
+           puestos. Con todo lleno no pasa de unos 40 kB, así que 200 kB es
+           sitio de sobra y a la vez un tope: lo que llegue por encima no es
+           una colocación, es un error o alguien probando. */
+        if (String(b.abp || "").length > 200000) {
+          return j({ ok: false, reason: "demasiado_grande" }, 400);
+        }
         const formatoOk = !!doc && typeof doc === "object" && !Array.isArray(doc)
           && lista(doc.ataque) && lista(doc.defensa)
           && Object.keys(doc).every((k) => CLAVES_ABP.includes(k) && lista(doc[k]));

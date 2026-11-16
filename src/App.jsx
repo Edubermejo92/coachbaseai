@@ -7,7 +7,8 @@ import { JUGADAS_MODELO, textoModelo } from "./jugadasModelo.js";
 import { cargarLogo, pintarLogo, crearAudio, prepararMusica, grabarLienzo, leerOpcionMusica, guardarOpcionMusica, leerCancion, guardarCancion, MAX_CANCION, tipoGrabacion, extensionDe } from "./videoMarca.js";
 import { configMp4, grabarMp4, avisarDiag } from "./videoMp4.js";
 import { JUGADAS_ABP, CLAVES_ABP, claveAbp, ladoDeAbp, jugadaDeAbp, ETIQUETA_JUGADA, nombreAbp,
-  abpPorDefecto, abpConSlots, abpSoloPos, zonaAbp, tokensAbp3d, balonAbp } from "./abp.js";
+  abpPorDefecto, abpConSlots, abpSoloPos, zonaAbp, tokensAbp3d, balonAbp,
+  misionesDe, ETIQUETA_MISION, misionesLimpias, textoMision, MAX_NOTA_ABP } from "./abp.js";
 import { MOTIVOS_DESCARTE, diasConListaReciente, faltasEnDias, ultimaConvocatoria } from "./convocatoria.js";
 import { pedirResena } from "./resena.js";
 /* La guía (Guia.jsx con los textos de guia.js) es mucho texto que no hace
@@ -94,7 +95,7 @@ const DICT = {
     "ln.finishAndSend": "Cuando termines de colocar el once, mándala.",
     "ln.placeAndSend": "Coloca el once y manda la propuesta cuando termines.",
     "ln.sendProposal": "Enviar propuesta",
-    "ln.dragHint": "Arrastra para recolocar · toque corto para asignar",
+    "ln.dragHint": "Arrastra para recolocar · toca dos fichas para cambiarlas de sitio",
     "ln.benchTitle": "Banquillo", "ln.calledSubs": "Suplentes convocados", "ln.notCalled": "No convocados", "ln.notCalledTag": "No convocado", "ln.noCallYet": "Todavía no hay convocatoria, así que aquí salen todos. Haz la convocatoria y verás quién va y quién se queda fuera.", "ln.goCall": "Ir a Convocatoria", "ln.xiNotCalled": "En el once hay {n} sin convocar: {names}.", "ln.sumCalled": "Convocados", "ln.sumXI": "En el once", "ln.sumSubs": "Suplentes", "ln.sumOut": "Fuera", "ln.callIn": "Convocar", "ln.callOut": "Quitar de la convocatoria", "ln.noneHere": "Nadie.", "conv.label": "Convocatoria", "conv.conv": "Convocado", "conv.tecnica": "Descartado · decisión técnica",
     "conv.viaje": "Fuera · de viaje",
     "cl.ctxHint": "Debajo de cada nombre: a cuántos entrenos faltó esta semana y si se quedó fuera del partido anterior.",
@@ -104,9 +105,9 @@ const DICT = {
     "ln.shareImageBusy": "Generando imagen…",
     "ln.shareImageOk": "✓ Imagen lista.",
     "ln.shareImageFail": "No se pudo generar la imagen.",
-    "ln.tapPlayerForSlot": "Toca al jugador que quieres poner de {pos}.",
+    "ln.tapPlayerForSlot": "Toca al jugador que quieres poner de {pos}, o toca otra ficha del campo para cambiarlos de sitio.",
     "ln.tapPlayerToAdd": "Toca a un jugador y entra en el once, en el primer hueco libre ({pos}). Para elegir el sitio, toca antes un puesto del campo.",
-    "ln.captain": "Capitán", "ln.captainShort": "C", "ln.captainMax": "Como mucho 3 capitanes.", "ln.staffTitle": "Cuerpo técnico", "ln.staffHint": "Quién se sienta en el banquillo. Sale en la alineación compartida, como en el acta.", "ln.staffName": "Nombre", "ln.staffRole": "Cargo. Ej. Segundo entrenador", "ln.staffAdd": "+ Añadir", "ln.staffEmpty": "Todavía no has puesto a nadie.", "ln.xiFull": "El once está completo. Toca un puesto del campo para cambiar a quien esté ahí.",
+    "ln.captain": "Capitán", "ln.captainShort": "C", "ln.captainMax": "Como mucho 3 capitanes.", "ln.staffTitle": "Cuerpo técnico", "ln.staffHint": "Quién se sienta en el banquillo. Sale en la alineación compartida, como en el acta.", "ln.staffName": "Nombre", "ln.staffRole": "Cargo. Ej. Segundo entrenador", "ln.staffAdd": "+ Añadir", "ln.staffEmpty": "Todavía no has puesto a nadie.", "ln.xiFull": "El once está completo. Toca dos fichas del campo para cambiarlas de sitio, o un puesto y luego a alguien del banquillo.",
     "ln.favTitle": "Favoritas",
     "ln.tabXI": "El once",
     "ln.abpTitle": "ABP · Balón parado",
@@ -135,6 +136,7 @@ const DICT = {
     "jg.abpHint": "Lo que ha preparado tu entrenador para cada acción a balón parado. Tu ficha va marcada.",
     "jg.abpEmpty": "Tu entrenador todavía no ha guardado ninguna colocación para esta jugada.",
     "jg.abpYouAre": "Tú vas {z}.",
+    "jg.abpMission": "Tu misión: {m}",
     "jg.abpNotInXI": "No estás en el once que hay puesto ahora mismo, así que todavía no tienes sitio en esta jugada.",
     "abz.porteria": "en la portería",
     "abz.corner": "al banderín de córner",
@@ -150,6 +152,26 @@ const DICT = {
     "abz.atras": "atrás, en tu campo",
     "ab3.fondo": "Desde el fondo",
     "ab3.banda": "Desde la banda",
+    "ab.primerPalo": "Primer palo",
+    "ab.segundoPalo": "Segundo palo",
+    "ab.penalti": "Punto de penalti",
+    "ab.rechace": "Al rechace",
+    "ab.saca": "Saca",
+    "ab.bloquea": "Bloquea al portero",
+    "ab.corto": "Saque en corto",
+    "ab.contra": "Se queda a la contra",
+    "ab.zona": "Zona",
+    "ab.hombre": "Marca al hombre",
+    "ab.barrera": "Barrera",
+    "ab.alBalon": "Al balón",
+    "ab.arriba": "Se queda arriba",
+    "ab.lanza": "Lanza",
+    "ab.para": "Para el penalti",
+    "ab.atras": "Atrás, por si la contra",
+    "ln.abpMission": "Misión",
+    "ln.abpMissionNone": "Sin misión todavía",
+    "ln.abpNotePh": "Nota para él (opcional)",
+    "ln.abpMissionHint": "Toca una ficha del campo y dile qué tiene que hacer en esta jugada.",
     "mh.assistsN": "Asist.",
     "jg.pxHoy": "¡Hoy juegas!",
     "jg.pxManana": "Mañana",
@@ -739,7 +761,7 @@ const DICT = {
     "ln.finishAndSend": "When you finish setting the XI, send it.",
     "ln.placeAndSend": "Set the XI and send the proposal when you're done.",
     "ln.sendProposal": "Send proposal",
-    "ln.dragHint": "Drag to reposition · tap to assign",
+    "ln.dragHint": "Drag to reposition · tap two tokens to swap them",
     "ln.benchTitle": "Bench", "ln.calledSubs": "Called-up substitutes", "ln.notCalled": "Not called up", "ln.notCalledTag": "Not called up", "ln.noCallYet": "There is no squad list yet, so everyone shows here. Make the squad list to see who is in and who is left out.", "ln.goCall": "Go to Squad list", "ln.xiNotCalled": "The line-up has {n} not called up: {names}.", "ln.sumCalled": "Called up", "ln.sumXI": "In the XI", "ln.sumSubs": "Subs", "ln.sumOut": "Left out", "ln.callIn": "Call up", "ln.callOut": "Remove from squad list", "ln.noneHere": "Nobody.", "conv.label": "Squad list", "conv.conv": "Called up", "conv.tecnica": "Left out · coach's decision",
     "conv.viaje": "Away · travelling",
     "cl.ctxHint": "Under each name: how many sessions they missed this week, and whether they were left out of the last squad.",
@@ -749,9 +771,9 @@ const DICT = {
     "ln.shareImageBusy": "Generating image…",
     "ln.shareImageOk": "✓ Image ready.",
     "ln.shareImageFail": "Couldn't generate the image.",
-    "ln.tapPlayerForSlot": "Tap the player you want at {pos}.",
+    "ln.tapPlayerForSlot": "Tap the player you want at {pos}, or tap another token on the pitch to swap them.",
     "ln.tapPlayerToAdd": "Tap a player and they go into the XI, in the first free spot ({pos}). To choose the spot, tap a position on the pitch first.",
-    "ln.captain": "Captain", "ln.captainShort": "C", "ln.captainMax": "Three captains at most.", "ln.staffTitle": "Coaching staff", "ln.staffHint": "Who is on the bench. Shows on the shared line-up, like on the team sheet.", "ln.staffName": "Name", "ln.staffRole": "Role. E.g. Assistant coach", "ln.staffAdd": "+ Add", "ln.staffEmpty": "Nobody added yet.", "ln.xiFull": "The XI is complete. Tap a position on the pitch to swap whoever is there.",
+    "ln.captain": "Captain", "ln.captainShort": "C", "ln.captainMax": "Three captains at most.", "ln.staffTitle": "Coaching staff", "ln.staffHint": "Who is on the bench. Shows on the shared line-up, like on the team sheet.", "ln.staffName": "Name", "ln.staffRole": "Role. E.g. Assistant coach", "ln.staffAdd": "+ Add", "ln.staffEmpty": "Nobody added yet.", "ln.xiFull": "The XI is complete. Tap two tokens on the pitch to swap them, or a position and then someone from the bench.",
     "ln.favTitle": "Favorites",
     "ln.tabXI": "The XI",
     "ln.abpTitle": "Set pieces",
@@ -780,6 +802,7 @@ const DICT = {
     "jg.abpHint": "What your coach has set up for each set piece. Your token is highlighted.",
     "jg.abpEmpty": "Your coach hasn't saved a set-up for this one yet.",
     "jg.abpYouAre": "You go {z}.",
+    "jg.abpMission": "Your job: {m}",
     "jg.abpNotInXI": "You're not in the XI that's picked right now, so you don't have a spot in this one yet.",
     "abz.porteria": "in goal",
     "abz.corner": "to the corner flag",
@@ -795,6 +818,26 @@ const DICT = {
     "abz.atras": "back in your own half",
     "ab3.fondo": "From behind the goal",
     "ab3.banda": "From the touchline",
+    "ab.primerPalo": "Near post",
+    "ab.segundoPalo": "Far post",
+    "ab.penalti": "Penalty spot",
+    "ab.rechace": "On the rebound",
+    "ab.saca": "Takes the corner",
+    "ab.bloquea": "Blocks the keeper",
+    "ab.corto": "Short corner",
+    "ab.contra": "Stays back for the counter",
+    "ab.zona": "Zonal",
+    "ab.hombre": "Man-marking",
+    "ab.barrera": "In the wall",
+    "ab.alBalon": "On the ball",
+    "ab.arriba": "Stays up front",
+    "ab.lanza": "Takes the penalty",
+    "ab.para": "Saves the penalty",
+    "ab.atras": "Back, in case of a counter",
+    "ln.abpMission": "Role",
+    "ln.abpMissionNone": "No role yet",
+    "ln.abpNotePh": "Note for them (optional)",
+    "ln.abpMissionHint": "Tap a token on the pitch and tell them what to do on this one.",
     "mh.assistsN": "Assists",
     "jg.pxHoy": "You play today!",
     "jg.pxManana": "Tomorrow",
@@ -1396,7 +1439,7 @@ const DICT = {
     "ln.finishAndSend": "Une fois le onze placé, envoyez-le.",
     "ln.placeAndSend": "Placez le onze et envoyez la proposition une fois terminé.",
     "ln.sendProposal": "Envoyer la proposition",
-    "ln.dragHint": "Glissez pour repositionner · touchez pour affecter",
+    "ln.dragHint": "Glissez pour repositionner · touchez deux jetons pour les échanger",
     "ln.benchTitle": "Remplaçants", "ln.calledSubs": "Remplaçants convoqués", "ln.notCalled": "Non convoqués", "ln.notCalledTag": "Non convoqué", "ln.noCallYet": "Pas encore de convocation : tout le monde apparaît ici. Faites la convocation pour voir qui vient et qui reste dehors.", "ln.goCall": "Aller à Convocation", "ln.xiNotCalled": "La composition compte {n} non convoqué(s) : {names}.", "ln.sumCalled": "Convoqués", "ln.sumXI": "Dans le XI", "ln.sumSubs": "Remplaçants", "ln.sumOut": "Dehors", "ln.callIn": "Convoquer", "ln.callOut": "Retirer de la convocation", "ln.noneHere": "Personne.", "conv.label": "Convocation", "conv.conv": "Convoqué", "conv.tecnica": "Écarté · choix technique",
     "conv.viaje": "Absent · en voyage",
     "cl.ctxHint": "Sous chaque nom : combien de séances il a manquées cette semaine et s'il était écarté du dernier match.",
@@ -1406,9 +1449,9 @@ const DICT = {
     "ln.shareImageBusy": "Génération de l'image…",
     "ln.shareImageOk": "✓ Image prête.",
     "ln.shareImageFail": "Impossible de générer l'image.",
-    "ln.tapPlayerForSlot": "Touche le joueur que tu veux mettre au poste de {pos}.",
+    "ln.tapPlayerForSlot": "Touche le joueur que tu veux mettre au poste de {pos}, ou un autre jeton du terrain pour les échanger.",
     "ln.tapPlayerToAdd": "Touche un joueur et il entre dans le onze, au premier poste libre ({pos}). Pour choisir le poste, touche d'abord une place sur le terrain.",
-    "ln.captain": "Capitaine", "ln.captainShort": "C", "ln.captainMax": "Trois capitaines au maximum.", "ln.staffTitle": "Staff technique", "ln.staffHint": "Qui est sur le banc. Apparaît sur la composition partagée.", "ln.staffName": "Nom", "ln.staffRole": "Fonction. Ex. Adjoint", "ln.staffAdd": "+ Ajouter", "ln.staffEmpty": "Personne pour l'instant.", "ln.xiFull": "Le onze est complet. Touche une place sur le terrain pour remplacer celui qui l'occupe.",
+    "ln.captain": "Capitaine", "ln.captainShort": "C", "ln.captainMax": "Trois capitaines au maximum.", "ln.staffTitle": "Staff technique", "ln.staffHint": "Qui est sur le banc. Apparaît sur la composition partagée.", "ln.staffName": "Nom", "ln.staffRole": "Fonction. Ex. Adjoint", "ln.staffAdd": "+ Ajouter", "ln.staffEmpty": "Personne pour l'instant.", "ln.xiFull": "Le onze est complet. Touche deux jetons du terrain pour les échanger, ou une place puis un joueur du banc.",
     "ln.favTitle": "Favoris",
     "ln.tabXI": "Le onze",
     "ln.abpTitle": "Coups de pied arrêtés",
@@ -1437,6 +1480,7 @@ const DICT = {
     "jg.abpHint": "Ce que ton entraîneur a préparé pour chaque coup de pied arrêté. Ton jeton est mis en évidence.",
     "jg.abpEmpty": "Ton entraîneur n'a pas encore enregistré de placement pour cette situation.",
     "jg.abpYouAre": "Tu vas {z}.",
+    "jg.abpMission": "Ta mission : {m}",
     "jg.abpNotInXI": "Tu n'es pas dans le onze actuel, tu n'as donc pas encore de place sur cette situation.",
     "abz.porteria": "dans les buts",
     "abz.corner": "au drapeau de corner",
@@ -1452,6 +1496,26 @@ const DICT = {
     "abz.atras": "en retrait, dans ton camp",
     "ab3.fondo": "Derrière le but",
     "ab3.banda": "Depuis la touche",
+    "ab.primerPalo": "Premier poteau",
+    "ab.segundoPalo": "Second poteau",
+    "ab.penalti": "Point de penalty",
+    "ab.rechace": "Sur le renvoi",
+    "ab.saca": "Tire le corner",
+    "ab.bloquea": "Bloque le gardien",
+    "ab.corto": "Corner à deux",
+    "ab.contra": "Reste en couverture",
+    "ab.zona": "Zone",
+    "ab.hombre": "Marquage individuel",
+    "ab.barrera": "Dans le mur",
+    "ab.alBalon": "Sur le ballon",
+    "ab.arriba": "Reste devant",
+    "ab.lanza": "Tire le penalty",
+    "ab.para": "Arrête le penalty",
+    "ab.atras": "Derrière, en cas de contre",
+    "ln.abpMission": "Mission",
+    "ln.abpMissionNone": "Pas encore de mission",
+    "ln.abpNotePh": "Note pour lui (facultatif)",
+    "ln.abpMissionHint": "Touche un jeton du terrain et dis-lui ce qu'il doit faire sur cette situation.",
     "mh.assistsN": "P. déc.",
     "jg.pxHoy": "Tu joues aujourd'hui !",
     "jg.pxManana": "Demain",
@@ -2133,7 +2197,7 @@ const DICT = {
     "ln.finishAndSend": "Wenn du die Startelf fertig hast, sende sie.",
     "ln.placeAndSend": "Stelle die Startelf zusammen und sende den Vorschlag, wenn du fertig bist.",
     "ln.sendProposal": "Vorschlag senden",
-    "ln.dragHint": "Ziehen zum Umstellen · Antippen zum Zuweisen",
+    "ln.dragHint": "Ziehen zum Umstellen · zwei Spielsteine antippen, um sie zu tauschen",
     "ln.benchTitle": "Bank", "ln.calledSubs": "Nominierte Ersatzspieler", "ln.notCalled": "Nicht nominiert", "ln.notCalledTag": "Nicht nominiert", "ln.noCallYet": "Noch kein Kader, daher stehen hier alle. Stell den Kader zusammen, dann siehst du, wer dabei ist und wer nicht.", "ln.goCall": "Zum Kader", "ln.xiNotCalled": "In der Startelf stehen {n} nicht Nominierte: {names}.", "ln.sumCalled": "Nominiert", "ln.sumXI": "Startelf", "ln.sumSubs": "Ersatz", "ln.sumOut": "Draußen", "ln.callIn": "Nominieren", "ln.callOut": "Aus dem Kader nehmen", "ln.noneHere": "Niemand.", "conv.label": "Kader", "conv.conv": "Nominiert", "conv.tecnica": "Nicht nominiert · Trainerentscheidung",
     "conv.viaje": "Abwesend · verreist",
     "cl.ctxHint": "Unter jedem Namen: wie viele Einheiten er diese Woche verpasst hat und ob er im letzten Kader fehlte.",
@@ -2143,9 +2207,9 @@ const DICT = {
     "ln.shareImageBusy": "Bild wird erstellt…",
     "ln.shareImageOk": "✓ Bild bereit.",
     "ln.shareImageFail": "Bild konnte nicht erstellt werden.",
-    "ln.tapPlayerForSlot": "Tippe den Spieler an, den du auf {pos} stellen willst.",
+    "ln.tapPlayerForSlot": "Tippe den Spieler an, den du auf {pos} stellen willst, oder einen anderen Spielstein, um sie zu tauschen.",
     "ln.tapPlayerToAdd": "Tippe einen Spieler an und er kommt in die Elf, auf den ersten freien Platz ({pos}). Um den Platz zu wählen, tippe vorher eine Position auf dem Feld an.",
-    "ln.captain": "Kapitän", "ln.captainShort": "C", "ln.captainMax": "Höchstens drei Kapitäne.", "ln.staffTitle": "Trainerteam", "ln.staffHint": "Wer auf der Bank sitzt. Erscheint in der geteilten Aufstellung.", "ln.staffName": "Name", "ln.staffRole": "Funktion, z. B. Co-Trainer", "ln.staffAdd": "+ Hinzufügen", "ln.staffEmpty": "Noch niemand eingetragen.", "ln.xiFull": "Die Elf ist komplett. Tippe eine Position auf dem Feld an, um den Spieler dort zu tauschen.",
+    "ln.captain": "Kapitän", "ln.captainShort": "C", "ln.captainMax": "Höchstens drei Kapitäne.", "ln.staffTitle": "Trainerteam", "ln.staffHint": "Wer auf der Bank sitzt. Erscheint in der geteilten Aufstellung.", "ln.staffName": "Name", "ln.staffRole": "Funktion, z. B. Co-Trainer", "ln.staffAdd": "+ Hinzufügen", "ln.staffEmpty": "Noch niemand eingetragen.", "ln.xiFull": "Die Elf ist komplett. Tippe zwei Spielsteine an, um sie zu tauschen, oder eine Position und dann jemanden von der Bank.",
     "ln.favTitle": "Favoriten",
     "ln.tabXI": "Die Elf",
     "ln.abpTitle": "Standardsituationen",
@@ -2174,6 +2238,7 @@ const DICT = {
     "jg.abpHint": "Was dein Trainer für jede Standardsituation vorbereitet hat. Dein Spielstein ist hervorgehoben.",
     "jg.abpEmpty": "Dein Trainer hat für diese Situation noch keine Aufstellung gespeichert.",
     "jg.abpYouAre": "Du gehst {z}.",
+    "jg.abpMission": "Deine Aufgabe: {m}",
     "jg.abpNotInXI": "Du stehst nicht in der aktuellen Elf, also hast du hier noch keinen Platz.",
     "abz.porteria": "ins Tor",
     "abz.corner": "zur Eckfahne",
@@ -2189,6 +2254,26 @@ const DICT = {
     "abz.atras": "hinten in der eigenen Hälfte",
     "ab3.fondo": "Hinter dem Tor",
     "ab3.banda": "Von der Seitenlinie",
+    "ab.primerPalo": "Kurzer Pfosten",
+    "ab.segundoPalo": "Langer Pfosten",
+    "ab.penalti": "Elfmeterpunkt",
+    "ab.rechace": "Auf den Abpraller",
+    "ab.saca": "Tritt die Ecke",
+    "ab.bloquea": "Blockt den Torwart",
+    "ab.corto": "Kurz ausgeführt",
+    "ab.contra": "Bleibt zur Absicherung",
+    "ab.zona": "Raumdeckung",
+    "ab.hombre": "Manndeckung",
+    "ab.barrera": "In der Mauer",
+    "ab.alBalon": "Am Ball",
+    "ab.arriba": "Bleibt vorne",
+    "ab.lanza": "Schießt den Elfmeter",
+    "ab.para": "Hält den Elfmeter",
+    "ab.atras": "Hinten, falls Konter",
+    "ln.abpMission": "Aufgabe",
+    "ln.abpMissionNone": "Noch keine Aufgabe",
+    "ln.abpNotePh": "Notiz für ihn (optional)",
+    "ln.abpMissionHint": "Tippe einen Spielstein an und sag ihm, was er bei dieser Situation zu tun hat.",
     "mh.assistsN": "Vorlagen",
     "jg.pxHoy": "Heute spielst du!",
     "jg.pxManana": "Morgen",
@@ -2869,7 +2954,7 @@ const DICT = {
     "ln.finishAndSend": "Quando acabares de montar o onze, envia-a.",
     "ln.placeAndSend": "Monta o onze e envia a proposta quando terminares.",
     "ln.sendProposal": "Enviar proposta",
-    "ln.dragHint": "Arrasta para recolocar · toque curto para atribuir",
+    "ln.dragHint": "Arrasta para recolocar · toca em duas peças para as trocar",
     "ln.benchTitle": "Banco", "ln.calledSubs": "Suplentes convocados", "ln.notCalled": "Não convocados", "ln.notCalledTag": "Não convocado", "ln.noCallYet": "Ainda não há convocatória, por isso aparecem todos. Faz a convocatória e vês quem vai e quem fica de fora.", "ln.goCall": "Ir à Convocatória", "ln.xiNotCalled": "No onze há {n} sem convocar: {names}.", "ln.sumCalled": "Convocados", "ln.sumXI": "No onze", "ln.sumSubs": "Suplentes", "ln.sumOut": "De fora", "ln.callIn": "Convocar", "ln.callOut": "Tirar da convocatória", "ln.noneHere": "Ninguém.", "conv.label": "Convocatória", "conv.conv": "Convocado", "conv.tecnica": "Fora · opção técnica",
     "conv.viaje": "Fora · de viagem",
     "cl.ctxHint": "Debaixo de cada nome: a quantos treinos faltou esta semana e se ficou de fora do último jogo.",
@@ -2879,9 +2964,9 @@ const DICT = {
     "ln.shareImageBusy": "A gerar imagem…",
     "ln.shareImageOk": "✓ Imagem pronta.",
     "ln.shareImageFail": "Não foi possível gerar a imagem.",
-    "ln.tapPlayerForSlot": "Toca no jogador que queres pôr a {pos}.",
+    "ln.tapPlayerForSlot": "Toca no jogador que queres pôr a {pos}, ou noutra peça do campo para os trocar.",
     "ln.tapPlayerToAdd": "Toca num jogador e entra no onze, no primeiro lugar livre ({pos}). Para escolheres o lugar, toca primeiro numa posição do campo.",
-    "ln.captain": "Capitão", "ln.captainShort": "C", "ln.captainMax": "No máximo 3 capitães.", "ln.staffTitle": "Equipa técnica", "ln.staffHint": "Quem fica no banco. Aparece no onze partilhado.", "ln.staffName": "Nome", "ln.staffRole": "Cargo. Ex.: Treinador adjunto", "ln.staffAdd": "+ Adicionar", "ln.staffEmpty": "Ainda não puseste ninguém.", "ln.xiFull": "O onze está completo. Toca numa posição do campo para trocar quem lá está.",
+    "ln.captain": "Capitão", "ln.captainShort": "C", "ln.captainMax": "No máximo 3 capitães.", "ln.staffTitle": "Equipa técnica", "ln.staffHint": "Quem fica no banco. Aparece no onze partilhado.", "ln.staffName": "Nome", "ln.staffRole": "Cargo. Ex.: Treinador adjunto", "ln.staffAdd": "+ Adicionar", "ln.staffEmpty": "Ainda não puseste ninguém.", "ln.xiFull": "O onze está completo. Toca em duas peças do campo para as trocar, ou numa posição e depois em alguém do banco.",
     "ln.favTitle": "Favoritas",
     "ln.tabXI": "O onze",
     "ln.abpTitle": "Bola parada",
@@ -2910,6 +2995,7 @@ const DICT = {
     "jg.abpHint": "O que o teu treinador preparou para cada bola parada. A tua peça vai marcada.",
     "jg.abpEmpty": "O teu treinador ainda não guardou nenhuma colocação para esta jogada.",
     "jg.abpYouAre": "Tu vais {z}.",
+    "jg.abpMission": "A tua missão: {m}",
     "jg.abpNotInXI": "Não estás no onze que está escolhido agora, por isso ainda não tens lugar nesta jogada.",
     "abz.porteria": "à baliza",
     "abz.corner": "ao canto do campo",
@@ -2925,6 +3011,26 @@ const DICT = {
     "abz.atras": "atrás, no teu meio-campo",
     "ab3.fondo": "Por trás da baliza",
     "ab3.banda": "Da linha lateral",
+    "ab.primerPalo": "Primeiro poste",
+    "ab.segundoPalo": "Segundo poste",
+    "ab.penalti": "Marca de grande penalidade",
+    "ab.rechace": "Ao ressalto",
+    "ab.saca": "Marca o canto",
+    "ab.bloquea": "Bloqueia o guarda-redes",
+    "ab.corto": "Canto curto",
+    "ab.contra": "Fica na cobertura",
+    "ab.zona": "Zona",
+    "ab.hombre": "Marcação individual",
+    "ab.barrera": "Na barreira",
+    "ab.alBalon": "Na bola",
+    "ab.arriba": "Fica à frente",
+    "ab.lanza": "Marca o penálti",
+    "ab.para": "Defende o penálti",
+    "ab.atras": "Atrás, caso haja contra-ataque",
+    "ln.abpMission": "Missão",
+    "ln.abpMissionNone": "Ainda sem missão",
+    "ln.abpNotePh": "Nota para ele (opcional)",
+    "ln.abpMissionHint": "Toca numa peça do campo e diz-lhe o que tem de fazer nesta jogada.",
     "mh.assistsN": "Assist.",
     "jg.pxHoy": "Hoje jogas!",
     "jg.pxManana": "Amanhã",
@@ -5559,6 +5665,15 @@ const LINEA_DE_POS = {
   MCD: "MED", MC: "MED", MB: "MED", MCO: "MED", MED: "MED",
   ED: "DEL", EI: "DEL", DC: "DEL", DEL: "DEL",
 };
+/* El color de cada línea, como en cualquier juego de fútbol: amarillo el
+   portero, azul la defensa, verde el centro del campo y rojo el ataque. Con
+   once fichas blancas iguales hay que leer el dorsal de cada una para saber
+   si el equipo está bien repartido; con el color se ve de un vistazo.
+   Son tonos medios a propósito: la app tiene fondo blanco o negro según el
+   tema, y estos se distinguen en los dos. Se usan como borde de la ficha y
+   como pastilla, nunca como color de un texto. */
+const COLOR_LINEA = { POR: "#D4A017", DEF: "#4A90D9", MED: "#3FA96B", DEL: "#D9534F" };
+const colorLinea = (pos) => COLOR_LINEA[LINEA_DE_POS[pos] || pos] || "rgba(128,128,128,0.55)";
 const jugToAir = (p, teamRec) => ({
   Nombre: p.n, Dorsal: Number(p.d) || 0,
   /* Aviso médico permanente del jugador. Va en su ficha y no en el parte
@@ -13121,6 +13236,11 @@ export default function App() {
       setLineup(updater);
     }
   };
+  /* El once que se está mirando: el borrador si quien mira propone cambios
+     -el segundo entrenador-, y si no el oficial. Es lo mismo que calcula
+     `lineupView` dentro de la pantalla, pero hace falta también fuera, al
+     tocar una ficha del campo. */
+  const onceVivo = () => (canProposeChanges() ? (lineupDraft || lineup) : lineup);
   /* Al cambiar de sistema se regeneran las posiciones y se reasignan los
      jugadores por orden, para no perder la alineación ya montada. */
   const applySystem = (code) => {
@@ -13340,6 +13460,11 @@ export default function App() {
   const [abpSit, setAbpSit] = useState(null);
   const [abpJugada, setAbpJugada] = useState("corner");
   const [abpPos, setAbpPos] = useState(() => Object.fromEntries(CLAVES_ABP.map((k) => [k, {}])));
+  /* Qué tiene que hacer cada puesto en esta jugada: { puesto: { m, n } }, la
+     misión elegida de la lista y una nota del entrenador. Va aparte de las
+     posiciones porque se guarda y se recupera junto a ellas pero se edita en
+     otro sitio -tocando la ficha, no arrastrándola-. */
+  const [abpMis, setAbpMis] = useState(() => Object.fromEntries(CLAVES_ABP.map((k) => [k, {}])));
   const [abpGuardadas, setAbpGuardadas] = useState(() => Object.fromEntries(CLAVES_ABP.map((k) => [k, []])));
   const [abpMsg, setAbpMsg] = useState("");
   const [abpBusy, setAbpBusy] = useState(false);
@@ -13375,8 +13500,25 @@ export default function App() {
          esto la pantalla del jugador en la demo sale siempre vacía y parece
          que no estuviera hecha. */
       const demo = session?.email === "demo";
-      setAbpGuardadas(Object.fromEntries(CLAVES_ABP.map((k) => [k,
-        demo ? [{ id: `demo-${k}`, nombre: t("ln.abpDemoName"), pos: abpSoloPos(abpPorDefecto(k, slotPos)) }] : []])));
+      /* Las misiones de ejemplo salen de dónde cae cada ficha: quien está en
+         el palo izquierdo remata al primer palo, quien está en el banderín
+         saca… Así la demo enseña la función con cualquier sistema, sin una
+         tabla escrita a mano que se desarme al cambiar de 4-3-3 a 4-4-2. */
+      const MISION_POR_ZONA = {
+        "abz.paloIzq": "primerPalo", "abz.paloDer": "segundoPalo", "abz.penalti": "penalti",
+        "abz.corner": "saca", "abz.frontal": "rechace", "abz.atras": "contra", "abz.lejos": "arriba",
+      };
+      const ejemplo = (sit) => {
+        const posDef = abpPorDefecto(sit, slotPos);
+        const validas = misionesDe(sit);
+        const mis = {};
+        Object.entries(posDef).forEach(([slot, sl]) => {
+          const m = MISION_POR_ZONA[zonaAbp(sl.x, sl.y)];
+          if (m && validas.includes(m)) mis[slot] = { m, n: "" };
+        });
+        return { id: `demo-${sit}`, nombre: t("ln.abpDemoName"), pos: abpSoloPos(posDef), mis };
+      };
+      setAbpGuardadas(Object.fromEntries(CLAVES_ABP.map((k) => [k, demo ? [ejemplo(k)] : []])));
       return;
     }
     let vivo = true;
@@ -13416,14 +13558,34 @@ export default function App() {
     if ((abpGuardadas[abpSit] || []).length >= 5) { setAbpMsg(t("ln.abpMax")); setTimeout(() => setAbpMsg(""), 4000); return; }
     const nombre = window.prompt(t("ln.abpNamePrompt"), "");
     if (!nombre || !nombre.trim()) return;
-    const nueva = { id: `abp${Date.now()}`, nombre: nombre.trim().slice(0, 40), pos: abpSoloPos(posDeAbp(abpSit)) };
+    const nueva = { id: `abp${Date.now()}`, nombre: nombre.trim().slice(0, 40),
+      pos: abpSoloPos(posDeAbp(abpSit)),
+      /* Las misiones viajan con la colocación: es lo que luego lee el jugador
+         en su ficha, y sin ellas solo vería un punto en un dibujo. */
+      mis: misionesLimpias(abpMis[abpSit], abpSit, posDeAbp(abpSit)) };
     const doc = { ...abpGuardadas, [abpSit]: [...(abpGuardadas[abpSit] || []), nueva] };
     setAbpGuardadas(doc);
     guardarAbpEnLaNube(doc);
   };
+  /* La misión de un puesto en la jugada que se está preparando. Un puesto sin
+     misión ni nota no se guarda: así lo que viaja a la nube es solo lo que el
+     entrenador ha dicho de verdad. */
+  const ponerMision = (slot, cambio) => {
+    if (!abpSit || !slot || !can("editLineup")) return;
+    setAbpMis((prev) => {
+      const sit = { ...(prev[abpSit] || {}) };
+      const next = { ...(sit[slot] || { m: "", n: "" }), ...cambio };
+      const nota = String(next.n || "").slice(0, MAX_NOTA_ABP);
+      if (!next.m && !nota.trim()) delete sit[slot];
+      else sit[slot] = { m: next.m || "", n: nota };
+      return { ...prev, [abpSit]: sit };
+    });
+  };
+  const misionDe = (slot) => (abpSit ? (abpMis[abpSit] || {})[slot] : null);
   const aplicarAbp = (guardada) => {
     if (!abpSit || !guardada) return;
     setAbpPos((p) => ({ ...p, [abpSit]: abpConSlots(guardada.pos, slotPos, abpSit) }));
+    setAbpMis((m) => ({ ...m, [abpSit]: misionesLimpias(guardada.mis, abpSit, slotPos) }));
     setAbpMsg(t("ln.abpApplied").replace("{name}", guardada.nombre));
     setTimeout(() => setAbpMsg(""), 4000);
   };
@@ -14485,13 +14647,17 @@ export default function App() {
   const pitchRef = useRef(null);
   const dragRef = useRef(null);
   const onSlotDown = (e, id) => {
-    if (!can("editLineup")) return;
-    dragRef.current = { id, moved: false, sx: e.clientX, sy: e.clientY };
-    e.currentTarget.setPointerCapture?.(e.pointerId);
+    /* El toque se registra aunque no se pueda editar: quien solo mira -el
+       delegado, la demo- también tiene que poder tocar una ficha para leer
+       qué misión le ha puesto el entrenador en este balón parado. Mover y
+       cambiar de sitio sí quedan fuera, y de eso se encargan `editable` más
+       abajo y onPitchMove. */
+    dragRef.current = { id, moved: false, sx: e.clientX, sy: e.clientY, editable: can("editLineup") };
+    if (dragRef.current.editable) e.currentTarget.setPointerCapture?.(e.pointerId);
   };
   const onPitchMove = (e) => {
     const d = dragRef.current;
-    if (!d || !pitchRef.current) return;
+    if (!d || !d.editable || !pitchRef.current) return;
     if (Math.hypot(e.clientX - d.sx, e.clientY - d.sy) > 6) d.moved = true;
     if (!d.moved) return;
     const r = pitchRef.current.getBoundingClientRect();
@@ -14504,12 +14670,30 @@ export default function App() {
   };
   const onSlotUp = (id) => {
     const d = dragRef.current; dragRef.current = null;
-    if (!d || d.moved || !can("editLineup")) return;
-    /* El toque corto elige puesto, también preparando un córner: arrastrar
-       coloca, tocar cambia al jugador. Son los mismos once, así que cambiar
-       aquí a uno cambia el once de verdad -que es lo que se quiere: si para
-       este córner entra el central alto, entra en el equipo-. */
-    setSelSlot((s) => (s === id ? null : id));
+    if (!d || d.moved) return;
+    /* Sin permiso para editar, el toque solo elige la ficha: sirve para leer
+       su misión, no para mover a nadie. */
+    if (!d.editable) { setSelSlot((x) => (x === id ? null : id)); return; }
+    /* El toque corto elige puesto, también preparando un balón parado:
+       arrastrar coloca, tocar cambia al jugador. Son los mismos once, así que
+       cambiar aquí a uno cambia el once de verdad -que es lo que se quiere:
+       si para este córner entra el central alto, entra en el equipo-.
+       Y con un puesto ya elegido, tocar otro CAMBIA A LOS DOS DE SITIO, como
+       en cualquier juego de fútbol. Antes el segundo toque solo movía el
+       marcador de un puesto a otro y había que ir a la lista para mover a
+       nadie; mover al lateral al otro costado eran cuatro toques y dejaba un
+       hueco por el camino. */
+    if (selSlot === id) { setSelSlot(null); return; }
+    /* Preparando un balón parado el toque elige la ficha para ponerle su
+       misión, y no cambia a nadie de sitio: ahí el once ya está hecho y lo
+       que se hace todo el rato es ir ficha por ficha diciendo qué hace cada
+       uno. El cambio de sitio es cosa del once. */
+    if (selSlot && !abpSit) {
+      const once = onceVivo();
+      /* Dos puestos vacíos no se cambian por nada: ahí el toque solo elige. */
+      if (once[selSlot] != null || once[id] != null) { intercambiarPuestos(selSlot, id); return; }
+    }
+    setSelSlot(id);
   };
 
   const avail = players.filter((p) => p.st === "disponible").length;
@@ -18837,8 +19021,33 @@ export default function App() {
     if (canProposeChanges() && miPropuestaPendiente("lineup")) return;
     setLineupSmart((base) => {
       const next = { ...base };
-      Object.keys(next).forEach((k) => { if (next[k] === playerId) delete next[k]; });
+      /* Se cambian de sitio, como en los juegos de fútbol de toda la vida: si
+         el que entra ya estaba en otro puesto, el que ocupaba este se va al
+         suyo en vez de quedarse fuera del once. Antes el puesto de origen se
+         quedaba vacío y había que acordarse de volver a rellenarlo -y si no,
+         se mandaba una alineación con diez-.
+         Viniendo del banquillo no hay a dónde devolver a nadie: el que estaba
+         sale del once, que es lo que se quiere al hacer un cambio. */
+      const origen = Object.keys(next).find((k) => next[k] === playerId);
+      const ocupante = next[slotId];
       next[slotId] = playerId;
+      if (origen && origen !== slotId) {
+        if (ocupante != null) next[origen] = ocupante;
+        else delete next[origen];
+      }
+      return next;
+    });
+    setSelSlot(null);
+  };
+  /* Dos puestos del campo, uno por el otro. Es lo que pasa al tocar una ficha
+     y luego otra. */
+  const intercambiarPuestos = (a, b) => {
+    if (canProposeChanges() && miPropuestaPendiente("lineup")) return;
+    setLineupSmart((base) => {
+      const next = { ...base };
+      const pa = next[a], pb = next[b];
+      if (pb != null) next[a] = pb; else delete next[a];
+      if (pa != null) next[b] = pa; else delete next[b];
       return next;
     });
     setSelSlot(null);
@@ -22117,7 +22326,7 @@ export default function App() {
                   return (
                     <div key={slot} className="absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center" style={{ left: `${s.x}%`, top: `${s.y}%` }}>
                       <PitchToken p={p} label={s.label} selected={esMio} accent={AC} textColor={C.chalk}
-                        borderColor={esMio ? AC : p && p.st !== "disponible" ? stColor(p.st) : "rgba(54,69,79,0.5)"} />
+                        borderColor={esMio ? AC : p && p.st !== "disponible" ? stColor(p.st) : colorLinea(s.label)} />
                       <div className="mt-0.5 text-[10px] px-1 rounded" style={{ background: esMio ? AC : "rgba(14,21,18,0.8)", color: esMio ? "#141414" : C.chalk, fontWeight: esMio ? 700 : 400 }}>
                         {p ? `${p.n.split(" ")[0]} · ${s.label}` : s.label}
                       </div>
@@ -22207,6 +22416,18 @@ export default function App() {
                     {miSlot
                       ? <>⬡ {t("jg.abpYouAre").replace("{z}", t(zonaAbp(pos[miSlot].x, pos[miSlot].y)))}</>
                       : t("jg.abpNotInXI")}
+                    {/* Y qué tiene que hacer ahí, si su entrenador se lo ha
+                        dicho. Es la mitad que falta: el sitio solo no explica
+                        la jugada. */}
+                    {miSlot && (() => {
+                      const mi = misionesLimpias(elegida.mis, jugAbpSit, pos)[miSlot];
+                      const txt = textoMision(t, mi);
+                      return txt ? (
+                        <div className="mt-1.5 pt-1.5 border-t font-medium" style={{ borderColor: `${AC}44` }}>
+                          ◎ {t("jg.abpMission").replace("{m}", txt)}
+                        </div>
+                      ) : null;
+                    })()}
                   </div>
                   {/* 2D o 3D. El dibujo de arriba dice dónde hay que estar; el
                       3D enseña CÓMO se ve eso desde el campo, que es lo que un
@@ -22237,7 +22458,7 @@ export default function App() {
                         return (
                           <div key={slot} className="absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center" style={{ left: `${sl.x}%`, top: `${sl.y}%` }}>
                             <PitchToken p={pj} label={sl.label} selected={esMio} accent={AC} textColor={C.chalk}
-                              borderColor={esMio ? AC : "rgba(54,69,79,0.5)"} />
+                              borderColor={esMio ? AC : colorLinea(sl.label)} />
                             <div className="mt-0.5 px-1 rounded text-[9px] max-w-[70px] truncate"
                               style={{ background: esMio ? AC : "rgba(14,21,18,0.85)", color: esMio ? "#141414" : C.chalk, fontWeight: esMio ? 700 : 400 }}>
                               {pj ? `${pj.d} ${pj.n.split(" ")[0]}` : sl.label}
@@ -22859,9 +23080,14 @@ export default function App() {
        se quede comprimida o sin abrir. */
     const abpTexto = () => {
       const lineas = Object.entries(posDeAbp(abpSit))
-        .map(([id, sl]) => ({ sl, p: players.find((x) => x.id === lineupView[id]) }))
+        .map(([id, sl]) => ({ id, sl, p: players.find((x) => x.id === lineupView[id]) }))
         .filter((x) => x.p)
-        .map(({ sl, p }) => `${sl.label} ${keycap(p.d)} ${p.n}`);
+        /* Con su misión detrás: el mensaje es lo que de verdad leen, y "DFC
+           9 Diego" sin más no le dice a nadie qué tiene que hacer. */
+        .map(({ id, sl, p }) => {
+          const m = textoMision(t, misionDe(id));
+          return `${sl.label} ${keycap(p.d)} ${p.n}${m ? ` — ${m}` : ""}`;
+        });
       return [
         `⬡ *${t("ln.abpTitle").toUpperCase()} · ${nombreAbp(t, abpSit).toUpperCase()} — ${session.club || ""} ${session.team?.name || ""}*`,
         "",
@@ -23125,7 +23351,7 @@ export default function App() {
                   {(abpGuardadas[abpSit] || []).length >= 5 ? t("ln.abpFull") : t("ln.abpSave")}
                 </button>
               )}
-              <button onClick={() => setAbpPos((p) => ({ ...p, [abpSit]: abpPorDefecto(abpSit, slotPos) }))}
+              <button onClick={() => { setAbpPos((p) => ({ ...p, [abpSit]: abpPorDefecto(abpSit, slotPos) })); setAbpMis((m) => ({ ...m, [abpSit]: {} })); }}
                 className="text-xs px-2.5 py-1 rounded-lg border font-display uppercase tracking-wide"
                 style={{ borderColor: C.line, color: C.dim }}>{t("ln.abpReset")}</button>
               {abpMsg && <span className="text-[11px] w-full" style={{ color: C.green }}>{abpMsg}</span>}
@@ -23288,7 +23514,7 @@ export default function App() {
                    hacia abajo sin que la página se vaya detrás. */
                 <div key={id} onPointerDown={(e) => onSlotDown(e, id)} onPointerUp={() => onSlotUp(id)} className={`absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center ${can("editLineup") ? "touch-none" : ""}`} style={{ left: `${s.x}%`, top: `${s.y}%`, cursor: can("editLineup") ? "grab" : "default" }}>
                   <PitchToken p={p} label={s.label} selected={sel} accent={AC} textColor={C.chalk}
-                    borderColor={sel ? AC : sugerido ? AC : p && hayConvocatoria && !called.has(p.id) ? C.warn : p && p.st !== "disponible" ? stColor(p.st) : "rgba(54,69,79,0.5)"} />
+                    borderColor={sel ? AC : sugerido ? AC : p && hayConvocatoria && !called.has(p.id) ? C.warn : p && p.st !== "disponible" ? stColor(p.st) : colorLinea(s.label)} />
                   {/* La demarcación (s.label, p.ej. "DFC") se mostraba solo
                       mientras el puesto estaba vacío: en cuanto se asignaba un
                       jugador, desaparecía y solo quedaba el nombre. Se deja
@@ -23300,6 +23526,13 @@ export default function App() {
                       que el cartel de una ficha no acabe debajo del círculo
                       de la siguiente. En el campo entero no hace falta: ahí
                       sobra sitio y cabe también la demarcación. */}
+                  {/* Un punto en la ficha cuando ese puesto ya tiene misión:
+                      de un vistazo se ve a quién falta por decirle algo, sin
+                      escribir texto encima del campo -no cabe-. La misión
+                      entera se lee en el panel de abajo. */}
+                  {abpSit && misionDe(id) && (
+                    <span className="absolute -top-0.5 -left-0.5 w-3 h-3 rounded-full border-2" style={{ background: AC, borderColor: C.panel }} />
+                  )}
                   <div className={`mt-0.5 px-1 rounded whitespace-nowrap ${abpSit ? "text-[9px] max-w-[70px] truncate" : "text-[10px]"}`} style={{ background: "rgba(14,21,18,0.85)", color: C.chalk }}>
                     {p ? (abpSit ? `${p.d} ${p.n.split(" ")[0]}` : `${p.n.split(" ")[0]} · ${s.label}`) : s.label}
                     {!abpSit && p && capitanes.includes(p.id) && <span className="ml-1 font-display font-semibold" style={{ color: AC }}>{t("ln.captainShort")}</span>}
@@ -23308,6 +23541,67 @@ export default function App() {
               );
             })}
           </div>
+          {/* ---- Qué hace cada uno en esta jugada ----
+               Saber dónde ponerse es la mitad; la otra mitad es qué hacer
+               ahí. Se elige tocando la ficha: aparece su lista y, si hace
+               falta, una nota. Va DEBAJO del campo y no encima para que al
+               tocar una ficha el campo no se mueva de sitio bajo el dedo. */}
+          {abpSit && (() => {
+            const jug = selSlot ? players.find((x) => x.id === lineupView[selSlot]) : null;
+            const quien = selSlot ? (jug ? `${jug.d} ${jug.n.split(" ")[0]}` : (slotPos[selSlot]?.label || selSlot)) : "";
+            const v = selSlot ? (misionDe(selSlot) || { m: "", n: "" }) : null;
+            const puestas = Object.entries(abpMis[abpSit] || {})
+              .map(([slot, val]) => ({ slot, val, p: players.find((x) => x.id === lineupView[slot]) }))
+              .filter((x) => x.p);
+            return (
+              <>
+                {selSlot ? (
+                  <div className="mt-3 rounded-lg border p-3" style={{ borderColor: AC, background: C.panel2 }}>
+                    <div className="text-[11px] font-display uppercase tracking-widest mb-2" style={{ color: C.dim }}>
+                      {t("ln.abpMission")} · <span style={{ color: AC }}>{quien}</span>
+                    </div>
+                    {can("editLineup") ? (
+                      <>
+                        <div className="flex flex-wrap gap-1.5 mb-2">
+                          {misionesDe(abpSit).map((m) => (
+                            <button key={m} onClick={() => ponerMision(selSlot, { m: v.m === m ? "" : m })}
+                              aria-pressed={v.m === m}
+                              className="text-xs px-2.5 py-1.5 rounded-lg border"
+                              style={{ borderColor: v.m === m ? AC : C.line, background: v.m === m ? AC : "transparent", color: v.m === m ? C.sobre : C.chalk }}>
+                              {t(ETIQUETA_MISION(m))}
+                            </button>
+                          ))}
+                        </div>
+                        <input value={v.n || ""} maxLength={MAX_NOTA_ABP}
+                          onChange={(e) => ponerMision(selSlot, { n: e.target.value })}
+                          placeholder={t("ln.abpNotePh")} aria-label={t("ln.abpNotePh")}
+                          className="w-full rounded-lg px-3 py-2 text-sm outline-none border"
+                          style={{ background: C.panel, borderColor: C.line, color: C.chalk }} />
+                      </>
+                    ) : (
+                      <div className="text-sm" style={{ color: C.chalk }}>{textoMision(t, v) || t("ln.abpMissionNone")}</div>
+                    )}
+                  </div>
+                ) : (
+                  <div className="text-[11px] mt-3 leading-relaxed" style={{ color: C.dim }}>{t("ln.abpMissionHint")}</div>
+                )}
+                {/* Todas las misiones de la jugada, de un vistazo: es lo que
+                    se repasa antes de mandarla y lo que sale en el mensaje. */}
+                {puestas.length > 0 && (
+                  <div className="mt-2 space-y-1">
+                    {puestas.map(({ slot, val, p: pj }) => (
+                      <button key={slot} onClick={() => setSelSlot(slot)}
+                        className="w-full flex items-baseline gap-2 text-left text-xs py-1 border-b last:border-0" style={{ borderColor: C.line }}>
+                        <span className="font-display tabular-nums shrink-0" style={{ color: AC }}>{pj.d}</span>
+                        <span className="shrink-0" style={{ color: C.chalk }}>{pj.n.split(" ")[0]}</span>
+                        <span className="min-w-0 flex-1 truncate text-right" style={{ color: C.dim }}>{textoMision(t, val)}</span>
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </>
+            );
+          })()}
         </Card>
         <Card title={selSlot ? t("ln.assignTo").replace("{slot}", puestoDelSlot || selSlot) : t("ln.benchTitle")}>
           {capitanMsg && <div className="text-xs mb-2" style={{ color: C.warn }}>{capitanMsg}</div>}
@@ -23424,8 +23718,22 @@ export default function App() {
                         {/* La demarcación que se enseña es la del hueco que
                             ocupa ahora mismo; quien está en el banquillo no
                             tiene ninguna todavía. */}
-                        {enElOnce && <span>{puestoDe(p.id)} · XI</span>}
-                        {!enElOnce && linea && <span>{t(`lin1.${linea}`)}</span>}
+                        {/* Un punto del color de su línea delante de la
+                            demarcación: el mismo código de color que en las
+                            fichas del campo, para poder cruzar lista y campo
+                            sin leer nombres. */}
+                        {enElOnce && (
+                          <span className="flex items-center gap-1">
+                            <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: colorLinea(puestoDe(p.id)) }} />
+                            {puestoDe(p.id)} · XI
+                          </span>
+                        )}
+                        {!enElOnce && linea && (
+                          <span className="flex items-center gap-1">
+                            <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: colorLinea(linea) }} />
+                            {t(`lin1.${linea}`)}
+                          </span>
+                        )}
                         {fueraConv && <span style={{ color: enElOnce ? C.warn : colorConvocatoria(estConv) }}>{estConv === "no" ? t("ln.notCalledTag") : t(`conv.${estConv}`)}</span>}
                       </span>
                     </span>

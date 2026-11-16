@@ -104,5 +104,19 @@ dice("una situación inventada no cuela", r.status === 400 && r.body.reason === 
 r = await call("?res=abp-corners&team=recSEN", { method: "POST", token: tEnt, body: { abp: JSON.stringify({ ataque: unaCol("viejo"), defensa: [] }) } });
 dice("una app antigua, que solo manda el córner, sigue guardando", r.body.ok === true, JSON.stringify(r.body));
 
+/* Desde que cada puesto lleva su misión y su nota el documento crece, así
+   que hay un tope: lo que llegue por encima no es una colocación. */
+const enorme = { ataque: [{ id: "x", nombre: "x", pos: {}, mis: { GK: { m: "zona", n: "y".repeat(250000) } } }], defensa: [] };
+r = await call("?res=abp-corners&team=recSEN", { method: "POST", token: tEnt, body: { abp: JSON.stringify(enorme) } });
+dice("un documento desmedido no se guarda", r.status === 400 && r.body.reason === "demasiado_grande", JSON.stringify(r.body));
+
+/* Y una colocación con misiones normales sí. */
+const conMisiones = { ataque: [{ id: "a1", nombre: "Primer palo", pos: { GK: { x: 50, y: 88 } },
+  mis: { GK: { m: "contra", n: "no subas" }, L2_0: { m: "primerPalo", n: "" } } }], defensa: [] };
+r = await call("?res=abp-corners&team=recSEN", { method: "POST", token: tEnt, body: { abp: JSON.stringify(conMisiones) } });
+dice("una colocación con misiones sí se guarda", r.body.ok === true, JSON.stringify(r.body));
+r = await call("?res=abp-corners&team=recSEN", { token: tEnt });
+dice("y vuelven con ella", JSON.parse(r.body.abp || "{}").ataque?.[0]?.mis?.GK?.m === "contra", r.body.abp);
+
 console.log(`\n${ok} correctas · ${mal} fallos`);
 process.exit(mal ? 1 : 0);

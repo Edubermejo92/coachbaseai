@@ -12,6 +12,7 @@ import {
   JUGADAS_ABP, CLAVES_ABP, TABLAS_ABP, claveAbp, ladoDeAbp, jugadaDeAbp, ETIQUETA_JUGADA,
   nombreAbp, abpPorDefecto, abpConSlots, abpSoloPos, zonaAbp,
   profundidadAbp, abpATablero, tokensAbp3d, balonAbp,
+  MISIONES_ABP, misionesDe, ETIQUETA_MISION, misionesLimpias, textoMision, MAX_NOTA_ABP,
 } from "../src/abp.js";
 
 let ok = 0, mal = 0;
@@ -144,6 +145,55 @@ dice("en el penalti el balón va al punto de penalti",
 dice("en el córner, al banderín", Math.round(balonAbp("ataque").x) === 988 && Math.round(balonAbp("defensa").y) === 12);
 dice("en una falta no se pinta balón: nadie sabe dónde se pitó",
   balonAbp("faltaAtaque") === null && balonAbp("faltaDefensa") === null);
+
+/* ---------- la misión de cada puesto ----------
+   Saber dónde ponerse es la mitad; la otra mitad es qué hacer ahí. Las
+   listas van por lado porque "barrera" no pinta nada en un córner a favor
+   y "bloquea al portero" no pinta nada defendiendo. */
+dice("a favor y en contra no ofrecen lo mismo",
+  misionesDe("ataque").join() !== misionesDe("defensa").join());
+dice("la barrera solo se ofrece defendiendo",
+  !misionesDe("ataque").includes("barrera") && misionesDe("faltaDefensa").includes("barrera"));
+dice("bloquear al portero solo atacando",
+  misionesDe("ataque").includes("bloquea") && !misionesDe("defensa").includes("bloquea"));
+dice("el penalti tiene su propia lista",
+  misionesDe("penaltiAtaque").includes("lanza") && misionesDe("penaltiDefensa").includes("para")
+  && misionesDe("penaltiAtaque").join() === misionesDe("penaltiDefensa").join());
+dice("la falta usa la misma lista que el córner del mismo lado",
+  misionesDe("faltaAtaque").join() === misionesDe("ataque").join());
+dice("ninguna situación se queda sin misiones", CLAVES_ABP.every((k) => misionesDe(k).length > 0));
+dice("cada misión tiene su clave de traducción", ETIQUETA_MISION("zona") === "ab.zona");
+dice("una situación desconocida no revienta", misionesDe("noExiste").length > 0);
+dice("no hay misiones repetidas dentro de una lista",
+  Object.values(MISIONES_ABP).every((l) => new Set(l).size === l.length));
+
+/* Lo que se guarda: solo lo que el entrenador ha dicho de verdad. */
+const SLOTS = { s0: 1, s1: 1, s2: 1 };
+const sucio = {
+  s0: { m: "primerPalo", n: "  entra desde atrás  " },
+  s1: { m: "barrera" },                       /* no vale atacando */
+  s2: { m: "", n: "   " },                    /* vacío del todo */
+  sViejo: { m: "rechace" },                   /* puesto que ya no existe */
+};
+const limpio = misionesLimpias(sucio, "ataque", SLOTS);
+dice("se queda la misión válida, con la nota recortada",
+  limpio.s0?.m === "primerPalo" && limpio.s0?.n === "entra desde atrás", JSON.stringify(limpio.s0));
+dice("una misión que no es de esta situación se descarta", limpio.s1 === undefined, JSON.stringify(limpio.s1));
+dice("un puesto sin nada no se guarda", !("s2" in limpio));
+dice("ni un puesto que ya no existe en el sistema", !("sViejo" in limpio));
+dice("una nota sin misión sí se guarda: también es una instrucción",
+  misionesLimpias({ s0: { m: "", n: "tú al palo" } }, "ataque", SLOTS).s0?.n === "tú al palo");
+dice("la nota se corta y no crece sin fin",
+  misionesLimpias({ s0: { n: "x".repeat(200) } }, "ataque", SLOTS).s0.n.length === MAX_NOTA_ABP);
+dice("sin misiones, nada", JSON.stringify(misionesLimpias(null, "ataque", SLOTS)) === "{}");
+dice("sin sistema con el que cruzar, no se descarta ningún puesto",
+  "sViejo" in misionesLimpias(sucio, "ataque", null));
+
+dice("la misión en palabras junta lista y nota",
+  textoMision((k) => k, { m: "zona", n: "al primer palo" }) === "ab.zona · al primer palo");
+dice("solo con la lista, solo la lista", textoMision((k) => k, { m: "zona" }) === "ab.zona");
+dice("solo con la nota, solo la nota", textoMision((k) => k, { n: "sube tú" }) === "sube tú");
+dice("sin nada, cadena vacía", textoMision((k) => k, null) === "" && textoMision((k) => k, {}) === "");
 
 console.log(`\n${ok} correctas · ${mal} fallos`);
 process.exit(mal ? 1 : 0);

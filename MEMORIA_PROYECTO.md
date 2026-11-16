@@ -135,6 +135,43 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   sigue valiendo para los siguientes partidos hasta que se desactiva (y entonces caen las
   suscripciones). En iPhone el aviso solo llega con la página añadida a la pantalla de inicio.
 
+## Alineación al estilo PES y la misión de cada puesto en el balón parado (v2.99.0)
+- Pedido por Edu (16 nov 2026): elegir jugadores y su posición más fácil, «parecido al Pro
+  Evolution 6», y que esa posición tenga una misión en los balones parados. Elegido con él:
+  cambiar el manejo (no rehacer la pantalla entera) y misiones de una lista corta más una nota.
+- **Se cambian de sitio, como en los juegos**: antes, poner a alguien en un puesto que ya ocupaba
+  otro dejaba al primero fuera del once, y mover a un lateral al otro costado eran cuatro toques
+  y un hueco por el camino. Ahora `asignarJugadorAPuesto` **intercambia** cuando el que entra ya
+  estaba en el once, y tocar dos fichas del campo las cambia de sitio (`intercambiarPuestos`).
+  Desde el banquillo se mantiene lo de siempre: entra uno y sale el otro, que es lo que se quiere.
+- **Color por línea** (`COLOR_LINEA`): amarillo el portero, azul la defensa, verde el centro del
+  campo, rojo el ataque. En el borde de la ficha y como punto en la lista, para poder cruzar lista
+  y campo sin leer nombres. Son tonos medios a propósito: la app es blanca o negra según el tema y
+  tienen que verse en las dos. El borde sigue avisando primero de lo urgente -elegido, no
+  convocado, lesionado- y solo cae al color de línea cuando no hay nada que avisar.
+- **La misión de cada puesto**: tocas una ficha preparando un balón parado y eliges de una lista
+  corta -primer palo, segundo palo, punto de penalti, al rechace, saca, bloquea al portero, saque
+  en corto, se queda a la contra; defendiendo: zona, marca al hombre, barrera, al balón…; el
+  penalti tiene la suya- más una nota de hasta 60 caracteres. Las listas van **por lado**, no por
+  jugada: «barrera» no pinta nada en un córner a favor.
+- Preparando un balón parado el segundo toque **no** cambia a nadie de sitio: ahí el once ya está
+  hecho y lo que se hace todo el rato es ir ficha por ficha. El cambio de sitio es cosa del once.
+- Dónde se ve: un punto en la ficha de quien ya tiene misión, la lista entera debajo del campo
+  (y tocando una línea se salta a esa ficha), detrás de cada nombre en el mensaje de WhatsApp, y
+  **en la ficha del jugador**: «Tú vas al frontal del área · ◎ Tu misión: Al rechace».
+- Las misiones viajan **dentro de la colocación guardada** (`mis: { puesto: { m, n } }`), que es
+  lo que lee el jugador. `misionesLimpias` las cruza con la situación y con el sistema de ahora:
+  una misión que no es de esa jugada, o un puesto que ya no existe, se descartan en vez de
+  pintarse como una clave suelta.
+- Servidor: `?res=abp-corners` gana un tope de 200 kB. Con todo lleno el documento no pasa de unos
+  40 kB, así que por encima de eso no es una colocación.
+- Quien solo puede mirar -el delegado, la demo- también puede tocar una ficha para LEER su
+  misión: el toque se registra siempre y lo que queda fuera es mover y cambiar de sitio. Antes
+  `onSlotDown` salía antes de tiempo sin permiso de edición y el panel no se abría nunca.
+- Pruebas: pruebas28 sube a 80 (+21: las listas por lado, el penalti con la suya, lo que se guarda
+  y lo que se descarta, la nota recortada) y pruebas13 a 22 (+3: el tope y que las misiones van y
+  vuelven). Total 596 ✓ / 703 ✓.
+
 ## Convocatoria: quién faltó esta semana y quién se quedó fuera del partido anterior (v2.98.0)
 - Pedido por Edu (16 nov 2026): «para hacer la convocatoria es importante que aparezcan los niños
   que no han asistido durante la semana y el partido anterior si estaba descartado o de viaje».
@@ -725,7 +762,7 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
 
 ## Pruebas
 - `npm test` = `pruebas/todas.mjs`: todas las pruebas en modo Airtable (fakeair) y en modo Supabase
-  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-11-16: 572 ✓ / 679 ✓, 0 fallos.
+  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-11-16: 596 ✓ / 703 ✓, 0 fallos.
 - Desde la sesión de Claude NO hay red hacia airtable.com ni supabase.co (proxy 403): la prueba
   real contra Supabase la hace la propia app en Netlify.
 

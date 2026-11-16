@@ -215,3 +215,46 @@ export const balonAbp = (sit) => {
   if (j === "corner") return abpATablero({ x: 2, y: 7.6 });
   return null;
 };
+
+/* ---- La misión de cada puesto ----
+   Saber DÓNDE ponerse es la mitad; la otra mitad es qué hacer ahí. Cada
+   puesto puede llevar una misión de una lista corta -lo que de verdad se
+   dice en un entrenamiento- y, si hace falta, una nota del entrenador.
+   Las listas van por lado y no por jugada: "barrera" no pinta nada en un
+   córner a favor, y "bloquea al portero" no pinta nada defendiendo. El
+   penalti tiene la suya porque ahí casi todo el equipo hace lo mismo. */
+export const MISIONES_ABP = {
+  ataque: ["primerPalo", "segundoPalo", "penalti", "rechace", "saca", "bloquea", "corto", "contra"],
+  defensa: ["primerPalo", "segundoPalo", "zona", "hombre", "barrera", "alBalon", "rechace", "arriba"],
+  penalti: ["lanza", "para", "rechace", "atras", "arriba"],
+};
+export const misionesDe = (sit) => (jugadaDeAbp(sit) === "penalti"
+  ? MISIONES_ABP.penalti
+  : MISIONES_ABP[ladoDeAbp(sit)] || MISIONES_ABP.ataque);
+/* La clave de traducción de una misión: "ab.primerPalo". */
+export const ETIQUETA_MISION = (m) => `ab.${m}`;
+
+export const MAX_NOTA_ABP = 60;
+/* Lo que se guarda de cada puesto: la misión elegida y la nota, las dos
+   opcionales. Se limpia al entrar y al salir: una misión que ya no está en
+   la lista de esa situación -se cambió de jugada, o viene de una versión
+   anterior- se descarta en vez de pintarse como una clave suelta. */
+export const misionesLimpias = (mis, sit, slots) => {
+  const validas = misionesDe(sit);
+  const out = {};
+  for (const [slot, v] of Object.entries(mis || {})) {
+    if (slots && !(slot in slots)) continue;
+    const m = validas.includes(v?.m) ? v.m : "";
+    const n = String(v?.n || "").trim().slice(0, MAX_NOTA_ABP);
+    if (m || n) out[slot] = n ? { m, n } : { m };
+  }
+  return out;
+};
+/* La misión de un puesto, en palabras, para el campo, la imagen compartida
+   y la ficha del jugador. `t` traduce; la nota va tal cual, que es del
+   entrenador. */
+export const textoMision = (t, v) => {
+  if (!v) return "";
+  const m = v.m ? t(ETIQUETA_MISION(v.m)) : "";
+  return [m, v.n].filter(Boolean).join(" · ");
+};
