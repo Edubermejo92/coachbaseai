@@ -10,7 +10,8 @@ import { JUGADAS_ABP, CLAVES_ABP, claveAbp, ladoDeAbp, jugadaDeAbp, ETIQUETA_JUG
   abpPorDefecto, abpConSlots, abpSoloPos, zonaAbp, tokensAbp3d, balonAbp,
   ABP_ANCHO, ABP_ALTO, yAbp, yAbpU, yAbpInv, ABP_R_ARCO, ABP_R_ARCO_X, ABP_R_ESQ, ABP_R_ESQ_X,
   misionesDe, ETIQUETA_MISION, misionesLimpias, textoMision, MAX_NOTA_ABP } from "./abp.js";
-import { MOTIVOS_DESCARTE, diasConListaReciente, faltasEnDias, ultimaConvocatoria } from "./convocatoria.js";
+import { MOTIVOS_DESCARTE, ESTADOS_JUGADOR, noConvocable, trasCambiarEstado,
+  diasConListaReciente, faltasEnDias, ultimaConvocatoria } from "./convocatoria.js";
 import { pedirResena } from "./resena.js";
 /* La guía (Guia.jsx con los textos de guia.js) es mucho texto que no hace
    falta para usar la app: se descarga al abrirla. */
@@ -97,7 +98,7 @@ const DICT = {
     "ln.placeAndSend": "Coloca el once y manda la propuesta cuando termines.",
     "ln.sendProposal": "Enviar propuesta",
     "ln.dragHint": "Arrastra para recolocar · toca dos fichas para cambiarlas de sitio",
-    "ln.benchTitle": "Banquillo", "ln.calledSubs": "Suplentes convocados", "ln.notCalled": "No convocados", "ln.notCalledTag": "No convocado", "ln.noCallYet": "Todavía no hay convocatoria, así que aquí salen todos. Haz la convocatoria y verás quién va y quién se queda fuera.", "ln.goCall": "Ir a Convocatoria", "ln.xiNotCalled": "En el once hay {n} sin convocar: {names}.", "ln.sumCalled": "Convocados", "ln.sumXI": "En el once", "ln.sumSubs": "Suplentes", "ln.sumOut": "Fuera", "ln.callIn": "Convocar", "ln.callOut": "Quitar de la convocatoria", "ln.noneHere": "Nadie.", "conv.label": "Convocatoria", "conv.conv": "Convocado", "conv.tecnica": "Descartado · decisión técnica",
+    "ln.benchTitle": "Banquillo", "ln.calledSubs": "Suplentes convocados", "ln.notCalled": "No convocados", "ln.notCalledTag": "No convocado", "ln.noCallYet": "Todavía no hay convocatoria, así que aquí salen todos. Haz la convocatoria y verás quién va y quién se queda fuera.", "ln.goCall": "Ir a Convocatoria", "ln.xiNotCalled": "En el once hay {n} sin convocar: {names}.", "ln.sumCalled": "Convocados", "ln.sumXI": "En el once", "ln.sumSubs": "Suplentes", "ln.sumOut": "Fuera", "ln.callIn": "Convocar", "ln.callOut": "Quitar de la convocatoria", "ln.noneHere": "Nadie.", "st.disponible": "Disponible", "st.duda": "Duda", "st.lesionado": "Lesionado", "st.sancionado": "Sancionado", "st.label": "Estado del jugador", "st.noCallable": "Lesionado · no convocable", "st.proposed": "⏳ Enviado al entrenador principal para que lo apruebe.", "st.outOfCall": "Marcarlo lesionado lo saca de la convocatoria.", "st.noCallableHint": "Lesionado: no se puede convocar. Cámbialo en Jugadores o en Alineación.", "conv.label": "Convocatoria", "conv.conv": "Convocado", "conv.tecnica": "Descartado · decisión técnica",
     "conv.viaje": "Fuera · de viaje",
     "cl.ctxHint": "Debajo de cada nombre: a cuántos entrenos faltó esta semana y si se quedó fuera del partido anterior.",
     "cl.weekMissed": "Faltó a {a} de {b} esta semana",
@@ -770,7 +771,7 @@ const DICT = {
     "ln.placeAndSend": "Set the XI and send the proposal when you're done.",
     "ln.sendProposal": "Send proposal",
     "ln.dragHint": "Drag to reposition · tap two tokens to swap them",
-    "ln.benchTitle": "Bench", "ln.calledSubs": "Called-up substitutes", "ln.notCalled": "Not called up", "ln.notCalledTag": "Not called up", "ln.noCallYet": "There is no squad list yet, so everyone shows here. Make the squad list to see who is in and who is left out.", "ln.goCall": "Go to Squad list", "ln.xiNotCalled": "The line-up has {n} not called up: {names}.", "ln.sumCalled": "Called up", "ln.sumXI": "In the XI", "ln.sumSubs": "Subs", "ln.sumOut": "Left out", "ln.callIn": "Call up", "ln.callOut": "Remove from squad list", "ln.noneHere": "Nobody.", "conv.label": "Squad list", "conv.conv": "Called up", "conv.tecnica": "Left out · coach's decision",
+    "ln.benchTitle": "Bench", "ln.calledSubs": "Called-up substitutes", "ln.notCalled": "Not called up", "ln.notCalledTag": "Not called up", "ln.noCallYet": "There is no squad list yet, so everyone shows here. Make the squad list to see who is in and who is left out.", "ln.goCall": "Go to Squad list", "ln.xiNotCalled": "The line-up has {n} not called up: {names}.", "ln.sumCalled": "Called up", "ln.sumXI": "In the XI", "ln.sumSubs": "Subs", "ln.sumOut": "Left out", "ln.callIn": "Call up", "ln.callOut": "Remove from squad list", "ln.noneHere": "Nobody.", "st.disponible": "Available", "st.duda": "Doubtful", "st.lesionado": "Injured", "st.sancionado": "Suspended", "st.label": "Player status", "st.noCallable": "Injured · cannot be called up", "st.proposed": "⏳ Sent to the head coach for approval.", "st.outOfCall": "Marking him injured takes him off the squad list.", "st.noCallableHint": "Injured: cannot be called up. Change it in Players or in Line-up.", "conv.label": "Squad list", "conv.conv": "Called up", "conv.tecnica": "Left out · coach's decision",
     "conv.viaje": "Away · travelling",
     "cl.ctxHint": "Under each name: how many sessions they missed this week, and whether they were left out of the last squad.",
     "cl.weekMissed": "Missed {a} of {b} this week",
@@ -1455,7 +1456,7 @@ const DICT = {
     "ln.placeAndSend": "Placez le onze et envoyez la proposition une fois terminé.",
     "ln.sendProposal": "Envoyer la proposition",
     "ln.dragHint": "Glissez pour repositionner · touchez deux jetons pour les échanger",
-    "ln.benchTitle": "Remplaçants", "ln.calledSubs": "Remplaçants convoqués", "ln.notCalled": "Non convoqués", "ln.notCalledTag": "Non convoqué", "ln.noCallYet": "Pas encore de convocation : tout le monde apparaît ici. Faites la convocation pour voir qui vient et qui reste dehors.", "ln.goCall": "Aller à Convocation", "ln.xiNotCalled": "La composition compte {n} non convoqué(s) : {names}.", "ln.sumCalled": "Convoqués", "ln.sumXI": "Dans le XI", "ln.sumSubs": "Remplaçants", "ln.sumOut": "Dehors", "ln.callIn": "Convoquer", "ln.callOut": "Retirer de la convocation", "ln.noneHere": "Personne.", "conv.label": "Convocation", "conv.conv": "Convoqué", "conv.tecnica": "Écarté · choix technique",
+    "ln.benchTitle": "Remplaçants", "ln.calledSubs": "Remplaçants convoqués", "ln.notCalled": "Non convoqués", "ln.notCalledTag": "Non convoqué", "ln.noCallYet": "Pas encore de convocation : tout le monde apparaît ici. Faites la convocation pour voir qui vient et qui reste dehors.", "ln.goCall": "Aller à Convocation", "ln.xiNotCalled": "La composition compte {n} non convoqué(s) : {names}.", "ln.sumCalled": "Convoqués", "ln.sumXI": "Dans le XI", "ln.sumSubs": "Remplaçants", "ln.sumOut": "Dehors", "ln.callIn": "Convoquer", "ln.callOut": "Retirer de la convocation", "ln.noneHere": "Personne.", "st.disponible": "Disponible", "st.duda": "Incertain", "st.lesionado": "Blessé", "st.sancionado": "Suspendu", "st.label": "État du joueur", "st.noCallable": "Blessé · non convocable", "st.proposed": "⏳ Envoyé à l'entraîneur principal pour approbation.", "st.outOfCall": "Le marquer blessé le retire de la convocation.", "st.noCallableHint": "Blessé : pas convocable. Change-le dans Joueurs ou dans Composition.", "conv.label": "Convocation", "conv.conv": "Convoqué", "conv.tecnica": "Écarté · choix technique",
     "conv.viaje": "Absent · en voyage",
     "cl.ctxHint": "Sous chaque nom : combien de séances il a manquées cette semaine et s'il était écarté du dernier match.",
     "cl.weekMissed": "Absent {a} fois sur {b} cette semaine",
@@ -2220,7 +2221,7 @@ const DICT = {
     "ln.placeAndSend": "Stelle die Startelf zusammen und sende den Vorschlag, wenn du fertig bist.",
     "ln.sendProposal": "Vorschlag senden",
     "ln.dragHint": "Ziehen zum Umstellen · zwei Spielsteine antippen, um sie zu tauschen",
-    "ln.benchTitle": "Bank", "ln.calledSubs": "Nominierte Ersatzspieler", "ln.notCalled": "Nicht nominiert", "ln.notCalledTag": "Nicht nominiert", "ln.noCallYet": "Noch kein Kader, daher stehen hier alle. Stell den Kader zusammen, dann siehst du, wer dabei ist und wer nicht.", "ln.goCall": "Zum Kader", "ln.xiNotCalled": "In der Startelf stehen {n} nicht Nominierte: {names}.", "ln.sumCalled": "Nominiert", "ln.sumXI": "Startelf", "ln.sumSubs": "Ersatz", "ln.sumOut": "Draußen", "ln.callIn": "Nominieren", "ln.callOut": "Aus dem Kader nehmen", "ln.noneHere": "Niemand.", "conv.label": "Kader", "conv.conv": "Nominiert", "conv.tecnica": "Nicht nominiert · Trainerentscheidung",
+    "ln.benchTitle": "Bank", "ln.calledSubs": "Nominierte Ersatzspieler", "ln.notCalled": "Nicht nominiert", "ln.notCalledTag": "Nicht nominiert", "ln.noCallYet": "Noch kein Kader, daher stehen hier alle. Stell den Kader zusammen, dann siehst du, wer dabei ist und wer nicht.", "ln.goCall": "Zum Kader", "ln.xiNotCalled": "In der Startelf stehen {n} nicht Nominierte: {names}.", "ln.sumCalled": "Nominiert", "ln.sumXI": "Startelf", "ln.sumSubs": "Ersatz", "ln.sumOut": "Draußen", "ln.callIn": "Nominieren", "ln.callOut": "Aus dem Kader nehmen", "ln.noneHere": "Niemand.", "st.disponible": "Verfügbar", "st.duda": "Fraglich", "st.lesionado": "Verletzt", "st.sancionado": "Gesperrt", "st.label": "Spielerstatus", "st.noCallable": "Verletzt · nicht nominierbar", "st.proposed": "⏳ Zur Freigabe an den Cheftrainer geschickt.", "st.outOfCall": "Als verletzt markiert, fällt er aus dem Kader.", "st.noCallableHint": "Verletzt: nicht nominierbar. Ändere es unter Spieler oder Aufstellung.", "conv.label": "Kader", "conv.conv": "Nominiert", "conv.tecnica": "Nicht nominiert · Trainerentscheidung",
     "conv.viaje": "Abwesend · verreist",
     "cl.ctxHint": "Unter jedem Namen: wie viele Einheiten er diese Woche verpasst hat und ob er im letzten Kader fehlte.",
     "cl.weekMissed": "{a} von {b} Einheiten verpasst",
@@ -2984,7 +2985,7 @@ const DICT = {
     "ln.placeAndSend": "Monta o onze e envia a proposta quando terminares.",
     "ln.sendProposal": "Enviar proposta",
     "ln.dragHint": "Arrasta para recolocar · toca em duas peças para as trocar",
-    "ln.benchTitle": "Banco", "ln.calledSubs": "Suplentes convocados", "ln.notCalled": "Não convocados", "ln.notCalledTag": "Não convocado", "ln.noCallYet": "Ainda não há convocatória, por isso aparecem todos. Faz a convocatória e vês quem vai e quem fica de fora.", "ln.goCall": "Ir à Convocatória", "ln.xiNotCalled": "No onze há {n} sem convocar: {names}.", "ln.sumCalled": "Convocados", "ln.sumXI": "No onze", "ln.sumSubs": "Suplentes", "ln.sumOut": "De fora", "ln.callIn": "Convocar", "ln.callOut": "Tirar da convocatória", "ln.noneHere": "Ninguém.", "conv.label": "Convocatória", "conv.conv": "Convocado", "conv.tecnica": "Fora · opção técnica",
+    "ln.benchTitle": "Banco", "ln.calledSubs": "Suplentes convocados", "ln.notCalled": "Não convocados", "ln.notCalledTag": "Não convocado", "ln.noCallYet": "Ainda não há convocatória, por isso aparecem todos. Faz a convocatória e vês quem vai e quem fica de fora.", "ln.goCall": "Ir à Convocatória", "ln.xiNotCalled": "No onze há {n} sem convocar: {names}.", "ln.sumCalled": "Convocados", "ln.sumXI": "No onze", "ln.sumSubs": "Suplentes", "ln.sumOut": "De fora", "ln.callIn": "Convocar", "ln.callOut": "Tirar da convocatória", "ln.noneHere": "Ninguém.", "st.disponible": "Disponível", "st.duda": "Dúvida", "st.lesionado": "Lesionado", "st.sancionado": "Castigado", "st.label": "Estado do jogador", "st.noCallable": "Lesionado · não convocável", "st.proposed": "⏳ Enviado ao treinador principal para aprovar.", "st.outOfCall": "Marcá-lo lesionado tira-o da convocatória.", "st.noCallableHint": "Lesionado: não pode ser convocado. Muda-o em Jogadores ou na Escalação.", "conv.label": "Convocatória", "conv.conv": "Convocado", "conv.tecnica": "Fora · opção técnica",
     "conv.viaje": "Fora · de viagem",
     "cl.ctxHint": "Debaixo de cada nome: a quantos treinos faltou esta semana e se ficou de fora do último jogo.",
     "cl.weekMissed": "Faltou {a} de {b} esta semana",
@@ -5710,6 +5711,11 @@ const LINEA_DE_POS = {
    como pastilla, nunca como color de un texto. */
 const COLOR_LINEA = { POR: "#D4A017", DEF: "#4A90D9", MED: "#3FA96B", DEL: "#D9534F" };
 const colorLinea = (pos) => COLOR_LINEA[LINEA_DE_POS[pos] || pos] || "rgba(128,128,128,0.55)";
+/* Cómo se llama cada estado en Airtable. En un solo sitio: lo escriben
+   `jugToAir` -al guardar la plantilla entera- y `ponerEstadoJugador` -al
+   tocar el estado de uno-, y si no coincidieran, guardar la plantilla
+   desharía lo que acabara de marcar el entrenador. */
+const estadoAAirtable = (st) => (st === "lesionado" ? "Lesionado" : st === "duda" ? "Duda" : st === "sancionado" ? "Sancionado" : "Disponible");
 const jugToAir = (p, teamRec) => ({
   Nombre: p.n, Dorsal: Number(p.d) || 0,
   /* Aviso médico permanente del jugador. Va en su ficha y no en el parte
@@ -5727,7 +5733,7 @@ const jugToAir = (p, teamRec) => ({
      para ser la del hueco que ocupa en la alineación. La columna "Posición"
      de Airtable se queda como está -no se borra lo ya escrito-, simplemente
      la app no la lee ni la actualiza. */
-  Estado: p.st === "lesionado" ? "Lesionado" : p.st === "duda" ? "Duda" : p.st === "sancionado" ? "Sancionado" : "Disponible",
+  Estado: estadoAAirtable(p.st),
   /* Demarcación habitual, solo la línea (POR/DEF/MED/DEL): no es dónde
      juega hoy -eso lo dice la alineación- sino de qué juega normalmente,
      para proponer cambios de su misma posición. Solo se manda si se ha
@@ -13080,6 +13086,9 @@ export default function App() {
      entra con todos cerrados: doce botones sueltos se comían tres filas de
      pantalla y lo que se busca es "con cuatro atrás", no "4-1-4-1". */
   const [sysGrupo, setSysGrupo] = useState(null);
+  /* Qué jugador tiene abierto el selector de estado en la lista de
+     Alineación, igual que `convMenu` con la convocatoria. */
+  const [estMenu, setEstMenu] = useState(null);
   /* Cuál de las secciones de Alineación está abierta -o ninguna-. La tarjeta
      tenía todo a la vez: los sistemas, las favoritas, el once de cada
      partido, compartir, el vídeo y la música, y había que pasar por delante
@@ -14204,6 +14213,7 @@ export default function App() {
   const estadoConvocatoria = (p) => (called.size === 0 || called.has(p.id) ? "conv" : motivoDescarte(p) || "no");
   const ponerEstadoConvocatoria = (p, estado) => {
     if (!can("editCall")) return;
+    if (estado === "conv" && noConvocable(p)) return;
     setCalled((s) => {
       const n = new Set(s.size ? s : players.map((x) => x.id));
       if (estado === "conv") n.add(p.id); else n.delete(p.id);
@@ -14917,8 +14927,63 @@ export default function App() {
     setProfileId(null);
   };
 
-  const cycleStatus = (id) => can("editSquad") &&
-    updateSquadWithProposal((ps) => ps.map((p) => p.id === id ? { ...p, st: p.st === "disponible" ? "duda" : p.st === "duda" ? "lesionado" : "disponible" } : p));
+  /* El estado de un jugador se toca desde tres sitios -Jugadores, Lesiones y
+     Alineación- y antes cada uno hacía una cosa distinta: la tabla de
+     Jugadores solo cambiaba el estado en el móvil (había que acordarse de
+     "Guardar plantilla") y Lesiones guardaba en la nube y apuntaba el
+     historial. Ahora los tres pasan por aquí, así que da igual desde dónde se
+     toque: se guarda, queda apuntado y la convocatoria se entera.
+     El historial de lesiones solo recoge lo que es una lesión -entrar en ella
+     y salir-; pasar por "duda" o "sancionado" no ensucia el parte médico. */
+  const ponerEstadoJugador = async (p, nuevo) => {
+    if (!can("editSquad") || !p || !ESTADOS_JUGADOR.includes(nuevo) || p.st === nuevo) return;
+    /* Lesionado = fuera de la convocatoria en el momento, y con la lesión
+       como motivo. Al recuperarse se borra ese motivo: si vuelve a quedarse
+       fuera será por otra cosa, y la decide el entrenador. */
+    /* La regla vive en src/convocatoria.js y se prueba allí; aquí se aplica
+       a las dos piezas de estado, cada una con lo suyo. */
+    setCalled((cs) => new Set(trasCambiarEstado(p.id, nuevo, [...cs], {}).convocados));
+    setDescartes((d) => trasCambiarEstado(p.id, nuevo, [], d).descartes);
+    /* El segundo entrenador propone, no cambia: igual que con el resto de la
+       plantilla. Su propuesta se guarda al aprobarla. */
+    if (canProposeChanges()) {
+      updateSquadWithProposal((ps) => ps.map((x) => (x.id === p.id ? { ...x, st: nuevo } : x)));
+      /* La propuesta no cambia nada todavía, así que sin este aviso el
+         segundo entrenador marca "lesionado", ve que la casilla no se
+         queda marcada y cree que está roto. */
+      setLesionesMsg(t("st.proposed"));
+      setTimeout(() => setLesionesMsg(""), 4000);
+      return;
+    }
+    const anterior = p.st;
+    const histAntes = p.histLesiones || [];
+    const entra = nuevo === "lesionado";
+    const sale = anterior === "lesionado";
+    const histNuevo = entra ? [...histAntes, { f: hoyISO(), e: "lesionado", c: contextoLesionHoy() }]
+      : sale ? [...histAntes, { f: hoyISO(), e: "disponible" }]
+      : histAntes;
+    setPlayers((ps) => ps.map((x) => (x.id === p.id ? { ...x, st: nuevo, histLesiones: histNuevo.slice(-200) } : x)));
+    if (!p.rec) return;   /* todavía sin ficha en la nube: se queda en local, como el resto de la plantilla sin guardar */
+    const r = await airEdit("jugadores", p.rec, {
+      Estado: estadoAAirtable(nuevo),
+      ...(histNuevo === histAntes ? null : { "Historial lesiones": JSON.stringify(histNuevo.slice(-200)) }),
+    });
+    const d = await r?.json?.().catch(() => null);
+    if (d && d.ok === false) {
+      setPlayers((ps) => ps.map((x) => (x.id === p.id ? { ...x, st: anterior, histLesiones: histAntes } : x)));
+      setLesionesMsg(t("lz.saveFail"));
+    } else {
+      setLesionesMsg(`✓ ${t("lz.saved")}`);
+      setTimeout(() => setLesionesMsg(""), 3000);
+    }
+  };
+  /* El toque rápido de la tabla de Jugadores: va pasando por los cuatro. */
+  const cycleStatus = (id) => {
+    const p = players.find((x) => x.id === id);
+    if (!p) return;
+    const i = ESTADOS_JUGADOR.indexOf(p.st);
+    ponerEstadoJugador(p, ESTADOS_JUGADOR[(i + 1) % ESTADOS_JUGADOR.length]);
+  };
 
   /* Marcar un jugador en el día abierto de Asistencia. `estado: null` borra
      la marca (vuelve a "sin marcar"). */
@@ -22023,25 +22088,7 @@ export default function App() {
     if (trainDays.includes(new Date().getDay())) return "entreno";
     return "otro";
   };
-  const marcarLesion = async (p, lesionado) => {
-    const anterior = p.st;
-    const histAntes = p.histLesiones || [];
-    const entrada = lesionado
-      ? { f: hoyISO(), e: "lesionado", c: contextoLesionHoy() }
-      : { f: hoyISO(), e: "disponible" };
-    const histNuevo = [...histAntes, entrada].slice(-200);
-    setPlayers((ps) => ps.map((x) => (x.id === p.id ? { ...x, st: lesionado ? "lesionado" : "disponible", histLesiones: histNuevo } : x)));
-    if (!p.rec) return; // jugador todavía sin ficha en la nube: solo queda en local, como el resto de la plantilla sin guardar
-    const r = await airEdit("jugadores", p.rec, { Estado: lesionado ? "Lesionado" : "Disponible", "Historial lesiones": JSON.stringify(histNuevo) });
-    const d = await r?.json?.().catch(() => null);
-    if (d && d.ok === false) {
-      setPlayers((ps) => ps.map((x) => (x.id === p.id ? { ...x, st: anterior, histLesiones: histAntes } : x)));
-      setLesionesMsg(t("lz.saveFail"));
-    } else {
-      setLesionesMsg(`✓ ${t("lz.saved")}`);
-      setTimeout(() => setLesionesMsg(""), 3000);
-    }
-  };
+  const marcarLesion = (p, lesionado) => ponerEstadoJugador(p, lesionado ? "lesionado" : "disponible");
   /* La molestia se guarda al salir del campo, no en cada tecla: escribiendo
      "sobrecarga en el gemelo derecho" serían treinta y tantas escrituras en
      Airtable para una sola nota. Y solo si de verdad ha cambiado, para que
@@ -22928,7 +22975,7 @@ export default function App() {
                     )}
                   </button></td>
                   <td className="hidden sm:table-cell" style={{ color: C.dim }}>{posDe(p.id) || "—"}</td>
-                  <td><button onClick={() => cycleStatus(p.id)} className="flex items-center hover:opacity-80 whitespace-nowrap" style={{ cursor: can("editSquad") ? "pointer" : "default" }}><Dot st={p.st} />{p.st}</button></td>
+                  <td><button onClick={() => cycleStatus(p.id)} aria-label={`${t("st.label")} — ${p.n}: ${t(`st.${p.st}`)}`} className="flex items-center hover:opacity-80 whitespace-nowrap" style={{ cursor: can("editSquad") ? "pointer" : "default" }}><Dot st={p.st} />{t(`st.${p.st}`)}</button></td>
                   <td className="text-right">{attPct(p)}%</td><td className="text-right">{p.min}</td>
                 </tr>
                 );
@@ -23815,6 +23862,13 @@ export default function App() {
               ⚠ {t("ln.xiNotCalled").replace("{n}", titularesFuera.length).replace("{names}", titularesFuera.map((p) => `${p.d} ${p.n.split(" ")[0]}`).join(", "))}
             </div>
           )}
+          {/* Lo que haya dicho el último cambio de estado hecho desde aquí:
+              que se ha guardado, que no se pudo, o que ha salido como
+              propuesta. Es el mismo aviso que enseña la pantalla de
+              Lesiones. */}
+          {lesionesMsg && (
+            <div className="mb-3 text-xs" style={{ color: lesionesMsg.startsWith("✓") ? C.green : C.warn }}>{lesionesMsg}</div>
+          )}
           <div className="space-y-1.5 max-h-[520px] overflow-y-auto pr-1">
             {/* Con un puesto elegido -al tocar a Adrián, el DC-, primero los de
                 su misma línea ("Delanteros · misma posición"), luego el resto
@@ -23886,7 +23940,10 @@ export default function App() {
                         <span className="font-medium leading-tight min-w-0">{p.n}</span>
                       </span>
                       <span className="flex items-center gap-2 text-[11px] leading-none flex-wrap" style={{ color: C.dim }}>
-                        <Dot st={p.st} />
+                        {/* El punto del estado solo cuando NO hay botón para
+                            cambiarlo: con los dos se veía dos veces lo mismo
+                            y la fila se quedaba sin sitio para el nombre. */}
+                        {!can("editSquad") && <Dot st={p.st} />}
                         {p.aviso && <span title={p.aviso} style={{ color: C.warn }}>⚠</span>}
                         {/* La demarcación que se enseña es la del hueco que
                             ocupa ahora mismo; quien está en el banquillo no
@@ -23914,8 +23971,23 @@ export default function App() {
                   {/* Convocado o descartado -y por qué- sin ir a Convocatoria:
                       se decide a la vez que se monta el once. El botón enseña
                       cómo está; al tocarlo se abren las opciones debajo. */}
+                  {/* Cómo llega: disponible, duda, lesionado o sancionado. Se
+                      toca aquí y no solo en Jugadores porque es montando el
+                      once cuando uno se entera de que el lateral está
+                      lesionado ("se puede cambiar desde jugadores y desde
+                      alineación", Edu, 17 nov 2026), y marcarlo lesionado lo
+                      saca de la convocatoria en el acto. */}
+                  {can("editSquad") && (
+                    <button onClick={() => { setEstMenu(estMenu === p.id ? null : p.id); setConvMenu(null); }}
+                      title={t("st.label")} aria-label={`${t("st.label")} — ${p.n}: ${t(`st.${p.st}`)}`}
+                      aria-expanded={estMenu === p.id}
+                      className="shrink-0 w-8 h-8 rounded-lg border flex items-center justify-center"
+                      style={{ borderColor: stColor(p.st) }}>
+                      <Dot st={p.st} />
+                    </button>
+                  )}
                   {puedeConvocar && (
-                    <button onClick={() => setConvMenu(convMenu === p.id ? null : p.id)}
+                    <button onClick={() => { setConvMenu(convMenu === p.id ? null : p.id); setEstMenu(null); }}
                       title={t("conv.label")} aria-label={`${t("conv.label")} — ${p.n}: ${estConv === "no" ? t("conv.no") : t(`conv.${estConv}`)}`}
                       aria-expanded={convMenu === p.id}
                       className="shrink-0 text-sm w-8 h-8 rounded-lg border font-display flex items-center justify-center"
@@ -23939,6 +24011,21 @@ export default function App() {
                   <button onClick={() => setProfileId(p.id)} title={t("ln.openProfile")} aria-label={`${t("ln.openProfile")} — ${p.n}`}
                     className="shrink-0 text-xs w-8 h-8 rounded-lg border flex items-center justify-center" style={{ borderColor: C.line, color: C.dim }}>☰</button>
                 </div>
+                {estMenu === p.id && can("editSquad") && (
+                  <div className="flex flex-wrap gap-1.5 px-3 pb-2.5">
+                    {ESTADOS_JUGADOR.map((k) => (
+                      <button key={k} onClick={() => { ponerEstadoJugador(p, k); setEstMenu(null); }}
+                        aria-pressed={p.st === k}
+                        className="flex items-center gap-1.5 text-xs px-2.5 py-1.5 rounded-lg border"
+                        style={{ borderColor: p.st === k ? stColor(k) : C.line, background: p.st === k ? C.panel : "transparent", color: p.st === k ? stColor(k) : C.chalk }}>
+                        <Dot st={k} />{t(`st.${k}`)}
+                      </button>
+                    ))}
+                    {/* Lo que pasa al marcarlo lesionado, dicho antes de
+                        tocarlo: no es obvio que esto toque la convocatoria. */}
+                    <span className="w-full text-[11px] leading-tight" style={{ color: C.dim }}>{t("st.outOfCall")}</span>
+                  </div>
+                )}
                 {convMenu === p.id && puedeConvocar && (
                   <div className="flex flex-wrap gap-1.5 px-3 pb-2.5">
                     {["conv", ...MOTIVOS_DESCARTE].map((k) => (
@@ -24041,6 +24128,10 @@ export default function App() {
     const editable = can("editCall");
     const toggle = (id) => {
       if (!editable) return;
+      /* Quitar a un lesionado de una convocatoria ya publicada sí; meterlo,
+         no. Para contar con él hay que decir antes que está recuperado, y
+         eso se toca en Jugadores o en Alineación. */
+      if (!called.has(id) && noConvocable(players.find((x) => x.id === id))) return;
       setCalled((s) => { const n = new Set(s); n.has(id) ? n.delete(id) : n.add(id); return n; });
       if (!called.has(id)) setDescartes((d) => { const n = { ...d }; delete n[id]; return n; });
     };
@@ -24112,10 +24203,13 @@ export default function App() {
             {players.map((p) => {
               const faltas = faltasDeLaSemana(p);
               const fuera = fueraDelAnterior(p);
+              const lesion = noConvocable(p);
               return (
-              <button key={p.id} onClick={() => toggle(p.id)} disabled={!editable} className="w-full flex items-center justify-between gap-2 text-sm py-2 px-3 rounded-lg border text-left disabled:cursor-default" style={{ borderColor: called.has(p.id) ? AC : C.line, background: called.has(p.id) ? C.panel2 : "transparent", color: C.chalk }}>
+              <button key={p.id} onClick={() => toggle(p.id)} disabled={!editable || (lesion && !called.has(p.id))}
+                title={lesion && !called.has(p.id) ? t("st.noCallableHint") : undefined}
+                className="w-full flex items-center justify-between gap-2 text-sm py-2 px-3 rounded-lg border text-left disabled:cursor-default" style={{ borderColor: called.has(p.id) ? AC : C.line, background: called.has(p.id) ? C.panel2 : "transparent", color: C.chalk }}>
                 <span className="flex items-center gap-2 min-w-0 flex-1">
-                  <span className="w-5 text-center shrink-0" style={{ color: called.has(p.id) ? AC : C.dim }}>{called.has(p.id) ? "✓" : "○"}</span>
+                  <span className="w-5 text-center shrink-0" style={{ color: called.has(p.id) ? AC : lesion ? C.red : C.dim }}>{called.has(p.id) ? "✓" : lesion ? "⛑" : "○"}</span>
                   <Avatar p={p} size={26} />
                   <Dot st={p.st} />
                   {/* El nombre con lo suyo debajo: el dorsal y el nombre en un
@@ -24126,8 +24220,9 @@ export default function App() {
                       <span className="font-display text-base shrink-0" style={{ color: AC }}>{p.d}</span>
                       <span className="truncate">{p.n}</span>
                     </span>
-                    {(faltas || fuera) && (
+                    {(faltas || fuera || lesion) && (
                       <span className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] leading-tight">
+                        {lesion && <span style={{ color: C.red }}>⛑ {t("st.noCallable")}</span>}
                         {faltas && (
                           <span style={{ color: C.warn }}>
                             ⚠ {t("cl.weekMissed").replace("{a}", faltas.n).replace("{b}", faltas.de)}

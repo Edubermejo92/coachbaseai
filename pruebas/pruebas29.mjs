@@ -6,7 +6,8 @@
    que ha faltado quien no estaba en la lista de ese día, o que no fue al
    partido anterior quien todavía no estaba en el equipo, es peor que no
    decir nada. Son funciones puras: ni navegador ni servidor. */
-import { MOTIVOS_DESCARTE, diasConListaReciente, faltasEnDias, ultimaConvocatoria } from "../src/convocatoria.js";
+import { MOTIVOS_DESCARTE, ESTADOS_JUGADOR, noConvocable, trasCambiarEstado,
+  diasConListaReciente, faltasEnDias, ultimaConvocatoria } from "../src/convocatoria.js";
 
 let ok = 0, mal = 0;
 const dice = (n, c, e = "") => { (c ? ok++ : mal++); console.log(`${c ? "✓" : "✗"} ${n}${e ? "  → " + e : ""}`); };
@@ -66,6 +67,33 @@ dice("la de hoy es la que se está preparando, no la anterior",
 dice("sin ninguna convocatoria, nada", ultimaConvocatoria([], HOY) === null && ultimaConvocatoria(null, HOY) === null);
 dice("un Descartes roto no se lleva por delante la lista",
   ultimaConvocatoria([{ Fecha: "2026-11-14", Convocados: ["recA"], Descartes: "no es json" }], HOY)?.convocados.has("recA") === true);
+
+/* ---------- el lesionado no se convoca ---------- */
+dice("los cuatro estados, y en orden",
+  JSON.stringify(ESTADOS_JUGADOR) === '["disponible","duda","lesionado","sancionado"]');
+dice("un lesionado no es convocable", noConvocable({ st: "lesionado" }) === true);
+dice("una duda sí: se decide el sábado", noConvocable({ st: "duda" }) === false);
+dice("un sancionado también viaja con el equipo", noConvocable({ st: "sancionado" }) === false);
+dice("un disponible, por supuesto", noConvocable({ st: "disponible" }) === false);
+dice("sin jugador no se revienta", noConvocable(null) === false && noConvocable(undefined) === false);
+
+const traAnte = trasCambiarEstado(7, "lesionado", [5, 7, 9], { 5: "tecnica" });
+dice("al lesionarse sale de la convocatoria",
+  JSON.stringify(traAnte.convocados) === "[5,9]", JSON.stringify(traAnte.convocados));
+dice("y su motivo pasa a ser la lesión", traAnte.descartes[7] === "lesion");
+dice("sin tocar el motivo de los demás", traAnte.descartes[5] === "tecnica");
+const traAlta = trasCambiarEstado(7, "disponible", [5, 9], { 7: "lesion", 5: "tecnica" });
+dice("al recuperarse se le quita el motivo de lesión", traAlta.descartes[7] === undefined);
+dice("pero no vuelve solo a la convocatoria: eso lo decide el entrenador",
+  JSON.stringify(traAlta.convocados) === "[5,9]");
+dice("un motivo puesto a mano no se borra por cambiar de estado",
+  trasCambiarEstado(5, "duda", [9], { 5: "tecnica" }).descartes[5] === "tecnica");
+dice("marcar lesionado a quien ya estaba fuera solo le pone el motivo",
+  JSON.stringify(trasCambiarEstado(7, "lesionado", [5], {})) === '{"convocados":[5],"descartes":{"7":"lesion"}}',
+  JSON.stringify(trasCambiarEstado(7, "lesionado", [5], {})));
+dice("sin convocatoria ni motivos tampoco se rompe",
+  JSON.stringify(trasCambiarEstado(7, "lesionado", null, null).convocados) === "[]");
+dice("«lesion» es uno de los motivos que acepta el servidor", MOTIVOS_DESCARTE.includes("lesion"));
 
 console.log(`\n${ok} correctas · ${mal} fallos`);
 process.exit(mal ? 1 : 0);

@@ -12,6 +12,26 @@
    servidor valida contra esta misma lista (ver airtable.mts). */
 export const MOTIVOS_DESCARTE = ["tecnica", "lesion", "sancion", "viaje"];
 
+/* Cómo llega un jugador. Es el campo Estado de su ficha, el mismo que se
+   toca en Jugadores, en Lesiones y en Alineación. */
+export const ESTADOS_JUGADOR = ["disponible", "duda", "lesionado", "sancionado"];
+/* Un lesionado no se convoca: no es una preferencia del entrenador, es que
+   no puede jugar. Una duda sí se convoca -se decide el sábado- y un
+   sancionado también puede viajar con el equipo aunque no juegue, así que
+   solo la lesión cierra la puerta. */
+export const noConvocable = (p) => !!p && p.st === "lesionado";
+/* Al marcar a alguien lesionado deja de estar convocado en el acto y su
+   motivo pasa a ser la lesión; al recuperarse se le quita ese motivo -si
+   vuelve a quedarse fuera será por otra cosa, y la decide el entrenador-.
+   Devuelve la convocatoria y los motivos ya corregidos. */
+export const trasCambiarEstado = (pid, estado, convocados, descartes) => {
+  const ids = new Set(convocados || []);
+  const mot = { ...(descartes || {}) };
+  if (estado === "lesionado") { ids.delete(pid); mot[pid] = "lesion"; }
+  else if (mot[pid] === "lesion") delete mot[pid];
+  return { convocados: [...ids], descartes: mot };
+};
+
 const ES_DIA = /^\d{4}-\d{2}-\d{2}$/;
 const restarDias = (iso, n) => {
   const [y, m, d] = iso.split("-").map(Number);

@@ -135,6 +135,41 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   sigue valiendo para los siguientes partidos hasta que se desactiva (y entonces caen las
   suscripciones). En iPhone el aviso solo llega con la página añadida a la pantalla de inicio.
 
+## Un lesionado no se convoca, y el estado se toca desde las tres pantallas (v3.2.0)
+- «Si hay un jugador lesionado no es convocable y se puede cambiar desde jugadores y desde
+  alineación» (Edu, 17 nov 2026).
+- **No convocable**: en Convocatoria, el que está lesionado sale con ⛑ en vez del círculo, con
+  «Lesionado · no convocable» en rojo, y su fila no responde. Se le puede QUITAR de una
+  convocatoria ya hecha —por si se lesionó después de publicarla— pero no meter: para contar con
+  él hay que decir antes que está recuperado. Solo la lesión cierra la puerta: una duda se
+  convoca (se decide el sábado) y un sancionado puede viajar con el equipo aunque no juegue.
+- Al marcar a alguien lesionado **sale de la convocatoria en el acto** y su motivo de descarte
+  pasa a ser la lesión; al recuperarse se le quita ese motivo, pero no vuelve solo a la lista:
+  eso lo decide el entrenador. La regla vive en `src/convocatoria.js` (`noConvocable`,
+  `trasCambiarEstado`) y se prueba allí.
+- **El estado, desde Alineación**: cada jugador de la lista lleva ahora un botón con su punto de
+  color que abre los cuatro estados (disponible · duda · lesionado · sancionado), igual que el
+  botón de convocatoria de al lado. Es montando el once cuando uno se entera de que el lateral
+  está tocado. El punto suelto que había bajo el nombre desaparece cuando se puede editar: con
+  los dos se veía dos veces lo mismo y la fila se quedaba sin sitio para el nombre.
+- **Una sola forma de cambiarlo.** Antes cada pantalla hacía una cosa: la tabla de Jugadores solo
+  cambiaba el estado EN EL MÓVIL —había que acordarse de «Guardar plantilla»— y Lesiones guardaba
+  en la nube y apuntaba el historial. Ahora las tres pasan por `ponerEstadoJugador`: se guarda,
+  queda apuntado y la convocatoria se entera, se toque desde donde se toque. El historial de
+  lesiones sigue recogiendo solo lo que es una lesión —entrar y salir—, así que pasar por «duda»
+  o «sancionado» no ensucia el parte médico. El nombre del estado que se escribe en Airtable sale
+  de un único sitio (`estadoAAirtable`): si no coincidiera, guardar la plantilla desharía lo que
+  acabara de marcar el entrenador.
+- El segundo entrenador no cambia el estado: lo propone, como con el resto de la plantilla. Antes
+  en Lesiones sí lo cambiaba y ahora sale un aviso («enviado al entrenador principal») para que
+  no parezca que la casilla está rota.
+- De paso, el estado ya sale traducido en la tabla de Jugadores: estaba puesto a pelo en
+  castellano en los cinco idiomas.
+- Pruebas: pruebas29 sube a 39 (+15). Total 624 ✓ / 731 ✓.
+- Comprobado en el navegador a 360 y 390px: el menú de estado con los cuatro, marcar lesionado a
+  un suplente convocado lo pasa a «no convocados» con «Descartado · lesión» y baja el contador de
+  convocados, y en Convocatoria su fila queda apagada y no responde al tocarla.
+
 ## La tarjeta de Alineación, dividida en cinco secciones (v3.1.0)
 - «Divídelo en elegir estructura, estructura ataque, defensa etc» (Edu, 17 nov 2026). Entre el
   título y el campo estaba TODO a la vez: los sistemas, las favoritas, el once de cada partido,
@@ -839,7 +874,7 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
 
 ## Pruebas
 - `npm test` = `pruebas/todas.mjs`: todas las pruebas en modo Airtable (fakeair) y en modo Supabase
-  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-11-16: 609 ✓ / 716 ✓, 0 fallos.
+  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-11-17: 624 ✓ / 731 ✓, 0 fallos.
 - Desde la sesión de Claude NO hay red hacia airtable.com ni supabase.co (proxy 403): la prueba
   real contra Supabase la hace la propia app en Netlify.
 
