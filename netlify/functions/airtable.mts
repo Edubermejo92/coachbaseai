@@ -1850,9 +1850,12 @@ const atender = async (req: Request) => {
         Rival: String(b.rival || "").slice(0, 120),
         Lugar: String(b.lugar || "").slice(0, 200),
         Convocados: (Array.isArray(b.convocados) ? b.convocados : []).map(String).filter((x: string) => ES_REC.test(x)).slice(0, 60),
-        Descartes: JSON.stringify(descartes),
         Equipo: [team],
       };
+      /* Solo se toca si vienen: una app anterior a los motivos no los manda,
+         y volver a mandar la convocatoria desde ella no tiene por qué borrar
+         los que ya estaban guardados. */
+      if (dIn !== undefined) fields.Descartes = JSON.stringify(descartes);
       const previas = (await filasDeEquipo("convocatorias", team)).filter((r: any) => r.fields?.Fecha === fecha);
       if (previas.length) {
         const r = await fetch(`${table(T_CONVOCATORIAS)}/${previas[0].id}`, { method: "PATCH", headers: H, body: JSON.stringify({ fields, typecast: true }) });
