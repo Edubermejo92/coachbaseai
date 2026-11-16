@@ -135,14 +135,31 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   sigue valiendo para los siguientes partidos hasta que se desactiva (y entonces caen las
   suscripciones). En iPhone el aviso solo llega con la página añadida a la pantalla de inicio.
 
+## El sancionado tampoco se convoca (v3.2.1)
+- «El sancionado tampoco se puede convocar» (Edu, 17 nov 2026), corrigiendo lo que había decidido
+  yo horas antes: que un sancionado pudiera viajar con el equipo aunque no jugara. No: si no
+  puede jugar, no se convoca.
+- `ESTADOS_NO_CONVOCABLES` empareja cada estado que cierra la puerta con su motivo de descarte
+  (`lesionado`→`lesion`, `sancionado`→`sancion`), y de ahí salen las dos cosas: quién no se puede
+  convocar y qué motivo se le pone al sacarlo. La duda se queda fuera de esa lista a propósito.
+- En Convocatoria la fila dice ahora de qué se trata —«⛑ Lesionado · no convocable» o «⛔
+  Sancionado · no convocable»— en vez de dar por hecho que es una lesión.
+- Al quitar el motivo que puso la app hace falta saber **de qué estado venía**: un entrenador
+  puede haber escrito «sanción» como motivo de descarte de alguien que en su ficha no está
+  sancionado, y cambiarle el estado no puede llevarse por delante lo que él decidió. Por eso
+  `trasCambiarEstado` recibe también el estado anterior, y hay una prueba justo de ese caso.
+- Pruebas: pruebas29 sube a 44 (+5). Total 629 ✓ / 736 ✓.
+- Comprobado en el navegador: marcar «sancionado» a un suplente convocado baja el contador de
+  convocados y le pone «Descartado · sanción», y en Convocatoria su fila sale con ⛔ y no responde.
+
 ## Un lesionado no se convoca, y el estado se toca desde las tres pantallas (v3.2.0)
 - «Si hay un jugador lesionado no es convocable y se puede cambiar desde jugadores y desde
   alineación» (Edu, 17 nov 2026).
 - **No convocable**: en Convocatoria, el que está lesionado sale con ⛑ en vez del círculo, con
   «Lesionado · no convocable» en rojo, y su fila no responde. Se le puede QUITAR de una
   convocatoria ya hecha —por si se lesionó después de publicarla— pero no meter: para contar con
-  él hay que decir antes que está recuperado. Solo la lesión cierra la puerta: una duda se
-  convoca (se decide el sábado) y un sancionado puede viajar con el equipo aunque no juegue.
+  él hay que decir antes que está recuperado. (En v3.2.1 el sancionado pasó a ser lo mismo; la
+  duda sigue convocándose, que eso se decide el sábado.)
 - Al marcar a alguien lesionado **sale de la convocatoria en el acto** y su motivo de descarte
   pasa a ser la lesión; al recuperarse se le quita ese motivo, pero no vuelve solo a la lista:
   eso lo decide el entrenador. La regla vive en `src/convocatoria.js` (`noConvocable`,
@@ -874,7 +891,7 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
 
 ## Pruebas
 - `npm test` = `pruebas/todas.mjs`: todas las pruebas en modo Airtable (fakeair) y en modo Supabase
-  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-11-17: 624 ✓ / 731 ✓, 0 fallos.
+  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-11-17: 629 ✓ / 736 ✓, 0 fallos.
 - Desde la sesión de Claude NO hay red hacia airtable.com ni supabase.co (proxy 403): la prueba
   real contra Supabase la hace la propia app en Netlify.
 

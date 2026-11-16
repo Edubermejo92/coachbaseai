@@ -6,7 +6,7 @@
    que ha faltado quien no estaba en la lista de ese día, o que no fue al
    partido anterior quien todavía no estaba en el equipo, es peor que no
    decir nada. Son funciones puras: ni navegador ni servidor. */
-import { MOTIVOS_DESCARTE, ESTADOS_JUGADOR, noConvocable, trasCambiarEstado,
+import { MOTIVOS_DESCARTE, ESTADOS_JUGADOR, ESTADOS_NO_CONVOCABLES, noConvocable, trasCambiarEstado,
   diasConListaReciente, faltasEnDias, ultimaConvocatoria } from "../src/convocatoria.js";
 
 let ok = 0, mal = 0;
@@ -72,28 +72,43 @@ dice("un Descartes roto no se lleva por delante la lista",
 dice("los cuatro estados, y en orden",
   JSON.stringify(ESTADOS_JUGADOR) === '["disponible","duda","lesionado","sancionado"]');
 dice("un lesionado no es convocable", noConvocable({ st: "lesionado" }) === true);
+dice("un sancionado tampoco: no puede jugar", noConvocable({ st: "sancionado" }) === true);
 dice("una duda sí: se decide el sábado", noConvocable({ st: "duda" }) === false);
-dice("un sancionado también viaja con el equipo", noConvocable({ st: "sancionado" }) === false);
 dice("un disponible, por supuesto", noConvocable({ st: "disponible" }) === false);
 dice("sin jugador no se revienta", noConvocable(null) === false && noConvocable(undefined) === false);
+dice("los dos estados que no se convocan traen su motivo",
+  ESTADOS_NO_CONVOCABLES.lesionado === "lesion" && ESTADOS_NO_CONVOCABLES.sancionado === "sancion");
+dice("y los dos motivos los acepta el servidor",
+  Object.values(ESTADOS_NO_CONVOCABLES).every((m) => MOTIVOS_DESCARTE.includes(m)));
+dice("todo estado que no se convoca es un estado de verdad",
+  Object.keys(ESTADOS_NO_CONVOCABLES).every((e) => ESTADOS_JUGADOR.includes(e)));
 
-const traAnte = trasCambiarEstado(7, "lesionado", [5, 7, 9], { 5: "tecnica" });
+const traAnte = trasCambiarEstado(7, "lesionado", [5, 7, 9], { 5: "tecnica" }, "disponible");
 dice("al lesionarse sale de la convocatoria",
   JSON.stringify(traAnte.convocados) === "[5,9]", JSON.stringify(traAnte.convocados));
 dice("y su motivo pasa a ser la lesión", traAnte.descartes[7] === "lesion");
 dice("sin tocar el motivo de los demás", traAnte.descartes[5] === "tecnica");
-const traAlta = trasCambiarEstado(7, "disponible", [5, 9], { 7: "lesion", 5: "tecnica" });
+const traSanc = trasCambiarEstado(7, "sancionado", [5, 7], {}, "disponible");
+dice("al sancionarse también sale, y con su motivo",
+  JSON.stringify(traSanc.convocados) === "[5]" && traSanc.descartes[7] === "sancion");
+const traAlta = trasCambiarEstado(7, "disponible", [5, 9], { 7: "lesion", 5: "tecnica" }, "lesionado");
 dice("al recuperarse se le quita el motivo de lesión", traAlta.descartes[7] === undefined);
 dice("pero no vuelve solo a la convocatoria: eso lo decide el entrenador",
   JSON.stringify(traAlta.convocados) === "[5,9]");
+dice("cumplida la sanción, igual",
+  trasCambiarEstado(7, "disponible", [5], { 7: "sancion" }, "sancionado").descartes[7] === undefined);
 dice("un motivo puesto a mano no se borra por cambiar de estado",
-  trasCambiarEstado(5, "duda", [9], { 5: "tecnica" }).descartes[5] === "tecnica");
+  trasCambiarEstado(5, "duda", [9], { 5: "tecnica" }, "disponible").descartes[5] === "tecnica");
+/* El caso fino: el entrenador había escrito «sanción» como motivo de
+   descarte de alguien que NO estaba sancionado en su ficha. Cambiarle el
+   estado no puede llevarse por delante lo que él decidió. */
+dice("ni aunque coincida con el motivo que pone la app",
+  trasCambiarEstado(5, "duda", [9], { 5: "sancion" }, "disponible").descartes[5] === "sancion");
 dice("marcar lesionado a quien ya estaba fuera solo le pone el motivo",
-  JSON.stringify(trasCambiarEstado(7, "lesionado", [5], {})) === '{"convocados":[5],"descartes":{"7":"lesion"}}',
-  JSON.stringify(trasCambiarEstado(7, "lesionado", [5], {})));
+  JSON.stringify(trasCambiarEstado(7, "lesionado", [5], {}, "duda")) === '{"convocados":[5],"descartes":{"7":"lesion"}}',
+  JSON.stringify(trasCambiarEstado(7, "lesionado", [5], {}, "duda")));
 dice("sin convocatoria ni motivos tampoco se rompe",
-  JSON.stringify(trasCambiarEstado(7, "lesionado", null, null).convocados) === "[]");
-dice("«lesion» es uno de los motivos que acepta el servidor", MOTIVOS_DESCARTE.includes("lesion"));
+  JSON.stringify(trasCambiarEstado(7, "lesionado", null, null, null).convocados) === "[]");
 
 console.log(`\n${ok} correctas · ${mal} fallos`);
 process.exit(mal ? 1 : 0);

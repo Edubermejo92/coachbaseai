@@ -15,20 +15,24 @@ export const MOTIVOS_DESCARTE = ["tecnica", "lesion", "sancion", "viaje"];
 /* Cómo llega un jugador. Es el campo Estado de su ficha, el mismo que se
    toca en Jugadores, en Lesiones y en Alineación. */
 export const ESTADOS_JUGADOR = ["disponible", "duda", "lesionado", "sancionado"];
-/* Un lesionado no se convoca: no es una preferencia del entrenador, es que
-   no puede jugar. Una duda sí se convoca -se decide el sábado- y un
-   sancionado también puede viajar con el equipo aunque no juegue, así que
-   solo la lesión cierra la puerta. */
-export const noConvocable = (p) => !!p && p.st === "lesionado";
-/* Al marcar a alguien lesionado deja de estar convocado en el acto y su
-   motivo pasa a ser la lesión; al recuperarse se le quita ese motivo -si
-   vuelve a quedarse fuera será por otra cosa, y la decide el entrenador-.
-   Devuelve la convocatoria y los motivos ya corregidos. */
-export const trasCambiarEstado = (pid, estado, convocados, descartes) => {
+/* Lesionado o sancionado no se convoca: no es una preferencia del
+   entrenador, es que no puede jugar ("el sancionado tampoco se puede
+   convocar", Edu, 17 nov 2026). Una duda sí se convoca: eso se decide el
+   sábado. */
+export const ESTADOS_NO_CONVOCABLES = { lesionado: "lesion", sancionado: "sancion" };
+export const noConvocable = (p) => !!p && !!ESTADOS_NO_CONVOCABLES[p.st];
+/* Al marcar a alguien lesionado o sancionado deja de estar convocado en el
+   acto y su motivo pasa a ser ese; al volver a estar disponible se le quita
+   -si vuelve a quedarse fuera será por otra cosa, y la decide el entrenador-,
+   pero solo si era el motivo que había puesto la app: un motivo escrito a
+   mano por el entrenador no se toca. Por eso hace falta saber de qué estado
+   viene. Devuelve la convocatoria y los motivos ya corregidos. */
+export const trasCambiarEstado = (pid, estado, convocados, descartes, anterior) => {
   const ids = new Set(convocados || []);
   const mot = { ...(descartes || {}) };
-  if (estado === "lesionado") { ids.delete(pid); mot[pid] = "lesion"; }
-  else if (mot[pid] === "lesion") delete mot[pid];
+  const motivo = ESTADOS_NO_CONVOCABLES[estado];
+  if (motivo) { ids.delete(pid); mot[pid] = motivo; }
+  else if (ESTADOS_NO_CONVOCABLES[anterior] && mot[pid] === ESTADOS_NO_CONVOCABLES[anterior]) delete mot[pid];
   return { convocados: [...ids], descartes: mot };
 };
 

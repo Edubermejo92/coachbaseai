@@ -98,7 +98,7 @@ const DICT = {
     "ln.placeAndSend": "Coloca el once y manda la propuesta cuando termines.",
     "ln.sendProposal": "Enviar propuesta",
     "ln.dragHint": "Arrastra para recolocar · toca dos fichas para cambiarlas de sitio",
-    "ln.benchTitle": "Banquillo", "ln.calledSubs": "Suplentes convocados", "ln.notCalled": "No convocados", "ln.notCalledTag": "No convocado", "ln.noCallYet": "Todavía no hay convocatoria, así que aquí salen todos. Haz la convocatoria y verás quién va y quién se queda fuera.", "ln.goCall": "Ir a Convocatoria", "ln.xiNotCalled": "En el once hay {n} sin convocar: {names}.", "ln.sumCalled": "Convocados", "ln.sumXI": "En el once", "ln.sumSubs": "Suplentes", "ln.sumOut": "Fuera", "ln.callIn": "Convocar", "ln.callOut": "Quitar de la convocatoria", "ln.noneHere": "Nadie.", "st.disponible": "Disponible", "st.duda": "Duda", "st.lesionado": "Lesionado", "st.sancionado": "Sancionado", "st.label": "Estado del jugador", "st.noCallable": "Lesionado · no convocable", "st.proposed": "⏳ Enviado al entrenador principal para que lo apruebe.", "st.outOfCall": "Marcarlo lesionado lo saca de la convocatoria.", "st.noCallableHint": "Lesionado: no se puede convocar. Cámbialo en Jugadores o en Alineación.", "conv.label": "Convocatoria", "conv.conv": "Convocado", "conv.tecnica": "Descartado · decisión técnica",
+    "ln.benchTitle": "Banquillo", "ln.calledSubs": "Suplentes convocados", "ln.notCalled": "No convocados", "ln.notCalledTag": "No convocado", "ln.noCallYet": "Todavía no hay convocatoria, así que aquí salen todos. Haz la convocatoria y verás quién va y quién se queda fuera.", "ln.goCall": "Ir a Convocatoria", "ln.xiNotCalled": "En el once hay {n} sin convocar: {names}.", "ln.sumCalled": "Convocados", "ln.sumXI": "En el once", "ln.sumSubs": "Suplentes", "ln.sumOut": "Fuera", "ln.callIn": "Convocar", "ln.callOut": "Quitar de la convocatoria", "ln.noneHere": "Nadie.", "st.disponible": "Disponible", "st.duda": "Duda", "st.lesionado": "Lesionado", "st.sancionado": "Sancionado", "st.label": "Estado del jugador", "st.noCallable": "no convocable", "st.proposed": "⏳ Enviado al entrenador principal para que lo apruebe.", "st.outOfCall": "Lesionado o sancionado lo saca de la convocatoria.", "st.noCallableHint": "Lesionado o sancionado: no se puede convocar. Cámbialo en Jugadores o en Alineación.", "conv.label": "Convocatoria", "conv.conv": "Convocado", "conv.tecnica": "Descartado · decisión técnica",
     "conv.viaje": "Fuera · de viaje",
     "cl.ctxHint": "Debajo de cada nombre: a cuántos entrenos faltó esta semana y si se quedó fuera del partido anterior.",
     "cl.weekMissed": "Faltó a {a} de {b} esta semana",
@@ -771,7 +771,7 @@ const DICT = {
     "ln.placeAndSend": "Set the XI and send the proposal when you're done.",
     "ln.sendProposal": "Send proposal",
     "ln.dragHint": "Drag to reposition · tap two tokens to swap them",
-    "ln.benchTitle": "Bench", "ln.calledSubs": "Called-up substitutes", "ln.notCalled": "Not called up", "ln.notCalledTag": "Not called up", "ln.noCallYet": "There is no squad list yet, so everyone shows here. Make the squad list to see who is in and who is left out.", "ln.goCall": "Go to Squad list", "ln.xiNotCalled": "The line-up has {n} not called up: {names}.", "ln.sumCalled": "Called up", "ln.sumXI": "In the XI", "ln.sumSubs": "Subs", "ln.sumOut": "Left out", "ln.callIn": "Call up", "ln.callOut": "Remove from squad list", "ln.noneHere": "Nobody.", "st.disponible": "Available", "st.duda": "Doubtful", "st.lesionado": "Injured", "st.sancionado": "Suspended", "st.label": "Player status", "st.noCallable": "Injured · cannot be called up", "st.proposed": "⏳ Sent to the head coach for approval.", "st.outOfCall": "Marking him injured takes him off the squad list.", "st.noCallableHint": "Injured: cannot be called up. Change it in Players or in Line-up.", "conv.label": "Squad list", "conv.conv": "Called up", "conv.tecnica": "Left out · coach's decision",
+    "ln.benchTitle": "Bench", "ln.calledSubs": "Called-up substitutes", "ln.notCalled": "Not called up", "ln.notCalledTag": "Not called up", "ln.noCallYet": "There is no squad list yet, so everyone shows here. Make the squad list to see who is in and who is left out.", "ln.goCall": "Go to Squad list", "ln.xiNotCalled": "The line-up has {n} not called up: {names}.", "ln.sumCalled": "Called up", "ln.sumXI": "In the XI", "ln.sumSubs": "Subs", "ln.sumOut": "Left out", "ln.callIn": "Call up", "ln.callOut": "Remove from squad list", "ln.noneHere": "Nobody.", "st.disponible": "Available", "st.duda": "Doubtful", "st.lesionado": "Injured", "st.sancionado": "Suspended", "st.label": "Player status", "st.noCallable": "cannot be called up", "st.proposed": "⏳ Sent to the head coach for approval.", "st.outOfCall": "Injured or suspended takes him off the squad list.", "st.noCallableHint": "Injured or suspended: cannot be called up. Change it in Players or in Line-up.", "conv.label": "Squad list", "conv.conv": "Called up", "conv.tecnica": "Left out · coach's decision",
     "conv.viaje": "Away · travelling",
     "cl.ctxHint": "Under each name: how many sessions they missed this week, and whether they were left out of the last squad.",
     "cl.weekMissed": "Missed {a} of {b} this week",
@@ -1456,7 +1456,7 @@ const DICT = {
     "ln.placeAndSend": "Placez le onze et envoyez la proposition une fois terminé.",
     "ln.sendProposal": "Envoyer la proposition",
     "ln.dragHint": "Glissez pour repositionner · touchez deux jetons pour les échanger",
-    "ln.benchTitle": "Remplaçants", "ln.calledSubs": "Remplaçants convoqués", "ln.notCalled": "Non convoqués", "ln.notCalledTag": "Non convoqué", "ln.noCallYet": "Pas encore de convocation : tout le monde apparaît ici. Faites la convocation pour voir qui vient et qui reste dehors.", "ln.goCall": "Aller à Convocation", "ln.xiNotCalled": "La composition compte {n} non convoqué(s) : {names}.", "ln.sumCalled": "Convoqués", "ln.sumXI": "Dans le XI", "ln.sumSubs": "Remplaçants", "ln.sumOut": "Dehors", "ln.callIn": "Convoquer", "ln.callOut": "Retirer de la convocation", "ln.noneHere": "Personne.", "st.disponible": "Disponible", "st.duda": "Incertain", "st.lesionado": "Blessé", "st.sancionado": "Suspendu", "st.label": "État du joueur", "st.noCallable": "Blessé · non convocable", "st.proposed": "⏳ Envoyé à l'entraîneur principal pour approbation.", "st.outOfCall": "Le marquer blessé le retire de la convocation.", "st.noCallableHint": "Blessé : pas convocable. Change-le dans Joueurs ou dans Composition.", "conv.label": "Convocation", "conv.conv": "Convoqué", "conv.tecnica": "Écarté · choix technique",
+    "ln.benchTitle": "Remplaçants", "ln.calledSubs": "Remplaçants convoqués", "ln.notCalled": "Non convoqués", "ln.notCalledTag": "Non convoqué", "ln.noCallYet": "Pas encore de convocation : tout le monde apparaît ici. Faites la convocation pour voir qui vient et qui reste dehors.", "ln.goCall": "Aller à Convocation", "ln.xiNotCalled": "La composition compte {n} non convoqué(s) : {names}.", "ln.sumCalled": "Convoqués", "ln.sumXI": "Dans le XI", "ln.sumSubs": "Remplaçants", "ln.sumOut": "Dehors", "ln.callIn": "Convoquer", "ln.callOut": "Retirer de la convocation", "ln.noneHere": "Personne.", "st.disponible": "Disponible", "st.duda": "Incertain", "st.lesionado": "Blessé", "st.sancionado": "Suspendu", "st.label": "État du joueur", "st.noCallable": "non convocable", "st.proposed": "⏳ Envoyé à l'entraîneur principal pour approbation.", "st.outOfCall": "Blessé ou suspendu le retire de la convocation.", "st.noCallableHint": "Blessé ou suspendu : pas convocable. Change-le dans Joueurs ou dans Composition.", "conv.label": "Convocation", "conv.conv": "Convoqué", "conv.tecnica": "Écarté · choix technique",
     "conv.viaje": "Absent · en voyage",
     "cl.ctxHint": "Sous chaque nom : combien de séances il a manquées cette semaine et s'il était écarté du dernier match.",
     "cl.weekMissed": "Absent {a} fois sur {b} cette semaine",
@@ -2221,7 +2221,7 @@ const DICT = {
     "ln.placeAndSend": "Stelle die Startelf zusammen und sende den Vorschlag, wenn du fertig bist.",
     "ln.sendProposal": "Vorschlag senden",
     "ln.dragHint": "Ziehen zum Umstellen · zwei Spielsteine antippen, um sie zu tauschen",
-    "ln.benchTitle": "Bank", "ln.calledSubs": "Nominierte Ersatzspieler", "ln.notCalled": "Nicht nominiert", "ln.notCalledTag": "Nicht nominiert", "ln.noCallYet": "Noch kein Kader, daher stehen hier alle. Stell den Kader zusammen, dann siehst du, wer dabei ist und wer nicht.", "ln.goCall": "Zum Kader", "ln.xiNotCalled": "In der Startelf stehen {n} nicht Nominierte: {names}.", "ln.sumCalled": "Nominiert", "ln.sumXI": "Startelf", "ln.sumSubs": "Ersatz", "ln.sumOut": "Draußen", "ln.callIn": "Nominieren", "ln.callOut": "Aus dem Kader nehmen", "ln.noneHere": "Niemand.", "st.disponible": "Verfügbar", "st.duda": "Fraglich", "st.lesionado": "Verletzt", "st.sancionado": "Gesperrt", "st.label": "Spielerstatus", "st.noCallable": "Verletzt · nicht nominierbar", "st.proposed": "⏳ Zur Freigabe an den Cheftrainer geschickt.", "st.outOfCall": "Als verletzt markiert, fällt er aus dem Kader.", "st.noCallableHint": "Verletzt: nicht nominierbar. Ändere es unter Spieler oder Aufstellung.", "conv.label": "Kader", "conv.conv": "Nominiert", "conv.tecnica": "Nicht nominiert · Trainerentscheidung",
+    "ln.benchTitle": "Bank", "ln.calledSubs": "Nominierte Ersatzspieler", "ln.notCalled": "Nicht nominiert", "ln.notCalledTag": "Nicht nominiert", "ln.noCallYet": "Noch kein Kader, daher stehen hier alle. Stell den Kader zusammen, dann siehst du, wer dabei ist und wer nicht.", "ln.goCall": "Zum Kader", "ln.xiNotCalled": "In der Startelf stehen {n} nicht Nominierte: {names}.", "ln.sumCalled": "Nominiert", "ln.sumXI": "Startelf", "ln.sumSubs": "Ersatz", "ln.sumOut": "Draußen", "ln.callIn": "Nominieren", "ln.callOut": "Aus dem Kader nehmen", "ln.noneHere": "Niemand.", "st.disponible": "Verfügbar", "st.duda": "Fraglich", "st.lesionado": "Verletzt", "st.sancionado": "Gesperrt", "st.label": "Spielerstatus", "st.noCallable": "nicht nominierbar", "st.proposed": "⏳ Zur Freigabe an den Cheftrainer geschickt.", "st.outOfCall": "Verletzt oder gesperrt nimmt ihn aus dem Kader.", "st.noCallableHint": "Verletzt oder gesperrt: nicht nominierbar. Ändere es unter Spieler oder Aufstellung.", "conv.label": "Kader", "conv.conv": "Nominiert", "conv.tecnica": "Nicht nominiert · Trainerentscheidung",
     "conv.viaje": "Abwesend · verreist",
     "cl.ctxHint": "Unter jedem Namen: wie viele Einheiten er diese Woche verpasst hat und ob er im letzten Kader fehlte.",
     "cl.weekMissed": "{a} von {b} Einheiten verpasst",
@@ -2985,7 +2985,7 @@ const DICT = {
     "ln.placeAndSend": "Monta o onze e envia a proposta quando terminares.",
     "ln.sendProposal": "Enviar proposta",
     "ln.dragHint": "Arrasta para recolocar · toca em duas peças para as trocar",
-    "ln.benchTitle": "Banco", "ln.calledSubs": "Suplentes convocados", "ln.notCalled": "Não convocados", "ln.notCalledTag": "Não convocado", "ln.noCallYet": "Ainda não há convocatória, por isso aparecem todos. Faz a convocatória e vês quem vai e quem fica de fora.", "ln.goCall": "Ir à Convocatória", "ln.xiNotCalled": "No onze há {n} sem convocar: {names}.", "ln.sumCalled": "Convocados", "ln.sumXI": "No onze", "ln.sumSubs": "Suplentes", "ln.sumOut": "De fora", "ln.callIn": "Convocar", "ln.callOut": "Tirar da convocatória", "ln.noneHere": "Ninguém.", "st.disponible": "Disponível", "st.duda": "Dúvida", "st.lesionado": "Lesionado", "st.sancionado": "Castigado", "st.label": "Estado do jogador", "st.noCallable": "Lesionado · não convocável", "st.proposed": "⏳ Enviado ao treinador principal para aprovar.", "st.outOfCall": "Marcá-lo lesionado tira-o da convocatória.", "st.noCallableHint": "Lesionado: não pode ser convocado. Muda-o em Jogadores ou na Escalação.", "conv.label": "Convocatória", "conv.conv": "Convocado", "conv.tecnica": "Fora · opção técnica",
+    "ln.benchTitle": "Banco", "ln.calledSubs": "Suplentes convocados", "ln.notCalled": "Não convocados", "ln.notCalledTag": "Não convocado", "ln.noCallYet": "Ainda não há convocatória, por isso aparecem todos. Faz a convocatória e vês quem vai e quem fica de fora.", "ln.goCall": "Ir à Convocatória", "ln.xiNotCalled": "No onze há {n} sem convocar: {names}.", "ln.sumCalled": "Convocados", "ln.sumXI": "No onze", "ln.sumSubs": "Suplentes", "ln.sumOut": "De fora", "ln.callIn": "Convocar", "ln.callOut": "Tirar da convocatória", "ln.noneHere": "Ninguém.", "st.disponible": "Disponível", "st.duda": "Dúvida", "st.lesionado": "Lesionado", "st.sancionado": "Castigado", "st.label": "Estado do jogador", "st.noCallable": "não convocável", "st.proposed": "⏳ Enviado ao treinador principal para aprovar.", "st.outOfCall": "Lesionado ou castigado tira-o da convocatória.", "st.noCallableHint": "Lesionado ou castigado: não pode ser convocado. Muda-o em Jogadores ou na Escalação.", "conv.label": "Convocatória", "conv.conv": "Convocado", "conv.tecnica": "Fora · opção técnica",
     "conv.viaje": "Fora · de viagem",
     "cl.ctxHint": "Debaixo de cada nome: a quantos treinos faltou esta semana e se ficou de fora do último jogo.",
     "cl.weekMissed": "Faltou {a} de {b} esta semana",
@@ -14225,6 +14225,7 @@ export default function App() {
       return n;
     });
   };
+  const iconoNoConvocable = (p) => (p?.st === "sancionado" ? "⛔" : "⛑");
   const colorConvocatoria = (e) => (e === "conv" ? C.green : e === "lesion" ? C.red : e === "sancion" ? C.warn : e === "viaje" ? C.chalk : C.dim);
   /* El mismo símbolo en el botón de Alineación y en el aviso de Convocatoria:
      si el avión significa "de viaje" en un sitio, significa lo mismo en el
@@ -14942,8 +14943,9 @@ export default function App() {
        fuera será por otra cosa, y la decide el entrenador. */
     /* La regla vive en src/convocatoria.js y se prueba allí; aquí se aplica
        a las dos piezas de estado, cada una con lo suyo. */
-    setCalled((cs) => new Set(trasCambiarEstado(p.id, nuevo, [...cs], {}).convocados));
-    setDescartes((d) => trasCambiarEstado(p.id, nuevo, [], d).descartes);
+    const venia = p.st;
+    setCalled((cs) => new Set(trasCambiarEstado(p.id, nuevo, [...cs], {}, venia).convocados));
+    setDescartes((d) => trasCambiarEstado(p.id, nuevo, [], d, venia).descartes);
     /* El segundo entrenador propone, no cambia: igual que con el resto de la
        plantilla. Su propuesta se guarda al aprobarla. */
     if (canProposeChanges()) {
@@ -24203,13 +24205,14 @@ export default function App() {
             {players.map((p) => {
               const faltas = faltasDeLaSemana(p);
               const fuera = fueraDelAnterior(p);
+              /* Lesionado o sancionado: en los dos casos no puede jugar. */
               const lesion = noConvocable(p);
               return (
               <button key={p.id} onClick={() => toggle(p.id)} disabled={!editable || (lesion && !called.has(p.id))}
                 title={lesion && !called.has(p.id) ? t("st.noCallableHint") : undefined}
                 className="w-full flex items-center justify-between gap-2 text-sm py-2 px-3 rounded-lg border text-left disabled:cursor-default" style={{ borderColor: called.has(p.id) ? AC : C.line, background: called.has(p.id) ? C.panel2 : "transparent", color: C.chalk }}>
                 <span className="flex items-center gap-2 min-w-0 flex-1">
-                  <span className="w-5 text-center shrink-0" style={{ color: called.has(p.id) ? AC : lesion ? C.red : C.dim }}>{called.has(p.id) ? "✓" : lesion ? "⛑" : "○"}</span>
+                  <span className="w-5 text-center shrink-0" style={{ color: called.has(p.id) ? AC : lesion ? C.red : C.dim }}>{called.has(p.id) ? "✓" : lesion ? iconoNoConvocable(p) : "○"}</span>
                   <Avatar p={p} size={26} />
                   <Dot st={p.st} />
                   {/* El nombre con lo suyo debajo: el dorsal y el nombre en un
@@ -24222,7 +24225,7 @@ export default function App() {
                     </span>
                     {(faltas || fuera || lesion) && (
                       <span className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] leading-tight">
-                        {lesion && <span style={{ color: C.red }}>⛑ {t("st.noCallable")}</span>}
+                        {lesion && <span style={{ color: C.red }}>{iconoNoConvocable(p)} {t(`st.${p.st}`)} · {t("st.noCallable")}</span>}
                         {faltas && (
                           <span style={{ color: C.warn }}>
                             ⚠ {t("cl.weekMissed").replace("{a}", faltas.n).replace("{b}", faltas.de)}
