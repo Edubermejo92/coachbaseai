@@ -13,6 +13,7 @@ import {
   nombreAbp, abpPorDefecto, abpConSlots, abpSoloPos, zonaAbp,
   profundidadAbp, abpATablero, tokensAbp3d, balonAbp,
   MISIONES_ABP, misionesDe, ETIQUETA_MISION, misionesLimpias, textoMision, MAX_NOTA_ABP,
+  ABP_ANCHO, ABP_ALTO, ABP_CORTE, yAbp, yAbpU, yAbpInv,
 } from "../src/abp.js";
 
 let ok = 0, mal = 0;
@@ -41,18 +42,53 @@ dice("todas traen once sitios", CLAVES_ABP.every((k) => TABLAS_ABP[k].length ===
 dice("ninguna coordenada se sale del campo",
   CLAVES_ABP.every((k) => TABLAS_ABP[k].every(([x, y]) => x >= 2 && x <= 98 && y >= 2 && y <= 98)));
 
+/* ---------- el estirón del tablero ----------
+   La portería y el área se ven más grandes sin que ninguna ficha cambie de
+   sitio: lo que se estira es el dibujo, no las coordenadas. Por eso se
+   comprueba por separado que `yAbp` solo cambia el dibujo y que lo guardado
+   se puede volver a leer tal cual. */
+dice("el fondo y el medio campo siguen siendo los extremos del tablero",
+  yAbp(0) === 0 && yAbp(100) === 100);
+dice("el borde del área cae más abajo que antes del estirón",
+  yAbp(ABP_CORTE) > ABP_CORTE + 8, `${yAbp(ABP_CORTE).toFixed(1)}% en vez de ${ABP_CORTE}%`);
+dice("el área se dibuja más alta de lo que era",
+  (yAbpU(ABP_CORTE) - yAbpU(7.6)) / (174 - 26) > 1.4,
+  `×${((yAbpU(ABP_CORTE) - yAbpU(7.6)) / (174 - 26)).toFixed(2)}`);
+dice("la mitad de atrás conserva las mismas unidades de dibujo",
+  Math.abs((yAbpU(100) - yAbpU(ABP_CORTE)) - (340 - 174)) < 0.5,
+  `${(yAbpU(100) - yAbpU(ABP_CORTE)).toFixed(1)}u`);
+dice("el dibujo no se adelanta ni se retrasa: a más profundidad, más abajo",
+  Array.from({ length: 100 }, (_, i) => i).every((i) => yAbp(i) < yAbp(i + 1)));
+dice("lo que pinta el tablero se vuelve a leer igual al arrastrar",
+  [0, 7.6, 22.4, 36.8, 51.2, 60, 78, 94, 100].every((y) => Math.abs(yAbpInv(yAbp(y)) - y) < 1e-9));
+dice("una profundidad rota no rompe el dibujo", yAbp("ni idea") === 0 && yAbp(undefined) === 0);
+
 /* La regla del dedo: en un móvil de 390px de ancho el tablero mide
-   390 × 340/400 de alto y una ficha son 44px. Dos fichas a menos de eso se
-   tapan y la de debajo no se puede arrastrar. */
-const ANCHO = 390, ALTO = (390 * 340) / 400, FICHA = 44;
+   390 × ABP_ALTO/ABP_ANCHO de alto y una ficha son 44px. Dos fichas a menos
+   de eso se tapan y la de debajo no se puede arrastrar. Se mide sobre el
+   tablero PINTADO -por `yAbp`-, que es lo que ve el dedo. */
+const ANCHO = 390, ALTO = (390 * ABP_ALTO) / ABP_ANCHO, FICHA = 44;
 for (const k of CLAVES_ABP) {
   let min = Infinity, par = "";
   const tabla = TABLAS_ABP[k];
   for (let i = 0; i < tabla.length; i++) for (let j = i + 1; j < tabla.length; j++) {
-    const d = Math.hypot(((tabla[i][0] - tabla[j][0]) / 100) * ANCHO, ((tabla[i][1] - tabla[j][1]) / 100) * ALTO);
+    const d = Math.hypot(((tabla[i][0] - tabla[j][0]) / 100) * ANCHO,
+      ((yAbp(tabla[i][1]) - yAbp(tabla[j][1])) / 100) * ALTO);
     if (d < min) { min = d; par = `${i}-${j}`; }
   }
   dice(`en «${k}» se puede coger cada ficha con el dedo`, min >= FICHA, `${Math.round(min)}px entre ${par}`);
+}
+/* Y que el estirón no haya juntado a nadie: de la tabla al dibujo, ninguna
+   pareja puede quedarse más cerca de lo que estaba. */
+for (const k of CLAVES_ABP) {
+  const tabla = TABLAS_ABP[k];
+  let peor = 0, par = "";
+  for (let i = 0; i < tabla.length; i++) for (let j = i + 1; j < tabla.length; j++) {
+    const antes = Math.abs(tabla[i][1] - tabla[j][1]) * ((340 / 400) * ANCHO) / 100;
+    const ahora = Math.abs(yAbp(tabla[i][1]) - yAbp(tabla[j][1])) * ALTO / 100;
+    if (antes - ahora > peor) { peor = antes - ahora; par = `${i}-${j}`; }
+  }
+  dice(`el estirón no junta a nadie en «${k}»`, peor < 0.5, `${peor.toFixed(1)}px en ${par}`);
 }
 
 /* ---------- repartir las coordenadas entre los puestos ---------- */

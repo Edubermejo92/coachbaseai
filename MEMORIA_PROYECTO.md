@@ -135,6 +135,43 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   sigue valiendo para los siguientes partidos hasta que se desactiva (y entonces caen las
   suscripciones). En iPhone el aviso solo llega con la página añadida a la pantalla de inicio.
 
+## Los sistemas por grupos y el tablero de balón parado, ampliado (v3.0.0)
+- Dos cosas pedidas por Edu el 16 nov 2026, las dos de la pantalla de Alineación.
+- **Los sistemas, agrupados** («que no aparezcan todas las estructuras de alineación 4-4-2, 433
+  etc y que sea una categoría que al pulsar aparezca»): los doce sistemas ocupaban tres filas
+  enteras antes de llegar al campo. Ahora se ve **una sola fila de grupos** -«3 atrás», «4
+  atrás», «5 atrás», «Otro»- y al pulsar uno se abren los suyos; se elige, se aplica y el grupo
+  se cierra solo. El grupo que contiene el sistema puesto va marcado, para no tener que abrirlos
+  todos buscando cuál es, y «Otro» es el que abre el campo de escribir uno a mano.
+  `gruposDeSistemas` reparte la lista por el primer número, así que vale igual para fútbol 11 y
+  para fútbol 7 sin listas aparte.
+- **El balón parado, en grande** («en las abps quita la imagen de los chicos deja el número solo
+  y amplía la imagen de la portería y del área»):
+  - **Las fichas, solo el dorsal.** Once caras de carné a 44px apiladas en el área no se
+    distinguen; lo que hace falta leer de un vistazo es el número. `PitchToken` recibe `sinFoto`
+    y pinta el dorsal grande y centrado. El cartel de debajo deja de repetirlo y se queda con el
+    nombre, que así cabe entero. La imagen que se comparte va igual, y de paso ya no espera a
+    descargar once fotos ni puede salir un canvas «manchado».
+  - **La portería y las áreas, un 46% más grandes**, y sin tocar ni una coordenada. Lo que se
+    estira es el DIBUJO: el tablero pasa de 400×340 a 400×420 y esas 80 unidades nuevas se las
+    queda entera la mitad de delante (del fondo al borde del área, 254 en vez de 174). Como el
+    ancho no cambia, una unidad mide en pantalla lo mismo que antes: **la mitad de atrás se
+    queda exactamente igual** y nadie pierde sitio. La portería, además, pasa a tener el ancho
+    exacto que `zonaAbp` llama «portería» (del 40% al 60%) y se le dibuja el fondo de la red:
+    era una raya de 14 unidades.
+  - Una ficha se sigue guardando **en la misma profundidad de campo que antes** (0% el fondo de
+    la portería, 51,2% el borde del área), así que lo ya guardado en la nube vale tal cual, la
+    vista 3D sigue a escala y `zonaAbp` sigue diciendo lo mismo. `yAbp` es la que pinta e
+    `yAbpInv` la que lee el dedo al arrastrar, y por eso el arco del área y las esquinas pasan
+    a ser elipses: un círculo del campo ya no es un círculo en el dibujo.
+- Pruebas: pruebas28 sube a 93 (+13: que `yAbp`/`yAbpInv` son exactamente la una inversa de la
+  otra, que el estirón no junta a NINGUNA pareja de fichas en ninguna de las seis colocaciones y
+  que la regla del dedo se mide ya sobre el tablero pintado). Total 609 ✓ / 716 ✓.
+- Comprobado en el navegador a 390px: la fila de grupos sola al entrar, un grupo que se abre y se
+  cierra al elegir, «Otro» con su campo; y en el balón parado, las once fichas con el dorsal,
+  el tablero en 400/420 con la portería en 160,4,80×33,7 y el área en 46,37.7,308×216,3, y una
+  ficha arrastrada al punto de penalti que cae clavada en el 36,8% de profundidad.
+
 ## La ficha elegida se veía como un hueco vacío (v2.99.1)
 - «Si cojo a un titular aparece como suplente» (Edu, 16 nov 2026). No se caía del once: es que al
   elegirla **la ficha se apagaba**. `PitchToken` escondía la foto al seleccionar y pintaba el
@@ -777,7 +814,7 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
 
 ## Pruebas
 - `npm test` = `pruebas/todas.mjs`: todas las pruebas en modo Airtable (fakeair) y en modo Supabase
-  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-11-16: 596 ✓ / 703 ✓, 0 fallos.
+  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-11-16: 609 ✓ / 716 ✓, 0 fallos.
 - Desde la sesión de Claude NO hay red hacia airtable.com ni supabase.co (proxy 403): la prueba
   real contra Supabase la hace la propia app en Netlify.
 

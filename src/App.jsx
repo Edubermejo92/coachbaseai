@@ -8,6 +8,7 @@ import { cargarLogo, pintarLogo, crearAudio, prepararMusica, grabarLienzo, leerO
 import { configMp4, grabarMp4, avisarDiag } from "./videoMp4.js";
 import { JUGADAS_ABP, CLAVES_ABP, claveAbp, ladoDeAbp, jugadaDeAbp, ETIQUETA_JUGADA, nombreAbp,
   abpPorDefecto, abpConSlots, abpSoloPos, zonaAbp, tokensAbp3d, balonAbp,
+  ABP_ANCHO, ABP_ALTO, yAbp, yAbpU, yAbpInv, ABP_R_ARCO, ABP_R_ARCO_X, ABP_R_ESQ, ABP_R_ESQ_X,
   misionesDe, ETIQUETA_MISION, misionesLimpias, textoMision, MAX_NOTA_ABP } from "./abp.js";
 import { MOTIVOS_DESCARTE, diasConListaReciente, faltasEnDias, ultimaConvocatoria } from "./convocatoria.js";
 import { pedirResena } from "./resena.js";
@@ -192,7 +193,9 @@ const DICT = {
     "pf.deleteConfirm": "¿Eliminar a {name} de la plantilla? Se borra su ficha entera -foto, vídeo, historial de lesiones- y no se puede deshacer.",
     "st.noLineup": "Todavía no hay un once montado.",
     "ln.assignTo": "Asignar a {slot}",
-    "ln.other": "Otro: 4-1-4-1",
+    "ln.other": "Otro",
+    "ln.otherPh": "Ej. 4-1-4-1",
+    "ln.sysBack": "{n} atrás",
     "cl.waMsg": "Mensaje para WhatsApp",
     "cl.waOpen": "Abrir WhatsApp",
     "cl.waLegend": "🧤 portero · dorsal en emoji · porteros primero", "cl.where": "Este partido", "cl.saved": "Guardado para todo el equipo", "pf.apoyo": "Jugador de apoyo (otro equipo)", "pf.apoyoHint": "Viene a ayudar: se puede convocar, pero no sale en Desconvocados ni cuenta en la asistencia ni en las estadísticas del equipo.", "pf.apoyoTag": "Apoyo", "cl.fmtClassic": "Clásico", "cl.fmtFull": "Con equipación", "cl.cita": "Convocatoria (hora)", "cl.citaAuto": "Sin hora: 1 h 15′ antes del partido", "cl.kit": "Equipación", "cl.kitHome": "En casa", "cl.kitAway": "Fuera", "cl.kitShirt": "Camiseta", "cl.kitShorts": "Pantalón", "cl.kitSocks": "Medias", "cl.kitHint": "Toca un color para cambiarlo.", "cl.waLegend2": "🧤 portero · por dorsal · con los desconvocados",
@@ -858,7 +861,9 @@ const DICT = {
     "pf.deleteConfirm": "Delete {name} from the squad? Their whole profile -photo, video, injury history- is removed and this cannot be undone.",
     "st.noLineup": "No line-up has been set yet.",
     "ln.assignTo": "Assign to {slot}",
-    "ln.other": "Other: 4-1-4-1",
+    "ln.other": "Other",
+    "ln.otherPh": "e.g. 4-1-4-1",
+    "ln.sysBack": "{n} at the back",
     "cl.waMsg": "WhatsApp message",
     "cl.waOpen": "Open WhatsApp",
     "cl.waLegend": "🧤 goalkeeper · number as emoji · keepers first", "cl.where": "This match", "cl.saved": "Saved for the whole team", "pf.apoyo": "Support player (other team)", "pf.apoyoHint": "Comes to help: can be called up, but isn't listed as left out and doesn't count in the team's attendance or stats.", "pf.apoyoTag": "Support", "cl.fmtClassic": "Classic", "cl.fmtFull": "With kit", "cl.cita": "Meeting time", "cl.citaAuto": "Empty: 1 h 15′ before kick-off", "cl.kit": "Kit", "cl.kitHome": "Home", "cl.kitAway": "Away", "cl.kitShirt": "Shirt", "cl.kitShorts": "Shorts", "cl.kitSocks": "Socks", "cl.kitHint": "Tap a colour to change it.", "cl.waLegend2": "🧤 goalkeeper · by number · with players left out",
@@ -1536,7 +1541,9 @@ const DICT = {
     "pf.deleteConfirm": "Supprimer {name} de l'effectif ? Toute sa fiche -photo, vidéo, historique des blessures- est effacée, irréversible.",
     "st.noLineup": "Aucune composition n'a encore été faite.",
     "ln.assignTo": "Affecter à {slot}",
-    "ln.other": "Autre : 4-1-4-1",
+    "ln.other": "Autre",
+    "ln.otherPh": "Ex. 4-1-4-1",
+    "ln.sysBack": "{n} derrière",
     "cl.waMsg": "Message pour WhatsApp",
     "cl.waOpen": "Ouvrir WhatsApp",
     "cl.waLegend": "🧤 gardien · numéro en emoji · gardiens d'abord", "cl.where": "Ce match", "cl.saved": "Enregistré pour toute l'équipe", "pf.apoyo": "Joueur en renfort (autre équipe)", "pf.apoyoHint": "Vient aider : peut être convoqué, mais n'apparaît pas parmi les non convoqués et ne compte pas dans l'assiduité ni les statistiques de l'équipe.", "pf.apoyoTag": "Renfort", "cl.fmtClassic": "Classique", "cl.fmtFull": "Avec tenue", "cl.cita": "Heure de convocation", "cl.citaAuto": "Vide : 1 h 15′ avant le match", "cl.kit": "Tenue", "cl.kitHome": "Domicile", "cl.kitAway": "Extérieur", "cl.kitShirt": "Maillot", "cl.kitShorts": "Short", "cl.kitSocks": "Chaussettes", "cl.kitHint": "Touchez une couleur pour la changer.", "cl.waLegend2": "🧤 gardien · par numéro · avec les non convoqués",
@@ -2294,7 +2301,9 @@ const DICT = {
     "pf.deleteConfirm": "{name} aus dem Kader löschen? Das ganze Profil -Foto, Video, Verletzungshistorie- wird entfernt, nicht rückgängig zu machen.",
     "st.noLineup": "Es ist noch keine Aufstellung gesetzt.",
     "ln.assignTo": "Zuweisen an {slot}",
-    "ln.other": "Andere: 4-1-4-1",
+    "ln.other": "Andere",
+    "ln.otherPh": "z. B. 4-1-4-1",
+    "ln.sysBack": "{n} hinten",
     "cl.waMsg": "Nachricht für WhatsApp",
     "cl.waOpen": "WhatsApp öffnen",
     "cl.waLegend": "🧤 Torwart · Nummer als Emoji · Torhüter zuerst", "cl.where": "Dieses Spiel", "cl.saved": "Für das ganze Team gespeichert", "pf.apoyo": "Aushilfsspieler (anderes Team)", "pf.apoyoHint": "Hilft aus: kann nominiert werden, steht aber nicht bei den Nicht-Nominierten und zählt nicht für Anwesenheit oder Statistiken des Teams.", "pf.apoyoTag": "Aushilfe", "cl.fmtClassic": "Klassisch", "cl.fmtFull": "Mit Trikot", "cl.cita": "Treffpunkt (Uhrzeit)", "cl.citaAuto": "Leer: 1 h 15′ vor Anpfiff", "cl.kit": "Trikot", "cl.kitHome": "Heim", "cl.kitAway": "Auswärts", "cl.kitShirt": "Trikot", "cl.kitShorts": "Hose", "cl.kitSocks": "Stutzen", "cl.kitHint": "Farbe antippen zum Ändern.", "cl.waLegend2": "🧤 Torwart · nach Nummer · mit Nicht-Nominierten",
@@ -3051,7 +3060,9 @@ const DICT = {
     "pf.deleteConfirm": "Eliminar {name} do plantel? A ficha inteira -foto, vídeo, histórico de lesões- é apagada e não se pode desfazer.",
     "st.noLineup": "Ainda não há um onze montado.",
     "ln.assignTo": "Atribuir a {slot}",
-    "ln.other": "Outro: 4-1-4-1",
+    "ln.other": "Outro",
+    "ln.otherPh": "Ex. 4-1-4-1",
+    "ln.sysBack": "{n} atrás",
     "cl.waMsg": "Mensagem para WhatsApp",
     "cl.waOpen": "Abrir WhatsApp",
     "cl.waLegend": "🧤 guarda-redes · número em emoji · guarda-redes primeiro", "cl.where": "Este jogo", "cl.saved": "Guardado para toda a equipa", "pf.apoyo": "Jogador de apoio (outra equipa)", "pf.apoyoHint": "Vem ajudar: pode ser convocado, mas não aparece nos não convocados nem conta na assiduidade nem nas estatísticas da equipa.", "pf.apoyoTag": "Apoio", "cl.fmtClassic": "Clássico", "cl.fmtFull": "Com equipamento", "cl.cita": "Hora de convocatória", "cl.citaAuto": "Vazio: 1 h 15′ antes do jogo", "cl.kit": "Equipamento", "cl.kitHome": "Em casa", "cl.kitAway": "Fora", "cl.kitShirt": "Camisola", "cl.kitShorts": "Calções", "cl.kitSocks": "Meias", "cl.kitHint": "Toca numa cor para a mudar.", "cl.waLegend2": "🧤 guarda-redes · por número · com os não convocados",
@@ -10103,24 +10114,43 @@ const AbpVista3D = ({ tokens, balon, marcado, nombres, acento, t, C }) => {
    frontal, así que es el ancho lo que hace falta.
    Lo usan dos pantallas: la del entrenador, que coloca las fichas, y la del
    jugador, que solo mira dónde le toca ponerse. */
-const CampoAbp = ({ chalk }) => (
-  <svg viewBox="0 0 400 340" className="absolute inset-0 w-full h-full pointer-events-none">
-    {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
-      <rect key={i} x="0" y={i * 42.5} width="400" height="42.5" fill={i % 2 ? "#17251D" : "#152219"} />
-    ))}
-    <g stroke={chalk} strokeOpacity="0.5" strokeWidth="1.6" fill="none">
-      <rect x="8" y="26" width="384" height="306" />
-      <line x1="8" y1="26" x2="392" y2="26" />
-      <rect x="170" y="12" width="60" height="14" strokeOpacity="0.85" />
-      <rect x="46" y="26" width="308" height="148" />
-      <rect x="130" y="26" width="140" height="50" />
-      <circle cx="200" cy="125" r="3" fill={chalk} fillOpacity="0.5" stroke="none" />
-      <path d="M 131 174 A 85 85 0 0 0 269 174" />
-      <path d="M 8 44 A 18 18 0 0 0 26 26" />
-      <path d="M 392 44 A 18 18 0 0 1 374 26" />
-    </g>
-  </svg>
-);
+const CampoAbp = ({ chalk }) => {
+  /* Las dos cuentas del tablero: a lo ancho es proporcional, a lo largo pasa
+     por `yAbpU`, que da más sitio a la mitad de delante (ver src/abp.js). Las
+     referencias son las de siempre, en profundidad de campo: línea de gol en
+     el 7,6%, área pequeña hasta el 22,4%, punto de penalti en el 36,8%, borde
+     del área en el 51,2% y fondo del tablero en el 97,6%. */
+  const X = (pct) => (pct / 100) * ABP_ANCHO;
+  const Y = (pct) => yAbpU(pct);
+  const yGol = Y(7.6), yPeq = Y(22.4), yPen = Y(36.8), yArea = Y(51.2), yFondo = Y(97.6);
+  /* El arco del área y las esquinas eran círculos; estirado el tablero son
+     elipses. Las puntas del arco tienen que seguir apoyadas en el borde del
+     área, así que de ahí sale cuánto se abre. */
+  const rArcoY = (ABP_R_ARCO / 100) * ABP_ALTO, rArcoX = (ABP_R_ARCO_X / 100) * ABP_ANCHO;
+  const rEsqY = (ABP_R_ESQ / 100) * ABP_ALTO, rEsqX = (ABP_R_ESQ_X / 100) * ABP_ANCHO;
+  const dxArco = rArcoX * Math.sqrt(Math.max(0, 1 - ((yArea - yPen) / rArcoY) ** 2));
+  return (
+    <svg viewBox={`0 0 ${ABP_ANCHO} ${ABP_ALTO}`} className="absolute inset-0 w-full h-full pointer-events-none">
+      {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
+        <rect key={i} x="0" y={(i * ABP_ALTO) / 8} width={ABP_ANCHO} height={ABP_ALTO / 8} fill={i % 2 ? "#17251D" : "#152219"} />
+      ))}
+      <g stroke={chalk} strokeOpacity="0.5" strokeWidth="1.6" fill="none">
+        <rect x={X(2)} y={yGol} width={X(96)} height={yFondo - yGol} />
+        <line x1={X(2)} y1={yGol} x2={X(98)} y2={yGol} />
+        {/* La portería, del ancho exacto que `zonaAbp` llama "portería" -del
+            40% al 60%- y con el fondo de la red dibujado: era una raya y
+            ahora se ve de qué palo a qué palo va. */}
+        <rect x={X(40)} y={Y(0.8)} width={X(20)} height={yGol - Y(0.8)} strokeOpacity="0.85" />
+        <rect x={X(11.5)} y={yGol} width={X(77)} height={yArea - yGol} />
+        <rect x={X(32.5)} y={yGol} width={X(35)} height={yPeq - yGol} />
+        <circle cx={X(50)} cy={yPen} r="3" fill={chalk} fillOpacity="0.5" stroke="none" />
+        <path d={`M ${X(50) - dxArco} ${yArea} A ${rArcoX} ${rArcoY} 0 0 0 ${X(50) + dxArco} ${yArea}`} />
+        <path d={`M ${X(2)} ${yGol + rEsqY} A ${rEsqX} ${rEsqY} 0 0 0 ${X(2) + rEsqX} ${yGol}`} />
+        <path d={`M ${X(98)} ${yGol + rEsqY} A ${rEsqX} ${rEsqY} 0 0 1 ${X(98) - rEsqX} ${yGol}`} />
+      </g>
+    </svg>
+  );
+};
 
 /* El tablero de una alineación guardada: no solo en qué sistema jugaba, sino
    DÓNDE estaba puesta cada ficha. Si el entrenador abre a un lateral, junta a
@@ -10151,6 +10181,19 @@ const mismoOnce = (a, b) => {
 /* Sistemas sugeridos; el campo admite cualquier otro escrito a mano */
 const SYS_F11 = ["4-3-3", "4-4-2", "4-2-3-1", "3-5-2", "3-4-3", "5-3-2", "4-1-4-1", "4-4-1-1", "5-4-1", "4-5-1", "3-4-2-1", "4-3-1-2"];
 const SYS_F7 = ["2-3-1", "3-2-1", "3-1-2", "1-4-1", "2-1-3", "3-3", "2-2-2"];
+/* Los sistemas, agrupados por cuántos juegan atrás. Doce botones sueltos se
+   comían tres filas de la pantalla de Alineación, y un entrenador no busca
+   "4-1-4-1": busca "con cuatro atrás" y de ahí elige. Agrupar por el primer
+   número vale igual para fútbol 11 y para fútbol 7, sin una tabla aparte. */
+const gruposDeSistemas = (lista) => {
+  const m = new Map();
+  for (const c of lista) {
+    const n = String(c).split("-")[0];
+    if (!m.has(n)) m.set(n, []);
+    m.get(n).push(c);
+  }
+  return [...m.entries()].sort((a, b) => Number(a[0]) - Number(b[0]));
+};
 
 /* ---------------- Utilidades ---------------- */
 /* ---- Avisos del sistema (notificaciones) ----
@@ -11742,7 +11785,7 @@ const CaraLista = ({ p, size = 56, ring }) => {
    porque, definida dentro, se recrearía en cada render de la app entera y
    perdería el estado de "ha fallado" en cada tecla que se pulsara en
    cualquier otro sitio. */
-const PitchToken = ({ p, label, selected, accent, borderColor, textColor }) => {
+const PitchToken = ({ p, label, selected, accent, borderColor, textColor, sinFoto }) => {
   const [fallo, setFallo] = useState(false);
   /* La foto se queda también cuando la ficha está elegida. Antes se escondía
      -el fondo pasaba al color de acento y encima iba el dorsal-, y con el
@@ -11755,9 +11798,14 @@ const PitchToken = ({ p, label, selected, accent, borderColor, textColor }) => {
      del acento -blanco sobre negro en claro, negro sobre blanco en oscuro-,
      y lo que señala que está elegida es un aro alrededor, que se ve tenga
      foto o no. */
-  const conFoto = !!p?.photo && !fallo;
+  /* `sinFoto` es el balón parado: ahí la ficha lleva el dorsal y nada más
+     ("quita la imagen de los chicos deja el número solo", Edu, 16 nov 2026).
+     Once caras de carné a 44px apiladas en el área no se distinguen, y lo
+     que hay que leer de un vistazo -de quién es cada ficha y dónde se pone-
+     es justo el número, que así va grande y centrado. */
+  const conFoto = !!p?.photo && !fallo && !sinFoto;
   return (
-    <div className="relative w-11 h-11 rounded-full flex items-center justify-center font-display text-lg font-bold border-2 overflow-hidden"
+    <div className={`relative w-11 h-11 rounded-full flex items-center justify-center font-display ${sinFoto ? "text-xl" : "text-lg"} font-bold border-2 overflow-hidden`}
       style={{ background: selected ? accent : C.panel2, color: selected ? C.sobre : textColor, borderColor,
         ...(selected ? { boxShadow: `0 0 0 3px ${accent}` } : null) }}>
       {conFoto && (
@@ -13003,6 +13051,10 @@ export default function App() {
   const [lineup, setLineup] = useState(LINEUP_INIT);
   const [sysCode, setSysCode] = useState("4-3-3");
   const [sysCustom, setSysCustom] = useState("");
+  /* Qué grupo de sistemas está abierto ("3", "4", "5", "otro") o null. Se
+     entra con todos cerrados: doce botones sueltos se comían tres filas de
+     pantalla y lo que se busca es "con cuatro atrás", no "4-1-4-1". */
+  const [sysGrupo, setSysGrupo] = useState(null);
   const [slotPos, setSlotPos] = useState(SLOTS_433);
   /* La demarcación de un jugador ya no es un dato suyo: es el hueco que ocupa
      hoy en el campo. Antes cada ficha llevaba pegada una posición fija -que
@@ -14674,7 +14726,12 @@ export default function App() {
     if (!d.moved) return;
     const r = pitchRef.current.getBoundingClientRect();
     const x = clamp(((e.clientX - r.left) / r.width) * 100, 7, 93);
-    const y = clamp(((e.clientY - r.top) / r.height) * 100, 6, 94);
+    /* En el balón parado el tablero está estirado por delante, así que la
+       altura que da el dedo NO es la profundidad que se guarda: se deshace
+       el estirón antes de guardar (`yAbpInv`) y así una ficha arrastrada cae
+       donde la suelta el dedo. */
+    const alto = clamp(((e.clientY - r.top) / r.height) * 100, 0, 100);
+    const y = clamp(abpSit ? yAbpInv(alto) : alto, 6, 94);
     /* Preparando un córner se mueve la colocación de ESA situación; el dibujo
        del once no se toca, para que volver a él lo devuelva como estaba. */
     if (abpSit) setAbpPos((p) => ({ ...p, [abpSit]: { ...posDeAbp(abpSit), [d.id]: { ...posDeAbp(abpSit)[d.id], x, y } } }));
@@ -22462,18 +22519,22 @@ export default function App() {
                       nombres={Object.fromEntries(players.filter((x) => x.d != null && x.d !== "").map((x) => [String(x.d), x.n || ""]))}
                       acento={AC} t={t} C={C} />
                   ) : (
-                    <div className="relative -mx-4 sm:mx-0" style={{ aspectRatio: "400/340" }}>
+                    <div className="relative -mx-4 sm:mx-0" style={{ aspectRatio: `${ABP_ANCHO}/${ABP_ALTO}` }}>
                       <CampoAbp chalk={C.chalk} />
                       {Object.entries(pos).map(([slot, sl]) => {
                         const pj = players.find((x) => x.id === lineup[slot]);
                         const esMio = !!pj && pj.id === miId;
                         return (
-                          <div key={slot} className="absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center" style={{ left: `${sl.x}%`, top: `${sl.y}%` }}>
-                            <PitchToken p={pj} label={sl.label} selected={esMio} accent={AC} textColor={C.chalk}
+                          <div key={slot} className="absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center" style={{ left: `${sl.x}%`, top: `${yAbp(sl.y)}%` }}>
+                            <PitchToken p={pj} label={sl.label} selected={esMio} accent={AC} textColor={C.chalk} sinFoto
                               borderColor={esMio ? AC : colorLinea(sl.label)} />
+                            {/* `C.sobre` y no "#141414": con el tema claro el
+                                acento es negro, y el cartel del propio jugador
+                                -el único que va sobre el acento- se pintaba
+                                negro sobre negro. */}
                             <div className="mt-0.5 px-1 rounded text-[9px] max-w-[70px] truncate"
-                              style={{ background: esMio ? AC : "rgba(14,21,18,0.85)", color: esMio ? "#141414" : C.chalk, fontWeight: esMio ? 700 : 400 }}>
-                              {pj ? `${pj.d} ${pj.n.split(" ")[0]}` : sl.label}
+                              style={{ background: esMio ? AC : "rgba(14,21,18,0.85)", color: esMio ? C.sobre : C.chalk, fontWeight: esMio ? 700 : 400 }}>
+                              {pj ? pj.n.split(" ")[0] : sl.label}
                             </div>
                           </div>
                         );
@@ -23019,10 +23080,13 @@ export default function App() {
        que es de lo que se trata-, pero con el campo del córner y sin
        banquillo: en un balón parado lo que importa es quién está dentro del
        área y dónde, no la lista de suplentes. */
-    const dibujarAbp = (fotos, conFotos) => {
+    const dibujarAbp = () => {
       /* Apaisado, igual que el campo de la pantalla: la imagen que se manda
-         tiene que ser lo que el entrenador acaba de colocar, no otra cosa. */
-      const S = 2, pitchW = 400 * S, pitchH = 340 * S, headerH = 76, footerH = 56;
+         tiene que ser lo que el entrenador acaba de colocar, no otra cosa.
+         Sin fotos, también igual que en pantalla: en un balón parado la ficha
+         es el dorsal. De paso, un canvas sin imágenes de otro origen no se
+         puede "manchar", así que esta imagen sale siempre. */
+      const S = 2, pitchW = ABP_ANCHO * S, pitchH = ABP_ALTO * S, headerH = 76, footerH = 56;
       const w = pitchW, h = headerH + pitchH + footerH;
       const cv = document.createElement("canvas");
       cv.width = w; cv.height = h;
@@ -23034,7 +23098,9 @@ export default function App() {
       ctx.fillStyle = AC; ctx.font = "500 17px 'Barlow Condensed', sans-serif";
       ctx.fillText(`${session.team?.name || ""} · ${nombreAbp(t, abpSit)}`, 18, 54);
       const py = headerH;
-      const px = (pct) => (pct / 100) * pitchW, pyy = (pct) => py + (pct / 100) * pitchH;
+      const px = (pct) => (pct / 100) * pitchW;
+      /* La misma cuenta que el campo de la pantalla: a lo largo, por `yAbp`. */
+      const pyy = (pct) => py + (yAbp(pct) / 100) * pitchH;
       for (let i = 0; i < 8; i++) {
         ctx.fillStyle = i % 2 ? "#17251D" : "#152219";
         ctx.fillRect(0, py + (i * pitchH) / 8, pitchW, pitchH / 8);
@@ -23043,40 +23109,29 @@ export default function App() {
          para que la imagen sea lo que el entrenador tiene delante. */
       ctx.strokeStyle = "rgba(232,237,230,0.5)"; ctx.lineWidth = 1.6 * S;
       ctx.strokeRect(px(2), pyy(7.6), px(98) - px(2), pyy(97.6) - pyy(7.6));
-      ctx.strokeRect(px(42.5), pyy(3.5), px(57.5) - px(42.5), pyy(7.6) - pyy(3.5));
+      ctx.strokeRect(px(40), pyy(0.8), px(60) - px(40), pyy(7.6) - pyy(0.8));
       ctx.strokeRect(px(11.5), pyy(7.6), px(88.5) - px(11.5), pyy(51.2) - pyy(7.6));
       ctx.strokeRect(px(32.5), pyy(7.6), px(67.5) - px(32.5), pyy(22.4) - pyy(7.6));
       ctx.beginPath(); ctx.arc(px(50), pyy(36.8), 3 * S, 0, Math.PI * 2); ctx.fillStyle = "rgba(232,237,230,0.5)"; ctx.fill();
-      /* El arco del área: centro en el punto de penalti y las puntas apoyadas
-         en el borde del área, igual que en pantalla. */
-      ctx.beginPath(); ctx.arc(px(50), pyy(36.8), pitchW * 0.2125, 0.197 * Math.PI, 0.803 * Math.PI); ctx.stroke();
-      ctx.beginPath(); ctx.arc(px(2), pyy(7.6), px(4.5), 0, 0.5 * Math.PI); ctx.stroke();
-      ctx.beginPath(); ctx.arc(px(98), pyy(7.6), px(4.5), 0.5 * Math.PI, Math.PI); ctx.stroke();
+      /* El arco del área y las esquinas: centro en el punto de penalti y las
+         puntas apoyadas en el borde del área, igual que en pantalla. Son
+         elipses porque el tablero va estirado por delante. */
+      const rArcoY = (ABP_R_ARCO / 100) * pitchH, rArcoX = (ABP_R_ARCO_X / 100) * pitchW;
+      const aArco = Math.asin(Math.min(1, (pyy(51.2) - pyy(36.8)) / rArcoY));
+      ctx.beginPath(); ctx.ellipse(px(50), pyy(36.8), rArcoX, rArcoY, 0, aArco, Math.PI - aArco); ctx.stroke();
+      const rEsqY = (ABP_R_ESQ / 100) * pitchH, rEsqX = (ABP_R_ESQ_X / 100) * pitchW;
+      ctx.beginPath(); ctx.ellipse(px(2), pyy(7.6), rEsqX, rEsqY, 0, 0, 0.5 * Math.PI); ctx.stroke();
+      ctx.beginPath(); ctx.ellipse(px(98), pyy(7.6), rEsqX, rEsqY, 0, 0.5 * Math.PI, Math.PI); ctx.stroke();
       Object.entries(posDeAbp(abpSit)).forEach(([id, sl]) => {
         const p = players.find((x) => x.id === lineupView[id]);
         const cx = px(sl.x), cy = pyy(sl.y), r = pitchW * 0.049;
-        const foto = conFotos && p ? fotos.get(p.id) : null;
-        if (foto) {
-          ctx.save();
-          ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.clip();
-          ctx.drawImage(foto, cx - r, cy - r, r * 2, r * 2);
-          ctx.restore();
-          ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2);
-          ctx.strokeStyle = AC; ctx.lineWidth = 2; ctx.stroke();
-          ctx.beginPath(); ctx.arc(cx + r * 0.62, cy + r * 0.62, r * 0.46, 0, Math.PI * 2);
-          ctx.fillStyle = "#0E1512"; ctx.fill();
-          ctx.fillStyle = AC; ctx.font = `700 ${Math.round(r * 0.62)}px 'Barlow Condensed', sans-serif`;
-          ctx.textAlign = "center"; ctx.textBaseline = "middle";
-          ctx.fillText(String(p.d), cx + r * 0.62, cy + r * 0.66);
-        } else {
-          ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2);
-          ctx.fillStyle = p ? "#E8EDE6" : "rgba(14,21,18,0.75)"; ctx.fill();
-          ctx.strokeStyle = p ? AC : "rgba(232,237,230,0.5)"; ctx.lineWidth = 2; ctx.stroke();
-          ctx.fillStyle = p ? "#0E1512" : "rgba(232,237,230,0.75)";
-          ctx.font = `700 ${Math.round(r * 0.95)}px 'Barlow Condensed', sans-serif`;
-          ctx.textAlign = "center"; ctx.textBaseline = "middle";
-          ctx.fillText(p ? String(p.d) : sl.label, cx, cy + 1);
-        }
+        ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2);
+        ctx.fillStyle = p ? "#E8EDE6" : "rgba(14,21,18,0.75)"; ctx.fill();
+        ctx.strokeStyle = p ? AC : "rgba(232,237,230,0.5)"; ctx.lineWidth = 2; ctx.stroke();
+        ctx.fillStyle = p ? "#0E1512" : "rgba(232,237,230,0.75)";
+        ctx.font = `700 ${Math.round(r * 0.95)}px 'Barlow Condensed', sans-serif`;
+        ctx.textAlign = "center"; ctx.textBaseline = "middle";
+        ctx.fillText(p ? String(p.d) : sl.label, cx, cy + 1);
         ctx.textBaseline = "alphabetic";
         if (p) {
           ctx.fillStyle = "#E8EDE6"; ctx.font = "500 14px 'Barlow Condensed', sans-serif";
@@ -23197,7 +23252,9 @@ export default function App() {
            a las demás. El riesgo real está más adelante, al exportar. */
         const idsVisibles = [...new Set([...Object.values(lineupView), ...banquillo.map((p) => p.id)])].filter(Boolean);
         const fotos = new Map();
-        if (idsVisibles.length) {
+        /* En un balón parado la imagen no lleva fotos, así que no hay nada
+           que esperar: once descargas para nada retrasaban el compartir. */
+        if (idsVisibles.length && !abpSit) {
           const cargas = await Promise.all(idsVisibles.map((id) => new Promise((resolve) => {
             const jugador = players.find((x) => x.id === id);
             if (!jugador?.photo) { resolve([id, null]); return; }
@@ -23209,11 +23266,11 @@ export default function App() {
           })));
           cargas.forEach(([id, img]) => { if (img) fotos.set(id, img); });
         }
-        let blob = await intentarBlob(abpSit ? dibujarAbp(fotos, true) : dibujarAlineacion(fotos, true, banquillo));
+        let blob = await intentarBlob(abpSit ? dibujarAbp() : dibujarAlineacion(fotos, true, banquillo));
         /* Canvas contaminado (u otro fallo con las fotos): se repite el
            dibujo entero sin ninguna, en un canvas nuevo, para que compartir
            siga funcionando igual que antes de intentarlo. */
-        if (!blob) blob = await intentarBlob(abpSit ? dibujarAbp(fotos, false) : dibujarAlineacion(fotos, false, banquillo));
+        if (!blob) blob = await intentarBlob(abpSit ? dibujarAbp() : dibujarAlineacion(fotos, false, banquillo));
         if (!blob) { setLnImgBusy(false); setLnImgMsg(t("ln.shareImageFail")); return; }
         const equipoEnElNombre = (session.team?.name || "equipo").replace(/\s+/g, "-");
         const nombre = abpSit
@@ -23321,21 +23378,52 @@ export default function App() {
           )}
           {!abpSit && (
           <div className="flex flex-wrap items-center gap-1.5 mb-2">
-            {(session.team?.f7 ? SYS_F7 : SYS_F11).map((c) => (
-              <button key={c} onClick={() => applySystem(c)} className="text-xs px-2 py-1 rounded-lg border font-display"
-                style={{ borderColor: sysCode === c ? AC : C.line, background: sysCode === c ? AC : "transparent", color: sysCode === c ? "#141414" : C.dim }}>
-                {c}
-              </button>
-            ))}
-            <div className="flex items-center gap-1">
-              <input value={sysCustom} onChange={(e) => setSysCustom(e.target.value)}
-                onKeyDown={(e) => { if (e.key === "Enter" && applySystem(sysCustom)) setSysCustom(""); }}
-                placeholder={t("ln.other")} className="text-xs px-2 py-1 rounded-lg border bg-transparent w-28"
-                style={{ borderColor: C.line, color: C.chalk }} />
-              <button onClick={() => { if (applySystem(sysCustom)) setSysCustom(""); }}
-                className="text-xs px-2 py-1 rounded-lg border" style={{ borderColor: AC, color: AC }}>{t("ln.apply")}</button>
-            </div>
+            {/* Cerrado de salida: se ve una fila de grupos -tres atrás,
+                cuatro atrás, cinco atrás- en vez de los doce sistemas. Al
+                pulsar uno se abren los suyos; el grupo que contiene el
+                sistema puesto va marcado, para no tener que abrirlos todos
+                buscando cuál es. */}
+            {gruposDeSistemas(session.team?.f7 ? SYS_F7 : SYS_F11).map(([n, lista]) => {
+              const abierto = sysGrupo === n;
+              const esElPuesto = lista.includes(sysCode);
+              return (
+                <button key={n} onClick={() => setSysGrupo(abierto ? null : n)} aria-expanded={abierto}
+                  className="text-xs px-2.5 py-1 rounded-lg border font-display"
+                  style={{ borderColor: abierto || esElPuesto ? AC : C.line, background: abierto ? AC : "transparent",
+                    color: abierto ? C.sobre : esElPuesto ? AC : C.dim }}>
+                  {t("ln.sysBack").replace("{n}", n)}{abierto ? " ▾" : ""}
+                </button>
+              );
+            })}
+            <button onClick={() => setSysGrupo(sysGrupo === "otro" ? null : "otro")} aria-expanded={sysGrupo === "otro"}
+              className="text-xs px-2.5 py-1 rounded-lg border font-display"
+              style={{ borderColor: sysGrupo === "otro" ? AC : C.line, background: sysGrupo === "otro" ? AC : "transparent",
+                color: sysGrupo === "otro" ? C.sobre : C.dim }}>
+              {t("ln.other")}{sysGrupo === "otro" ? " ▾" : ""}
+            </button>
           </div>
+          )}
+          {!abpSit && sysGrupo && sysGrupo !== "otro" && (
+            <div className="flex flex-wrap items-center gap-1.5 mb-2">
+              {(gruposDeSistemas(session.team?.f7 ? SYS_F7 : SYS_F11).find(([n]) => n === sysGrupo)?.[1] || []).map((c) => (
+                <button key={c} onClick={() => { applySystem(c); setSysGrupo(null); }}
+                  className="text-xs px-2.5 py-1 rounded-lg border font-display"
+                  style={{ borderColor: sysCode === c ? AC : C.line, background: sysCode === c ? AC : "transparent", color: sysCode === c ? C.sobre : C.chalk }}>
+                  {c}
+                </button>
+              ))}
+            </div>
+          )}
+          {!abpSit && sysGrupo === "otro" && (
+            <div className="flex items-center gap-1 mb-2">
+              <input value={sysCustom} onChange={(e) => setSysCustom(e.target.value)}
+                onKeyDown={(e) => { if (e.key === "Enter" && applySystem(sysCustom)) { setSysCustom(""); setSysGrupo(null); } }}
+                placeholder={t("ln.otherPh")} aria-label={t("ln.other")}
+                className="text-xs px-2 py-1 rounded-lg border bg-transparent w-32"
+                style={{ borderColor: C.line, color: C.chalk }} />
+              <button onClick={() => { if (applySystem(sysCustom)) { setSysCustom(""); setSysGrupo(null); } }}
+                className="text-xs px-2.5 py-1 rounded-lg border font-display" style={{ borderColor: AC, color: AC }}>{t("ln.apply")}</button>
+            </div>
           )}
           {/* ---- Colocaciones guardadas ----
              Hasta cinco de cada una de las seis situaciones: el córner al
@@ -23501,7 +23589,7 @@ export default function App() {
               Sin las llaves esto NO es un comentario de JSX: es texto, y se
               veía escrito encima del campo en la pantalla de Alineación
               (v2.93.3 a v2.94.1). */}
-          <div ref={pitchRef} className={`relative touch-pan-y select-none ${abpSit ? "-mx-4 sm:mx-0" : "w-full"}`} style={{ aspectRatio: abpSit ? "400/340" : "3/4" }} onPointerMove={onPitchMove} onPointerUp={() => onSlotUp(null)}>
+          <div ref={pitchRef} className={`relative touch-pan-y select-none ${abpSit ? "-mx-4 sm:mx-0" : "w-full"}`} style={{ aspectRatio: abpSit ? `${ABP_ANCHO}/${ABP_ALTO}` : "3/4" }} onPointerMove={onPitchMove} onPointerUp={() => onSlotUp(null)}>
             {abpSit ? <CampoAbp chalk={C.chalk} /> : (
               <svg viewBox="0 0 300 400" className="absolute inset-0 w-full h-full pointer-events-none">
                 {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
@@ -23524,20 +23612,20 @@ export default function App() {
                 /* `touch-none` solo en la ficha y solo si se puede editar:
                    es lo único que hay que poder arrastrar hacia arriba y
                    hacia abajo sin que la página se vaya detrás. */
-                <div key={id} onPointerDown={(e) => onSlotDown(e, id)} onPointerUp={() => onSlotUp(id)} className={`absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center ${can("editLineup") ? "touch-none" : ""}`} style={{ left: `${s.x}%`, top: `${s.y}%`, cursor: can("editLineup") ? "grab" : "default" }}>
-                  <PitchToken p={p} label={s.label} selected={sel} accent={AC} textColor={C.chalk}
+                <div key={id} onPointerDown={(e) => onSlotDown(e, id)} onPointerUp={() => onSlotUp(id)} className={`absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center ${can("editLineup") ? "touch-none" : ""}`} style={{ left: `${s.x}%`, top: `${abpSit ? yAbp(s.y) : s.y}%`, cursor: can("editLineup") ? "grab" : "default" }}>
+                  <PitchToken p={p} label={s.label} selected={sel} accent={AC} textColor={C.chalk} sinFoto={!!abpSit}
                     borderColor={sel ? AC : sugerido ? AC : p && hayConvocatoria && !called.has(p.id) ? C.warn : p && p.st !== "disponible" ? stColor(p.st) : colorLinea(s.label)} />
                   {/* La demarcación (s.label, p.ej. "DFC") se mostraba solo
                       mientras el puesto estaba vacío: en cuanto se asignaba un
                       jugador, desaparecía y solo quedaba el nombre. Se deja
                       siempre visible junto al nombre. */}
-                  {/* El cartel de debajo. En un córner lleva el dorsal DELANTE
-                      del nombre: una foto de carné a 44px no siempre deja
-                      reconocer al jugador, y el número sí. Va en una sola
-                      línea, recortado, y el campo se ha hecho más alto para
-                      que el cartel de una ficha no acabe debajo del círculo
-                      de la siguiente. En el campo entero no hace falta: ahí
-                      sobra sitio y cabe también la demarcación. */}
+                  {/* El cartel de debajo. En un balón parado lleva solo el
+                      nombre: el dorsal ya va dentro de la ficha, grande, así
+                      que repetirlo aquí solo gastaba los 70px que hay para
+                      el nombre. Va en una sola línea, recortado, y el campo
+                      se ha hecho más alto para que el cartel de una ficha no
+                      acabe debajo del círculo de la siguiente. En el campo
+                      entero cabe también la demarcación. */}
                   {/* Un punto en la ficha cuando ese puesto ya tiene misión:
                       de un vistazo se ve a quién falta por decirle algo, sin
                       escribir texto encima del campo -no cabe-. La misión
@@ -23546,7 +23634,7 @@ export default function App() {
                     <span className="absolute -top-0.5 -left-0.5 w-3 h-3 rounded-full border-2" style={{ background: AC, borderColor: C.panel }} />
                   )}
                   <div className={`mt-0.5 px-1 rounded whitespace-nowrap ${abpSit ? "text-[9px] max-w-[70px] truncate" : "text-[10px]"}`} style={{ background: "rgba(14,21,18,0.85)", color: C.chalk }}>
-                    {p ? (abpSit ? `${p.d} ${p.n.split(" ")[0]}` : `${p.n.split(" ")[0]} · ${s.label}`) : s.label}
+                    {p ? (abpSit ? p.n.split(" ")[0] : `${p.n.split(" ")[0]} · ${s.label}`) : s.label}
                     {!abpSit && p && capitanes.includes(p.id) && <span className="ml-1 font-display font-semibold" style={{ color: AC }}>{t("ln.captainShort")}</span>}
                   </div>
                 </div>

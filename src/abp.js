@@ -157,6 +157,58 @@ export const abpSoloPos = (pos) => {
   return out;
 };
 
+/* ---- El tablero, ampliado por delante ----
+   El balón parado se juega en el área, y en el tablero el área ocupaba 148
+   de los 340 de alto: la portería salía como una raya de 14 unidades y los
+   palos, el área pequeña y el punto de penalti se amontonaban arriba ("en
+   las abps... amplía la imagen de la portería y del área", Edu, 16 nov
+   2026).
+   Se amplía SIN tocar las coordenadas: una ficha sigue guardándose en el
+   mismo tanto por ciento de profundidad que antes -0% es el fondo de la
+   portería, 51,2% el borde del área, 100% pasado el medio campo-, lo que
+   cambia es a qué altura del dibujo se pinta ese tanto por ciento. El
+   tablero pasa a medir 420 de alto en vez de 340 y esas 80 unidades nuevas
+   se las queda entera la mitad de delante: del fondo al borde del área hay
+   ahora 254 unidades en vez de 174 -la portería y las dos áreas se ven un
+   46% más grandes-, y de ahí hacia atrás quedan las mismas 166 de siempre.
+   Como el ancho no cambia, una unidad del dibujo mide lo mismo en pantalla
+   que antes: nadie pierde sitio, los de atrás se quedan donde estaban y los
+   del área se separan. Por eso vale `yAbp` para pintar y `yAbpInv` para
+   leer el dedo, y por eso los radios hay que estirarlos: un círculo del
+   campo pasa a ser una elipse en el dibujo.
+   Lo que NO se toca: `zonaAbp`, `profundidadAbp` y las seis tablas siguen
+   hablando en profundidad de campo, así que lo guardado sigue valiendo y la
+   vista 3D sigue a escala. */
+export const ABP_ANCHO = 400, ABP_ALTO = 420;
+export const ABP_CORTE = 51.2;   /* el borde del área, en profundidad */
+export const ABP_BORDE = 254;    /* …y a qué altura del dibujo cae */
+export const ABP_K = ABP_BORDE / ABP_CORTE;   /* unidades de dibujo por 1% de profundidad, delante del área */
+/* Profundidad (0-100) → altura en el tablero, en tanto por ciento. */
+export const yAbp = (y) => {
+  const v = Number(y);
+  if (!Number.isFinite(v)) return 0;
+  const u = v <= ABP_CORTE
+    ? (v / ABP_CORTE) * ABP_BORDE
+    : ABP_BORDE + ((v - ABP_CORTE) / (100 - ABP_CORTE)) * (ABP_ALTO - ABP_BORDE);
+  return (u / ABP_ALTO) * 100;
+};
+/* Lo mismo, en unidades del dibujo: es lo que pide el SVG. */
+export const yAbpU = (y) => (yAbp(y) / 100) * ABP_ALTO;
+/* Y al revés, que es lo que hace falta al arrastrar: el dedo da una altura
+   del tablero y hay que guardar la profundidad. */
+export const yAbpInv = (altura) => {
+  const u = (Number(altura) / 100) * ABP_ALTO;
+  if (!Number.isFinite(u)) return 0;
+  return u <= ABP_BORDE
+    ? (u / ABP_BORDE) * ABP_CORTE
+    : ABP_CORTE + ((u - ABP_BORDE) / (ABP_ALTO - ABP_BORDE)) * (100 - ABP_CORTE);
+};
+/* Los dos radios del dibujo, en tanto por ciento de cada lado del tablero.
+   El de a lo largo va ya estirado: el arco del área y las esquinas se
+   pintan como elipses para que sigan tocando donde tocaban. */
+export const ABP_R_ARCO_X = 21.25, ABP_R_ARCO = ((25 * ABP_K) / ABP_ALTO) * 100;
+export const ABP_R_ESQ_X = 4.5, ABP_R_ESQ = ((5.3 * ABP_K) / ABP_ALTO) * 100;
+
 /* Dónde está una ficha, dicho con palabras. Un jugador que abre su ficha no
    quiere interpretar un punto en un dibujo: quiere leer "segundo palo".
    Las referencias son las del campo de arriba: la línea de gol en el 7,6%,
