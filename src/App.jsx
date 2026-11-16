@@ -6814,7 +6814,7 @@ function WbMenu({ label, icon, count, AC, wide = false, children }) {
     <div className="relative" ref={box}>
       <button onClick={() => setOpen((v) => !v)} aria-expanded={open} aria-haspopup="true"
         className="h-9 px-2.5 shrink-0 rounded-lg border text-xs font-display uppercase tracking-wide inline-flex items-center gap-1"
-        style={{ borderColor: open ? AC : C.line, background: open ? AC : C.panel2, color: open ? "#141414" : C.chalk }}>
+        style={{ borderColor: open ? AC : C.line, background: open ? AC : C.panel2, color: open ? C.sobre : C.chalk }}>
         <span>{icon}</span>
         {/* La etiqueta también en el móvil: un icono suelto no dice si eso son
             los ejercicios, los ABP o las jugadas, y con la fila deslizante hay
@@ -9040,7 +9040,7 @@ function Whiteboard({ AC, lang, teamId, teamRec, isF7, pendingExId, onConsumePen
         {tools.map(([k, lbl, ic]) => (
           <button key={k} onClick={() => setTool(k)} title={lbl} aria-label={lbl} aria-pressed={tool === k}
             className="h-9 min-w-9 shrink-0 px-1.5 rounded-lg border text-xs font-display uppercase tracking-wide inline-flex items-center justify-center gap-1"
-            style={{ borderColor: tool === k ? AC : C.line, background: tool === k ? AC : C.panel2, color: tool === k ? "#141414" : C.chalk }}>
+            style={{ borderColor: tool === k ? AC : C.line, background: tool === k ? AC : C.panel2, color: tool === k ? C.sobre : C.chalk }}>
             <span>{ic}</span><span className="hidden lg:inline">{lbl}</span>
           </button>
         ))}
@@ -9124,14 +9124,14 @@ function Whiteboard({ AC, lang, teamId, teamRec, isF7, pendingExId, onConsumePen
               <div className="flex gap-1 p-2 pb-0">
                 {[["ata", t("w.abpAttack")], ["def", t("w.abpDefense")]].map(([k, l]) => (
                   <button key={k} onClick={() => setAbpFase(k)} className="flex-1 text-xs px-2 py-1.5 rounded-lg border"
-                    style={{ borderColor: abpFase === k ? AC : C.line, background: abpFase === k ? AC : "transparent", color: abpFase === k ? "#141414" : C.chalk }}>{l}</button>
+                    style={{ borderColor: abpFase === k ? AC : C.line, background: abpFase === k ? AC : "transparent", color: abpFase === k ? C.sobre : C.chalk }}>{l}</button>
                 ))}
               </div>
               <div className="px-2.5 py-1 mt-1 text-[10px] font-display uppercase tracking-widest" style={{ color: AC, background: C.panel2 }}>{t("w.abpSide")}</div>
               <div className="flex gap-1 p-2">
                 {[["izq", t("w.abpLeft")], ["der", t("w.abpRight")]].map(([k, l]) => (
                   <button key={k} onClick={() => setAbpLado(k)} className="flex-1 text-xs px-2 py-1.5 rounded-lg border"
-                    style={{ borderColor: abpLado === k ? AC : C.line, background: abpLado === k ? AC : "transparent", color: abpLado === k ? "#141414" : C.chalk }}>{l}</button>
+                    style={{ borderColor: abpLado === k ? AC : C.line, background: abpLado === k ? AC : "transparent", color: abpLado === k ? C.sobre : C.chalk }}>{l}</button>
                 ))}
               </div>
               <div className="px-2.5 py-1 text-[10px] font-display uppercase tracking-widest" style={{ color: AC, background: C.panel2 }}>{t("w.abpPlace")}</div>
@@ -9265,7 +9265,7 @@ function Whiteboard({ AC, lang, teamId, teamRec, isF7, pendingExId, onConsumePen
                 <div className="grid grid-cols-2 gap-1 mb-3">
                   {Object.entries(PITCH_VIEWS).map(([k, v]) => (
                     <button key={k} onClick={() => setPitchView(k)} className="text-xs px-2 py-1.5 rounded-lg border"
-                      style={{ borderColor: pitchView === k ? AC : C.line, background: pitchView === k ? AC : "transparent", color: pitchView === k ? "#141414" : C.chalk }}>
+                      style={{ borderColor: pitchView === k ? AC : C.line, background: pitchView === k ? AC : "transparent", color: pitchView === k ? C.sobre : C.chalk }}>
                       {v.label}
                     </button>
                   ))}
@@ -9296,7 +9296,7 @@ function Whiteboard({ AC, lang, teamId, teamRec, isF7, pendingExId, onConsumePen
                   <button onClick={() => goStep(stepIdx + 1)} disabled={stepIdx >= steps.length - 1} className="w-8 h-8 rounded-lg border disabled:opacity-30" style={{ borderColor: C.line, color: C.chalk }}>›</button>
                 </div>
                 <button onClick={() => setPlaying((v) => !v)} className="w-full h-8 rounded-lg border text-xs font-semibold mb-1"
-                  style={{ borderColor: playing ? AC : C.line, background: playing ? AC : "transparent", color: playing ? "#141414" : C.chalk }}>
+                  style={{ borderColor: playing ? AC : C.line, background: playing ? AC : "transparent", color: playing ? C.sobre : C.chalk }}>
                   {playing ? t("w.pause") : t("w.play")}
                 </button>
                 <button onClick={clearSteps} className="w-full h-8 rounded-lg border text-xs" style={{ borderColor: C.line, color: C.red }}>{t("w.deleteSequence")}</button>
@@ -9321,7 +9321,7 @@ function Whiteboard({ AC, lang, teamId, teamRec, isF7, pendingExId, onConsumePen
               ■ {String(Math.floor(recSecs / 60)).padStart(2, "0")}:{String(recSecs % 60).padStart(2, "0")}
             </button>}
         <button onClick={() => setFull((f) => !f)} className={btn + " font-semibold ml-auto"}
-          style={{ background: full ? C.red : AC, color: full ? "#fff" : "#141414", borderColor: full ? C.red : AC }}>
+          style={{ background: full ? C.red : AC, color: full ? "#fff" : C.sobre, borderColor: full ? C.red : AC }}>
           {full ? "✕" : "⛶"}<span className="hidden sm:inline">{full ? t("w.exit") : t("w.fullscreen")}</span>
         </button>
       </div>
@@ -9515,7 +9515,7 @@ function Whiteboard({ AC, lang, teamId, teamRec, isF7, pendingExId, onConsumePen
         <div className="flex gap-1">
           {[["f11", t("w.f11")], ["f7", t("w.f7")]].map(([k, lbl]) => (
             <button key={k} onClick={() => setFormat(k)} className="text-xs px-2.5 py-1.5 rounded-lg border font-display uppercase tracking-wide"
-              style={{ borderColor: format === k ? AC : C.line, background: format === k ? AC : "transparent", color: format === k ? "#141414" : C.dim }}>{lbl}</button>
+              style={{ borderColor: format === k ? AC : C.line, background: format === k ? AC : "transparent", color: format === k ? C.sobre : C.dim }}>{lbl}</button>
           ))}
         </div>
         <div>
@@ -11744,10 +11744,22 @@ const CaraLista = ({ p, size = 56, ring }) => {
    cualquier otro sitio. */
 const PitchToken = ({ p, label, selected, accent, borderColor, textColor }) => {
   const [fallo, setFallo] = useState(false);
-  const conFoto = !!p?.photo && !fallo && !selected;
+  /* La foto se queda también cuando la ficha está elegida. Antes se escondía
+     -el fondo pasaba al color de acento y encima iba el dorsal-, y con el
+     tema claro ese acento es NEGRO y el dorsal se pintaba en #141414: negro
+     sobre negro, contraste 1,14:1. La ficha elegida se veía como un círculo
+     apagado sin número ni cara, igual que un hueco vacío, así que al tocar a
+     un titular parecía que se hubiera caído del once ("si cojo a un titular
+     aparece como suplente", Edu, 16 nov 2026).
+     Ahora el dorsal va en `C.sobre`, que es el color pensado para ir encima
+     del acento -blanco sobre negro en claro, negro sobre blanco en oscuro-,
+     y lo que señala que está elegida es un aro alrededor, que se ve tenga
+     foto o no. */
+  const conFoto = !!p?.photo && !fallo;
   return (
     <div className="relative w-11 h-11 rounded-full flex items-center justify-center font-display text-lg font-bold border-2 overflow-hidden"
-      style={{ background: selected ? accent : C.panel2, color: selected ? "#141414" : textColor, borderColor }}>
+      style={{ background: selected ? accent : C.panel2, color: selected ? C.sobre : textColor, borderColor,
+        ...(selected ? { boxShadow: `0 0 0 3px ${accent}` } : null) }}>
       {conFoto && (
         <img src={p.photo} alt="" onError={() => setFallo(true)} className="absolute inset-0 w-full h-full object-cover" />
       )}
@@ -16801,7 +16813,7 @@ export default function App() {
                   </button>
                   <button onClick={() => setTeamEdit({ ...tm })} className="px-3 py-1.5 rounded-lg border" style={{ borderColor: C.line, color: C.chalk }}>{t("tm.editBtn")}</button>
                   <button onClick={() => (esMasterDemo ? setTeamMsg(t("tm.demoWorkNote")) : (() => { setSession((sx) => ({ ...sx, team: tm, club: tm.club || sx.club, comunidad: tm.comunidad || sx.comunidad })); setCrest(tm.crest || null); setTab("inicio"); })())}
-                    className="px-3 py-1.5 rounded-lg font-semibold" style={{ background: session.team?.rec === tm.rec ? C.line : AC, color: session.team?.rec === tm.rec ? C.dim : "#141414" }}>
+                    className="px-3 py-1.5 rounded-lg font-semibold" style={{ background: session.team?.rec === tm.rec ? C.line : AC, color: session.team?.rec === tm.rec ? C.dim : C.sobre }}>
                     {session.team?.rec === tm.rec ? t("tm.inUse") : t("tm.workWithThis")}
                   </button>
                 </div>

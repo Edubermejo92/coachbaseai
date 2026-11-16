@@ -135,6 +135,21 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   sigue valiendo para los siguientes partidos hasta que se desactiva (y entonces caen las
   suscripciones). En iPhone el aviso solo llega con la página añadida a la pantalla de inicio.
 
+## La ficha elegida se veía como un hueco vacío (v2.99.1)
+- «Si cojo a un titular aparece como suplente» (Edu, 16 nov 2026). No se caía del once: es que al
+  elegirla **la ficha se apagaba**. `PitchToken` escondía la foto al seleccionar y pintaba el
+  fondo con el color de acento y el dorsal en `#141414` fijo. Con el tema claro ese acento es
+  NEGRO: negro sobre negro, **contraste 1,14:1**. Quedaba un círculo oscuro sin cara ni número,
+  igual que un puesto vacío.
+- Arreglado: el dorsal va en `C.sobre` -el color pensado para ir encima del acento, blanco sobre
+  negro en claro y negro sobre blanco en oscuro, **21:1 en los dos**-, la foto se queda también
+  al elegirla, y lo que señala que está elegida es un aro alrededor, que se ve haya foto o no.
+- El mismo fallo estaba en **otros nueve botones** que pintan `#141414` sobre un fondo de acento
+  (la pizarra, las vistas del campo, el formato de la convocatoria, elegir equipo…): todos pasan
+  a `C.sobre`. Se veían bien en oscuro y eran ilegibles en claro, que es por lo que había pasado
+  desapercibido. Quedan los `#141414` que van sobre colores fijos (el amarillo de los avisos) y
+  los dos cálculos de tinta por luminancia, que ya hacen lo correcto.
+
 ## Alineación al estilo PES y la misión de cada puesto en el balón parado (v2.99.0)
 - Pedido por Edu (16 nov 2026): elegir jugadores y su posición más fácil, «parecido al Pro
   Evolution 6», y que esa posición tenga una misión en los balones parados. Elegido con él:
