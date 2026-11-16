@@ -48,6 +48,15 @@ await call("?id=" + r.body.rec, { method: "PATCH", token: tClub, body: { estado:
 r = await call("?res=actas&team=recSEN", { token: tFam });
 dice("la familia NO lee las actas de todo el equipo", r.status === 403, String(r.status));
 
+/* Ni las convocatorias: llevan la lista entera y, desde el 16 nov 2026, el
+   motivo por el que se quedó fuera cada uno -decisión técnica, lesión,
+   sanción, viaje-, que es cosa del cuerpo técnico. Su hijo ve su propio sí
+   o no por ?res=hijo, sin la lista ni los motivos de nadie. */
+r = await call("?res=convocatorias&team=recSEN", { token: tFam });
+dice("ni las convocatorias del equipo", r.status === 403, String(r.status));
+r = await call("?res=convocatorias&team=recSEN", { token: tEnt });
+dice("pero el cuerpo técnico sí", r.status === 200, String(r.status));
+
 r = await call("?res=hijo", { token: tFam });
 const ps = r.body.partidos || [];
 dice("en la ficha de su hijo ve sus partidos", r.body.ok === true && ps.length === 1, JSON.stringify(r.body.partidos));

@@ -1817,7 +1817,14 @@ const atender = async (req: Request) => {
        apunta en Convocatorias (una por equipo y día): así el aviso de
        "convocatoria pendiente" sabe que ya está hecha, y queda en el
        histórico. Se escribe por la API de siempre: vale con Airtable y con
-       Supabase. */
+       Supabase.
+       Desde el 16 nov 2026 se guarda además POR QUÉ no fue cada uno de los
+       que se quedaron fuera. No es un adorno del histórico: es lo que hace
+       falta para que, al preparar la convocatoria siguiente, el entrenador
+       vea de un vistazo quién se quedó fuera la semana pasada y por qué
+       -descartado, de viaje, lesionado o sancionado-. Esa información es del
+       cuerpo técnico, por eso esta tabla dejó de poder leerla una familia
+       (ver el GET de los recursos genéricos). */
     if (res === "convocatoria-enviada") {
       if (req.method !== "POST") return j({ error: "Petición no soportada" }, 400);
       const b = await req.json().catch(() => ({}));
@@ -1825,6 +1832,17 @@ const atender = async (req: Request) => {
       if (!ES_REC.test(team) || !(await puedeEquipo(team))) return j({ ok: false, reason: "no_autorizado" }, 403);
       const fecha = String(b.fecha || "");
       if (!/^\d{4}-\d{2}-\d{2}$/.test(fecha)) return j({ ok: false, reason: "fecha_no_valida" }, 400);
+      /* Solo los cuatro motivos que ofrece la app, y solo para jugadores de
+         verdad: lo que llegue con otra forma se descarta en silencio en vez
+         de guardarse tal cual, que es lo que luego se pinta en pantalla. */
+      const MOTIVOS = ["tecnica", "lesion", "sancion", "viaje"];
+      const descartes: Record<string, string> = {};
+      const dIn = b.descartes;
+      if (dIn && typeof dIn === "object" && !Array.isArray(dIn)) {
+        for (const [rec, motivo] of Object.entries(dIn).slice(0, 60)) {
+          if (ES_REC.test(rec) && MOTIVOS.includes(String(motivo))) descartes[rec] = String(motivo);
+        }
+      }
       const fields: Record<string, unknown> = {
         Referencia: `${fecha} vs ${String(b.rival || "").trim()}`.slice(0, 80),
         Fecha: fecha,
@@ -1832,6 +1850,7 @@ const atender = async (req: Request) => {
         Rival: String(b.rival || "").slice(0, 120),
         Lugar: String(b.lugar || "").slice(0, 200),
         Convocados: (Array.isArray(b.convocados) ? b.convocados : []).map(String).filter((x: string) => ES_REC.test(x)).slice(0, 60),
+        Descartes: JSON.stringify(descartes),
         Equipo: [team],
       };
       const previas = (await filasDeEquipo("convocatorias", team)).filter((r: any) => r.fields?.Fecha === fecha);
@@ -2455,9 +2474,13 @@ const atender = async (req: Request) => {
       if (req.method === "GET") {
         if (!team) return j({ error: "falta_equipo" }, 400);
         /* Las actas llevan los minutos, goles y tarjetas de TODOS los
-           convocados: una familia solo ve los de su hijo, por ?res=hijo. */
-        if (res === "actas" && esSoloLecturaSesion) {
-          return j({ error: "no_autorizado", reason: "Las familias ven los partidos de su hijo en su ficha." }, 403);
+           convocados, y las convocatorias llevan la lista entera y el motivo
+           por el que se quedó fuera cada uno -decisión técnica, lesión,
+           sanción-, que es información del cuerpo técnico. Una familia ve lo
+           de su hijo y nada más, por ?res=hijo: ahí sale su propio sí o no,
+           sin la lista ni los motivos de nadie. */
+        if (["actas", "convocatorias"].includes(res) && esSoloLecturaSesion) {
+          return j({ error: "no_autorizado", reason: "Las familias ven lo de su hijo en su ficha." }, 403);
         }
         if (!(await puedeEquipo(team))) {
           return j({ error: "no_autorizado", reason: "No tienes acceso a los datos de ese equipo." }, 403);

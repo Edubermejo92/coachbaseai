@@ -56,10 +56,16 @@ enviados = [];
 h = await A.revisarReglas(new Date("2026-10-15T15:50:00Z"));
 dice("antes de las 18:00 no avisa", h.convocatoria === 0);
 
-r = await call("?res=convocatoria-enviada", { method: "POST", token: tEnt, body: { team: "recSEN", fecha: "2026-10-17", hora: "11:30", rival: "Rival FC", lugar: "La Concepción", convocados: ["recJ1", "recJ2", "inventado"] } });
+r = await call("?res=convocatoria-enviada", { method: "POST", token: tEnt, body: { team: "recSEN", fecha: "2026-10-17", hora: "11:30", rival: "Rival FC", lugar: "La Concepción",
+  convocados: ["recJ1", "recJ2", "inventado"],
+  /* Y por qué no fue cada uno de los que se quedan fuera: lo que hace falta
+     para que la semana siguiente se vea quién se quedó fuera y por qué. */
+  descartes: { recJ3: "viaje", recJ4: "tecnica", recJ5: "inventado", "no-es-un-rec": "lesion" } } });
 dice("al mandar la convocatoria queda apuntada", r.body.ok === true, JSON.stringify(r.body));
-const conv = await q(`select fecha::text, convocados, equipo from convocatorias`);
+const conv = await q(`select fecha::text, convocados, equipo, descartes from convocatorias`);
 dice("con el día, el equipo y los convocados (solo ids reales)", conv.length === 1 && conv[0].fecha === "2026-10-17" && conv[0].convocados.join() === "recJ1,recJ2" && conv[0].equipo.join() === "recSEN", JSON.stringify(conv));
+dice("y con el motivo de los que se quedaron fuera",
+  JSON.stringify(JSON.parse(conv[0].descartes || "{}")) === JSON.stringify({ recJ3: "viaje", recJ4: "tecnica" }), conv[0].descartes);
 r = await call("?res=convocatoria-enviada", { method: "POST", token: tEnt, body: { team: "recSEN", fecha: "2026-10-17", rival: "Rival FC", convocados: ["recJ3"] } });
 dice("mandarla otra vez la actualiza, no la duplica", (await q(`select count(*)::int n from convocatorias`))[0].n === 1);
 r = await call("?res=convocatoria-enviada", { method: "POST", token: tEnt, body: { team: "recOTRO", fecha: "2026-10-17" } });

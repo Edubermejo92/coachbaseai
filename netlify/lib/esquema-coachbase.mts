@@ -211,6 +211,12 @@ const DEF: Record<string, { airtable: string; campos: Def[] }> = {
     ["fldhX4ULw70aUpuVj", "Lugar", "lugar", "texto"],
     ["fldepJvhHpXQb9GhG", "Convocados", "convocados", "enlace", ["jugadores", "fld9xF30BdE6ffEEM"]],
     ["fldsuIeTAvJzFkzgN", "Equipo", "equipo", "enlace", ["equipos", "fldXSlXGkWFQJjyeo"]],
+    /* Solo en Supabase (2026-11-16). Por qué no fue cada uno de los que se
+       quedaron fuera: { recJugador: "tecnica" | "lesion" | "sancion" | "viaje" }.
+       Es información del cuerpo técnico -de ahí que esta tabla ya no la pueda
+       leer una familia- y sirve para que al preparar la siguiente convocatoria
+       se vea quién se quedó fuera la anterior y por qué. */
+    ["fldDescartesCv01", "Descartes", "descartes", "texto"],
   ] },
   entrenamientos: { airtable: "tblinm3lV3FTUcL62", campos: [
     ["fldegGMXJRVzKb3FX", "Referencia", "referencia", "texto"],

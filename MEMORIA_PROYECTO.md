@@ -1,6 +1,6 @@
 # Memoria del proyecto — CoachBase AI
 
-Última actualización: 2026-11-08
+Última actualización: 2026-11-16
 
 ## Qué es
 App web (React + Vite, `src/App.jsx` ~23k líneas) desplegada en Netlify (sitio `coachbase-ai`),
@@ -134,6 +134,41 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   inicial» (menores), se puede cambiar a completo o dorsal. Guardar el acta = final. El enlace
   sigue valiendo para los siguientes partidos hasta que se desactiva (y entonces caen las
   suscripciones). En iPhone el aviso solo llega con la página añadida a la pantalla de inicio.
+
+## Convocatoria: quién faltó esta semana y quién se quedó fuera del partido anterior (v2.98.0)
+- Pedido por Edu (16 nov 2026): «para hacer la convocatoria es importante que aparezcan los niños
+  que no han asistido durante la semana y el partido anterior si estaba descartado o de viaje».
+- **Dónde**: en la lista de la pantalla de Convocatoria, debajo de cada nombre. Antes el nombre
+  ocupaba un solo renglón y no había sitio; ahora el dorsal y el nombre van arriba y los avisos
+  debajo en pequeño.
+- **Faltas de la semana**: «⚠ Faltó a 2 de 2 esta semana · Lesión». Cuenta los días con lista
+  pasada de los últimos 7 (hoy incluido). Dos reglas que importan: un día que nadie abrió no es
+  falta de nadie **y no cuenta como denominador**, y un jugador sin marca ese día tampoco falta
+  -es que a él no le pasaron lista-.
+- **Partido anterior**: «✈ No fue al último partido · de viaje». Sale de la última convocatoria
+  mandada con fecha anterior a hoy. Una convocatoria sin nadie dentro, o la de hoy mismo, no
+  sirven de referencia: es mejor no decir nada que decir que no fue quien no tenía partido.
+- **Motivo nuevo «de viaje»** (`conv.viaje`, símbolo ✈), junto a decisión técnica, lesión y
+  sanción. En fútbol base es el motivo más corriente de todos y hasta ahora había que meterlo en
+  «decisión técnica», que es justo lo contrario de lo que pasa.
+- **Dónde se guarda el motivo**: columna `descartes` (texto JSON `{ recJugador: motivo }`) en la
+  tabla `convocatorias`, solo en Supabase — migración `20261116120000_convocatoria_descartes.sql`,
+  ya aplicada. La escribe `?res=convocatoria-enviada`, que es lo que ya se llamaba al mandar la
+  convocatoria por WhatsApp: no hay un paso nuevo que recordar. El servidor solo acepta los
+  cuatro motivos conocidos y claves que sean recs de verdad.
+- **Permisos**: `?res=convocatorias&team=` **deja de ser legible para familia y jugador**. Antes
+  pasaba el filtro -su equipo es su equipo- y ahora llevaría además el motivo por el que se quedó
+  fuera cada compañero, que es información del cuerpo técnico. Su hijo sigue viendo su propio sí
+  o no por `?res=hijo`, sin la lista ni los motivos de nadie.
+- **`src/convocatoria.js`** (nuevo): `diasConListaReciente`, `faltasEnDias` y
+  `ultimaConvocatoria`, más `MOTIVOS_DESCARTE`. Fuera de App.jsx porque las reglas no son obvias
+  y así se prueban sin montar la app.
+- En la demo, los jugadores no tienen ficha en la nube: dentro de una convocatoria se identifican
+  por `demo-<id>` (ver `claveConvocatoria`), y hay una convocatoria de ejemplo del sábado pasado
+  con tres que se quedaron fuera por motivos distintos.
+- Pruebas: **`pruebas/pruebas29.mjs`** (24, sin servidor ni navegador), +1 en pruebas18 (el motivo
+  llega a la columna y se filtra lo inventado) y +2 en pruebas15 (una familia no lee las
+  convocatorias; el cuerpo técnico sí). Total 572 ✓ / 679 ✓.
 
 ## Mi ficha: próximo partido, convocatoria, asistencias de gol y a qué entrenos faltó (v2.97.0)
 - Lo que faltaba de lo que pidió Edu el 8 nov. Todo en Mi ficha, que ven igual Jugador y Familia.
@@ -690,7 +725,7 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
 
 ## Pruebas
 - `npm test` = `pruebas/todas.mjs`: todas las pruebas en modo Airtable (fakeair) y en modo Supabase
-  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-11-08: 546 ✓ / 652 ✓, 0 fallos.
+  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-11-16: 572 ✓ / 679 ✓, 0 fallos.
 - Desde la sesión de Claude NO hay red hacia airtable.com ni supabase.co (proxy 403): la prueba
   real contra Supabase la hace la propia app en Netlify.
 
