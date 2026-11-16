@@ -135,6 +135,21 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   sigue valiendo para los siguientes partidos hasta que se desactiva (y entonces caen las
   suscripciones). En iPhone el aviso solo llega con la página añadida a la pantalla de inicio.
 
+## Los nombres se montaban encima de los botones (v3.2.2)
+- «Se mezcla palabras» (Edu, 17 nov 2026), con una captura del equipo de verdad: en la lista de
+  Alineación, «Ibere **Bombonato**» y «Deyan **Collin**» se pintaban ENCIMA del botón de estado.
+- Dos causas juntas. La primera: el nombre va en una columna flexible con `min-w-0`, y un
+  apellido largo es una sola palabra que no se puede partir, así que no se recortaba ni se
+  partía —se salía—. Con `break-words` se parte y se lee entero. Es el caso que en la demo no
+  aparecía: ahí los apellidos son cortos.
+- La segunda: el botón de estado añadido en v3.2.0 es el **cuarto** de la fila, y entre los
+  cuatro dejaban al nombre unos 130px. Los botones pasan a 28px por debajo de 380px de pantalla
+  (siguen en 32 a partir de ahí) y el hueco entre ellos baja de 8 a 6px: unos 24px más para el
+  nombre justo donde hacía falta.
+- Comprobado metiendo nombres largos de verdad en las ocho filas a 360, 390 y 412px: el más
+  invasivo se queda a 6px del primer botón, y una palabra imposible («Bombonatoooo») se parte en
+  dos renglones en vez de salirse.
+
 ## El sancionado tampoco se convoca (v3.2.1)
 - «El sancionado tampoco se puede convocar» (Edu, 17 nov 2026), corrigiendo lo que había decidido
   yo horas antes: que un sancionado pudiera viajar con el equipo aunque no jugara. No: si no

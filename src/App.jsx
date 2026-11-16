@@ -23905,7 +23905,7 @@ export default function App() {
               const linea = lineaHabitual(p);
               return (
                 <div key={p.id} className="rounded-lg border" style={{ borderColor: fueraConv && enElOnce ? C.warn : C.line, background: fueraConv ? "transparent" : C.panel2 }}>
-                <div className="w-full flex items-center gap-2 py-2 px-3">
+                <div className="w-full flex items-center gap-1.5 py-2 px-3">
                   {/* Sin sitio donde meterlo -el once lleno y ningún puesto
                       elegido- el toque no hace nada, así que se enseña apagado
                       en vez de fingir que responde. */}
@@ -23939,7 +23939,12 @@ export default function App() {
                             dos hermanos o dos nombres que empiezan igual, "Álvaro
                             Fernández…" y "Álvaro Fernán…" son el mismo jugador
                             para quien lo lee con prisa desde el campo. */}
-                        <span className="font-medium leading-tight min-w-0">{p.n}</span>
+                        {/* `break-words`: un apellido largo -"Bombonato"- no cabe
+                            en la columna del nombre y, sin esto, NO se recorta ni
+                            se parte: se sale y se pinta ENCIMA de los botones de
+                            la derecha ("se mezcla palabras", Edu, 17 nov 2026).
+                            Partiéndolo se lee entero y nada se monta. */}
+                        <span className="font-medium leading-tight min-w-0 break-words">{p.n}</span>
                       </span>
                       <span className="flex items-center gap-2 text-[11px] leading-none flex-wrap" style={{ color: C.dim }}>
                         {/* El punto del estado solo cuando NO hay botón para
@@ -23983,7 +23988,7 @@ export default function App() {
                     <button onClick={() => { setEstMenu(estMenu === p.id ? null : p.id); setConvMenu(null); }}
                       title={t("st.label")} aria-label={`${t("st.label")} — ${p.n}: ${t(`st.${p.st}`)}`}
                       aria-expanded={estMenu === p.id}
-                      className="shrink-0 w-8 h-8 rounded-lg border flex items-center justify-center"
+                      className="shrink-0 w-7 h-7 min-[380px]:w-8 min-[380px]:h-8 rounded-lg border flex items-center justify-center"
                       style={{ borderColor: stColor(p.st) }}>
                       <Dot st={p.st} />
                     </button>
@@ -23992,7 +23997,7 @@ export default function App() {
                     <button onClick={() => { setConvMenu(convMenu === p.id ? null : p.id); setEstMenu(null); }}
                       title={t("conv.label")} aria-label={`${t("conv.label")} — ${p.n}: ${estConv === "no" ? t("conv.no") : t(`conv.${estConv}`)}`}
                       aria-expanded={convMenu === p.id}
-                      className="shrink-0 text-sm w-8 h-8 rounded-lg border font-display flex items-center justify-center"
+                      className="shrink-0 text-sm w-7 h-7 min-[380px]:w-8 min-[380px]:h-8 rounded-lg border font-display flex items-center justify-center"
                       style={{ borderColor: colorConvocatoria(estConv), color: colorConvocatoria(estConv) }}>
                       {iconoConvocatoria(estConv)}
                     </button>
@@ -24003,7 +24008,7 @@ export default function App() {
                   {can("editLineup") && (
                     <button onClick={() => alternarCapitan(p.id)}
                       title={t("ln.captain")} aria-label={`${t("ln.captain")} — ${p.n}`} aria-pressed={capitanes.includes(p.id)}
-                      className="shrink-0 text-xs w-8 h-8 rounded-lg border font-display font-semibold flex items-center justify-center"
+                      className="shrink-0 text-xs w-7 h-7 min-[380px]:w-8 min-[380px]:h-8 rounded-lg border font-display font-semibold flex items-center justify-center"
                       style={{ borderColor: capitanes.includes(p.id) ? AC : C.line, background: capitanes.includes(p.id) ? AC : "transparent", color: capitanes.includes(p.id) ? C.sobre : C.dim }}>
                       {t("ln.captainShort")}
                     </button>
@@ -24011,7 +24016,7 @@ export default function App() {
                   {/* Abrir la ficha sin robarle el toque a "poner en el once":
                       en esta pantalla tocar al jugador significa alinearlo. */}
                   <button onClick={() => setProfileId(p.id)} title={t("ln.openProfile")} aria-label={`${t("ln.openProfile")} — ${p.n}`}
-                    className="shrink-0 text-xs w-8 h-8 rounded-lg border flex items-center justify-center" style={{ borderColor: C.line, color: C.dim }}>☰</button>
+                    className="shrink-0 text-xs w-7 h-7 min-[380px]:w-8 min-[380px]:h-8 rounded-lg border flex items-center justify-center" style={{ borderColor: C.line, color: C.dim }}>☰</button>
                 </div>
                 {estMenu === p.id && can("editSquad") && (
                   <div className="flex flex-wrap gap-1.5 px-3 pb-2.5">
