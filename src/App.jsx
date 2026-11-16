@@ -111,6 +111,11 @@ const DICT = {
     "ln.captain": "Capitán", "ln.captainShort": "C", "ln.captainMax": "Como mucho 3 capitanes.", "ln.staffTitle": "Cuerpo técnico", "ln.staffHint": "Quién se sienta en el banquillo. Sale en la alineación compartida, como en el acta.", "ln.staffName": "Nombre", "ln.staffRole": "Cargo. Ej. Segundo entrenador", "ln.staffAdd": "+ Añadir", "ln.staffEmpty": "Todavía no has puesto a nadie.", "ln.xiFull": "El once está completo. Toca dos fichas del campo para cambiarlas de sitio, o un puesto y luego a alguien del banquillo.",
     "ln.favTitle": "Favoritas",
     "ln.tabXI": "El once",
+    "ln.secSystem": "Elegir estructura",
+    "ln.secAttack": "Estructura de ataque",
+    "ln.secDefense": "Estructura de defensa",
+    "ln.secFav": "Favoritas y partido",
+    "ln.secShare": "Compartir y vídeo",
     "ln.abpTitle": "ABP · Balón parado",
     "ln.abpShort": "ABP",
     "ln.abpAtaque": "a favor",
@@ -779,6 +784,11 @@ const DICT = {
     "ln.captain": "Captain", "ln.captainShort": "C", "ln.captainMax": "Three captains at most.", "ln.staffTitle": "Coaching staff", "ln.staffHint": "Who is on the bench. Shows on the shared line-up, like on the team sheet.", "ln.staffName": "Name", "ln.staffRole": "Role. E.g. Assistant coach", "ln.staffAdd": "+ Add", "ln.staffEmpty": "Nobody added yet.", "ln.xiFull": "The XI is complete. Tap two tokens on the pitch to swap them, or a position and then someone from the bench.",
     "ln.favTitle": "Favorites",
     "ln.tabXI": "The XI",
+    "ln.secSystem": "Choose formation",
+    "ln.secAttack": "Attacking set-ups",
+    "ln.secDefense": "Defending set-ups",
+    "ln.secFav": "Favourites and match",
+    "ln.secShare": "Share and video",
     "ln.abpTitle": "Set pieces",
     "ln.abpShort": "Set piece",
     "ln.abpAtaque": "for us",
@@ -1459,6 +1469,11 @@ const DICT = {
     "ln.captain": "Capitaine", "ln.captainShort": "C", "ln.captainMax": "Trois capitaines au maximum.", "ln.staffTitle": "Staff technique", "ln.staffHint": "Qui est sur le banc. Apparaît sur la composition partagée.", "ln.staffName": "Nom", "ln.staffRole": "Fonction. Ex. Adjoint", "ln.staffAdd": "+ Ajouter", "ln.staffEmpty": "Personne pour l'instant.", "ln.xiFull": "Le onze est complet. Touche deux jetons du terrain pour les échanger, ou une place puis un joueur du banc.",
     "ln.favTitle": "Favoris",
     "ln.tabXI": "Le onze",
+    "ln.secSystem": "Choisir la structure",
+    "ln.secAttack": "Structure offensive",
+    "ln.secDefense": "Structure défensive",
+    "ln.secFav": "Favoris et match",
+    "ln.secShare": "Partager et vidéo",
     "ln.abpTitle": "Coups de pied arrêtés",
     "ln.abpShort": "CPA",
     "ln.abpAtaque": "pour nous",
@@ -2219,6 +2234,11 @@ const DICT = {
     "ln.captain": "Kapitän", "ln.captainShort": "C", "ln.captainMax": "Höchstens drei Kapitäne.", "ln.staffTitle": "Trainerteam", "ln.staffHint": "Wer auf der Bank sitzt. Erscheint in der geteilten Aufstellung.", "ln.staffName": "Name", "ln.staffRole": "Funktion, z. B. Co-Trainer", "ln.staffAdd": "+ Hinzufügen", "ln.staffEmpty": "Noch niemand eingetragen.", "ln.xiFull": "Die Elf ist komplett. Tippe zwei Spielsteine an, um sie zu tauschen, oder eine Position und dann jemanden von der Bank.",
     "ln.favTitle": "Favoriten",
     "ln.tabXI": "Die Elf",
+    "ln.secSystem": "Aufstellung wählen",
+    "ln.secAttack": "Angriffsstruktur",
+    "ln.secDefense": "Abwehrstruktur",
+    "ln.secFav": "Favoriten und Spiel",
+    "ln.secShare": "Teilen und Video",
     "ln.abpTitle": "Standardsituationen",
     "ln.abpShort": "Standard",
     "ln.abpAtaque": "für uns",
@@ -2978,6 +2998,11 @@ const DICT = {
     "ln.captain": "Capitão", "ln.captainShort": "C", "ln.captainMax": "No máximo 3 capitães.", "ln.staffTitle": "Equipa técnica", "ln.staffHint": "Quem fica no banco. Aparece no onze partilhado.", "ln.staffName": "Nome", "ln.staffRole": "Cargo. Ex.: Treinador adjunto", "ln.staffAdd": "+ Adicionar", "ln.staffEmpty": "Ainda não puseste ninguém.", "ln.xiFull": "O onze está completo. Toca em duas peças do campo para as trocar, ou numa posição e depois em alguém do banco.",
     "ln.favTitle": "Favoritas",
     "ln.tabXI": "O onze",
+    "ln.secSystem": "Escolher estrutura",
+    "ln.secAttack": "Estrutura de ataque",
+    "ln.secDefense": "Estrutura de defesa",
+    "ln.secFav": "Favoritas e jogo",
+    "ln.secShare": "Partilhar e vídeo",
     "ln.abpTitle": "Bola parada",
     "ln.abpShort": "Bola parada",
     "ln.abpAtaque": "a favor",
@@ -13055,6 +13080,13 @@ export default function App() {
      entra con todos cerrados: doce botones sueltos se comían tres filas de
      pantalla y lo que se busca es "con cuatro atrás", no "4-1-4-1". */
   const [sysGrupo, setSysGrupo] = useState(null);
+  /* Cuál de las secciones de Alineación está abierta -o ninguna-. La tarjeta
+     tenía todo a la vez: los sistemas, las favoritas, el once de cada
+     partido, compartir, el vídeo y la música, y había que pasar por delante
+     de todo para llegar al campo ("divídelo en elegir estructura, estructura
+     ataque, defensa etc", Edu, 17 nov 2026). Ahora son cinco títulos y se
+     abre uno. */
+  const [lnSec, setLnSec] = useState(null);
   const [slotPos, setSlotPos] = useState(SLOTS_433);
   /* La demarcación de un jugador ya no es un dato suyo: es el hueco que ocupa
      hoy en el campo. Antes cada ficha llevaba pegada una posición fija -que
@@ -13545,6 +13577,19 @@ export default function App() {
      ofrece la colocación por defecto de esa situación; a partir de ahí manda
      lo que el entrenador haya movido. */
   const posDeAbp = (sit) => (Object.keys(abpPos[sit] || {}).length ? abpPos[sit] : abpPorDefecto(sit, slotPos));
+  /* La sección abierta manda sobre lo que se ve en el campo: ataque y
+     defensa abren su balón parado y cualquier otra devuelve el once, porque
+     las favoritas y el once de cada partido son del once y no de la jugada.
+     Compartir es la excepción a propósito: no toca el campo, para poder
+     mandar el córner que se acaba de preparar. */
+  const abrirSeccion = (k) => {
+    const cerrar = lnSec === k;
+    setLnSec(cerrar ? null : k);
+    setSelSlot(null);
+    if (cerrar) { if (k === "ataque" || k === "defensa") setAbpSit(null); return; }
+    if (k === "ataque" || k === "defensa") abrirAbp(abpJugada, k);
+    else if (k !== "compartir") setAbpSit(null);
+  };
   const abrirAbp = (jugada, lado) => {
     const sit = claveAbp(jugada, lado);
     setAbpJugada(jugada);
@@ -23310,53 +23355,12 @@ export default function App() {
         setLnImgMsg(t("ln.shareImageFail"));
       }
     };
-    return (
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        {/* Preparando un balón parado la tarjeta ocupa las dos columnas: el
-            tablero sale al doble de ancho, que es justo lo que hace falta para
-            que once fichas quepan sin taparse. */}
-        <Card className={abpSit ? "lg:col-span-2" : undefined} title={abpSit
-          ? `${t("ln.abpShort")} · ${nombreAbp(t, abpSit)}`
-          : `${propone ? t("ln.proposalTitle") : t("ln.startersTitle")} — ${sysCode}`}>
-          {propone && (
-            miPropuestaPendiente("lineup") ? (
-              <div className="mb-3 rounded-lg border px-3 py-2.5 text-sm" style={{ borderColor: C.warn, background: `${C.warn}10`, color: C.warn }}>
-                {t("ln.pendingApproval")}
-              </div>
-            ) : (
-              <div className="mb-3 flex items-center justify-between gap-2 rounded-lg border px-3 py-2.5" style={{ borderColor: C.line, background: C.panel2 }}>
-                <div className="text-xs" style={{ color: C.dim }}>
-                  {lineupDraft ? t("ln.finishAndSend") : t("ln.placeAndSend")}
-                </div>
-                <button onClick={enviarPropuestaAlineacion} disabled={!lineupDraft}
-                  className="shrink-0 text-xs px-3 py-1.5 rounded-lg font-display uppercase tracking-wide font-semibold disabled:opacity-40"
-                  style={{ background: AC, color: C.sobre }}>
-                  {t("ln.sendProposal")}
-                </button>
-              </div>
-            )
-          )}
-          {/* ---- Once o balón parado ----
-               Son dos maneras distintas de mirar al mismo equipo: el dibujo
-               con el que se sale a jugar, y dónde se pone cada uno en un
-               balón parado. Cambiar de una a otra no toca la otra: se puede
-               preparar la jugada y volver al once tal y como estaba.
-               Dos filas y no una de siete botones: seis situaciones seguidas
-               no caben en un móvil de 360px, y desplazándolas de lado las que
-               no están elegidas no se ven. Arriba el lado -el once, a favor,
-               en contra- y debajo la jugada. */}
-          <div className="flex flex-wrap items-center gap-1.5 mb-2 min-w-0">
-            {[[null, t("ln.tabXI")], ["ataque", t("ln.abpAtaque")], ["defensa", t("ln.abpDefensa")]].map(([k, lbl]) => {
-              const act = k ? abpLado === k : !abpSit;
-              return (
-                <button key={String(k)} onClick={() => (k ? abrirAbp(abpJugada, k) : setAbpSit(null))}
-                  className="text-xs px-3 py-2 rounded-lg border font-display uppercase tracking-wide"
-                  style={{ borderColor: act ? AC : C.line, background: act ? AC : "transparent", color: act ? C.sobre : C.chalk }}>
-                  {lbl}
-                </button>
-              );
-            })}
-          </div>
+    /* Lo de dentro de «estructura de ataque» y «estructura de defensa» es lo
+       mismo -la jugada, el aviso y las colocaciones guardadas-, y solo una de
+       las dos puede estar abierta, así que se escribe una vez y se pinta bajo
+       el título que esté abierto. */
+    const cuerpoAbp = !abpSit ? null : (
+      <div className="mb-2">
           {/* La jugada. Se mantiene al cambiar de lado: lo normal es preparar
               el córner a favor y pasar al córner en contra, no a la falta. */}
           {abpSit && (
@@ -23375,55 +23379,6 @@ export default function App() {
           )}
           {abpSit && (
             <div className="text-[11px] mb-2 leading-relaxed" style={{ color: C.dim }}>{t("ln.abpHint")}</div>
-          )}
-          {!abpSit && (
-          <div className="flex flex-wrap items-center gap-1.5 mb-2">
-            {/* Cerrado de salida: se ve una fila de grupos -tres atrás,
-                cuatro atrás, cinco atrás- en vez de los doce sistemas. Al
-                pulsar uno se abren los suyos; el grupo que contiene el
-                sistema puesto va marcado, para no tener que abrirlos todos
-                buscando cuál es. */}
-            {gruposDeSistemas(session.team?.f7 ? SYS_F7 : SYS_F11).map(([n, lista]) => {
-              const abierto = sysGrupo === n;
-              const esElPuesto = lista.includes(sysCode);
-              return (
-                <button key={n} onClick={() => setSysGrupo(abierto ? null : n)} aria-expanded={abierto}
-                  className="text-xs px-2.5 py-1 rounded-lg border font-display"
-                  style={{ borderColor: abierto || esElPuesto ? AC : C.line, background: abierto ? AC : "transparent",
-                    color: abierto ? C.sobre : esElPuesto ? AC : C.dim }}>
-                  {t("ln.sysBack").replace("{n}", n)}{abierto ? " ▾" : ""}
-                </button>
-              );
-            })}
-            <button onClick={() => setSysGrupo(sysGrupo === "otro" ? null : "otro")} aria-expanded={sysGrupo === "otro"}
-              className="text-xs px-2.5 py-1 rounded-lg border font-display"
-              style={{ borderColor: sysGrupo === "otro" ? AC : C.line, background: sysGrupo === "otro" ? AC : "transparent",
-                color: sysGrupo === "otro" ? C.sobre : C.dim }}>
-              {t("ln.other")}{sysGrupo === "otro" ? " ▾" : ""}
-            </button>
-          </div>
-          )}
-          {!abpSit && sysGrupo && sysGrupo !== "otro" && (
-            <div className="flex flex-wrap items-center gap-1.5 mb-2">
-              {(gruposDeSistemas(session.team?.f7 ? SYS_F7 : SYS_F11).find(([n]) => n === sysGrupo)?.[1] || []).map((c) => (
-                <button key={c} onClick={() => { applySystem(c); setSysGrupo(null); }}
-                  className="text-xs px-2.5 py-1 rounded-lg border font-display"
-                  style={{ borderColor: sysCode === c ? AC : C.line, background: sysCode === c ? AC : "transparent", color: sysCode === c ? C.sobre : C.chalk }}>
-                  {c}
-                </button>
-              ))}
-            </div>
-          )}
-          {!abpSit && sysGrupo === "otro" && (
-            <div className="flex items-center gap-1 mb-2">
-              <input value={sysCustom} onChange={(e) => setSysCustom(e.target.value)}
-                onKeyDown={(e) => { if (e.key === "Enter" && applySystem(sysCustom)) { setSysCustom(""); setSysGrupo(null); } }}
-                placeholder={t("ln.otherPh")} aria-label={t("ln.other")}
-                className="text-xs px-2 py-1 rounded-lg border bg-transparent w-32"
-                style={{ borderColor: C.line, color: C.chalk }} />
-              <button onClick={() => { if (applySystem(sysCustom)) { setSysCustom(""); setSysGrupo(null); } }}
-                className="text-xs px-2.5 py-1 rounded-lg border font-display" style={{ borderColor: AC, color: AC }}>{t("ln.apply")}</button>
-            </div>
           )}
           {/* ---- Colocaciones guardadas ----
              Hasta cinco de cada una de las seis situaciones: el córner al
@@ -23457,7 +23412,118 @@ export default function App() {
               {abpMsg && <span className="text-[11px] w-full" style={{ color: C.green }}>{abpMsg}</span>}
             </div>
           )}
-          {!abpSit && can("editLineup") && (
+      </div>
+    );
+    /* El título de una sección: nombre a la izquierda, de un vistazo lo que
+       hay dentro a la derecha -el sistema puesto, la jugada- y la flecha. */
+    const filaSec = (k, titulo, resumen) => (
+      <button onClick={() => abrirSeccion(k)} aria-expanded={lnSec === k}
+        className="w-full flex items-center justify-between gap-2 px-3 py-2.5 rounded-lg border mb-1.5"
+        style={{ borderColor: lnSec === k ? AC : C.line, background: lnSec === k ? `${AC}14` : C.panel2 }}>
+        <span className="font-display uppercase tracking-wide text-xs text-left" style={{ color: lnSec === k ? AC : C.chalk }}>{titulo}</span>
+        <span className="flex items-center gap-2 min-w-0">
+          {resumen ? <span className="text-[11px] truncate" style={{ color: C.dim }}>{resumen}</span> : null}
+          <span className="text-[10px]" style={{ color: lnSec === k ? AC : C.dim }}>{lnSec === k ? "▴" : "▾"}</span>
+        </span>
+      </button>
+    );
+    return (
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        {/* Preparando un balón parado la tarjeta ocupa las dos columnas: el
+            tablero sale al doble de ancho, que es justo lo que hace falta para
+            que once fichas quepan sin taparse. */}
+        <Card className={abpSit ? "lg:col-span-2" : undefined} title={abpSit
+          ? `${t("ln.abpShort")} · ${nombreAbp(t, abpSit)}`
+          : `${propone ? t("ln.proposalTitle") : t("ln.startersTitle")} — ${sysCode}`}>
+          {propone && (
+            miPropuestaPendiente("lineup") ? (
+              <div className="mb-3 rounded-lg border px-3 py-2.5 text-sm" style={{ borderColor: C.warn, background: `${C.warn}10`, color: C.warn }}>
+                {t("ln.pendingApproval")}
+              </div>
+            ) : (
+              <div className="mb-3 flex items-center justify-between gap-2 rounded-lg border px-3 py-2.5" style={{ borderColor: C.line, background: C.panel2 }}>
+                <div className="text-xs" style={{ color: C.dim }}>
+                  {lineupDraft ? t("ln.finishAndSend") : t("ln.placeAndSend")}
+                </div>
+                <button onClick={enviarPropuestaAlineacion} disabled={!lineupDraft}
+                  className="shrink-0 text-xs px-3 py-1.5 rounded-lg font-display uppercase tracking-wide font-semibold disabled:opacity-40"
+                  style={{ background: AC, color: C.sobre }}>
+                  {t("ln.sendProposal")}
+                </button>
+              </div>
+            )
+          )}
+          {/* ---- La tarjeta, por secciones ----
+               Estaba todo a la vez entre el título y el campo: los sistemas,
+               las favoritas, el once de cada partido, compartir, el vídeo y
+               la música. En un móvil eso son dos pantallas de botones antes
+               de ver una sola ficha ("divídelo en elegir estructura,
+               estructura ataque, defensa etc", Edu, 17 nov 2026).
+               Ahora son cinco títulos y se abre uno: `abrirSeccion` cierra el
+               anterior y, de paso, pone en el campo lo que toca -el once o el
+               balón parado de ese lado-, así que el título dice siempre lo
+               que se está mirando. Al entrar no hay ninguna abierta: títulos
+               y campo. */}
+          {filaSec("estructura", t("ln.secSystem"), sysCode)}
+          {lnSec === "estructura" && (
+            <div className="mb-2">
+          <div className="flex flex-wrap items-center gap-1.5 mb-2">
+            {/* Cerrado de salida: se ve una fila de grupos -tres atrás,
+                cuatro atrás, cinco atrás- en vez de los doce sistemas. Al
+                pulsar uno se abren los suyos; el grupo que contiene el
+                sistema puesto va marcado, para no tener que abrirlos todos
+                buscando cuál es. */}
+            {gruposDeSistemas(session.team?.f7 ? SYS_F7 : SYS_F11).map(([n, lista]) => {
+              const abierto = sysGrupo === n;
+              const esElPuesto = lista.includes(sysCode);
+              return (
+                <button key={n} onClick={() => setSysGrupo(abierto ? null : n)} aria-expanded={abierto}
+                  className="text-xs px-2.5 py-1 rounded-lg border font-display"
+                  style={{ borderColor: abierto || esElPuesto ? AC : C.line, background: abierto ? AC : "transparent",
+                    color: abierto ? C.sobre : esElPuesto ? AC : C.dim }}>
+                  {t("ln.sysBack").replace("{n}", n)}{abierto ? " ▾" : ""}
+                </button>
+              );
+            })}
+            <button onClick={() => setSysGrupo(sysGrupo === "otro" ? null : "otro")} aria-expanded={sysGrupo === "otro"}
+              className="text-xs px-2.5 py-1 rounded-lg border font-display"
+              style={{ borderColor: sysGrupo === "otro" ? AC : C.line, background: sysGrupo === "otro" ? AC : "transparent",
+                color: sysGrupo === "otro" ? C.sobre : C.dim }}>
+              {t("ln.other")}{sysGrupo === "otro" ? " ▾" : ""}
+            </button>
+          </div>
+          {sysGrupo && sysGrupo !== "otro" && (
+            <div className="flex flex-wrap items-center gap-1.5 mb-2">
+              {(gruposDeSistemas(session.team?.f7 ? SYS_F7 : SYS_F11).find(([n]) => n === sysGrupo)?.[1] || []).map((c) => (
+                <button key={c} onClick={() => { applySystem(c); setSysGrupo(null); }}
+                  className="text-xs px-2.5 py-1 rounded-lg border font-display"
+                  style={{ borderColor: sysCode === c ? AC : C.line, background: sysCode === c ? AC : "transparent", color: sysCode === c ? C.sobre : C.chalk }}>
+                  {c}
+                </button>
+              ))}
+            </div>
+          )}
+          {sysGrupo === "otro" && (
+            <div className="flex items-center gap-1 mb-2">
+              <input value={sysCustom} onChange={(e) => setSysCustom(e.target.value)}
+                onKeyDown={(e) => { if (e.key === "Enter" && applySystem(sysCustom)) { setSysCustom(""); setSysGrupo(null); } }}
+                placeholder={t("ln.otherPh")} aria-label={t("ln.other")}
+                className="text-xs px-2 py-1 rounded-lg border bg-transparent w-32"
+                style={{ borderColor: C.line, color: C.chalk }} />
+              <button onClick={() => { if (applySystem(sysCustom)) { setSysCustom(""); setSysGrupo(null); } }}
+                className="text-xs px-2.5 py-1 rounded-lg border font-display" style={{ borderColor: AC, color: AC }}>{t("ln.apply")}</button>
+            </div>
+          )}
+            </div>
+          )}
+          {filaSec("ataque", t("ln.secAttack"), lnSec === "ataque" && abpSit ? t(ETIQUETA_JUGADA[jugadaDeAbp(abpSit)]) : "")}
+          {lnSec === "ataque" && cuerpoAbp}
+          {filaSec("defensa", t("ln.secDefense"), lnSec === "defensa" && abpSit ? t(ETIQUETA_JUGADA[jugadaDeAbp(abpSit)]) : "")}
+          {lnSec === "defensa" && cuerpoAbp}
+          {can("editLineup") && filaSec("favoritas", t("ln.secFav"), "")}
+          {lnSec === "favoritas" && (
+            <div className="mb-2">
+          {can("editLineup") && (
             <div className="flex flex-wrap items-center gap-1.5 mb-2 pb-2 border-b" style={{ borderColor: C.line }}>
               <span className="text-[11px] uppercase tracking-wide" style={{ color: C.dim }}>{t("ln.favTitle")}</span>
               {lineupFavoritas.map((fav) => {
@@ -23486,7 +23552,7 @@ export default function App() {
           {/* El once de cada partido del calendario: se elige el partido
               (por defecto el próximo), y se guarda ahí el que hay en el campo
               o se carga el que se guardó. Los que ya tienen once llevan ✓. */}
-          {!abpSit && can("editLineup") && (() => {
+          {can("editLineup") && (() => {
             const partidos = sortedFix.filter((f) => !esAviso(f));
             if (!partidos.length) return null;
             const elegido = partidos.find((f) => claveFixture(f) === alinPartidoSel)
@@ -23526,53 +23592,60 @@ export default function App() {
               </div>
             );
           })()}
-          <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-            <div className="text-xs" style={{ color: C.dim }}>
-              {abpSit ? t("ln.abpDragHint") : t("ln.dragHint")}
             </div>
-            {/* `min-w-0`: un hijo de un flex no encoge por debajo de su
-                contenido salvo que se le diga. Sin esto, el nombre largo de
-                una canción propia («Wiz Khalifa - Black And Yellow [G-Mix]
-                ft. Snoop Dogg…», Edu, 7 nov 2026) estiraba esta columna a
-                472 px dentro de un padre de 324, y la PÁGINA ENTERA se podía
-                arrastrar de lado dejando una franja blanca a la derecha. El
-                `truncate` del nombre no servía de nada: no tenía contra qué
-                recortar. */}
-            <div className="flex flex-col items-stretch gap-1.5 min-w-0 max-w-full">
-              {lnImgMsg && <span className="text-[11px] text-right" style={{ color: lnImgMsg.startsWith("✓") ? C.dim : C.warn }}>{lnImgMsg}</span>}
-              <button onClick={() => compartirAlineacion()} disabled={lnImgBusy}
-                className="text-xs px-2.5 py-1 rounded-lg border font-display uppercase tracking-wide disabled:opacity-50"
-                style={{ borderColor: AC, color: AC }}>
-                {lnImgBusy ? t("ln.shareImageBusy") : t(abpSit ? "ln.abpDownload" : "ln.downloadLineup")}
-              </button>
-              {/* A WhatsApp van las dos cosas: la imagen del campo y, de pie,
-                  el once en texto -que se copia al acta y se busca luego en la
-                  conversación, cosa que una foto no permite-. */}
-              <button onClick={() => compartirAlineacion({ paraWhatsapp: true })} disabled={lnImgBusy}
-                className="text-xs px-2.5 py-1 rounded-lg border font-display uppercase tracking-wide disabled:opacity-50"
-                style={{ borderColor: C.line, color: C.chalk }}>
-                {lnImgBusy ? t("ln.shareImageBusy") : t("ln.shareWhatsapp")}
-              </button>
-              {/* Vídeo del once para la víspera o el vestuario. Se graba en
-                  tiempo real, así que avisa por dónde va. En un córner no
-                  pinta nada: el vídeo presenta a los titulares. */}
-              {!abpSit && (<>
-              <button onClick={generarVideoOnce} disabled={lnVidBusy}
-                className="text-xs px-2.5 py-1 rounded-lg border font-display uppercase tracking-wide disabled:opacity-50"
-                style={{ borderColor: lim.video ? C.line : C.line, color: lim.video ? C.chalk : C.dim }}>
-                {lnVidBusy ? (lnVidMsg || t("ln.videoRec")) : lim.video ? t("ln.video") : t("ln.videoPro")}
-              </button>
-              {lim.video && !lnVidBusy && <SelectorMusica t={t} C={C} AC={AC} />}
-              {!lnVidBusy && lnVidMsg && <span className="text-[11px] text-right" style={{ color: [t("ln.videoFail"), t("vm.fail"), t("vm.silent")].includes(lnVidMsg) ? C.warn : C.dim }}>{lnVidMsg}</span>}
-              {lnVidUrl && !lnVidBusy && (
-                <a href={lnVidUrl} download={`once-${(session.team?.name || "equipo").replace(/\s+/g, "-")}-${hoyISO()}.${lnVidExt}`}
-                  className="text-xs px-2.5 py-1 rounded-lg font-display uppercase tracking-wide text-center font-semibold"
-                  style={{ background: AC, color: C.sobre }}>
-                  {t("ln.videoDownload")}
-                </a>
-              )}
-              </>)}
+          )}
+          {filaSec("compartir", t("ln.secShare"), "")}
+          {lnSec === "compartir" && (
+            <div className="mb-2">
+          {/* `min-w-0`: un hijo de un flex no encoge por debajo de su
+              contenido salvo que se le diga. Sin esto, el nombre largo de
+              una canción propia («Wiz Khalifa - Black And Yellow [G-Mix]
+              ft. Snoop Dogg…», Edu, 7 nov 2026) estiraba esta columna a
+              472 px dentro de un padre de 324, y la PÁGINA ENTERA se podía
+              arrastrar de lado dejando una franja blanca a la derecha. El
+              `truncate` del nombre no servía de nada: no tenía contra qué
+              recortar. */}
+          <div className="flex flex-col items-stretch gap-1.5 min-w-0 max-w-full">
+            {lnImgMsg && <span className="text-[11px] text-right" style={{ color: lnImgMsg.startsWith("✓") ? C.dim : C.warn }}>{lnImgMsg}</span>}
+            <button onClick={() => compartirAlineacion()} disabled={lnImgBusy}
+              className="text-xs px-2.5 py-1 rounded-lg border font-display uppercase tracking-wide disabled:opacity-50"
+              style={{ borderColor: AC, color: AC }}>
+              {lnImgBusy ? t("ln.shareImageBusy") : t(abpSit ? "ln.abpDownload" : "ln.downloadLineup")}
+            </button>
+            {/* A WhatsApp van las dos cosas: la imagen del campo y, de pie,
+                el once en texto -que se copia al acta y se busca luego en la
+                conversación, cosa que una foto no permite-. */}
+            <button onClick={() => compartirAlineacion({ paraWhatsapp: true })} disabled={lnImgBusy}
+              className="text-xs px-2.5 py-1 rounded-lg border font-display uppercase tracking-wide disabled:opacity-50"
+              style={{ borderColor: C.line, color: C.chalk }}>
+              {lnImgBusy ? t("ln.shareImageBusy") : t("ln.shareWhatsapp")}
+            </button>
+            {/* Vídeo del once para la víspera o el vestuario. Se graba en
+                tiempo real, así que avisa por dónde va. En un córner no
+                pinta nada: el vídeo presenta a los titulares. */}
+            {!abpSit && (<>
+            <button onClick={generarVideoOnce} disabled={lnVidBusy}
+              className="text-xs px-2.5 py-1 rounded-lg border font-display uppercase tracking-wide disabled:opacity-50"
+              style={{ borderColor: lim.video ? C.line : C.line, color: lim.video ? C.chalk : C.dim }}>
+              {lnVidBusy ? (lnVidMsg || t("ln.videoRec")) : lim.video ? t("ln.video") : t("ln.videoPro")}
+            </button>
+            {lim.video && !lnVidBusy && <SelectorMusica t={t} C={C} AC={AC} />}
+            {!lnVidBusy && lnVidMsg && <span className="text-[11px] text-right" style={{ color: [t("ln.videoFail"), t("vm.fail"), t("vm.silent")].includes(lnVidMsg) ? C.warn : C.dim }}>{lnVidMsg}</span>}
+            {lnVidUrl && !lnVidBusy && (
+              <a href={lnVidUrl} download={`once-${(session.team?.name || "equipo").replace(/\s+/g, "-")}-${hoyISO()}.${lnVidExt}`}
+                className="text-xs px-2.5 py-1 rounded-lg font-display uppercase tracking-wide text-center font-semibold"
+                style={{ background: AC, color: C.sobre }}>
+                {t("ln.videoDownload")}
+              </a>
+            )}
+            </>)}
+          </div>
             </div>
+          )}
+          {/* El aviso de cómo se mueven las fichas se queda pegado al campo,
+              fuera de las secciones: explica lo que hay justo debajo. */}
+          <div className="text-xs mb-2" style={{ color: C.dim }}>
+            {abpSit ? t("ln.abpDragHint") : t("ln.dragHint")}
           </div>
           {/* En el móvil el córner se come también el margen de la tarjeta:
               son 32px más de ancho -y de alto, que va con el ancho-, y en un

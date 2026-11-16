@@ -135,6 +135,31 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   sigue valiendo para los siguientes partidos hasta que se desactiva (y entonces caen las
   suscripciones). En iPhone el aviso solo llega con la página añadida a la pantalla de inicio.
 
+## La tarjeta de Alineación, dividida en cinco secciones (v3.1.0)
+- «Divídelo en elegir estructura, estructura ataque, defensa etc» (Edu, 17 nov 2026). Entre el
+  título y el campo estaba TODO a la vez: los sistemas, las favoritas, el once de cada partido,
+  compartir, el vídeo y la música. En un móvil eso eran dos pantallas de botones antes de ver una
+  sola ficha. Elegido con él: toda la tarjeta plegable, no solo las tres pestañas de arriba.
+- Cinco títulos, se abre uno: **Elegir estructura · Estructura de ataque · Estructura de defensa ·
+  Favoritas y partido · Compartir y vídeo**. Al entrar no hay ninguna abierta: títulos y campo
+  justo debajo (medido: 310px de controles por encima del campo, a 360, 390 y 412px).
+- `abrirSeccion` cierra la anterior y **pone en el campo lo que toca**: ataque y defensa abren su
+  balón parado, elegir estructura y favoritas devuelven el once -las favoritas y el once de cada
+  partido son del once, no de la jugada-, y cerrar una de balón parado también vuelve al once.
+  La excepción a propósito es **Compartir**, que no toca el campo: si no, no habría forma de
+  mandar el córner que se acaba de preparar.
+- El título lleva a la derecha lo que hay dentro sin abrirlo: el sistema puesto («4-3-3») y, en
+  las dos de balón parado, la jugada («Córner»). Sustituye a las dos filas de pestañas de antes
+  (EL ONCE / A FAVOR / EN CONTRA y córner / falta / penalti), que eran siete botones.
+- El aviso de cómo se mueven las fichas se queda FUERA de las secciones, pegado al campo: explica
+  lo que hay justo debajo.
+- «Favoritas y partido» solo sale a quien puede editar la alineación (el delegado también: lleva
+  el acta y hace los cambios). En la demo, que es de solo lectura, se ven cuatro secciones.
+- Comprobado en el navegador a 360/390/412px con entrenador, delegado y segundo entrenador: una
+  sola sección abierta cada vez, el campo cambia con ella, cerrar «defensa» devuelve el once,
+  «compartir» mantiene el balón parado, el panel de misiones sigue abriéndose al tocar una ficha
+  y ninguna pantalla se sale de ancho. Total 609 ✓ / 716 ✓.
+
 ## Los sistemas por grupos y el tablero de balón parado, ampliado (v3.0.0)
 - Dos cosas pedidas por Edu el 16 nov 2026, las dos de la pantalla de Alineación.
 - **Los sistemas, agrupados** («que no aparezcan todas las estructuras de alineación 4-4-2, 433
