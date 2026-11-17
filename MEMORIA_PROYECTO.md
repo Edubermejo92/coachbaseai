@@ -135,6 +135,45 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   sigue valiendo para los siguientes partidos hasta que se desactiva (y entonces caen las
   suscripciones). En iPhone el aviso solo llega con la página añadida a la pantalla de inicio.
 
+## Estadísticas: los minutos que nadie contaba (v3.3.0)
+- «Revisa la categoría estadísticas de la app» (Edu, 17 nov 2026). Lo que apareció al mirarla:
+- **Los minutos eran siempre 0 en un equipo de verdad.** La pantalla leía el campo `Minutos` de
+  la ficha del jugador, y ese campo **no lo escribe nadie**: se lee de Airtable, se vuelve a
+  guardar tal cual y nunca se suma. La tarjeta «menor participación» eran seis jugadores a cero
+  ordenados por dorsal, y lo mismo en Inicio y en la ficha del jugador. La demo lo tapaba porque
+  se inventa los minutos al arrancar, así que de puertas afuera parecía que funcionaba.
+  Los minutos de verdad llevaban ahí desde siempre, un nivel más abajo: en
+  `historial[].jugadores[].minutos`, que es lo que ya miraba el jugador en SU ficha. Ahora los
+  tres sitios los cuentan de ahí (`src/estadisticas.js`).
+- **Las asistencias de gol tampoco salían.** El acta guarda el dorsal de quien dio cada pase
+  -se añadió para la ficha del jugador- pero la tabla de la temporada no lo miraba. Columna
+  nueva, contada por dorsal **dentro de cada partido**: así una asistencia va a quien la dio
+  aunque haya cambiado de dorsal en enero.
+- **Balance de la temporada**: jugados, ganados, empatados, perdidos, goles a favor y en contra.
+  Es lo primero que mira cualquier entrenador y había que sumarlo a mano de los botones de abajo.
+- **El sancionado no salía en «disponibilidad»**: tres barras para cuatro estados, así que no
+  estaba en ninguna y las cuentas no cuadraban con la plantilla. Cuarta barra.
+- Se busca al jugador por su `rec` de Airtable y no por el dorsal ni por el id del dispositivo:
+  el id es su puesto en la lista de ESTE móvil y el dorsal puede cambiar a mitad de temporada
+  -y el 10 del partido pasado puede ser otro-. El dorsal se deja solo como red de seguridad.
+- `jugToAir` **deja de escribir `Minutos`**, igual que ya hacía con `Posición`: la app no lo
+  calcula, y volver a guardar un 0 encima borraría lo que alguien hubiera escrito a mano.
+- Las dos tablas caben ya en un móvil: nombre abreviado («#9 Diego Q.»), números estrechos y las
+  dos columnas que menos se miran -convocado y tarjetas- solo de tableta para arriba. Medido:
+  294px de tabla en 294 de hueco a 360px, sin arrastrar de lado.
+- La demo no tenía ni un pase de gol: la columna de asistencias salía vacía justo donde hay que
+  verla. Los goles de la demo llevan ahora quién dio el pase (no todos: hay goles que no los da
+  nadie).
+- **Un susto por el camino**: calcular los minutos en el cuerpo del componente dejó la app en
+  blanco, porque `historial` se declara bastante más abajo (ReferenceError por TDZ). `vite build`
+  no lo ve y pruebas27 tampoco, porque solo arranca hasta la pantalla de acceso: el componente
+  grande no llega a pintarse. Lo cazó la prueba de navegador. Por eso son funciones y no
+  constantes.
+- Pruebas: **`pruebas/pruebas30.mjs`** (36 comprobaciones). Entre ellas, que los minutos NO
+  dependen del campo de la ficha, que un cambio de dorsal no le atribuye a nadie lo del
+  compañero, y que quien se fue del equipo sigue en la tabla de la temporada: jugó lo que jugó.
+  Total 665 ✓ / 772 ✓.
+
 ## Los nombres se montaban encima de los botones (v3.2.2)
 - «Se mezcla palabras» (Edu, 17 nov 2026), con una captura del equipo de verdad: en la lista de
   Alineación, «Ibere **Bombonato**» y «Deyan **Collin**» se pintaban ENCIMA del botón de estado.
@@ -906,7 +945,7 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
 
 ## Pruebas
 - `npm test` = `pruebas/todas.mjs`: todas las pruebas en modo Airtable (fakeair) y en modo Supabase
-  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-11-17: 629 ✓ / 736 ✓, 0 fallos.
+  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-11-17: 665 ✓ / 772 ✓, 0 fallos.
 - Desde la sesión de Claude NO hay red hacia airtable.com ni supabase.co (proxy 403): la prueba
   real contra Supabase la hace la propia app en Netlify.
 
