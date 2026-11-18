@@ -135,6 +135,31 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   sigue valiendo para los siguientes partidos hasta que se desactiva (y entonces caen las
   suscripciones). En iPhone el aviso solo llega con la página añadida a la pantalla de inicio.
 
+## Una barra de secciones en todas las pantallas (v3.6.0)
+- «Desde cada categoría añade clústers fijos para ir rápidamente sin hacer scroll, los clústers
+  se pueden ocultar» (Edu, 18 nov 2026). Elegido con él: barra fija arriba, no apartados
+  plegables en todas las pantallas.
+- Cada pantalla es una pila de tarjetas y en un móvil llegar a la última son cuatro o cinco
+  pantallazos. Ahora, pegada debajo de la cabecera, hay una fila con el título de cada tarjeta:
+  se toca y se salta. En Estadísticas son ocho; en Inicio, siete.
+- **No hay ninguna lista que mantener.** La barra LEE lo que hay pintado: cada `Card` marca su
+  título con `data-sec` y la barra los recoge en el orden en que están. Una tarjeta nueva
+  aparece sola, y una que se esconde -por permisos, por un filtro, por una sección cerrada-
+  desaparece. Por eso vigila el contenedor con un `MutationObserver`, y **solo cambia su estado
+  si la lista es de verdad distinta**: si no, su propio repintado volvería a disparar al
+  observador y entraría en bucle.
+- Al saltar, el título no queda tapado: cada tarjeta lleva `scrollMarginTop` con la altura de la
+  cabecera (`--cb-header`) más la de la barra. Medido: el título queda 11px por debajo.
+- **Se puede ocultar** y se recuerda (`cb_secbar`). Oculta deja una pastilla «≡ Secciones» para
+  traerla de vuelta: esconderla del todo sería no poder volver.
+- Con una sola tarjeta no sale: no hay a dónde ir.
+- Los títulos se recortan a 7,5rem. Enteros, «Balance de la temporada» se comía media barra y se
+  veía un chip y medio; recortados entran tres de un vistazo y el resto se desliza. Se probó en
+  minúsculas, que caben más letras, pero salían menos chips y seis seguían recortados.
+- Comprobado a 360 y 412px en Jugadores, Alineación, Convocatoria, Calendario, Entrenamiento,
+  Disciplina y Asistencia: sale en todas, salta donde debe, se oculta, se recuerda al recargar y
+  ninguna se sale de ancho.
+
 ## Convocatoria: posibles descartes, con los expulsados (v3.5.0)
 - «Para la convocatoria, posibles desconvocados los que falten al entreno y los que no fueron al
   partido anterior y los expulsados claro» (Edu, 18 nov 2026).
