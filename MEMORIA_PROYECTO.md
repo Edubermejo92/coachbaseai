@@ -135,6 +135,23 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   sigue valiendo para los siguientes partidos hasta que se desactiva (y entonces caen las
   suscripciones). En iPhone el aviso solo llega con la página añadida a la pantalla de inicio.
 
+## Estadísticas: filtro de asistencia y el once, al final (v3.3.1)
+- Las dos decisiones que quedaban de la revisión de v3.3.0, contestadas por Edu (17 nov 2026).
+- **«Deja un filtro para elegir»**: la tarjeta de asistencia enseñaba solo la punta de arriba, y
+  con media plantilla al 100% eso no es un ranking, son los seis primeros dorsales. Ahora lleva
+  **Mayor / Menor**, se recuerda entre visitas (`cb_statt_<equipo>`) y con «Menor» sale lo
+  accionable: Leo 80%, Adrián 80%, Rubén 80%… El título se queda fijo -«Asistencia a
+  entrenamientos»- porque «Menor asistencia a entrenamientos» no cabe en la cabecera y se
+  cortaba a media palabra; cuál de las dos puntas se mira ya lo dice el botón marcado. Se quita
+  la clave `st.topAtt`, que se queda sin usar.
+- **El once, al final**: «El once por línea» y «El once por demarcación» no son estadísticas,
+  son una foto del once que hay puesto hoy, y abrían la pantalla. Bajan al fondo. El orden pasa
+  a ser: balance → partido a partido → la temporada → la plantilla de hoy (disponibilidad,
+  asistencia, minutos) → el dibujo del once. Al entrar se ve cómo va el equipo, no cómo está
+  dibujado el once de esta tarde.
+- Comprobado en el navegador: el filtro cambia la lista y el orden de las tarjetas es el nuevo;
+  la elección sigue puesta después de recargar.
+
 ## Estadísticas: los minutos que nadie contaba (v3.3.0)
 - «Revisa la categoría estadísticas de la app» (Edu, 17 nov 2026). Lo que apareció al mirarla:
 - **Los minutos eran siempre 0 en un equipo de verdad.** La pantalla leía el campo `Minutos` de
