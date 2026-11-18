@@ -11,6 +11,7 @@
 import {
   partidosConFicha, fichaEnPartido, asistenciasEnPartido,
   totalesDe, minutosDe, tablaTemporada, resumenTemporada,
+  ajusteDe, hayAjuste, marcadoresDelCalendario,
 } from "../src/estadisticas.js";
 
 let ok = 0, mal = 0;
@@ -123,6 +124,72 @@ dice("un partido sin marcador no cuenta",
   resumenTemporada([{ us: null, them: 2 }, { us: 1, them: 0 }]).jugados === 1);
 dice("sin histórico, todo a cero",
   JSON.stringify(resumenTemporada(null)) === JSON.stringify({ jugados: 0, ganados: 0, empatados: 0, perdidos: 0, gf: 0, gc: 0 }));
+
+/* ---------- lo que no pasó por la app ---------- */
+dice("sin ajuste, todo a cero",
+  JSON.stringify(ajusteDe({})) === '{"minutos":0,"goles":0,"asistencias":0}');
+dice("el ajuste llega como texto desde la nube",
+  ajusteDe({ ajustes: '{"minutos":90,"goles":2,"asistencias":1}' }).minutos === 90);
+dice("y también como objeto", ajusteDe({ ajustes: { goles: 3 } }).goles === 3);
+dice("un ajuste roto no revienta nada",
+  JSON.stringify(ajusteDe({ ajustes: "esto no es json" })) === JSON.stringify(ajusteDe(null)));
+dice("no se admiten números negativos ni decimales",
+  ajusteDe({ ajustes: { minutos: -30, goles: 1.7 } }).minutos === 0
+  && ajusteDe({ ajustes: { goles: 1.7 } }).goles === 2);
+dice("hayAjuste distingue el cero del dato",
+  hayAjuste({ ajustes: { minutos: 0 } }) === false && hayAjuste({ ajustes: { minutos: 1 } }) === true);
+
+const conAjuste = totalesDe(HIST, { rec: "recC", d: 14, ajustes: { minutos: 70, goles: 1 } });
+dice("el ajuste se SUMA a lo del acta, no la sustituye",
+  conAjuste.minutos === 85 && conAjuste.goles === 1, JSON.stringify(conAjuste));
+dice("y queda marcado como puesto a mano", conAjuste.aMano === true);
+dice("sin ajuste no se marca", totalesDe(HIST, { rec: "recC" }).aMano === false);
+dice("los minutos del atajo también lo llevan",
+  minutosDe(HIST, { rec: "recC", ajustes: { minutos: 70 } }) === 85);
+
+const conPlantilla = tablaTemporada(HIST, [
+  { rec: "recA", d: 10, n: "Diego Q.", ajustes: { minutos: 50, asistencias: 1 } },
+  { rec: "recZ", d: 21, n: "Nuevo N.", ajustes: { minutos: 140, goles: 2 } },
+]);
+const fD = conPlantilla.find((x) => x.rec === "recA");
+dice("en la tabla, el ajuste se suma a lo del acta",
+  fD.minutos === 180 && fD.asistencias === 2, JSON.stringify({ m: fD.minutos, a: fD.asistencias }));
+dice("y la fila queda marcada", fD.aMano === true);
+const fZ = conPlantilla.find((x) => x.rec === "recZ");
+dice("quien no tiene ni un partido con acta pero sí ajuste entra en la tabla",
+  !!fZ && fZ.minutos === 140 && fZ.goles === 2 && fZ.convocado === 0);
+dice("sin plantilla, la tabla es la de siempre",
+  tablaTemporada(HIST).length === 3 && tablaTemporada(HIST, []).length === 3);
+
+/* ---------- los resultados escritos en el calendario ---------- */
+const FIX = [
+  { id: 9001, rec: "fixA", hg: 2, ag: 1, casa: true },    /* ganado en casa */
+  { id: 9002, rec: "fixB", hg: 3, ag: 0, casa: false },   /* perdido fuera */
+  { id: 9003, rec: "fixC", hg: null, ag: null, casa: true }, /* sin jugar */
+  { id: 9004, rec: "fixD", hg: 1, ag: 1, casa: true },    /* este SÍ tiene acta */
+];
+const HIST2 = [{ ...P1, partido: "fixD" }];
+const extra = marcadoresDelCalendario(FIX, HIST2);
+dice("solo entran los que tienen resultado", extra.length === 2, JSON.stringify(extra));
+dice("el que ya tiene acta no se cuenta dos veces",
+  !extra.some((x) => x.us === 1 && x.them === 1));
+/* El caso que se escapaba: un partido llevado con la app pero sin enlazar a
+   su jornada -un amistoso- no tiene `partido`, y su resultado está también
+   en el calendario. Por fecha se le reconoce. */
+dice("un partido con acta pero sin enlazar tampoco, si cae el mismo día",
+  marcadoresDelCalendario([{ id: 7001, fecha: "2026-09-05", hg: 3, ag: 1, casa: true }], HIST).length === 0);
+dice("y uno de otro día sí entra",
+  marcadoresDelCalendario([{ id: 7002, fecha: "2026-10-01", hg: 3, ag: 1, casa: true }], HIST).length === 1);
+dice("fuera de casa, el marcador se da la vuelta",
+  extra.some((x) => x.us === 0 && x.them === 3), JSON.stringify(extra));
+dice("en casa, no", extra.some((x) => x.us === 2 && x.them === 1));
+dice("vienen marcados como del calendario", extra.every((x) => x.deCalendario === true));
+dice("sin calendario no pasa nada",
+  marcadoresDelCalendario(null, HIST2).length === 0 && marcadoresDelCalendario([], null).length === 0);
+const conCalendario = resumenTemporada([...HIST, ...marcadoresDelCalendario(FIX, HIST)]);
+dice("y el balance los suma a los partidos con acta",
+  conCalendario.jugados === 6 && conCalendario.ganados === 2 && conCalendario.perdidos === 2,
+  JSON.stringify(conCalendario));
 
 console.log(`\n${ok} correctas · ${mal} fallos`);
 process.exit(mal ? 1 : 0);

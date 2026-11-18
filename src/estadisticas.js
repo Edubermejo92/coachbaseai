@@ -54,11 +54,68 @@ export const asistenciasEnPartido = (m, p) => {
   return m.acta.filter((e) => e && e.type === "gol" && String(e.asistDorsal ?? "") === String(p.d)).length;
 };
 
+/* ---- Lo que no pasó por la app ----
+   No todos los partidos se llevan con el móvil: el de la primera jornada,
+   el amistoso de pretemporada, el día que se quedó sin batería. Para que la
+   temporada no salga coja hay dos puertas, y las dos dicen de dónde vienen
+   los números para que nadie confunda lo medido con lo escrito a mano:
+   · un resultado apuntado en el calendario cuenta para el balance, aunque no
+     se sepa quién jugó (`marcadoresDelCalendario`);
+   · y a cada jugador se le pueden sumar minutos, goles y asistencias a mano
+     (`ajusteDe`), que se SUMAN a lo que digan las actas en vez de
+     sustituirlo: así, si mañana ese partido se registra de verdad, lo nuevo
+     se añade en lugar de quedarse congelado. */
+export const AJUSTE_CERO = { minutos: 0, goles: 0, asistencias: 0 };
+export const ajusteDe = (p) => {
+  if (!p || !p.ajustes) return AJUSTE_CERO;
+  let a = p.ajustes;
+  if (typeof a === "string") { try { a = JSON.parse(a); } catch { return AJUSTE_CERO; } }
+  if (!a || typeof a !== "object") return AJUSTE_CERO;
+  const n = (x) => (Number.isFinite(Number(x)) ? Math.max(0, Math.round(Number(x))) : 0);
+  return { minutos: n(a.minutos), goles: n(a.goles), asistencias: n(a.asistencias) };
+};
+export const hayAjuste = (p) => {
+  const a = ajusteDe(p);
+  return a.minutos > 0 || a.goles > 0 || a.asistencias > 0;
+};
+
+/* Los partidos del calendario con resultado escrito a mano que NO están ya
+   en el histórico: si el partido se llevó con la app, manda el acta y este
+   no cuenta, para no sumarlo dos veces. Cada partido llega ya normalizado
+   desde la app -{ id, rec, hg, ag, casa }-, que es la que sabe de avisos y
+   de si jugamos en casa. */
+export const marcadoresDelCalendario = (fixtures, historial) => {
+  const yaEstan = new Set();
+  const diasConActa = new Set();
+  for (const m of Array.isArray(historial) ? historial : []) {
+    if (!m) continue;
+    if (m.partido != null && m.partido !== "") yaEstan.add(String(m.partido));
+    /* Y por fecha, que es lo único que siempre hay. Un partido llevado con
+       la app pero sin enlazar a su jornada -un amistoso apuntado a mano- no
+       tiene `partido`, y sin esto se contaría dos veces: una por el acta y
+       otra por el resultado del calendario. Dos partidos el mismo día casi
+       no pasan en fútbol base, y quedarse corto es mejor que inflar. */
+    if (m.fecha) diasConActa.add(String(m.fecha));
+  }
+  const out = [];
+  for (const f of Array.isArray(fixtures) ? fixtures : []) {
+    if (!f || f.hg == null || f.ag == null || f.hg === "" || f.ag === "") continue;
+    const hg = Number(f.hg), ag = Number(f.ag);
+    if (!Number.isFinite(hg) || !Number.isFinite(ag)) continue;
+    if (yaEstan.has(String(f.rec ?? "")) || yaEstan.has(String(f.id ?? ""))) continue;
+    if (f.fecha && diasConActa.has(String(f.fecha))) continue;
+    out.push({ deCalendario: true, us: f.casa === false ? ag : hg, them: f.casa === false ? hg : ag });
+  }
+  return out;
+};
+
 /* Todo lo de un jugador en la temporada. `convocado` son los partidos en los
    que aparece en el acta; `partidos` los que hay en total, para poder decir
    "convocado 5 de 7". */
 export const totalesDe = (historial, p) => {
-  const out = { partidos: 0, convocado: 0, titular: 0, minutos: 0, goles: 0, asistencias: 0, tarjetas: 0 };
+  const aMano = ajusteDe(p);
+  const out = { partidos: 0, convocado: 0, titular: 0, tarjetas: 0,
+    minutos: aMano.minutos, goles: aMano.goles, asistencias: aMano.asistencias, aMano: hayAjuste(p) };
   for (const m of partidosConFicha(historial)) {
     out.partidos += 1;
     const j = fichaEnPartido(m, p);
@@ -82,7 +139,7 @@ export const minutosDe = (historial, p) => totalesDe(historial, p).minutos;
    partidos y no desde la plantilla de hoy a propósito: quien se fue en
    enero jugó lo que jugó, y borrarlo de la tabla sería falsear la
    temporada. */
-export const tablaTemporada = (historial) => {
+export const tablaTemporada = (historial, plantilla = []) => {
   const mapa = new Map();
   for (const m of partidosConFicha(historial)) {
     /* Dentro de un partido, el dorsal sí identifica: es el que llevaba ese
@@ -92,7 +149,8 @@ export const tablaTemporada = (historial) => {
     for (const j of m.jugadores) {
       if (!j) continue;
       const k = j.rec || (j.id != null ? `id:${j.id}` : `dn:${j.d}-${j.n}`);
-      const a = mapa.get(k) || { d: j.d, n: j.n, convocado: 0, titular: 0, minutos: 0, goles: 0, asistencias: 0, tarjetas: 0 };
+      const a = mapa.get(k) || { rec: j.rec || null, id: j.id ?? null, d: j.d, n: j.n,
+        convocado: 0, titular: 0, minutos: 0, goles: 0, asistencias: 0, tarjetas: 0, aMano: false };
       a.convocado += 1;
       a.titular += j.titular ? 1 : 0;
       a.minutos += Number(j.minutos) || 0;
@@ -115,7 +173,23 @@ export const tablaTemporada = (historial) => {
       if (a) a.asistencias += 1;
     }
   }
-  return [...mapa.values()].map(({ _fecha, ...f }) => f).sort((x, y) =>
+  /* Lo puesto a mano se suma encima, y quien no tiene ni un partido con acta
+     pero sí ajuste entra igual: si todos sus partidos se jugaron sin la app,
+     no estar en la tabla sería decir que no jugó. */
+  const filas = [...mapa.values()];
+  for (const p of Array.isArray(plantilla) ? plantilla : []) {
+    const a = ajusteDe(p);
+    if (!hayAjuste(p)) continue;
+    let fila = filas.find((f) => (p.rec && f.rec === p.rec) || (p.id != null && f.id === p.id));
+    if (!fila) {
+      fila = { rec: p.rec || null, id: p.id ?? null, d: p.d, n: p.n,
+        convocado: 0, titular: 0, minutos: 0, goles: 0, asistencias: 0, tarjetas: 0, aMano: false };
+      filas.push(fila);
+    }
+    fila.minutos += a.minutos; fila.goles += a.goles; fila.asistencias += a.asistencias;
+    fila.aMano = true;
+  }
+  return filas.map(({ _fecha, ...f }) => f).sort((x, y) =>
     y.goles - x.goles || y.asistencias - x.asistencias || y.minutos - x.minutos || y.titular - x.titular || x.d - y.d);
 };
 

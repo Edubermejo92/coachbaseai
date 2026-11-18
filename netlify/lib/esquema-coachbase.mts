@@ -90,6 +90,10 @@ const DEF: Record<string, { airtable: string; campos: Def[] }> = {
     ["fldol5OZE0MEbu6DQ", "Molestia", "molestia", "texto"],
     /* Solo en Supabase (2026-10-15): Airtable ya no se escribe. */
     ["fldApoyoJug0rX9q1", "Apoyo", "apoyo", "bool"],
+    /* Minutos, goles y asistencias puestos a mano, que se SUMAN a lo que
+       digan las actas (JSON: { minutos, goles, asistencias }). Para los
+       partidos que no se llevaron con la app. Solo en Supabase. */
+    ["fldAjustesJug0rX2", "Ajustes", "ajustes", "texto"],
   ] },
   usuarios: { airtable: "tblZf4dFeq4FCjHGJ", campos: [
     ["fldSnD1rqmHptkRlA", "Nombre", "nombre", "texto"],

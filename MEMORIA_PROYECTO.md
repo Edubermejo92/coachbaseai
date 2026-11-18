@@ -135,6 +135,38 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   sigue valiendo para los siguientes partidos hasta que se desactiva (y entonces caen las
   suscripciones). En iPhone el aviso solo llega con la página añadida a la pantalla de inicio.
 
+## Estadísticas a mano: el calendario cuenta y los ajustes por jugador (v3.4.0)
+- «Yo puedo editar las estadísticas manualmente» (Edu, 17 nov 2026). La respuesta era que no:
+  los números solo entraban por Modo partido. Elegido con él: que cuenten los resultados del
+  calendario y poder ajustar los totales de un jugador.
+- **El calendario cuenta para el balance.** Un partido jugado sin la app, con el resultado
+  escrito en el calendario, entra en jugados / G-E-P / goles aunque no se sepa quién jugó, y la
+  tarjeta lo dice («incluye {n} del calendario, sin ficha de jugadores»). Antes el balance de
+  Estadísticas podía no cuadrar con la clasificación de Liga.
+- **No contar dos veces** fue lo difícil. Primero se descarta por el enlace `partido` del acta
+  y **además por fecha**: un partido llevado con la app pero sin enlazar a su jornada -un
+  amistoso apuntado a mano- no tiene `partido`, y su resultado también está en el calendario.
+  Se vio en la demo: el balance saltó a 11 partidos cuando son 8, porque los tres amistosos se
+  contaban por duplicado. Dos partidos el mismo día casi no pasan en fútbol base y quedarse
+  corto es mejor que inflar.
+- **Ajustes a mano por jugador**: minutos, goles y asistencias que se **SUMAN** a lo que digan
+  las actas, no las sustituyen. Es la diferencia importante: si ese partido acaba registrándose
+  de verdad, lo nuevo se añade en vez de quedarse congelado en un número puesto a dedo. Quien
+  lleva datos a mano sale con un asterisco en la tabla, y debajo «* {n} con datos a mano», para
+  que nadie confunda lo medido con lo escrito.
+- Un jugador con ajuste pero sin ningún partido con acta **entra igual en la tabla**: si todos
+  sus partidos se jugaron sin la app, no estar sería decir que no jugó.
+- Se guarda al salir del campo (no en cada tecla) y en el momento, no al pulsar «Guardar
+  plantilla»: quien escribe en Estadísticas no tiene por qué saber que hay que confirmar en otra
+  pantalla. Un ajuste a cero borra el dato en vez de guardar `{"minutos":0,…}`.
+- No se le enseña al **segundo entrenador**: él propone cambios de plantilla, no los escribe, y
+  un número puesto aquí no tendría por dónde pasar por esa aprobación.
+- Columna nueva `jugadores.ajustes` (texto JSON), solo en Supabase, como `Apoyo`. Migración
+  `20261118120000_jugadores_ajustes.sql`, ya aplicada.
+- Pruebas: pruebas30 sube a 59 (+23). Entre ellas, que el ajuste se suma y no sustituye, que un
+  ajuste roto o negativo no rompe nada, y los dos casos de doble cuenta del calendario.
+  Total 688 ✓ / 795 ✓.
+
 ## Estadísticas: filtro de asistencia y el once, al final (v3.3.1)
 - Las dos decisiones que quedaban de la revisión de v3.3.0, contestadas por Edu (17 nov 2026).
 - **«Deja un filtro para elegir»**: la tarjeta de asistencia enseñaba solo la punta de arriba, y
@@ -962,7 +994,7 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
 
 ## Pruebas
 - `npm test` = `pruebas/todas.mjs`: todas las pruebas en modo Airtable (fakeair) y en modo Supabase
-  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-11-17: 665 ✓ / 772 ✓, 0 fallos.
+  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-11-18: 688 ✓ / 795 ✓, 0 fallos.
 - Desde la sesión de Claude NO hay red hacia airtable.com ni supabase.co (proxy 403): la prueba
   real contra Supabase la hace la propia app en Netlify.
 
