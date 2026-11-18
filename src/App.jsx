@@ -11831,6 +11831,13 @@ const BarraSecciones = ({ tab, t, AC }) => {
   };
   /* Con una sola tarjeta no hay a dónde ir. */
   if (secs.length < 2) return null;
+  /* En Inicio no. Es la portada, y sus tarjetas no son apartados de una
+     pantalla: son atajos a OTRAS pantallas -«Accesos rápidos», «Mis
+     categorías»-, así que la barra se leía como un segundo menú repetido
+     ("de subcategorías de la categoría, no de lo principal, para eso está
+     el menú", Edu, 18 nov 2026). Donde sirve es dentro de un apartado, para
+     moverse entre sus partes. */
+  if (tab === "inicio") return null;
   if (oculta) {
     return (
       <div className="sticky z-10 -mx-4 sm:-mx-5 px-4 sm:px-5 pb-1 flex justify-end" style={{ top: "var(--cb-header, 57px)" }}>

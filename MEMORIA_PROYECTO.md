@@ -135,6 +135,16 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   sigue valiendo para los siguientes partidos hasta que se desactiva (y entonces caen las
   suscripciones). En iPhone el aviso solo llega con la página añadida a la pantalla de inicio.
 
+## La barra de secciones, fuera de Inicio (v3.6.1)
+- «Pero de subcategorías de la categoría, no de lo principal, para eso está el menú» (Edu, 18
+  nov 2026), nada más publicar la v3.6.0.
+- La barra hace lo que pedía en todas las pantallas menos en una: **Inicio**. Es la portada, y
+  sus tarjetas no son apartados de una pantalla, son atajos a OTRAS pantallas —«Accesos
+  rápidos», «Mis categorías», «Alertas»—, así que ahí la barra se leía como un segundo menú
+  repetido. Fuera de Inicio.
+- Donde sí sirve es dentro de un apartado, para moverse entre sus partes: Estadísticas (ocho),
+  Calendario (tres), Convocatoria (dos)… Eso se queda como estaba.
+
 ## Una barra de secciones en todas las pantallas (v3.6.0)
 - «Desde cada categoría añade clústers fijos para ir rápidamente sin hacer scroll, los clústers
   se pueden ocultar» (Edu, 18 nov 2026). Elegido con él: barra fija arriba, no apartados
