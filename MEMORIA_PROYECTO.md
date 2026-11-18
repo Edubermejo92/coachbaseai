@@ -135,6 +135,31 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   sigue valiendo para los siguientes partidos hasta que se desactiva (y entonces caen las
   suscripciones). En iPhone el aviso solo llega con la página añadida a la pantalla de inicio.
 
+## Convocatoria: posibles descartes, con los expulsados (v3.5.0)
+- «Para la convocatoria, posibles desconvocados los que falten al entreno y los que no fueron al
+  partido anterior y los expulsados claro» (Edu, 18 nov 2026).
+- Dos de las tres señales ya estaban —desde v2.98.0— pero **repartidas debajo de diecinueve
+  nombres**: para verlas había que recorrer la lista entera acordándose de lo que decía cada
+  una. Ahora van juntas y arriba, que es donde se decide: **«Posibles descartes (n)»** con el
+  nombre, el motivo y un ✕ para dejarlo fuera de un toque.
+- **La que faltaba: los expulsados.** Sale del acta del último partido —roja directa o doble
+  amarilla, que en los dos casos se pierde el siguiente—, y es la única de las tres que no se
+  discute. Se mira SOLO el último partido con acta, ordenado por fecha y sin fiarse del orden
+  del histórico: una roja de hace tres jornadas ya está cumplida.
+- La app **no desconvoca a nadie sola**: enseña a quién mirar y el toque lo da el entrenador. Un
+  chaval que faltó a un entreno puede ir igual, y eso no lo decide un programa. El texto de la
+  tarjeta lo dice con todas sus letras.
+- El lesionado y el sancionado no entran en la lista: esos no hay que mirarlos, ya no son
+  convocables (v3.2.x). Y quien ya está fuera sale en gris con «ya está fuera», sin ✕: la
+  tarjeta informa, no le vuelve a meter.
+- El nombre va en su renglón y los motivos debajo. Puestos en la misma línea, dos motivos se
+  comían el nombre: a 360px quedaba «1…» donde tenía que poner «12 Leo Bermúdez».
+- La demo no tenía ni una expulsión, así que el aviso nuevo no se podía ver donde hay que verlo:
+  el último partido lleva ahora una roja.
+- Pruebas: pruebas29 sube a 58 (+14): que el último partido es el de la fecha más reciente y no
+  el primero de la lista, que una expulsión de hace dos jornadas no cuenta, y el orden de las
+  tres razones. Total 702 ✓ / 809 ✓.
+
 ## Estadísticas a mano: el calendario cuenta y los ajustes por jugador (v3.4.0)
 - «Yo puedo editar las estadísticas manualmente» (Edu, 17 nov 2026). La respuesta era que no:
   los números solo entraban por Modo partido. Elegido con él: que cuenten los resultados del
@@ -994,7 +1019,7 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
 
 ## Pruebas
 - `npm test` = `pruebas/todas.mjs`: todas las pruebas en modo Airtable (fakeair) y en modo Supabase
-  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-11-18: 688 ✓ / 795 ✓, 0 fallos.
+  (PGlite = Postgres real + `pruebas/fakesupabase.mjs`). 2026-11-18: 702 ✓ / 809 ✓, 0 fallos.
 - Desde la sesión de Claude NO hay red hacia airtable.com ni supabase.co (proxy 403): la prueba
   real contra Supabase la hace la propia app en Netlify.
 

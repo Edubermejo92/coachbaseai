@@ -8,6 +8,8 @@
    pueden probar sin montar la app (ver pruebas/pruebas29).
    ============================================================ */
 
+import { partidosConFicha, fichaEnPartido } from "./estadisticas.js";
+
 /* Los motivos por los que alguien se queda fuera de una convocatoria. El
    servidor valida contra esta misma lista (ver airtable.mts). */
 export const MOTIVOS_DESCARTE = ["tecnica", "lesion", "sancion", "viaje"];
@@ -86,4 +88,47 @@ export const ultimaConvocatoria = (filas, hoy) => {
     }
   } catch { /* json roto: se queda sin motivos, pero la lista sigue valiendo */ }
   return { fecha: String(c.Fecha), rival: String(c.Rival || ""), convocados: new Set(c.Convocados), motivos };
+};
+
+/* ---- Quién habría que mirar dos veces antes de convocar ----
+   Tres señales, y las tres estaban en la app sin juntarse en ninguna parte:
+   a quién faltó a los entrenos de la semana, a quién se quedó fuera del
+   partido anterior y a quién expulsaron en el último -que no puede jugar el
+   siguiente-. ("Posibles desconvocados los que falten al entreno y los que
+   no fueron al partido anterior y los expulsados", Edu, 18 nov 2026.)
+   El lesionado y el sancionado no entran aquí: esos no es que haya que
+   mirarlos, es que ya no son convocables (ver `noConvocable`). */
+
+/* El último partido con acta. Se ordena por fecha y no se da por hecho el
+   orden del histórico: viene del más nuevo al más viejo, pero confiarse de
+   eso es cómo se acaba enseñando el partido de hace tres jornadas. */
+export const ultimoPartidoConFicha = (historial) => {
+  const ps = partidosConFicha(historial);
+  if (!ps.length) return null;
+  return [...ps].sort((a, b) => String(b.fecha || "").localeCompare(String(a.fecha || "")))[0];
+};
+
+/* ¿Le expulsaron en ese último partido? Roja directa o doble amarilla: en
+   los dos casos se pierde el siguiente. */
+export const expulsadoEnElAnterior = (historial, p) => {
+  const m = ultimoPartidoConFicha(historial);
+  if (!m || !p || p.apoyo) return null;
+  const j = fichaEnPartido(m, p);
+  if (!j) return null;
+  const rojas = Number(j.rojas) || 0;
+  const dobles = Number(j.dobleAmarilla) || 0;
+  if (!rojas && !dobles) return null;
+  return { tipo: rojas ? "roja" : "doble", fecha: m.fecha || "", rival: m.rival || "" };
+};
+
+/* Las razones por las que este jugador sale en "posibles descartes", de la
+   más seria a la más leve: una expulsión no se discute, faltar al entreno
+   es del entrenador, y no haber ido al anterior es solo un recordatorio. */
+export const RAZONES_DESCARTE = ["expulsado", "faltas", "anterior"];
+export const razonesDeDescarte = ({ faltas, fuera, expulsado } = {}) => {
+  const out = [];
+  if (expulsado) out.push("expulsado");
+  if (faltas && Number(faltas.n) > 0) out.push("faltas");
+  if (fuera) out.push("anterior");
+  return out;
 };

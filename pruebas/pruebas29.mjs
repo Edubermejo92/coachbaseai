@@ -7,6 +7,7 @@
    partido anterior quien todavía no estaba en el equipo, es peor que no
    decir nada. Son funciones puras: ni navegador ni servidor. */
 import { MOTIVOS_DESCARTE, ESTADOS_JUGADOR, ESTADOS_NO_CONVOCABLES, noConvocable, trasCambiarEstado,
+  RAZONES_DESCARTE, ultimoPartidoConFicha, expulsadoEnElAnterior, razonesDeDescarte,
   diasConListaReciente, faltasEnDias, ultimaConvocatoria } from "../src/convocatoria.js";
 
 let ok = 0, mal = 0;
@@ -109,6 +110,52 @@ dice("marcar lesionado a quien ya estaba fuera solo le pone el motivo",
   JSON.stringify(trasCambiarEstado(7, "lesionado", [5], {}, "duda")));
 dice("sin convocatoria ni motivos tampoco se rompe",
   JSON.stringify(trasCambiarEstado(7, "lesionado", null, null, null).convocados) === "[]");
+
+/* ---------- posibles descartes ---------- */
+/* El histórico llega del más nuevo al más viejo, pero aquí se pone al revés
+   a propósito: la función tiene que ordenar por fecha y no fiarse. */
+const PART_VIEJO = {
+  fecha: "2026-10-03", rival: "Valdebebas", us: 3, them: 1,
+  jugadores: [{ rec: "recA", d: 9, n: "Diego", rojas: 1, dobleAmarilla: 0 }],
+};
+const PART_ULTIMO = {
+  fecha: "2026-10-17", rival: "Trivema", us: 0, them: 1,
+  jugadores: [
+    { rec: "recA", d: 9, n: "Diego", rojas: 0, dobleAmarilla: 0 },
+    { rec: "recB", d: 2, n: "Nico", rojas: 0, dobleAmarilla: 1 },
+    { rec: "recC", d: 5, n: "Hugo", rojas: 1, dobleAmarilla: 0 },
+  ],
+};
+const HIST_EXP = [PART_VIEJO, PART_ULTIMO];
+dice("el último partido es el de la fecha más reciente, no el primero de la lista",
+  ultimoPartidoConFicha(HIST_EXP)?.rival === "Trivema", ultimoPartidoConFicha(HIST_EXP)?.rival);
+dice("sin partidos no hay último",
+  ultimoPartidoConFicha([]) === null && ultimoPartidoConFicha(null) === null);
+dice("una roja directa es expulsión",
+  expulsadoEnElAnterior(HIST_EXP, { rec: "recC" })?.tipo === "roja");
+dice("y una doble amarilla también",
+  expulsadoEnElAnterior(HIST_EXP, { rec: "recB" })?.tipo === "doble");
+dice("quien no vio ninguna, no",
+  expulsadoEnElAnterior(HIST_EXP, { rec: "recA" }) === null);
+/* La roja de Diego fue hace DOS partidos: esa sanción ya se cumplió. */
+dice("una expulsión de un partido anterior no cuenta",
+  expulsadoEnElAnterior(HIST_EXP, { rec: "recA", d: 9 }) === null);
+dice("quien no jugó el último no sale expulsado",
+  expulsadoEnElAnterior(HIST_EXP, { rec: "recZ", d: 21 }) === null);
+dice("un jugador de apoyo no se mira: no es de la plantilla",
+  expulsadoEnElAnterior(HIST_EXP, { rec: "recC", apoyo: true }) === null);
+dice("sin histórico no revienta",
+  expulsadoEnElAnterior([], { rec: "recC" }) === null && expulsadoEnElAnterior(null, null) === null);
+
+dice("las tres razones, de la más seria a la más leve",
+  JSON.stringify(RAZONES_DESCARTE) === '["expulsado","faltas","anterior"]');
+dice("sin nada, ninguna razón", razonesDeDescarte({}).length === 0 && razonesDeDescarte().length === 0);
+dice("la expulsión va primero",
+  JSON.stringify(razonesDeDescarte({ expulsado: { tipo: "roja" }, fuera: { motivo: "" } })) === '["expulsado","anterior"]');
+dice("faltar a cero entrenos no es una razón",
+  razonesDeDescarte({ faltas: { n: 0, de: 2 } }).length === 0);
+dice("las tres juntas salen en orden",
+  JSON.stringify(razonesDeDescarte({ expulsado: {}, faltas: { n: 2 }, fuera: {} })) === '["expulsado","faltas","anterior"]');
 
 console.log(`\n${ok} correctas · ${mal} fallos`);
 process.exit(mal ? 1 : 0);
