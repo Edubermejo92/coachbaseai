@@ -135,6 +135,32 @@ con funciones serverless en `netlify/functions/`. Versión 2.66.0. Master = ebld
   sigue valiendo para los siguientes partidos hasta que se desactiva (y entonces caen las
   suscripciones). En iPhone el aviso solo llega con la página añadida a la pantalla de inicio.
 
+## Botones en escalera: Inicio, los partidos y el resumen de entreno (v3.6.2)
+- «Ordena los botones de la home para que queden ordenados en móvil. De paso revisa el orden del
+  resto de botones de la app» (Edu, 19 nov 2026, con captura).
+- **Inicio**: los cuatro botones de antes de un partido —convocatoria, alineación, entrenamiento,
+  iniciar partido— iban en una fila que se envolvía, así que cada uno medía lo que medía su
+  palabra y en un móvil caían uno por línea con anchos distintos: una escalera. Pasan a rejilla
+  de dos: cuatro botones, 2×2, todos del mismo ancho. De tableta para arriba caben en fila y se
+  quedan como estaban. Además el texto baja a `text-xs` en el móvil: a `text-sm`,
+  «Convocatoria» no cabía junto a su icono y el icono se iba a un renglón propio, así que un
+  botón tenía el icono arriba y el de al lado en línea.
+- **El resto se revisó con una sonda**, no a ojo: un script recorre diez pantallas a 390px
+  buscando filas de botones hermanos que caigan en más de una línea con anchos distintos de más
+  de 12px. Encontró tres sitios (y la barra de secciones y las filas de icono, descartadas por
+  la propia sonda).
+- **Estadísticas · partido a partido**: siete botones con el nombre del rival, de 152 a 228px,
+  en seis líneas. A rejilla de dos; el nombre largo se recorta.
+- **Entrenamiento · resumen**: «Copiar resumen» y «Abrir WhatsApp» partían su texto en dos
+  renglones y «Descargar Word» se iba sola a la línea de abajo, más baja que las otras. Las tres
+  una debajo de otra en el móvil, en fila de tres de tableta para arriba.
+- **Lo que NO se tocó**: en Disciplina, «Entrenamiento / Partido» van detrás del campo de fecha y
+  tienen el ancho de su palabra. Es un selector de dos, no una fila de acciones: igualarlos
+  obligaría a estirarlos y quedaría peor.
+- Comprobado a 360 y 390px, con y sin permiso para iniciar partido (en la demo no sale, así que
+  con los cuatro botones hay que mirarlo a propósito): todos del mismo ancho, dos por fila, y la
+  sonda ya no encuentra ninguna escalera.
+
 ## La barra de secciones, fuera de Inicio (v3.6.1)
 - «Pero de subcategorías de la categoría, no de lo principal, para eso está el menú» (Edu, 18
   nov 2026), nada más publicar la v3.6.0.

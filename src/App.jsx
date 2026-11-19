@@ -21229,25 +21229,32 @@ export default function App() {
           </div>
         </div>
 
-        {/* Lo que se hace de verdad antes de un partido, en orden. */}
-        <div className="flex flex-wrap gap-2 px-4 pb-4">
+        {/* Lo que se hace de verdad antes de un partido, en orden.
+            En rejilla de dos y no en fila que se envuelve: cada botón medía
+            lo que medía su palabra, así que en un móvil caían uno por línea
+            y con anchos distintos -"Convocatoria" largo, "Alineación" más
+            corto, "Iniciar partido" otra vez largo- y la tarjeta parecía una
+            escalera. En dos columnas todos miden lo mismo y quedan
+            alineados; de tableta para arriba caben en fila y se dejan como
+            estaban. */}
+        <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2 px-4 pb-4">
           {visibleTabs.includes("convocatoria") && (
-            <button onClick={() => setTab("convocatoria")} className="font-display uppercase tracking-wide text-sm px-4 py-2.5 rounded-lg border" style={{ borderColor: C.line, background: C.panel2, color: C.chalk }}>
+            <button onClick={() => setTab("convocatoria")} className="flex items-center justify-center gap-1.5 font-display uppercase tracking-wide text-xs sm:text-sm px-3 py-2.5 rounded-lg border" style={{ borderColor: C.line, background: C.panel2, color: C.chalk }}>
               <Icono n="convocatoria" s={16} /> {t("nav.convocatoria")}
             </button>
           )}
           {visibleTabs.includes("alineacion") && (
-            <button onClick={() => setTab("alineacion")} className="font-display uppercase tracking-wide text-sm px-4 py-2.5 rounded-lg border" style={{ borderColor: C.line, background: C.panel2, color: C.chalk }}>
+            <button onClick={() => setTab("alineacion")} className="flex items-center justify-center gap-1.5 font-display uppercase tracking-wide text-xs sm:text-sm px-3 py-2.5 rounded-lg border" style={{ borderColor: C.line, background: C.panel2, color: C.chalk }}>
               <Icono n="alineacion" s={16} /> {t("nav.alineacion")}
             </button>
           )}
           {focoEntreno && visibleTabs.includes("entrenamiento") && (
-            <button onClick={() => setTab("entrenamiento")} className="font-display uppercase tracking-wide text-sm px-4 py-2.5 rounded-lg font-semibold" style={{ background: AC, color: C.sobre }}>
+            <button onClick={() => setTab("entrenamiento")} className="flex items-center justify-center gap-1.5 font-display uppercase tracking-wide text-xs sm:text-sm px-3 py-2.5 rounded-lg font-semibold" style={{ background: AC, color: C.sobre }}>
               <Icono n="entrenamiento" s={16} /> {t("nav.entrenamiento")}
             </button>
           )}
           {can("events") && (
-            <button onClick={() => setTab("partido")} className="font-display uppercase tracking-wide text-sm px-4 py-2.5 rounded-lg font-semibold" style={{ background: AC, color: C.sobre }}>
+            <button onClick={() => setTab("partido")} className="flex items-center justify-center gap-1.5 font-display uppercase tracking-wide text-xs sm:text-sm px-3 py-2.5 rounded-lg font-semibold" style={{ background: AC, color: C.sobre }}>
               <Icono n="partido" s={16} /> {t("h.startMatch")}
             </button>
           )}
@@ -26978,10 +26985,13 @@ export default function App() {
       </Card>
       <Card title={t("tr.summary")}>
         <pre className="whitespace-pre-wrap text-sm rounded-lg p-4 border font-body leading-relaxed" style={{ background: C.panel2, borderColor: C.line, color: C.chalk }}>{trainSummary()}</pre>
-        <div className="mt-3 flex flex-wrap gap-2">
-          <button onClick={copyTrainSummary} className="flex-1 min-w-[110px] font-display uppercase tracking-wider py-2.5 rounded-lg font-semibold" style={{ background: trainCopied ? C.green : AC, color: C.sobre }}>{trainCopied ? t("tr.copied") : t("tr.copy")}</button>
-          <a href={`https://wa.me/?text=${encodeURIComponent(trainSummary())}`} target="_blank" rel="noreferrer" className="flex-1 min-w-[110px] text-center font-display uppercase tracking-wider py-2.5 rounded-lg font-semibold border" style={{ borderColor: C.line, color: C.chalk }}>{t("tr.whatsapp")}</a>
-          <button onClick={descargarTrainWord} disabled={wordBusy} className="flex-1 min-w-[110px] font-display uppercase tracking-wider py-2.5 rounded-lg font-semibold border disabled:opacity-60" style={{ borderColor: C.line, color: C.chalk }}>
+        {/* Una debajo de otra en el móvil: en fila, "Copiar resumen" y
+            "Abrir WhatsApp" partían su texto en dos renglones y quedaban
+            más altas que la de Word, que se iba sola a la línea de abajo. */}
+        <div className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-2">
+          <button onClick={copyTrainSummary} className="font-display uppercase tracking-wider py-2.5 rounded-lg font-semibold" style={{ background: trainCopied ? C.green : AC, color: C.sobre }}>{trainCopied ? t("tr.copied") : t("tr.copy")}</button>
+          <a href={`https://wa.me/?text=${encodeURIComponent(trainSummary())}`} target="_blank" rel="noreferrer" className="text-center font-display uppercase tracking-wider py-2.5 rounded-lg font-semibold border" style={{ borderColor: C.line, color: C.chalk }}>{t("tr.whatsapp")}</a>
+          <button onClick={descargarTrainWord} disabled={wordBusy} className="font-display uppercase tracking-wider py-2.5 rounded-lg font-semibold border disabled:opacity-60" style={{ borderColor: C.line, color: C.chalk }}>
             {wordBusy ? t("a.sending") : t("tr.downloadWord")}
           </button>
         </div>
@@ -27093,13 +27103,18 @@ export default function App() {
               </div>
             ) : (
               <>
-                <div className="flex flex-wrap gap-1.5 mb-3">
+                {/* En rejilla de dos: cada botón medía lo que medía el
+                    nombre del rival -"C.D. TRIVEMA NAVAL \"A\"" el doble que
+                    "A.D. Ejemplo Sur"- y en un móvil bajaban en escalera,
+                    siete botones en seis líneas. Ahora todos miden lo mismo
+                    y el nombre largo se recorta. */}
+                <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-1.5 mb-3">
                   {conFicha.map((m) => {
                     const sel = m.id === partidoStats;
                     const res = m.us > m.them ? C.green : m.us < m.them ? C.red : C.dim;
                     return (
                       <button key={m.id} onClick={() => setPartidoStats(sel ? null : m.id)}
-                        className="text-left rounded-lg border px-2.5 py-2 min-w-[9.5rem]"
+                        className="text-left rounded-lg border px-2.5 py-2 min-w-0 sm:min-w-[9.5rem]"
                         style={{ borderColor: sel ? AC : C.line, background: sel ? C.panel2 : "transparent" }}>
                         <div className="text-xs truncate" style={{ color: C.chalk }}>{m.rival}</div>
                         <div className="flex items-center gap-2">
